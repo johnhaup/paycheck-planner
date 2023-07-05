@@ -1,6 +1,6 @@
+import { useThemeColor } from "@styles";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, TextInput, TextInputProps } from "react-native";
-import { useThemeColor } from "styles";
 
 export function Input(props: TextInputProps) {
   const [isFocused, setIsFocused] = useState(false);

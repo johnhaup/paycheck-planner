@@ -1,6 +1,6 @@
+import { ThemeColor, useThemeColor } from "@styles";
 import React from "react";
 import { StyleSheet, Text, TextProps } from "react-native";
-import { ThemeColor, useThemeColor } from "styles";
 
 interface Props extends TextProps {
   variant: keyof typeof styles;

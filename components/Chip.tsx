@@ -1,8 +1,8 @@
+import { CloseSquare, Star } from "@assets";
+import { useThemeColor } from "@styles";
 import React, { ComponentProps, createElement } from "react";
 import { StyleSheet, View } from "react-native";
-import { CloseSquare } from "../assets/svgs/CloseSquare";
-import { Star } from "../assets/svgs/Star";
-import { useThemeColor } from "styles";
+
 import { BBText } from "./BBText";
 
 type VariantKey = keyof typeof variantStyles;

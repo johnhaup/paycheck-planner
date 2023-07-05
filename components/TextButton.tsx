@@ -1,8 +1,8 @@
+import { NextArrow, PreviousArrow } from "@assets";
 import React, { createElement } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { ThemeColor, useThemeColor } from "styles";
-import { NextArrow } from "../assets/svgs/NextArrow";
-import { PreviousArrow } from "../assets/svgs/PreviousArrow";
+
 import { BBText } from "./BBText";
 
 type VariantKey = "primary" | "secondary";

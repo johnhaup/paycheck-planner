@@ -1,7 +1,7 @@
+import { Check } from "@assets";
+import { useThemeColor } from "@styles";
 import React from "react";
 import { Pressable, StyleSheet } from "react-native";
-import { Check } from "../assets/svgs/Check";
-import { useThemeColor } from "styles";
 
 interface Props {
   onTap: () => void;

@@ -1,8 +1,7 @@
+import { payScheduleAtom, payStartDateAtom } from "@atoms";
+import { PaySchedule } from "@types";
 import dayjs from "dayjs";
 import { useAtom } from "jotai";
-import { payScheduleAtom } from "../atoms/payScheduleAtom";
-import { payStartDateAtom } from "../atoms/payStartDate";
-import { PaySchedule } from "../types";
 
 export function generatePayDates(
   startDate: Date,
@@ -29,11 +28,4 @@ export function generatePayDates(
   }, []);
 
   return payDates;
-}
-
-export function getUserPayDates() {
-  const [paySchedule] = useAtom(payScheduleAtom);
-  const [payStartDate] = useAtom(payStartDateAtom);
-
-  return generatePayDates(payStartDate, paySchedule, 10);
 }

@@ -1,0 +1,48 @@
+{
+  "env": {
+    "node": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-hooks", "react-native", "simple-import-sort"],
+  "rules": {
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "linebreak-style": ["error", "unix"],
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
+    "object-curly-spacing": ["error", "always"],
+    "quotes": ["error", "double"],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-uses-react": "off",
+    "semi": ["error", "always"],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["."],
+        "alias": {
+          "@assets": "./assets",
+          "@components": "./components",
+          "@constants": "./constants",
+          "@screens": "./screens",
+          "@styles": "./styles"
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
+import { useThemeColor } from "@styles";
 import React from "react";
 import { Switch } from "react-native";
-import { useThemeColor } from "../styles";
 
 export function Toggle({ isEnabled, onToggleTap }) {
   const thumbColor = useThemeColor("toggleThumb");
