@@ -6,7 +6,7 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { ScrollView } from "react-native";
 import { Spacer } from "react-native-spacer-view";
-import { generatePayDates } from "../../hooks/usePaySchedule";
+import { generatePayDates } from "../../utils";
 
 export function PayPeriods() {
   const payDates = generatePayDates(dayjs().toDate(), {
