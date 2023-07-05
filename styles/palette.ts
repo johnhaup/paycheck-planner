@@ -36,7 +36,7 @@ export const palette = {
   primary200: "#C3B3FF",
   primary300: "#A48EFF",
   primary400: "#8668FF",
-  primary500: "#6842FF",
+  primary500: "#4ADE80",
   primary500_08: "rgba(104, 66, 255, 0.08)",
   purple: "#9D28AC",
   red: "#F54336",

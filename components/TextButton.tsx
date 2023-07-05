@@ -85,7 +85,7 @@ export function TextButton({
 
 const styles = StyleSheet.create({
   base: {
-    borderRadius: 100,
+    borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",

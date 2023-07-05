@@ -11,7 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "scheme": "paycheck-planner",
     "ios": {
       "supportsTablet": true
@@ -31,6 +33,9 @@
         "projectId": "f7fd6eb5-2bb5-4064-8820-61bcaa1b9790"
       }
     },
-    "owner": "johnhaup"
+    "owner": "johnhaup",
+    "plugins": [
+      "expo-localization"
+    ]
   }
 }
