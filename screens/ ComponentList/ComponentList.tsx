@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 
-import { BBText, CheckBox, Chip, Toggle } from "components";
+import { VariantText, CheckBox, Chip, Toggle } from "components";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
@@ -52,32 +52,32 @@ export default function App() {
       <Spacer height={8} />
       <Toggle onToggleTap={onToggleTap} isEnabled={toggled} />
       <Spacer height={8} />
-      <BBText variant="heading1">Heading1</BBText>
-      <BBText variant="heading2">Heading2</BBText>
-      <BBText variant="heading3">Heading3</BBText>
-      <BBText variant="heading4">Heading4</BBText>
-      <BBText variant="heading5">Heading5</BBText>
-      <BBText variant="heading6">Heading6</BBText>
-      <BBText variant="bodyXLRegular">BodyXLRegular</BBText>
-      <BBText variant="bodyXLBold">BodyXLBold</BBText>
-      <BBText variant="bodyXLSemiBold">BodyXLSemiBold</BBText>
-      <BBText variant="bodyXLMedium">BodyXLMedium</BBText>
-      <BBText variant="bodyLGRegular">BodyLGRegular</BBText>
-      <BBText variant="bodyLGBold">BodyLGBold</BBText>
-      <BBText variant="bodyLGSemiBold">BodyLGSemiBold</BBText>
-      <BBText variant="bodyLGMedium">bodyLGMedium</BBText>
-      <BBText variant="bodyMDRegular">BodyMDRegular</BBText>
-      <BBText variant="bodyMDBold">BodyMDBold</BBText>
-      <BBText variant="bodyMDSemiBold">BodyMDSemiBold</BBText>
-      <BBText variant="bodyMDMedium">BodyMDMedium</BBText>
-      <BBText variant="bodySMRegular">BodySMRegular</BBText>
-      <BBText variant="bodySMBold">BodySMBold</BBText>
-      <BBText variant="bodySMSemiBold">BodySMSemiBold</BBText>
-      <BBText variant="bodySMMedium">bodySMMedium</BBText>
-      <BBText variant="bodyXSRegular">BodyXSRegular</BBText>
-      <BBText variant="bodyXSBold">BodyXSBold</BBText>
-      <BBText variant="bodyXSSemiBold">BodyXSSemiBold</BBText>
-      <BBText variant="bodyXSMedium">BodyXSMedium</BBText>
+      <VariantText variant="heading1">Heading1</VariantText>
+      <VariantText variant="heading2">Heading2</VariantText>
+      <VariantText variant="heading3">Heading3</VariantText>
+      <VariantText variant="heading4">Heading4</VariantText>
+      <VariantText variant="heading5">Heading5</VariantText>
+      <VariantText variant="heading6">Heading6</VariantText>
+      <VariantText variant="bodyXLRegular">BodyXLRegular</VariantText>
+      <VariantText variant="bodyXLBold">BodyXLBold</VariantText>
+      <VariantText variant="bodyXLSemiBold">BodyXLSemiBold</VariantText>
+      <VariantText variant="bodyXLMedium">BodyXLMedium</VariantText>
+      <VariantText variant="bodyLGRegular">BodyLGRegular</VariantText>
+      <VariantText variant="bodyLGBold">BodyLGBold</VariantText>
+      <VariantText variant="bodyLGSemiBold">BodyLGSemiBold</VariantText>
+      <VariantText variant="bodyLGMedium">bodyLGMedium</VariantText>
+      <VariantText variant="bodyMDRegular">BodyMDRegular</VariantText>
+      <VariantText variant="bodyMDBold">BodyMDBold</VariantText>
+      <VariantText variant="bodyMDSemiBold">BodyMDSemiBold</VariantText>
+      <VariantText variant="bodyMDMedium">BodyMDMedium</VariantText>
+      <VariantText variant="bodySMRegular">BodySMRegular</VariantText>
+      <VariantText variant="bodySMBold">BodySMBold</VariantText>
+      <VariantText variant="bodySMSemiBold">BodySMSemiBold</VariantText>
+      <VariantText variant="bodySMMedium">bodySMMedium</VariantText>
+      <VariantText variant="bodyXSRegular">BodyXSRegular</VariantText>
+      <VariantText variant="bodyXSBold">BodyXSBold</VariantText>
+      <VariantText variant="bodyXSSemiBold">BodyXSSemiBold</VariantText>
+      <VariantText variant="bodyXSMedium">BodyXSMedium</VariantText>
       <Spacer height={8} />
       <Chip variant="lg" text="Large" />
       <Spacer height={8} />

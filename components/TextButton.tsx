@@ -3,7 +3,7 @@ import React, { createElement } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { ThemeColor, useThemeColor } from "styles";
 
-import { BBText } from "./BBText";
+import { VariantText } from "./VariantText";
 
 type VariantKey = "primary" | "secondary";
 
@@ -74,9 +74,9 @@ export function TextButton({
     >
       {leftIcon &&
         createElement(leftIcon, { color, size: 20, style: { marginRight: 8 } })}
-      <BBText style={{ color }} variant="bodyLGBold">
+      <VariantText style={{ color }} variant="bodyLGBold">
         {text}
-      </BBText>
+      </VariantText>
       {rightIcon &&
         createElement(rightIcon, { color, size: 20, style: { marginLeft: 8 } })}
     </Pressable>

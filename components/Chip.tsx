@@ -3,7 +3,7 @@ import { useThemeColor } from "@styles";
 import React, { ComponentProps, createElement } from "react";
 import { StyleSheet, View } from "react-native";
 
-import { BBText } from "./BBText";
+import { VariantText } from "./VariantText";
 
 type VariantKey = keyof typeof variantStyles;
 
@@ -21,7 +21,7 @@ const iconSizeMap: {
 };
 
 const textVariantMap: {
-  [key in VariantKey]: ComponentProps<typeof BBText>["variant"];
+  [key in VariantKey]: ComponentProps<typeof VariantText>["variant"];
 } = {
   lg: "bodyXLBold",
   md: "bodyLGSemiBold",
@@ -57,9 +57,9 @@ export function Chip({ variant, text, invert, iconLeft, iconRight }: Props) {
     >
       {leftIcon &&
         createElement(leftIcon, { color, size, style: { marginRight: 8 } })}
-      <BBText style={{ color }} variant={variantText}>
+      <VariantText style={{ color }} variant={variantText}>
         {text}
-      </BBText>
+      </VariantText>
       {rightIcon &&
         createElement(rightIcon, { color, size, style: { marginLeft: 8 } })}
     </View>

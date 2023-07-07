@@ -12,6 +12,7 @@ export const billsAtom = atom<Bill[]>([
     link: "https://www.schoolsfirstfcu.org/#/accounts/summary",
     name: "Car Loan",
     startDate: dayjs().toDate(),
+    endDate: dayjs().add(1, "year").toDate(),
   },
   {
     amount: 100,
@@ -21,10 +22,10 @@ export const billsAtom = atom<Bill[]>([
     startDate: dayjs().toDate(),
   },
   {
-    amount: 100,
+    amount: 40,
     dueDate: 28,
     link: "https://www.sce.com/",
-    name: "Electric",
+    name: "Water",
     startDate: dayjs().toDate(),
   },
 ]);

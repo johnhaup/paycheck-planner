@@ -7,7 +7,7 @@ interface Props extends TextProps {
   themeColor?: ThemeColor;
 }
 
-export function BBText({
+export function VariantText({
   themeColor = "textDefault",
   style,
   variant,
