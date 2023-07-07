@@ -8,14 +8,14 @@ export default function Layout() {
   return (
     <Stack>
       <Stack.Screen
-        name="index"
-        options={() => ({
+        name="(tabs)"
+        options={{
           headerShown: false,
-        })}
+        }}
       />
       <Stack.Screen
         name="webview"
-        options={({ route }) => ({
+        options={({ route }: { route: { params: { name: string } } }) => ({
           presentation: "modal",
           headerTitle: route.params.name,
           headerRight: () => (

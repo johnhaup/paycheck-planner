@@ -1,7 +1,5 @@
-import { payScheduleAtom, payStartDateAtom } from "@atoms";
 import { PaySchedule } from "@types";
 import dayjs from "dayjs";
-import { useAtom } from "jotai";
 
 export function generatePayDates(
   startDate: Date,
