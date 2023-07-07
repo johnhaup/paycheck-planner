@@ -1,19 +1,13 @@
 import "react-native-gesture-handler";
 
-import { PayPeriods } from "@screens";
-import dayjs from "dayjs";
-import timezone from "dayjs/plugin/timezone";
-import utc from "dayjs/plugin/utc";
 import { useFonts } from "expo-font";
-import { getCalendars } from "expo-localization";
+import { useSearchParams } from "expo-router";
 import React from "react";
+import WebView from "react-native-webview";
 
-dayjs.extend(utc);
-dayjs.extend(timezone);
-const calendar = getCalendars()[0];
-dayjs.tz.setDefault(calendar.timeZone);
+export default function Webview() {
+  const params = useSearchParams();
 
-export default function App() {
   const [fontsLoaded] = useFonts({
     "Urbanist-Bold": require("../assets/fonts/Urbanist-Bold.ttf"),
     "Urbanist-Medium": require("../assets/fonts/Urbanist-Medium.ttf"),
@@ -25,5 +19,5 @@ export default function App() {
     return null;
   }
 
-  return <PayPeriods />;
+  return <WebView style={{ flex: 1 }} source={{ uri: params.uri }} />;
 }

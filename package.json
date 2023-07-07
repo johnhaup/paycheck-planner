@@ -29,6 +29,7 @@
     "react-native-spacer-view": "^0.1.2",
     "react-native-svg": "13.4.0",
     "react-native-web": "~0.18.10",
+    "react-native-webview": "11.26.0",
     "typescript": "^4.9.4"
   },
   "devDependencies": {
@@ -36,12 +37,12 @@
     "@commitlint/config-conventional": "^17.6.3",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
+    "commitlint": "^17.6.3",
     "eslint": "^8.43.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-native": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
-    "commitlint": "^17.6.3",
     "husky": "^8.0.3"
   },
   "resolutions": {
