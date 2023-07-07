@@ -3,6 +3,7 @@ import "react-native-gesture-handler";
 import { billsAtom, totalBillsAtom } from "@atoms";
 import { VariantText } from "@components";
 import { Feather } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { useThemeColor } from "@styles";
 import { Bill } from "@types";
 import dayjs from "dayjs";
@@ -18,23 +19,30 @@ const cashAtom = atom<number>((get) => get(paycheckAtom) - get(totalBillsAtom));
 
 function Header() {
   const backgroundColor = useThemeColor("primary");
-  const paycheck = useAtomValue(paycheckAtom);
 
   return (
     <View style={[styles.headerContainer, { backgroundColor }]}>
       <StatusBar style="light" />
       <Spacer safeTop height={16} />
-      <VariantText variant="heading3" themeColor="textInverse">
-        {dayjs().format("M/D/YY")}
-      </VariantText>
-      <View style={styles.headerContentContainer}>
-        <VariantText variant="heading5" themeColor="textInverse">
-          Income
-        </VariantText>
-        <VariantText variant="heading5" themeColor="textInverse">
-          {paycheck}
-        </VariantText>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <FontAwesome5 name="chevron-circle-left" size={24} color="white" />
+          <Spacer width={12} />
+          <VariantText variant="heading3" themeColor="textInverse">
+            {dayjs().format("M/D/YY")}
+          </VariantText>
+          <Spacer width={12} />
+          <FontAwesome5 name="chevron-circle-right" size={24} color="white" />
+        </View>
+        <FontAwesome5 name="calendar-alt" size={24} color="white" />
       </View>
+      <Spacer height={8} />
     </View>
   );
 }
