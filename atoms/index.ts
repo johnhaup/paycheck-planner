@@ -1,4 +1,3 @@
-export * from "./billsAtom";
+export * from "./bills";
 export * from "./payScheduleAtom";
 export * from "./payStartDateAtom";
-export * from "./totalBillsAtom";

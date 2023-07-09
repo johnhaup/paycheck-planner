@@ -1,10 +1,11 @@
 import "react-native-gesture-handler";
 
-import { billsAtom } from "@atoms";
+import { billsArrayAtom } from "@atoms";
 import { VariantText } from "@components";
 import { useThemeColor } from "@styles";
 import { Bill } from "@types";
 import dayjs from "dayjs";
+import { Link } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useAtomValue } from "jotai";
 import React from "react";
@@ -41,30 +42,37 @@ function BillProperty({ title, value }: { title: string; value?: string }) {
 }
 
 export default function PayPeriods() {
-  const bills = useAtomValue(billsAtom);
+  const bills = useAtomValue(billsArrayAtom);
 
   const renderBill = ({ item: bill, index }: ListRenderItemInfo<Bill>) => {
     return (
-      <View key={`bill_${index}`} style={styles.billCardContainer}>
-        <VariantText key={bill.name} variant="heading6">
-          {bill.name}
-        </VariantText>
-        <BillProperty title="Amount" value={`${bill.amount}`} />
-        <BillProperty
-          title="Due Date"
-          value={dayjs(`1981-${bill.dueDate}-01`, "YYYY-D-MM").format("Do")}
-        />
-        <BillProperty
-          title="Start Date"
-          value={dayjs(bill.startDate).format("M/D/YY")}
-        />
-        {bill.endDate && (
+      <Link
+        href={{
+          pathname: "edit-bill",
+          params: { name: bill.name, id: bill.id },
+        }}
+      >
+        <View key={`bill_${index}`} style={styles.billCardContainer}>
+          <VariantText key={bill.name} variant="heading6">
+            {bill.name}
+          </VariantText>
+          <BillProperty title="Amount" value={`${bill.amount}`} />
           <BillProperty
-            title="End Date"
-            value={dayjs(bill.endDate).format("M/D/YY")}
+            title="Due Date"
+            value={dayjs(`1981-${bill.dueDate}-01`, "YYYY-D-MM").format("Do")}
           />
-        )}
-      </View>
+          <BillProperty
+            title="Start Date"
+            value={dayjs(bill.startDate).format("M/D/YY")}
+          />
+          {bill.endDate && (
+            <BillProperty
+              title="End Date"
+              value={dayjs(bill.endDate).format("M/D/YY")}
+            />
+          )}
+        </View>
+      </Link>
     );
   };
 

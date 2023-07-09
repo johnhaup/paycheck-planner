@@ -1,8 +1,15 @@
 import { useThemeColor } from "@styles";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, TextInput, TextInputProps } from "react-native";
+import { Spacer } from "react-native-spacer-view";
 
-export function Input(props: TextInputProps) {
+import { VariantText } from "./VariantText";
+
+interface Props extends TextInputProps {
+  label: string;
+}
+
+export function Input({ label, ...rest }: Props) {
   const [isFocused, setIsFocused] = useState(false);
 
   const blurredBackground = useThemeColor("inputBlurredBackground");
@@ -23,24 +30,28 @@ export function Input(props: TextInputProps) {
   }, []);
 
   return (
-    <TextInput
-      style={[styles.base, { color, backgroundColor, borderColor }]}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      placeholderTextColor={placeHolderColor}
-      autoCapitalize="none"
-      autoCorrect={false}
-      {...props}
-    ></TextInput>
+    <>
+      <VariantText variant="bodyMDSemiBold">{label}</VariantText>
+      <Spacer height={4} />
+      <TextInput
+        style={[styles.base, { color, backgroundColor, borderColor }]}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        placeholderTextColor={placeHolderColor}
+        autoCapitalize="none"
+        autoCorrect={false}
+        {...rest}
+      />
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   base: {
-    paddingVertical: 18,
-    paddingHorizontal: 20,
+    paddingVertical: 16,
+    paddingHorizontal: 12,
     borderRadius: 12,
-    fontFamily: "Urbanist-SemiBold",
+    fontFamily: "Urbanist-Regular",
     fontSize: 14,
     letterSpacing: 0.002,
     borderWidth: 1,

@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 
-import { billsAtom, totalBillsAtom } from "@atoms";
+import { billsArrayAtom, totalBillsAtom } from "@atoms";
 import { VariantText } from "@components";
 import { Feather } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -48,7 +48,7 @@ function Header() {
 }
 
 export default function PayPeriods() {
-  const bills = useAtomValue(billsAtom);
+  const bills = useAtomValue(billsArrayAtom);
   const cash = useAtomValue(cashAtom);
 
   const renderBill = ({ item: bill, index }: ListRenderItemInfo<Bill>) => {
@@ -58,7 +58,7 @@ export default function PayPeriods() {
           <VariantText variant="heading6">{bill.name}</VariantText>
           <Link
             href={{
-              pathname: "/webview",
+              pathname: "webview",
               params: { name: bill.name, uri: encodeURIComponent(bill.link) },
             }}
             style={styles.linkIconContainer}

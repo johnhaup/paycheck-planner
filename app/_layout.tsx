@@ -25,6 +25,18 @@ export default function Layout() {
           ),
         })}
       />
+      <Stack.Screen
+        name="edit-bill"
+        options={({ route }: { route: { params: { name: string } } }) => ({
+          presentation: "modal",
+          headerTitle: "Bill",
+          headerRight: () => (
+            <Pressable onPress={goBack}>
+              <Ionicons name="md-close" size={24} color="black" />
+            </Pressable>
+          ),
+        })}
+      />
     </Stack>
   );
 }

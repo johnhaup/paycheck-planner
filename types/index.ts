@@ -7,6 +7,7 @@ export type WeeklyCadence = {
 export type PaySchedule = WeeklyCadence;
 
 export type Bill = {
+  id: string;
   amount: number;
   dueDate: number; // 1 - 31
   name: string;
