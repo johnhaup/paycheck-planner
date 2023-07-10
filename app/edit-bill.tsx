@@ -1,12 +1,10 @@
-import "react-native-gesture-handler";
-
+import DateTimePicker from "@react-native-community/datetimepicker";
 import { Picker } from "@react-native-picker/picker";
 import dayjs from "dayjs";
 import { useSearchParams } from "expo-router";
-import { atom, useAtom, useAtomValue } from "jotai";
-import { useImmerAtom } from "jotai-immer";
-import React, { useEffect, useState } from "react";
-import { Dimensions, StyleSheet, View } from "react-native";
+import { useAtomValue } from "jotai";
+import React, { useState } from "react";
+import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
 import { Spacer } from "react-native-spacer-view";
 
 import { billsMapAtom } from "../atoms";
@@ -27,7 +25,7 @@ const useEditBillState = () => {
   const staleBill = useAtomValue(billsMapAtom)[params.id];
   const [bill, setBill] = useState<Bill>(staleBill);
 
-  const updateBill = (key: keyof Bill, value: string | number) => {
+  const updateBill = (key: keyof Bill, value: string | number | Date) => {
     setBill((prev) => ({ ...prev, [key]: value }));
   };
 
@@ -41,7 +39,7 @@ export default function EditBill() {
   const { bill, updateBill } = useEditBillState();
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Spacer height={16} />
       <Input
         label="Name"
@@ -55,7 +53,6 @@ export default function EditBill() {
         onChangeText={(t) => updateBill("amount", Number(t))}
       />
       <Spacer height={16} />
-
       <Accordion
         label={`Due Date: ${dayjs(
           `1981-${bill.dueDate}-01`,
@@ -72,18 +69,41 @@ export default function EditBill() {
           ))}
         </Picker>
       </Accordion>
+      <Spacer height={8} />
+      <Accordion
+        label={`Start Date: ${dayjs(bill.startDate).format("M/D/YY")}`}
+      >
+        <DateTimePicker
+          style={{ width: Dimensions.get("window").width - 32 }}
+          value={bill.startDate}
+          mode={"date"}
+          display="inline"
+          onChange={(_, date) => {
+            if (date) {
+              updateBill("startDate", date);
+            }
+          }}
+        />
+      </Accordion>
+      <Spacer height={8} />
+      <Accordion
+        label={`End Date: ${
+          bill.endDate ? dayjs(bill.endDate).format("M/D/YY") : "None"
+        }`}
+      >
+        <DateTimePicker
+          style={{ width: Dimensions.get("window").width - 32 }}
+          value={bill.endDate || new Date()}
+          display="inline"
+          onChange={(_, date) => {
+            if (date) {
+              updateBill("endDate", date);
+            }
+          }}
+        />
+      </Accordion>
       <Spacer height={16} />
-      <Input
-        label="Start Date"
-        value={dayjs(bill.startDate).format("M/D/YY")}
-      />
-      <Spacer height={16} />
-      <Input
-        label="End Date"
-        value={bill.endDate ? dayjs(bill.endDate).format("M/D/YY") : ""}
-      />
-      <Spacer height={16} />
-    </View>
+    </ScrollView>
   );
 }
 
