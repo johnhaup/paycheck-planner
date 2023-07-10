@@ -1,16 +1,15 @@
+import { billsMapAtom } from "@atoms";
+import { Accordion } from "@components";
+import { Input } from "@components";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Picker } from "@react-native-picker/picker";
+import { Bill } from "@types";
 import dayjs from "dayjs";
 import { useSearchParams } from "expo-router";
 import { useAtomValue } from "jotai";
 import React, { useState } from "react";
-import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
+import { Dimensions, ScrollView, StyleSheet } from "react-native";
 import { Spacer } from "react-native-spacer-view";
-
-import { billsMapAtom } from "../atoms";
-import { Accordion } from "../components";
-import { Input } from "../components/Input";
-import { Bill } from "../types";
 
 const monthDates = new Array(31)
   .fill(0)
