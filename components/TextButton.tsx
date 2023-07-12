@@ -1,7 +1,7 @@
 import { NextArrow, PreviousArrow } from "@assets";
+import { ThemeColor, useThemeColor } from "@styles";
 import React, { createElement } from "react";
 import { Pressable, StyleSheet } from "react-native";
-import { ThemeColor, useThemeColor } from "styles";
 
 import { VariantText } from "./VariantText";
 
