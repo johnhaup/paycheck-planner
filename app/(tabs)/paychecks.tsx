@@ -1,7 +1,7 @@
 import "react-native-gesture-handler";
 
 import { billsArrayAtom, totalBillsAtom } from "@atoms";
-import { VariantText } from "@components";
+import { NavButton, VariantText } from "@components";
 import { Feather } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useThemeColor } from "@styles";
@@ -56,7 +56,7 @@ export default function PayPeriods() {
       <View key={`pay_bill_${index}`} style={styles.billContainer}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <VariantText variant="heading6">{bill.name}</VariantText>
-          <Link
+          <NavButton
             href={{
               pathname: "webview",
               params: { name: bill.name, uri: encodeURIComponent(bill.link) },
@@ -64,7 +64,7 @@ export default function PayPeriods() {
             style={styles.linkIconContainer}
           >
             <Feather name="external-link" size={24} color="black" />
-          </Link>
+          </NavButton>
         </View>
         <VariantText key={bill.name} variant="bodyXLSemiBold">
           {bill.amount}

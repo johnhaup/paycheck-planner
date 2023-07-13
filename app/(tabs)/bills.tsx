@@ -1,11 +1,10 @@
 import "react-native-gesture-handler";
 
 import { billsArrayAtom } from "@atoms";
-import { VariantText } from "@components";
+import { NavButton, VariantText } from "@components";
 import { useThemeColor } from "@styles";
 import { Bill } from "@types";
 import dayjs from "dayjs";
-import { Link } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useAtomValue } from "jotai";
 import React from "react";
@@ -46,7 +45,7 @@ export default function PayPeriods() {
 
   const renderBill = ({ item: bill, index }: ListRenderItemInfo<Bill>) => {
     return (
-      <Link
+      <NavButton
         href={{
           pathname: "edit-bill",
           params: { name: bill.name, id: bill.id },
@@ -72,7 +71,7 @@ export default function PayPeriods() {
             />
           )}
         </View>
-      </Link>
+      </NavButton>
     );
   };
 
