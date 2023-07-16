@@ -1,12 +1,11 @@
 import { billsMapAtom } from "@atoms";
-import { Accordion, TextButton } from "@components";
-import { Input } from "@components";
+import { Accordion, Input, TextButton } from "@components";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Picker } from "@react-native-picker/picker";
 import { Bill } from "@types";
 import dayjs from "dayjs";
 import { useNavigation, useSearchParams } from "expo-router";
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtomValue } from "jotai";
 import { useImmerAtom } from "jotai-immer";
 import React, { useState } from "react";
 import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
@@ -64,6 +63,12 @@ export default function EditBill() {
           label="Amount"
           value={bill?.amount.toString()}
           onChangeText={(t) => updateBill("amount", Number(t))}
+        />
+        <Spacer height={16} />
+        <Input
+          label="Link"
+          value={bill.link}
+          onChangeText={(t) => updateBill("link", t)}
         />
         <Spacer height={16} />
         <Accordion

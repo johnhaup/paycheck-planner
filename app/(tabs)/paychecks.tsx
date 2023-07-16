@@ -1,24 +1,37 @@
-import "react-native-gesture-handler";
-
-import { billsArrayAtom, totalBillsAtom } from "@atoms";
+import {
+  activePayDateAtom,
+  billsArrayAtom,
+  payStartDateAtom,
+  totalBillsAtom,
+} from "@atoms";
 import { NavButton, VariantText } from "@components";
-import { Feather } from "@expo/vector-icons";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { Feather, FontAwesome5 } from "@expo/vector-icons";
 import { useThemeColor } from "@styles";
 import { Bill } from "@types";
 import dayjs from "dayjs";
-import { Link } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { atom, useAtomValue } from "jotai";
-import React from "react";
+import { atom, useAtom, useAtomValue } from "jotai";
+import React, { useEffect, useRef } from "react";
 import { FlatList, ListRenderItemInfo, StyleSheet, View } from "react-native";
 import { Spacer } from "react-native-spacer-view";
+
+import { getBillsForPayPeriod, getLatestPayDate } from "../../utils";
 
 const paycheckAtom = atom<number>(1000);
 const cashAtom = atom<number>((get) => get(paycheckAtom) - get(totalBillsAtom));
 
 function Header() {
+  const _isMounted = useRef(false);
   const backgroundColor = useThemeColor("primary");
+  const [activePayDate, setActivePayDate] = useAtom(activePayDateAtom);
+  const initialPayDate = useAtomValue(payStartDateAtom);
+
+  useEffect(() => {
+    if (!_isMounted.current) {
+      _isMounted.current = true;
+      setActivePayDate(getLatestPayDate(initialPayDate));
+    }
+  }, [initialPayDate, setActivePayDate]);
 
   return (
     <View style={[styles.headerContainer, { backgroundColor }]}>
@@ -35,7 +48,7 @@ function Header() {
           <FontAwesome5 name="chevron-circle-left" size={24} color="white" />
           <Spacer width={12} />
           <VariantText variant="heading3" themeColor="textInverse">
-            {dayjs().format("M/D/YY")}
+            {dayjs(activePayDate).format("M/D/YY")}
           </VariantText>
           <Spacer width={12} />
           <FontAwesome5 name="chevron-circle-right" size={24} color="white" />
@@ -47,8 +60,15 @@ function Header() {
   );
 }
 
+const payPeriodBillsAtom = atom((get) => {
+  const bills = get(billsArrayAtom);
+  const activePayDate = get(activePayDateAtom);
+
+  return getBillsForPayPeriod(activePayDate, bills);
+});
+
 export default function PayPeriods() {
-  const bills = useAtomValue(billsArrayAtom);
+  const bills = useAtomValue(payPeriodBillsAtom);
   const cash = useAtomValue(cashAtom);
 
   const renderBill = ({ item: bill, index }: ListRenderItemInfo<Bill>) => {

@@ -14,5 +14,17 @@ export type Bill = {
   startDate: Date;
   endDate?: Date;
   link?: string;
-  paycheckSync?: { cadence: number }; // cadence is every X number of paychecks
+};
+
+export type Transaction = {
+  id: string;
+  bill: Bill;
+  amount: number;
+  date: Date;
+};
+
+export type PayDay = {
+  id: string;
+  date: Date;
+  paycheckAmount: number;
 };
