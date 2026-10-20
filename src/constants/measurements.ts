@@ -1,0 +1,30 @@
+export const MEASUREMENTS = {
+  spacing: {
+    xs: 2,
+    sm: 4,
+    md: 8,
+    base: 12,
+    lg: 16,
+    xl: 20,
+    xxl: 24,
+    section: 32,
+    bottom: 40,
+  },
+  radius: {
+    sm: 6,
+    md: 8,
+    lg: 10,
+    xl: 12,
+  },
+  font: {
+    xs: 12,
+    sm: 13,
+    base: 14,
+    md: 16,
+    lg: 17,
+    xl: 20,
+    h1: 28,
+  },
+  hitSlop: 12,
+  paddingHorizontal: 16,
+} as const;

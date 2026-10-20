@@ -1,11 +1,12 @@
 {
   "expo": {
-    "name": "paycheck-planner",
+    "name": "Paycheck Planner",
     "slug": "paycheck-planner",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
+    "scheme": "paycheck-planner",
     "ios": {
       "supportsTablet": true
     },
@@ -20,6 +21,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-router",
+      "@react-native-community/datetimepicker"
+    ]
   }
 }
