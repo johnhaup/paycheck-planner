@@ -20,6 +20,7 @@ interface AppState {
   assignExpense: (expenseId: string, payDate: string, incomeSourceId: string) => string;
   unassignExpense: (assignmentId: string) => void;
   togglePaid: (assignmentId: string) => void;
+  setAssignmentAmount: (assignmentId: string, amount: number | undefined) => void;
   /** Moves a one-time expense to a single paycheck, keeping its paid state */
   rescheduleExpense: (expenseId: string, payDate: string, incomeSourceId: string) => void;
 }
@@ -98,6 +99,13 @@ export const useStore = create<AppState>()(
           ),
         })),
 
+      setAssignmentAmount: (assignmentId, amount) =>
+        set((s) => ({
+          assignments: s.assignments.map((a) =>
+            a.id === assignmentId ? { ...a, amount } : a
+          ),
+        })),
+
       rescheduleExpense: (expenseId, payDate, incomeSourceId) =>
         set((s) => {
           const current = s.assignments.find((a) => a.expenseId === expenseId);
@@ -113,6 +121,7 @@ export const useStore = create<AppState>()(
                 payDate,
                 employerId: incomeSourceId,
                 paid: current?.paid,
+                amount: current?.amount,
               },
             ],
           };

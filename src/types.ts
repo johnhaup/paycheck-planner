@@ -40,4 +40,6 @@ export interface ExpenseAssignment {
   /** Which income source's paycheck covers this */
   employerId: string;
   paid?: boolean;
+  /** Overrides the expense's default amount for this paycheck only */
+  amount?: number;
 }

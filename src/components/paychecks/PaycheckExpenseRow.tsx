@@ -7,6 +7,7 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppCheckCircle } from "@/components/AppCheckCircle";
 import type {
+  EditAmountHandler,
   LinkTapHandler,
   PaycheckExpense,
   TogglePaidHandler,
@@ -18,9 +19,17 @@ interface Props {
   sourceId: string;
   onTogglePaid: TogglePaidHandler;
   onLinkTap: LinkTapHandler;
+  onEditAmount: EditAmountHandler;
 }
 
-export function PaycheckExpenseRow({ expense, payDate, sourceId, onTogglePaid, onLinkTap }: Props) {
+export function PaycheckExpenseRow({
+  expense,
+  payDate,
+  sourceId,
+  onTogglePaid,
+  onLinkTap,
+  onEditAmount,
+}: Props) {
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
 
@@ -33,6 +42,10 @@ export function PaycheckExpenseRow({ expense, payDate, sourceId, onTogglePaid, o
       onLinkTap(expense.link, expense.assignmentId, expense.expenseId, payDate, sourceId);
     }
   }, [onLinkTap, expense.link, expense.assignmentId, expense.expenseId, payDate, sourceId]);
+
+  const handleEditAmount = useCallback(() => {
+    onEditAmount(expense.expenseId, payDate, sourceId);
+  }, [onEditAmount, expense.expenseId, payDate, sourceId]);
 
   const rowStyle = useMemo(
     () => [styles.row, { borderTopColor: colors.divider }],
@@ -48,24 +61,32 @@ export function PaycheckExpenseRow({ expense, payDate, sourceId, onTogglePaid, o
         onPress={handleTogglePaid}
         accessibilityLabel={`Mark ${expense.payee} paid`}
       />
-      <Pressable
-        style={styles.content}
-        onPress={expense.link ? handleLinkTap : undefined}
-        disabled={!expense.link}
-        accessibilityRole={expense.link ? "link" : undefined}
-      >
-        <View style={styles.payee}>
+      <View style={styles.content}>
+        <Pressable
+          style={styles.payee}
+          onPress={handleLinkTap}
+          disabled={!expense.link}
+          hitSlop={MEASUREMENTS.hitSlop}
+          accessibilityRole={expense.link ? "link" : undefined}
+        >
           <AppText variant="body" color={textColor} numberOfLines={1}>
             {expense.payee}
           </AppText>
           {expense.link ? (
             <Ionicons name="open-outline" size={14} color={colors.textMuted} />
           ) : null}
-        </View>
-        <AppText variant="body" color={textColor}>
-          {formatMoney(expense.amount)}
-        </AppText>
-      </Pressable>
+        </Pressable>
+        <Pressable
+          onPress={handleEditAmount}
+          hitSlop={MEASUREMENTS.hitSlop}
+          accessibilityRole="button"
+          accessibilityLabel={`Change ${expense.payee} amount for this paycheck`}
+        >
+          <AppText variant="body" color={textColor}>
+            {formatMoney(expense.amount)}
+          </AppText>
+        </Pressable>
+      </View>
     </View>
   );
 }

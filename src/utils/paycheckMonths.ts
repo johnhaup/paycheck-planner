@@ -27,7 +27,7 @@ export function buildMonthGroups(
         return {
           expenseId: a.expenseId,
           payee: expense?.payee ?? "Unknown",
-          amount: expense?.amount ?? 0,
+          amount: a.amount ?? expense?.amount ?? 0,
           assignmentId: a.id,
           link: expense?.link,
           paid: a.paid,

@@ -11,6 +11,8 @@ import type { Expense } from "@/types";
 
 interface Props {
   expense: Expense;
+  /** This paycheck's amount, which may differ from the expense default */
+  amount: number;
   isAssigned: boolean;
   isPaid: boolean;
   /** Linked to the income source but not yet explicitly assigned, so it can't be removed */
@@ -21,10 +23,12 @@ interface Props {
   onOpenLink: (link: string, expenseId: string) => void;
   onAssign: (expenseId: string) => void;
   onUnassign: (expenseId: string) => void;
+  onEditAmount: (expenseId: string) => void;
 }
 
 export function PayDateExpenseRow({
   expense,
+  amount,
   isAssigned,
   isPaid,
   isLinkedPreload,
@@ -34,6 +38,7 @@ export function PayDateExpenseRow({
   onOpenLink,
   onAssign,
   onUnassign,
+  onEditAmount,
 }: Props) {
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
@@ -48,6 +53,10 @@ export function PayDateExpenseRow({
       onOpenLink(expense.link, expense.id);
     }
   }, [onOpenLink, expense.link, expense.id]);
+
+  const handleEditAmount = useCallback(() => {
+    onEditAmount(expense.id);
+  }, [onEditAmount, expense.id]);
 
   const handleToggleAssigned = useCallback(() => {
     if (isAssigned) {
@@ -69,24 +78,32 @@ export function PayDateExpenseRow({
             accessibilityLabel={`Mark ${expense.payee} paid`}
           />
         ) : null}
-        <Pressable
-          style={styles.info}
-          onPress={expense.link ? handleOpenLink : undefined}
-          disabled={!expense.link}
-          accessibilityRole={expense.link ? "link" : undefined}
-        >
-          <View style={styles.titleRow}>
+        <View style={styles.info}>
+          <Pressable
+            style={styles.titleRow}
+            onPress={handleOpenLink}
+            disabled={!expense.link}
+            accessibilityRole={expense.link ? "link" : undefined}
+          >
             <AppText variant="body" color={textColor} numberOfLines={1} style={styles.title}>
               {expense.payee}
             </AppText>
             {expense.link ? (
               <Ionicons name="open-outline" size={14} color={colors.textMuted} />
             ) : null}
-          </View>
-          <AppText variant="meta" color={isPaid ? "textMuted" : "textSecondary"}>
-            {formatMoney(expense.amount)}
-          </AppText>
-        </Pressable>
+          </Pressable>
+          <Pressable
+            style={styles.amount}
+            onPress={handleEditAmount}
+            disabled={!isAssigned}
+            accessibilityRole={isAssigned ? "button" : undefined}
+            accessibilityLabel={`Change ${expense.payee} amount for this paycheck`}
+          >
+            <AppText variant="meta" color={isPaid ? "textMuted" : "textSecondary"}>
+              {formatMoney(amount)}
+            </AppText>
+          </Pressable>
+        </View>
         {isLinkedPreload ? (
           <AppText variant="caption">Linked</AppText>
         ) : (
@@ -114,9 +131,14 @@ const styles = StyleSheet.create({
     gap: MEASUREMENTS.spacing.xs,
   },
   titleRow: {
+    alignSelf: "flex-start",
+    maxWidth: "100%",
     flexDirection: "row",
     alignItems: "center",
     gap: MEASUREMENTS.spacing.sm + 2,
+  },
+  amount: {
+    alignSelf: "flex-start",
   },
   title: {
     flexShrink: 1,

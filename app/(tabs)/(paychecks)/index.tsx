@@ -68,6 +68,16 @@ export default function PaychecksScreen() {
     [router]
   );
 
+  const handleEditAmount = useCallback(
+    (expenseId: string, payDate: string, sourceId: string) => {
+      router.push({
+        pathname: "/expense-amount",
+        params: { expenseId, payDate, sourceId },
+      });
+    },
+    [router]
+  );
+
   const handleGoToToday = useCallback(() => {
     setSelectedMonthKey(getCurrentMonthKey());
   }, []);
@@ -93,9 +103,10 @@ export default function PaychecksScreen() {
         onPress={handlePressPaycheck}
         onTogglePaid={handleTogglePaid}
         onLinkTap={handleLinkTap}
+        onEditAmount={handleEditAmount}
       />
     ),
-    [handlePressPaycheck, handleTogglePaid, handleLinkTap]
+    [handlePressPaycheck, handleTogglePaid, handleLinkTap, handleEditAmount]
   );
 
   const months = useMemo(

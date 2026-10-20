@@ -10,6 +10,7 @@ import { AppText } from "@/components/AppText";
 import { PaidProgress } from "@/components/paychecks/PaidProgress";
 import { PaycheckExpenseRow } from "@/components/paychecks/PaycheckExpenseRow";
 import type {
+  EditAmountHandler,
   LinkTapHandler,
   PaycheckItem,
   TogglePaidHandler,
@@ -20,9 +21,10 @@ interface Props {
   onPress: (payDate: string, sourceId: string) => void;
   onTogglePaid: TogglePaidHandler;
   onLinkTap: LinkTapHandler;
+  onEditAmount: EditAmountHandler;
 }
 
-export function PaycheckCard({ item, onPress, onTogglePaid, onLinkTap }: Props) {
+export function PaycheckCard({ item, onPress, onTogglePaid, onLinkTap, onEditAmount }: Props) {
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
 
@@ -71,6 +73,7 @@ export function PaycheckCard({ item, onPress, onTogglePaid, onLinkTap }: Props) 
             sourceId={item.sourceId}
             onTogglePaid={onTogglePaid}
             onLinkTap={onLinkTap}
+            onEditAmount={onEditAmount}
           />
         ))
       ) : (

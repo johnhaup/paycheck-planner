@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { FlatList, StyleSheet } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useStore } from "@/store";
 import { openPaymentLink } from "@/utils/links";
 import { useThemeStore } from "@/stores/themeStore";
@@ -35,6 +35,7 @@ export default function PayDateDetailScreen() {
     sourceId: string;
   }>();
 
+  const router = useRouter();
   const colors = useColors();
   const incomeSources = useStore((s) => s.incomeSources);
   const expenses = useStore((s) => s.expenses);
@@ -53,7 +54,9 @@ export default function PayDateDetailScreen() {
     const matched = assignments.filter(
       (a) => a.payDate === payDate && a.employerId === sourceId
     );
-    return new Map(matched.map((a) => [a.expenseId, { assignmentId: a.id, paid: !!a.paid }]));
+    return new Map(
+      matched.map((a) => [a.expenseId, { assignmentId: a.id, paid: !!a.paid, amount: a.amount }])
+    );
   }, [assignments, payDate, sourceId]);
 
   const handleAssign = useCallback(
@@ -84,6 +87,16 @@ export default function PayDateDetailScreen() {
       }
     },
     [assignedExpenseIds, togglePaid, assignExpense, payDate, sourceId]
+  );
+
+  const handleEditAmount = useCallback(
+    (expenseId: string) => {
+      router.push({
+        pathname: "/expense-amount",
+        params: { expenseId, payDate, sourceId },
+      });
+    },
+    [router, payDate, sourceId]
   );
 
   const handleOpenLink = useCallback(
@@ -133,8 +146,12 @@ export default function PayDateDetailScreen() {
   );
 
   const totalAssigned = useMemo(
-    () => assignedExpenses.reduce((sum, e) => sum + e.amount, 0),
-    [assignedExpenses]
+    () =>
+      assignedExpenses.reduce(
+        (sum, e) => sum + (assignedExpenseIds.get(e.id)?.amount ?? e.amount),
+        0
+      ),
+    [assignedExpenses, assignedExpenseIds]
   );
 
   const remaining = useMemo(
@@ -219,6 +236,7 @@ export default function PayDateDetailScreen() {
           return (
             <PayDateExpenseRow
               expense={item.expense}
+              amount={(isAssigned ? entry?.amount : undefined) ?? item.expense.amount}
               isAssigned={isAssigned}
               isPaid={isAssigned && !!entry?.paid}
               isLinkedPreload={isAssigned && !entry}
@@ -228,6 +246,7 @@ export default function PayDateDetailScreen() {
               onOpenLink={handleOpenLink}
               onAssign={handleAssign}
               onUnassign={handleUnassign}
+              onEditAmount={handleEditAmount}
             />
           );
         }
@@ -244,6 +263,7 @@ export default function PayDateDetailScreen() {
       handleUnassign,
       handleTogglePaid,
       handleOpenLink,
+      handleEditAmount,
     ]
   );
 

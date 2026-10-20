@@ -66,6 +66,17 @@ export default function RootLayout() {
     [modalOptions]
   );
 
+  const expenseAmountOptions = useMemo(
+    () => ({
+      presentation: "formSheet" as const,
+      headerShown: false,
+      sheetAllowedDetents: "fitToContents" as const,
+      sheetGrabberVisible: true,
+      contentStyle: { backgroundColor: colors.modalBackground },
+    }),
+    [colors]
+  );
+
   const settingsOptions = useMemo(
     () => ({ ...modalOptions, title: "Settings", headerRight: renderSettingsCloseButton }),
     [modalOptions, renderSettingsCloseButton]
@@ -87,6 +98,7 @@ export default function RootLayout() {
           <Stack.Screen name="expense-form" options={expenseFormOptions} />
           <Stack.Screen name="pay-date-detail" options={PAY_DATE_DETAIL_OPTIONS} />
           <Stack.Screen name="settings" options={settingsOptions} />
+          <Stack.Screen name="expense-amount" options={expenseAmountOptions} />
         </Stack>
       </ThemeProvider>
     </GestureHandlerRootView>

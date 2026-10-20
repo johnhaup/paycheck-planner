@@ -40,6 +40,8 @@ export type TogglePaidHandler = (
   sourceId: string
 ) => void;
 
+export type EditAmountHandler = (expenseId: string, payDate: string, sourceId: string) => void;
+
 export type LinkTapHandler = (
   link: string,
   assignmentId: string,
