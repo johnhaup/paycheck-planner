@@ -14,6 +14,7 @@ import { AppInput } from "@/components/AppInput";
 import { AppButton } from "@/components/AppButton";
 import { AppChip } from "@/components/AppChip";
 import { AppSegmentedControl, type SegmentOption } from "@/components/AppSegmentedControl";
+import { PaycheckPicker, type PaycheckChoice } from "@/components/expenseForm/PaycheckPicker";
 import { getMonthlySlotCount, getPaycheckSlotLabel } from "@/utils/payDates";
 import { normalizeLink } from "@/utils/links";
 import type { LinkSchedule } from "@/types";
@@ -31,6 +32,8 @@ export default function ExpenseFormScreen() {
   const incomeSources = useStore((s) => s.incomeSources);
   const addExpense = useStore((s) => s.addExpense);
   const updateExpense = useStore((s) => s.updateExpense);
+  const rescheduleExpense = useStore((s) => s.rescheduleExpense);
+  const assignments = useStore((s) => s.assignments);
 
   const existing = useMemo(
     () => (id ? expenses.find((e) => e.id === id) : undefined),
@@ -49,6 +52,10 @@ export default function ExpenseFormScreen() {
     existing?.linkSchedule ?? "every-paycheck"
   );
   const [paycheckOrdinal, setPaycheckOrdinal] = useState(existing?.paycheckOrdinal ?? 0);
+  const [paycheck, setPaycheck] = useState<PaycheckChoice | undefined>(() => {
+    const assignment = existing ? assignments.find((a) => a.expenseId === existing.id) : undefined;
+    return assignment ? { payDate: assignment.payDate, sourceId: assignment.employerId } : undefined;
+  });
 
   const isOneTime = existing ? !existing.isRecurring : false;
 
@@ -89,6 +96,9 @@ export default function ExpenseFormScreen() {
 
     if (existing) {
       updateExpense(existing.id, data);
+      if (isOneTime && paycheck) {
+        rescheduleExpense(existing.id, paycheck.payDate, paycheck.sourceId);
+      }
     } else {
       addExpense(data);
     }
@@ -102,9 +112,11 @@ export default function ExpenseFormScreen() {
     isMonthly,
     linkSchedule,
     effectiveOrdinal,
+    paycheck,
     existing,
     addExpense,
     updateExpense,
+    rescheduleExpense,
     router,
   ]);
 
@@ -157,6 +169,16 @@ export default function ExpenseFormScreen() {
         keyboardType="url"
         autoCapitalize="none"
       />
+
+      {isOneTime && incomeSources.length > 0 ? (
+        <>
+          <AppText variant="section" style={styles.label}>Paycheck</AppText>
+          <PaycheckPicker value={paycheck} onChange={setPaycheck} />
+          <AppText variant="caption" style={styles.hint}>
+            Move this expense to a different paycheck.
+          </AppText>
+        </>
+      ) : null}
 
       {incomeSources.length > 0 && !isOneTime ? (
         <>

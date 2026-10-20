@@ -20,6 +20,8 @@ interface AppState {
   assignExpense: (expenseId: string, payDate: string, incomeSourceId: string) => string;
   unassignExpense: (assignmentId: string) => void;
   togglePaid: (assignmentId: string) => void;
+  /** Moves a one-time expense to a single paycheck, keeping its paid state */
+  rescheduleExpense: (expenseId: string, payDate: string, incomeSourceId: string) => void;
 }
 
 export const useStore = create<AppState>()(
@@ -95,6 +97,26 @@ export const useStore = create<AppState>()(
             a.id === assignmentId ? { ...a, paid: !a.paid } : a
           ),
         })),
+
+      rescheduleExpense: (expenseId, payDate, incomeSourceId) =>
+        set((s) => {
+          const current = s.assignments.find((a) => a.expenseId === expenseId);
+          return {
+            expenses: s.expenses.map((e) =>
+              e.id === expenseId ? { ...e, dueDate: payDate } : e
+            ),
+            assignments: [
+              ...s.assignments.filter((a) => a.expenseId !== expenseId),
+              {
+                id: current?.id ?? randomUUID(),
+                expenseId,
+                payDate,
+                employerId: incomeSourceId,
+                paid: current?.paid,
+              },
+            ],
+          };
+        }),
     }),
     {
       name: "paycheck-planner-storage",
