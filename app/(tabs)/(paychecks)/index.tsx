@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
-import { View, FlatList, StyleSheet } from "react-native";
-import { useRouter } from "expo-router";
+import { View, FlatList, Pressable, StyleSheet } from "react-native";
+import { Stack, useRouter } from "expo-router";
 import { format } from "date-fns";
 import { useStore } from "@/store";
 import { useThemeStore } from "@/stores/themeStore";
@@ -68,6 +68,24 @@ export default function PaychecksScreen() {
     [router]
   );
 
+  const handleGoToToday = useCallback(() => {
+    setSelectedMonthKey(getCurrentMonthKey());
+  }, []);
+
+  const renderTodayButton = useCallback(
+    () => (
+      <Pressable
+        onPress={handleGoToToday}
+        hitSlop={MEASUREMENTS.hitSlop}
+        accessibilityRole="button"
+        accessibilityLabel="Go to this month"
+      >
+        <AppText variant="bodyStrong" color="primaryText">Today</AppText>
+      </Pressable>
+    ),
+    [handleGoToToday]
+  );
+
   const renderPaycheck = useCallback(
     ({ item }: { item: PaycheckItem }) => (
       <PaycheckCard
@@ -88,6 +106,15 @@ export default function PaychecksScreen() {
   const selectedMonth = useMemo(
     () => months.find((m) => m.key === selectedMonthKey) ?? months[0],
     [months, selectedMonthKey]
+  );
+
+  // The current month can drop out of the list once its last paycheck passes,
+  // so "today" is whichever month comes first.
+  const isAwayFromToday = !!selectedMonth && selectedMonth.key !== months[0]?.key;
+
+  const screenOptions = useMemo(
+    () => ({ headerLeft: isAwayFromToday ? renderTodayButton : undefined }),
+    [isAwayFromToday, renderTodayButton]
   );
 
   const paychecks = useMemo(() => selectedMonth?.paychecks ?? [], [selectedMonth]);
@@ -126,6 +153,7 @@ export default function PaychecksScreen() {
   // element after the store rehydrates drops the native large title.
   return (
     <View style={containerStyle}>
+      <Stack.Screen options={screenOptions} />
       {incomeSources.length === 0 ? (
         <View style={styles.empty}>
           <AppText variant="title" center>No income sources yet</AppText>

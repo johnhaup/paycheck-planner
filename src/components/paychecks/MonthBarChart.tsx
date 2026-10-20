@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
@@ -18,13 +18,23 @@ interface Props {
 
 /** Each bar is a month's money left after bills; tapping one selects that month. */
 export function MonthBarChart({ months, selectedKey, onSelect }: Props) {
+  const scrollRef = useRef<ScrollView>(null);
+  const firstKey = months[0]?.key;
+
   const maxMagnitude = useMemo(
     () => Math.max(1, ...months.map((m) => Math.abs(m.remaining))),
     [months]
   );
 
+  useEffect(() => {
+    if (selectedKey === firstKey) {
+      scrollRef.current?.scrollTo({ x: 0, animated: true });
+    }
+  }, [selectedKey, firstKey]);
+
   return (
     <ScrollView
+      ref={scrollRef}
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={styles.content}
