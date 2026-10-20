@@ -34,7 +34,7 @@ export function AppChip<T>({ label, value, selected, onSelect, style }: Props<T>
   const textStyle = useMemo(
     () =>
       selected
-        ? { color: colors.textDefault, fontWeight: "600" as const }
+        ? { color: colors.onPrimary, fontWeight: "600" as const }
         : undefined,
     [selected, colors]
   );
