@@ -22,9 +22,15 @@ export interface Expense {
   isRecurring: boolean;
   /** For one-time expenses: specific date (ISO string) */
   dueDate?: string;
-  /** If set, this expense auto-assigns to every paycheck from this income source */
+  /** If set, this expense auto-assigns to paychecks from this income source */
   incomeSourceId?: string;
+  /** Which linked paychecks it lands on; defaults to every paycheck */
+  linkSchedule?: LinkSchedule;
+  /** For monthly links: 0-based paycheck within the month */
+  paycheckOrdinal?: number;
 }
+
+export type LinkSchedule = "every-paycheck" | "monthly";
 
 export interface ExpenseAssignment {
   id: string;

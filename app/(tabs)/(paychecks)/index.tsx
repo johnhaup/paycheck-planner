@@ -4,7 +4,12 @@ import { useRouter } from "expo-router";
 import { format } from "date-fns";
 import { useStore } from "@/store";
 import { useThemeStore } from "@/stores/themeStore";
-import { getPayDates, formatPayDate, formatDisplayDate } from "@/utils/payDates";
+import {
+  getPaychecks,
+  formatPayDate,
+  formatDisplayDate,
+  isExpenseLinkedToPaycheck,
+} from "@/utils/payDates";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
@@ -82,8 +87,8 @@ export default function PaychecksScreen() {
     const allPaychecks: PaycheckItem[] = [];
 
     for (const source of incomeSources) {
-      const dates = getPayDates(source, now, PAY_DATE_COUNT);
-      for (const date of dates) {
+      const paychecks = getPaychecks(source, now, PAY_DATE_COUNT);
+      for (const { date, ordinal } of paychecks) {
         const key = formatPayDate(date);
         const matched = assignments.filter(
           (a) => a.payDate === key && a.employerId === source.id
@@ -101,7 +106,10 @@ export default function PaychecksScreen() {
           };
         });
         for (const expense of expenses) {
-          if (expense.incomeSourceId === source.id && !assignedIds.has(expense.id)) {
+          if (
+            !assignedIds.has(expense.id) &&
+            isExpenseLinkedToPaycheck(expense, source.id, ordinal, source)
+          ) {
             expenseData.push({
               expenseId: expense.id,
               payee: expense.payee,

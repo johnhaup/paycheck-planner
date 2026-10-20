@@ -7,10 +7,19 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppButton } from "@/components/AppButton";
 import { ExpenseCard } from "@/components/expenses/ExpenseCard";
-import type { Expense } from "@/types";
+import { getLinkedOrdinal, getPaycheckSlotLabel } from "@/utils/payDates";
+import type { Expense, IncomeSource } from "@/types";
 
 function keyExtractor(item: Expense) {
   return item.id;
+}
+
+function getLinkLabel(expense: Expense, source: IncomeSource | undefined) {
+  if (!source) return "Unknown";
+  const ordinal = getLinkedOrdinal(expense, source);
+  return ordinal === undefined
+    ? source.name
+    : `${source.name} · ${getPaycheckSlotLabel(source, ordinal)} each month`;
 }
 
 export default function ExpensesScreen() {
@@ -53,8 +62,8 @@ export default function ExpensesScreen() {
     Linking.openURL(link);
   }, []);
 
-  const sourceNamesById = useMemo(
-    () => new Map(incomeSources.map((s) => [s.id, s.name])),
+  const sourcesById = useMemo(
+    () => new Map(incomeSources.map((s) => [s.id, s])),
     [incomeSources]
   );
 
@@ -62,13 +71,17 @@ export default function ExpensesScreen() {
     ({ item }: { item: Expense }) => (
       <ExpenseCard
         expense={item}
-        linkedSourceName={item.incomeSourceId ? sourceNamesById.get(item.incomeSourceId) : undefined}
+        linkLabel={
+          item.incomeSourceId
+            ? getLinkLabel(item, sourcesById.get(item.incomeSourceId))
+            : undefined
+        }
         onEdit={handleEdit}
         onDelete={handleDelete}
         onOpenLink={handleOpenLink}
       />
     ),
-    [handleEdit, handleDelete, handleOpenLink, sourceNamesById]
+    [handleEdit, handleDelete, handleOpenLink, sourcesById]
   );
 
   const footer = useMemo(

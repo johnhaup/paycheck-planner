@@ -9,6 +9,7 @@ import { AppText } from "@/components/AppText";
 import { PayDateSummary } from "@/components/payDateDetail/PayDateSummary";
 import { PayDateExpenseRow } from "@/components/payDateDetail/PayDateExpenseRow";
 import { OneTimeExpenseForm } from "@/components/payDateDetail/OneTimeExpenseForm";
+import { getPaycheckOrdinal, isExpenseLinkedToPaycheck } from "@/utils/payDates";
 import type { Expense } from "@/types";
 
 type ListItem =
@@ -92,15 +93,23 @@ export default function PayDateDetailScreen() {
     [autoMarkPaid, assignedExpenseIds, togglePaid, assignExpense, payDate, sourceId]
   );
 
+  const paycheckOrdinal = useMemo(
+    () => (incomeSource ? getPaycheckOrdinal(incomeSource, payDate) : undefined),
+    [incomeSource, payDate]
+  );
+
   const linkedExpenseIds = useMemo(() => {
     const ids = new Set<string>();
     for (const e of expenses) {
-      if (e.incomeSourceId === sourceId && !assignedExpenseIds.has(e.id)) {
+      if (
+        !assignedExpenseIds.has(e.id) &&
+        isExpenseLinkedToPaycheck(e, sourceId, paycheckOrdinal, incomeSource)
+      ) {
         ids.add(e.id);
       }
     }
     return ids;
-  }, [expenses, sourceId, assignedExpenseIds]);
+  }, [expenses, sourceId, paycheckOrdinal, incomeSource, assignedExpenseIds]);
 
   const assignedExpenses = useMemo(
     () => expenses.filter((e) => assignedExpenseIds.has(e.id) || linkedExpenseIds.has(e.id)),

@@ -7,13 +7,13 @@ import type { Expense } from "@/types";
 
 interface Props {
   expense: Expense;
-  linkedSourceName?: string;
+  linkLabel?: string;
   onEdit: (id: string) => void;
   onDelete: (expense: Expense) => void;
   onOpenLink: (link: string) => void;
 }
 
-export function ExpenseCard({ expense, linkedSourceName, onEdit, onDelete, onOpenLink }: Props) {
+export function ExpenseCard({ expense, linkLabel, onEdit, onDelete, onOpenLink }: Props) {
   const colors = useColors();
 
   const handlePress = useCallback(() => {
@@ -52,9 +52,9 @@ export function ExpenseCard({ expense, linkedSourceName, onEdit, onDelete, onOpe
           ${expense.amount.toLocaleString("en-US", { minimumFractionDigits: 2 })}
         </AppText>
       </View>
-      {expense.incomeSourceId ? (
+      {linkLabel ? (
         <AppText variant="caption" color="textMuted" style={styles.linkedSource}>
-          Linked to {linkedSourceName ?? "Unknown"}
+          Linked to {linkLabel}
         </AppText>
       ) : null}
       {!expense.isRecurring ? (

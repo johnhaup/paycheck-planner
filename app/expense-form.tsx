@@ -13,6 +13,13 @@ import { AppText } from "@/components/AppText";
 import { AppInput } from "@/components/AppInput";
 import { AppButton } from "@/components/AppButton";
 import { AppChip } from "@/components/AppChip";
+import { getMonthlySlotCount, getPaycheckSlotLabel } from "@/utils/payDates";
+import type { LinkSchedule } from "@/types";
+
+const SCHEDULE_OPTIONS: { value: LinkSchedule; label: string }[] = [
+  { value: "every-paycheck", label: "Every paycheck" },
+  { value: "monthly", label: "Monthly" },
+];
 
 export default function ExpenseFormScreen() {
   const router = useRouter();
@@ -36,6 +43,24 @@ export default function ExpenseFormScreen() {
   const [selectedSourceId, setSelectedSourceId] = useState<string | undefined>(
     existing?.incomeSourceId
   );
+  const [linkSchedule, setLinkSchedule] = useState<LinkSchedule>(
+    existing?.linkSchedule ?? "every-paycheck"
+  );
+  const [paycheckOrdinal, setPaycheckOrdinal] = useState(existing?.paycheckOrdinal ?? 0);
+
+  const selectedSource = useMemo(
+    () => incomeSources.find((s) => s.id === selectedSourceId),
+    [incomeSources, selectedSourceId]
+  );
+
+  const slotCount = useMemo(
+    () => (selectedSource ? getMonthlySlotCount(selectedSource) : 0),
+    [selectedSource]
+  );
+
+  // Switching to a source with fewer paychecks per month clamps the choice
+  const effectiveOrdinal = Math.min(paycheckOrdinal, Math.max(slotCount - 1, 0));
+  const isMonthly = slotCount > 1 && linkSchedule === "monthly";
 
   const handleSave = useCallback(() => {
     if (!payee.trim()) {
@@ -54,6 +79,8 @@ export default function ExpenseFormScreen() {
       link: link.trim() || undefined,
       isRecurring: true,
       incomeSourceId: selectedSourceId,
+      linkSchedule: isMonthly ? linkSchedule : undefined,
+      paycheckOrdinal: isMonthly ? effectiveOrdinal : undefined,
     };
 
     if (existing) {
@@ -62,11 +89,34 @@ export default function ExpenseFormScreen() {
       addExpense(data);
     }
     router.back();
-  }, [payee, amount, link, selectedSourceId, existing, addExpense, updateExpense, router]);
+  }, [
+    payee,
+    amount,
+    link,
+    selectedSourceId,
+    isMonthly,
+    linkSchedule,
+    effectiveOrdinal,
+    existing,
+    addExpense,
+    updateExpense,
+    router,
+  ]);
 
   const handleSelectSource = useCallback((sourceId: string | undefined) => {
     setSelectedSourceId(sourceId);
   }, []);
+
+  const ordinalOptions = useMemo(
+    () =>
+      selectedSource
+        ? Array.from({ length: slotCount }, (_, ordinal) => ({
+            value: ordinal,
+            label: getPaycheckSlotLabel(selectedSource, ordinal),
+          }))
+        : [],
+    [selectedSource, slotCount]
+  );
 
   const scrollStyle = useMemo(
     () => ({ backgroundColor: colors.screenBackground }),
@@ -124,8 +174,47 @@ export default function ExpenseFormScreen() {
             ))}
           </View>
           <AppText variant="caption" color="textMuted" style={styles.hint}>
-            When linked, this expense is preloaded on every paycheck from that source.
+            When linked, this expense is preloaded on paychecks from that source.
           </AppText>
+        </>
+      ) : null}
+
+      {slotCount > 1 ? (
+        <>
+          <AppText variant="label" style={styles.label}>How Often</AppText>
+          <View style={styles.chipRow}>
+            {SCHEDULE_OPTIONS.map((option) => (
+              <AppChip
+                key={option.value}
+                label={option.label}
+                value={option.value}
+                selected={linkSchedule === option.value}
+                onSelect={setLinkSchedule}
+              />
+            ))}
+          </View>
+        </>
+      ) : null}
+
+      {isMonthly ? (
+        <>
+          <AppText variant="label" style={styles.label}>Which Paycheck</AppText>
+          <View style={styles.chipRow}>
+            {ordinalOptions.map((option) => (
+              <AppChip
+                key={option.value}
+                label={option.label}
+                value={option.value}
+                selected={effectiveOrdinal === option.value}
+                onSelect={setPaycheckOrdinal}
+              />
+            ))}
+          </View>
+          {selectedSource?.payFrequency !== "semi-monthly" ? (
+            <AppText variant="caption" color="textMuted" style={styles.hint}>
+              Extra paychecks in longer months are skipped.
+            </AppText>
+          ) : null}
         </>
       ) : null}
 
