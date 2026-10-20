@@ -162,6 +162,7 @@ const styles = StyleSheet.create({
   },
   chart: {
     marginTop: MEASUREMENTS.spacing.xl,
+    marginHorizontal: -MEASUREMENTS.spacing.gutter,
   },
   empty: {
     flex: 1,

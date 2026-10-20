@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     flexGrow: 0,
   },
   content: {
+    paddingHorizontal: MEASUREMENTS.spacing.gutter,
     gap: MEASUREMENTS.spacing.md + 2,
     alignItems: "flex-end",
   },
