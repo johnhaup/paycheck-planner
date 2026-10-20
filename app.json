@@ -8,7 +8,11 @@
     "userInterfaceStyle": "automatic",
     "scheme": "paycheck-planner",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.johnhaup.paycheckplanner",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -26,6 +30,13 @@
       "expo-router",
       "@react-native-community/datetimepicker",
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "1628ead2-5166-4885-b0c8-baa6e8ee4486"
+      }
+    },
+    "owner": "johnhaup"
   }
 }
