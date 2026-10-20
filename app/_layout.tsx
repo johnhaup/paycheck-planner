@@ -66,7 +66,7 @@ export default function RootLayout() {
     [modalOptions]
   );
 
-  const expenseAmountOptions = useMemo(
+  const sheetOptions = useMemo(
     () => ({
       presentation: "formSheet" as const,
       headerShown: false,
@@ -98,7 +98,8 @@ export default function RootLayout() {
           <Stack.Screen name="expense-form" options={expenseFormOptions} />
           <Stack.Screen name="pay-date-detail" options={PAY_DATE_DETAIL_OPTIONS} />
           <Stack.Screen name="settings" options={settingsOptions} />
-          <Stack.Screen name="expense-amount" options={expenseAmountOptions} />
+          <Stack.Screen name="expense-amount" options={sheetOptions} />
+          <Stack.Screen name="date-picker" options={sheetOptions} />
         </Stack>
       </ThemeProvider>
     </GestureHandlerRootView>
