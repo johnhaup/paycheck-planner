@@ -83,7 +83,7 @@ export function AppDatePicker({ value, onChange }: Props) {
   return (
     <View>
       <Pressable style={triggerStyle} onPress={handlePress}>
-        <AppText variant="regular">{displayValue}</AppText>
+        <AppText variant="body">{displayValue}</AppText>
       </Pressable>
 
       <Modal
@@ -96,13 +96,13 @@ export function AppDatePicker({ value, onChange }: Props) {
           <Pressable style={sheetStyle}>
             <View style={sheetHeaderStyle}>
               <Pressable onPress={handleCancel} hitSlop={MEASUREMENTS.hitSlop}>
-                <AppText variant="regular" color="textSecondary">
+                <AppText variant="body" color="textSecondary">
                   Cancel
                 </AppText>
               </Pressable>
-              <AppText variant="regular-bold">Select Date</AppText>
+              <AppText variant="bodyStrong">Select Date</AppText>
               <Pressable onPress={handleDone} hitSlop={MEASUREMENTS.hitSlop}>
-                <AppText variant="regular-bold" color="primary">
+                <AppText variant="bodyStrong" color="primaryText">
                   Done
                 </AppText>
               </Pressable>

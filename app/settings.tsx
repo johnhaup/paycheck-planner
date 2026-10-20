@@ -4,10 +4,12 @@ import { useColors } from "@/hooks/useColors";
 import { useThemeStore, ThemeMode } from "@/stores/themeStore";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
+import { AppCard } from "@/components/AppCard";
 import { AppToggle } from "@/components/AppToggle";
-import { ThemeOptionCard } from "@/components/settings/ThemeOptionCard";
+import { AppSectionHeader } from "@/components/AppSectionHeader";
+import { AppSegmentedControl, type SegmentOption } from "@/components/AppSegmentedControl";
 
-const THEME_OPTIONS: { value: ThemeMode; label: string }[] = [
+const THEME_OPTIONS: SegmentOption<ThemeMode>[] = [
   { value: "light", label: "Light" },
   { value: "dark", label: "Dark" },
   { value: "system", label: "System" },
@@ -25,37 +27,23 @@ export default function SettingsScreen() {
     [colors]
   );
 
-  const toggleRowStyle = useMemo(
+  const toggleCardStyle = useMemo(
     () => [styles.toggleRow, { backgroundColor: colors.cardBackgroundElevated }],
     [colors]
   );
 
   return (
     <View style={containerStyle}>
-      <AppText variant="label" style={styles.sectionLabel}>
-        Appearance
-      </AppText>
-      <View style={styles.optionsRow}>
-        {THEME_OPTIONS.map((option) => (
-          <ThemeOptionCard
-            key={option.value}
-            label={option.label}
-            value={option.value}
-            selected={themeMode === option.value}
-            onSelect={setThemeMode}
-          />
-        ))}
-      </View>
+      <AppSectionHeader title="Appearance" />
+      <AppSegmentedControl options={THEME_OPTIONS} value={themeMode} onChange={setThemeMode} />
 
-      <AppText variant="label" style={styles.sectionLabel}>
-        Behavior
-      </AppText>
-      <View style={toggleRowStyle}>
-        <AppText variant="regular">Auto-mark paid on link tap</AppText>
+      <AppSectionHeader title="Behavior" />
+      <AppCard style={toggleCardStyle}>
+        <AppText variant="body" style={styles.toggleLabel}>Auto-mark paid on link tap</AppText>
         <AppToggle value={autoMarkPaid} onValueChange={setAutoMarkPaid} />
-      </View>
-      <AppText variant="caption" color="textMuted" style={styles.toggleHint}>
-        When enabled, tapping a payment link automatically marks the expense as paid.
+      </AppCard>
+      <AppText variant="caption" style={styles.toggleHint}>
+        Tapping a payment link also marks that bill paid.
       </AppText>
     </View>
   );
@@ -64,25 +52,20 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: MEASUREMENTS.spacing.lg,
-  },
-  sectionLabel: {
-    marginBottom: MEASUREMENTS.spacing.md,
-    marginTop: MEASUREMENTS.spacing.md,
-  },
-  optionsRow: {
-    flexDirection: "row",
-    gap: MEASUREMENTS.spacing.md,
+    paddingHorizontal: MEASUREMENTS.spacing.gutter,
   },
   toggleRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    gap: MEASUREMENTS.spacing.base,
     padding: MEASUREMENTS.spacing.lg,
-    borderRadius: MEASUREMENTS.radius.lg,
+  },
+  toggleLabel: {
+    flex: 1,
   },
   toggleHint: {
-    marginTop: MEASUREMENTS.spacing.sm,
-    paddingHorizontal: MEASUREMENTS.spacing.sm,
+    marginTop: MEASUREMENTS.spacing.md,
+    paddingHorizontal: MEASUREMENTS.spacing.xs,
   },
 });

@@ -41,7 +41,7 @@ export function AppChip<T>({ label, value, selected, onSelect, style }: Props<T>
 
   return (
     <Pressable style={chipStyle} onPress={handlePress}>
-      <AppText variant="subtext" style={textStyle}>
+      <AppText variant="meta" style={textStyle}>
         {label}
       </AppText>
     </Pressable>

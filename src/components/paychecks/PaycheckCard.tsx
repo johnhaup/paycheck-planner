@@ -1,9 +1,14 @@
 import { useCallback, useMemo } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
+import { format } from "date-fns";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { AppCard } from "@/components/AppCard";
+import { AppDateTile } from "@/components/AppDateTile";
 import { AppText } from "@/components/AppText";
+import { PaidProgress } from "@/components/paychecks/PaidProgress";
 import { PaycheckExpenseRow } from "@/components/paychecks/PaycheckExpenseRow";
+import { formatMoney } from "@/utils/money";
 import type {
   LinkTapHandler,
   PaycheckItem,
@@ -24,34 +29,39 @@ export function PaycheckCard({ item, onPress, onTogglePaid, onLinkTap }: Props) 
     onPress(item.payDate, item.sourceId);
   }, [onPress, item.payDate, item.sourceId]);
 
-  const cardStyle = useMemo(
-    () => [styles.card, { backgroundColor: colors.cardBackground }],
+  const emptyRowStyle = useMemo(
+    () => [styles.emptyRow, { borderTopColor: colors.divider }],
     [colors]
   );
 
-  const dividerStyle = useMemo(
-    () => [styles.divider, { backgroundColor: colors.border }],
-    [colors]
-  );
-
-  const footerStyle = useMemo(
-    () => [styles.footer, { borderTopColor: colors.border }],
-    [colors]
-  );
-
-  const remainingStyle = useMemo(
-    () => ({ color: item.remaining < 0 ? colors.destructive : colors.primary }),
-    [item.remaining, colors]
-  );
+  const billCount = item.expenses.length;
+  const meta =
+    billCount === 0
+      ? format(item.date, "EEEE")
+      : `${format(item.date, "EEEE")} · ${item.paidCount} of ${billCount} paid`;
 
   return (
-    <Pressable onPress={handlePress} style={cardStyle}>
-      <View style={styles.header}>
-        <AppText variant="h3">{item.title}</AppText>
-        <AppText variant="caption">{item.sourceName}</AppText>
-      </View>
-      <View style={dividerStyle} />
-      {item.expenses.length > 0 ? (
+    <AppCard style={styles.card}>
+      <Pressable
+        style={styles.header}
+        onPress={handlePress}
+        accessibilityRole="button"
+        accessibilityHint="Opens this paycheck"
+      >
+        <AppDateTile date={item.date} />
+        <View style={styles.headerText}>
+          <AppText variant="rowTitle" numberOfLines={1}>{item.sourceName}</AppText>
+          <AppText variant="meta">{meta}</AppText>
+        </View>
+        <View style={styles.amounts}>
+          <AppText variant="rowTitle">{formatMoney(item.payAmount)}</AppText>
+          <AppText variant="meta" color={item.remaining < 0 ? "destructive" : "primaryText"}>
+            {formatMoney(item.remaining)} left
+          </AppText>
+        </View>
+      </Pressable>
+      <PaidProgress paid={item.paidCount} total={billCount} />
+      {billCount > 0 ? (
         item.expenses.map((expense) => (
           <PaycheckExpenseRow
             key={expense.assignmentId || expense.expenseId}
@@ -63,49 +73,35 @@ export function PaycheckCard({ item, onPress, onTogglePaid, onLinkTap }: Props) 
           />
         ))
       ) : (
-        <AppText variant="subtext" color="textMuted" center style={styles.noExpenses}>
-          Tap to assign expenses
-        </AppText>
+        <Pressable style={emptyRowStyle} onPress={handlePress}>
+          <AppText variant="meta" color="textMuted">No bills yet · tap to assign</AppText>
+        </Pressable>
       )}
-      <View style={footerStyle}>
-        <AppText variant="subtext">
-          ${item.payAmount.toLocaleString("en-US", { minimumFractionDigits: 2 })}
-        </AppText>
-        <AppText variant="regular-bold" style={remainingStyle}>
-          ${item.remaining.toLocaleString("en-US", { minimumFractionDigits: 2 })} left
-        </AppText>
-      </View>
-    </Pressable>
+    </AppCard>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: MEASUREMENTS.radius.xl,
     marginBottom: MEASUREMENTS.spacing.base,
-    overflow: "hidden",
   },
   header: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: MEASUREMENTS.spacing.lg,
-    paddingTop: MEASUREMENTS.spacing.base,
-    paddingBottom: MEASUREMENTS.spacing.md,
+    gap: MEASUREMENTS.spacing.base,
+    padding: MEASUREMENTS.spacing.lg,
   },
-  divider: {
-    height: StyleSheet.hairlineWidth,
-    marginHorizontal: MEASUREMENTS.spacing.lg,
+  headerText: {
+    flex: 1,
+    gap: MEASUREMENTS.spacing.xs,
   },
-  noExpenses: {
-    paddingVertical: MEASUREMENTS.spacing.base,
+  amounts: {
+    alignItems: "flex-end",
+    gap: MEASUREMENTS.spacing.xs,
   },
-  footer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+  emptyRow: {
     paddingHorizontal: MEASUREMENTS.spacing.lg,
     paddingVertical: MEASUREMENTS.spacing.base,
-    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopWidth: 1,
   },
 });

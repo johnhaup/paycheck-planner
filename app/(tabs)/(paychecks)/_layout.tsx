@@ -9,7 +9,7 @@ import { MEASUREMENTS } from "@/constants/measurements";
 export default function PaychecksLayout() {
   const colors = useColors();
   const router = useRouter();
-  const screenOptions = useStackScreenOptions();
+  const screenOptions = useStackScreenOptions(true);
 
   const handleOpenSettings = useCallback(() => {
     router.push("/settings");

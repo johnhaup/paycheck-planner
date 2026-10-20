@@ -33,7 +33,7 @@ export function AppButton({ title, variant = "primary", style, ...rest }: Props)
 
   return (
     <Pressable style={buttonStyle} {...rest}>
-      <AppText variant="regular-bold" color={variant === "outline" ? "textDefault" : "onPrimary"}>
+      <AppText variant="bodyStrong" color={variant === "outline" ? "textDefault" : "onPrimary"}>
         {title}
       </AppText>
     </Pressable>

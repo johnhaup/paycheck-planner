@@ -68,7 +68,7 @@ export function OneTimeExpenseForm({ payDate, sourceId }: Props) {
 
   return (
     <View style={cardStyle}>
-      <AppText variant="label" style={styles.label}>One-Time Expense</AppText>
+      <AppText variant="section" style={styles.label}>One-Time Expense</AppText>
       <AppInput value={payee} onChangeText={setPayee} placeholder="Payee" />
       <AppInput
         value={amount}

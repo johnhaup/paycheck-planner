@@ -111,11 +111,12 @@ export function getMonthlySlotCount(source: IncomeSource): number {
   }
 }
 
-export function getPaycheckSlotLabel(source: IncomeSource, ordinal: number): string {
+/** "15th" for semi-monthly slots, else "2nd paycheck" ("2nd" when `short`). */
+export function getPaycheckSlotLabel(source: IncomeSource, ordinal: number, short = false): string {
   if (source.payFrequency === "semi-monthly") {
     return formatOrdinal(getSemiMonthlyDays(source)[ordinal] ?? ordinal + 1);
   }
-  return `${formatOrdinal(ordinal + 1)} paycheck`;
+  return short ? formatOrdinal(ordinal + 1) : `${formatOrdinal(ordinal + 1)} paycheck`;
 }
 
 /** The monthly paycheck slot a linked expense targets, or undefined if it lands on every paycheck. */
@@ -135,6 +136,37 @@ export function isExpenseLinkedToPaycheck(
   if (expense.incomeSourceId !== sourceId || !source) return false;
   const target = getLinkedOrdinal(expense, source);
   return target === undefined || target === ordinal;
+}
+
+/** Average paychecks per month, for monthly totals. */
+export function getPaychecksPerMonth(source: IncomeSource): number {
+  switch (source.payFrequency) {
+    case "weekly":
+      return 52 / 12;
+    case "biweekly":
+      return 26 / 12;
+    case "semi-monthly":
+      return 2;
+    case "monthly":
+      return 1;
+  }
+}
+
+/** "Semi-monthly · 15th & 30th", "Bi-weekly · Fridays", "Monthly · 2nd" */
+export function describePaySchedule(source: IncomeSource): string {
+  const anchor = parseLocalDate(source.firstPayDate);
+  switch (source.payFrequency) {
+    case "weekly":
+      return `Weekly · ${format(anchor, "EEEE")}s`;
+    case "biweekly":
+      return `Bi-weekly · ${format(anchor, "EEEE")}s`;
+    case "semi-monthly": {
+      const [first, second] = getSemiMonthlyDays(source);
+      return `Semi-monthly · ${formatOrdinal(first)} & ${formatOrdinal(second)}`;
+    }
+    case "monthly":
+      return `Monthly · ${formatOrdinal(anchor.getDate())}`;
+  }
 }
 
 function getSemiMonthlyDays(source: IncomeSource): number[] {
@@ -170,8 +202,4 @@ function daysInMonth(date: Date): number {
 
 export function formatPayDate(date: Date): string {
   return format(date, "yyyy-MM-dd");
-}
-
-export function formatDisplayDate(date: Date): string {
-  return format(date, "EEE, MMM d");
 }

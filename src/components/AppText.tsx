@@ -4,7 +4,26 @@ import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import type { PaletteColor } from "@/constants/palette";
 
-type Variant = "h1" | "h2" | "h3" | "regular" | "regular-bold" | "subtext" | "caption" | "label";
+type Variant =
+  | "hero"
+  | "title"
+  | "rowTitle"
+  | "body"
+  | "bodyStrong"
+  | "meta"
+  | "caption"
+  | "section";
+
+const VARIANT_COLORS: Record<Variant, PaletteColor> = {
+  hero: "textDefault",
+  title: "textDefault",
+  rowTitle: "textDefault",
+  body: "textDefault",
+  bodyStrong: "textDefault",
+  meta: "textSecondary",
+  caption: "textMuted",
+  section: "textMuted",
+};
 
 interface Props extends TextProps {
   variant?: Variant;
@@ -13,7 +32,7 @@ interface Props extends TextProps {
 }
 
 export function AppText({
-  variant = "regular",
+  variant = "body",
   color,
   center,
   style,
@@ -21,54 +40,61 @@ export function AppText({
 }: Props) {
   const colors = useColors();
 
-  const textStyles = useMemo(() => {
-    const baseColor =
-      variant === "subtext" || variant === "caption" || variant === "label"
-        ? colors.textSecondary
-        : colors.textDefault;
-    const resolvedColor = color ? colors[color] : baseColor;
-    const textAlign = center ? ("center" as const) : undefined;
-    return [
+  const textStyles = useMemo(
+    () => [
       variantStyles[variant],
-      { color: resolvedColor },
-      textAlign ? { textAlign } : undefined,
+      { color: colors[color ?? VARIANT_COLORS[variant]] },
+      center ? styles.center : undefined,
       style,
-    ];
-  }, [variant, color, center, style, colors]);
+    ],
+    [variant, color, center, style, colors]
+  );
 
   return <Text style={textStyles} {...rest} />;
 }
 
-const variantStyles = StyleSheet.create({
-  h1: {
-    fontSize: MEASUREMENTS.font.h1,
-    fontWeight: "700",
+const styles = StyleSheet.create({
+  center: {
+    textAlign: "center",
   },
-  h2: {
+});
+
+const variantStyles = StyleSheet.create({
+  hero: {
+    fontSize: MEASUREMENTS.font.hero,
+    fontWeight: "700",
+    letterSpacing: -1,
+    fontVariant: ["tabular-nums"],
+  },
+  title: {
     fontSize: MEASUREMENTS.font.xl,
     fontWeight: "700",
   },
-  h3: {
-    fontSize: MEASUREMENTS.font.lg,
-    fontWeight: "600",
-  },
-  regular: {
-    fontSize: MEASUREMENTS.font.md,
-  },
-  "regular-bold": {
+  rowTitle: {
     fontSize: MEASUREMENTS.font.md,
     fontWeight: "600",
+    fontVariant: ["tabular-nums"],
   },
-  subtext: {
-    fontSize: MEASUREMENTS.font.base,
+  body: {
+    fontSize: MEASUREMENTS.font.body,
+    fontVariant: ["tabular-nums"],
+  },
+  bodyStrong: {
+    fontSize: MEASUREMENTS.font.body,
+    fontWeight: "600",
+    fontVariant: ["tabular-nums"],
+  },
+  meta: {
+    fontSize: MEASUREMENTS.font.sm,
+    fontVariant: ["tabular-nums"],
   },
   caption: {
-    fontSize: MEASUREMENTS.font.sm,
+    fontSize: MEASUREMENTS.font.xs,
   },
-  label: {
+  section: {
     fontSize: MEASUREMENTS.font.sm,
-    fontWeight: "500",
+    fontWeight: "600",
     textTransform: "uppercase",
-    letterSpacing: 0.5,
+    letterSpacing: 0.6,
   },
 });

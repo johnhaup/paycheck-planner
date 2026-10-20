@@ -1,9 +1,11 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
+import { AppCheckCircle } from "@/components/AppCheckCircle";
+import { formatMoney } from "@/utils/money";
 import type {
   LinkTapHandler,
   PaycheckExpense,
@@ -31,35 +33,36 @@ export function PaycheckExpenseRow({ expense, payDate, sourceId, onTogglePaid, o
     }
   }, [onLinkTap, expense.link, expense.assignmentId, expense.expenseId, payDate, sourceId]);
 
+  const rowStyle = useMemo(
+    () => [styles.row, { borderTopColor: colors.divider }],
+    [colors]
+  );
+
+  const textColor = expense.paid ? "textMuted" : "textDefault";
+
   return (
-    <View style={styles.row}>
-      <Pressable onPress={handleTogglePaid} hitSlop={MEASUREMENTS.hitSlop}>
-        <Ionicons
-          name={expense.paid ? "checkbox" : "square-outline"}
-          size={22}
-          color={expense.paid ? colors.primary : colors.textMuted}
-          style={styles.checkbox}
-        />
-      </Pressable>
+    <View style={rowStyle}>
+      <AppCheckCircle
+        checked={!!expense.paid}
+        onPress={handleTogglePaid}
+        accessibilityLabel={`Mark ${expense.payee} paid`}
+      />
       <Pressable
         style={styles.content}
         onPress={expense.link ? handleLinkTap : undefined}
+        disabled={!expense.link}
+        accessibilityRole={expense.link ? "link" : undefined}
       >
-        <View style={styles.payeeRow}>
-          <AppText variant="regular" style={expense.paid ? styles.paidText : undefined}>
+        <View style={styles.payee}>
+          <AppText variant="body" color={textColor} numberOfLines={1}>
             {expense.payee}
           </AppText>
           {expense.link ? (
-            <Ionicons
-              name="open-outline"
-              size={18}
-              color={expense.paid ? colors.textMuted : colors.textDefault}
-              style={styles.linkIcon}
-            />
+            <Ionicons name="open-outline" size={14} color={colors.textMuted} />
           ) : null}
         </View>
-        <AppText variant="subtext" style={expense.paid ? styles.paidText : undefined}>
-          ${expense.amount.toLocaleString("en-US", { minimumFractionDigits: 2 })}
+        <AppText variant="body" color={textColor}>
+          {formatMoney(expense.amount)}
         </AppText>
       </Pressable>
     </View>
@@ -70,27 +73,22 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
+    gap: MEASUREMENTS.spacing.base,
     paddingHorizontal: MEASUREMENTS.spacing.lg,
-    paddingVertical: MEASUREMENTS.spacing.md,
-  },
-  checkbox: {
-    marginRight: MEASUREMENTS.spacing.md,
+    paddingVertical: MEASUREMENTS.spacing.base - 1,
+    borderTopWidth: 1,
   },
   content: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    gap: MEASUREMENTS.spacing.md,
   },
-  payeeRow: {
+  payee: {
+    flexShrink: 1,
     flexDirection: "row",
     alignItems: "center",
-  },
-  linkIcon: {
-    marginLeft: MEASUREMENTS.spacing.sm + 2,
-  },
-  paidText: {
-    textDecorationLine: "line-through",
-    opacity: 0.4,
+    gap: MEASUREMENTS.spacing.sm + 2,
   },
 });

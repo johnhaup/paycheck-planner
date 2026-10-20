@@ -10,19 +10,26 @@ export interface PaycheckExpense {
 
 export interface PaycheckItem {
   key: string;
-  title: string;
+  date: Date;
   payDate: string;
   sourceName: string;
   sourceId: string;
   payAmount: number;
   expenses: PaycheckExpense[];
+  paidCount: number;
   totalExpenses: number;
   remaining: number;
 }
 
 export interface MonthGroup {
   key: string;
-  label: string;
+  /** "Oct" for the chart axis */
+  shortLabel: string;
+  /** "October", or "January 2027" outside the current year */
+  longLabel: string;
+  income: number;
+  assigned: number;
+  remaining: number;
   paychecks: PaycheckItem[];
 }
 

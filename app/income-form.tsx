@@ -121,14 +121,14 @@ export default function IncomeFormScreen() {
       contentContainerStyle={styles.content}
       keyboardShouldPersistTaps="handled"
     >
-      <AppText variant="label" style={styles.label}>Name</AppText>
+      <AppText variant="section" style={styles.label}>Name</AppText>
       <AppInput
         value={name}
         onChangeText={setName}
         placeholder="e.g. Acme Corp"
       />
 
-      <AppText variant="label" style={styles.label}>Pay Amount (per check)</AppText>
+      <AppText variant="section" style={styles.label}>Pay Amount (per check)</AppText>
       <AppInput
         value={payAmount}
         onChangeText={setPayAmount}
@@ -136,7 +136,7 @@ export default function IncomeFormScreen() {
         keyboardType="decimal-pad"
       />
 
-      <AppText variant="label" style={styles.label}>Pay Frequency</AppText>
+      <AppText variant="section" style={styles.label}>Pay Frequency</AppText>
       <View style={styles.chipRow}>
         {FREQUENCIES.map((f) => (
           <AppChip
@@ -151,7 +151,7 @@ export default function IncomeFormScreen() {
 
       {frequency === "semi-monthly" ? (
         <>
-          <AppText variant="label" style={styles.label}>Pay Days of Month</AppText>
+          <AppText variant="section" style={styles.label}>Pay Days of Month</AppText>
           <View style={styles.semiRow}>
             <AppInput
               style={styles.semiInput}
@@ -160,7 +160,7 @@ export default function IncomeFormScreen() {
               placeholder="1"
               keyboardType="number-pad"
             />
-            <AppText variant="subtext">and</AppText>
+            <AppText variant="meta">and</AppText>
             <AppInput
               style={styles.semiInput}
               value={semiDay2}
@@ -169,21 +169,21 @@ export default function IncomeFormScreen() {
               keyboardType="number-pad"
             />
           </View>
-          <AppText variant="caption" color="textMuted" style={styles.hint}>
+          <AppText variant="caption" style={styles.hint}>
             Use 31 for last day of month (auto-adjusts for shorter months)
           </AppText>
 
           <View style={styles.toggleRow}>
-            <AppText variant="regular">Adjust to workday</AppText>
+            <AppText variant="body">Adjust to workday</AppText>
             <AppToggle value={adjustToWorkday} onValueChange={setAdjustToWorkday} />
           </View>
-          <AppText variant="caption" color="textMuted" style={styles.toggleHint}>
+          <AppText variant="caption" style={styles.toggleHint}>
             If a pay date falls on a weekend, it shifts to the preceding Friday.
           </AppText>
         </>
       ) : (
         <>
-          <AppText variant="label" style={styles.label}>First Pay Date</AppText>
+          <AppText variant="section" style={styles.label}>First Pay Date</AppText>
           <AppDatePicker value={firstPayDate} onChange={setFirstPayDate} />
         </>
       )}
@@ -199,7 +199,7 @@ export default function IncomeFormScreen() {
 
 const styles = StyleSheet.create({
   content: {
-    padding: MEASUREMENTS.spacing.lg,
+    padding: MEASUREMENTS.spacing.gutter,
     paddingBottom: MEASUREMENTS.spacing.bottom,
   },
   label: {

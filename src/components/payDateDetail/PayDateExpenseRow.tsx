@@ -1,10 +1,12 @@
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
+import { useGroupedRowStyles } from "@/hooks/useGroupedRowStyles";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
-import { AppButton } from "@/components/AppButton";
+import { AppCheckCircle } from "@/components/AppCheckCircle";
+import { formatMoney } from "@/utils/money";
 import type { Expense } from "@/types";
 
 interface Props {
@@ -13,6 +15,8 @@ interface Props {
   isPaid: boolean;
   /** Linked to the income source but not yet explicitly assigned, so it can't be removed */
   isLinkedPreload: boolean;
+  isFirst: boolean;
+  isLast: boolean;
   onTogglePaid: (expenseId: string) => void;
   onOpenLink: (link: string, expenseId: string) => void;
   onAssign: (expenseId: string) => void;
@@ -24,12 +28,15 @@ export function PayDateExpenseRow({
   isAssigned,
   isPaid,
   isLinkedPreload,
+  isFirst,
+  isLast,
   onTogglePaid,
   onOpenLink,
   onAssign,
   onUnassign,
 }: Props) {
   const colors = useColors();
+  const groupedStyles = useGroupedRowStyles(isFirst, isLast);
 
   const handleTogglePaid = useCallback(() => {
     onTogglePaid(expense.id);
@@ -49,78 +56,68 @@ export function PayDateExpenseRow({
     }
   }, [isAssigned, onAssign, onUnassign, expense.id]);
 
-  const cardStyle = useMemo(
-    () => [styles.card, { backgroundColor: colors.cardBackground }],
-    [colors]
-  );
-
-  const payeeStyle = useMemo(
-    () => [
-      expense.link ? [styles.linkText, { color: colors.primary }] : undefined,
-      isPaid ? styles.paidText : undefined,
-    ],
-    [expense.link, isPaid, colors]
-  );
+  const textColor = isPaid ? "textMuted" : "textDefault";
 
   return (
-    <View style={cardStyle}>
-      {isAssigned ? (
-        <Pressable onPress={handleTogglePaid} hitSlop={MEASUREMENTS.hitSlop}>
-          <Ionicons
-            name={isPaid ? "checkbox" : "square-outline"}
-            size={22}
-            color={isPaid ? colors.primary : colors.textMuted}
-            style={styles.checkbox}
+    <View style={groupedStyles.container}>
+      <View style={groupedStyles.row}>
+        {isAssigned ? (
+          <AppCheckCircle
+            checked={isPaid}
+            onPress={handleTogglePaid}
+            accessibilityLabel={`Mark ${expense.payee} paid`}
           />
+        ) : null}
+        <Pressable
+          style={styles.info}
+          onPress={expense.link ? handleOpenLink : undefined}
+          disabled={!expense.link}
+          accessibilityRole={expense.link ? "link" : undefined}
+        >
+          <View style={styles.titleRow}>
+            <AppText variant="body" color={textColor} numberOfLines={1} style={styles.title}>
+              {expense.payee}
+            </AppText>
+            {expense.link ? (
+              <Ionicons name="open-outline" size={14} color={colors.textMuted} />
+            ) : null}
+          </View>
+          <AppText variant="meta" color={isPaid ? "textMuted" : "textSecondary"}>
+            {formatMoney(expense.amount)}
+          </AppText>
         </Pressable>
-      ) : null}
-      <Pressable
-        style={styles.info}
-        onPress={expense.link ? handleOpenLink : undefined}
-      >
-        <AppText variant="regular-bold" style={payeeStyle}>
-          {expense.payee}
-        </AppText>
-        <AppText variant="caption" style={isPaid ? styles.paidText : undefined}>
-          ${expense.amount.toLocaleString("en-US", { minimumFractionDigits: 2 })}
-        </AppText>
-      </Pressable>
-      {isLinkedPreload ? null : (
-        <AppButton
-          title={isAssigned ? "Remove" : "Add"}
-          variant={isAssigned ? "destructive" : "primary"}
-          onPress={handleToggleAssigned}
-          style={styles.toggleButton}
-        />
-      )}
+        {isLinkedPreload ? (
+          <AppText variant="caption">Linked</AppText>
+        ) : (
+          <Pressable
+            onPress={handleToggleAssigned}
+            hitSlop={MEASUREMENTS.hitSlop}
+            accessibilityRole="button"
+            accessibilityLabel={`${isAssigned ? "Remove" : "Add"} ${expense.payee}`}
+          >
+            <Ionicons
+              name={isAssigned ? "remove-circle-outline" : "add-circle"}
+              size={26}
+              color={isAssigned ? colors.textMuted : colors.primary}
+            />
+          </Pressable>
+        )}
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  card: {
-    borderRadius: MEASUREMENTS.radius.lg,
-    padding: MEASUREMENTS.spacing.base + 2,
-    marginBottom: MEASUREMENTS.spacing.md,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  checkbox: {
-    marginRight: MEASUREMENTS.spacing.md,
-  },
   info: {
     flex: 1,
-    marginRight: MEASUREMENTS.spacing.base,
+    gap: MEASUREMENTS.spacing.xs,
   },
-  linkText: {
-    textDecorationLine: "underline",
+  titleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: MEASUREMENTS.spacing.sm + 2,
   },
-  paidText: {
-    textDecorationLine: "line-through",
-    opacity: 0.4,
-  },
-  toggleButton: {
-    paddingHorizontal: MEASUREMENTS.spacing.lg,
-    paddingVertical: MEASUREMENTS.spacing.md,
+  title: {
+    flexShrink: 1,
   },
 });

@@ -5,7 +5,6 @@ import ReanimatedSwipeable, {
 } from "react-native-gesture-handler/ReanimatedSwipeable";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
-import { MEASUREMENTS } from "@/constants/measurements";
 
 const ACTION_WIDTH = 72;
 
@@ -73,8 +72,6 @@ export function AppSwipeToDelete({ children, confirmTitle, confirmMessage, onCon
 const styles = StyleSheet.create({
   action: {
     width: ACTION_WIDTH,
-    marginLeft: MEASUREMENTS.spacing.md,
-    borderRadius: MEASUREMENTS.radius.lg,
     alignItems: "center",
     justifyContent: "center",
   },

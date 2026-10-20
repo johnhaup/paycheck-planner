@@ -1,24 +1,20 @@
 import { useCallback, useMemo, useState } from "react";
-import { View, FlatList, ScrollView, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import { format } from "date-fns";
 import { useStore } from "@/store";
-import { openPaymentLink } from "@/utils/links";
 import { useThemeStore } from "@/stores/themeStore";
-import {
-  getPaychecks,
-  formatPayDate,
-  formatDisplayDate,
-  isExpenseLinkedToPaycheck,
-} from "@/utils/payDates";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
+import { AppHeroAmount } from "@/components/AppHeroAmount";
+import { AppSectionHeader } from "@/components/AppSectionHeader";
+import { MonthBarChart } from "@/components/paychecks/MonthBarChart";
 import { PaycheckCard } from "@/components/paychecks/PaycheckCard";
-import { MonthTab } from "@/components/paychecks/MonthTab";
-import type { MonthGroup, PaycheckExpense, PaycheckItem } from "@/components/paychecks/types";
-
-const PAY_DATE_COUNT = 12;
+import { openPaymentLink } from "@/utils/links";
+import { formatMoney } from "@/utils/money";
+import { buildMonthGroups } from "@/utils/paycheckMonths";
+import type { PaycheckItem } from "@/components/paychecks/types";
 
 function keyExtractor(item: PaycheckItem) {
   return item.key;
@@ -83,86 +79,41 @@ export default function PaychecksScreen() {
     [handlePressPaycheck, handleTogglePaid, handleLinkTap]
   );
 
-  const months = useMemo(() => {
-    const now = new Date();
-    const allPaychecks: PaycheckItem[] = [];
+  const months = useMemo(
+    () => buildMonthGroups(incomeSources, expenses, assignments, new Date()),
+    [incomeSources, expenses, assignments]
+  );
 
-    for (const source of incomeSources) {
-      const paychecks = getPaychecks(source, now, PAY_DATE_COUNT);
-      for (const { date, ordinal } of paychecks) {
-        const key = formatPayDate(date);
-        const matched = assignments.filter(
-          (a) => a.payDate === key && a.employerId === source.id
-        );
-        const assignedIds = new Set(matched.map((a) => a.expenseId));
-        const expenseData: PaycheckExpense[] = matched.map((a) => {
-          const expense = expenses.find((e) => e.id === a.expenseId);
-          return {
-            expenseId: a.expenseId,
-            payee: expense?.payee ?? "Unknown",
-            amount: expense?.amount ?? 0,
-            assignmentId: a.id,
-            link: expense?.link,
-            paid: a.paid,
-          };
-        });
-        for (const expense of expenses) {
-          if (
-            !assignedIds.has(expense.id) &&
-            isExpenseLinkedToPaycheck(expense, source.id, ordinal, source)
-          ) {
-            expenseData.push({
-              expenseId: expense.id,
-              payee: expense.payee,
-              amount: expense.amount,
-              assignmentId: "",
-              link: expense.link,
-              paid: undefined,
-            });
-          }
-        }
-        const totalExpenses = expenseData.reduce((sum, d) => sum + d.amount, 0);
+  const selectedMonth = useMemo(
+    () => months.find((m) => m.key === selectedMonthKey) ?? months[0],
+    [months, selectedMonthKey]
+  );
 
-        allPaychecks.push({
-          key: `${source.id}-${key}`,
-          title: formatDisplayDate(date),
-          payDate: key,
-          sourceName: source.name,
-          sourceId: source.id,
-          payAmount: source.payAmount,
-          expenses: expenseData,
-          totalExpenses,
-          remaining: source.payAmount - totalExpenses,
-        });
-      }
-    }
+  const paychecks = useMemo(() => selectedMonth?.paychecks ?? [], [selectedMonth]);
 
-    allPaychecks.sort(
-      (a, b) => new Date(a.payDate).getTime() - new Date(b.payDate).getTime()
-    );
-
-    const grouped = new Map<string, MonthGroup>();
-    for (const pc of allPaychecks) {
-      const date = new Date(pc.payDate + "T00:00:00");
-      const monthKey = format(date, "yyyy-MM");
-      const monthLabel = format(date, "MMM yyyy");
-      if (!grouped.has(monthKey)) {
-        grouped.set(monthKey, { key: monthKey, label: monthLabel, paychecks: [] });
-      }
-      grouped.get(monthKey)!.paychecks.push(pc);
-    }
-
-    return Array.from(grouped.values());
-  }, [incomeSources, expenses, assignments]);
-
-  const selectedMonthIndex = useMemo(() => {
-    const idx = months.findIndex((m) => m.key === selectedMonthKey);
-    return idx >= 0 ? idx : 0;
-  }, [months, selectedMonthKey]);
-
-  const currentPaychecks = useMemo(
-    () => months[selectedMonthIndex]?.paychecks ?? [],
-    [months, selectedMonthIndex]
+  const listHeader = useMemo(
+    () =>
+      selectedMonth ? (
+        <View>
+          <AppText variant="meta">{selectedMonth.longLabel} · left after bills</AppText>
+          <AppHeroAmount amount={selectedMonth.remaining} />
+          <AppText variant="meta" style={styles.heroMeta}>
+            {formatMoney(selectedMonth.income)} in · {formatMoney(selectedMonth.assigned)} assigned
+          </AppText>
+          <View style={styles.chart}>
+            <MonthBarChart
+              months={months}
+              selectedKey={selectedMonth.key}
+              onSelect={setSelectedMonthKey}
+            />
+          </View>
+          <AppSectionHeader
+            title={`${selectedMonth.longLabel} paychecks`}
+            trailing={String(selectedMonth.paychecks.length)}
+          />
+        </View>
+      ) : null,
+    [selectedMonth, months]
   );
 
   const containerStyle = useMemo(
@@ -170,50 +121,28 @@ export default function PaychecksScreen() {
     [colors]
   );
 
-  const emptyStyle = useMemo(
-    () => [styles.empty, { backgroundColor: colors.screenBackground }],
-    [colors]
-  );
-
-  if (incomeSources.length === 0) {
-    return (
-      <View style={emptyStyle}>
-        <View style={styles.emptyCenter}>
-          <AppText variant="h2">No income sources yet</AppText>
-          <AppText variant="subtext" center style={styles.emptySubtitle}>
-            Add an income source in the Income tab to see your paychecks.
-          </AppText>
-        </View>
-      </View>
-    );
-  }
-
+  // Keep one root View across the empty and list states; swapping the root
+  // element after the store rehydrates drops the native large title.
   return (
     <View style={containerStyle}>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.monthsContent}
-        style={styles.monthsBar}
-      >
-        {months.map((month) => (
-          <MonthTab
-            key={month.key}
-            monthKey={month.key}
-            label={month.label}
-            selected={month.key === selectedMonthKey}
-            onSelect={setSelectedMonthKey}
-          />
-        ))}
-      </ScrollView>
-      <FlatList
-        data={currentPaychecks}
-        keyExtractor={keyExtractor}
-        renderItem={renderPaycheck}
-        contentInsetAdjustmentBehavior="automatic"
-        contentContainerStyle={styles.listContent}
-        showsVerticalScrollIndicator={false}
-      />
+      {incomeSources.length === 0 ? (
+        <View style={styles.empty}>
+          <AppText variant="title" center>No income sources yet</AppText>
+          <AppText variant="meta" center>
+            Add one in the Income tab to see your upcoming paychecks.
+          </AppText>
+        </View>
+      ) : (
+        <FlatList
+          data={paychecks}
+          keyExtractor={keyExtractor}
+          renderItem={renderPaycheck}
+          ListHeaderComponent={listHeader}
+          contentInsetAdjustmentBehavior="automatic"
+          contentContainerStyle={styles.listContent}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
     </View>
   );
 }
@@ -222,28 +151,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  monthsBar: {
-    flexGrow: 0,
-  },
-  monthsContent: {
-    paddingHorizontal: MEASUREMENTS.spacing.lg,
-    paddingVertical: MEASUREMENTS.spacing.base,
-    gap: MEASUREMENTS.spacing.md,
-  },
   listContent: {
-    padding: MEASUREMENTS.spacing.lg,
+    paddingHorizontal: MEASUREMENTS.spacing.gutter,
+    paddingTop: MEASUREMENTS.spacing.md,
     paddingBottom: MEASUREMENTS.spacing.bottom,
+  },
+  heroMeta: {
+    marginTop: MEASUREMENTS.spacing.xs,
+  },
+  chart: {
+    marginTop: MEASUREMENTS.spacing.xl,
   },
   empty: {
     flex: 1,
-    paddingHorizontal: MEASUREMENTS.spacing.section,
-  },
-  emptyCenter: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  },
-  emptySubtitle: {
-    marginTop: MEASUREMENTS.spacing.md,
+    gap: MEASUREMENTS.spacing.md,
+    paddingHorizontal: MEASUREMENTS.spacing.section,
   },
 });

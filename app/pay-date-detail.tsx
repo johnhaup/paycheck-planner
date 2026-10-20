@@ -7,6 +7,7 @@ import { useThemeStore } from "@/stores/themeStore";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
+import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { PayDateSummary } from "@/components/payDateDetail/PayDateSummary";
 import { PayDateExpenseRow } from "@/components/payDateDetail/PayDateExpenseRow";
 import { OneTimeExpenseForm } from "@/components/payDateDetail/OneTimeExpenseForm";
@@ -14,8 +15,15 @@ import { getPaycheckOrdinal, isExpenseLinkedToPaycheck } from "@/utils/payDates"
 import type { Expense } from "@/types";
 
 type ListItem =
-  | { key: string; type: "header" | "section-title" | "one-time-form" }
-  | { key: string; type: "assigned" | "unassigned"; expense: Expense };
+  | { key: string; type: "header" | "one-time-form" | "empty" }
+  | { key: string; type: "section-title"; title: string; trailing?: string }
+  | {
+      key: string;
+      type: "assigned" | "unassigned";
+      expense: Expense;
+      isFirst: boolean;
+      isLast: boolean;
+    };
 
 function keyExtractor(item: ListItem) {
   return item.key;
@@ -135,17 +143,40 @@ export default function PayDateDetailScreen() {
   );
 
   const listData = useMemo(() => {
-    const items: ListItem[] = [{ key: "header", type: "header" }];
+    const items: ListItem[] = [
+      { key: "header", type: "header" },
+      {
+        key: "assigned-title",
+        type: "section-title",
+        title: "This paycheck",
+        trailing: String(assignedExpenses.length),
+      },
+    ];
 
-    for (const expense of assignedExpenses) {
-      items.push({ key: `assigned-${expense.id}`, type: "assigned", expense });
+    if (assignedExpenses.length === 0) {
+      items.push({ key: "empty", type: "empty" });
     }
+    assignedExpenses.forEach((expense, i) => {
+      items.push({
+        key: `assigned-${expense.id}`,
+        type: "assigned",
+        expense,
+        isFirst: i === 0,
+        isLast: i === assignedExpenses.length - 1,
+      });
+    });
 
     if (unassignedExpenses.length > 0) {
-      items.push({ key: "section-title", type: "section-title" });
-      for (const expense of unassignedExpenses) {
-        items.push({ key: `unassigned-${expense.id}`, type: "unassigned", expense });
-      }
+      items.push({ key: "available-title", type: "section-title", title: "Available" });
+      unassignedExpenses.forEach((expense, i) => {
+        items.push({
+          key: `unassigned-${expense.id}`,
+          type: "unassigned",
+          expense,
+          isFirst: i === 0,
+          isLast: i === unassignedExpenses.length - 1,
+        });
+      });
     }
 
     items.push({ key: "one-time-form", type: "one-time-form" });
@@ -174,7 +205,13 @@ export default function PayDateDetailScreen() {
         case "one-time-form":
           return <OneTimeExpenseForm payDate={payDate} sourceId={sourceId} />;
         case "section-title":
-          return <AppText variant="label" style={styles.sectionTitle}>Available Expenses</AppText>;
+          return <AppSectionHeader title={item.title} trailing={item.trailing} />;
+        case "empty":
+          return (
+            <AppText variant="meta" style={styles.empty}>
+              Nothing assigned yet. Add bills from the list below.
+            </AppText>
+          );
         case "assigned":
         case "unassigned": {
           const isAssigned = item.type === "assigned";
@@ -185,6 +222,8 @@ export default function PayDateDetailScreen() {
               isAssigned={isAssigned}
               isPaid={isAssigned && !!entry?.paid}
               isLinkedPreload={isAssigned && !entry}
+              isFirst={item.isFirst}
+              isLast={item.isLast}
               onTogglePaid={handleTogglePaid}
               onOpenLink={handleOpenLink}
               onAssign={handleAssign}
@@ -221,11 +260,10 @@ export default function PayDateDetailScreen() {
 
 const styles = StyleSheet.create({
   listContent: {
-    padding: MEASUREMENTS.spacing.lg,
+    padding: MEASUREMENTS.spacing.gutter,
     paddingBottom: MEASUREMENTS.spacing.bottom,
   },
-  sectionTitle: {
-    marginBottom: MEASUREMENTS.spacing.md,
-    marginTop: MEASUREMENTS.spacing.md,
+  empty: {
+    paddingHorizontal: MEASUREMENTS.spacing.xs,
   },
 });

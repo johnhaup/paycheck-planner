@@ -4,7 +4,7 @@ import { useStackScreenOptions } from "@/hooks/useStackScreenOptions";
 const INDEX_OPTIONS = { title: "Income" };
 
 export default function IncomeLayout() {
-  const screenOptions = useStackScreenOptions();
+  const screenOptions = useStackScreenOptions(true);
 
   return (
     <Stack screenOptions={screenOptions}>

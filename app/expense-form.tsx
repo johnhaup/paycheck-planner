@@ -13,11 +13,12 @@ import { AppText } from "@/components/AppText";
 import { AppInput } from "@/components/AppInput";
 import { AppButton } from "@/components/AppButton";
 import { AppChip } from "@/components/AppChip";
+import { AppSegmentedControl, type SegmentOption } from "@/components/AppSegmentedControl";
 import { getMonthlySlotCount, getPaycheckSlotLabel } from "@/utils/payDates";
 import { normalizeLink } from "@/utils/links";
 import type { LinkSchedule } from "@/types";
 
-const SCHEDULE_OPTIONS: { value: LinkSchedule; label: string }[] = [
+const SCHEDULE_OPTIONS: SegmentOption<LinkSchedule>[] = [
   { value: "every-paycheck", label: "Every paycheck" },
   { value: "monthly", label: "Monthly" },
 ];
@@ -116,7 +117,7 @@ export default function ExpenseFormScreen() {
       selectedSource
         ? Array.from({ length: slotCount }, (_, ordinal) => ({
             value: ordinal,
-            label: getPaycheckSlotLabel(selectedSource, ordinal),
+            label: getPaycheckSlotLabel(selectedSource, ordinal, true),
           }))
         : [],
     [selectedSource, slotCount]
@@ -133,14 +134,14 @@ export default function ExpenseFormScreen() {
       contentContainerStyle={styles.content}
       keyboardShouldPersistTaps="handled"
     >
-      <AppText variant="label" style={styles.label}>Payee</AppText>
+      <AppText variant="section" style={styles.label}>Payee</AppText>
       <AppInput
         value={payee}
         onChangeText={setPayee}
         placeholder="e.g. Electric Company"
       />
 
-      <AppText variant="label" style={styles.label}>Amount</AppText>
+      <AppText variant="section" style={styles.label}>Amount</AppText>
       <AppInput
         value={amount}
         onChangeText={setAmount}
@@ -148,7 +149,7 @@ export default function ExpenseFormScreen() {
         keyboardType="decimal-pad"
       />
 
-      <AppText variant="label" style={styles.label}>Payment Link (optional)</AppText>
+      <AppText variant="section" style={styles.label}>Payment Link (optional)</AppText>
       <AppInput
         value={link}
         onChangeText={setLink}
@@ -159,7 +160,7 @@ export default function ExpenseFormScreen() {
 
       {incomeSources.length > 0 && !isOneTime ? (
         <>
-          <AppText variant="label" style={styles.label}>Linked Income Source</AppText>
+          <AppText variant="section" style={styles.label}>Linked Income Source</AppText>
           <View style={styles.chipRow}>
             <AppChip
               label="None"
@@ -177,7 +178,7 @@ export default function ExpenseFormScreen() {
               />
             ))}
           </View>
-          <AppText variant="caption" color="textMuted" style={styles.hint}>
+          <AppText variant="caption" style={styles.hint}>
             When linked, this expense is preloaded on paychecks from that source.
           </AppText>
         </>
@@ -185,37 +186,25 @@ export default function ExpenseFormScreen() {
 
       {slotCount > 1 ? (
         <>
-          <AppText variant="label" style={styles.label}>How Often</AppText>
-          <View style={styles.chipRow}>
-            {SCHEDULE_OPTIONS.map((option) => (
-              <AppChip
-                key={option.value}
-                label={option.label}
-                value={option.value}
-                selected={linkSchedule === option.value}
-                onSelect={setLinkSchedule}
-              />
-            ))}
-          </View>
+          <AppText variant="section" style={styles.label}>How Often</AppText>
+          <AppSegmentedControl
+            options={SCHEDULE_OPTIONS}
+            value={linkSchedule}
+            onChange={setLinkSchedule}
+          />
         </>
       ) : null}
 
       {isMonthly ? (
         <>
-          <AppText variant="label" style={styles.label}>Which Paycheck</AppText>
-          <View style={styles.chipRow}>
-            {ordinalOptions.map((option) => (
-              <AppChip
-                key={option.value}
-                label={option.label}
-                value={option.value}
-                selected={effectiveOrdinal === option.value}
-                onSelect={setPaycheckOrdinal}
-              />
-            ))}
-          </View>
+          <AppText variant="section" style={styles.label}>Which Paycheck</AppText>
+          <AppSegmentedControl
+            options={ordinalOptions}
+            value={effectiveOrdinal}
+            onChange={setPaycheckOrdinal}
+          />
           {selectedSource?.payFrequency !== "semi-monthly" ? (
-            <AppText variant="caption" color="textMuted" style={styles.hint}>
+            <AppText variant="caption" style={styles.hint}>
               Extra paychecks in longer months are skipped.
             </AppText>
           ) : null}
@@ -233,7 +222,7 @@ export default function ExpenseFormScreen() {
 
 const styles = StyleSheet.create({
   content: {
-    padding: MEASUREMENTS.spacing.lg,
+    padding: MEASUREMENTS.spacing.gutter,
     paddingBottom: MEASUREMENTS.spacing.bottom,
   },
   label: {
