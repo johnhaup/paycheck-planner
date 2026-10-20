@@ -111,7 +111,7 @@ export default function IncomeFormScreen() {
   ]);
 
   const scrollStyle = useMemo(
-    () => ({ backgroundColor: colors.screenBackground }),
+    () => ({ backgroundColor: colors.modalBackground }),
     [colors]
   );
 

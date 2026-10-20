@@ -23,7 +23,7 @@ export function AppChip<T>({ label, value, selected, onSelect, style }: Props<T>
     () => [
       styles.chip,
       {
-        backgroundColor: selected ? colors.primary : colors.cardBackground,
+        backgroundColor: selected ? colors.primary : colors.inputBackground,
         borderColor: selected ? colors.primary : colors.border,
       },
       style,

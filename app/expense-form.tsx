@@ -123,7 +123,7 @@ export default function ExpenseFormScreen() {
   );
 
   const scrollStyle = useMemo(
-    () => ({ backgroundColor: colors.screenBackground }),
+    () => ({ backgroundColor: colors.modalBackground }),
     [colors]
   );
 

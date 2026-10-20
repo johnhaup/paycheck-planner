@@ -10,7 +10,7 @@ export function AppInput({ style, ...rest }: TextInputProps) {
     () => [
       styles.input,
       {
-        backgroundColor: colors.cardBackground,
+        backgroundColor: colors.inputBackground,
         color: colors.textDefault,
         borderColor: colors.border,
       },

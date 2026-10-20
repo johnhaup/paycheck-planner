@@ -21,12 +21,12 @@ export default function SettingsScreen() {
   const setAutoMarkPaid = useThemeStore((s) => s.setAutoMarkPaidOnLinkTap);
 
   const containerStyle = useMemo(
-    () => [styles.container, { backgroundColor: colors.screenBackground }],
+    () => [styles.container, { backgroundColor: colors.modalBackground }],
     [colors]
   );
 
   const toggleRowStyle = useMemo(
-    () => [styles.toggleRow, { backgroundColor: colors.cardBackground }],
+    () => [styles.toggleRow, { backgroundColor: colors.cardBackgroundElevated }],
     [colors]
   );
 

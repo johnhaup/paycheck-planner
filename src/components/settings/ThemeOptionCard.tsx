@@ -22,7 +22,7 @@ export function ThemeOptionCard({ label, value, selected, onSelect }: Props) {
   const cardStyle = useMemo(
     () => [
       styles.option,
-      { backgroundColor: colors.cardBackground },
+      { backgroundColor: colors.cardBackgroundElevated },
       selected && { borderColor: colors.primary, borderWidth: 2 },
     ],
     [selected, colors]

@@ -58,7 +58,7 @@ export function AppDatePicker({ value, onChange }: Props) {
     () => [
       styles.trigger,
       {
-        backgroundColor: colors.cardBackground,
+        backgroundColor: colors.inputBackground,
         borderColor: colors.border,
       },
     ],
@@ -71,7 +71,7 @@ export function AppDatePicker({ value, onChange }: Props) {
   );
 
   const sheetStyle = useMemo(
-    () => [styles.sheet, { backgroundColor: colors.cardBackground }],
+    () => [styles.sheet, { backgroundColor: colors.cardBackgroundElevated }],
     [colors]
   );
 

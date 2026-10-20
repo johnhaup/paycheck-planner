@@ -10,8 +10,6 @@ import { useThemeStore } from "@/stores/themeStore";
 import { MEASUREMENTS } from "@/constants/measurements";
 
 const TABS_OPTIONS = { headerShown: false };
-const INCOME_FORM_OPTIONS = { title: "Income Source", presentation: "modal" as const };
-const EXPENSE_FORM_OPTIONS = { title: "Expense", presentation: "modal" as const };
 const PAY_DATE_DETAIL_OPTIONS = { title: "Pay Date", presentation: "card" as const };
 
 export default function RootLayout() {
@@ -49,13 +47,28 @@ export default function RootLayout() {
     };
   }, [isDark, colors]);
 
-  const settingsOptions = useMemo(
+  const modalOptions = useMemo(
     () => ({
-      title: "Settings",
       presentation: "modal" as const,
-      headerRight: renderSettingsCloseButton,
+      headerStyle: { backgroundColor: colors.modalBackground },
+      contentStyle: { backgroundColor: colors.modalBackground },
     }),
-    [renderSettingsCloseButton]
+    [colors]
+  );
+
+  const incomeFormOptions = useMemo(
+    () => ({ ...modalOptions, title: "Income Source" }),
+    [modalOptions]
+  );
+
+  const expenseFormOptions = useMemo(
+    () => ({ ...modalOptions, title: "Expense" }),
+    [modalOptions]
+  );
+
+  const settingsOptions = useMemo(
+    () => ({ ...modalOptions, title: "Settings", headerRight: renderSettingsCloseButton }),
+    [modalOptions, renderSettingsCloseButton]
   );
 
   // Native chrome (tab bar, alerts, pickers) follows the OS-level scheme, so
@@ -70,8 +83,8 @@ export default function RootLayout() {
         <StatusBar style={isDark ? "light" : "dark"} />
         <Stack screenOptions={screenOptions}>
           <Stack.Screen name="(tabs)" options={TABS_OPTIONS} />
-          <Stack.Screen name="income-form" options={INCOME_FORM_OPTIONS} />
-          <Stack.Screen name="expense-form" options={EXPENSE_FORM_OPTIONS} />
+          <Stack.Screen name="income-form" options={incomeFormOptions} />
+          <Stack.Screen name="expense-form" options={expenseFormOptions} />
           <Stack.Screen name="pay-date-detail" options={PAY_DATE_DETAIL_OPTIONS} />
           <Stack.Screen name="settings" options={settingsOptions} />
         </Stack>
