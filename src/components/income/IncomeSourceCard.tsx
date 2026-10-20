@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from "react";
-import { View, Pressable, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { Pressable } from "react-native-gesture-handler";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
