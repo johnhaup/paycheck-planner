@@ -7,16 +7,16 @@ import {
 } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { format } from "date-fns";
-import { useStore } from "../src/store";
-import { useColors } from "../src/hooks/useColors";
-import { MEASUREMENTS } from "../src/constants/measurements";
-import { AppText } from "../src/components/AppText";
-import { AppInput } from "../src/components/AppInput";
-import { AppButton } from "../src/components/AppButton";
-import { AppChip } from "../src/components/AppChip";
-import { AppDatePicker } from "../src/components/AppDatePicker";
-import { AppToggle } from "../src/components/AppToggle";
-import type { PayFrequency } from "../src/types";
+import { useStore } from "@/store";
+import { useColors } from "@/hooks/useColors";
+import { MEASUREMENTS } from "@/constants/measurements";
+import { AppText } from "@/components/AppText";
+import { AppInput } from "@/components/AppInput";
+import { AppButton } from "@/components/AppButton";
+import { AppChip } from "@/components/AppChip";
+import { AppDatePicker } from "@/components/AppDatePicker";
+import { AppToggle } from "@/components/AppToggle";
+import type { PayFrequency } from "@/types";
 
 const FREQUENCIES: { value: PayFrequency; label: string }[] = [
   { value: "weekly", label: "Weekly" },
@@ -105,9 +105,14 @@ export default function IncomeFormScreen() {
     router,
   ]);
 
+  const scrollStyle = useMemo(
+    () => ({ backgroundColor: colors.screenBackground }),
+    [colors]
+  );
+
   return (
     <ScrollView
-      style={{ backgroundColor: colors.screenBackground }}
+      style={scrollStyle}
       contentContainerStyle={styles.content}
       keyboardShouldPersistTaps="handled"
     >
@@ -132,8 +137,9 @@ export default function IncomeFormScreen() {
           <AppChip
             key={f.value}
             label={f.label}
+            value={f.value}
             selected={frequency === f.value}
-            onPress={() => setFrequency(f.value)}
+            onSelect={setFrequency}
           />
         ))}
       </View>

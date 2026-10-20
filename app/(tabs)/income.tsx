@@ -1,25 +1,17 @@
 import { useCallback, useMemo } from "react";
-import {
-  View,
-  FlatList,
-  Pressable,
-  StyleSheet,
-  Alert,
-} from "react-native";
+import { View, FlatList, StyleSheet, Alert } from "react-native";
 import { useRouter } from "expo-router";
-import { useStore } from "../../src/store";
-import { useColors } from "../../src/hooks/useColors";
-import { MEASUREMENTS } from "../../src/constants/measurements";
-import { AppText } from "../../src/components/AppText";
-import { AppButton } from "../../src/components/AppButton";
-import type { IncomeSource } from "../../src/types";
+import { useStore } from "@/store";
+import { useColors } from "@/hooks/useColors";
+import { MEASUREMENTS } from "@/constants/measurements";
+import { AppText } from "@/components/AppText";
+import { AppButton } from "@/components/AppButton";
+import { IncomeSourceCard } from "@/components/income/IncomeSourceCard";
+import type { IncomeSource } from "@/types";
 
-const FREQUENCY_LABELS: Record<string, string> = {
-  weekly: "Weekly",
-  biweekly: "Bi-weekly",
-  "semi-monthly": "Semi-monthly",
-  monthly: "Monthly",
-};
+function keyExtractor(item: IncomeSource) {
+  return item.id;
+}
 
 export default function IncomeScreen() {
   const router = useRouter();
@@ -58,23 +50,9 @@ export default function IncomeScreen() {
 
   const renderItem = useCallback(
     ({ item }: { item: IncomeSource }) => (
-      <Pressable
-        style={[styles.card, { backgroundColor: colors.cardBackground }]}
-        onPress={() => handleEdit(item.id)}
-        onLongPress={() => handleDelete(item)}
-      >
-        <View style={styles.cardTop}>
-          <AppText variant="h3">{item.name}</AppText>
-          <AppText variant="h3" color="primary">
-            ${item.payAmount.toLocaleString("en-US", { minimumFractionDigits: 2 })}
-          </AppText>
-        </View>
-        <AppText variant="caption" style={styles.frequency}>
-          {FREQUENCY_LABELS[item.payFrequency] ?? item.payFrequency}
-        </AppText>
-      </Pressable>
+      <IncomeSourceCard source={item} onEdit={handleEdit} onDelete={handleDelete} />
     ),
-    [handleEdit, handleDelete, colors]
+    [handleEdit, handleDelete]
   );
 
   const footer = useMemo(
@@ -88,9 +66,19 @@ export default function IncomeScreen() {
     [handleAdd]
   );
 
+  const listStyle = useMemo(
+    () => ({ backgroundColor: colors.screenBackground }),
+    [colors]
+  );
+
+  const emptyContainerStyle = useMemo(
+    () => [styles.emptyContainer, listStyle],
+    [listStyle]
+  );
+
   if (incomeSources.length === 0) {
     return (
-      <View style={[styles.emptyContainer, { backgroundColor: colors.screenBackground }]}>
+      <View style={emptyContainerStyle}>
         <AppText variant="subtext" color="textMuted" style={styles.emptyText}>
           No income sources added yet.
         </AppText>
@@ -102,9 +90,9 @@ export default function IncomeScreen() {
   return (
     <FlatList
       data={incomeSources}
-      keyExtractor={(item) => item.id}
+      keyExtractor={keyExtractor}
       renderItem={renderItem}
-      style={{ backgroundColor: colors.screenBackground }}
+      style={listStyle}
       contentContainerStyle={styles.listContent}
       ListFooterComponent={footer}
     />
@@ -119,19 +107,6 @@ const styles = StyleSheet.create({
   },
   addButton: {
     marginTop: MEASUREMENTS.spacing.md,
-  },
-  card: {
-    padding: MEASUREMENTS.spacing.lg,
-    borderRadius: MEASUREMENTS.radius.lg,
-    marginBottom: MEASUREMENTS.spacing.md + 2,
-  },
-  cardTop: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  frequency: {
-    marginTop: MEASUREMENTS.spacing.sm,
   },
   emptyContainer: {
     flex: 1,

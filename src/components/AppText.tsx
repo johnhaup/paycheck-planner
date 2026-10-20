@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { Text, TextProps, StyleSheet } from "react-native";
-import { useColors } from "../hooks/useColors";
-import { MEASUREMENTS } from "../constants/measurements";
-import type { PaletteColor } from "../constants/palette";
+import { useColors } from "@/hooks/useColors";
+import { MEASUREMENTS } from "@/constants/measurements";
+import type { PaletteColor } from "@/constants/palette";
 
 type Variant = "h1" | "h2" | "h3" | "regular" | "regular-bold" | "subtext" | "caption" | "label";
 

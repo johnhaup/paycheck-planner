@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { TextInput, TextInputProps, StyleSheet } from "react-native";
-import { useColors } from "../hooks/useColors";
-import { MEASUREMENTS } from "../constants/measurements";
+import { useColors } from "@/hooks/useColors";
+import { MEASUREMENTS } from "@/constants/measurements";
 
 export function AppInput({ style, ...rest }: TextInputProps) {
   const colors = useColors();

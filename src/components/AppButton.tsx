@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { Pressable, StyleSheet, ViewStyle, StyleProp } from "react-native";
-import { useColors } from "../hooks/useColors";
-import { MEASUREMENTS } from "../constants/measurements";
-import { AppText } from "./AppText";
+import { useColors } from "@/hooks/useColors";
+import { MEASUREMENTS } from "@/constants/measurements";
+import { AppText } from "@/components/AppText";
 
 type Variant = "primary" | "destructive" | "outline";
 

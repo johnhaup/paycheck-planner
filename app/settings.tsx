@@ -1,10 +1,11 @@
-import { useCallback, useMemo } from "react";
-import { View, Pressable, StyleSheet } from "react-native";
-import { useColors } from "../src/hooks/useColors";
-import { useThemeStore, ThemeMode } from "../src/stores/themeStore";
-import { MEASUREMENTS } from "../src/constants/measurements";
-import { AppText } from "../src/components/AppText";
-import { AppToggle } from "../src/components/AppToggle";
+import { useMemo } from "react";
+import { View, StyleSheet } from "react-native";
+import { useColors } from "@/hooks/useColors";
+import { useThemeStore, ThemeMode } from "@/stores/themeStore";
+import { MEASUREMENTS } from "@/constants/measurements";
+import { AppText } from "@/components/AppText";
+import { AppToggle } from "@/components/AppToggle";
+import { ThemeOptionCard } from "@/components/settings/ThemeOptionCard";
 
 const THEME_OPTIONS: { value: ThemeMode; label: string }[] = [
   { value: "light", label: "Light" },
@@ -19,52 +20,37 @@ export default function SettingsScreen() {
   const autoMarkPaid = useThemeStore((s) => s.autoMarkPaidOnLinkTap);
   const setAutoMarkPaid = useThemeStore((s) => s.setAutoMarkPaidOnLinkTap);
 
-  const handleSelect = useCallback(
-    (mode: ThemeMode) => {
-      setThemeMode(mode);
-    },
-    [setThemeMode]
+  const containerStyle = useMemo(
+    () => [styles.container, { backgroundColor: colors.screenBackground }],
+    [colors]
   );
 
-  const options = useMemo(
-    () =>
-      THEME_OPTIONS.map((option) => {
-        const isSelected = themeMode === option.value;
-        return (
-          <Pressable
-            key={option.value}
-            style={[
-              styles.option,
-              { backgroundColor: colors.cardBackground },
-              isSelected && { borderColor: colors.primary, borderWidth: 2 },
-            ]}
-            onPress={() => handleSelect(option.value)}
-          >
-            <AppText variant="regular-bold">{option.label}</AppText>
-            {isSelected ? (
-              <View style={[styles.checkmark, { backgroundColor: colors.primary }]}>
-                <AppText variant="caption" style={styles.checkmarkText}>
-                  ✓
-                </AppText>
-              </View>
-            ) : null}
-          </Pressable>
-        );
-      }),
-    [themeMode, colors, handleSelect]
+  const toggleRowStyle = useMemo(
+    () => [styles.toggleRow, { backgroundColor: colors.cardBackground }],
+    [colors]
   );
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.screenBackground }]}>
+    <View style={containerStyle}>
       <AppText variant="label" style={styles.sectionLabel}>
         Appearance
       </AppText>
-      <View style={styles.optionsRow}>{options}</View>
+      <View style={styles.optionsRow}>
+        {THEME_OPTIONS.map((option) => (
+          <ThemeOptionCard
+            key={option.value}
+            label={option.label}
+            value={option.value}
+            selected={themeMode === option.value}
+            onSelect={setThemeMode}
+          />
+        ))}
+      </View>
 
       <AppText variant="label" style={styles.sectionLabel}>
         Behavior
       </AppText>
-      <View style={[styles.toggleRow, { backgroundColor: colors.cardBackground }]}>
+      <View style={toggleRowStyle}>
         <AppText variant="regular">Auto-mark paid on link tap</AppText>
         <AppToggle value={autoMarkPaid} onValueChange={setAutoMarkPaid} />
       </View>
@@ -87,27 +73,6 @@ const styles = StyleSheet.create({
   optionsRow: {
     flexDirection: "row",
     gap: MEASUREMENTS.spacing.md,
-  },
-  option: {
-    flex: 1,
-    paddingVertical: MEASUREMENTS.spacing.lg,
-    borderRadius: MEASUREMENTS.radius.lg,
-    alignItems: "center",
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "transparent",
-  },
-  checkmark: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: MEASUREMENTS.spacing.md,
-  },
-  checkmarkText: {
-    color: "#FFFFFF",
-    fontWeight: "700",
-    fontSize: 12,
   },
   toggleRow: {
     flexDirection: "row",

@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { Pressable, View, StyleSheet } from "react-native";
-import { useColors } from "../hooks/useColors";
-import { MEASUREMENTS } from "../constants/measurements";
+import { useColors } from "@/hooks/useColors";
+import { MEASUREMENTS } from "@/constants/measurements";
 
 interface Props {
   value: boolean;
@@ -31,9 +31,12 @@ export function AppToggle({ value, onValueChange }: Props) {
   const thumbStyle = useMemo(
     () => [
       styles.thumb,
-      { transform: [{ translateX: value ? THUMB_TRAVEL : 0 }] },
+      {
+        backgroundColor: colors.onPrimary,
+        transform: [{ translateX: value ? THUMB_TRAVEL : 0 }],
+      },
     ],
-    [value]
+    [value, colors]
   );
 
   return (
@@ -57,6 +60,5 @@ const styles = StyleSheet.create({
     width: THUMB_SIZE,
     height: THUMB_SIZE,
     borderRadius: THUMB_SIZE / 2,
-    backgroundColor: "#FFFFFF",
   },
 });

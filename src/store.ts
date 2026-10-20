@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { randomUUID } from "expo-crypto";
-import type { IncomeSource, Expense, ExpenseAssignment } from "./types";
+import type { IncomeSource, Expense, ExpenseAssignment } from "@/types";
 
 interface AppState {
   incomeSources: IncomeSource[];

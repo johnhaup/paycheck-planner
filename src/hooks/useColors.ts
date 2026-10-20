@@ -1,6 +1,6 @@
 import { useColorScheme } from "react-native";
-import { useThemeStore } from "../stores/themeStore";
-import { DarkPalette, LightPalette, ThemeColors } from "../constants/palette";
+import { useThemeStore } from "@/stores/themeStore";
+import { DarkPalette, LightPalette, ThemeColors } from "@/constants/palette";
 
 export function useColors(): ThemeColors {
   const themeMode = useThemeStore((s) => s.themeMode);

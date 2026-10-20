@@ -12,6 +12,7 @@ const palette = {
   midGray: "#C7C7CC",
   darkGray: "#8E8E93",
   white: "#FFFFFF",
+  scrim: "rgba(0,0,0,0.4)",
 
   green: "#26de81",
   greenDark: "#1fba6c",
@@ -28,9 +29,11 @@ export type ThemeColors = Record<
   | "textMuted"
   | "primary"
   | "primaryDark"
+  | "onPrimary"
   | "destructive"
   | "warning"
   | "border"
+  | "overlay"
   | "tabBarBackground"
   | "tabBarActive"
   | "tabBarInactive",
@@ -48,10 +51,12 @@ export const DarkPalette = {
 
   primary: palette.green,
   primaryDark: palette.greenDark,
+  onPrimary: palette.white,
   destructive: palette.red,
   warning: palette.amber,
 
   border: palette.steel,
+  overlay: palette.scrim,
 
   tabBarBackground: palette.charcoal,
   tabBarActive: palette.green,
@@ -69,10 +74,12 @@ export const LightPalette = {
 
   primary: palette.green,
   primaryDark: palette.greenDark,
+  onPrimary: palette.white,
   destructive: palette.red,
   warning: palette.amber,
 
   border: palette.lightGray,
+  overlay: palette.scrim,
 
   tabBarBackground: palette.white,
   tabBarActive: palette.green,

@@ -4,9 +4,9 @@ import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
 import { format } from "date-fns";
-import { useColors, useIsDark } from "../hooks/useColors";
-import { MEASUREMENTS } from "../constants/measurements";
-import { AppText } from "./AppText";
+import { useColors, useIsDark } from "@/hooks/useColors";
+import { MEASUREMENTS } from "@/constants/measurements";
+import { AppText } from "@/components/AppText";
 
 interface Props {
   value: Date;
@@ -65,6 +65,21 @@ export function AppDatePicker({ value, onChange }: Props) {
     [colors]
   );
 
+  const overlayStyle = useMemo(
+    () => [styles.overlay, { backgroundColor: colors.overlay }],
+    [colors]
+  );
+
+  const sheetStyle = useMemo(
+    () => [styles.sheet, { backgroundColor: colors.cardBackground }],
+    [colors]
+  );
+
+  const sheetHeaderStyle = useMemo(
+    () => [styles.sheetHeader, { borderBottomColor: colors.border }],
+    [colors]
+  );
+
   return (
     <View>
       <Pressable style={triggerStyle} onPress={handlePress}>
@@ -77,11 +92,9 @@ export function AppDatePicker({ value, onChange }: Props) {
         animationType="slide"
         onRequestClose={handleCancel}
       >
-        <Pressable style={styles.overlay} onPress={handleCancel}>
-          <Pressable
-            style={[styles.sheet, { backgroundColor: colors.cardBackground }]}
-          >
-            <View style={styles.sheetHeader}>
+        <Pressable style={overlayStyle} onPress={handleCancel}>
+          <Pressable style={sheetStyle}>
+            <View style={sheetHeaderStyle}>
               <Pressable onPress={handleCancel} hitSlop={MEASUREMENTS.hitSlop}>
                 <AppText variant="regular" color="textSecondary">
                   Cancel
@@ -119,7 +132,6 @@ const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     justifyContent: "flex-end",
-    backgroundColor: "rgba(0,0,0,0.4)",
   },
   sheet: {
     borderTopLeftRadius: MEASUREMENTS.radius.xl + 4,
@@ -133,7 +145,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: MEASUREMENTS.spacing.lg,
     paddingVertical: MEASUREMENTS.spacing.base,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "rgba(128,128,128,0.2)",
   },
   picker: {
     alignSelf: "center",

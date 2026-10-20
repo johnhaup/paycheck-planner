@@ -9,7 +9,7 @@ import {
   getDay,
   subDays,
 } from "date-fns";
-import type { IncomeSource } from "../types";
+import type { IncomeSource } from "@/types";
 
 /** Parse a YYYY-MM-DD string as local midnight (not UTC). */
 function parseLocalDate(dateStr: string): Date {

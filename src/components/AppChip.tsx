@@ -1,18 +1,23 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { Pressable, StyleSheet, ViewStyle, StyleProp } from "react-native";
-import { useColors } from "../hooks/useColors";
-import { MEASUREMENTS } from "../constants/measurements";
-import { AppText } from "./AppText";
+import { useColors } from "@/hooks/useColors";
+import { MEASUREMENTS } from "@/constants/measurements";
+import { AppText } from "@/components/AppText";
 
-interface Props {
+interface Props<T> {
   label: string;
+  value: T;
   selected: boolean;
-  onPress?: () => void;
+  onSelect: (value: T) => void;
   style?: StyleProp<ViewStyle>;
 }
 
-export function AppChip({ label, selected, style, ...rest }: Props) {
+export function AppChip<T>({ label, value, selected, onSelect, style }: Props<T>) {
   const colors = useColors();
+
+  const handlePress = useCallback(() => {
+    onSelect(value);
+  }, [onSelect, value]);
 
   const chipStyle = useMemo(
     () => [
@@ -35,7 +40,7 @@ export function AppChip({ label, selected, style, ...rest }: Props) {
   );
 
   return (
-    <Pressable style={chipStyle} {...rest}>
+    <Pressable style={chipStyle} onPress={handlePress}>
       <AppText variant="subtext" style={textStyle}>
         {label}
       </AppText>

@@ -6,13 +6,13 @@ import {
   Alert,
 } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
-import { useStore } from "../src/store";
-import { useColors } from "../src/hooks/useColors";
-import { MEASUREMENTS } from "../src/constants/measurements";
-import { AppText } from "../src/components/AppText";
-import { AppInput } from "../src/components/AppInput";
-import { AppButton } from "../src/components/AppButton";
-import { AppChip } from "../src/components/AppChip";
+import { useStore } from "@/store";
+import { useColors } from "@/hooks/useColors";
+import { MEASUREMENTS } from "@/constants/measurements";
+import { AppText } from "@/components/AppText";
+import { AppInput } from "@/components/AppInput";
+import { AppButton } from "@/components/AppButton";
+import { AppChip } from "@/components/AppChip";
 
 export default function ExpenseFormScreen() {
   const router = useRouter();
@@ -68,9 +68,14 @@ export default function ExpenseFormScreen() {
     setSelectedSourceId(sourceId);
   }, []);
 
+  const scrollStyle = useMemo(
+    () => ({ backgroundColor: colors.screenBackground }),
+    [colors]
+  );
+
   return (
     <ScrollView
-      style={{ backgroundColor: colors.screenBackground }}
+      style={scrollStyle}
       contentContainerStyle={styles.content}
       keyboardShouldPersistTaps="handled"
     >
@@ -104,15 +109,17 @@ export default function ExpenseFormScreen() {
           <View style={styles.chipRow}>
             <AppChip
               label="None"
+              value={undefined}
               selected={!selectedSourceId}
-              onPress={() => handleSelectSource(undefined)}
+              onSelect={handleSelectSource}
             />
             {incomeSources.map((source) => (
               <AppChip
                 key={source.id}
                 label={source.name}
+                value={source.id}
                 selected={selectedSourceId === source.id}
-                onPress={() => handleSelectSource(source.id)}
+                onSelect={handleSelectSource}
               />
             ))}
           </View>

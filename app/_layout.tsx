@@ -3,8 +3,13 @@ import { Pressable } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useColors, useIsDark } from "../src/hooks/useColors";
-import { MEASUREMENTS } from "../src/constants/measurements";
+import { useColors, useIsDark } from "@/hooks/useColors";
+import { MEASUREMENTS } from "@/constants/measurements";
+
+const TABS_OPTIONS = { headerShown: false };
+const INCOME_FORM_OPTIONS = { title: "Income Source", presentation: "modal" as const };
+const EXPENSE_FORM_OPTIONS = { title: "Expense", presentation: "modal" as const };
+const PAY_DATE_DETAIL_OPTIONS = { title: "Pay Date", presentation: "card" as const };
 
 export default function RootLayout() {
   const colors = useColors();
@@ -15,7 +20,7 @@ export default function RootLayout() {
     router.back();
   }, [router]);
 
-  const settingsCloseButton = useMemo(
+  const renderSettingsCloseButton = useCallback(
     () => (
       <Pressable onPress={handleCloseSettings} hitSlop={MEASUREMENTS.hitSlop}>
         <Ionicons name="close" size={24} color={colors.textDefault} />
@@ -35,31 +40,24 @@ export default function RootLayout() {
     [colors]
   );
 
+  const settingsOptions = useMemo(
+    () => ({
+      title: "Settings",
+      presentation: "modal" as const,
+      headerRight: renderSettingsCloseButton,
+    }),
+    [renderSettingsCloseButton]
+  );
+
   return (
     <>
       <StatusBar style={isDark ? "light" : "dark"} />
       <Stack screenOptions={screenOptions}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="income-form"
-          options={{ title: "Income Source", presentation: "modal" }}
-        />
-        <Stack.Screen
-          name="expense-form"
-          options={{ title: "Expense", presentation: "modal" }}
-        />
-        <Stack.Screen
-          name="pay-date-detail"
-          options={{ title: "Pay Date", presentation: "card" }}
-        />
-        <Stack.Screen
-          name="settings"
-          options={{
-            title: "Settings",
-            presentation: "modal",
-            headerRight: () => settingsCloseButton,
-          }}
-        />
+        <Stack.Screen name="(tabs)" options={TABS_OPTIONS} />
+        <Stack.Screen name="income-form" options={INCOME_FORM_OPTIONS} />
+        <Stack.Screen name="expense-form" options={EXPENSE_FORM_OPTIONS} />
+        <Stack.Screen name="pay-date-detail" options={PAY_DATE_DETAIL_OPTIONS} />
+        <Stack.Screen name="settings" options={settingsOptions} />
       </Stack>
     </>
   );
