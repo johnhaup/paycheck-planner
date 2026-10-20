@@ -1,5 +1,12 @@
 import { useCallback, useMemo, useState } from "react";
-import { View, Pressable, Modal, StyleSheet, Platform } from "react-native";
+import { View, Pressable, Modal, StyleSheet, Platform, useWindowDimensions } from "react-native";
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
+import { scheduleOnRN } from "react-native-worklets";
 import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
@@ -7,6 +14,8 @@ import { format } from "date-fns";
 import { useColors, useIsDark } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
+
+const SHEET_TIMING = { duration: 280, easing: Easing.out(Easing.cubic) };
 
 interface Props {
   value: Date;
@@ -18,16 +27,39 @@ export function AppDatePicker({ value, onChange }: Props) {
   const isDark = useIsDark();
   const [visible, setVisible] = useState(false);
   const [tempDate, setTempDate] = useState(value);
+  const { height } = useWindowDimensions();
+  const progress = useSharedValue(0);
+
+  const backdropAnimatedStyle = useAnimatedStyle(() => ({
+    opacity: progress.get(),
+  }));
+
+  const sheetAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: (1 - progress.get()) * height }],
+  }));
+
+  const hide = useCallback(() => {
+    setVisible(false);
+  }, []);
+
+  const close = useCallback(() => {
+    progress.set(withTiming(0, SHEET_TIMING, (finished) => {
+      if (finished) {
+        scheduleOnRN(hide);
+      }
+    }));
+  }, [progress, hide]);
 
   const handlePress = useCallback(() => {
     setTempDate(value);
     setVisible(true);
-  }, [value]);
+    progress.set(withTiming(1, SHEET_TIMING));
+  }, [value, progress]);
 
   const handleChange = useCallback(
     (_event: DateTimePickerEvent, selectedDate?: Date) => {
       if (Platform.OS === "android") {
-        setVisible(false);
+        close();
         if (selectedDate) {
           onChange(selectedDate);
         }
@@ -37,17 +69,13 @@ export function AppDatePicker({ value, onChange }: Props) {
         setTempDate(selectedDate);
       }
     },
-    [onChange]
+    [onChange, close]
   );
 
   const handleDone = useCallback(() => {
     onChange(tempDate);
-    setVisible(false);
-  }, [onChange, tempDate]);
-
-  const handleCancel = useCallback(() => {
-    setVisible(false);
-  }, []);
+    close();
+  }, [onChange, tempDate, close]);
 
   const displayValue = useMemo(
     () => format(value, "EEE, MMM d, yyyy"),
@@ -65,14 +93,14 @@ export function AppDatePicker({ value, onChange }: Props) {
     [colors]
   );
 
-  const overlayStyle = useMemo(
-    () => [styles.overlay, { backgroundColor: colors.overlay }],
-    [colors]
+  const backdropStyle = useMemo(
+    () => [StyleSheet.absoluteFill, { backgroundColor: colors.overlay }, backdropAnimatedStyle],
+    [colors, backdropAnimatedStyle]
   );
 
   const sheetStyle = useMemo(
-    () => [styles.sheet, { backgroundColor: colors.cardBackgroundElevated }],
-    [colors]
+    () => [styles.sheet, { backgroundColor: colors.cardBackgroundElevated }, sheetAnimatedStyle],
+    [colors, sheetAnimatedStyle]
   );
 
   const sheetHeaderStyle = useMemo(
@@ -89,13 +117,16 @@ export function AppDatePicker({ value, onChange }: Props) {
       <Modal
         visible={visible}
         transparent
-        animationType="slide"
-        onRequestClose={handleCancel}
+        animationType="none"
+        onRequestClose={close}
       >
-        <Pressable style={overlayStyle} onPress={handleCancel}>
-          <Pressable style={sheetStyle}>
+        <View style={styles.overlay}>
+          <Animated.View style={backdropStyle}>
+            <Pressable style={StyleSheet.absoluteFill} onPress={close} />
+          </Animated.View>
+          <Animated.View style={sheetStyle}>
             <View style={sheetHeaderStyle}>
-              <Pressable onPress={handleCancel} hitSlop={MEASUREMENTS.hitSlop}>
+              <Pressable onPress={close} hitSlop={MEASUREMENTS.hitSlop}>
                 <AppText variant="body" color="textSecondary">
                   Cancel
                 </AppText>
@@ -116,8 +147,8 @@ export function AppDatePicker({ value, onChange }: Props) {
               accentColor={colors.primary}
               style={styles.picker}
             />
-          </Pressable>
-        </Pressable>
+          </Animated.View>
+        </View>
       </Modal>
     </View>
   );
