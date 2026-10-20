@@ -201,6 +201,7 @@ export default function PaychecksScreen() {
         data={currentPaychecks}
         keyExtractor={keyExtractor}
         renderItem={renderPaycheck}
+        contentInsetAdjustmentBehavior="automatic"
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
       />

@@ -1,86 +1,49 @@
-import { useCallback, useMemo } from "react";
-import { Pressable, StyleSheet, ColorValue } from "react-native";
-import { Tabs, useRouter } from "expo-router";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { useMemo } from "react";
+import { Platform } from "react-native";
+import { NativeTabs } from "expo-router/unstable-native-tabs";
 import { useColors } from "@/hooks/useColors";
-import { MEASUREMENTS } from "@/constants/measurements";
 
-interface TabBarIconProps {
-  color: ColorValue;
-  size: number;
-}
-
-function renderWalletIcon({ color, size }: TabBarIconProps) {
-  return <Ionicons name="wallet-outline" size={size} color={color} />;
-}
-
-function renderBriefcaseIcon({ color, size }: TabBarIconProps) {
-  return <Ionicons name="briefcase-outline" size={size} color={color} />;
-}
-
-function renderReceiptIcon({ color, size }: TabBarIconProps) {
-  return <Ionicons name="receipt-outline" size={size} color={color} />;
-}
-
-const INCOME_OPTIONS = { title: "Income", tabBarIcon: renderBriefcaseIcon };
-const EXPENSES_OPTIONS = { title: "Expenses", tabBarIcon: renderReceiptIcon };
+const PAYCHECKS_SF = { default: "wallet.bifold", selected: "wallet.bifold.fill" } as const;
+const INCOME_SF = { default: "briefcase", selected: "briefcase.fill" } as const;
+const EXPENSES_SF = { default: "list.bullet.rectangle", selected: "list.bullet.rectangle.fill" } as const;
 
 export default function TabsLayout() {
   const colors = useColors();
-  const router = useRouter();
 
-  const handleOpenSettings = useCallback(() => {
-    router.push("/settings");
-  }, [router]);
-
-  const renderSettingsButton = useCallback(
-    () => (
-      <Pressable
-        onPress={handleOpenSettings}
-        hitSlop={MEASUREMENTS.hitSlop}
-        style={styles.settingsButton}
-      >
-        <Ionicons name="settings-outline" size={22} color={colors.textDefault} />
-      </Pressable>
-    ),
-    [handleOpenSettings, colors]
-  );
-
-  const screenOptions = useMemo(
-    () => ({
-      headerStyle: { backgroundColor: colors.screenBackground },
-      headerTintColor: colors.textDefault,
-      headerTitleStyle: { fontWeight: "600" as const },
-      tabBarStyle: {
-        backgroundColor: colors.tabBarBackground,
-        borderTopColor: colors.border,
-      },
-      tabBarActiveTintColor: colors.tabBarActive,
-      tabBarInactiveTintColor: colors.tabBarInactive,
-    }),
+  // iOS 26 Liquid Glass derives its look from the content behind it, so only the
+  // selected tint is set there. Android's Material bar needs explicit colors.
+  const tabBarProps = useMemo(
+    () =>
+      Platform.OS === "android"
+        ? {
+            tintColor: colors.tabBarActive,
+            backgroundColor: colors.tabBarBackground,
+            indicatorColor: colors.cardBackgroundElevated,
+            rippleColor: colors.cardBackgroundElevated,
+            iconColor: { default: colors.tabBarInactive, selected: colors.tabBarActive },
+            labelStyle: {
+              default: { color: colors.tabBarInactive },
+              selected: { color: colors.tabBarActive },
+            },
+          }
+        : { tintColor: colors.tabBarActive },
     [colors]
   );
 
-  const paychecksOptions = useMemo(
-    () => ({
-      title: "Paychecks",
-      headerRight: renderSettingsButton,
-      tabBarIcon: renderWalletIcon,
-    }),
-    [renderSettingsButton]
-  );
-
   return (
-    <Tabs screenOptions={screenOptions}>
-      <Tabs.Screen name="index" options={paychecksOptions} />
-      <Tabs.Screen name="income" options={INCOME_OPTIONS} />
-      <Tabs.Screen name="expenses" options={EXPENSES_OPTIONS} />
-    </Tabs>
+    <NativeTabs {...tabBarProps} disableTransparentOnScrollEdge>
+      <NativeTabs.Trigger name="(paychecks)">
+        <NativeTabs.Trigger.Label>Paychecks</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf={PAYCHECKS_SF} md="account_balance_wallet" />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="income">
+        <NativeTabs.Trigger.Label>Income</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf={INCOME_SF} md="work" />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="expenses">
+        <NativeTabs.Trigger.Label>Expenses</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf={EXPENSES_SF} md="receipt_long" />
+      </NativeTabs.Trigger>
+    </NativeTabs>
   );
 }
-
-const styles = StyleSheet.create({
-  settingsButton: {
-    marginRight: MEASUREMENTS.spacing.lg,
-  },
-});

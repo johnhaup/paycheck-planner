@@ -108,6 +108,7 @@ export default function ExpensesScreen() {
       data={expenses}
       keyExtractor={keyExtractor}
       renderItem={renderItem}
+      contentInsetAdjustmentBehavior="automatic"
       style={listStyle}
       contentContainerStyle={styles.listContent}
       ListFooterComponent={footer}

@@ -1,9 +1,10 @@
 import { useCallback, useMemo } from "react";
 import { Pressable } from "react-native";
-import { Stack, useRouter } from "expo-router";
+import { DarkTheme, DefaultTheme, Stack, ThemeProvider, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors, useIsDark } from "@/hooks/useColors";
+import { useStackScreenOptions } from "@/hooks/useStackScreenOptions";
 import { MEASUREMENTS } from "@/constants/measurements";
 
 const TABS_OPTIONS = { headerShown: false };
@@ -15,6 +16,7 @@ export default function RootLayout() {
   const colors = useColors();
   const isDark = useIsDark();
   const router = useRouter();
+  const screenOptions = useStackScreenOptions();
 
   const handleCloseSettings = useCallback(() => {
     router.back();
@@ -29,16 +31,20 @@ export default function RootLayout() {
     [handleCloseSettings, colors]
   );
 
-  const screenOptions = useMemo(
-    () => ({
-      headerStyle: { backgroundColor: colors.screenBackground },
-      headerTintColor: colors.textDefault,
-      headerTitleStyle: { fontWeight: "600" as const },
-      headerBackTitle: "Back",
-      contentStyle: { backgroundColor: colors.screenBackground },
-    }),
-    [colors]
-  );
+  const navigationTheme = useMemo(() => {
+    const base = isDark ? DarkTheme : DefaultTheme;
+    return {
+      ...base,
+      colors: {
+        ...base.colors,
+        primary: colors.primary,
+        background: colors.screenBackground,
+        card: colors.cardBackground,
+        text: colors.textDefault,
+        border: colors.border,
+      },
+    };
+  }, [isDark, colors]);
 
   const settingsOptions = useMemo(
     () => ({
@@ -50,7 +56,7 @@ export default function RootLayout() {
   );
 
   return (
-    <>
+    <ThemeProvider value={navigationTheme}>
       <StatusBar style={isDark ? "light" : "dark"} />
       <Stack screenOptions={screenOptions}>
         <Stack.Screen name="(tabs)" options={TABS_OPTIONS} />
@@ -59,6 +65,6 @@ export default function RootLayout() {
         <Stack.Screen name="pay-date-detail" options={PAY_DATE_DETAIL_OPTIONS} />
         <Stack.Screen name="settings" options={settingsOptions} />
       </Stack>
-    </>
+    </ThemeProvider>
   );
 }

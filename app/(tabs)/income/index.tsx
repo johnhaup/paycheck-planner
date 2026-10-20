@@ -92,6 +92,7 @@ export default function IncomeScreen() {
       data={incomeSources}
       keyExtractor={keyExtractor}
       renderItem={renderItem}
+      contentInsetAdjustmentBehavior="automatic"
       style={listStyle}
       contentContainerStyle={styles.listContent}
       ListFooterComponent={footer}
