@@ -20,15 +20,11 @@ interface AppState {
   assignExpense: (expenseId: string, payDate: string, incomeSourceId: string) => string;
   unassignExpense: (assignmentId: string) => void;
   togglePaid: (assignmentId: string) => void;
-  getAssignmentsForPayDate: (
-    payDate: string,
-    incomeSourceId: string
-  ) => ExpenseAssignment[];
 }
 
 export const useStore = create<AppState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       incomeSources: [],
       expenses: [],
       assignments: [],
@@ -49,6 +45,11 @@ export const useStore = create<AppState>()(
         set((s) => ({
           incomeSources: s.incomeSources.filter((e) => e.id !== id),
           assignments: s.assignments.filter((a) => a.employerId !== id),
+          expenses: s.expenses.map((e) =>
+            e.incomeSourceId === id
+              ? { ...e, incomeSourceId: undefined, linkSchedule: undefined, paycheckOrdinal: undefined }
+              : e
+          ),
         })),
 
       addExpense: (expense) => {
@@ -94,12 +95,6 @@ export const useStore = create<AppState>()(
             a.id === assignmentId ? { ...a, paid: !a.paid } : a
           ),
         })),
-
-      getAssignmentsForPayDate: (payDate, incomeSourceId) => {
-        return get().assignments.filter(
-          (a) => a.payDate === payDate && a.employerId === incomeSourceId
-        );
-      },
     }),
     {
       name: "paycheck-planner-storage",

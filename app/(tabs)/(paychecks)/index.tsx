@@ -1,8 +1,9 @@
 import { useCallback, useMemo, useState } from "react";
-import { View, FlatList, ScrollView, StyleSheet, Linking } from "react-native";
+import { View, FlatList, ScrollView, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import { format } from "date-fns";
 import { useStore } from "@/store";
+import { openPaymentLink } from "@/utils/links";
 import { useThemeStore } from "@/stores/themeStore";
 import {
   getPaychecks,
@@ -48,7 +49,7 @@ export default function PaychecksScreen() {
 
   const handleLinkTap = useCallback(
     (link: string, assignmentId: string, expenseId: string, payDate: string, sourceId: string) => {
-      Linking.openURL(link);
+      openPaymentLink(link);
       if (autoMarkPaid) {
         const id = assignmentId || assignExpense(expenseId, payDate, sourceId);
         const assignment = assignments.find((a) => a.id === id);

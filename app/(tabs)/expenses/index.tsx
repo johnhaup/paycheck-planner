@@ -1,7 +1,8 @@
 import { useCallback, useMemo } from "react";
-import { View, FlatList, StyleSheet, Alert, Linking } from "react-native";
+import { View, FlatList, StyleSheet, Alert } from "react-native";
 import { useRouter } from "expo-router";
 import { useStore } from "@/store";
+import { openPaymentLink } from "@/utils/links";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
@@ -59,7 +60,7 @@ export default function ExpensesScreen() {
   );
 
   const handleOpenLink = useCallback((link: string) => {
-    Linking.openURL(link);
+    openPaymentLink(link);
   }, []);
 
   const sourcesById = useMemo(

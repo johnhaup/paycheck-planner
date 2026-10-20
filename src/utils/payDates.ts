@@ -18,7 +18,7 @@ export interface Paycheck {
 }
 
 /** Parse a YYYY-MM-DD string as local midnight (not UTC). */
-function parseLocalDate(dateStr: string): Date {
+export function parseLocalDate(dateStr: string): Date {
   const [y, m, d] = dateStr.split("-").map(Number);
   return new Date(y, m - 1, d);
 }
@@ -55,15 +55,15 @@ export function getPaychecks(
   }
 
   if (source.payFrequency === "monthly") {
-    let current = startOfDay(
-      new Date(start.getFullYear(), start.getMonth(), anchor.getDate())
-    );
-    if (isBefore(current, start)) {
-      current = addMonths(current, 1);
-    }
+    // Clamp per month so an anchor on the 31st pays on the last day of shorter
+    // months instead of overflowing into the next one.
+    let month = new Date(start.getFullYear(), start.getMonth(), 1);
     while (paychecks.length < count) {
-      paychecks.push({ date: current, ordinal: 0 });
-      current = addMonths(current, 1);
+      const date = setDate(month, Math.min(anchor.getDate(), daysInMonth(month)));
+      if (!isBefore(date, start)) {
+        paychecks.push({ date, ordinal: 0 });
+      }
+      month = addMonths(month, 1);
     }
     return paychecks;
   }

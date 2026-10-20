@@ -1,7 +1,8 @@
 import { useCallback, useMemo } from "react";
-import { FlatList, StyleSheet, Linking } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { useStore } from "@/store";
+import { openPaymentLink } from "@/utils/links";
 import { useThemeStore } from "@/stores/themeStore";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
@@ -79,7 +80,7 @@ export default function PayDateDetailScreen() {
 
   const handleOpenLink = useCallback(
     (link: string, expenseId: string) => {
-      Linking.openURL(link);
+      openPaymentLink(link);
       if (autoMarkPaid) {
         const entry = assignedExpenseIds.get(expenseId);
         if (entry && !entry.paid) {

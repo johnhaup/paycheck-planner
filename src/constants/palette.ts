@@ -86,7 +86,4 @@ export const LightPalette = {
   tabBarInactive: palette.darkGray,
 } as const;
 
-/** @deprecated Use useColors() hook instead for theme-aware colors */
-export const ColorPalette = DarkPalette;
-
 export type PaletteColor = keyof ThemeColors;

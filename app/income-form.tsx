@@ -6,7 +6,6 @@ import {
   Alert,
 } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
-import { format } from "date-fns";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
@@ -16,6 +15,7 @@ import { AppButton } from "@/components/AppButton";
 import { AppChip } from "@/components/AppChip";
 import { AppDatePicker } from "@/components/AppDatePicker";
 import { AppToggle } from "@/components/AppToggle";
+import { formatPayDate, parseLocalDate } from "@/utils/payDates";
 import type { PayFrequency } from "@/types";
 
 const FREQUENCIES: { value: PayFrequency; label: string }[] = [
@@ -46,7 +46,7 @@ export default function IncomeFormScreen() {
     existing?.payFrequency ?? "biweekly"
   );
   const [firstPayDate, setFirstPayDate] = useState(
-    existing?.firstPayDate ? new Date(existing.firstPayDate) : new Date()
+    existing?.firstPayDate ? parseLocalDate(existing.firstPayDate) : new Date()
   );
   const [semiDay1, setSemiDay1] = useState(
     existing?.semiMonthlyDays ? String(existing.semiMonthlyDays[0]) : "1"
@@ -68,19 +68,24 @@ export default function IncomeFormScreen() {
       Alert.alert("Error", "Enter a valid pay amount.");
       return;
     }
+    const day1 = Number(semiDay1);
+    const day2 = Number(semiDay2);
+    const semiMonthlyDays: [number, number] = [day1, day2];
+    if (
+      frequency === "semi-monthly" &&
+      !semiMonthlyDays.every((d) => Number.isInteger(d) && d >= 1 && d <= 31)
+    ) {
+      Alert.alert("Error", "Pay days must be between 1 and 31.");
+      return;
+    }
 
     const data = {
       name: name.trim(),
       payAmount: amount,
       payFrequency: frequency,
-      firstPayDate:
-        frequency === "semi-monthly"
-          ? new Date().toISOString().split("T")[0]
-          : format(firstPayDate, "yyyy-MM-dd"),
+      firstPayDate: formatPayDate(frequency === "semi-monthly" ? new Date() : firstPayDate),
       semiMonthlyDays:
-        frequency === "semi-monthly"
-          ? ([parseInt(semiDay1), parseInt(semiDay2)] as [number, number])
-          : undefined,
+        frequency === "semi-monthly" ? semiMonthlyDays : undefined,
       adjustToWorkday:
         frequency === "semi-monthly" ? adjustToWorkday : undefined,
     };

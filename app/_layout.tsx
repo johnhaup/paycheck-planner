@@ -1,10 +1,11 @@
-import { useCallback, useMemo } from "react";
-import { Pressable } from "react-native";
+import { useCallback, useEffect, useMemo } from "react";
+import { Appearance, Pressable } from "react-native";
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors, useIsDark } from "@/hooks/useColors";
 import { useStackScreenOptions } from "@/hooks/useStackScreenOptions";
+import { useThemeStore } from "@/stores/themeStore";
 import { MEASUREMENTS } from "@/constants/measurements";
 
 const TABS_OPTIONS = { headerShown: false };
@@ -17,6 +18,7 @@ export default function RootLayout() {
   const isDark = useIsDark();
   const router = useRouter();
   const screenOptions = useStackScreenOptions();
+  const themeMode = useThemeStore((s) => s.themeMode);
 
   const handleCloseSettings = useCallback(() => {
     router.back();
@@ -54,6 +56,12 @@ export default function RootLayout() {
     }),
     [renderSettingsCloseButton]
   );
+
+  // Native chrome (tab bar, alerts, pickers) follows the OS-level scheme, so
+  // mirror the in-app choice there.
+  useEffect(() => {
+    Appearance.setColorScheme(themeMode === "system" ? "unspecified" : themeMode);
+  }, [themeMode]);
 
   return (
     <ThemeProvider value={navigationTheme}>

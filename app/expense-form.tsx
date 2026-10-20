@@ -14,6 +14,7 @@ import { AppInput } from "@/components/AppInput";
 import { AppButton } from "@/components/AppButton";
 import { AppChip } from "@/components/AppChip";
 import { getMonthlySlotCount, getPaycheckSlotLabel } from "@/utils/payDates";
+import { normalizeLink } from "@/utils/links";
 import type { LinkSchedule } from "@/types";
 
 const SCHEDULE_OPTIONS: { value: LinkSchedule; label: string }[] = [
@@ -48,6 +49,8 @@ export default function ExpenseFormScreen() {
   );
   const [paycheckOrdinal, setPaycheckOrdinal] = useState(existing?.paycheckOrdinal ?? 0);
 
+  const isOneTime = existing ? !existing.isRecurring : false;
+
   const selectedSource = useMemo(
     () => incomeSources.find((s) => s.id === selectedSourceId),
     [incomeSources, selectedSourceId]
@@ -76,8 +79,8 @@ export default function ExpenseFormScreen() {
     const data = {
       payee: payee.trim(),
       amount: parsedAmount,
-      link: link.trim() || undefined,
-      isRecurring: true,
+      link: normalizeLink(link),
+      isRecurring: !isOneTime,
       incomeSourceId: selectedSourceId,
       linkSchedule: isMonthly ? linkSchedule : undefined,
       paycheckOrdinal: isMonthly ? effectiveOrdinal : undefined,
@@ -94,6 +97,7 @@ export default function ExpenseFormScreen() {
     amount,
     link,
     selectedSourceId,
+    isOneTime,
     isMonthly,
     linkSchedule,
     effectiveOrdinal,
@@ -153,7 +157,7 @@ export default function ExpenseFormScreen() {
         autoCapitalize="none"
       />
 
-      {incomeSources.length > 0 ? (
+      {incomeSources.length > 0 && !isOneTime ? (
         <>
           <AppText variant="label" style={styles.label}>Linked Income Source</AppText>
           <View style={styles.chipRow}>
