@@ -21,6 +21,8 @@ export default function SettingsScreen() {
   const setThemeMode = useThemeStore((s) => s.setThemeMode);
   const autoMarkPaid = useThemeStore((s) => s.autoMarkPaidOnLinkTap);
   const setAutoMarkPaid = useThemeStore((s) => s.setAutoMarkPaidOnLinkTap);
+  const hideCents = useThemeStore((s) => s.hideCents);
+  const setHideCents = useThemeStore((s) => s.setHideCents);
 
   const containerStyle = useMemo(
     () => [styles.container, { backgroundColor: colors.modalBackground }],
@@ -32,10 +34,22 @@ export default function SettingsScreen() {
     [colors]
   );
 
+  const spacedToggleCardStyle = useMemo(
+    () => [toggleCardStyle, styles.spacedCard],
+    [toggleCardStyle]
+  );
+
   return (
     <View style={containerStyle}>
       <AppSectionHeader title="Appearance" />
       <AppSegmentedControl options={THEME_OPTIONS} value={themeMode} onChange={setThemeMode} />
+      <AppCard style={spacedToggleCardStyle}>
+        <AppText variant="body" style={styles.toggleLabel}>Hide cents</AppText>
+        <AppToggle value={hideCents} onValueChange={setHideCents} />
+      </AppCard>
+      <AppText variant="caption" style={styles.toggleHint}>
+        Show amounts rounded to the nearest dollar.
+      </AppText>
 
       <AppSectionHeader title="Behavior" />
       <AppCard style={toggleCardStyle}>
@@ -60,6 +74,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: MEASUREMENTS.spacing.base,
     padding: MEASUREMENTS.spacing.lg,
+  },
+  spacedCard: {
+    marginTop: MEASUREMENTS.spacing.base,
   },
   toggleLabel: {
     flex: 1,

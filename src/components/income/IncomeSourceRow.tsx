@@ -3,11 +3,11 @@ import { View, StyleSheet } from "react-native";
 import { Pressable } from "react-native-gesture-handler";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { useGroupedRowStyles } from "@/hooks/useGroupedRowStyles";
+import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { AppText } from "@/components/AppText";
 import { AppLetterTile } from "@/components/AppLetterTile";
 import { AppSwipeToDelete } from "@/components/AppSwipeToDelete";
 import { describePaySchedule } from "@/utils/payDates";
-import { splitMoney } from "@/utils/money";
 import type { IncomeSource } from "@/types";
 
 interface Props {
@@ -21,7 +21,8 @@ interface Props {
 
 export function IncomeSourceRow({ source, tintIndex, isFirst, isLast, onEdit, onDelete }: Props) {
   const groupedStyles = useGroupedRowStyles(isFirst, isLast);
-  const { whole, cents } = splitMoney(source.payAmount);
+  const { split } = useMoneyFormat();
+  const { whole, cents } = split(source.payAmount);
 
   const handlePress = useCallback(() => {
     onEdit(source.id);

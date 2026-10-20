@@ -2,11 +2,11 @@ import { useCallback } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
+import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useGroupedRowStyles } from "@/hooks/useGroupedRowStyles";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppCheckCircle } from "@/components/AppCheckCircle";
-import { formatMoney } from "@/utils/money";
 import type { Expense } from "@/types";
 
 interface Props {
@@ -36,6 +36,7 @@ export function PayDateExpenseRow({
   onUnassign,
 }: Props) {
   const colors = useColors();
+  const { format: formatMoney } = useMoneyFormat();
   const groupedStyles = useGroupedRowStyles(isFirst, isLast);
 
   const handleTogglePaid = useCallback(() => {

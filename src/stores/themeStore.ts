@@ -9,6 +9,8 @@ interface ThemeState {
   setThemeMode: (mode: ThemeMode) => void;
   autoMarkPaidOnLinkTap: boolean;
   setAutoMarkPaidOnLinkTap: (value: boolean) => void;
+  hideCents: boolean;
+  setHideCents: (value: boolean) => void;
 }
 
 export const useThemeStore = create<ThemeState>()(
@@ -18,6 +20,8 @@ export const useThemeStore = create<ThemeState>()(
       setThemeMode: (mode) => set({ themeMode: mode }),
       autoMarkPaidOnLinkTap: false,
       setAutoMarkPaidOnLinkTap: (value) => set({ autoMarkPaidOnLinkTap: value }),
+      hideCents: false,
+      setHideCents: (value) => set({ hideCents: value }),
     }),
     {
       name: "paycheck-planner-theme",

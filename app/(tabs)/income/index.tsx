@@ -4,6 +4,7 @@ import { useRouter } from "expo-router";
 import { format } from "date-fns";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
+import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppCard } from "@/components/AppCard";
@@ -11,7 +12,6 @@ import { AppFab } from "@/components/AppFab";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { IncomeSourceRow } from "@/components/income/IncomeSourceRow";
 import { getPaychecks, getPaychecksPerMonth } from "@/utils/payDates";
-import { formatMoney } from "@/utils/money";
 import type { IncomeSource } from "@/types";
 
 function keyExtractor(item: IncomeSource) {
@@ -21,6 +21,7 @@ function keyExtractor(item: IncomeSource) {
 export default function IncomeScreen() {
   const router = useRouter();
   const colors = useColors();
+  const { format: formatMoney } = useMoneyFormat();
   const incomeSources = useStore((s) => s.incomeSources);
   const deleteIncomeSource = useStore((s) => s.deleteIncomeSource);
 
@@ -61,7 +62,7 @@ export default function IncomeScreen() {
       perMonth: formatMoney(Math.round(perMonth)).replace(/\.00$/, ""),
       nextPayday: next ? format(next, "MMM d") : "—",
     };
-  }, [incomeSources]);
+  }, [incomeSources, formatMoney]);
 
   const listHeader = useMemo(
     () => (

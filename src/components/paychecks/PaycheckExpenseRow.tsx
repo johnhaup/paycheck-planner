@@ -2,10 +2,10 @@ import { useCallback, useMemo } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
+import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppCheckCircle } from "@/components/AppCheckCircle";
-import { formatMoney } from "@/utils/money";
 import type {
   LinkTapHandler,
   PaycheckExpense,
@@ -22,6 +22,7 @@ interface Props {
 
 export function PaycheckExpenseRow({ expense, payDate, sourceId, onTogglePaid, onLinkTap }: Props) {
   const colors = useColors();
+  const { format: formatMoney } = useMoneyFormat();
 
   const handleTogglePaid = useCallback(() => {
     onTogglePaid(expense.assignmentId, expense.expenseId, payDate, sourceId);

@@ -3,12 +3,12 @@ import { View, StyleSheet } from "react-native";
 import { Pressable } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
+import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useGroupedRowStyles } from "@/hooks/useGroupedRowStyles";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppLetterTile } from "@/components/AppLetterTile";
 import { AppSwipeToDelete } from "@/components/AppSwipeToDelete";
-import { splitMoney } from "@/utils/money";
 import type { Expense } from "@/types";
 
 interface Props {
@@ -37,7 +37,8 @@ export function ExpenseRow({
 }: Props) {
   const colors = useColors();
   const groupedStyles = useGroupedRowStyles(isFirst, isLast);
-  const { whole, cents } = splitMoney(expense.amount);
+  const { split } = useMoneyFormat();
+  const { whole, cents } = split(expense.amount);
 
   const handlePress = useCallback(() => {
     onEdit(expense.id);

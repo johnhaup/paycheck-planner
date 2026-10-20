@@ -1,10 +1,10 @@
 import { View, StyleSheet } from "react-native";
 import { format } from "date-fns";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { AppText } from "@/components/AppText";
 import { AppDateTile } from "@/components/AppDateTile";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
-import { formatMoney } from "@/utils/money";
 import { parseLocalDate } from "@/utils/payDates";
 
 interface Props {
@@ -16,6 +16,7 @@ interface Props {
 }
 
 export function PayDateSummary({ sourceName, payDate, payAmount, totalAssigned, remaining }: Props) {
+  const { format: formatMoney } = useMoneyFormat();
   const date = parseLocalDate(payDate);
 
   return (

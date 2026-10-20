@@ -2,13 +2,13 @@ import { useCallback, useMemo } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
 import { format } from "date-fns";
 import { useColors } from "@/hooks/useColors";
+import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppCard } from "@/components/AppCard";
 import { AppDateTile } from "@/components/AppDateTile";
 import { AppText } from "@/components/AppText";
 import { PaidProgress } from "@/components/paychecks/PaidProgress";
 import { PaycheckExpenseRow } from "@/components/paychecks/PaycheckExpenseRow";
-import { formatMoney } from "@/utils/money";
 import type {
   LinkTapHandler,
   PaycheckItem,
@@ -24,6 +24,7 @@ interface Props {
 
 export function PaycheckCard({ item, onPress, onTogglePaid, onLinkTap }: Props) {
   const colors = useColors();
+  const { format: formatMoney } = useMoneyFormat();
 
   const handlePress = useCallback(() => {
     onPress(item.payDate, item.sourceId);

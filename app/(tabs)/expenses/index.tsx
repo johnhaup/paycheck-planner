@@ -3,6 +3,7 @@ import { View, SectionList, StyleSheet, type SectionListData } from "react-nativ
 import { useRouter } from "expo-router";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
+import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppFab } from "@/components/AppFab";
@@ -10,7 +11,6 @@ import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { AppSegmentedControl, type SegmentOption } from "@/components/AppSegmentedControl";
 import { ExpenseRow } from "@/components/expenses/ExpenseRow";
 import { openPaymentLink } from "@/utils/links";
-import { formatMoney } from "@/utils/money";
 import {
   buildExpenseSections,
   summarizeExpenses,
@@ -40,6 +40,7 @@ function renderSectionHeader({
 export default function ExpensesScreen() {
   const router = useRouter();
   const colors = useColors();
+  const { format: formatMoney } = useMoneyFormat();
   const expenses = useStore((s) => s.expenses);
   const incomeSources = useStore((s) => s.incomeSources);
   const deleteExpense = useStore((s) => s.deleteExpense);
@@ -82,8 +83,8 @@ export default function ExpensesScreen() {
   );
 
   const sections = useMemo(
-    () => buildExpenseSections(expenses, incomeSources, filter),
-    [expenses, incomeSources, filter]
+    () => buildExpenseSections(expenses, incomeSources, filter, formatMoney),
+    [expenses, incomeSources, filter, formatMoney]
   );
 
   const summary = useMemo(
@@ -101,7 +102,7 @@ export default function ExpensesScreen() {
         <AppSegmentedControl options={FILTER_OPTIONS} value={filter} onChange={setFilter} />
       </View>
     ),
-    [summary, filter]
+    [summary, filter, formatMoney]
   );
 
   const listEmpty = useMemo(

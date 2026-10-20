@@ -5,7 +5,6 @@ import {
   getPaychecksPerMonth,
   parseLocalDate,
 } from "@/utils/payDates";
-import { formatMoney } from "@/utils/money";
 import type { Expense, IncomeSource } from "@/types";
 
 export type ExpenseFilter = "all" | "recurring" | "one-time";
@@ -55,7 +54,8 @@ export function summarizeExpenses(expenses: Expense[], incomeSources: IncomeSour
 export function buildExpenseSections(
   expenses: Expense[],
   incomeSources: IncomeSource[],
-  filter: ExpenseFilter
+  filter: ExpenseFilter,
+  formatMoney: (amount: number) => string
 ): ExpenseSection[] {
   const sections: ExpenseSection[] = [];
 

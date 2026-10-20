@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import { useStore } from "@/store";
 import { useThemeStore } from "@/stores/themeStore";
 import { useColors } from "@/hooks/useColors";
+import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
@@ -12,7 +13,6 @@ import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { MonthBarChart } from "@/components/paychecks/MonthBarChart";
 import { PaycheckCard } from "@/components/paychecks/PaycheckCard";
 import { openPaymentLink } from "@/utils/links";
-import { formatMoney } from "@/utils/money";
 import { buildMonthGroups } from "@/utils/paycheckMonths";
 import type { PaycheckItem } from "@/components/paychecks/types";
 
@@ -27,6 +27,7 @@ function getCurrentMonthKey() {
 export default function PaychecksScreen() {
   const router = useRouter();
   const colors = useColors();
+  const { format: formatMoney } = useMoneyFormat();
   const incomeSources = useStore((s) => s.incomeSources);
   const expenses = useStore((s) => s.expenses);
   const assignments = useStore((s) => s.assignments);
@@ -113,7 +114,7 @@ export default function PaychecksScreen() {
           />
         </View>
       ) : null,
-    [selectedMonth, months]
+    [selectedMonth, months, formatMoney]
   );
 
   const containerStyle = useMemo(

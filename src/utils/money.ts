@@ -3,12 +3,22 @@ const CURRENCY = new Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
-export function formatMoney(amount: number): string {
-  return CURRENCY.format(amount);
+const WHOLE_DOLLARS = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
+
+export function formatMoney(amount: number, hideCents = false): string {
+  return (hideCents ? WHOLE_DOLLARS : CURRENCY).format(amount);
 }
 
 /** "$1,284.50" → { whole: "$1,284", cents: ".50" } for the large-dollars, small-cents treatment. */
-export function splitMoney(amount: number): { whole: string; cents: string } {
+export function splitMoney(amount: number, hideCents = false): { whole: string; cents: string } {
+  if (hideCents) {
+    return { whole: WHOLE_DOLLARS.format(amount), cents: "" };
+  }
   const formatted = CURRENCY.format(amount);
   const dot = formatted.lastIndexOf(".");
   return { whole: formatted.slice(0, dot), cents: formatted.slice(dot) };
