@@ -34,6 +34,7 @@ export type ThemeColors = Record<
   | "warning"
   | "border"
   | "overlay"
+  | "shadow"
   | "tabBarBackground"
   | "tabBarActive"
   | "tabBarInactive",
@@ -57,6 +58,7 @@ export const DarkPalette = {
 
   border: palette.steel,
   overlay: palette.scrim,
+  shadow: palette.black,
 
   tabBarBackground: palette.charcoal,
   tabBarActive: palette.green,
@@ -80,6 +82,7 @@ export const LightPalette = {
 
   border: palette.lightGray,
   overlay: palette.scrim,
+  shadow: palette.black,
 
   tabBarBackground: palette.white,
   tabBarActive: palette.green,

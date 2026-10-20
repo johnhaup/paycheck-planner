@@ -1,12 +1,12 @@
 import { useCallback, useMemo } from "react";
-import { View, FlatList, StyleSheet, Alert } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import { useStore } from "@/store";
 import { openPaymentLink } from "@/utils/links";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
-import { AppButton } from "@/components/AppButton";
+import { AppFab } from "@/components/AppFab";
 import { ExpenseCard } from "@/components/expenses/ExpenseCard";
 import { getLinkedOrdinal, getPaycheckSlotLabel } from "@/utils/payDates";
 import type { Expense, IncomeSource } from "@/types";
@@ -41,28 +41,6 @@ export default function ExpensesScreen() {
     [router]
   );
 
-  const handleDelete = useCallback(
-    (expense: Expense) => {
-      Alert.alert(
-        "Delete Expense",
-        `Delete "${expense.payee}" and all its assignments?`,
-        [
-          { text: "Cancel", style: "cancel" },
-          {
-            text: "Delete",
-            style: "destructive",
-            onPress: () => deleteExpense(expense.id),
-          },
-        ]
-      );
-    },
-    [deleteExpense]
-  );
-
-  const handleOpenLink = useCallback((link: string) => {
-    openPaymentLink(link);
-  }, []);
-
   const sourcesById = useMemo(
     () => new Map(incomeSources.map((s) => [s.id, s])),
     [incomeSources]
@@ -78,74 +56,52 @@ export default function ExpensesScreen() {
             : undefined
         }
         onEdit={handleEdit}
-        onDelete={handleDelete}
-        onOpenLink={handleOpenLink}
+        onDelete={deleteExpense}
+        onOpenLink={openPaymentLink}
       />
     ),
-    [handleEdit, handleDelete, handleOpenLink, sourcesById]
+    [handleEdit, deleteExpense, sourcesById]
   );
 
-  const footer = useMemo(
-    () => (
-      <AppButton
-        title="Add Expense"
-        onPress={handleAdd}
-        style={styles.addButton}
-      />
-    ),
-    [handleAdd]
-  );
-
-  const listStyle = useMemo(
-    () => ({ backgroundColor: colors.screenBackground }),
+  const containerStyle = useMemo(
+    () => [styles.container, { backgroundColor: colors.screenBackground }],
     [colors]
   );
 
-  const emptyContainerStyle = useMemo(
-    () => [styles.emptyContainer, listStyle],
-    [listStyle]
-  );
-
-  if (expenses.length === 0) {
-    return (
-      <View style={emptyContainerStyle}>
-        <AppText variant="subtext" color="textMuted" style={styles.emptyText}>
-          No expenses added yet.
-        </AppText>
-        <AppButton title="Add Expense" onPress={handleAdd} />
-      </View>
-    );
-  }
-
   return (
-    <FlatList
-      data={expenses}
-      keyExtractor={keyExtractor}
-      renderItem={renderItem}
-      contentInsetAdjustmentBehavior="automatic"
-      style={listStyle}
-      contentContainerStyle={styles.listContent}
-      ListFooterComponent={footer}
-    />
+    <View style={containerStyle}>
+      {expenses.length === 0 ? (
+        <View style={styles.emptyContainer}>
+          <AppText variant="subtext" color="textMuted">
+            No expenses added yet.
+          </AppText>
+        </View>
+      ) : (
+        <FlatList
+          data={expenses}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          contentInsetAdjustmentBehavior="automatic"
+          contentContainerStyle={styles.listContent}
+        />
+      )}
+      <AppFab accessibilityLabel="Add expense" onPress={handleAdd} />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  listContent: {
-    flexGrow: 1,
-    padding: MEASUREMENTS.spacing.lg,
-    paddingBottom: MEASUREMENTS.spacing.bottom,
+  container: {
+    flex: 1,
   },
-  addButton: {
-    marginTop: MEASUREMENTS.spacing.md,
+  listContent: {
+    padding: MEASUREMENTS.spacing.lg,
+    paddingBottom: MEASUREMENTS.fabSize + MEASUREMENTS.spacing.bottom,
   },
   emptyContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: MEASUREMENTS.spacing.section,
-  },
-  emptyText: {
-    marginBottom: MEASUREMENTS.spacing.xl,
   },
 });

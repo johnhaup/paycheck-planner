@@ -1,11 +1,11 @@
 import { useCallback, useMemo } from "react";
-import { View, FlatList, StyleSheet, Alert } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
-import { AppButton } from "@/components/AppButton";
+import { AppFab } from "@/components/AppFab";
 import { IncomeSourceCard } from "@/components/income/IncomeSourceCard";
 import type { IncomeSource } from "@/types";
 
@@ -30,92 +30,52 @@ export default function IncomeScreen() {
     [router]
   );
 
-  const handleDelete = useCallback(
-    (source: IncomeSource) => {
-      Alert.alert(
-        "Delete Income Source",
-        `Delete "${source.name}" and all its expense assignments?`,
-        [
-          { text: "Cancel", style: "cancel" },
-          {
-            text: "Delete",
-            style: "destructive",
-            onPress: () => deleteIncomeSource(source.id),
-          },
-        ]
-      );
-    },
-    [deleteIncomeSource]
-  );
-
   const renderItem = useCallback(
     ({ item }: { item: IncomeSource }) => (
-      <IncomeSourceCard source={item} onEdit={handleEdit} onDelete={handleDelete} />
+      <IncomeSourceCard source={item} onEdit={handleEdit} onDelete={deleteIncomeSource} />
     ),
-    [handleEdit, handleDelete]
+    [handleEdit, deleteIncomeSource]
   );
 
-  const footer = useMemo(
-    () => (
-      <AppButton
-        title="Add Income Source"
-        onPress={handleAdd}
-        style={styles.addButton}
-      />
-    ),
-    [handleAdd]
-  );
-
-  const listStyle = useMemo(
-    () => ({ backgroundColor: colors.screenBackground }),
+  const containerStyle = useMemo(
+    () => [styles.container, { backgroundColor: colors.screenBackground }],
     [colors]
   );
 
-  const emptyContainerStyle = useMemo(
-    () => [styles.emptyContainer, listStyle],
-    [listStyle]
-  );
-
-  if (incomeSources.length === 0) {
-    return (
-      <View style={emptyContainerStyle}>
-        <AppText variant="subtext" color="textMuted" style={styles.emptyText}>
-          No income sources added yet.
-        </AppText>
-        <AppButton title="Add Income Source" onPress={handleAdd} />
-      </View>
-    );
-  }
-
   return (
-    <FlatList
-      data={incomeSources}
-      keyExtractor={keyExtractor}
-      renderItem={renderItem}
-      contentInsetAdjustmentBehavior="automatic"
-      style={listStyle}
-      contentContainerStyle={styles.listContent}
-      ListFooterComponent={footer}
-    />
+    <View style={containerStyle}>
+      {incomeSources.length === 0 ? (
+        <View style={styles.emptyContainer}>
+          <AppText variant="subtext" color="textMuted">
+            No income sources added yet.
+          </AppText>
+        </View>
+      ) : (
+        <FlatList
+          data={incomeSources}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          contentInsetAdjustmentBehavior="automatic"
+          contentContainerStyle={styles.listContent}
+        />
+      )}
+      <AppFab accessibilityLabel="Add income source" onPress={handleAdd} />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  listContent: {
-    flexGrow: 1,
-    padding: MEASUREMENTS.spacing.lg,
-    paddingBottom: MEASUREMENTS.spacing.bottom,
+  container: {
+    flex: 1,
   },
-  addButton: {
-    marginTop: MEASUREMENTS.spacing.md,
+  listContent: {
+    padding: MEASUREMENTS.spacing.lg,
+    paddingBottom: MEASUREMENTS.fabSize + MEASUREMENTS.spacing.bottom,
   },
   emptyContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: MEASUREMENTS.spacing.section,
-  },
-  emptyText: {
-    marginBottom: MEASUREMENTS.spacing.xl,
   },
 });

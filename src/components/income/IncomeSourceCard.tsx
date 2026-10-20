@@ -3,6 +3,7 @@ import { View, Pressable, StyleSheet } from "react-native";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
+import { AppSwipeToDelete } from "@/components/AppSwipeToDelete";
 import type { IncomeSource } from "@/types";
 
 const FREQUENCY_LABELS: Record<string, string> = {
@@ -15,7 +16,7 @@ const FREQUENCY_LABELS: Record<string, string> = {
 interface Props {
   source: IncomeSource;
   onEdit: (id: string) => void;
-  onDelete: (source: IncomeSource) => void;
+  onDelete: (id: string) => void;
 }
 
 export function IncomeSourceCard({ source, onEdit, onDelete }: Props) {
@@ -25,9 +26,9 @@ export function IncomeSourceCard({ source, onEdit, onDelete }: Props) {
     onEdit(source.id);
   }, [onEdit, source.id]);
 
-  const handleLongPress = useCallback(() => {
-    onDelete(source);
-  }, [onDelete, source]);
+  const handleDelete = useCallback(() => {
+    onDelete(source.id);
+  }, [onDelete, source.id]);
 
   const cardStyle = useMemo(
     () => [styles.card, { backgroundColor: colors.cardBackground }],
@@ -35,25 +36,34 @@ export function IncomeSourceCard({ source, onEdit, onDelete }: Props) {
   );
 
   return (
-    <Pressable style={cardStyle} onPress={handlePress} onLongPress={handleLongPress}>
-      <View style={styles.cardTop}>
-        <AppText variant="h3">{source.name}</AppText>
-        <AppText variant="h3" color="primary">
-          ${source.payAmount.toLocaleString("en-US", { minimumFractionDigits: 2 })}
+    <AppSwipeToDelete
+      confirmTitle="Delete Income Source"
+      confirmMessage={`Delete "${source.name}" and all its expense assignments?`}
+      onConfirm={handleDelete}
+      style={styles.swipeable}
+    >
+      <Pressable style={cardStyle} onPress={handlePress}>
+        <View style={styles.cardTop}>
+          <AppText variant="h3">{source.name}</AppText>
+          <AppText variant="h3" color="primary">
+            ${source.payAmount.toLocaleString("en-US", { minimumFractionDigits: 2 })}
+          </AppText>
+        </View>
+        <AppText variant="caption" style={styles.frequency}>
+          {FREQUENCY_LABELS[source.payFrequency] ?? source.payFrequency}
         </AppText>
-      </View>
-      <AppText variant="caption" style={styles.frequency}>
-        {FREQUENCY_LABELS[source.payFrequency] ?? source.payFrequency}
-      </AppText>
-    </Pressable>
+      </Pressable>
+    </AppSwipeToDelete>
   );
 }
 
 const styles = StyleSheet.create({
+  swipeable: {
+    marginBottom: MEASUREMENTS.spacing.md + 2,
+  },
   card: {
     padding: MEASUREMENTS.spacing.lg,
     borderRadius: MEASUREMENTS.radius.lg,
-    marginBottom: MEASUREMENTS.spacing.md + 2,
   },
   cardTop: {
     flexDirection: "row",

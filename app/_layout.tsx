@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo } from "react";
-import { Appearance, Pressable } from "react-native";
+import { Appearance, Pressable, StyleSheet } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -64,15 +65,23 @@ export default function RootLayout() {
   }, [themeMode]);
 
   return (
-    <ThemeProvider value={navigationTheme}>
-      <StatusBar style={isDark ? "light" : "dark"} />
-      <Stack screenOptions={screenOptions}>
-        <Stack.Screen name="(tabs)" options={TABS_OPTIONS} />
-        <Stack.Screen name="income-form" options={INCOME_FORM_OPTIONS} />
-        <Stack.Screen name="expense-form" options={EXPENSE_FORM_OPTIONS} />
-        <Stack.Screen name="pay-date-detail" options={PAY_DATE_DETAIL_OPTIONS} />
-        <Stack.Screen name="settings" options={settingsOptions} />
-      </Stack>
-    </ThemeProvider>
+    <GestureHandlerRootView style={styles.root}>
+      <ThemeProvider value={navigationTheme}>
+        <StatusBar style={isDark ? "light" : "dark"} />
+        <Stack screenOptions={screenOptions}>
+          <Stack.Screen name="(tabs)" options={TABS_OPTIONS} />
+          <Stack.Screen name="income-form" options={INCOME_FORM_OPTIONS} />
+          <Stack.Screen name="expense-form" options={EXPENSE_FORM_OPTIONS} />
+          <Stack.Screen name="pay-date-detail" options={PAY_DATE_DETAIL_OPTIONS} />
+          <Stack.Screen name="settings" options={settingsOptions} />
+        </Stack>
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
+});

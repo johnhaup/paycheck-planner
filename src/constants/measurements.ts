@@ -26,5 +26,6 @@ export const MEASUREMENTS = {
     h1: 28,
   },
   hitSlop: 12,
+  fabSize: 52,
   paddingHorizontal: 16,
 } as const;
