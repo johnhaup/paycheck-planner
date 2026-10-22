@@ -15,6 +15,10 @@
     "secondaryCategory": "PRODUCTIVITY"
   },
   "review": {
+    "firstName": "John",
+    "lastName": "Haupenthal",
+    "phone": "+1 949-391-8532",
+    "email": "haupenbusiness@gmail.com",
     "notes": "No account or sign-in is needed. All data is entered by the user and stored only on the device. To see a filled-in budget, add an income source on the Income tab and a bill on the Expenses tab; each upcoming paycheck then appears on the Paychecks tab."
   },
   "ageRating": {
