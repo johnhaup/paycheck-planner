@@ -11,6 +11,9 @@
     "primaryCategory": "FINANCE",
     "secondaryCategory": "PRODUCTIVITY"
   },
+  "review": {
+    "notes": "No account or sign-in is needed. All data is entered by the user and stored only on the device. To see a filled-in budget, add an income source on the Income tab and a bill on the Expenses tab; each upcoming paycheck then appears on the Paychecks tab."
+  },
   "ageRating": {
     "alcoholTobaccoOrDrugUseOrReferences": "NONE",
     "contests": "NONE",
