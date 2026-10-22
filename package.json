@@ -42,7 +42,6 @@
     "store:doctor": "expo-local-ship doctor",
     "store:create": "expo-local-ship create",
     "store:privacy": "expo-local-ship privacy",
-    "store:translate": "expo-local-ship translate",
     "store:metadata": "expo-local-ship metadata",
     "store:screenshots": "expo-local-ship screenshots",
     "store:screenshots:capture": "expo-local-ship screenshots capture",
