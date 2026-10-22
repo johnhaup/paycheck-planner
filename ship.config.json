@@ -14,6 +14,11 @@
     "primaryCategory": "FINANCE",
     "secondaryCategory": "PRODUCTIVITY"
   },
+  "translate": {
+    "keep": [
+      "Paycheck Planner"
+    ]
+  },
   "review": {
     "firstName": "John",
     "lastName": "Haupenthal",
