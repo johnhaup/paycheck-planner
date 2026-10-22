@@ -138,11 +138,21 @@ export default function PayDateDetailScreen() {
     [expenses, assignedExpenseIds, linkedExpenseIds]
   );
 
+  // One-time bills live on a single paycheck; they're moved from the expense form, not added twice
+  const scheduledElsewhereIds = useMemo(() => {
+    const oneTimeIds = new Set(expenses.filter((e) => !e.isRecurring).map((e) => e.id));
+    return new Set(
+      assignments
+        .filter((a) => oneTimeIds.has(a.expenseId) && !(a.payDate === payDate && a.employerId === sourceId))
+        .map((a) => a.expenseId)
+    );
+  }, [expenses, assignments, payDate, sourceId]);
+
   const unassignedExpenses = useMemo(
     () => expenses.filter((e) =>
-      !assignedExpenseIds.has(e.id) && !linkedExpenseIds.has(e.id)
+      !assignedExpenseIds.has(e.id) && !linkedExpenseIds.has(e.id) && !scheduledElsewhereIds.has(e.id)
     ),
-    [expenses, assignedExpenseIds, linkedExpenseIds]
+    [expenses, assignedExpenseIds, linkedExpenseIds, scheduledElsewhereIds]
   );
 
   const totalAssigned = useMemo(
