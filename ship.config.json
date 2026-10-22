@@ -1,0 +1,99 @@
+{
+  "locale": "en-US",
+  "listing": {
+    "name": "Paycheck Planner: Budget",
+    "subtitle": "Organize your money by payday",
+    "promotionalText": "See exactly what each paycheck has to cover and what is left after bills. Link recurring bills to the right payday and check them off as you pay.",
+    "description": "Paycheck Planner budgets the way you actually get paid: one paycheck at a time.\n\nAdd your income sources and bills, and every upcoming paycheck shows which bills it covers and how much is left once they're paid.\n\nPLAN EVERY PAYCHECK\n• See each upcoming paycheck with its bills and what's left\n• Browse month by month with a chart of what's left after bills\n• Check bills off as you pay them and track progress per paycheck\n\nFITS YOUR PAY SCHEDULE\n• Weekly, bi-weekly, semi-monthly (like the 15th and 30th), or monthly\n• For twice-a-month pay, shift weekend paydays to the Friday before\n• Track more than one income source\n\nBILLS THAT LAND IN THE RIGHT PLACE\n• Link a recurring bill to an income source so it's added automatically\n• Choose whether it comes out of every paycheck or just one paycheck a month\n• Add one-time expenses to a specific paycheck, and move them if plans change\n• Bill amount different this month? Change it for just that paycheck\n\nPAY IN ONE TAP\n• Save a payment link with each bill and open it right from your paycheck\n• Optionally mark a bill paid when you tap its link\n\nYOUR DATA STAYS ON YOUR PHONE\n• No account, no sign-up, no bank connection\n• Nothing is collected or shared; everything is stored on your device\n\nLight and dark mode, plus an option to show whole-dollar amounts.",
+    "keywords": "budget,bills,payday,expenses,income,salary,bill tracker,biweekly,pay schedule,money,due dates",
+    "releaseNotes": "First release.",
+    "copyright": "2026 John Haupenthal",
+    "primaryCategory": "FINANCE",
+    "secondaryCategory": "PRODUCTIVITY"
+  },
+  "ageRating": {
+    "alcoholTobaccoOrDrugUseOrReferences": "NONE",
+    "contests": "NONE",
+    "gamblingSimulated": "NONE",
+    "gunsOrOtherWeapons": "NONE",
+    "horrorOrFearThemes": "NONE",
+    "matureOrSuggestiveThemes": "NONE",
+    "medicalOrTreatmentInformation": "NONE",
+    "profanityOrCrudeHumor": "NONE",
+    "sexualContentGraphicAndNudity": "NONE",
+    "sexualContentOrNudity": "NONE",
+    "violenceCartoonOrFantasy": "NONE",
+    "violenceRealistic": "NONE",
+    "violenceRealisticProlongedGraphicOrSadistic": "NONE",
+    "advertising": false,
+    "ageAssurance": false,
+    "gambling": false,
+    "healthOrWellnessTopics": false,
+    "lootBox": false,
+    "messagingAndChat": false,
+    "parentalControls": false,
+    "unrestrictedWebAccess": false,
+    "userGeneratedContent": false
+  },
+  "privacy": [
+    {
+      "data_protections": [
+        "DATA_NOT_COLLECTED"
+      ]
+    }
+  ],
+  "screenshots": {
+    "simulator": "iPhone 17 Pro Max",
+    "flow": "ship/screenshots.yaml",
+    "dir": "ship/screenshots",
+    "bezel": "~/Resources/images/bezels/iphone15/iPhone 15 Pro Max/iPhone 15 Pro Max - Black Titanium - Portrait.png",
+    "poster": {
+      "raw": "paychecks",
+      "icon": "assets/icon.png",
+      "title": "Paycheck Planner",
+      "subtitle": "Plan bills around every payday"
+    },
+    "shots": [
+      {
+        "raw": "paychecks",
+        "title": [
+          "Know what’s left",
+          "after every payday"
+        ],
+        "subtitle": "Each paycheck, its bills, and what remains."
+      },
+      {
+        "raw": "expenses",
+        "title": [
+          "Bills land on",
+          "the right paycheck"
+        ],
+        "subtitle": "Link a bill once and it shows up on payday."
+      },
+      {
+        "raw": "amount",
+        "title": [
+          "Bill different",
+          "this month?"
+        ],
+        "subtitle": "Change it for just one paycheck."
+      },
+      {
+        "raw": "detail",
+        "title": [
+          "Plan any paycheck",
+          "in a tap"
+        ],
+        "subtitle": "Add bills, check them off, see what’s left."
+      },
+      {
+        "raw": "income",
+        "title": [
+          "Fits how",
+          "you get paid"
+        ],
+        "subtitle": "Weekly, bi-weekly, twice a month, or monthly."
+      }
+    ]
+  }
+}

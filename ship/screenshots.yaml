@@ -1,0 +1,47 @@
+# App Store screenshots. Run with: bun store:screenshots
+# Needs a build with EXPO_PUBLIC_STORE_DEMO=1 so paycheck-planner://demo loads sample data (pass --build once).
+appId: com.johnhaup.paycheckplanner
+---
+- launchApp:
+    clearState: true
+- openLink: paycheck-planner://demo
+- tapOn:
+    text: "Open"
+    optional: true
+- extendedWaitUntil:
+    visible: ".*Brightline Co\\..*"
+    timeout: 15000
+- waitForAnimationToEnd
+- takeScreenshot: paychecks
+
+- tapOn: "Expenses"
+- extendedWaitUntil:
+    visible: ".*Rent.*"
+    timeout: 5000
+- waitForAnimationToEnd
+- takeScreenshot: expenses
+
+- tapOn: "Income"
+- extendedWaitUntil:
+    visible: ".*Per month.*"
+    timeout: 5000
+- waitForAnimationToEnd
+- takeScreenshot: income
+
+- tapOn: "Paychecks"
+- scrollUntilVisible:
+    element: ".*Mesa Health.*"
+    centerElement: true
+- tapOn: ".*Mesa Health.*"
+- extendedWaitUntil:
+    visible: ".*Pay Date.*"
+    timeout: 5000
+- waitForAnimationToEnd
+- takeScreenshot: detail
+
+- tapOn: "Change Electric amount for this paycheck"
+- extendedWaitUntil:
+    visible: ".*paycheck only"
+    timeout: 5000
+- waitForAnimationToEnd
+- takeScreenshot: amount

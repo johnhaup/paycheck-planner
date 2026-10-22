@@ -27,6 +27,7 @@
     "zustand": "^5.0.15"
   },
   "devDependencies": {
+    "@johnhaup/expo-local-ship": "link:@johnhaup/expo-local-ship",
     "@types/react": "~19.2.4",
     "eslint": "^9.0.0",
     "eslint-config-expo": "^57.0.2",
@@ -37,7 +38,16 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "store:doctor": "expo-local-ship doctor",
+    "store:create": "expo-local-ship create",
+    "store:privacy": "expo-local-ship privacy",
+    "store:metadata": "expo-local-ship metadata",
+    "store:screenshots": "expo-local-ship screenshots",
+    "store:screenshots:capture": "expo-local-ship screenshots capture",
+    "store:screenshots:frame": "expo-local-ship screenshots frame",
+    "store:screenshots:upload": "expo-local-ship screenshots upload",
+    "store:review": "expo-local-ship review"
   },
   "private": true
 }
