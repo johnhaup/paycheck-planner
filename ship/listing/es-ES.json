@@ -4,5 +4,45 @@
   "promotionalText": "Descubre exactamente qué debe cubrir cada nómina y cuánto te queda tras pagar los recibos. Asigna los recibos fijos al día de cobro correcto y márcalos al pagarlos.",
   "description": "Paycheck Planner organiza tu presupuesto tal y como cobras: nómina a nómina.\n\nAñade tus fuentes de ingresos y tus recibos, y cada próxima nómina te mostrará qué recibos cubre y cuánto te queda después de pagarlos.\n\nPLANIFICA CADA NÓMINA\n• Consulta cada próxima nómina con sus recibos y lo que te queda\n• Avanza mes a mes con un gráfico de lo que queda tras los recibos\n• Marca los recibos a medida que los pagas y sigue el progreso de cada nómina\n\nSE ADAPTA A TU CALENDARIO DE COBRO\n• Semanal, cada dos semanas, dos veces al mes (por ejemplo, el 15 y el 30) o mensual\n• Si cobras dos veces al mes, adelanta al viernes anterior los cobros que caigan en fin de semana\n• Gestiona más de una fuente de ingresos\n\nRECIBOS EN SU SITIO\n• Vincula un recibo periódico a una fuente de ingresos para que se añada automáticamente\n• Elige si sale de cada nómina o solo de una nómina al mes\n• Añade gastos puntuales a una nómina concreta y muévelos si cambian tus planes\n• ¿El importe cambia este mes? Modifícalo solo para esa nómina\n\nPAGA CON UN TOQUE\n• Guarda un enlace de pago en cada recibo y ábrelo directamente desde tu nómina\n• Si quieres, marca el recibo como pagado al tocar su enlace\n\nTUS DATOS SE QUEDAN EN TU MÓVIL\n• Sin cuenta, sin registro, sin conexión con tu banco\n• No se recopila ni se comparte nada: todo se guarda en tu dispositivo\n\nModo claro y oscuro, y opción para mostrar importes sin céntimos.",
   "keywords": "nómina,recibos,facturas,gastos,ingresos,sueldo,salario,día de cobro,finanzas,ahorro,dinero,cuentas",
-  "releaseNotes": "Primera versión."
+  "releaseNotes": "Primera versión.",
+  "captions": {
+    "poster": {
+      "subtitle": "Tus recibos, nómina a nómina"
+    },
+    "paychecks": {
+      "title": [
+        "Lo que te queda",
+        "tras cada nómina"
+      ],
+      "subtitle": "Cada nómina, sus recibos y lo que sobra."
+    },
+    "expenses": {
+      "title": [
+        "Cada recibo en",
+        "su nómina"
+      ],
+      "subtitle": "Asígnalo una vez y aparece el día de cobro."
+    },
+    "amount": {
+      "title": [
+        "¿Recibo distinto",
+        "este mes?"
+      ],
+      "subtitle": "Cámbialo solo para una nómina."
+    },
+    "detail": {
+      "title": [
+        "Planifica tu nómina",
+        "en un toque"
+      ],
+      "subtitle": "Añade recibos, márcalos y mira lo que queda."
+    },
+    "income": {
+      "title": [
+        "Se adapta a",
+        "cómo cobras"
+      ],
+      "subtitle": "Semanal, cada 2 semanas, 2 veces al mes o mensual."
+    }
+  }
 }

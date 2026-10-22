@@ -4,5 +4,45 @@
   "promotionalText": "Zie precies wat elk salaris moet dekken en wat er na je rekeningen overblijft. Koppel vaste lasten aan de juiste betaaldag en vink ze af zodra je betaalt.",
   "description": "Paycheck Planner budgetteert zoals je echt betaald krijgt: salaris voor salaris.\n\nVoeg je inkomstenbronnen en rekeningen toe, en bij elke komende uitbetaling zie je welke rekeningen ervan betaald worden en hoeveel er daarna overblijft.\n\nPLAN ELKE UITBETALING\n• Zie elke komende uitbetaling met de bijbehorende rekeningen en wat er overblijft\n• Blader per maand, met een grafiek van wat er na je rekeningen overblijft\n• Vink rekeningen af zodra je ze betaalt en volg je voortgang per uitbetaling\n\nPAST BIJ JOUW BETAALSCHEMA\n• Wekelijks, tweewekelijks, twee keer per maand (bijv. de 15e en 30e) of maandelijks\n• Twee keer per maand betaald? Verschuif betaaldagen in het weekend naar de vrijdag ervoor\n• Houd meer dan één inkomstenbron bij\n\nREKENINGEN OP DE JUISTE PLEK\n• Koppel een vaste rekening aan een inkomstenbron, zodat hij automatisch wordt toegevoegd\n• Kies of hij van elke uitbetaling afgaat of van één uitbetaling per maand\n• Voeg eenmalige uitgaven toe aan een specifieke uitbetaling en verplaats ze als je plannen veranderen\n• Is het bedrag deze maand anders? Pas het aan voor alleen die uitbetaling\n\nBETALEN MET ÉÉN TIK\n• Bewaar bij elke rekening een betaallink en open die direct vanuit je uitbetaling\n• Markeer een rekening desgewenst als betaald zodra je op de link tikt\n\nJE GEGEVENS BLIJVEN OP JE TELEFOON\n• Geen account, geen registratie, geen bankkoppeling\n• Er wordt niets verzameld of gedeeld; alles staat op je apparaat\n\nLichte en donkere modus, plus een optie om bedragen zonder decimalen te tonen.",
   "keywords": "rekeningen,betaaldag,salaris,uitgaven,inkomen,vaste lasten,huishoudboekje,geld,loon,sparen,financiën",
-  "releaseNotes": "Eerste versie."
+  "releaseNotes": "Eerste versie.",
+  "captions": {
+    "poster": {
+      "subtitle": "Plan je rekeningen per betaaldag"
+    },
+    "paychecks": {
+      "title": [
+        "Weet wat je over",
+        "houdt na elk salaris"
+      ],
+      "subtitle": "Elk salaris, de rekeningen en wat overblijft."
+    },
+    "expenses": {
+      "title": [
+        "Rekeningen op het",
+        "juiste salaris"
+      ],
+      "subtitle": "Koppel een rekening één keer, klaar op betaaldag."
+    },
+    "amount": {
+      "title": [
+        "Rekening deze",
+        "maand anders?"
+      ],
+      "subtitle": "Pas hem aan voor één salaris."
+    },
+    "detail": {
+      "title": [
+        "Plan elk salaris",
+        "met één tik"
+      ],
+      "subtitle": "Voeg toe, vink af en zie wat overblijft."
+    },
+    "income": {
+      "title": [
+        "Past bij hoe",
+        "jij betaald krijgt"
+      ],
+      "subtitle": "Wekelijks, om de week, 2× per maand of maandelijks"
+    }
+  }
 }

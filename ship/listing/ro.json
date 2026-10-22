@@ -4,5 +4,45 @@
   "promotionalText": "Vezi exact ce trebuie să acopere fiecare salariu și ce rămâne după facturi. Leagă facturile recurente de ziua de salariu potrivită și bifează-le când le plătești.",
   "description": "Paycheck Planner îți face bugetul așa cum primești de fapt banii: câte un salariu pe rând.\n\nAdaugă sursele de venit și facturile, iar fiecare salariu care urmează îți arată ce facturi acoperă și cât rămâne după ce le plătești.\n\nPLANIFICĂ FIECARE SALARIU\n• Vezi fiecare salariu viitor cu facturile lui și ce rămâne\n• Răsfoiește lună de lună, cu un grafic al sumei rămase după facturi\n• Bifează facturile pe măsură ce le plătești și urmărește progresul pe fiecare salariu\n\nSE POTRIVEȘTE CU PROGRAMUL TĂU DE PLATĂ\n• Săptămânal, la două săptămâni, de două ori pe lună (de ex. pe 15 și pe 30) sau lunar\n• La plata de două ori pe lună, mută zilele de salariu din weekend în vinerea dinainte\n• Urmărește mai multe surse de venit\n\nFACTURI ACOLO UNDE TREBUIE\n• Leagă o factură recurentă de o sursă de venit ca să fie adăugată automat\n• Alege dacă se plătește din fiecare salariu sau doar dintr-unul pe lună\n• Adaugă cheltuieli unice la un anumit salariu și mută-le dacă se schimbă planurile\n• Altă sumă luna aceasta? Poți schimba suma doar pentru acel salariu\n\nPLĂTEȘTE CU O ATINGERE\n• Salvează un link de plată la fiecare factură și deschide-l direct din salariu\n• Opțional, factura e marcată ca plătită când atingi linkul\n\nDATELE TALE RĂMÂN PE TELEFON\n• Fără cont, fără înregistrare, fără conectare la bancă\n• Nimic nu este colectat sau partajat; totul este stocat pe dispozitivul tău\n\nMod luminos și întunecat, plus opțiunea de a afișa sume întregi, fără zecimale.",
   "keywords": "facturi,salariu,cheltuieli,venituri,zi de plată,bani,economii,scadențe,plăți,finanțe,utilități,lunar",
-  "releaseNotes": "Prima versiune."
+  "releaseNotes": "Prima versiune.",
+  "captions": {
+    "poster": {
+      "subtitle": "Facturi planificate pe fiecare salariu"
+    },
+    "paychecks": {
+      "title": [
+        "Știi cât rămâne",
+        "după fiecare salariu"
+      ],
+      "subtitle": "Fiecare salariu, facturile lui și ce rămâne."
+    },
+    "expenses": {
+      "title": [
+        "Facturile ajung",
+        "la salariul potrivit"
+      ],
+      "subtitle": "Leag-o o dată și apare în ziua de salariu."
+    },
+    "amount": {
+      "title": [
+        "Altă sumă",
+        "luna asta?"
+      ],
+      "subtitle": "Modific-o doar pentru un salariu."
+    },
+    "detail": {
+      "title": [
+        "Planifică un salariu",
+        "dintr-o atingere"
+      ],
+      "subtitle": "Adaugă facturi, bifează-le, vezi ce rămâne."
+    },
+    "income": {
+      "title": [
+        "Se adaptează",
+        "cum ești plătit"
+      ],
+      "subtitle": "Săptămânal, la 2 săptămâni, bilunar sau lunar."
+    }
+  }
 }

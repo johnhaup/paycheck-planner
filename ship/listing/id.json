@@ -4,5 +4,45 @@
   "promotionalText": "Lihat dengan jelas tagihan apa saja yang harus dibayar dari setiap gaji dan sisanya setelah tagihan lunas. Hubungkan tagihan rutin ke hari gajian yang tepat.",
   "description": "Paycheck Planner menyusun anggaran sesuai cara Anda benar-benar menerima gaji: satu gaji dalam satu waktu.\n\nTambahkan sumber pemasukan dan tagihan, lalu setiap gaji mendatang akan menampilkan tagihan yang ditanggungnya dan sisa uang setelah semuanya dibayar.\n\nRENCANAKAN SETIAP GAJI\n• Lihat setiap gaji mendatang beserta tagihan dan sisanya\n• Telusuri per bulan dengan grafik sisa uang setelah tagihan\n• Centang tagihan saat dibayar dan pantau progres tiap gaji\n\nSESUAI JADWAL GAJIAN ANDA\n• Mingguan, dua mingguan, dua kali sebulan (misalnya tanggal 15 dan 30), atau bulanan\n• Untuk gaji dua kali sebulan, majukan hari gajian di akhir pekan ke hari Jumat sebelumnya\n• Pantau lebih dari satu sumber pemasukan\n\nTAGIHAN MASUK DI TEMPAT YANG TEPAT\n• Hubungkan tagihan rutin ke sumber pemasukan agar ditambahkan otomatis\n• Pilih apakah dibayar dari setiap gaji atau hanya satu gaji per bulan\n• Tambahkan pengeluaran sekali bayar ke gaji tertentu, dan pindahkan jika rencana berubah\n• Jumlah tagihan bulan ini berbeda? Ubah khusus untuk gaji tersebut\n\nBAYAR DENGAN SEKALI KETUK\n• Simpan tautan pembayaran di setiap tagihan dan buka langsung dari gaji Anda\n• Opsional: tandai tagihan lunas saat Anda mengetuk tautannya\n\nDATA ANDA TETAP DI PONSEL ANDA\n• Tanpa akun, tanpa pendaftaran, tanpa koneksi bank\n• Tidak ada yang dikumpulkan atau dibagikan; semuanya disimpan di perangkat Anda\n\nMode terang dan gelap, plus opsi menampilkan nominal tanpa desimal.",
   "keywords": "keuangan,tagihan,gajian,gaji,pengeluaran,pemasukan,catatan keuangan,budget,uang,jatuh tempo,hemat",
-  "releaseNotes": "Rilis pertama."
+  "releaseNotes": "Rilis pertama.",
+  "captions": {
+    "poster": {
+      "subtitle": "Rencanakan tagihan di setiap hari gajian"
+    },
+    "paychecks": {
+      "title": [
+        "Tahu sisa uang",
+        "setiap gajian"
+      ],
+      "subtitle": "Setiap gaji, tagihannya, dan sisanya."
+    },
+    "expenses": {
+      "title": [
+        "Tagihan masuk ke",
+        "gaji yang tepat"
+      ],
+      "subtitle": "Hubungkan sekali, muncul otomatis saat gajian."
+    },
+    "amount": {
+      "title": [
+        "Tagihan beda",
+        "bulan ini?"
+      ],
+      "subtitle": "Ubah hanya untuk satu gaji."
+    },
+    "detail": {
+      "title": [
+        "Rencanakan gaji",
+        "cukup sekali ketuk"
+      ],
+      "subtitle": "Tambah tagihan, centang, lihat sisanya."
+    },
+    "income": {
+      "title": [
+        "Sesuai cara",
+        "Anda digaji"
+      ],
+      "subtitle": "Mingguan, dua mingguan, dua kali sebulan, bulanan."
+    }
+  }
 }

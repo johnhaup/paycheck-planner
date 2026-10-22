@@ -4,5 +4,45 @@
   "promotionalText": "Her maaşın neleri karşılaması gerektiğini ve faturalardan sonra ne kaldığını net gör. Düzenli faturaları doğru maaş gününe bağla, ödedikçe işaretle.",
   "description": "Paycheck Planner, bütçeni paranı gerçekten aldığın şekilde planlar: her seferinde bir maaş.\n\nGelir kaynaklarını ve faturalarını ekle; yaklaşan her maaş hangi faturaları karşıladığını ve bunlar ödendikten sonra ne kadar kaldığını gösterir.\n\nHER MAAŞI PLANLA\n• Yaklaşan her maaşı faturaları ve kalan tutarla birlikte gör\n• Faturalardan sonra kalanı gösteren grafikle ay ay göz at\n• Faturaları ödedikçe işaretle ve her maaştaki ilerlemeyi takip et\n\nÖDEME TAKVİMİNE UYUM SAĞLAR\n• Haftalık, iki haftada bir, ayda iki kez (ör. ayın 15'i ve 30'u) veya aylık\n• Ayda iki kez ödemede, hafta sonuna denk gelen maaş günlerini önceki cumaya kaydır\n• Birden fazla gelir kaynağını takip et\n\nFATURALAR DOĞRU YERDE\n• Düzenli bir faturayı bir gelir kaynağına bağla, otomatik olarak eklensin\n• Her maaştan mı yoksa ayda yalnızca bir maaştan mı ödeneceğini seç\n• Tek seferlik harcamaları belirli bir maaşa ekle, planlar değişirse taşı\n• Bu ay tutar farklı mı? Yalnızca o maaş için değiştir\n\nTEK DOKUNUŞLA ÖDE\n• Her faturaya bir ödeme bağlantısı kaydet ve doğrudan maaştan aç\n• İstersen bağlantıya dokunduğunda fatura ödendi olarak işaretlensin\n\nVERİLERİN TELEFONUNDA KALIR\n• Hesap yok, kayıt yok, banka bağlantısı yok\n• Hiçbir şey toplanmaz veya paylaşılmaz; her şey cihazında saklanır\n\nAçık ve koyu mod, ayrıca tutarları kuruşsuz, tam sayı olarak gösterme seçeneği.",
   "keywords": "fatura,maaş,harcama,gider,gelir,maaş günü,para,birikim,ödeme,takip,kira,finans,tasarruf,borç,hesap",
-  "releaseNotes": "İlk sürüm."
+  "releaseNotes": "İlk sürüm.",
+  "captions": {
+    "poster": {
+      "subtitle": "Faturaları her maaş gününe göre planla"
+    },
+    "paychecks": {
+      "title": [
+        "Her maaştan sonra",
+        "ne kaldığını bil"
+      ],
+      "subtitle": "Her maaş, faturaları ve kalan tutar."
+    },
+    "expenses": {
+      "title": [
+        "Faturalar doğru",
+        "maaşa düşer"
+      ],
+      "subtitle": "Faturayı bir kez bağla, maaş gününde görünsün."
+    },
+    "amount": {
+      "title": [
+        "Bu ay fatura",
+        "farklı mı?"
+      ],
+      "subtitle": "Yalnızca tek bir maaş için değiştir."
+    },
+    "detail": {
+      "title": [
+        "Her maaşı",
+        "tek dokunuşla planla"
+      ],
+      "subtitle": "Fatura ekle, işaretle, kalanı gör."
+    },
+    "income": {
+      "title": [
+        "Maaş düzenine",
+        "tam uyum"
+      ],
+      "subtitle": "Haftalık, iki haftada bir, ayda iki kez veya aylık."
+    }
+  }
 }

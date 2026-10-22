@@ -4,5 +4,45 @@
   "promotionalText": "Näe tarkalleen, mitä kunkin palkan pitää kattaa ja paljonko jää laskujen jälkeen. Liitä toistuvat laskut oikeaan palkkapäivään ja kuittaa ne maksetuiksi.",
   "description": "Paycheck Planner budjetoi niin kuin oikeasti saat palkkaa: yksi palkka kerrallaan.\n\nLisää tulolähteesi ja laskusi, niin jokainen tuleva palkka näyttää, mitkä laskut se kattaa ja paljonko rahaa jää niiden jälkeen.\n\nSUUNNITTELE JOKAINEN PALKKA\n• Näe jokainen tuleva palkka laskuineen ja paljonko jää käteen\n• Selaa kuukausi kerrallaan ja näe kaaviosta, paljonko laskujen jälkeen jää\n• Kuittaa laskut maksetuiksi ja seuraa edistymistä palkka kerrallaan\n\nSOPII PALKKARYTMIISI\n• Viikoittain, joka toinen viikko, kahdesti kuussa (esim. 15. ja 30. päivä) tai kuukausittain\n• Palkka kahdesti kuussa? Siirrä viikonlopulle osuvat palkkapäivät edeltävälle perjantaille\n• Seuraa useampaa tulolähdettä\n\nLASKUT OIKEAAN PAIKKAAN\n• Liitä toistuva lasku tulolähteeseen, niin se lisätään automaattisesti\n• Valitse, maksetaanko se jokaisesta palkasta vai vain yhdestä palkasta kuussa\n• Lisää kertamenot tiettyyn palkkaan ja siirrä niitä, jos suunnitelmat muuttuvat\n• Onko summa tässä kuussa eri? Muuta sitä vain kyseiselle palkalle\n\nMAKSA YHDELLÄ NAPAUTUKSELLA\n• Tallenna jokaiseen laskuun maksulinkki ja avaa se suoraan palkan näkymästä\n• Halutessasi lasku merkitään maksetuksi, kun napautat linkkiä\n\nTIETOSI PYSYVÄT PUHELIMESSASI\n• Ei tiliä, ei rekisteröitymistä, ei pankkiyhteyttä\n• Mitään ei kerätä eikä jaeta; kaikki tallennetaan laitteellesi\n\nVaalea ja tumma tila sekä mahdollisuus näyttää summat ilman desimaaleja.",
   "keywords": "laskut,palkkapäivä,palkka,menot,tulot,talous,raha,eräpäivä,säästäminen,kotitalous,taloudenhallinta",
-  "releaseNotes": "Ensimmäinen julkaisu."
+  "releaseNotes": "Ensimmäinen julkaisu.",
+  "captions": {
+    "poster": {
+      "subtitle": "Suunnittele laskut palkkapäivittäin"
+    },
+    "paychecks": {
+      "title": [
+        "Tiedä, mitä jää",
+        "jokaisesta palkasta"
+      ],
+      "subtitle": "Jokainen palkka, sen laskut ja mitä jää käteen."
+    },
+    "expenses": {
+      "title": [
+        "Laskut oikealle",
+        "palkalle"
+      ],
+      "subtitle": "Liitä lasku kerran, ja se näkyy palkkapäivänä."
+    },
+    "amount": {
+      "title": [
+        "Eri summa",
+        "tässä kuussa?"
+      ],
+      "subtitle": "Muuta sitä vain yhdelle palkalle."
+    },
+    "detail": {
+      "title": [
+        "Suunnittele palkka",
+        "hetkessä"
+      ],
+      "subtitle": "Lisää laskut, kuittaa ja näe, mitä jää."
+    },
+    "income": {
+      "title": [
+        "Sopii sinun",
+        "palkkarytmiisi"
+      ],
+      "subtitle": "Viikoittain, joka 2. viikko, 2×/kk tai kuukausittain"
+    }
+  }
 }

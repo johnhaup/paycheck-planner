@@ -4,5 +4,45 @@
   "promotionalText": "Lihat bil yang perlu dibayar daripada setiap gaji dan baki selepas bil dijelaskan. Pautkan bil berulang kepada hari gaji yang betul dan tandakan apabila dibayar.",
   "description": "Paycheck Planner merancang bajet mengikut cara anda sebenarnya menerima gaji: satu gaji pada satu masa.\n\nTambah sumber pendapatan dan bil anda, dan setiap gaji akan datang menunjukkan bil yang perlu ditanggung serta baki selepas semuanya dibayar.\n\nRANCANG SETIAP GAJI\n• Lihat setiap gaji akan datang bersama bil dan bakinya\n• Semak bulan demi bulan dengan carta baki selepas bil\n• Tandakan bil apabila dibayar dan jejak kemajuan setiap gaji\n\nSESUAI DENGAN JADUAL GAJI ANDA\n• Mingguan, dua minggu sekali, dua kali sebulan (seperti 15hb dan 30hb), atau bulanan\n• Untuk gaji dua kali sebulan, alihkan hari gaji pada hujung minggu ke hari Jumaat sebelumnya\n• Jejak lebih daripada satu sumber pendapatan\n\nBIL MASUK KE TEMPAT YANG BETUL\n• Pautkan bil berulang kepada sumber pendapatan supaya ditambah secara automatik\n• Pilih sama ada dibayar daripada setiap gaji atau hanya satu gaji sebulan\n• Tambah perbelanjaan sekali sahaja pada gaji tertentu, dan alihkannya jika rancangan berubah\n• Jumlah bil berbeza bulan ini? Ubah untuk gaji itu sahaja\n\nBAYAR DENGAN SEKALI KETIK\n• Simpan pautan pembayaran bagi setiap bil dan bukanya terus dari gaji anda\n• Pilihan untuk tandakan bil sebagai dibayar apabila anda mengetik pautannya\n\nDATA ANDA KEKAL DI TELEFON ANDA\n• Tiada akaun, tiada pendaftaran, tiada sambungan bank\n• Tiada apa-apa dikumpul atau dikongsi; semuanya disimpan pada peranti anda\n\nMod cerah dan gelap, serta pilihan untuk memaparkan amaun tanpa perpuluhan.",
   "keywords": "kewangan,bil,hari gaji,gaji,perbelanjaan,pendapatan,belanjawan,budget,wang,tarikh akhir,simpanan",
-  "releaseNotes": "Keluaran pertama."
+  "releaseNotes": "Keluaran pertama.",
+  "captions": {
+    "poster": {
+      "subtitle": "Rancang bil mengikut setiap hari gaji"
+    },
+    "paychecks": {
+      "title": [
+        "Tahu baki wang",
+        "selepas setiap gaji"
+      ],
+      "subtitle": "Setiap gaji, bilnya dan baki yang tinggal."
+    },
+    "expenses": {
+      "title": [
+        "Bil masuk ke",
+        "gaji yang betul"
+      ],
+      "subtitle": "Pautkan sekali, terus muncul pada hari gaji."
+    },
+    "amount": {
+      "title": [
+        "Bil berbeza",
+        "bulan ini?"
+      ],
+      "subtitle": "Ubah untuk satu gaji sahaja."
+    },
+    "detail": {
+      "title": [
+        "Rancang gaji",
+        "dengan satu ketikan"
+      ],
+      "subtitle": "Tambah bil, tandakan, lihat bakinya."
+    },
+    "income": {
+      "title": [
+        "Ikut cara",
+        "anda dibayar"
+      ],
+      "subtitle": "Mingguan, dua minggu sekali, dua kali sebulan, bulanan."
+    }
+  }
 }

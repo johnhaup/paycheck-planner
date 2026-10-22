@@ -4,5 +4,45 @@
   "promotionalText": "Ve exactamente qué tiene que cubrir cada pago y cuánto te queda después de tus recibos. Asigna tus recibos fijos al día de pago correcto y márcalos cuando los pagues.",
   "description": "Paycheck Planner arma tu presupuesto como realmente te pagan: un pago a la vez.\n\nAgrega tus fuentes de ingresos y tus recibos, y cada próximo pago te muestra qué recibos cubre y cuánto te queda después de pagarlos.\n\nPLANEA CADA PAGO\n• Ve cada próximo pago con sus recibos y lo que te queda\n• Revisa mes por mes con una gráfica de lo que te queda después de tus recibos\n• Marca tus recibos conforme los pagas y sigue el avance de cada pago\n\nSE AJUSTA A TU CALENDARIO DE PAGOS\n• Semanal, catorcenal, quincenal (como el 15 y el 30) o mensual\n• Si te pagan quincenal, recorre al viernes anterior los pagos que caigan en fin de semana\n• Lleva el control de más de una fuente de ingresos\n\nRECIBOS EN EL LUGAR CORRECTO\n• Vincula un recibo recurrente a una fuente de ingresos para que se agregue automáticamente\n• Elige si sale de cada pago o solo de un pago al mes\n• Agrega gastos únicos a un pago específico y muévelos si cambian tus planes\n• ¿El recibo cambió este mes? Ajústalo solo para ese pago\n\nPAGA CON UN TOQUE\n• Guarda un enlace de pago en cada recibo y ábrelo directo desde tu pago\n• Si quieres, marca el recibo como pagado al tocar su enlace\n\nTUS DATOS SE QUEDAN EN TU CELULAR\n• Sin cuenta, sin registro, sin conectar tu banco\n• No se recopila ni se comparte nada: todo se guarda en tu dispositivo\n\nModo claro y oscuro, y opción para mostrar montos sin centavos.",
   "keywords": "quincena,recibos,cuentas,gastos,ingresos,sueldo,salario,día de pago,finanzas,ahorro,dinero,nómina",
-  "releaseNotes": "Primera versión."
+  "releaseNotes": "Primera versión.",
+  "captions": {
+    "poster": {
+      "subtitle": "Tus recibos, quincena a quincena"
+    },
+    "paychecks": {
+      "title": [
+        "Lo que te queda",
+        "cada quincena"
+      ],
+      "subtitle": "Cada pago, sus recibos y lo que te sobra."
+    },
+    "expenses": {
+      "title": [
+        "Cada recibo en",
+        "su quincena"
+      ],
+      "subtitle": "Asígnalo una vez y aparece el día de pago."
+    },
+    "amount": {
+      "title": [
+        "¿Recibo distinto",
+        "este mes?"
+      ],
+      "subtitle": "Cámbialo solo para un pago."
+    },
+    "detail": {
+      "title": [
+        "Planea tu quincena",
+        "en un toque"
+      ],
+      "subtitle": "Agrega recibos, márcalos y ve lo que queda."
+    },
+    "income": {
+      "title": [
+        "Se ajusta a",
+        "cómo te pagan"
+      ],
+      "subtitle": "Semanal, catorcenal, quincenal o mensual."
+    }
+  }
 }

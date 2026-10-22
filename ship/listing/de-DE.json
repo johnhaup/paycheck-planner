@@ -4,5 +4,45 @@
   "promotionalText": "Sieh genau, was jedes Gehalt abdecken muss und was nach den Rechnungen übrig bleibt. Ordne Fixkosten dem richtigen Zahltag zu und hake sie beim Bezahlen ab.",
   "description": "Paycheck Planner plant dein Budget so, wie du tatsächlich bezahlt wirst: Gehalt für Gehalt.\n\nFüge deine Einkommensquellen und Rechnungen hinzu – bei jedem kommenden Gehalt siehst du, welche Rechnungen es abdeckt und wie viel danach übrig bleibt.\n\nJEDES GEHALT PLANEN\n• Jedes kommende Gehalt mit seinen Rechnungen und dem Rest auf einen Blick\n• Monat für Monat blättern, mit einem Diagramm deines Rests nach den Rechnungen\n• Rechnungen beim Bezahlen abhaken und den Fortschritt pro Gehalt verfolgen\n\nPASST ZU DEINEM ZAHLUNGSRHYTHMUS\n• Wöchentlich, alle zwei Wochen, zweimal im Monat (z. B. am 15. und 30.) oder monatlich\n• Bei Zahlung zweimal im Monat Zahltage am Wochenende auf den Freitag davor verschieben\n• Mehrere Einkommensquellen verwalten\n\nRECHNUNGEN AM RICHTIGEN PLATZ\n• Wiederkehrende Rechnungen mit einer Einkommensquelle verknüpfen, damit sie automatisch hinzugefügt werden\n• Festlegen, ob sie von jedem Gehalt oder nur von einem Gehalt im Monat abgehen\n• Einmalige Ausgaben einem bestimmten Gehalt zuordnen und bei Bedarf verschieben\n• Rechnung diesen Monat anders? Betrag nur für dieses Gehalt ändern\n\nMIT EINEM TIPP BEZAHLEN\n• Zu jeder Rechnung einen Zahlungslink speichern und direkt vom Gehalt aus öffnen\n• Optional: Rechnung beim Tippen auf den Link als bezahlt markieren\n\nDEINE DATEN BLEIBEN AUF DEINEM HANDY\n• Kein Konto, keine Registrierung, keine Bankverbindung\n• Nichts wird erfasst oder geteilt – alles wird auf deinem Gerät gespeichert\n\nHeller und dunkler Modus sowie eine Option, Beträge ohne Cent anzuzeigen.",
   "keywords": "Haushaltsbuch,Rechnungen,Zahltag,Gehalt,Lohn,Ausgaben,Einnahmen,Fixkosten,Finanzen,Geld,Sparen,Konto",
-  "releaseNotes": "Erste Version."
+  "releaseNotes": "Erste Version.",
+  "captions": {
+    "poster": {
+      "subtitle": "Rechnungen nach Zahltag planen"
+    },
+    "paychecks": {
+      "title": [
+        "Wissen, was bleibt",
+        "nach jedem Zahltag"
+      ],
+      "subtitle": "Jedes Gehalt, seine Rechnungen und der Rest."
+    },
+    "expenses": {
+      "title": [
+        "Rechnungen landen",
+        "aufs richtige Gehalt"
+      ],
+      "subtitle": "Einmal zuordnen – erscheint am Zahltag."
+    },
+    "amount": {
+      "title": [
+        "Rechnung diesen",
+        "Monat anders?"
+      ],
+      "subtitle": "Nur für ein einziges Gehalt ändern."
+    },
+    "detail": {
+      "title": [
+        "Jedes Gehalt planen",
+        "mit einem Tipp"
+      ],
+      "subtitle": "Rechnungen hinzufügen, abhaken, Rest sehen."
+    },
+    "income": {
+      "title": [
+        "Passt zu deinem",
+        "Zahlungsrhythmus"
+      ],
+      "subtitle": "Wöchentlich, 14-tägig, 2× im Monat, monatlich."
+    }
+  }
 }

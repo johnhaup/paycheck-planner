@@ -4,5 +4,45 @@
   "promotionalText": "Uvidíte přesně, co musí každá výplata pokrýt a kolik zbude po zaplacení plateb. Přiřaďte pravidelné platby ke správné výplatě a odškrtávejte je, jak platíte.",
   "description": "Paycheck Planner plánuje rozpočet tak, jak skutečně dostáváte peníze: výplatu po výplatě.\n\nPřidejte zdroje příjmů a platby a u každé nadcházející výplaty uvidíte, které platby pokryje a kolik vám po jejich zaplacení zbude.\n\nNAPLÁNUJTE KAŽDOU VÝPLATU\n• Prohlédněte si každou nadcházející výplatu s jejími platbami a zůstatkem\n• Procházejte měsíc po měsíci s grafem toho, co zbude po platbách\n• Odškrtávejte zaplacené platby a sledujte postup u každé výplaty\n\nPODLE TOHO, KDY DOSTÁVÁTE VÝPLATU\n• Týdně, jednou za dva týdny, dvakrát měsíčně (např. 15. a 30.) nebo měsíčně\n• Výplata dvakrát měsíčně? Posuňte výplaty připadající na víkend na předchozí pátek\n• Sledujte více zdrojů příjmů\n\nPLATBY NA SPRÁVNÉM MÍSTĚ\n• Propojte pravidelnou platbu se zdrojem příjmu a přidá se automaticky\n• Zvolte, zda se platí z každé výplaty, nebo jen z jedné výplaty měsíčně\n• Přidávejte jednorázové výdaje ke konkrétní výplatě a přesouvejte je, když se plány změní\n• Je částka tento měsíc jiná? Změňte ji jen u této výplaty\n\nZAPLAŤTE JEDNÍM KLEPNUTÍM\n• Uložte si ke každé platbě platební odkaz a otevřete ho přímo z výplaty\n• Volitelně se platba po klepnutí na odkaz označí jako zaplacená\n\nVAŠE DATA ZŮSTÁVAJÍ V TELEFONU\n• Žádný účet, žádná registrace, žádné propojení s bankou\n• Nic se neshromažďuje ani nesdílí; vše je uloženo ve vašem zařízení\n\nSvětlý a tmavý režim a možnost zobrazit částky bez desetinných míst.",
   "keywords": "výplata,účty,platby,výdaje,příjmy,finance,peníze,mzda,výplatní den,splatnost,úspory,domácnost,inkaso",
-  "releaseNotes": "První vydání."
+  "releaseNotes": "První vydání.",
+  "captions": {
+    "poster": {
+      "subtitle": "Plánujte platby podle výplaty"
+    },
+    "paychecks": {
+      "title": [
+        "Víte, kolik zbude",
+        "po každé výplatě"
+      ],
+      "subtitle": "Každá výplata, její platby a co zbude."
+    },
+    "expenses": {
+      "title": [
+        "Platby na",
+        "správnou výplatu"
+      ],
+      "subtitle": "Přiřaďte platbu jednou a ukáže se v den výplaty."
+    },
+    "amount": {
+      "title": [
+        "Jiná částka",
+        "tento měsíc?"
+      ],
+      "subtitle": "Upravte ji jen pro jednu výplatu."
+    },
+    "detail": {
+      "title": [
+        "Naplánujte výplatu",
+        "jedním klepnutím"
+      ],
+      "subtitle": "Přidávejte, odškrtávejte a sledujte, co zbude."
+    },
+    "income": {
+      "title": [
+        "Přizpůsobí se",
+        "vašim výplatám"
+      ],
+      "subtitle": "Týdně, po 14 dnech, 2× měsíčně nebo měsíčně"
+    }
+  }
 }
