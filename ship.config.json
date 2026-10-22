@@ -50,6 +50,7 @@
     "unrestrictedWebAccess": false,
     "userGeneratedContent": false
   },
+  "usesThirdPartyContent": false,
   "privacy": [
     {
       "data_protections": [
