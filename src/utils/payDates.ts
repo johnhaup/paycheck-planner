@@ -9,12 +9,14 @@ import {
   getDay,
   subDays,
 } from "date-fns";
-import type { Expense, IncomeSource } from "@/types";
+import type { Expense, IncomeSource, PaycheckSlot } from "@/types";
 
 export interface Paycheck {
   date: Date;
   /** 0-based position of this paycheck within its month (see getMonthlySlotCount) */
   ordinal: number;
+  /** True for the final paycheck of its month, including an extra 3rd/5th one */
+  isLast: boolean;
 }
 
 /** Parse a YYYY-MM-DD string as local midnight (not UTC). */
@@ -46,7 +48,7 @@ export function getPaychecks(
         const nominal = setDate(current, Math.min(day, daysInMonth(current)));
         const adjusted = source.adjustToWorkday ? shiftToFriday(nominal) : nominal;
         if ((isEqual(adjusted, start) || isBefore(start, adjusted)) && paychecks.length < count) {
-          paychecks.push({ date: adjusted, ordinal });
+          paychecks.push({ date: adjusted, ordinal, isLast: ordinal === days.length - 1 });
         }
       }
       current = addMonths(current, 1);
@@ -61,7 +63,7 @@ export function getPaychecks(
     while (paychecks.length < count) {
       const date = setDate(month, Math.min(anchor.getDate(), daysInMonth(month)));
       if (!isBefore(date, start)) {
-        paychecks.push({ date, ordinal: 0 });
+        paychecks.push({ date, ordinal: 0, isLast: true });
       }
       month = addMonths(month, 1);
     }
@@ -78,26 +80,33 @@ export function getPaychecks(
   }
 
   while (paychecks.length < count) {
+    const next = addWeeks(current, weekStep);
     paychecks.push({
       date: current,
       ordinal: Math.floor((current.getDate() - 1) / (7 * weekStep)),
+      isLast: next.getMonth() !== current.getMonth(),
     });
-    current = addWeeks(current, weekStep);
+    current = next;
   }
 
   return paychecks;
 }
 
-/** Find the ordinal of a specific pay date (YYYY-MM-DD) for an income source. */
-export function getPaycheckOrdinal(source: IncomeSource, payDate: string): number | undefined {
+/** Find the paycheck on a specific pay date (YYYY-MM-DD) for an income source. */
+export function getPaycheck(source: IncomeSource, payDate: string): Paycheck | undefined {
   const target = parseLocalDate(payDate);
-  return getPaychecks(source, subDays(target, 7), 4).find((p) => isEqual(p.date, target))
-    ?.ordinal;
+  return getPaychecks(source, subDays(target, 7), 4).find((p) => isEqual(p.date, target));
+}
+
+/** Weekly and bi-weekly months sometimes hold an extra paycheck. */
+export function hasExtraPaychecks(source: IncomeSource): boolean {
+  return source.payFrequency === "weekly" || source.payFrequency === "biweekly";
 }
 
 /**
  * Number of paychecks every month is guaranteed to have. Extra paychecks in
- * longer months (a 3rd biweekly or 5th weekly check) aren't selectable.
+ * longer months (a 3rd biweekly or 5th weekly check) are only reachable via
+ * the "last" slot.
  */
 export function getMonthlySlotCount(source: IncomeSource): number {
   switch (source.payFrequency) {
@@ -111,31 +120,36 @@ export function getMonthlySlotCount(source: IncomeSource): number {
   }
 }
 
-/** "15th" for semi-monthly slots, else "2nd paycheck" ("2nd" when `short`). */
-export function getPaycheckSlotLabel(source: IncomeSource, ordinal: number, short = false): string {
+/** "15th" for semi-monthly slots, else "2nd paycheck" ("2nd" when `short`); "Last paycheck" ("Last"). */
+export function getPaycheckSlotLabel(source: IncomeSource, slot: PaycheckSlot, short = false): string {
+  if (slot === "last") return short ? "Last" : "Last paycheck";
   if (source.payFrequency === "semi-monthly") {
-    return formatOrdinal(getSemiMonthlyDays(source)[ordinal] ?? ordinal + 1);
+    return formatOrdinal(getSemiMonthlyDays(source)[slot] ?? slot + 1);
   }
-  return short ? formatOrdinal(ordinal + 1) : `${formatOrdinal(ordinal + 1)} paycheck`;
+  return short ? formatOrdinal(slot + 1) : `${formatOrdinal(slot + 1)} paycheck`;
 }
 
 /** The monthly paycheck slot a linked expense targets, or undefined if it lands on every paycheck. */
-export function getLinkedOrdinal(expense: Expense, source: IncomeSource): number | undefined {
+export function getLinkedSlot(expense: Expense, source: IncomeSource): PaycheckSlot | undefined {
   const slotCount = getMonthlySlotCount(source);
   if (expense.linkSchedule !== "monthly" || slotCount < 2) return undefined;
+  const slot = expense.paycheckOrdinal ?? 0;
+  if (slot === "last") return slot;
   // Clamp in case the source's frequency changed to one with fewer paychecks
-  return Math.min(expense.paycheckOrdinal ?? 0, slotCount - 1);
+  return Math.min(slot, slotCount - 1);
 }
 
 export function isExpenseLinkedToPaycheck(
   expense: Expense,
   sourceId: string,
-  ordinal: number | undefined,
+  paycheck: Paycheck | undefined,
   source: IncomeSource | undefined
 ): boolean {
   if (expense.incomeSourceId !== sourceId || !source) return false;
-  const target = getLinkedOrdinal(expense, source);
-  return target === undefined || target === ordinal;
+  const target = getLinkedSlot(expense, source);
+  if (target === undefined) return true;
+  if (!paycheck) return false;
+  return target === "last" ? paycheck.isLast : target === paycheck.ordinal;
 }
 
 /** Average paychecks per month, for monthly totals. */

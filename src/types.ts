@@ -26,11 +26,14 @@ export interface Expense {
   incomeSourceId?: string;
   /** Which linked paychecks it lands on; defaults to every paycheck */
   linkSchedule?: LinkSchedule;
-  /** For monthly links: 0-based paycheck within the month */
-  paycheckOrdinal?: number;
+  /** For monthly links: which paycheck within the month */
+  paycheckOrdinal?: PaycheckSlot;
 }
 
 export type LinkSchedule = "every-paycheck" | "monthly";
+
+/** 0-based paycheck within the month, or the month's final paycheck (whatever its position) */
+export type PaycheckSlot = number | "last";
 
 export interface ExpenseAssignment {
   id: string;

@@ -15,9 +15,9 @@ import { AppButton } from "@/components/AppButton";
 import { AppChip } from "@/components/AppChip";
 import { AppSegmentedControl, type SegmentOption } from "@/components/AppSegmentedControl";
 import { PaycheckPicker, type PaycheckChoice } from "@/components/expenseForm/PaycheckPicker";
-import { getMonthlySlotCount, getPaycheckSlotLabel } from "@/utils/payDates";
+import { getMonthlySlotCount, getPaycheckSlotLabel, hasExtraPaychecks } from "@/utils/payDates";
 import { normalizeLink } from "@/utils/links";
-import type { LinkSchedule } from "@/types";
+import type { LinkSchedule, PaycheckSlot } from "@/types";
 
 const SCHEDULE_OPTIONS: SegmentOption<LinkSchedule>[] = [
   { value: "every-paycheck", label: "Every paycheck" },
@@ -51,7 +51,7 @@ export default function ExpenseFormScreen() {
   const [linkSchedule, setLinkSchedule] = useState<LinkSchedule>(
     existing?.linkSchedule ?? "every-paycheck"
   );
-  const [paycheckOrdinal, setPaycheckOrdinal] = useState(existing?.paycheckOrdinal ?? 0);
+  const [paycheckSlot, setPaycheckSlot] = useState<PaycheckSlot>(existing?.paycheckOrdinal ?? 0);
   const [paycheck, setPaycheck] = useState<PaycheckChoice | undefined>(() => {
     const assignment = existing ? assignments.find((a) => a.expenseId === existing.id) : undefined;
     return assignment ? { payDate: assignment.payDate, sourceId: assignment.employerId } : undefined;
@@ -70,7 +70,8 @@ export default function ExpenseFormScreen() {
   );
 
   // Switching to a source with fewer paychecks per month clamps the choice
-  const effectiveOrdinal = Math.min(paycheckOrdinal, Math.max(slotCount - 1, 0));
+  const effectiveSlot: PaycheckSlot =
+    paycheckSlot === "last" ? "last" : Math.min(paycheckSlot, Math.max(slotCount - 1, 0));
   const isMonthly = slotCount > 1 && linkSchedule === "monthly";
 
   const handleSave = useCallback(() => {
@@ -91,7 +92,7 @@ export default function ExpenseFormScreen() {
       isRecurring: !isOneTime,
       incomeSourceId: selectedSourceId,
       linkSchedule: isMonthly ? linkSchedule : undefined,
-      paycheckOrdinal: isMonthly ? effectiveOrdinal : undefined,
+      paycheckOrdinal: isMonthly ? effectiveSlot : undefined,
     };
 
     if (existing) {
@@ -111,7 +112,7 @@ export default function ExpenseFormScreen() {
     isOneTime,
     isMonthly,
     linkSchedule,
-    effectiveOrdinal,
+    effectiveSlot,
     paycheck,
     existing,
     addExpense,
@@ -124,16 +125,27 @@ export default function ExpenseFormScreen() {
     setSelectedSourceId(sourceId);
   }, []);
 
-  const ordinalOptions = useMemo(
-    () =>
-      selectedSource
-        ? Array.from({ length: slotCount }, (_, ordinal) => ({
-            value: ordinal,
-            label: getPaycheckSlotLabel(selectedSource, ordinal, true),
-          }))
-        : [],
-    [selectedSource, slotCount]
-  );
+  const slotOptions = useMemo<SegmentOption<PaycheckSlot>[]>(() => {
+    if (!selectedSource) return [];
+    const options: SegmentOption<PaycheckSlot>[] = Array.from(
+      { length: slotCount },
+      (_, ordinal) => ({
+        value: ordinal,
+        label: getPaycheckSlotLabel(selectedSource, ordinal, true),
+      })
+    );
+    if (hasExtraPaychecks(selectedSource)) {
+      options.push({ value: "last", label: getPaycheckSlotLabel(selectedSource, "last", true) });
+    }
+    return options;
+  }, [selectedSource, slotCount]);
+
+  const slotHint = useMemo(() => {
+    if (!selectedSource || !hasExtraPaychecks(selectedSource)) return undefined;
+    return effectiveSlot === "last"
+      ? "Lands on the final paycheck of each month, including months with an extra one."
+      : "Extra paychecks in longer months are skipped. Choose Last to always use the final one.";
+  }, [selectedSource, effectiveSlot]);
 
   const scrollStyle = useMemo(
     () => ({ backgroundColor: colors.modalBackground }),
@@ -221,13 +233,13 @@ export default function ExpenseFormScreen() {
         <>
           <AppText variant="section" style={styles.label}>Which Paycheck</AppText>
           <AppSegmentedControl
-            options={ordinalOptions}
-            value={effectiveOrdinal}
-            onChange={setPaycheckOrdinal}
+            options={slotOptions}
+            value={effectiveSlot}
+            onChange={setPaycheckSlot}
           />
-          {selectedSource?.payFrequency !== "semi-monthly" ? (
+          {slotHint ? (
             <AppText variant="caption" style={styles.hint}>
-              Extra paychecks in longer months are skipped.
+              {slotHint}
             </AppText>
           ) : null}
         </>

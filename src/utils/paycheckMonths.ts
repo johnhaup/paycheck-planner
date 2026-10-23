@@ -16,7 +16,8 @@ export function buildMonthGroups(
   const allPaychecks: PaycheckItem[] = [];
 
   for (const source of incomeSources) {
-    for (const { date, ordinal } of getPaychecks(source, now, PAY_DATE_COUNT)) {
+    for (const paycheck of getPaychecks(source, now, PAY_DATE_COUNT)) {
+      const { date } = paycheck;
       const payDate = formatPayDate(date);
       const matched = assignments.filter(
         (a) => a.payDate === payDate && a.employerId === source.id
@@ -36,7 +37,7 @@ export function buildMonthGroups(
       for (const expense of expenses) {
         if (
           !assignedIds.has(expense.id) &&
-          isExpenseLinkedToPaycheck(expense, source.id, ordinal, source)
+          isExpenseLinkedToPaycheck(expense, source.id, paycheck, source)
         ) {
           items.push({
             expenseId: expense.id,

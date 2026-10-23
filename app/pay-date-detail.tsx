@@ -11,7 +11,7 @@ import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { PayDateSummary } from "@/components/payDateDetail/PayDateSummary";
 import { PayDateExpenseRow } from "@/components/payDateDetail/PayDateExpenseRow";
 import { OneTimeExpenseForm } from "@/components/payDateDetail/OneTimeExpenseForm";
-import { getPaycheckOrdinal, isExpenseLinkedToPaycheck } from "@/utils/payDates";
+import { getPaycheck, isExpenseLinkedToPaycheck } from "@/utils/payDates";
 import type { Expense } from "@/types";
 
 type ListItem =
@@ -115,8 +115,8 @@ export default function PayDateDetailScreen() {
     [autoMarkPaid, assignedExpenseIds, togglePaid, assignExpense, payDate, sourceId]
   );
 
-  const paycheckOrdinal = useMemo(
-    () => (incomeSource ? getPaycheckOrdinal(incomeSource, payDate) : undefined),
+  const paycheck = useMemo(
+    () => (incomeSource ? getPaycheck(incomeSource, payDate) : undefined),
     [incomeSource, payDate]
   );
 
@@ -125,13 +125,13 @@ export default function PayDateDetailScreen() {
     for (const e of expenses) {
       if (
         !assignedExpenseIds.has(e.id) &&
-        isExpenseLinkedToPaycheck(e, sourceId, paycheckOrdinal, incomeSource)
+        isExpenseLinkedToPaycheck(e, sourceId, paycheck, incomeSource)
       ) {
         ids.add(e.id);
       }
     }
     return ids;
-  }, [expenses, sourceId, paycheckOrdinal, incomeSource, assignedExpenseIds]);
+  }, [expenses, sourceId, paycheck, incomeSource, assignedExpenseIds]);
 
   const assignedExpenses = useMemo(
     () => expenses.filter((e) => assignedExpenseIds.has(e.id) || linkedExpenseIds.has(e.id)),

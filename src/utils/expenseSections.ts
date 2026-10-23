@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import {
-  getLinkedOrdinal,
+  getLinkedSlot,
   getPaycheckSlotLabel,
   getPaychecksPerMonth,
   parseLocalDate,
@@ -32,7 +32,7 @@ interface Summary {
 /** What a recurring expense costs per month, given how often it lands. */
 function monthlyCost(expense: Expense, source: IncomeSource | undefined): number {
   if (!source) return expense.amount;
-  return getLinkedOrdinal(expense, source) === undefined
+  return getLinkedSlot(expense, source) === undefined
     ? expense.amount * getPaychecksPerMonth(source)
     : expense.amount;
 }
@@ -68,15 +68,15 @@ export function buildExpenseSections(
         title: source.name,
         total: `${formatMoney(linked.reduce((sum, e) => sum + monthlyCost(e, source), 0))}/mo`,
         data: linked.map((expense) => {
-          const ordinal = getLinkedOrdinal(expense, source);
+          const slot = getLinkedSlot(expense, source);
           return {
             expense,
             tintIndex,
             meta:
-              ordinal === undefined
+              slot === undefined
                 ? "Every paycheck"
-                : `${getPaycheckSlotLabel(source, ordinal)} each month`,
-            cadence: ordinal === undefined ? "per check" : "monthly",
+                : `${getPaycheckSlotLabel(source, slot)} each month`,
+            cadence: slot === undefined ? "per check" : "monthly",
           };
         }),
       });
