@@ -1,20 +1,22 @@
 import { useCallback, useMemo, useState } from "react";
 import { View, StyleSheet, Alert } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { format } from "date-fns";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
+import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppInput } from "@/components/AppInput";
 import { AppButton } from "@/components/AppButton";
 import { parseLocalDate } from "@/utils/payDates";
+import { formatShortDate } from "@/utils/dates";
 
 export default function ExpenseAmountScreen() {
   const router = useRouter();
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
+  const t = useT();
   const { expenseId, payDate, sourceId } = useLocalSearchParams<{
     expenseId: string;
     payDate: string;
@@ -35,14 +37,14 @@ export default function ExpenseAmountScreen() {
   const handleSave = useCallback(() => {
     const parsed = parseFloat(amount);
     if (isNaN(parsed) || parsed < 0) {
-      Alert.alert("Error", "Enter a valid amount.");
+      Alert.alert(t("common.error"), t("expenses.form.invalidAmount"));
       return;
     }
     // Linked bills have no assignment until something on this paycheck is changed
     const id = assignment?.id || assignExpense(expenseId, payDate, sourceId);
     setAssignmentAmount(id, parsed === expense?.amount ? undefined : parsed);
     router.back();
-  }, [amount, assignment, assignExpense, expenseId, payDate, sourceId, setAssignmentAmount, expense, router]);
+  }, [amount, assignment, assignExpense, expenseId, payDate, sourceId, setAssignmentAmount, expense, router, t]);
 
   const handleReset = useCallback(() => {
     if (assignment) {
@@ -56,13 +58,15 @@ export default function ExpenseAmountScreen() {
     [colors]
   );
 
-  const subtitle = payDate ? `${format(parseLocalDate(payDate), "EEE, MMM d")} paycheck only` : "";
+  const subtitle = payDate
+    ? t("amountSheet.subtitle", { date: formatShortDate(parseLocalDate(payDate)) })
+    : "";
   const isCustom = assignment?.amount !== undefined;
 
   return (
     <View style={containerStyle}>
       <View style={styles.heading}>
-        <AppText variant="title">{expense?.payee ?? "Expense"}</AppText>
+        <AppText variant="title">{expense?.payee ?? t("screens.expense")}</AppText>
         <AppText variant="meta">{subtitle}</AppText>
       </View>
       <AppInput
@@ -73,12 +77,12 @@ export default function ExpenseAmountScreen() {
         selectTextOnFocus
       />
       <AppText variant="caption" style={styles.hint}>
-        Default is {formatMoney(expense?.amount ?? 0)}. Other paychecks keep the default.
+        {t("amountSheet.hint", { amount: formatMoney(expense?.amount ?? 0) })}
       </AppText>
       <View style={styles.actions}>
-        <AppButton title="Save" onPress={handleSave} />
+        <AppButton title={t("common.save")} onPress={handleSave} />
         {isCustom ? (
-          <AppButton title="Use default amount" variant="outline" onPress={handleReset} />
+          <AppButton title={t("amountSheet.useDefault")} variant="outline" onPress={handleReset} />
         ) : null}
       </View>
     </View>

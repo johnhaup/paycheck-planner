@@ -5,6 +5,7 @@ import ReanimatedSwipeable, {
 } from "react-native-gesture-handler/ReanimatedSwipeable";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
+import { useT } from "@/hooks/useLocale";
 
 const ACTION_WIDTH = 72;
 
@@ -18,6 +19,7 @@ interface Props {
 
 export function AppSwipeToDelete({ children, confirmTitle, confirmMessage, onConfirm, style }: Props) {
   const colors = useColors();
+  const t = useT();
   const swipeableRef = useRef<SwipeableMethods>(null);
 
   const handleCancel = useCallback(() => {
@@ -29,12 +31,12 @@ export function AppSwipeToDelete({ children, confirmTitle, confirmMessage, onCon
       confirmTitle,
       confirmMessage,
       [
-        { text: "Cancel", style: "cancel", onPress: handleCancel },
-        { text: "Delete", style: "destructive", onPress: onConfirm },
+        { text: t("common.cancel"), style: "cancel", onPress: handleCancel },
+        { text: t("common.delete"), style: "destructive", onPress: onConfirm },
       ],
       { cancelable: true, onDismiss: handleCancel }
     );
-  }, [confirmTitle, confirmMessage, onConfirm, handleCancel]);
+  }, [confirmTitle, confirmMessage, onConfirm, handleCancel, t]);
 
   const actionStyle = useMemo(
     () => [styles.action, { backgroundColor: colors.destructive }],
@@ -47,12 +49,12 @@ export function AppSwipeToDelete({ children, confirmTitle, confirmMessage, onCon
         style={actionStyle}
         onPress={handleDeletePress}
         accessibilityRole="button"
-        accessibilityLabel="Delete"
+        accessibilityLabel={t("common.delete")}
       >
         <Ionicons name="trash-outline" size={22} color={colors.onPrimary} />
       </Pressable>
     ),
-    [actionStyle, handleDeletePress, colors]
+    [actionStyle, handleDeletePress, colors, t]
   );
 
   return (

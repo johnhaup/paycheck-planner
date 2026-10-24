@@ -4,6 +4,7 @@ import { Pressable } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
+import { useT } from "@/hooks/useLocale";
 import { useGroupedRowStyles } from "@/hooks/useGroupedRowStyles";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
@@ -38,6 +39,7 @@ export function ExpenseRow({
   const colors = useColors();
   const groupedStyles = useGroupedRowStyles(isFirst, isLast);
   const { split } = useMoneyFormat();
+  const t = useT();
   const { whole, cents } = split(expense.amount);
 
   const handlePress = useCallback(() => {
@@ -56,8 +58,8 @@ export function ExpenseRow({
 
   return (
     <AppSwipeToDelete
-      confirmTitle="Delete Expense"
-      confirmMessage={`Delete "${expense.payee}" and all its assignments?`}
+      confirmTitle={t("expenses.deleteTitle")}
+      confirmMessage={t("expenses.deleteMessage", { payee: expense.payee })}
       onConfirm={handleDelete}
       style={groupedStyles.container}
     >
@@ -73,7 +75,7 @@ export function ExpenseRow({
                 onPress={handleOpenLink}
                 hitSlop={MEASUREMENTS.hitSlop}
                 accessibilityRole="link"
-                accessibilityLabel={`Open payment link for ${expense.payee}`}
+                accessibilityLabel={t("expenses.openLink", { payee: expense.payee })}
               >
                 <Ionicons name="open-outline" size={15} color={colors.textMuted} />
               </Pressable>

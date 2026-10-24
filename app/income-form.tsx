@@ -8,6 +8,7 @@ import {
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
+import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppInput } from "@/components/AppInput";
@@ -18,16 +19,10 @@ import { AppToggle } from "@/components/AppToggle";
 import { formatPayDate, parseLocalDate } from "@/utils/payDates";
 import type { PayFrequency } from "@/types";
 
-const FREQUENCIES: { value: PayFrequency; label: string }[] = [
-  { value: "weekly", label: "Weekly" },
-  { value: "biweekly", label: "Bi-weekly" },
-  { value: "semi-monthly", label: "Semi-monthly" },
-  { value: "monthly", label: "Monthly" },
-];
-
 export default function IncomeFormScreen() {
   const router = useRouter();
   const colors = useColors();
+  const t = useT();
   const { id } = useLocalSearchParams<{ id?: string }>();
   const incomeSources = useStore((s) => s.incomeSources);
   const addIncomeSource = useStore((s) => s.addIncomeSource);
@@ -60,12 +55,12 @@ export default function IncomeFormScreen() {
 
   const handleSave = useCallback(() => {
     if (!name.trim()) {
-      Alert.alert("Error", "Name is required.");
+      Alert.alert(t("common.error"), t("income.form.nameRequired"));
       return;
     }
     const amount = parseFloat(payAmount);
     if (isNaN(amount) || amount <= 0) {
-      Alert.alert("Error", "Enter a valid pay amount.");
+      Alert.alert(t("common.error"), t("income.form.invalidAmount"));
       return;
     }
     const day1 = Number(semiDay1);
@@ -75,7 +70,7 @@ export default function IncomeFormScreen() {
       frequency === "semi-monthly" &&
       !semiMonthlyDays.every((d) => Number.isInteger(d) && d >= 1 && d <= 31)
     ) {
-      Alert.alert("Error", "Pay days must be between 1 and 31.");
+      Alert.alert(t("common.error"), t("income.form.payDaysRange"));
       return;
     }
 
@@ -108,7 +103,18 @@ export default function IncomeFormScreen() {
     addIncomeSource,
     updateIncomeSource,
     router,
+    t,
   ]);
+
+  const frequencies = useMemo<{ value: PayFrequency; label: string }[]>(
+    () => [
+      { value: "weekly", label: t("income.frequency.weekly") },
+      { value: "biweekly", label: t("income.frequency.biweekly") },
+      { value: "semi-monthly", label: t("income.frequency.semiMonthly") },
+      { value: "monthly", label: t("income.frequency.monthly") },
+    ],
+    [t]
+  );
 
   const scrollStyle = useMemo(
     () => ({ backgroundColor: colors.modalBackground }),
@@ -121,24 +127,24 @@ export default function IncomeFormScreen() {
       contentContainerStyle={styles.content}
       keyboardShouldPersistTaps="handled"
     >
-      <AppText variant="section" style={styles.label}>Name</AppText>
+      <AppText variant="section" style={styles.label}>{t("income.form.name")}</AppText>
       <AppInput
         value={name}
         onChangeText={setName}
-        placeholder="e.g. Acme Corp"
+        placeholder={t("income.form.namePlaceholder")}
       />
 
-      <AppText variant="section" style={styles.label}>Pay Amount (per check)</AppText>
+      <AppText variant="section" style={styles.label}>{t("income.form.payAmount")}</AppText>
       <AppInput
         value={payAmount}
         onChangeText={setPayAmount}
-        placeholder="e.g. 2500.00"
+        placeholder={t("income.form.payAmountPlaceholder")}
         keyboardType="decimal-pad"
       />
 
-      <AppText variant="section" style={styles.label}>Pay Frequency</AppText>
+      <AppText variant="section" style={styles.label}>{t("income.form.payFrequency")}</AppText>
       <View style={styles.chipRow}>
-        {FREQUENCIES.map((f) => (
+        {frequencies.map((f) => (
           <AppChip
             key={f.value}
             label={f.label}
@@ -151,7 +157,7 @@ export default function IncomeFormScreen() {
 
       {frequency === "semi-monthly" ? (
         <>
-          <AppText variant="section" style={styles.label}>Pay Days of Month</AppText>
+          <AppText variant="section" style={styles.label}>{t("income.form.payDays")}</AppText>
           <View style={styles.semiRow}>
             <AppInput
               style={styles.semiInput}
@@ -160,7 +166,7 @@ export default function IncomeFormScreen() {
               placeholder="1"
               keyboardType="number-pad"
             />
-            <AppText variant="meta">and</AppText>
+            <AppText variant="meta">{t("common.and")}</AppText>
             <AppInput
               style={styles.semiInput}
               value={semiDay2}
@@ -170,26 +176,26 @@ export default function IncomeFormScreen() {
             />
           </View>
           <AppText variant="caption" style={styles.hint}>
-            Use 31 for last day of month (auto-adjusts for shorter months)
+            {t("income.form.payDaysHint")}
           </AppText>
 
           <View style={styles.toggleRow}>
-            <AppText variant="body">Adjust to workday</AppText>
+            <AppText variant="body">{t("income.form.adjustToWorkday")}</AppText>
             <AppToggle value={adjustToWorkday} onValueChange={setAdjustToWorkday} />
           </View>
           <AppText variant="caption" style={styles.toggleHint}>
-            If a pay date falls on a weekend, it shifts to the preceding Friday.
+            {t("income.form.adjustHint")}
           </AppText>
         </>
       ) : (
         <>
-          <AppText variant="section" style={styles.label}>First Pay Date</AppText>
+          <AppText variant="section" style={styles.label}>{t("income.form.firstPayDate")}</AppText>
           <AppDatePicker value={firstPayDate} onChange={setFirstPayDate} />
         </>
       )}
 
       <AppButton
-        title={`${existing ? "Update" : "Add"} Income Source`}
+        title={existing ? t("income.form.updateButton") : t("income.form.addButton")}
         onPress={handleSave}
         style={styles.saveButton}
       />

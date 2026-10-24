@@ -1,10 +1,10 @@
 import { useCallback, useMemo } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
-import { format } from "date-fns";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
+import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppCard } from "@/components/AppCard";
@@ -12,6 +12,7 @@ import { AppFab } from "@/components/AppFab";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { IncomeSourceRow } from "@/components/income/IncomeSourceRow";
 import { getPaychecks, getPaychecksPerMonth } from "@/utils/payDates";
+import { formatMonthDay } from "@/utils/dates";
 import type { IncomeSource } from "@/types";
 
 function keyExtractor(item: IncomeSource) {
@@ -21,7 +22,8 @@ function keyExtractor(item: IncomeSource) {
 export default function IncomeScreen() {
   const router = useRouter();
   const colors = useColors();
-  const { format: formatMoney } = useMoneyFormat();
+  const { whole: formatWholeMoney } = useMoneyFormat();
+  const t = useT();
   const incomeSources = useStore((s) => s.incomeSources);
   const deleteIncomeSource = useStore((s) => s.deleteIncomeSource);
 
@@ -59,37 +61,39 @@ export default function IncomeScreen() {
     const nextDates = incomeSources.map((s) => getPaychecks(s, now, 1)[0].date);
     const next = nextDates.sort((a, b) => a.getTime() - b.getTime())[0];
     return {
-      perMonth: formatMoney(Math.round(perMonth)).replace(/\.00$/, ""),
-      nextPayday: next ? format(next, "MMM d") : "—",
+      perMonth: formatWholeMoney(perMonth),
+      nextPayday: next ? formatMonthDay(next) : "—",
     };
-  }, [incomeSources, formatMoney]);
+    // t changes with the language, which changes the date format
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [incomeSources, formatWholeMoney, t]);
 
   const listHeader = useMemo(
     () => (
       <View>
         <View style={styles.tiles}>
           <AppCard style={styles.tile}>
-            <AppText variant="meta">Per month</AppText>
+            <AppText variant="meta">{t("income.perMonth")}</AppText>
             <AppText variant="title">{summary.perMonth}</AppText>
           </AppCard>
           <AppCard style={styles.tile}>
-            <AppText variant="meta">Next payday</AppText>
+            <AppText variant="meta">{t("income.nextPayday")}</AppText>
             <AppText variant="title">{summary.nextPayday}</AppText>
           </AppCard>
         </View>
-        <AppSectionHeader title="Sources" />
+        <AppSectionHeader title={t("income.sources")} />
       </View>
     ),
-    [summary]
+    [summary, t]
   );
 
   const listFooter = useMemo(
     () => (
       <AppText variant="caption" style={styles.hint}>
-        Swipe left on a source to delete it.
+        {t("income.swipeHint")}
       </AppText>
     ),
-    []
+    [t]
   );
 
   const containerStyle = useMemo(
@@ -101,10 +105,8 @@ export default function IncomeScreen() {
     <View style={containerStyle}>
       {incomeSources.length === 0 ? (
         <View style={styles.empty}>
-          <AppText variant="title" center>No income yet</AppText>
-          <AppText variant="meta" center>
-            Add your paychecks with the + button to start planning.
-          </AppText>
+          <AppText variant="title" center>{t("income.emptyTitle")}</AppText>
+          <AppText variant="meta" center>{t("income.emptyBody")}</AppText>
         </View>
       ) : (
         <FlatList
@@ -117,7 +119,7 @@ export default function IncomeScreen() {
           contentContainerStyle={styles.listContent}
         />
       )}
-      <AppFab accessibilityLabel="Add income source" onPress={handleAdd} />
+      <AppFab accessibilityLabel={t("income.addSource")} onPress={handleAdd} />
     </View>
   );
 }

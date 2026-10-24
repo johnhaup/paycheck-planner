@@ -32,6 +32,13 @@ export interface Expense {
 
 export type LinkSchedule = "every-paycheck" | "monthly";
 
+/** A one-off pay amount for a single paycheck, replacing the source's usual amount */
+export interface PaycheckOverride {
+  sourceId: string;
+  payDate: string;
+  payAmount: number;
+}
+
 /** 0-based paycheck within the month, or the month's final paycheck (whatever its position) */
 export type PaycheckSlot = number | "last";
 

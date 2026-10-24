@@ -6,6 +6,7 @@ import { useStore } from "@/store";
 import { useThemeStore } from "@/stores/themeStore";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
+import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
@@ -28,9 +29,11 @@ export default function PaychecksScreen() {
   const router = useRouter();
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
+  const t = useT();
   const incomeSources = useStore((s) => s.incomeSources);
   const expenses = useStore((s) => s.expenses);
   const assignments = useStore((s) => s.assignments);
+  const paycheckOverrides = useStore((s) => s.paycheckOverrides);
   const assignExpense = useStore((s) => s.assignExpense);
   const togglePaid = useStore((s) => s.togglePaid);
   const autoMarkPaid = useThemeStore((s) => s.autoMarkPaidOnLinkTap);
@@ -78,6 +81,16 @@ export default function PaychecksScreen() {
     [router]
   );
 
+  const handleEditPayAmount = useCallback(
+    (payDate: string, sourceId: string) => {
+      router.push({
+        pathname: "/paycheck-amount",
+        params: { payDate, sourceId },
+      });
+    },
+    [router]
+  );
+
   const handleGoToToday = useCallback(() => {
     setSelectedMonthKey(getCurrentMonthKey());
   }, []);
@@ -88,12 +101,12 @@ export default function PaychecksScreen() {
         onPress={handleGoToToday}
         hitSlop={MEASUREMENTS.hitSlop}
         accessibilityRole="button"
-        accessibilityLabel="Go to this month"
+        accessibilityLabel={t("paychecks.goToThisMonth")}
       >
-        <AppText variant="bodyStrong" color="primaryText">Today</AppText>
+        <AppText variant="bodyStrong" color="primaryText">{t("paychecks.today")}</AppText>
       </Pressable>
     ),
-    [handleGoToToday]
+    [handleGoToToday, t]
   );
 
   const renderPaycheck = useCallback(
@@ -104,14 +117,17 @@ export default function PaychecksScreen() {
         onTogglePaid={handleTogglePaid}
         onLinkTap={handleLinkTap}
         onEditAmount={handleEditAmount}
+        onEditPayAmount={handleEditPayAmount}
       />
     ),
-    [handlePressPaycheck, handleTogglePaid, handleLinkTap, handleEditAmount]
+    [handlePressPaycheck, handleTogglePaid, handleLinkTap, handleEditAmount, handleEditPayAmount]
   );
 
   const months = useMemo(
-    () => buildMonthGroups(incomeSources, expenses, assignments, new Date()),
-    [incomeSources, expenses, assignments]
+    () => buildMonthGroups(incomeSources, expenses, assignments, paycheckOverrides, new Date()),
+    // t changes with the language, which changes the month labels
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [incomeSources, expenses, assignments, paycheckOverrides, t]
   );
 
   const selectedMonth = useMemo(
@@ -134,10 +150,13 @@ export default function PaychecksScreen() {
     () =>
       selectedMonth ? (
         <View>
-          <AppText variant="meta">{selectedMonth.longLabel} · left after bills</AppText>
+          <AppText variant="meta">{t("paychecks.leftAfterBills", { month: selectedMonth.longLabel })}</AppText>
           <AppHeroAmount amount={selectedMonth.remaining} />
           <AppText variant="meta" style={styles.heroMeta}>
-            {formatMoney(selectedMonth.income)} in · {formatMoney(selectedMonth.assigned)} assigned
+            {t("paychecks.heroMeta", {
+              income: formatMoney(selectedMonth.income),
+              assigned: formatMoney(selectedMonth.assigned),
+            })}
           </AppText>
           <View style={styles.chart}>
             <MonthBarChart
@@ -147,12 +166,12 @@ export default function PaychecksScreen() {
             />
           </View>
           <AppSectionHeader
-            title={`${selectedMonth.longLabel} paychecks`}
+            title={t("paychecks.monthPaychecks", { month: selectedMonth.longLabel })}
             trailing={String(selectedMonth.paychecks.length)}
           />
         </View>
       ) : null,
-    [selectedMonth, months, formatMoney]
+    [selectedMonth, months, formatMoney, t]
   );
 
   const containerStyle = useMemo(
@@ -167,10 +186,8 @@ export default function PaychecksScreen() {
       <Stack.Screen options={screenOptions} />
       {incomeSources.length === 0 ? (
         <View style={styles.empty}>
-          <AppText variant="title" center>No income sources yet</AppText>
-          <AppText variant="meta" center>
-            Add one in the Income tab to see your upcoming paychecks.
-          </AppText>
+          <AppText variant="title" center>{t("paychecks.emptyTitle")}</AppText>
+          <AppText variant="meta" center>{t("paychecks.emptyBody")}</AppText>
         </View>
       ) : (
         <FlatList

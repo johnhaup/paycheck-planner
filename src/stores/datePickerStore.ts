@@ -1,7 +1,10 @@
 import { create } from "zustand";
 
+export type DatePickerMode = "date" | "time";
+
 interface DatePickerRequest {
   value: Date;
+  mode: DatePickerMode;
   onChange: (date: Date) => void;
 }
 

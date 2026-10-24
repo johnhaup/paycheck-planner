@@ -3,12 +3,15 @@ import {
   addMonths,
   setDate,
   startOfDay,
+  isAfter,
   isBefore,
   isEqual,
   format,
   getDay,
   subDays,
 } from "date-fns";
+import { formatOrdinal, t } from "@/localization/i18n";
+import { formatWeekday } from "@/utils/dates";
 import type { Expense, IncomeSource, PaycheckSlot } from "@/types";
 
 export interface Paycheck {
@@ -25,13 +28,24 @@ export function parseLocalDate(dateStr: string): Date {
   return new Date(y, m - 1, d);
 }
 
+/** Upcoming paychecks for an income source, starting on or after `from`. */
+export function getPaychecks(source: IncomeSource, from: Date, count: number): Paycheck[] {
+  return generatePaychecks(source, from, (_date, taken) => taken < count);
+}
+
+/** Every paycheck for an income source from `from` through `until`, inclusive. */
+export function getPaychecksThrough(source: IncomeSource, from: Date, until: Date): Paycheck[] {
+  return generatePaychecks(source, from, (date) => !isAfter(date, until));
+}
+
 /**
- * Generate upcoming paychecks for an income source within a date range.
+ * Walk pay dates forward from `from`, keeping each one while `accept` returns
+ * true for it and the number of paychecks already taken.
  */
-export function getPaychecks(
+function generatePaychecks(
   source: IncomeSource,
   from: Date,
-  count: number
+  accept: (date: Date, taken: number) => boolean
 ): Paycheck[] {
   const paychecks: Paycheck[] = [];
   const anchor = startOfDay(parseLocalDate(source.firstPayDate));
@@ -41,33 +55,32 @@ export function getPaychecks(
     const days = getSemiMonthlyDays(source);
     let current = startOfDay(new Date(start.getFullYear(), start.getMonth(), 1));
 
-    while (paychecks.length < count) {
+    while (true) {
       // Ordinal follows the scheduled day, so a weekend shift into the previous
       // month doesn't change which "slot" the paycheck fills.
       for (const [ordinal, day] of days.entries()) {
         const nominal = setDate(current, Math.min(day, daysInMonth(current)));
         const adjusted = source.adjustToWorkday ? shiftToFriday(nominal) : nominal;
-        if ((isEqual(adjusted, start) || isBefore(start, adjusted)) && paychecks.length < count) {
-          paychecks.push({ date: adjusted, ordinal, isLast: ordinal === days.length - 1 });
-        }
+        if (isBefore(adjusted, start)) continue;
+        if (!accept(adjusted, paychecks.length)) return paychecks;
+        paychecks.push({ date: adjusted, ordinal, isLast: ordinal === days.length - 1 });
       }
       current = addMonths(current, 1);
     }
-    return paychecks;
   }
 
   if (source.payFrequency === "monthly") {
     // Clamp per month so an anchor on the 31st pays on the last day of shorter
     // months instead of overflowing into the next one.
     let month = new Date(start.getFullYear(), start.getMonth(), 1);
-    while (paychecks.length < count) {
+    while (true) {
       const date = setDate(month, Math.min(anchor.getDate(), daysInMonth(month)));
       if (!isBefore(date, start)) {
+        if (!accept(date, paychecks.length)) return paychecks;
         paychecks.push({ date, ordinal: 0, isLast: true });
       }
       month = addMonths(month, 1);
     }
-    return paychecks;
   }
 
   // weekly or biweekly
@@ -79,7 +92,7 @@ export function getPaychecks(
     current = addWeeks(current, weekStep);
   }
 
-  while (paychecks.length < count) {
+  while (accept(current, paychecks.length)) {
     const next = addWeeks(current, weekStep);
     paychecks.push({
       date: current,
@@ -122,11 +135,12 @@ export function getMonthlySlotCount(source: IncomeSource): number {
 
 /** "15th" for semi-monthly slots, else "2nd paycheck" ("2nd" when `short`); "Last paycheck" ("Last"). */
 export function getPaycheckSlotLabel(source: IncomeSource, slot: PaycheckSlot, short = false): string {
-  if (slot === "last") return short ? "Last" : "Last paycheck";
+  if (slot === "last") return short ? t("expenses.slot.lastShort") : t("expenses.slot.last");
   if (source.payFrequency === "semi-monthly") {
     return formatOrdinal(getSemiMonthlyDays(source)[slot] ?? slot + 1);
   }
-  return short ? formatOrdinal(slot + 1) : `${formatOrdinal(slot + 1)} paycheck`;
+  const ordinal = formatOrdinal(slot + 1);
+  return short ? ordinal : t("expenses.slot.ordinalPaycheck", { ordinal });
 }
 
 /** The monthly paycheck slot a linked expense targets, or undefined if it lands on every paycheck. */
@@ -171,35 +185,23 @@ export function describePaySchedule(source: IncomeSource): string {
   const anchor = parseLocalDate(source.firstPayDate);
   switch (source.payFrequency) {
     case "weekly":
-      return `Weekly · ${format(anchor, "EEEE")}s`;
+      return t("income.schedule.weekly", { weekday: formatWeekday(anchor) });
     case "biweekly":
-      return `Bi-weekly · ${format(anchor, "EEEE")}s`;
+      return t("income.schedule.biweekly", { weekday: formatWeekday(anchor) });
     case "semi-monthly": {
       const [first, second] = getSemiMonthlyDays(source);
-      return `Semi-monthly · ${formatOrdinal(first)} & ${formatOrdinal(second)}`;
+      return t("income.schedule.semiMonthly", {
+        first: formatOrdinal(first),
+        second: formatOrdinal(second),
+      });
     }
     case "monthly":
-      return `Monthly · ${formatOrdinal(anchor.getDate())}`;
+      return t("income.schedule.monthly", { day: formatOrdinal(anchor.getDate()) });
   }
 }
 
 function getSemiMonthlyDays(source: IncomeSource): number[] {
   return [...(source.semiMonthlyDays ?? [1, 15])].sort((a, b) => a - b);
-}
-
-function formatOrdinal(n: number): string {
-  const mod100 = n % 100;
-  if (mod100 >= 11 && mod100 <= 13) return `${n}th`;
-  switch (n % 10) {
-    case 1:
-      return `${n}st`;
-    case 2:
-      return `${n}nd`;
-    case 3:
-      return `${n}rd`;
-    default:
-      return `${n}th`;
-  }
 }
 
 /** If the date falls on Saturday (6) or Sunday (0), shift to the preceding Friday. */

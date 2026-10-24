@@ -8,6 +8,7 @@ import {
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
+import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppInput } from "@/components/AppInput";
@@ -19,14 +20,10 @@ import { getMonthlySlotCount, getPaycheckSlotLabel, hasExtraPaychecks } from "@/
 import { normalizeLink } from "@/utils/links";
 import type { LinkSchedule, PaycheckSlot } from "@/types";
 
-const SCHEDULE_OPTIONS: SegmentOption<LinkSchedule>[] = [
-  { value: "every-paycheck", label: "Every paycheck" },
-  { value: "monthly", label: "Monthly" },
-];
-
 export default function ExpenseFormScreen() {
   const router = useRouter();
   const colors = useColors();
+  const t = useT();
   const { id } = useLocalSearchParams<{ id?: string }>();
   const expenses = useStore((s) => s.expenses);
   const incomeSources = useStore((s) => s.incomeSources);
@@ -76,12 +73,12 @@ export default function ExpenseFormScreen() {
 
   const handleSave = useCallback(() => {
     if (!payee.trim()) {
-      Alert.alert("Error", "Payee name is required.");
+      Alert.alert(t("common.error"), t("expenses.form.payeeRequired"));
       return;
     }
     const parsedAmount = parseFloat(amount);
     if (isNaN(parsedAmount) || parsedAmount <= 0) {
-      Alert.alert("Error", "Enter a valid amount.");
+      Alert.alert(t("common.error"), t("expenses.form.invalidAmount"));
       return;
     }
 
@@ -119,11 +116,20 @@ export default function ExpenseFormScreen() {
     updateExpense,
     rescheduleExpense,
     router,
+    t,
   ]);
 
   const handleSelectSource = useCallback((sourceId: string | undefined) => {
     setSelectedSourceId(sourceId);
   }, []);
+
+  const scheduleOptions = useMemo<SegmentOption<LinkSchedule>[]>(
+    () => [
+      { value: "every-paycheck", label: t("expenses.form.everyPaycheck") },
+      { value: "monthly", label: t("expenses.form.monthly") },
+    ],
+    [t]
+  );
 
   const slotOptions = useMemo<SegmentOption<PaycheckSlot>[]>(() => {
     if (!selectedSource) return [];
@@ -138,14 +144,16 @@ export default function ExpenseFormScreen() {
       options.push({ value: "last", label: getPaycheckSlotLabel(selectedSource, "last", true) });
     }
     return options;
-  }, [selectedSource, slotCount]);
+    // t changes with the language, which changes the slot labels
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedSource, slotCount, t]);
 
   const slotHint = useMemo(() => {
     if (!selectedSource || !hasExtraPaychecks(selectedSource)) return undefined;
     return effectiveSlot === "last"
-      ? "Lands on the final paycheck of each month, including months with an extra one."
-      : "Extra paychecks in longer months are skipped. Choose Last to always use the final one.";
-  }, [selectedSource, effectiveSlot]);
+      ? t("expenses.form.slotHintLast")
+      : t("expenses.form.slotHintOrdinal");
+  }, [selectedSource, effectiveSlot, t]);
 
   const scrollStyle = useMemo(
     () => ({ backgroundColor: colors.modalBackground }),
@@ -158,46 +166,46 @@ export default function ExpenseFormScreen() {
       contentContainerStyle={styles.content}
       keyboardShouldPersistTaps="handled"
     >
-      <AppText variant="section" style={styles.label}>Payee</AppText>
+      <AppText variant="section" style={styles.label}>{t("expenses.form.payee")}</AppText>
       <AppInput
         value={payee}
         onChangeText={setPayee}
-        placeholder="e.g. Electric Company"
+        placeholder={t("expenses.form.payeePlaceholder")}
       />
 
-      <AppText variant="section" style={styles.label}>Amount</AppText>
+      <AppText variant="section" style={styles.label}>{t("expenses.form.amount")}</AppText>
       <AppInput
         value={amount}
         onChangeText={setAmount}
-        placeholder="e.g. 150.00"
+        placeholder={t("expenses.form.amountPlaceholder")}
         keyboardType="decimal-pad"
       />
 
-      <AppText variant="section" style={styles.label}>Payment Link (optional)</AppText>
+      <AppText variant="section" style={styles.label}>{t("expenses.form.link")}</AppText>
       <AppInput
         value={link}
         onChangeText={setLink}
-        placeholder="https://..."
+        placeholder={t("expenses.form.linkPlaceholder")}
         keyboardType="url"
         autoCapitalize="none"
       />
 
       {isOneTime && incomeSources.length > 0 ? (
         <>
-          <AppText variant="section" style={styles.label}>Paycheck</AppText>
+          <AppText variant="section" style={styles.label}>{t("expenses.form.paycheck")}</AppText>
           <PaycheckPicker value={paycheck} onChange={setPaycheck} />
           <AppText variant="caption" style={styles.hint}>
-            Move this expense to a different paycheck.
+            {t("expenses.form.moveHint")}
           </AppText>
         </>
       ) : null}
 
       {incomeSources.length > 0 && !isOneTime ? (
         <>
-          <AppText variant="section" style={styles.label}>Linked Income Source</AppText>
+          <AppText variant="section" style={styles.label}>{t("expenses.form.linkedSource")}</AppText>
           <View style={styles.chipRow}>
             <AppChip
-              label="None"
+              label={t("common.none")}
               value={undefined}
               selected={!selectedSourceId}
               onSelect={handleSelectSource}
@@ -213,16 +221,16 @@ export default function ExpenseFormScreen() {
             ))}
           </View>
           <AppText variant="caption" style={styles.hint}>
-            When linked, this expense is preloaded on paychecks from that source.
+            {t("expenses.form.linkedHint")}
           </AppText>
         </>
       ) : null}
 
       {slotCount > 1 ? (
         <>
-          <AppText variant="section" style={styles.label}>How Often</AppText>
+          <AppText variant="section" style={styles.label}>{t("expenses.form.howOften")}</AppText>
           <AppSegmentedControl
-            options={SCHEDULE_OPTIONS}
+            options={scheduleOptions}
             value={linkSchedule}
             onChange={setLinkSchedule}
           />
@@ -231,7 +239,7 @@ export default function ExpenseFormScreen() {
 
       {isMonthly ? (
         <>
-          <AppText variant="section" style={styles.label}>Which Paycheck</AppText>
+          <AppText variant="section" style={styles.label}>{t("expenses.form.whichPaycheck")}</AppText>
           <AppSegmentedControl
             options={slotOptions}
             value={effectiveSlot}
@@ -246,7 +254,7 @@ export default function ExpenseFormScreen() {
       ) : null}
 
       <AppButton
-        title={`${existing ? "Update" : "Add"} Expense`}
+        title={existing ? t("expenses.form.updateButton") : t("expenses.form.addButton")}
         onPress={handleSave}
         style={styles.saveButton}
       />

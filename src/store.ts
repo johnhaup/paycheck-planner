@@ -2,12 +2,13 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { randomUUID } from "expo-crypto";
-import type { IncomeSource, Expense, ExpenseAssignment } from "@/types";
+import type { IncomeSource, Expense, ExpenseAssignment, PaycheckOverride } from "@/types";
 
 interface AppState {
   incomeSources: IncomeSource[];
   expenses: Expense[];
   assignments: ExpenseAssignment[];
+  paycheckOverrides: PaycheckOverride[];
 
   addIncomeSource: (source: Omit<IncomeSource, "id">) => void;
   updateIncomeSource: (id: string, updates: Partial<Omit<IncomeSource, "id">>) => void;
@@ -23,6 +24,8 @@ interface AppState {
   setAssignmentAmount: (assignmentId: string, amount: number | undefined) => void;
   /** Moves a one-time expense to a single paycheck, keeping its paid state */
   rescheduleExpense: (expenseId: string, payDate: string, incomeSourceId: string) => void;
+  /** Overrides one paycheck's pay amount; undefined restores the source's usual amount */
+  setPaycheckAmount: (sourceId: string, payDate: string, payAmount: number | undefined) => void;
 }
 
 export const useStore = create<AppState>()(
@@ -31,6 +34,7 @@ export const useStore = create<AppState>()(
       incomeSources: [],
       expenses: [],
       assignments: [],
+      paycheckOverrides: [],
 
       addIncomeSource: (source) =>
         set((s) => ({
@@ -48,6 +52,7 @@ export const useStore = create<AppState>()(
         set((s) => ({
           incomeSources: s.incomeSources.filter((e) => e.id !== id),
           assignments: s.assignments.filter((a) => a.employerId !== id),
+          paycheckOverrides: s.paycheckOverrides.filter((o) => o.sourceId !== id),
           expenses: s.expenses.map((e) =>
             e.incomeSourceId === id
               ? { ...e, incomeSourceId: undefined, linkSchedule: undefined, paycheckOrdinal: undefined }
@@ -124,6 +129,17 @@ export const useStore = create<AppState>()(
                 amount: current?.amount,
               },
             ],
+          };
+        }),
+
+      setPaycheckAmount: (sourceId, payDate, payAmount) =>
+        set((s) => {
+          const others = s.paycheckOverrides.filter(
+            (o) => !(o.sourceId === sourceId && o.payDate === payDate)
+          );
+          return {
+            paycheckOverrides:
+              payAmount === undefined ? others : [...others, { sourceId, payDate, payAmount }],
           };
         }),
     }),

@@ -2,7 +2,7 @@
   "expo": {
     "name": "Paycheck Planner",
     "slug": "paycheck-planner",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -29,7 +29,10 @@
     "plugins": [
       "expo-router",
       "@react-native-community/datetimepicker",
-      "expo-font"
+      "expo-font",
+      "expo-localization",
+      "./plugins/withoutPushEntitlement.js",
+      ["expo-notifications", { "color": "#26de81" }]
     ],
     "extra": {
       "router": {},

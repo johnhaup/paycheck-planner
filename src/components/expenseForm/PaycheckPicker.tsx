@@ -1,10 +1,11 @@
 import { useCallback, useMemo } from "react";
 import { View, StyleSheet } from "react-native";
-import { format } from "date-fns";
 import { useStore } from "@/store";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppChip } from "@/components/AppChip";
 import { formatPayDate, getPaychecks, parseLocalDate } from "@/utils/payDates";
+import { formatShortDate } from "@/utils/dates";
+import { useT } from "@/hooks/useLocale";
 
 const UPCOMING_COUNT = 8;
 const KEY_SEPARATOR = "|";
@@ -25,6 +26,7 @@ function toKey(choice: PaycheckChoice) {
 
 export function PaycheckPicker({ value, onChange }: Props) {
   const incomeSources = useStore((s) => s.incomeSources);
+  const t = useT();
 
   const handleSelect = useCallback(
     (key: string) => {
@@ -51,13 +53,16 @@ export function PaycheckPicker({ value, onChange }: Props) {
     }
     const namesById = new Map(incomeSources.map((s) => [s.id, s.name]));
     return choices.map((choice) => {
-      const date = format(parseLocalDate(choice.payDate), "EEE, MMM d");
+      const date = formatShortDate(parseLocalDate(choice.payDate));
       return {
         key: toKey(choice),
-        label: incomeSources.length > 1 ? `${date} · ${namesById.get(choice.sourceId) ?? "Removed"}` : date,
+        label:
+          incomeSources.length > 1
+            ? `${date} · ${namesById.get(choice.sourceId) ?? t("common.removed")}`
+            : date,
       };
     });
-  }, [incomeSources, value]);
+  }, [incomeSources, value, t]);
 
   const selectedKey = value ? toKey(value) : undefined;
 

@@ -4,12 +4,14 @@ import { Stack, useRouter } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { useStackScreenOptions } from "@/hooks/useStackScreenOptions";
+import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 
 export default function PaychecksLayout() {
   const colors = useColors();
   const router = useRouter();
   const screenOptions = useStackScreenOptions(true);
+  const t = useT();
 
   const handleOpenSettings = useCallback(() => {
     router.push("/settings");
@@ -25,8 +27,8 @@ export default function PaychecksLayout() {
   );
 
   const indexOptions = useMemo(
-    () => ({ title: "Paychecks", headerRight: renderSettingsButton }),
-    [renderSettingsButton]
+    () => ({ title: t("tabs.paychecks"), headerRight: renderSettingsButton }),
+    [renderSettingsButton, t]
   );
 
   return (

@@ -3,7 +3,8 @@ import { Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
-import { formatCompactMoney } from "@/utils/money";
+import { useMoneyFormat } from "@/hooks/useMoneyFormat";
+import { useT } from "@/hooks/useLocale";
 import type { MonthGroup } from "@/components/paychecks/types";
 
 const BAR_MAX_HEIGHT = 86;
@@ -62,6 +63,8 @@ interface MonthBarProps {
 
 function MonthBar({ month, maxMagnitude, selected, onSelect }: MonthBarProps) {
   const colors = useColors();
+  const { compact } = useMoneyFormat();
+  const t = useT();
 
   const handlePress = useCallback(() => {
     onSelect(month.key);
@@ -89,7 +92,7 @@ function MonthBar({ month, maxMagnitude, selected, onSelect }: MonthBarProps) {
       onPress={handlePress}
       accessibilityRole="button"
       accessibilityState={accessibilityState}
-      accessibilityLabel={`${month.longLabel}, ${formatCompactMoney(month.remaining)} left`}
+      accessibilityLabel={t("paychecks.chartBarLabel", { month: month.longLabel, amount: compact(month.remaining) })}
     >
       <AppText
         variant="caption"
@@ -97,7 +100,7 @@ function MonthBar({ month, maxMagnitude, selected, onSelect }: MonthBarProps) {
         style={styles.value}
         numberOfLines={1}
       >
-        {formatCompactMoney(month.remaining)}
+        {compact(month.remaining)}
       </AppText>
       <View style={barStyle} />
       <AppText

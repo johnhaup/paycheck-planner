@@ -1,22 +1,38 @@
-import { format, isSameYear } from "date-fns";
-import { getPaychecks, formatPayDate, isExpenseLinkedToPaycheck } from "@/utils/payDates";
-import type { Expense, ExpenseAssignment, IncomeSource } from "@/types";
+import { addMonths, endOfMonth, format, isSameYear } from "date-fns";
+import { formatMonthLong, formatMonthShort } from "@/utils/dates";
+import { getPaychecksThrough, formatPayDate, isExpenseLinkedToPaycheck } from "@/utils/payDates";
+import type { Expense, ExpenseAssignment, IncomeSource, PaycheckOverride } from "@/types";
 import type { MonthGroup, PaycheckExpense, PaycheckItem } from "@/components/paychecks/types";
 
-const PAY_DATE_COUNT = 12;
+/** The current month plus this many full months after it. */
+const FULL_MONTHS_AHEAD = 5;
+
+/** This paycheck's pay amount: its override if one was set, else the source's usual amount. */
+export function getPayAmount(
+  source: IncomeSource,
+  payDate: string,
+  overrides: PaycheckOverride[]
+): number {
+  return (
+    overrides.find((o) => o.sourceId === source.id && o.payDate === payDate)?.payAmount ??
+    source.payAmount
+  );
+}
 
 /** Upcoming paychecks for every source, with their bills, grouped by calendar month. */
 export function buildMonthGroups(
   incomeSources: IncomeSource[],
   expenses: Expense[],
   assignments: ExpenseAssignment[],
+  overrides: PaycheckOverride[],
   now: Date
 ): MonthGroup[] {
   const expensesById = new Map(expenses.map((e) => [e.id, e]));
   const allPaychecks: PaycheckItem[] = [];
+  const until = endOfMonth(addMonths(now, FULL_MONTHS_AHEAD));
 
   for (const source of incomeSources) {
-    for (const paycheck of getPaychecks(source, now, PAY_DATE_COUNT)) {
+    for (const paycheck of getPaychecksThrough(source, now, until)) {
       const { date } = paycheck;
       const payDate = formatPayDate(date);
       const matched = assignments.filter(
@@ -49,6 +65,7 @@ export function buildMonthGroups(
         }
       }
       const totalExpenses = items.reduce((sum, e) => sum + e.amount, 0);
+      const payAmount = getPayAmount(source, payDate, overrides);
 
       allPaychecks.push({
         key: `${source.id}-${payDate}`,
@@ -56,11 +73,11 @@ export function buildMonthGroups(
         payDate,
         sourceName: source.name,
         sourceId: source.id,
-        payAmount: source.payAmount,
+        payAmount,
         expenses: items,
         paidCount: items.filter((e) => e.paid).length,
         totalExpenses,
-        remaining: source.payAmount - totalExpenses,
+        remaining: payAmount - totalExpenses,
       });
     }
   }
@@ -74,8 +91,8 @@ export function buildMonthGroups(
     if (!group) {
       group = {
         key,
-        shortLabel: format(paycheck.date, "MMM"),
-        longLabel: format(paycheck.date, isSameYear(paycheck.date, now) ? "MMMM" : "MMMM yyyy"),
+        shortLabel: formatMonthShort(paycheck.date),
+        longLabel: formatMonthLong(paycheck.date, !isSameYear(paycheck.date, now)),
         income: 0,
         assigned: 0,
         remaining: 0,

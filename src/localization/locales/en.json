@@ -1,0 +1,228 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "done": "Done",
+    "save": "Save",
+    "add": "Add",
+    "update": "Update",
+    "back": "Back",
+    "error": "Error",
+    "none": "None",
+    "unknown": "Unknown",
+    "removed": "Removed",
+    "systemDefault": "System default",
+    "selectDate": "Select Date",
+    "selectTime": "Select Time",
+    "and": "and"
+  },
+  "ordinal": {
+    "one": "%{n}st",
+    "two": "%{n}nd",
+    "few": "%{n}rd",
+    "other": "%{n}th"
+  },
+  "tabs": {
+    "paychecks": "Paychecks",
+    "income": "Income",
+    "expenses": "Expenses"
+  },
+  "screens": {
+    "settings": "Settings",
+    "incomeSource": "Income Source",
+    "expense": "Expense",
+    "payDate": "Pay Date",
+    "language": "Language",
+    "currency": "Currency"
+  },
+  "paychecks": {
+    "today": "Today",
+    "goToThisMonth": "Go to this month",
+    "leftAfterBills": "%{month} · left after bills",
+    "heroMeta": "%{income} in · %{assigned} assigned",
+    "monthPaychecks": "%{month} paychecks",
+    "emptyTitle": "No income sources yet",
+    "emptyBody": "Add one in the Income tab to see your upcoming paychecks.",
+    "noBillsYet": "No bills yet · tap to assign",
+    "paidProgress": "%{paid} of %{total} paid",
+    "amountLeft": "%{amount} left",
+    "chartBarLabel": "%{month}, %{amount} left",
+    "opensPaycheck": "Opens this paycheck",
+    "markPaid": "Mark %{payee} paid",
+    "changeAmount": "Change %{payee} amount for this paycheck",
+    "changePayAmount": "Change %{source} pay amount for this paycheck"
+  },
+  "income": {
+    "emptyTitle": "No income yet",
+    "emptyBody": "Add your paychecks with the + button to start planning.",
+    "perMonth": "Per month",
+    "nextPayday": "Next payday",
+    "sources": "Sources",
+    "swipeHint": "Swipe left on a source to delete it.",
+    "addSource": "Add income source",
+    "perCheck": "per check",
+    "deleteTitle": "Delete Income Source",
+    "deleteMessage": "Delete \"%{name}\" and all its expense assignments?",
+    "frequency": {
+      "weekly": "Weekly",
+      "biweekly": "Bi-weekly",
+      "semiMonthly": "Semi-monthly",
+      "monthly": "Monthly"
+    },
+    "schedule": {
+      "weekly": "Weekly · %{weekday}s",
+      "biweekly": "Bi-weekly · %{weekday}s",
+      "semiMonthly": "Semi-monthly · %{first} & %{second}",
+      "monthly": "Monthly · %{day}"
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "e.g. Acme Corp",
+      "payAmount": "Pay Amount (per check)",
+      "payAmountPlaceholder": "e.g. 2500.00",
+      "payFrequency": "Pay Frequency",
+      "payDays": "Pay Days of Month",
+      "payDaysHint": "Use 31 for last day of month (auto-adjusts for shorter months)",
+      "adjustToWorkday": "Adjust to workday",
+      "adjustHint": "If a pay date falls on a weekend, it shifts to the preceding Friday.",
+      "firstPayDate": "First Pay Date",
+      "addButton": "Add Income Source",
+      "updateButton": "Update Income Source",
+      "nameRequired": "Name is required.",
+      "invalidAmount": "Enter a valid pay amount.",
+      "payDaysRange": "Pay days must be between 1 and 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "No expenses yet",
+    "emptyBody": "Add your bills with the + button, then assign them to paychecks.",
+    "nothingHere": "Nothing here yet.",
+    "monthlySummary": {
+      "one": "%{amount} a month across %{count} bill",
+      "other": "%{amount} a month across %{count} bills"
+    },
+    "filters": {
+      "all": "All",
+      "recurring": "Recurring",
+      "oneTime": "One-time"
+    },
+    "addExpense": "Add expense",
+    "openLink": "Open payment link for %{payee}",
+    "deleteTitle": "Delete Expense",
+    "deleteMessage": "Delete \"%{payee}\" and all its assignments?",
+    "sections": {
+      "notLinked": "Not linked",
+      "oneTime": "One-time"
+    },
+    "perMonthTotal": "%{amount}/mo",
+    "meta": {
+      "everyPaycheck": "Every paycheck",
+      "slotEachMonth": "%{slot} each month",
+      "assignPerPaycheck": "Assign per paycheck",
+      "due": "Due %{date}",
+      "oneTime": "One-time"
+    },
+    "cadence": {
+      "perCheck": "per check",
+      "monthly": "monthly",
+      "recurring": "recurring",
+      "oneTime": "one-time"
+    },
+    "slot": {
+      "last": "Last paycheck",
+      "lastShort": "Last",
+      "ordinalPaycheck": "%{ordinal} paycheck"
+    },
+    "form": {
+      "payee": "Payee",
+      "payeePlaceholder": "e.g. Electric Company",
+      "amount": "Amount",
+      "amountPlaceholder": "e.g. 150.00",
+      "link": "Payment Link (optional)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Paycheck",
+      "moveHint": "Move this expense to a different paycheck.",
+      "linkedSource": "Linked Income Source",
+      "linkedHint": "When linked, this expense is preloaded on paychecks from that source.",
+      "howOften": "How Often",
+      "everyPaycheck": "Every paycheck",
+      "monthly": "Monthly",
+      "whichPaycheck": "Which Paycheck",
+      "slotHintLast": "Lands on the final paycheck of each month, including months with an extra one.",
+      "slotHintOrdinal": "Extra paychecks in longer months are skipped. Choose Last to always use the final one.",
+      "addButton": "Add Expense",
+      "updateButton": "Update Expense",
+      "payeeRequired": "Payee name is required.",
+      "invalidAmount": "Enter a valid amount."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "This paycheck",
+    "available": "Available",
+    "emptyAssigned": "Nothing assigned yet. Add bills from the list below.",
+    "leftAfterBills": "Left after bills",
+    "summaryMeta": "%{pay} paycheck · %{assigned} assigned",
+    "linked": "Linked",
+    "remove": "Remove %{payee}",
+    "add": "Add %{payee}",
+    "oneTime": {
+      "addButton": "Add One-Time Expense",
+      "title": "One-Time Expense",
+      "payee": "Payee",
+      "amount": "Amount"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "%{date} paycheck only",
+    "hint": "Default is %{amount}. Other paychecks keep the default.",
+    "useDefault": "Use default amount"
+  },
+  "settings": {
+    "appearance": "Appearance",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "hideCents": "Hide cents",
+    "hideCentsHint": "Show amounts rounded to the nearest whole unit.",
+    "behavior": "Behavior",
+    "autoMarkPaid": "Auto-mark paid on link tap",
+    "autoMarkPaidHint": "Tapping a payment link also marks that bill paid.",
+    "region": "Language & Currency",
+    "language": "Language",
+    "currency": "Currency",
+    "notifications": "Notifications",
+    "paydayReminder": "Payday reminder",
+    "paydayReminderHint": "Get a summary of each paycheck's bills and what's left before it arrives.",
+    "remindWhen": "Remind me",
+    "remindTime": "At",
+    "offsets": {
+      "dayOf": "Day of",
+      "dayBefore": "Day before",
+      "daysBefore": "%{count} days before",
+      "weekBefore": "Week before"
+    },
+    "permissionDeniedTitle": "Notifications are off",
+    "permissionDeniedBody": "Allow notifications for Paycheck Planner in your device settings to get payday reminders."
+  },
+  "notifications": {
+    "channelName": "Payday reminders",
+    "titleToday": "Payday today: %{source}",
+    "titleTomorrow": "Payday tomorrow: %{source}",
+    "titleOnDay": "Payday %{weekday}: %{source}",
+    "body": "%{income} in · %{bills} · %{left} left",
+    "bodyNoBills": "%{income} in · no bills assigned yet",
+    "bills": {
+      "one": "%{count} bill (%{amount})",
+      "other": "%{count} bills (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Couldn't open link"
+  },
+  "payAmountSheet": {
+    "subtitle": "%{date} paycheck only",
+    "hint": "Usual pay is %{amount}. Other paychecks keep it.",
+    "useDefault": "Use usual amount",
+    "invalidAmount": "Enter a valid pay amount."
+  }
+}

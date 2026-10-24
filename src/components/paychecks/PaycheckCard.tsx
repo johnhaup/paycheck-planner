@@ -1,8 +1,9 @@
 import { useCallback, useMemo } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
-import { format } from "date-fns";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
+import { useT } from "@/hooks/useLocale";
+import { formatWeekday } from "@/utils/dates";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppCard } from "@/components/AppCard";
 import { AppDateTile } from "@/components/AppDateTile";
@@ -22,15 +23,28 @@ interface Props {
   onTogglePaid: TogglePaidHandler;
   onLinkTap: LinkTapHandler;
   onEditAmount: EditAmountHandler;
+  onEditPayAmount: (payDate: string, sourceId: string) => void;
 }
 
-export function PaycheckCard({ item, onPress, onTogglePaid, onLinkTap, onEditAmount }: Props) {
+export function PaycheckCard({
+  item,
+  onPress,
+  onTogglePaid,
+  onLinkTap,
+  onEditAmount,
+  onEditPayAmount,
+}: Props) {
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
+  const t = useT();
 
   const handlePress = useCallback(() => {
     onPress(item.payDate, item.sourceId);
   }, [onPress, item.payDate, item.sourceId]);
+
+  const handleEditPayAmount = useCallback(() => {
+    onEditPayAmount(item.payDate, item.sourceId);
+  }, [onEditPayAmount, item.payDate, item.sourceId]);
 
   const emptyRowStyle = useMemo(
     () => [styles.emptyRow, { borderTopColor: colors.divider }],
@@ -38,10 +52,11 @@ export function PaycheckCard({ item, onPress, onTogglePaid, onLinkTap, onEditAmo
   );
 
   const billCount = item.expenses.length;
+  const weekday = formatWeekday(item.date);
   const meta =
     billCount === 0
-      ? format(item.date, "EEEE")
-      : `${format(item.date, "EEEE")} · ${item.paidCount} of ${billCount} paid`;
+      ? weekday
+      : `${weekday} · ${t("paychecks.paidProgress", { paid: item.paidCount, total: billCount })}`;
 
   return (
     <AppCard style={styles.card}>
@@ -49,7 +64,7 @@ export function PaycheckCard({ item, onPress, onTogglePaid, onLinkTap, onEditAmo
         style={styles.header}
         onPress={handlePress}
         accessibilityRole="button"
-        accessibilityHint="Opens this paycheck"
+        accessibilityHint={t("paychecks.opensPaycheck")}
       >
         <AppDateTile date={item.date} />
         <View style={styles.headerText}>
@@ -57,9 +72,16 @@ export function PaycheckCard({ item, onPress, onTogglePaid, onLinkTap, onEditAmo
           <AppText variant="meta">{meta}</AppText>
         </View>
         <View style={styles.amounts}>
-          <AppText variant="rowTitle">{formatMoney(item.payAmount)}</AppText>
+          <Pressable
+            onPress={handleEditPayAmount}
+            hitSlop={MEASUREMENTS.hitSlop}
+            accessibilityRole="button"
+            accessibilityLabel={t("paychecks.changePayAmount", { source: item.sourceName })}
+          >
+            <AppText variant="rowTitle">{formatMoney(item.payAmount)}</AppText>
+          </Pressable>
           <AppText variant="meta" color={item.remaining < 0 ? "destructive" : "primaryText"}>
-            {formatMoney(item.remaining)} left
+            {t("paychecks.amountLeft", { amount: formatMoney(item.remaining) })}
           </AppText>
         </View>
       </Pressable>
@@ -78,7 +100,7 @@ export function PaycheckCard({ item, onPress, onTogglePaid, onLinkTap, onEditAmo
         ))
       ) : (
         <Pressable style={emptyRowStyle} onPress={handlePress}>
-          <AppText variant="meta" color="textMuted">No bills yet · tap to assign</AppText>
+          <AppText variant="meta" color="textMuted">{t("paychecks.noBillsYet")}</AppText>
         </Pressable>
       )}
     </AppCard>

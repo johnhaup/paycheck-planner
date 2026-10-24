@@ -5,20 +5,23 @@ import {
   DateTimePickerAndroid,
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
-import { format } from "date-fns";
 import { useColors } from "@/hooks/useColors";
-import { useDatePickerStore } from "@/stores/datePickerStore";
+import { useDatePickerStore, type DatePickerMode } from "@/stores/datePickerStore";
+import { useLocale } from "@/hooks/useLocale";
+import { formatFullDate, formatTimeOfDay } from "@/utils/dates";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 
 interface Props {
   value: Date;
+  mode?: DatePickerMode;
   onChange: (date: Date) => void;
 }
 
-export function AppDatePicker({ value, onChange }: Props) {
+export function AppDatePicker({ value, mode = "date", onChange }: Props) {
   const router = useRouter();
   const colors = useColors();
+  const { localeTag } = useLocale();
   const setRequest = useDatePickerStore((s) => s.setRequest);
 
   const handleAndroidChange = useCallback(
@@ -32,16 +35,21 @@ export function AppDatePicker({ value, onChange }: Props) {
 
   const handlePress = useCallback(() => {
     if (Platform.OS === "android") {
-      DateTimePickerAndroid.open({ value, mode: "date", onChange: handleAndroidChange });
+      DateTimePickerAndroid.open({ value, mode, onChange: handleAndroidChange });
       return;
     }
-    setRequest({ value, onChange });
+    setRequest({ value, mode, onChange });
     router.push("/date-picker");
-  }, [value, onChange, handleAndroidChange, setRequest, router]);
+  }, [value, mode, onChange, handleAndroidChange, setRequest, router]);
 
   const displayValue = useMemo(
-    () => format(value, "EEE, MMM d, yyyy"),
-    [value]
+    () =>
+      mode === "time"
+        ? formatTimeOfDay(value.getHours(), value.getMinutes())
+        : formatFullDate(value),
+    // localeTag drives the Intl formatters
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [value, mode, localeTag]
   );
 
   const triggerStyle = useMemo(

@@ -5,6 +5,7 @@ import { useStore } from "@/store";
 import { openPaymentLink } from "@/utils/links";
 import { useThemeStore } from "@/stores/themeStore";
 import { useColors } from "@/hooks/useColors";
+import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
@@ -12,6 +13,7 @@ import { PayDateSummary } from "@/components/payDateDetail/PayDateSummary";
 import { PayDateExpenseRow } from "@/components/payDateDetail/PayDateExpenseRow";
 import { OneTimeExpenseForm } from "@/components/payDateDetail/OneTimeExpenseForm";
 import { getPaycheck, isExpenseLinkedToPaycheck } from "@/utils/payDates";
+import { getPayAmount } from "@/utils/paycheckMonths";
 import type { Expense } from "@/types";
 
 type ListItem =
@@ -37,9 +39,11 @@ export default function PayDateDetailScreen() {
 
   const router = useRouter();
   const colors = useColors();
+  const t = useT();
   const incomeSources = useStore((s) => s.incomeSources);
   const expenses = useStore((s) => s.expenses);
   const assignments = useStore((s) => s.assignments);
+  const paycheckOverrides = useStore((s) => s.paycheckOverrides);
   const assignExpense = useStore((s) => s.assignExpense);
   const unassignExpense = useStore((s) => s.unassignExpense);
   const togglePaid = useStore((s) => s.togglePaid);
@@ -98,6 +102,13 @@ export default function PayDateDetailScreen() {
     },
     [router, payDate, sourceId]
   );
+
+  const handleEditPayAmount = useCallback(() => {
+    router.push({
+      pathname: "/paycheck-amount",
+      params: { payDate, sourceId },
+    });
+  }, [router, payDate, sourceId]);
 
   const handleOpenLink = useCallback(
     (link: string, expenseId: string) => {
@@ -164,10 +175,12 @@ export default function PayDateDetailScreen() {
     [assignedExpenses, assignedExpenseIds]
   );
 
-  const remaining = useMemo(
-    () => (incomeSource?.payAmount ?? 0) - totalAssigned,
-    [incomeSource, totalAssigned]
+  const payAmount = useMemo(
+    () => (incomeSource ? getPayAmount(incomeSource, payDate, paycheckOverrides) : 0),
+    [incomeSource, payDate, paycheckOverrides]
   );
+
+  const remaining = useMemo(() => payAmount - totalAssigned, [payAmount, totalAssigned]);
 
   const listData = useMemo(() => {
     const items: ListItem[] = [
@@ -175,7 +188,7 @@ export default function PayDateDetailScreen() {
       {
         key: "assigned-title",
         type: "section-title",
-        title: "This paycheck",
+        title: t("payDate.thisPaycheck"),
         trailing: String(assignedExpenses.length),
       },
     ];
@@ -194,7 +207,7 @@ export default function PayDateDetailScreen() {
     });
 
     if (unassignedExpenses.length > 0) {
-      items.push({ key: "available-title", type: "section-title", title: "Available" });
+      items.push({ key: "available-title", type: "section-title", title: t("payDate.available") });
       unassignedExpenses.forEach((expense, i) => {
         items.push({
           key: `unassigned-${expense.id}`,
@@ -209,7 +222,7 @@ export default function PayDateDetailScreen() {
     items.push({ key: "one-time-form", type: "one-time-form" });
 
     return items;
-  }, [assignedExpenses, unassignedExpenses]);
+  }, [assignedExpenses, unassignedExpenses, t]);
 
   const listStyle = useMemo(
     () => ({ backgroundColor: colors.screenBackground }),
@@ -222,11 +235,12 @@ export default function PayDateDetailScreen() {
         case "header":
           return (
             <PayDateSummary
-              sourceName={incomeSource?.name ?? "Unknown"}
+              sourceName={incomeSource?.name ?? t("common.unknown")}
               payDate={payDate}
-              payAmount={incomeSource?.payAmount ?? 0}
+              payAmount={payAmount}
               totalAssigned={totalAssigned}
               remaining={remaining}
+              onEditPayAmount={handleEditPayAmount}
             />
           );
         case "one-time-form":
@@ -236,7 +250,7 @@ export default function PayDateDetailScreen() {
         case "empty":
           return (
             <AppText variant="meta" style={styles.empty}>
-              Nothing assigned yet. Add bills from the list below.
+              {t("payDate.emptyAssigned")}
             </AppText>
           );
         case "assigned":
@@ -266,14 +280,17 @@ export default function PayDateDetailScreen() {
       incomeSource,
       payDate,
       sourceId,
+      payAmount,
       totalAssigned,
       remaining,
+      handleEditPayAmount,
       assignedExpenseIds,
       handleAssign,
       handleUnassign,
       handleTogglePaid,
       handleOpenLink,
       handleEditAmount,
+      t,
     ]
   );
 

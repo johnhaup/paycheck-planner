@@ -3,6 +3,7 @@ import { View, Pressable, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
+import { useT } from "@/hooks/useLocale";
 import { useGroupedRowStyles } from "@/hooks/useGroupedRowStyles";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
@@ -42,6 +43,7 @@ export function PayDateExpenseRow({
 }: Props) {
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
+  const t = useT();
   const groupedStyles = useGroupedRowStyles(isFirst, isLast);
 
   const handleTogglePaid = useCallback(() => {
@@ -75,7 +77,7 @@ export function PayDateExpenseRow({
           <AppCheckCircle
             checked={isPaid}
             onPress={handleTogglePaid}
-            accessibilityLabel={`Mark ${expense.payee} paid`}
+            accessibilityLabel={t("paychecks.markPaid", { payee: expense.payee })}
           />
         ) : null}
         <View style={styles.info}>
@@ -97,7 +99,7 @@ export function PayDateExpenseRow({
             onPress={handleEditAmount}
             disabled={!isAssigned}
             accessibilityRole={isAssigned ? "button" : undefined}
-            accessibilityLabel={`Change ${expense.payee} amount for this paycheck`}
+            accessibilityLabel={t("paychecks.changeAmount", { payee: expense.payee })}
           >
             <AppText variant="meta" color={isPaid ? "textMuted" : "textSecondary"}>
               {formatMoney(amount)}
@@ -105,13 +107,17 @@ export function PayDateExpenseRow({
           </Pressable>
         </View>
         {isLinkedPreload ? (
-          <AppText variant="caption">Linked</AppText>
+          <AppText variant="caption">{t("payDate.linked")}</AppText>
         ) : (
           <Pressable
             onPress={handleToggleAssigned}
             hitSlop={MEASUREMENTS.hitSlop}
             accessibilityRole="button"
-            accessibilityLabel={`${isAssigned ? "Remove" : "Add"} ${expense.payee}`}
+            accessibilityLabel={
+              isAssigned
+                ? t("payDate.remove", { payee: expense.payee })
+                : t("payDate.add", { payee: expense.payee })
+            }
           >
             <Ionicons
               name={isAssigned ? "remove-circle-outline" : "add-circle"}

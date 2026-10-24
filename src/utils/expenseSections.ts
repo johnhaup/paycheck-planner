@@ -1,10 +1,11 @@
-import { format } from "date-fns";
 import {
   getLinkedSlot,
   getPaycheckSlotLabel,
   getPaychecksPerMonth,
   parseLocalDate,
 } from "@/utils/payDates";
+import { formatMonthDay } from "@/utils/dates";
+import { t } from "@/localization/i18n";
 import type { Expense, IncomeSource } from "@/types";
 
 export type ExpenseFilter = "all" | "recurring" | "one-time";
@@ -66,7 +67,9 @@ export function buildExpenseSections(
       sections.push({
         key: source.id,
         title: source.name,
-        total: `${formatMoney(linked.reduce((sum, e) => sum + monthlyCost(e, source), 0))}/mo`,
+        total: t("expenses.perMonthTotal", {
+          amount: formatMoney(linked.reduce((sum, e) => sum + monthlyCost(e, source), 0)),
+        }),
         data: linked.map((expense) => {
           const slot = getLinkedSlot(expense, source);
           return {
@@ -74,9 +77,9 @@ export function buildExpenseSections(
             tintIndex,
             meta:
               slot === undefined
-                ? "Every paycheck"
-                : `${getPaycheckSlotLabel(source, slot)} each month`,
-            cadence: slot === undefined ? "per check" : "monthly",
+                ? t("expenses.meta.everyPaycheck")
+                : t("expenses.meta.slotEachMonth", { slot: getPaycheckSlotLabel(source, slot) }),
+            cadence: slot === undefined ? t("expenses.cadence.perCheck") : t("expenses.cadence.monthly"),
           };
         }),
       });
@@ -89,12 +92,14 @@ export function buildExpenseSections(
     if (unlinked.length > 0) {
       sections.push({
         key: "unlinked",
-        title: "Not linked",
-        total: `${formatMoney(unlinked.reduce((sum, e) => sum + e.amount, 0))}/mo`,
+        title: t("expenses.sections.notLinked"),
+        total: t("expenses.perMonthTotal", {
+          amount: formatMoney(unlinked.reduce((sum, e) => sum + e.amount, 0)),
+        }),
         data: unlinked.map((expense) => ({
           expense,
-          meta: "Assign per paycheck",
-          cadence: "recurring",
+          meta: t("expenses.meta.assignPerPaycheck"),
+          cadence: t("expenses.cadence.recurring"),
         })),
       });
     }
@@ -105,14 +110,14 @@ export function buildExpenseSections(
     if (oneTime.length > 0) {
       sections.push({
         key: "one-time",
-        title: "One-time",
+        title: t("expenses.sections.oneTime"),
         total: formatMoney(oneTime.reduce((sum, e) => sum + e.amount, 0)),
         data: oneTime.map((expense) => ({
           expense,
           meta: expense.dueDate
-            ? `Due ${format(parseLocalDate(expense.dueDate), "MMM d")}`
-            : "One-time",
-          cadence: "one-time",
+            ? t("expenses.meta.due", { date: formatMonthDay(parseLocalDate(expense.dueDate)) })
+            : t("expenses.meta.oneTime"),
+          cadence: t("expenses.cadence.oneTime"),
         })),
       });
     }

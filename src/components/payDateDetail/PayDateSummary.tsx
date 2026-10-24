@@ -1,11 +1,14 @@
-import { View, StyleSheet } from "react-native";
-import { format } from "date-fns";
+import { Pressable, View, StyleSheet } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
+import { useT } from "@/hooks/useLocale";
 import { AppText } from "@/components/AppText";
 import { AppDateTile } from "@/components/AppDateTile";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
 import { parseLocalDate } from "@/utils/payDates";
+import { formatLongDate } from "@/utils/dates";
 
 interface Props {
   sourceName: string;
@@ -13,10 +16,20 @@ interface Props {
   payAmount: number;
   totalAssigned: number;
   remaining: number;
+  onEditPayAmount: () => void;
 }
 
-export function PayDateSummary({ sourceName, payDate, payAmount, totalAssigned, remaining }: Props) {
+export function PayDateSummary({
+  sourceName,
+  payDate,
+  payAmount,
+  totalAssigned,
+  remaining,
+  onEditPayAmount,
+}: Props) {
+  const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
+  const t = useT();
   const date = parseLocalDate(payDate);
 
   return (
@@ -25,14 +38,23 @@ export function PayDateSummary({ sourceName, payDate, payAmount, totalAssigned, 
         <AppDateTile date={date} />
         <View style={styles.sourceText}>
           <AppText variant="rowTitle">{sourceName}</AppText>
-          <AppText variant="meta">{format(date, "EEEE, MMMM d")}</AppText>
+          <AppText variant="meta">{formatLongDate(date)}</AppText>
         </View>
       </View>
-      <AppText variant="meta" style={styles.heroLabel}>Left after bills</AppText>
+      <AppText variant="meta" style={styles.heroLabel}>{t("payDate.leftAfterBills")}</AppText>
       <AppHeroAmount amount={remaining} />
-      <AppText variant="meta">
-        {formatMoney(payAmount)} paycheck · {formatMoney(totalAssigned)} assigned
-      </AppText>
+      <Pressable
+        style={styles.meta}
+        onPress={onEditPayAmount}
+        hitSlop={MEASUREMENTS.hitSlop}
+        accessibilityRole="button"
+        accessibilityLabel={t("paychecks.changePayAmount", { source: sourceName })}
+      >
+        <AppText variant="meta">
+          {t("payDate.summaryMeta", { pay: formatMoney(payAmount), assigned: formatMoney(totalAssigned) })}
+        </AppText>
+        <Ionicons name="create-outline" size={14} color={colors.textMuted} />
+      </Pressable>
     </View>
   );
 }
@@ -48,5 +70,11 @@ const styles = StyleSheet.create({
   },
   heroLabel: {
     marginTop: MEASUREMENTS.spacing.xl,
+  },
+  meta: {
+    alignSelf: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: MEASUREMENTS.spacing.sm + 2,
   },
 });

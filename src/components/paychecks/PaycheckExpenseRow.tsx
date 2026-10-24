@@ -3,6 +3,7 @@ import { View, Pressable, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
+import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppCheckCircle } from "@/components/AppCheckCircle";
@@ -32,6 +33,7 @@ export function PaycheckExpenseRow({
 }: Props) {
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
+  const t = useT();
 
   const handleTogglePaid = useCallback(() => {
     onTogglePaid(expense.assignmentId, expense.expenseId, payDate, sourceId);
@@ -59,7 +61,7 @@ export function PaycheckExpenseRow({
       <AppCheckCircle
         checked={!!expense.paid}
         onPress={handleTogglePaid}
-        accessibilityLabel={`Mark ${expense.payee} paid`}
+        accessibilityLabel={t("paychecks.markPaid", { payee: expense.payee })}
       />
       <View style={styles.content}>
         <Pressable
@@ -80,7 +82,7 @@ export function PaycheckExpenseRow({
           onPress={handleEditAmount}
           hitSlop={MEASUREMENTS.hitSlop}
           accessibilityRole="button"
-          accessibilityLabel={`Change ${expense.payee} amount for this paycheck`}
+          accessibilityLabel={t("paychecks.changeAmount", { payee: expense.payee })}
         >
           <AppText variant="body" color={textColor}>
             {formatMoney(expense.amount)}

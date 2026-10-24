@@ -6,18 +6,21 @@ import { StatusBar } from "expo-status-bar";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors, useIsDark } from "@/hooks/useColors";
 import { useStackScreenOptions } from "@/hooks/useStackScreenOptions";
+import { useT } from "@/hooks/useLocale";
+import { usePaydayReminders } from "@/hooks/usePaydayReminders";
 import { useThemeStore } from "@/stores/themeStore";
 import { MEASUREMENTS } from "@/constants/measurements";
 
 const TABS_OPTIONS = { headerShown: false };
-const PAY_DATE_DETAIL_OPTIONS = { title: "Pay Date", presentation: "card" as const };
 
 export default function RootLayout() {
   const colors = useColors();
   const isDark = useIsDark();
   const router = useRouter();
   const screenOptions = useStackScreenOptions();
+  const t = useT();
   const themeMode = useThemeStore((s) => s.themeMode);
+  usePaydayReminders();
 
   const handleCloseSettings = useCallback(() => {
     router.back();
@@ -57,13 +60,28 @@ export default function RootLayout() {
   );
 
   const incomeFormOptions = useMemo(
-    () => ({ ...modalOptions, title: "Income Source" }),
-    [modalOptions]
+    () => ({ ...modalOptions, title: t("screens.incomeSource") }),
+    [modalOptions, t]
   );
 
   const expenseFormOptions = useMemo(
-    () => ({ ...modalOptions, title: "Expense" }),
-    [modalOptions]
+    () => ({ ...modalOptions, title: t("screens.expense") }),
+    [modalOptions, t]
+  );
+
+  const payDateDetailOptions = useMemo(
+    () => ({ title: t("screens.payDate"), presentation: "card" as const }),
+    [t]
+  );
+
+  const languageOptions = useMemo(
+    () => ({ ...modalOptions, title: t("screens.language") }),
+    [modalOptions, t]
+  );
+
+  const currencyOptions = useMemo(
+    () => ({ ...modalOptions, title: t("screens.currency") }),
+    [modalOptions, t]
   );
 
   const sheetOptions = useMemo(
@@ -78,8 +96,8 @@ export default function RootLayout() {
   );
 
   const settingsOptions = useMemo(
-    () => ({ ...modalOptions, title: "Settings", headerRight: renderSettingsCloseButton }),
-    [modalOptions, renderSettingsCloseButton]
+    () => ({ ...modalOptions, title: t("screens.settings"), headerRight: renderSettingsCloseButton }),
+    [modalOptions, renderSettingsCloseButton, t]
   );
 
   // Native chrome (tab bar, alerts, pickers) follows the OS-level scheme, so
@@ -96,9 +114,12 @@ export default function RootLayout() {
           <Stack.Screen name="(tabs)" options={TABS_OPTIONS} />
           <Stack.Screen name="income-form" options={incomeFormOptions} />
           <Stack.Screen name="expense-form" options={expenseFormOptions} />
-          <Stack.Screen name="pay-date-detail" options={PAY_DATE_DETAIL_OPTIONS} />
+          <Stack.Screen name="pay-date-detail" options={payDateDetailOptions} />
           <Stack.Screen name="settings" options={settingsOptions} />
+          <Stack.Screen name="language" options={languageOptions} />
+          <Stack.Screen name="currency" options={currencyOptions} />
           <Stack.Screen name="expense-amount" options={sheetOptions} />
+          <Stack.Screen name="paycheck-amount" options={sheetOptions} />
           <Stack.Screen name="date-picker" options={sheetOptions} />
         </Stack>
       </ThemeProvider>

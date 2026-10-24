@@ -4,6 +4,7 @@ import { Pressable } from "react-native-gesture-handler";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { useGroupedRowStyles } from "@/hooks/useGroupedRowStyles";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
+import { useT } from "@/hooks/useLocale";
 import { AppText } from "@/components/AppText";
 import { AppLetterTile } from "@/components/AppLetterTile";
 import { AppSwipeToDelete } from "@/components/AppSwipeToDelete";
@@ -22,6 +23,7 @@ interface Props {
 export function IncomeSourceRow({ source, tintIndex, isFirst, isLast, onEdit, onDelete }: Props) {
   const groupedStyles = useGroupedRowStyles(isFirst, isLast);
   const { split } = useMoneyFormat();
+  const t = useT();
   const { whole, cents } = split(source.payAmount);
 
   const handlePress = useCallback(() => {
@@ -34,8 +36,8 @@ export function IncomeSourceRow({ source, tintIndex, isFirst, isLast, onEdit, on
 
   return (
     <AppSwipeToDelete
-      confirmTitle="Delete Income Source"
-      confirmMessage={`Delete "${source.name}" and all its expense assignments?`}
+      confirmTitle={t("income.deleteTitle")}
+      confirmMessage={t("income.deleteMessage", { name: source.name })}
       onConfirm={handleDelete}
       style={groupedStyles.container}
     >
@@ -50,7 +52,7 @@ export function IncomeSourceRow({ source, tintIndex, isFirst, isLast, onEdit, on
             {whole}
             <AppText variant="rowTitle" color="textMuted">{cents}</AppText>
           </AppText>
-          <AppText variant="caption">per check</AppText>
+          <AppText variant="caption">{t("income.perCheck")}</AppText>
         </View>
       </Pressable>
     </AppSwipeToDelete>
