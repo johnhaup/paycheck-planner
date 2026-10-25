@@ -1,0 +1,240 @@
+{
+  "common": {
+    "cancel": "റദ്ദാക്കുക",
+    "delete": "ഇല്ലാതാക്കുക",
+    "done": "പൂർത്തിയായി",
+    "save": "സേവ് ചെയ്യുക",
+    "add": "ചേർക്കുക",
+    "update": "അപ്‌ഡേറ്റ് ചെയ്യുക",
+    "back": "പിന്നോട്ട്",
+    "error": "പിശക്",
+    "none": "ഒന്നുമില്ല",
+    "unknown": "അജ്ഞാതം",
+    "removed": "നീക്കം ചെയ്തു",
+    "systemDefault": "സിസ്റ്റം ഡിഫോൾട്ട്",
+    "selectDate": "തീയതി തിരഞ്ഞെടുക്കുക",
+    "selectTime": "സമയം തിരഞ്ഞെടുക്കുക",
+    "and": "ഒപ്പം",
+    "move": "മാറ്റുക"
+  },
+  "ordinal": {
+    "other": "%{n}-ാം"
+  },
+  "tabs": {
+    "paychecks": "ശമ്പളങ്ങൾ",
+    "income": "വരുമാനം",
+    "expenses": "ചെലവുകൾ"
+  },
+  "screens": {
+    "settings": "സെറ്റിംഗ്‌സ്",
+    "incomeSource": "വരുമാന സ്രോതസ്സ്",
+    "expense": "ചെലവ്",
+    "payDate": "ശമ്പള തീയതി",
+    "language": "ഭാഷ",
+    "currency": "കറൻസി"
+  },
+  "paychecks": {
+    "today": "ഇന്ന്",
+    "goToThisMonth": "ഈ മാസത്തിലേക്ക് പോകുക",
+    "leftAfterBills": "%{month} · ബില്ലുകൾക്ക് ശേഷം ബാക്കി",
+    "heroMeta": "%{income} വരവ് · %{assigned} നീക്കിവെച്ചു",
+    "monthPaychecks": "%{month} ശമ്പളങ്ങൾ",
+    "emptyTitle": "ഇതുവരെ വരുമാന സ്രോതസ്സുകളില്ല",
+    "emptyBody": "ഓരോ ശമ്പളവും എവിടേക്ക് പോകുന്നു എന്ന് കാണാൻ നിങ്ങളുടെ ആദ്യ വരുമാന സ്രോതസ്സ് ചേർക്കുക.",
+    "noBillsYet": "ഇതുവരെ ബില്ലുകളില്ല · നീക്കിവെക്കാൻ ടാപ്പ് ചെയ്യുക",
+    "paidProgress": "%{total}-ൽ %{paid} അടച്ചു",
+    "amountLeft": "%{amount} ബാക്കി",
+    "chartBarLabel": "%{month}, %{amount} ബാക്കി",
+    "opensPaycheck": "ഈ ശമ്പളം തുറക്കുന്നു",
+    "markPaid": "%{payee} അടച്ചതായി അടയാളപ്പെടുത്തുക",
+    "changeAmount": "ഈ ശമ്പളത്തിന് %{payee} തുക മാറ്റുക",
+    "changePayAmount": "ഈ ശമ്പളത്തിന് %{source} ശമ്പള തുക മാറ്റുക",
+    "emptyAction": "വരുമാന സ്രോതസ്സ് ചേർക്കുക",
+    "chartBarCurrentLabel": "%{month} (ഈ മാസം), %{amount} ബാക്കി",
+    "shortBy": "%{amount} കുറവ്",
+    "moveBill": "ഒരു ബിൽ മാറ്റുക"
+  },
+  "income": {
+    "emptyTitle": "ഇതുവരെ വരുമാനമില്ല",
+    "emptyBody": "പ്ലാൻ ചെയ്യാൻ തുടങ്ങാൻ നിങ്ങളുടെ ശമ്പളങ്ങൾ ചേർക്കുക.",
+    "perMonth": "പ്രതിമാസം",
+    "nextPayday": "അടുത്ത ശമ്പള ദിനം",
+    "sources": "സ്രോതസ്സുകൾ",
+    "swipeHint": "ഒരു സ്രോതസ്സ് ഇല്ലാതാക്കാൻ അതിൽ ഇടത്തേക്ക് സ്വൈപ്പ് ചെയ്യുക.",
+    "addSource": "വരുമാന സ്രോതസ്സ് ചേർക്കുക",
+    "perCheck": "ഓരോ ശമ്പളത്തിനും",
+    "deleteTitle": "വരുമാന സ്രോതസ്സ് ഇല്ലാതാക്കുക",
+    "deleteMessage": "\"%{name}\" ഉം അതിന്റെ എല്ലാ ചെലവ് നീക്കിവെപ്പുകളും ഇല്ലാതാക്കണോ?",
+    "frequency": {
+      "weekly": "ആഴ്ചതോറും",
+      "biweekly": "രണ്ടാഴ്ചയിലൊരിക്കൽ",
+      "semiMonthly": "മാസത്തിൽ രണ്ടുതവണ",
+      "monthly": "മാസംതോറും"
+    },
+    "schedule": {
+      "weekly": "ആഴ്ചതോറും · എല്ലാ %{weekday}",
+      "biweekly": "രണ്ടാഴ്ചയിലൊരിക്കൽ · എല്ലാ %{weekday}",
+      "semiMonthly": "മാസത്തിൽ രണ്ടുതവണ · %{first} & %{second}",
+      "monthly": "മാസംതോറും · %{day}"
+    },
+    "form": {
+      "name": "പേര്",
+      "namePlaceholder": "ഉദാ. Acme Corp",
+      "payAmount": "ശമ്പള തുക (ഓരോ ശമ്പളത്തിനും)",
+      "payAmountPlaceholder": "ഉദാ. 2500.00",
+      "payFrequency": "ശമ്പള ഇടവേള",
+      "payDays": "മാസത്തിലെ ശമ്പള ദിവസങ്ങൾ",
+      "payDaysHint": "മാസത്തിന്റെ അവസാന ദിവസത്തിന് 31 ഉപയോഗിക്കുക (ചെറിയ മാസങ്ങൾക്ക് സ്വയമേവ ക്രമീകരിക്കും)",
+      "adjustToWorkday": "പ്രവർത്തി ദിവസത്തിലേക്ക് ക്രമീകരിക്കുക",
+      "adjustHint": "ശമ്പള തീയതി വാരാന്ത്യത്തിൽ വന്നാൽ, അത് മുമ്പുള്ള വെള്ളിയാഴ്ചയിലേക്ക് മാറും.",
+      "firstPayDate": "ആദ്യ ശമ്പള തീയതി",
+      "addButton": "വരുമാന സ്രോതസ്സ് ചേർക്കുക",
+      "updateButton": "വരുമാന സ്രോതസ്സ് അപ്‌ഡേറ്റ് ചെയ്യുക",
+      "nameRequired": "പേര് ആവശ്യമാണ്.",
+      "invalidAmount": "സാധുവായ ശമ്പള തുക നൽകുക.",
+      "payDaysRange": "ശമ്പള ദിവസങ്ങൾ 1-നും 31-നും ഇടയിലായിരിക്കണം."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "ഇതുവരെ ചെലവുകളില്ല",
+    "emptyBody": "നിങ്ങളുടെ ബില്ലുകൾ ചേർത്ത്, ശമ്പളങ്ങളിലേക്ക് നീക്കിവെക്കുക.",
+    "nothingHere": "ഇവിടെ ഇതുവരെ ഒന്നുമില്ല.",
+    "monthlySummary": {
+      "one": "%{count} ബില്ലിൽ പ്രതിമാസം %{amount}",
+      "other": "%{count} ബില്ലുകളിൽ പ്രതിമാസം %{amount}"
+    },
+    "filters": {
+      "all": "എല്ലാം",
+      "recurring": "ആവർത്തിക്കുന്നവ",
+      "oneTime": "ഒറ്റത്തവണ"
+    },
+    "addExpense": "ചെലവ് ചേർക്കുക",
+    "openLink": "%{payee} പേയ്‌മെന്റ് ലിങ്ക് തുറക്കുക",
+    "deleteTitle": "ചെലവ് ഇല്ലാതാക്കുക",
+    "deleteMessage": "\"%{payee}\" ഉം അതിന്റെ എല്ലാ നീക്കിവെപ്പുകളും ഇല്ലാതാക്കണോ?",
+    "sections": {
+      "notLinked": "ലിങ്ക് ചെയ്യാത്തവ",
+      "oneTime": "ഒറ്റത്തവണ"
+    },
+    "perMonthTotal": "%{amount}/മാസം",
+    "meta": {
+      "everyPaycheck": "ഓരോ ശമ്പളവും",
+      "slotEachMonth": "ഓരോ മാസവും %{slot}",
+      "assignPerPaycheck": "ഓരോ ശമ്പളത്തിനും നീക്കിവെക്കുക",
+      "due": "%{date} അവസാന തീയതി",
+      "oneTime": "ഒറ്റത്തവണ"
+    },
+    "cadence": {
+      "perCheck": "ഓരോ ശമ്പളത്തിനും",
+      "monthly": "പ്രതിമാസം",
+      "recurring": "ആവർത്തിക്കുന്നത്",
+      "oneTime": "ഒറ്റത്തവണ"
+    },
+    "slot": {
+      "last": "അവസാന ശമ്പളം",
+      "lastShort": "അവസാനം",
+      "ordinalPaycheck": "%{ordinal} ശമ്പളം",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "സ്വീകർത്താവ്",
+      "payeePlaceholder": "ഉദാ. വൈദ്യുതി ബോർഡ്",
+      "amount": "തുക",
+      "amountPlaceholder": "ഉദാ. 150.00",
+      "link": "പേയ്‌മെന്റ് ലിങ്ക് (ഓപ്ഷണൽ)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "ശമ്പളം",
+      "moveHint": "ഈ ചെലവ് മറ്റൊരു ശമ്പളത്തിലേക്ക് മാറ്റുക.",
+      "linkedSource": "ലിങ്ക് ചെയ്ത വരുമാന സ്രോതസ്സ്",
+      "linkedHint": "ലിങ്ക് ചെയ്താൽ, ആ സ്രോതസ്സിന്റെ ശമ്പളങ്ങളിൽ ഈ ചെലവ് മുൻകൂട്ടി ചേർക്കും.",
+      "howOften": "എത്ര തവണ",
+      "everyPaycheck": "ഓരോ ശമ്പളവും",
+      "monthly": "പ്രതിമാസം",
+      "whichPaycheck": "ഏത് ശമ്പളം",
+      "slotHintLast": "അധിക ശമ്പളമുള്ള മാസങ്ങൾ ഉൾപ്പെടെ, ഓരോ മാസത്തിന്റെയും അവസാന ശമ്പളത്തിൽ വരും.",
+      "slotHintOrdinal": "നീണ്ട മാസങ്ങളിലെ അധിക ശമ്പളങ്ങൾ ഒഴിവാക്കും. എപ്പോഴും അവസാനത്തേത് ഉപയോഗിക്കാൻ \"അവസാനം\" തിരഞ്ഞെടുക്കുക.",
+      "addButton": "ചെലവ് ചേർക്കുക",
+      "updateButton": "ചെലവ് അപ്‌ഡേറ്റ് ചെയ്യുക",
+      "payeeRequired": "സ്വീകർത്താവിന്റെ പേര് ആവശ്യമാണ്.",
+      "invalidAmount": "സാധുവായ തുക നൽകുക."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "ഈ ശമ്പളം",
+    "available": "ലഭ്യം",
+    "emptyAssigned": "ഇതുവരെ ഒന്നും നീക്കിവെച്ചിട്ടില്ല. താഴെയുള്ള ലിസ്‌റ്റിൽ നിന്ന് ബില്ലുകൾ ചേർക്കുക.",
+    "leftAfterBills": "ബില്ലുകൾക്ക് ശേഷം ബാക്കി",
+    "summaryMeta": "%{pay} ശമ്പളം · %{assigned} നീക്കിവെച്ചു",
+    "linked": "ലിങ്ക് ചെയ്തു",
+    "remove": "%{payee} നീക്കം ചെയ്യുക",
+    "add": "%{payee} ചേർക്കുക",
+    "oneTime": {
+      "addButton": "ഒറ്റത്തവണ ചെലവ് ചേർക്കുക",
+      "title": "ഒറ്റത്തവണ ചെലവ്",
+      "payee": "സ്വീകർത്താവ്",
+      "amount": "തുക"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "%{date} ശമ്പളത്തിന് മാത്രം",
+    "hint": "ഡിഫോൾട്ട് %{amount}. മറ്റ് ശമ്പളങ്ങൾ ഡിഫോൾട്ടിൽ തുടരും.",
+    "useDefault": "ഡിഫോൾട്ട് തുക ഉപയോഗിക്കുക"
+  },
+  "settings": {
+    "appearance": "രൂപം",
+    "light": "ലൈറ്റ്",
+    "dark": "ഡാർക്ക്",
+    "system": "സിസ്റ്റം",
+    "hideCents": "പൈസ മറയ്ക്കുക",
+    "hideCentsHint": "തുകകൾ അടുത്ത പൂർണ്ണസംഖ്യയിലേക്ക് റൗണ്ട് ചെയ്ത് കാണിക്കുക.",
+    "behavior": "പ്രവർത്തനം",
+    "autoMarkPaid": "ലിങ്ക് ടാപ്പിൽ അടച്ചതായി അടയാളപ്പെടുത്തുക",
+    "autoMarkPaidHint": "പേയ്‌മെന്റ് ലിങ്ക് ടാപ്പ് ചെയ്യുമ്പോൾ ആ ബില്ലും അടച്ചതായി അടയാളപ്പെടുത്തും.",
+    "region": "ഭാഷ & കറൻസി",
+    "language": "ഭാഷ",
+    "currency": "കറൻസി",
+    "notifications": "അറിയിപ്പുകൾ",
+    "paydayReminder": "ശമ്പള ദിന റിമൈൻഡർ",
+    "paydayReminderHint": "ഓരോ ശമ്പളവും എത്തുന്നതിന് മുമ്പ് അതിന്റെ ബില്ലുകളുടെയും ബാക്കിയുടെയും സംഗ്രഹം നേടുക.",
+    "remindWhen": "ഓർമ്മിപ്പിക്കുക",
+    "remindTime": "സമയം",
+    "offsets": {
+      "dayOf": "അന്നേ ദിവസം",
+      "dayBefore": "ഒരു ദിവസം മുമ്പ്",
+      "daysBefore": "%{count} ദിവസം മുമ്പ്",
+      "weekBefore": "ഒരാഴ്ച മുമ്പ്"
+    },
+    "permissionDeniedTitle": "അറിയിപ്പുകൾ ഓഫാണ്",
+    "permissionDeniedBody": "ശമ്പള ദിന റിമൈൻഡറുകൾ ലഭിക്കാൻ ഉപകരണ സെറ്റിംഗ്‌സിൽ Paycheck Planner-ന് അറിയിപ്പുകൾ അനുവദിക്കുക."
+  },
+  "notifications": {
+    "channelName": "ശമ്പള ദിന റിമൈൻഡറുകൾ",
+    "titleToday": "ഇന്ന് ശമ്പള ദിനം: %{source}",
+    "titleTomorrow": "നാളെ ശമ്പള ദിനം: %{source}",
+    "titleOnDay": "%{weekday} ശമ്പള ദിനം: %{source}",
+    "body": "%{income} വരവ് · %{bills} · %{left} ബാക്കി",
+    "bodyNoBills": "%{income} വരവ് · ഇതുവരെ ബില്ലുകൾ നീക്കിവെച്ചിട്ടില്ല",
+    "bills": {
+      "one": "%{count} ബിൽ (%{amount})",
+      "other": "%{count} ബില്ലുകൾ (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "ലിങ്ക് തുറക്കാനായില്ല"
+  },
+  "payAmountSheet": {
+    "subtitle": "%{date} ശമ്പളത്തിന് മാത്രം",
+    "hint": "സാധാരണ ശമ്പളം %{amount}. മറ്റ് ശമ്പളങ്ങൾ അതുപോലെ തുടരും.",
+    "useDefault": "സാധാരണ തുക ഉപയോഗിക്കുക",
+    "invalidAmount": "സാധുവായ ശമ്പള തുക നൽകുക."
+  },
+  "moveBillSheet": {
+    "title": "ഒരു ബിൽ മാറ്റുക",
+    "subtitle": "%{date}-ന് %{amount} കുറവ്",
+    "bill": "ബിൽ",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "ഈ ശമ്പളത്തിലേക്ക്",
+    "noBills": "മാറ്റാൻ അടയ്ക്കാത്ത ബില്ലുകളില്ല.",
+    "noPaychecks": "വരാനിരിക്കുന്ന മറ്റ് ശമ്പളങ്ങളില്ല."
+  }
+}

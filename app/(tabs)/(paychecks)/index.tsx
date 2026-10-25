@@ -9,6 +9,7 @@ import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
+import { AppEmptyState } from "@/components/AppEmptyState";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { MonthBarChart } from "@/components/paychecks/MonthBarChart";
@@ -91,6 +92,20 @@ export default function PaychecksScreen() {
     [router]
   );
 
+  const handleMoveBill = useCallback(
+    (payDate: string, sourceId: string) => {
+      router.push({
+        pathname: "/move-bill",
+        params: { payDate, sourceId },
+      });
+    },
+    [router]
+  );
+
+  const handleAddIncome = useCallback(() => {
+    router.push("/income-form");
+  }, [router]);
+
   const handleGoToToday = useCallback(() => {
     setSelectedMonthKey(getCurrentMonthKey());
   }, []);
@@ -118,9 +133,17 @@ export default function PaychecksScreen() {
         onLinkTap={handleLinkTap}
         onEditAmount={handleEditAmount}
         onEditPayAmount={handleEditPayAmount}
+        onMoveBill={handleMoveBill}
       />
     ),
-    [handlePressPaycheck, handleTogglePaid, handleLinkTap, handleEditAmount, handleEditPayAmount]
+    [
+      handlePressPaycheck,
+      handleTogglePaid,
+      handleLinkTap,
+      handleEditAmount,
+      handleEditPayAmount,
+      handleMoveBill,
+    ]
   );
 
   const months = useMemo(
@@ -146,6 +169,8 @@ export default function PaychecksScreen() {
 
   const paychecks = useMemo(() => selectedMonth?.paychecks ?? [], [selectedMonth]);
 
+  const currentMonthKey = getCurrentMonthKey();
+
   const listHeader = useMemo(
     () =>
       selectedMonth ? (
@@ -162,6 +187,7 @@ export default function PaychecksScreen() {
             <MonthBarChart
               months={months}
               selectedKey={selectedMonth.key}
+              currentKey={currentMonthKey}
               onSelect={setSelectedMonthKey}
             />
           </View>
@@ -171,7 +197,7 @@ export default function PaychecksScreen() {
           />
         </View>
       ) : null,
-    [selectedMonth, months, formatMoney, t]
+    [selectedMonth, months, currentMonthKey, formatMoney, t]
   );
 
   const containerStyle = useMemo(
@@ -185,10 +211,13 @@ export default function PaychecksScreen() {
     <View style={containerStyle}>
       <Stack.Screen options={screenOptions} />
       {incomeSources.length === 0 ? (
-        <View style={styles.empty}>
-          <AppText variant="title" center>{t("paychecks.emptyTitle")}</AppText>
-          <AppText variant="meta" center>{t("paychecks.emptyBody")}</AppText>
-        </View>
+        <AppEmptyState
+          icon="wallet-outline"
+          title={t("paychecks.emptyTitle")}
+          body={t("paychecks.emptyBody")}
+          actionLabel={t("paychecks.emptyAction")}
+          onAction={handleAddIncome}
+        />
       ) : (
         <FlatList
           data={paychecks}
@@ -219,12 +248,5 @@ const styles = StyleSheet.create({
   chart: {
     marginTop: MEASUREMENTS.spacing.xl,
     marginHorizontal: -MEASUREMENTS.spacing.gutter,
-  },
-  empty: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    gap: MEASUREMENTS.spacing.md,
-    paddingHorizontal: MEASUREMENTS.spacing.section,
   },
 });

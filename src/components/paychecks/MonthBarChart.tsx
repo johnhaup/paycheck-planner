@@ -5,6 +5,7 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
+import { hapticSelection } from "@/utils/haptics";
 import type { MonthGroup } from "@/components/paychecks/types";
 
 const BAR_MAX_HEIGHT = 86;
@@ -14,11 +15,12 @@ const COLUMN_WIDTH = 46;
 interface Props {
   months: MonthGroup[];
   selectedKey: string;
+  currentKey: string;
   onSelect: (key: string) => void;
 }
 
 /** Each bar is a month's money left after bills; tapping one selects that month. */
-export function MonthBarChart({ months, selectedKey, onSelect }: Props) {
+export function MonthBarChart({ months, selectedKey, currentKey, onSelect }: Props) {
   const scrollRef = useRef<ScrollView>(null);
   const firstKey = months[0]?.key;
 
@@ -47,6 +49,7 @@ export function MonthBarChart({ months, selectedKey, onSelect }: Props) {
           month={month}
           maxMagnitude={maxMagnitude}
           selected={month.key === selectedKey}
+          isCurrent={month.key === currentKey}
           onSelect={onSelect}
         />
       ))}
@@ -58,17 +61,21 @@ interface MonthBarProps {
   month: MonthGroup;
   maxMagnitude: number;
   selected: boolean;
+  isCurrent: boolean;
   onSelect: (key: string) => void;
 }
 
-function MonthBar({ month, maxMagnitude, selected, onSelect }: MonthBarProps) {
+function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect }: MonthBarProps) {
   const colors = useColors();
   const { compact } = useMoneyFormat();
   const t = useT();
 
   const handlePress = useCallback(() => {
+    if (!selected) {
+      hapticSelection();
+    }
     onSelect(month.key);
-  }, [onSelect, month.key]);
+  }, [onSelect, month.key, selected]);
 
   const barStyle = useMemo(() => {
     const height = Math.max(
@@ -84,7 +91,16 @@ function MonthBar({ month, maxMagnitude, selected, onSelect }: MonthBarProps) {
     return [styles.bar, { height, backgroundColor: fill }];
   }, [month.remaining, maxMagnitude, selected, colors]);
 
+  // Always rendered so every column keeps the same height
+  const dotStyle = useMemo(
+    () => [styles.dot, { backgroundColor: isCurrent ? colors.primary : "transparent" }],
+    [isCurrent, colors]
+  );
+
   const accessibilityState = useMemo(() => ({ selected }), [selected]);
+
+  const labelColor = selected ? "textDefault" : isCurrent ? "primaryText" : "textMuted";
+  const amount = compact(month.remaining);
 
   return (
     <Pressable
@@ -92,7 +108,10 @@ function MonthBar({ month, maxMagnitude, selected, onSelect }: MonthBarProps) {
       onPress={handlePress}
       accessibilityRole="button"
       accessibilityState={accessibilityState}
-      accessibilityLabel={t("paychecks.chartBarLabel", { month: month.longLabel, amount: compact(month.remaining) })}
+      accessibilityLabel={t(isCurrent ? "paychecks.chartBarCurrentLabel" : "paychecks.chartBarLabel", {
+        month: month.longLabel,
+        amount,
+      })}
     >
       <AppText
         variant="caption"
@@ -100,15 +119,13 @@ function MonthBar({ month, maxMagnitude, selected, onSelect }: MonthBarProps) {
         style={styles.value}
         numberOfLines={1}
       >
-        {compact(month.remaining)}
+        {amount}
       </AppText>
       <View style={barStyle} />
-      <AppText
-        variant={selected ? "bodyStrong" : "meta"}
-        color={selected ? "textDefault" : "textMuted"}
-      >
+      <AppText variant={selected ? "bodyStrong" : "meta"} color={labelColor}>
         {month.shortLabel}
       </AppText>
+      <View style={dotStyle} />
     </Pressable>
   );
 }
@@ -124,10 +141,16 @@ const styles = StyleSheet.create({
   },
   column: {
     width: COLUMN_WIDTH,
-    height: BAR_MAX_HEIGHT + 56,
+    height: BAR_MAX_HEIGHT + 66,
     justifyContent: "flex-end",
     alignItems: "center",
     gap: MEASUREMENTS.spacing.md,
+  },
+  dot: {
+    width: 5,
+    height: 5,
+    borderRadius: 2.5,
+    marginTop: -MEASUREMENTS.spacing.sm,
   },
   value: {
     fontWeight: "600",

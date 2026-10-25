@@ -1,0 +1,240 @@
+{
+  "common": {
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "done": "Listo",
+    "save": "Guardar",
+    "add": "Añadir",
+    "update": "Actualizar",
+    "back": "Atrás",
+    "error": "Error",
+    "none": "Ninguno",
+    "unknown": "Desconocido",
+    "removed": "Eliminado",
+    "systemDefault": "Predeterminado del sistema",
+    "selectDate": "Seleccionar fecha",
+    "selectTime": "Seleccionar hora",
+    "and": "y",
+    "move": "Mover"
+  },
+  "ordinal": {
+    "other": "%{n}.º"
+  },
+  "tabs": {
+    "paychecks": "Sueldos",
+    "income": "Ingresos",
+    "expenses": "Gastos"
+  },
+  "screens": {
+    "settings": "Ajustes",
+    "incomeSource": "Fuente de ingresos",
+    "expense": "Gasto",
+    "payDate": "Fecha de cobro",
+    "language": "Idioma",
+    "currency": "Moneda"
+  },
+  "paychecks": {
+    "today": "Hoy",
+    "goToThisMonth": "Ir a este mes",
+    "leftAfterBills": "%{month} · restante tras las facturas",
+    "heroMeta": "%{income} de ingresos · %{assigned} asignados",
+    "monthPaychecks": "Sueldos de %{month}",
+    "emptyTitle": "Aún no hay fuentes de ingresos",
+    "emptyBody": "Añade tu primera fuente de ingresos para ver a dónde va cada sueldo.",
+    "noBillsYet": "Sin facturas · toca para asignar",
+    "paidProgress": "%{paid} de %{total} pagadas",
+    "amountLeft": "Quedan %{amount}",
+    "chartBarLabel": "%{month}, quedan %{amount}",
+    "opensPaycheck": "Abre este sueldo",
+    "markPaid": "Marcar %{payee} como pagada",
+    "changeAmount": "Cambiar el importe de %{payee} para este sueldo",
+    "changePayAmount": "Cambiar el sueldo de %{source} para este cobro",
+    "emptyAction": "Añadir fuente de ingresos",
+    "chartBarCurrentLabel": "%{month} (este mes), quedan %{amount}",
+    "shortBy": "Faltan %{amount}",
+    "moveBill": "Mover una factura"
+  },
+  "income": {
+    "emptyTitle": "Aún no hay ingresos",
+    "emptyBody": "Añade tus sueldos para empezar a planificar.",
+    "perMonth": "Al mes",
+    "nextPayday": "Próximo cobro",
+    "sources": "Fuentes",
+    "swipeHint": "Desliza una fuente hacia la izquierda para eliminarla.",
+    "addSource": "Añadir fuente de ingresos",
+    "perCheck": "por sueldo",
+    "deleteTitle": "Eliminar fuente de ingresos",
+    "deleteMessage": "¿Eliminar \"%{name}\" y todas sus asignaciones de gastos?",
+    "frequency": {
+      "weekly": "Semanal",
+      "biweekly": "Cada dos semanas",
+      "semiMonthly": "Dos veces al mes",
+      "monthly": "Mensual"
+    },
+    "schedule": {
+      "weekly": "Semanal · cada %{weekday}",
+      "biweekly": "Cada dos semanas · %{weekday}",
+      "semiMonthly": "Dos veces al mes · días %{first} y %{second}",
+      "monthly": "Mensual · día %{day}"
+    },
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "p. ej. Acme Corp",
+      "payAmount": "Importe del sueldo (por cobro)",
+      "payAmountPlaceholder": "p. ej. 2500.00",
+      "payFrequency": "Frecuencia de cobro",
+      "payDays": "Días de cobro del mes",
+      "payDaysHint": "Usa 31 para el último día del mes (se ajusta en los meses más cortos)",
+      "adjustToWorkday": "Ajustar a día laborable",
+      "adjustHint": "Si una fecha de cobro cae en fin de semana, se adelanta al viernes anterior.",
+      "firstPayDate": "Primera fecha de cobro",
+      "addButton": "Añadir fuente de ingresos",
+      "updateButton": "Actualizar fuente de ingresos",
+      "nameRequired": "El nombre es obligatorio.",
+      "invalidAmount": "Escribe un importe válido.",
+      "payDaysRange": "Los días de cobro deben estar entre 1 y 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Aún no hay gastos",
+    "emptyBody": "Añade tus facturas y asígnalas a tus sueldos.",
+    "nothingHere": "Aún no hay nada aquí.",
+    "monthlySummary": {
+      "one": "%{amount} al mes en %{count} factura",
+      "other": "%{amount} al mes en %{count} facturas"
+    },
+    "filters": {
+      "all": "Todos",
+      "recurring": "Recurrentes",
+      "oneTime": "Puntuales"
+    },
+    "addExpense": "Añadir gasto",
+    "openLink": "Abrir enlace de pago de %{payee}",
+    "deleteTitle": "Eliminar gasto",
+    "deleteMessage": "¿Eliminar \"%{payee}\" y todas sus asignaciones?",
+    "sections": {
+      "notLinked": "Sin vincular",
+      "oneTime": "Puntuales"
+    },
+    "perMonthTotal": "%{amount}/mes",
+    "meta": {
+      "everyPaycheck": "Cada sueldo",
+      "slotEachMonth": "%{slot} de cada mes",
+      "assignPerPaycheck": "Asignar por sueldo",
+      "due": "Vence %{date}",
+      "oneTime": "Puntual"
+    },
+    "cadence": {
+      "perCheck": "por sueldo",
+      "monthly": "mensual",
+      "recurring": "recurrente",
+      "oneTime": "puntual"
+    },
+    "slot": {
+      "last": "Último sueldo",
+      "lastShort": "Último",
+      "ordinalPaycheck": "%{ordinal} sueldo",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Beneficiario",
+      "payeePlaceholder": "p. ej. Compañía eléctrica",
+      "amount": "Importe",
+      "amountPlaceholder": "p. ej. 150.00",
+      "link": "Enlace de pago (opcional)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Sueldo",
+      "moveHint": "Mueve este gasto a otro sueldo.",
+      "linkedSource": "Fuente de ingresos vinculada",
+      "linkedHint": "Al vincularlo, este gasto se carga automáticamente en los sueldos de esa fuente.",
+      "howOften": "Frecuencia",
+      "everyPaycheck": "Cada sueldo",
+      "monthly": "Mensual",
+      "whichPaycheck": "Qué sueldo",
+      "slotHintLast": "Se asigna al último sueldo de cada mes, incluidos los meses con uno extra.",
+      "slotHintOrdinal": "Los sueldos extra de los meses más largos se omiten. Elige Último para usar siempre el final.",
+      "addButton": "Añadir gasto",
+      "updateButton": "Actualizar gasto",
+      "payeeRequired": "El nombre del beneficiario es obligatorio.",
+      "invalidAmount": "Escribe un importe válido."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Este sueldo",
+    "available": "Disponible",
+    "emptyAssigned": "Aún no hay nada asignado. Añade facturas de la lista de abajo.",
+    "leftAfterBills": "Restante tras las facturas",
+    "summaryMeta": "Sueldo de %{pay} · %{assigned} asignados",
+    "linked": "Vinculado",
+    "remove": "Quitar %{payee}",
+    "add": "Añadir %{payee}",
+    "oneTime": {
+      "addButton": "Añadir gasto puntual",
+      "title": "Gasto puntual",
+      "payee": "Beneficiario",
+      "amount": "Importe"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Solo el sueldo del %{date}",
+    "hint": "El importe predeterminado es %{amount}. Los demás sueldos lo mantienen.",
+    "useDefault": "Usar importe predeterminado"
+  },
+  "settings": {
+    "appearance": "Apariencia",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema",
+    "hideCents": "Ocultar decimales",
+    "hideCentsHint": "Muestra los importes redondeados a la unidad.",
+    "behavior": "Comportamiento",
+    "autoMarkPaid": "Marcar como pagada al abrir el enlace",
+    "autoMarkPaidHint": "Al tocar un enlace de pago, la factura también se marca como pagada.",
+    "region": "Idioma y moneda",
+    "language": "Idioma",
+    "currency": "Moneda",
+    "notifications": "Notificaciones",
+    "paydayReminder": "Recordatorio de cobro",
+    "paydayReminderHint": "Recibe un resumen de las facturas de cada sueldo y lo que queda antes de cobrar.",
+    "remindWhen": "Recordarme",
+    "remindTime": "A las",
+    "offsets": {
+      "dayOf": "El mismo día",
+      "dayBefore": "El día anterior",
+      "daysBefore": "%{count} días antes",
+      "weekBefore": "Una semana antes"
+    },
+    "permissionDeniedTitle": "Las notificaciones están desactivadas",
+    "permissionDeniedBody": "Permite las notificaciones de Paycheck Planner en los ajustes del dispositivo para recibir recordatorios de cobro."
+  },
+  "notifications": {
+    "channelName": "Recordatorios de cobro",
+    "titleToday": "Hoy cobras: %{source}",
+    "titleTomorrow": "Mañana cobras: %{source}",
+    "titleOnDay": "Cobras el %{weekday}: %{source}",
+    "body": "%{income} de ingresos · %{bills} · quedan %{left}",
+    "bodyNoBills": "%{income} de ingresos · aún sin facturas asignadas",
+    "bills": {
+      "one": "%{count} factura (%{amount})",
+      "other": "%{count} facturas (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "No se pudo abrir el enlace"
+  },
+  "payAmountSheet": {
+    "subtitle": "Solo el sueldo del %{date}",
+    "hint": "El sueldo habitual es %{amount}. Los demás sueldos lo mantienen.",
+    "useDefault": "Usar importe habitual",
+    "invalidAmount": "Escribe un importe válido."
+  },
+  "moveBillSheet": {
+    "title": "Mover una factura",
+    "subtitle": "Faltan %{amount} el %{date}",
+    "bill": "Factura",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Al sueldo",
+    "noBills": "No hay facturas pendientes que mover.",
+    "noPaychecks": "No hay otros sueldos próximos."
+  }
+}

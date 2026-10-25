@@ -1,0 +1,244 @@
+{
+  "common": {
+    "cancel": "বাতিল",
+    "delete": "মুছুন",
+    "done": "হয়ে গেছে",
+    "save": "সেভ করুন",
+    "add": "যোগ করুন",
+    "update": "আপডেট করুন",
+    "back": "ফিরে যান",
+    "error": "ত্রুটি",
+    "none": "কিছু না",
+    "unknown": "অজানা",
+    "removed": "সরানো হয়েছে",
+    "systemDefault": "সিস্টেম ডিফল্ট",
+    "selectDate": "তারিখ বেছে নিন",
+    "selectTime": "সময় বেছে নিন",
+    "and": "এবং",
+    "move": "সরান"
+  },
+  "ordinal": {
+    "one": "%{n}ম",
+    "two": "%{n}য়",
+    "few": "%{n}র্থ",
+    "many": "%{n}ষ্ঠ",
+    "other": "%{n}তম"
+  },
+  "tabs": {
+    "paychecks": "বেতন",
+    "income": "আয়",
+    "expenses": "খরচ"
+  },
+  "screens": {
+    "settings": "সেটিংস",
+    "incomeSource": "আয়ের উৎস",
+    "expense": "খরচ",
+    "payDate": "বেতনের তারিখ",
+    "language": "ভাষা",
+    "currency": "মুদ্রা"
+  },
+  "paychecks": {
+    "today": "আজ",
+    "goToThisMonth": "এই মাসে যান",
+    "leftAfterBills": "%{month} · বিলের পরে বাকি",
+    "heroMeta": "%{income} এসেছে · %{assigned} বরাদ্দ",
+    "monthPaychecks": "%{month}-এর বেতন",
+    "emptyTitle": "এখনও কোনো আয়ের উৎস নেই",
+    "emptyBody": "প্রতিটি বেতন কোথায় যায় তা দেখতে আপনার প্রথম আয়ের উৎস যোগ করুন।",
+    "noBillsYet": "এখনও কোনো বিল নেই · বরাদ্দ করতে ট্যাপ করুন",
+    "paidProgress": "%{total}-এর মধ্যে %{paid} পরিশোধিত",
+    "amountLeft": "%{amount} বাকি",
+    "chartBarLabel": "%{month}, %{amount} বাকি",
+    "opensPaycheck": "এই বেতন খোলে",
+    "markPaid": "%{payee} পরিশোধিত হিসেবে চিহ্নিত করুন",
+    "changeAmount": "এই বেতনের জন্য %{payee}-এর পরিমাণ বদলান",
+    "changePayAmount": "এই বারের জন্য %{source}-এর বেতনের পরিমাণ বদলান",
+    "emptyAction": "আয়ের উৎস যোগ করুন",
+    "chartBarCurrentLabel": "%{month} (এই মাস), %{amount} বাকি",
+    "shortBy": "%{amount} কম",
+    "moveBill": "বিল সরান"
+  },
+  "income": {
+    "emptyTitle": "এখনও কোনো আয় নেই",
+    "emptyBody": "পরিকল্পনা শুরু করতে আপনার বেতন যোগ করুন।",
+    "perMonth": "প্রতি মাসে",
+    "nextPayday": "পরের বেতনের দিন",
+    "sources": "উৎস",
+    "swipeHint": "কোনো উৎস মুছতে তার উপর বাঁদিকে সোয়াইপ করুন।",
+    "addSource": "আয়ের উৎস যোগ করুন",
+    "perCheck": "প্রতি বেতনে",
+    "deleteTitle": "আয়ের উৎস মুছুন",
+    "deleteMessage": "\"%{name}\" এবং এর সব খরচের বরাদ্দ মুছবেন?",
+    "frequency": {
+      "weekly": "সাপ্তাহিক",
+      "biweekly": "দুই সপ্তাহে একবার",
+      "semiMonthly": "মাসে দুবার",
+      "monthly": "মাসিক"
+    },
+    "schedule": {
+      "weekly": "সাপ্তাহিক · প্রতি %{weekday}",
+      "biweekly": "দুই সপ্তাহে একবার · %{weekday}",
+      "semiMonthly": "মাসে দুবার · %{firstDate} ও %{secondDate} তারিখ",
+      "monthly": "মাসিক · %{date} তারিখ"
+    },
+    "form": {
+      "name": "নাম",
+      "namePlaceholder": "যেমন Acme Corp",
+      "payAmount": "বেতনের পরিমাণ (প্রতি বেতনে)",
+      "payAmountPlaceholder": "যেমন 2500.00",
+      "payFrequency": "কত ঘন ঘন বেতন",
+      "payDays": "মাসের বেতনের দিন",
+      "payDaysHint": "মাসের শেষ দিনের জন্য 31 দিন (ছোট মাসে স্বয়ংক্রিয়ভাবে ঠিক হয়ে যায়)",
+      "adjustToWorkday": "কর্মদিবসে সরান",
+      "adjustHint": "বেতনের তারিখ সপ্তাহান্তে পড়লে তা আগের শুক্রবারে চলে যায়।",
+      "firstPayDate": "প্রথম বেতনের তারিখ",
+      "addButton": "আয়ের উৎস যোগ করুন",
+      "updateButton": "আয়ের উৎস আপডেট করুন",
+      "nameRequired": "নাম দেওয়া আবশ্যক।",
+      "invalidAmount": "সঠিক বেতনের পরিমাণ দিন।",
+      "payDaysRange": "বেতনের দিন 1 থেকে 31-এর মধ্যে হতে হবে।"
+    }
+  },
+  "expenses": {
+    "emptyTitle": "এখনও কোনো খরচ নেই",
+    "emptyBody": "আপনার বিল যোগ করুন, তারপর বেতনে বরাদ্দ করুন।",
+    "nothingHere": "এখানে এখনও কিছু নেই।",
+    "monthlySummary": {
+      "one": "%{count}টি বিলে মাসে %{amount}",
+      "other": "%{count}টি বিলে মাসে %{amount}"
+    },
+    "filters": {
+      "all": "সব",
+      "recurring": "নিয়মিত",
+      "oneTime": "একবার"
+    },
+    "addExpense": "খরচ যোগ করুন",
+    "openLink": "%{payee}-এর পেমেন্ট লিঙ্ক খুলুন",
+    "deleteTitle": "খরচ মুছুন",
+    "deleteMessage": "\"%{payee}\" এবং এর সব বরাদ্দ মুছবেন?",
+    "sections": {
+      "notLinked": "লিঙ্ক করা নেই",
+      "oneTime": "একবার"
+    },
+    "perMonthTotal": "%{amount}/মাস",
+    "meta": {
+      "everyPaycheck": "প্রতি বেতনে",
+      "slotEachMonth": "প্রতি মাসে %{slot}",
+      "assignPerPaycheck": "বেতন অনুযায়ী বরাদ্দ করুন",
+      "due": "শেষ তারিখ %{date}",
+      "oneTime": "একবার"
+    },
+    "cadence": {
+      "perCheck": "প্রতি বেতনে",
+      "monthly": "মাসিক",
+      "recurring": "নিয়মিত",
+      "oneTime": "একবার"
+    },
+    "slot": {
+      "last": "শেষ বেতন",
+      "lastShort": "শেষ",
+      "ordinalPaycheck": "%{ordinal} বেতন",
+      "dayOfMonth": "%{date} তারিখ"
+    },
+    "form": {
+      "payee": "প্রাপক",
+      "payeePlaceholder": "যেমন বিদ্যুৎ কোম্পানি",
+      "amount": "পরিমাণ",
+      "amountPlaceholder": "যেমন 150.00",
+      "link": "পেমেন্ট লিঙ্ক (ঐচ্ছিক)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "বেতন",
+      "moveHint": "এই খরচটি অন্য বেতনে সরান।",
+      "linkedSource": "লিঙ্ক করা আয়ের উৎস",
+      "linkedHint": "লিঙ্ক করা থাকলে এই খরচটি সেই উৎসের বেতনে আগে থেকেই যুক্ত থাকে।",
+      "howOften": "কত ঘন ঘন",
+      "everyPaycheck": "প্রতি বেতনে",
+      "monthly": "মাসিক",
+      "whichPaycheck": "কোন বেতন",
+      "slotHintLast": "প্রতি মাসের শেষ বেতনে পড়ে, অতিরিক্ত বেতনের মাসেও।",
+      "slotHintOrdinal": "দীর্ঘ মাসের অতিরিক্ত বেতন বাদ যায়। সবসময় শেষটি ব্যবহার করতে 'শেষ' বেছে নিন।",
+      "addButton": "খরচ যোগ করুন",
+      "updateButton": "খরচ আপডেট করুন",
+      "payeeRequired": "প্রাপকের নাম দেওয়া আবশ্যক।",
+      "invalidAmount": "সঠিক পরিমাণ দিন।"
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "এই বেতন",
+    "available": "উপলব্ধ",
+    "emptyAssigned": "এখনও কিছু বরাদ্দ নেই। নিচের তালিকা থেকে বিল যোগ করুন।",
+    "leftAfterBills": "বিলের পরে বাকি",
+    "summaryMeta": "%{pay} বেতন · %{assigned} বরাদ্দ",
+    "linked": "লিঙ্ক করা",
+    "remove": "%{payee} সরান",
+    "add": "%{payee} যোগ করুন",
+    "oneTime": {
+      "addButton": "একবারের খরচ যোগ করুন",
+      "title": "একবারের খরচ",
+      "payee": "প্রাপক",
+      "amount": "পরিমাণ"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "শুধু %{date}-এর বেতন",
+    "hint": "ডিফল্ট %{amount}। অন্য বেতনে ডিফল্টই থাকবে।",
+    "useDefault": "ডিফল্ট পরিমাণ ব্যবহার করুন"
+  },
+  "settings": {
+    "appearance": "থিম",
+    "light": "লাইট",
+    "dark": "ডার্ক",
+    "system": "সিস্টেম",
+    "hideCents": "পয়সা লুকান",
+    "hideCentsHint": "পরিমাণ নিকটতম পূর্ণ সংখ্যায় রাউন্ড করে দেখান।",
+    "behavior": "আচরণ",
+    "autoMarkPaid": "লিঙ্কে ট্যাপ করলে পরিশোধিত চিহ্নিত",
+    "autoMarkPaidHint": "পেমেন্ট লিঙ্কে ট্যাপ করলে সেই বিলটিও পরিশোধিত হিসেবে চিহ্নিত হয়।",
+    "region": "ভাষা ও মুদ্রা",
+    "language": "ভাষা",
+    "currency": "মুদ্রা",
+    "notifications": "নোটিফিকেশন",
+    "paydayReminder": "বেতনের দিনের রিমাইন্ডার",
+    "paydayReminderHint": "প্রতিটি বেতন আসার আগে তার বিল ও বাকি টাকার সারসংক্ষেপ পান।",
+    "remindWhen": "কখন মনে করাবে",
+    "remindTime": "সময়",
+    "offsets": {
+      "dayOf": "সেই দিনই",
+      "dayBefore": "আগের দিন",
+      "daysBefore": "%{count} দিন আগে",
+      "weekBefore": "এক সপ্তাহ আগে"
+    },
+    "permissionDeniedTitle": "নোটিফিকেশন বন্ধ",
+    "permissionDeniedBody": "বেতনের দিনের রিমাইন্ডার পেতে ডিভাইস সেটিংসে Paycheck Planner-এর নোটিফিকেশন চালু করুন।"
+  },
+  "notifications": {
+    "channelName": "বেতনের দিনের রিমাইন্ডার",
+    "titleToday": "আজ বেতনের দিন: %{source}",
+    "titleTomorrow": "কাল বেতনের দিন: %{source}",
+    "titleOnDay": "%{weekday} বেতনের দিন: %{source}",
+    "body": "%{income} এসেছে · %{bills} · %{left} বাকি",
+    "bodyNoBills": "%{income} এসেছে · এখনও কোনো বিল বরাদ্দ নেই",
+    "bills": {
+      "one": "%{count}টি বিল (%{amount})",
+      "other": "%{count}টি বিল (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "লিঙ্ক খোলা যায়নি"
+  },
+  "payAmountSheet": {
+    "subtitle": "শুধু %{date}-এর বেতন",
+    "hint": "সাধারণ বেতন %{amount}। অন্য বেতনে সেটাই থাকবে।",
+    "useDefault": "সাধারণ পরিমাণ ব্যবহার করুন",
+    "invalidAmount": "সঠিক বেতনের পরিমাণ দিন।"
+  },
+  "moveBillSheet": {
+    "title": "বিল সরান",
+    "subtitle": "%{date}-এ %{amount} কম",
+    "bill": "বিল",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "যে বেতনে",
+    "noBills": "সরানোর মতো কোনো অপরিশোধিত বিল নেই।",
+    "noPaychecks": "সামনে অন্য কোনো বেতন নেই।"
+  }
+}

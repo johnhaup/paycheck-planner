@@ -1,0 +1,240 @@
+{
+  "common": {
+    "cancel": "ರದ್ದುಮಾಡಿ",
+    "delete": "ಅಳಿಸಿ",
+    "done": "ಮುಗಿದಿದೆ",
+    "save": "ಉಳಿಸಿ",
+    "add": "ಸೇರಿಸಿ",
+    "update": "ಅಪ್‌ಡೇಟ್ ಮಾಡಿ",
+    "back": "ಹಿಂದೆ",
+    "error": "ದೋಷ",
+    "none": "ಯಾವುದೂ ಇಲ್ಲ",
+    "unknown": "ಅಜ್ಞಾತ",
+    "removed": "ತೆಗೆದುಹಾಕಲಾಗಿದೆ",
+    "systemDefault": "ಸಿಸ್ಟಂ ಡೀಫಾಲ್ಟ್",
+    "selectDate": "ದಿನಾಂಕ ಆಯ್ಕೆಮಾಡಿ",
+    "selectTime": "ಸಮಯ ಆಯ್ಕೆಮಾಡಿ",
+    "and": "ಮತ್ತು",
+    "move": "ಸರಿಸಿ"
+  },
+  "ordinal": {
+    "other": "%{n}ನೇ"
+  },
+  "tabs": {
+    "paychecks": "ಸಂಬಳಗಳು",
+    "income": "ಆದಾಯ",
+    "expenses": "ಖರ್ಚುಗಳು"
+  },
+  "screens": {
+    "settings": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+    "incomeSource": "ಆದಾಯ ಮೂಲ",
+    "expense": "ಖರ್ಚು",
+    "payDate": "ಸಂಬಳದ ದಿನಾಂಕ",
+    "language": "ಭಾಷೆ",
+    "currency": "ಕರೆನ್ಸಿ"
+  },
+  "paychecks": {
+    "today": "ಇಂದು",
+    "goToThisMonth": "ಈ ತಿಂಗಳಿಗೆ ಹೋಗಿ",
+    "leftAfterBills": "%{month} · ಬಿಲ್‌ಗಳ ನಂತರ ಉಳಿದಿದೆ",
+    "heroMeta": "%{income} ಆದಾಯ · %{assigned} ನಿಗದಿ",
+    "monthPaychecks": "%{month} ಸಂಬಳಗಳು",
+    "emptyTitle": "ಇನ್ನೂ ಆದಾಯ ಮೂಲಗಳಿಲ್ಲ",
+    "emptyBody": "ಪ್ರತಿ ಸಂಬಳ ಎಲ್ಲಿಗೆ ಹೋಗುತ್ತದೆ ಎಂದು ನೋಡಲು ನಿಮ್ಮ ಮೊದಲ ಆದಾಯ ಮೂಲವನ್ನು ಸೇರಿಸಿ.",
+    "noBillsYet": "ಇನ್ನೂ ಬಿಲ್‌ಗಳಿಲ್ಲ · ನಿಗದಿಪಡಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ",
+    "paidProgress": "%{total}ರಲ್ಲಿ %{paid} ಪಾವತಿಸಲಾಗಿದೆ",
+    "amountLeft": "%{amount} ಉಳಿದಿದೆ",
+    "chartBarLabel": "%{month}, %{amount} ಉಳಿದಿದೆ",
+    "opensPaycheck": "ಈ ಸಂಬಳವನ್ನು ತೆರೆಯುತ್ತದೆ",
+    "markPaid": "%{payee} ಪಾವತಿಸಿದೆ ಎಂದು ಗುರುತಿಸಿ",
+    "changeAmount": "ಈ ಸಂಬಳಕ್ಕೆ %{payee} ಮೊತ್ತವನ್ನು ಬದಲಾಯಿಸಿ",
+    "changePayAmount": "ಈ ಸಂಬಳಕ್ಕೆ %{source} ಸಂಬಳದ ಮೊತ್ತವನ್ನು ಬದಲಾಯಿಸಿ",
+    "emptyAction": "ಆದಾಯ ಮೂಲ ಸೇರಿಸಿ",
+    "chartBarCurrentLabel": "%{month} (ಈ ತಿಂಗಳು), %{amount} ಉಳಿದಿದೆ",
+    "shortBy": "%{amount} ಕೊರತೆ",
+    "moveBill": "ಬಿಲ್ ಸರಿಸಿ"
+  },
+  "income": {
+    "emptyTitle": "ಇನ್ನೂ ಆದಾಯವಿಲ್ಲ",
+    "emptyBody": "ಯೋಜನೆ ಆರಂಭಿಸಲು ನಿಮ್ಮ ಸಂಬಳಗಳನ್ನು ಸೇರಿಸಿ.",
+    "perMonth": "ತಿಂಗಳಿಗೆ",
+    "nextPayday": "ಮುಂದಿನ ಸಂಬಳದ ದಿನ",
+    "sources": "ಮೂಲಗಳು",
+    "swipeHint": "ಮೂಲವನ್ನು ಅಳಿಸಲು ಅದರ ಮೇಲೆ ಎಡಕ್ಕೆ ಸ್ವೈಪ್ ಮಾಡಿ.",
+    "addSource": "ಆದಾಯ ಮೂಲ ಸೇರಿಸಿ",
+    "perCheck": "ಪ್ರತಿ ಸಂಬಳಕ್ಕೆ",
+    "deleteTitle": "ಆದಾಯ ಮೂಲ ಅಳಿಸಿ",
+    "deleteMessage": "\"%{name}\" ಮತ್ತು ಅದರ ಎಲ್ಲಾ ಖರ್ಚು ನಿಗದಿಗಳನ್ನು ಅಳಿಸಬೇಕೆ?",
+    "frequency": {
+      "weekly": "ವಾರಕ್ಕೊಮ್ಮೆ",
+      "biweekly": "ಎರಡು ವಾರಕ್ಕೊಮ್ಮೆ",
+      "semiMonthly": "ತಿಂಗಳಿಗೆ ಎರಡು ಬಾರಿ",
+      "monthly": "ತಿಂಗಳಿಗೊಮ್ಮೆ"
+    },
+    "schedule": {
+      "weekly": "ವಾರಕ್ಕೊಮ್ಮೆ · ಪ್ರತಿ %{weekday}",
+      "biweekly": "ಎರಡು ವಾರಕ್ಕೊಮ್ಮೆ · ಪ್ರತಿ %{weekday}",
+      "semiMonthly": "ತಿಂಗಳಿಗೆ ಎರಡು ಬಾರಿ · %{first} & %{second}",
+      "monthly": "ತಿಂಗಳಿಗೊಮ್ಮೆ · %{day}"
+    },
+    "form": {
+      "name": "ಹೆಸರು",
+      "namePlaceholder": "ಉದಾ. Acme Corp",
+      "payAmount": "ಸಂಬಳದ ಮೊತ್ತ (ಪ್ರತಿ ಸಂಬಳಕ್ಕೆ)",
+      "payAmountPlaceholder": "ಉದಾ. 2500.00",
+      "payFrequency": "ಸಂಬಳದ ಆವರ್ತನ",
+      "payDays": "ತಿಂಗಳ ಸಂಬಳದ ದಿನಗಳು",
+      "payDaysHint": "ತಿಂಗಳ ಕೊನೆಯ ದಿನಕ್ಕೆ 31 ಬಳಸಿ (ಕಡಿಮೆ ದಿನಗಳ ತಿಂಗಳುಗಳಿಗೆ ಸ್ವಯಂ ಹೊಂದಿಸಲಾಗುತ್ತದೆ)",
+      "adjustToWorkday": "ಕೆಲಸದ ದಿನಕ್ಕೆ ಹೊಂದಿಸಿ",
+      "adjustHint": "ಸಂಬಳದ ದಿನಾಂಕ ವಾರಾಂತ್ಯದಲ್ಲಿ ಬಂದರೆ, ಅದು ಹಿಂದಿನ ಶುಕ್ರವಾರಕ್ಕೆ ಬದಲಾಗುತ್ತದೆ.",
+      "firstPayDate": "ಮೊದಲ ಸಂಬಳದ ದಿನಾಂಕ",
+      "addButton": "ಆದಾಯ ಮೂಲ ಸೇರಿಸಿ",
+      "updateButton": "ಆದಾಯ ಮೂಲ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ",
+      "nameRequired": "ಹೆಸರು ಅಗತ್ಯ.",
+      "invalidAmount": "ಸರಿಯಾದ ಸಂಬಳದ ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ.",
+      "payDaysRange": "ಸಂಬಳದ ದಿನಗಳು 1 ರಿಂದ 31 ರ ನಡುವೆ ಇರಬೇಕು."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "ಇನ್ನೂ ಖರ್ಚುಗಳಿಲ್ಲ",
+    "emptyBody": "ನಿಮ್ಮ ಬಿಲ್‌ಗಳನ್ನು ಸೇರಿಸಿ, ನಂತರ ಸಂಬಳಗಳಿಗೆ ನಿಗದಿಪಡಿಸಿ.",
+    "nothingHere": "ಇಲ್ಲಿ ಇನ್ನೂ ಏನೂ ಇಲ್ಲ.",
+    "monthlySummary": {
+      "one": "%{count} ಬಿಲ್‌ನಲ್ಲಿ ತಿಂಗಳಿಗೆ %{amount}",
+      "other": "%{count} ಬಿಲ್‌ಗಳಲ್ಲಿ ತಿಂಗಳಿಗೆ %{amount}"
+    },
+    "filters": {
+      "all": "ಎಲ್ಲಾ",
+      "recurring": "ಪುನರಾವರ್ತಿತ",
+      "oneTime": "ಒಂದು ಬಾರಿ"
+    },
+    "addExpense": "ಖರ್ಚು ಸೇರಿಸಿ",
+    "openLink": "%{payee} ಪಾವತಿ ಲಿಂಕ್ ತೆರೆಯಿರಿ",
+    "deleteTitle": "ಖರ್ಚು ಅಳಿಸಿ",
+    "deleteMessage": "\"%{payee}\" ಮತ್ತು ಅದರ ಎಲ್ಲಾ ನಿಗದಿಗಳನ್ನು ಅಳಿಸಬೇಕೆ?",
+    "sections": {
+      "notLinked": "ಲಿಂಕ್ ಆಗಿಲ್ಲ",
+      "oneTime": "ಒಂದು ಬಾರಿ"
+    },
+    "perMonthTotal": "%{amount}/ತಿಂಗಳು",
+    "meta": {
+      "everyPaycheck": "ಪ್ರತಿ ಸಂಬಳ",
+      "slotEachMonth": "ಪ್ರತಿ ತಿಂಗಳು %{slot}",
+      "assignPerPaycheck": "ಸಂಬಳದ ಪ್ರಕಾರ ನಿಗದಿಪಡಿಸಿ",
+      "due": "ಬಾಕಿ %{date}",
+      "oneTime": "ಒಂದು ಬಾರಿ"
+    },
+    "cadence": {
+      "perCheck": "ಪ್ರತಿ ಸಂಬಳಕ್ಕೆ",
+      "monthly": "ಮಾಸಿಕ",
+      "recurring": "ಪುನರಾವರ್ತಿತ",
+      "oneTime": "ಒಂದು ಬಾರಿ"
+    },
+    "slot": {
+      "last": "ಕೊನೆಯ ಸಂಬಳ",
+      "lastShort": "ಕೊನೆಯ",
+      "ordinalPaycheck": "%{ordinal} ಸಂಬಳ",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "ಪಾವತಿ ಪಡೆಯುವವರು",
+      "payeePlaceholder": "ಉದಾ. ವಿದ್ಯುತ್ ಕಂಪನಿ",
+      "amount": "ಮೊತ್ತ",
+      "amountPlaceholder": "ಉದಾ. 150.00",
+      "link": "ಪಾವತಿ ಲಿಂಕ್ (ಐಚ್ಛಿಕ)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "ಸಂಬಳ",
+      "moveHint": "ಈ ಖರ್ಚನ್ನು ಬೇರೆ ಸಂಬಳಕ್ಕೆ ಸರಿಸಿ.",
+      "linkedSource": "ಲಿಂಕ್ ಮಾಡಿದ ಆದಾಯ ಮೂಲ",
+      "linkedHint": "ಲಿಂಕ್ ಮಾಡಿದರೆ, ಆ ಮೂಲದ ಸಂಬಳಗಳಲ್ಲಿ ಈ ಖರ್ಚು ಮುಂಚಿತವಾಗಿ ಸೇರುತ್ತದೆ.",
+      "howOften": "ಎಷ್ಟು ಬಾರಿ",
+      "everyPaycheck": "ಪ್ರತಿ ಸಂಬಳ",
+      "monthly": "ಮಾಸಿಕ",
+      "whichPaycheck": "ಯಾವ ಸಂಬಳ",
+      "slotHintLast": "ಹೆಚ್ಚುವರಿ ಸಂಬಳ ಇರುವ ತಿಂಗಳುಗಳೂ ಸೇರಿ, ಪ್ರತಿ ತಿಂಗಳ ಕೊನೆಯ ಸಂಬಳಕ್ಕೆ ಸೇರುತ್ತದೆ.",
+      "slotHintOrdinal": "ದೀರ್ಘ ತಿಂಗಳುಗಳ ಹೆಚ್ಚುವರಿ ಸಂಬಳಗಳನ್ನು ಬಿಡಲಾಗುತ್ತದೆ. ಯಾವಾಗಲೂ ಕೊನೆಯದನ್ನು ಬಳಸಲು \"ಕೊನೆಯ\" ಆಯ್ಕೆಮಾಡಿ.",
+      "addButton": "ಖರ್ಚು ಸೇರಿಸಿ",
+      "updateButton": "ಖರ್ಚು ಅಪ್‌ಡೇಟ್ ಮಾಡಿ",
+      "payeeRequired": "ಪಾವತಿ ಪಡೆಯುವವರ ಹೆಸರು ಅಗತ್ಯ.",
+      "invalidAmount": "ಸರಿಯಾದ ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "ಈ ಸಂಬಳ",
+    "available": "ಲಭ್ಯ",
+    "emptyAssigned": "ಇನ್ನೂ ಏನೂ ನಿಗದಿಯಾಗಿಲ್ಲ. ಕೆಳಗಿನ ಪಟ್ಟಿಯಿಂದ ಬಿಲ್‌ಗಳನ್ನು ಸೇರಿಸಿ.",
+    "leftAfterBills": "ಬಿಲ್‌ಗಳ ನಂತರ ಉಳಿದಿದೆ",
+    "summaryMeta": "%{pay} ಸಂಬಳ · %{assigned} ನಿಗದಿ",
+    "linked": "ಲಿಂಕ್ ಆಗಿದೆ",
+    "remove": "%{payee} ತೆಗೆದುಹಾಕಿ",
+    "add": "%{payee} ಸೇರಿಸಿ",
+    "oneTime": {
+      "addButton": "ಒಂದು ಬಾರಿಯ ಖರ್ಚು ಸೇರಿಸಿ",
+      "title": "ಒಂದು ಬಾರಿಯ ಖರ್ಚು",
+      "payee": "ಪಾವತಿ ಪಡೆಯುವವರು",
+      "amount": "ಮೊತ್ತ"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "%{date} ಸಂಬಳಕ್ಕೆ ಮಾತ್ರ",
+    "hint": "ಡೀಫಾಲ್ಟ್ %{amount}. ಇತರ ಸಂಬಳಗಳು ಡೀಫಾಲ್ಟ್‌ನಲ್ಲೇ ಇರುತ್ತವೆ.",
+    "useDefault": "ಡೀಫಾಲ್ಟ್ ಮೊತ್ತ ಬಳಸಿ"
+  },
+  "settings": {
+    "appearance": "ಗೋಚರತೆ",
+    "light": "ಲೈಟ್",
+    "dark": "ಡಾರ್ಕ್",
+    "system": "ಸಿಸ್ಟಂ",
+    "hideCents": "ಪೈಸೆ ಮರೆಮಾಡಿ",
+    "hideCentsHint": "ಮೊತ್ತಗಳನ್ನು ಹತ್ತಿರದ ಪೂರ್ಣ ಸಂಖ್ಯೆಗೆ ರೌಂಡ್ ಮಾಡಿ ತೋರಿಸಿ.",
+    "behavior": "ವರ್ತನೆ",
+    "autoMarkPaid": "ಲಿಂಕ್ ಟ್ಯಾಪ್ ಮಾಡಿದಾಗ ಪಾವತಿಸಿದೆ ಎಂದು ಗುರುತಿಸಿ",
+    "autoMarkPaidHint": "ಪಾವತಿ ಲಿಂಕ್ ಟ್ಯಾಪ್ ಮಾಡಿದಾಗ ಆ ಬಿಲ್ ಕೂಡ ಪಾವತಿಸಿದೆ ಎಂದು ಗುರುತಾಗುತ್ತದೆ.",
+    "region": "ಭಾಷೆ & ಕರೆನ್ಸಿ",
+    "language": "ಭಾಷೆ",
+    "currency": "ಕರೆನ್ಸಿ",
+    "notifications": "ಅಧಿಸೂಚನೆಗಳು",
+    "paydayReminder": "ಸಂಬಳದ ದಿನದ ಜ್ಞಾಪನೆ",
+    "paydayReminderHint": "ಪ್ರತಿ ಸಂಬಳ ಬರುವ ಮೊದಲು ಅದರ ಬಿಲ್‌ಗಳು ಮತ್ತು ಉಳಿಯುವ ಮೊತ್ತದ ಸಾರಾಂಶ ಪಡೆಯಿರಿ.",
+    "remindWhen": "ನೆನಪಿಸಿ",
+    "remindTime": "ಸಮಯ",
+    "offsets": {
+      "dayOf": "ಅದೇ ದಿನ",
+      "dayBefore": "ಒಂದು ದಿನ ಮೊದಲು",
+      "daysBefore": "%{count} ದಿನಗಳ ಮೊದಲು",
+      "weekBefore": "ಒಂದು ವಾರ ಮೊದಲು"
+    },
+    "permissionDeniedTitle": "ಅಧಿಸೂಚನೆಗಳು ಆಫ್ ಆಗಿವೆ",
+    "permissionDeniedBody": "ಸಂಬಳದ ದಿನದ ಜ್ಞಾಪನೆಗಳನ್ನು ಪಡೆಯಲು ನಿಮ್ಮ ಸಾಧನದ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ Paycheck Planner ಗೆ ಅಧಿಸೂಚನೆಗಳನ್ನು ಅನುಮತಿಸಿ."
+  },
+  "notifications": {
+    "channelName": "ಸಂಬಳದ ದಿನದ ಜ್ಞಾಪನೆಗಳು",
+    "titleToday": "ಇಂದು ಸಂಬಳದ ದಿನ: %{source}",
+    "titleTomorrow": "ನಾಳೆ ಸಂಬಳದ ದಿನ: %{source}",
+    "titleOnDay": "%{weekday} ಸಂಬಳದ ದಿನ: %{source}",
+    "body": "%{income} ಆದಾಯ · %{bills} · %{left} ಉಳಿದಿದೆ",
+    "bodyNoBills": "%{income} ಆದಾಯ · ಇನ್ನೂ ಬಿಲ್‌ಗಳು ನಿಗದಿಯಾಗಿಲ್ಲ",
+    "bills": {
+      "one": "%{count} ಬಿಲ್ (%{amount})",
+      "other": "%{count} ಬಿಲ್‌ಗಳು (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "ಲಿಂಕ್ ತೆರೆಯಲಾಗಲಿಲ್ಲ"
+  },
+  "payAmountSheet": {
+    "subtitle": "%{date} ಸಂಬಳಕ್ಕೆ ಮಾತ್ರ",
+    "hint": "ಸಾಮಾನ್ಯ ಸಂಬಳ %{amount}. ಇತರ ಸಂಬಳಗಳು ಹಾಗೇ ಇರುತ್ತವೆ.",
+    "useDefault": "ಸಾಮಾನ್ಯ ಮೊತ್ತ ಬಳಸಿ",
+    "invalidAmount": "ಸರಿಯಾದ ಸಂಬಳದ ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ."
+  },
+  "moveBillSheet": {
+    "title": "ಬಿಲ್ ಸರಿಸಿ",
+    "subtitle": "%{date}ರಂದು %{amount} ಕೊರತೆ",
+    "bill": "ಬಿಲ್",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "ಈ ಸಂಬಳಕ್ಕೆ",
+    "noBills": "ಸರಿಸಲು ಪಾವತಿಸದ ಬಿಲ್‌ಗಳಿಲ್ಲ.",
+    "noPaychecks": "ಮುಂಬರುವ ಬೇರೆ ಸಂಬಳಗಳಿಲ್ಲ."
+  }
+}

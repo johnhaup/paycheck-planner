@@ -3,6 +3,7 @@ import { Pressable, View, StyleSheet } from "react-native";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
+import { hapticSelection } from "@/utils/haptics";
 
 export interface SegmentOption<T> {
   value: T;
@@ -47,8 +48,11 @@ function Segment<T>({ option, selected, onSelect }: SegmentProps<T>) {
   const colors = useColors();
 
   const handlePress = useCallback(() => {
+    if (!selected) {
+      hapticSelection();
+    }
     onSelect(option.value);
-  }, [onSelect, option.value]);
+  }, [onSelect, option.value, selected]);
 
   const segmentStyle = useMemo(
     () => [styles.segment, selected ? { backgroundColor: colors.segmentSelected } : undefined],

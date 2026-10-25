@@ -11,7 +11,7 @@ import {
   subDays,
 } from "date-fns";
 import { formatOrdinal, t } from "@/localization/i18n";
-import { formatWeekday } from "@/utils/dates";
+import { formatDayOfMonth, formatWeekday } from "@/utils/dates";
 import type { Expense, IncomeSource, PaycheckSlot } from "@/types";
 
 export interface Paycheck {
@@ -137,7 +137,7 @@ export function getMonthlySlotCount(source: IncomeSource): number {
 export function getPaycheckSlotLabel(source: IncomeSource, slot: PaycheckSlot, short = false): string {
   if (slot === "last") return short ? t("expenses.slot.lastShort") : t("expenses.slot.last");
   if (source.payFrequency === "semi-monthly") {
-    return formatOrdinal(getSemiMonthlyDays(source)[slot] ?? slot + 1);
+    return t("expenses.slot.dayOfMonth", dayOfMonthOptions(getSemiMonthlyDays(source)[slot] ?? slot + 1));
   }
   const ordinal = formatOrdinal(slot + 1);
   return short ? ordinal : t("expenses.slot.ordinalPaycheck", { ordinal });
@@ -193,11 +193,21 @@ export function describePaySchedule(source: IncomeSource): string {
       return t("income.schedule.semiMonthly", {
         first: formatOrdinal(first),
         second: formatOrdinal(second),
+        firstDate: formatDayOfMonth(new Date(2024, 0, first)),
+        secondDate: formatDayOfMonth(new Date(2024, 0, second)),
       });
     }
     case "monthly":
-      return t("income.schedule.monthly", { day: formatOrdinal(anchor.getDate()) });
+      return t("income.schedule.monthly", dayOfMonthOptions(anchor.getDate()));
   }
+}
+
+/**
+ * Languages pick whichever fits a date: the ordinal ("15th", "15.") or the
+ * plain Intl day ("15日", "15").
+ */
+function dayOfMonthOptions(day: number) {
+  return { day: formatOrdinal(day), date: formatDayOfMonth(new Date(2024, 0, day)) };
 }
 
 function getSemiMonthlyDays(source: IncomeSource): number[] {

@@ -1,0 +1,242 @@
+{
+  "common": {
+    "cancel": "Odustani",
+    "delete": "Izbriši",
+    "done": "Gotovo",
+    "save": "Spremi",
+    "add": "Dodaj",
+    "update": "Ažuriraj",
+    "back": "Natrag",
+    "error": "Greška",
+    "none": "Ništa",
+    "unknown": "Nepoznato",
+    "removed": "Uklonjeno",
+    "systemDefault": "Zadano sustavom",
+    "selectDate": "Odaberi datum",
+    "selectTime": "Odaberi vrijeme",
+    "and": "i",
+    "move": "Premjesti"
+  },
+  "ordinal": {
+    "other": "%{n}."
+  },
+  "tabs": {
+    "paychecks": "Plaće",
+    "income": "Prihodi",
+    "expenses": "Troškovi"
+  },
+  "screens": {
+    "settings": "Postavke",
+    "incomeSource": "Izvor prihoda",
+    "expense": "Trošak",
+    "payDate": "Dan plaće",
+    "language": "Jezik",
+    "currency": "Valuta"
+  },
+  "paychecks": {
+    "today": "Danas",
+    "goToThisMonth": "Idi na ovaj mjesec",
+    "leftAfterBills": "%{month} · ostaje nakon računa",
+    "heroMeta": "Prihod %{income} · dodijeljeno %{assigned}",
+    "monthPaychecks": "Plaće: %{month}",
+    "emptyTitle": "Još nema izvora prihoda",
+    "emptyBody": "Dodajte prvi izvor prihoda i vidite kamo ide svaka plaća.",
+    "noBillsYet": "Još nema računa · dodirnite za dodjelu",
+    "paidProgress": "Plaćeno %{paid} od %{total}",
+    "amountLeft": "Ostaje %{amount}",
+    "chartBarLabel": "%{month}, ostaje %{amount}",
+    "opensPaycheck": "Otvara ovu plaću",
+    "markPaid": "Označi %{payee} kao plaćeno",
+    "changeAmount": "Promijeni iznos %{payee} za ovu plaću",
+    "changePayAmount": "Promijeni iznos plaće %{source} samo za ovu plaću",
+    "emptyAction": "Dodaj izvor prihoda",
+    "chartBarCurrentLabel": "%{month} (ovaj mjesec), ostaje %{amount}",
+    "shortBy": "Nedostaje %{amount}",
+    "moveBill": "Premjesti račun"
+  },
+  "income": {
+    "emptyTitle": "Još nema prihoda",
+    "emptyBody": "Dodajte svoje plaće i počnite planirati.",
+    "perMonth": "Mjesečno",
+    "nextPayday": "Sljedeća plaća",
+    "sources": "Izvori",
+    "swipeHint": "Povucite izvor ulijevo da ga izbrišete.",
+    "addSource": "Dodaj izvor prihoda",
+    "perCheck": "po plaći",
+    "deleteTitle": "Izbriši izvor prihoda",
+    "deleteMessage": "Izbrisati „%{name}” i sve dodjele troškova?",
+    "frequency": {
+      "weekly": "Tjedno",
+      "biweekly": "Svaka dva tjedna",
+      "semiMonthly": "Dvaput mjesečno",
+      "monthly": "Mjesečno"
+    },
+    "schedule": {
+      "weekly": "Tjedno · %{weekday}",
+      "biweekly": "Svaka dva tjedna · %{weekday}",
+      "semiMonthly": "Dvaput mjesečno · %{first} i %{second}",
+      "monthly": "Mjesečno · %{day}"
+    },
+    "form": {
+      "name": "Naziv",
+      "namePlaceholder": "npr. Acme Corp",
+      "payAmount": "Iznos (po plaći)",
+      "payAmountPlaceholder": "npr. 2500.00",
+      "payFrequency": "Učestalost isplate",
+      "payDays": "Dani isplate u mjesecu",
+      "payDaysHint": "Unesite 31 za posljednji dan mjeseca (automatski se prilagođava kraćim mjesecima)",
+      "adjustToWorkday": "Pomakni na radni dan",
+      "adjustHint": "Ako plaća pada na vikend, pomiče se na prethodni petak.",
+      "firstPayDate": "Datum prve plaće",
+      "addButton": "Dodaj izvor prihoda",
+      "updateButton": "Ažuriraj izvor prihoda",
+      "nameRequired": "Naziv je obavezan.",
+      "invalidAmount": "Unesite valjan iznos plaće.",
+      "payDaysRange": "Dani isplate moraju biti između 1 i 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Još nema troškova",
+    "emptyBody": "Dodajte račune, a zatim ih dodijelite plaćama.",
+    "nothingHere": "Ovdje još nema ničega.",
+    "monthlySummary": {
+      "one": "%{amount} mjesečno za %{count} račun",
+      "few": "%{amount} mjesečno za %{count} računa",
+      "other": "%{amount} mjesečno za %{count} računa"
+    },
+    "filters": {
+      "all": "Svi",
+      "recurring": "Ponavljajući",
+      "oneTime": "Jednokratni"
+    },
+    "addExpense": "Dodaj trošak",
+    "openLink": "Otvori poveznicu za plaćanje: %{payee}",
+    "deleteTitle": "Izbriši trošak",
+    "deleteMessage": "Izbrisati „%{payee}” i sve njegove dodjele?",
+    "sections": {
+      "notLinked": "Nepovezani",
+      "oneTime": "Jednokratni"
+    },
+    "perMonthTotal": "%{amount}/mj.",
+    "meta": {
+      "everyPaycheck": "Svaka plaća",
+      "slotEachMonth": "%{slot} svaki mjesec",
+      "assignPerPaycheck": "Dodijeli uz svaku plaću",
+      "due": "Dospijeva %{date}",
+      "oneTime": "Jednokratni"
+    },
+    "cadence": {
+      "perCheck": "po plaći",
+      "monthly": "mjesečno",
+      "recurring": "ponavljajući",
+      "oneTime": "jednokratni"
+    },
+    "slot": {
+      "last": "Posljednja plaća",
+      "lastShort": "Posljednja",
+      "ordinalPaycheck": "%{ordinal} plaća",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Primatelj",
+      "payeePlaceholder": "npr. Elektra",
+      "amount": "Iznos",
+      "amountPlaceholder": "npr. 150.00",
+      "link": "Poveznica za plaćanje (neobavezno)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Plaća",
+      "moveHint": "Premjesti ovaj trošak na drugu plaću.",
+      "linkedSource": "Povezani izvor prihoda",
+      "linkedHint": "Kad je povezan, ovaj se trošak automatski dodaje plaćama iz tog izvora.",
+      "howOften": "Koliko često",
+      "everyPaycheck": "Svaka plaća",
+      "monthly": "Mjesečno",
+      "whichPaycheck": "Koja plaća",
+      "slotHintLast": "Dolazi na posljednju plaću u mjesecu, i u mjesecima s dodatnom plaćom.",
+      "slotHintOrdinal": "Dodatne plaće u duljim mjesecima se preskaču. Odaberite „Posljednja” da se uvijek koristi zadnja.",
+      "addButton": "Dodaj trošak",
+      "updateButton": "Ažuriraj trošak",
+      "payeeRequired": "Naziv primatelja je obavezan.",
+      "invalidAmount": "Unesite valjan iznos."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Ova plaća",
+    "available": "Dostupno",
+    "emptyAssigned": "Još ništa nije dodijeljeno. Dodajte račune s popisa u nastavku.",
+    "leftAfterBills": "Ostaje nakon računa",
+    "summaryMeta": "Plaća %{pay} · dodijeljeno %{assigned}",
+    "linked": "Povezano",
+    "remove": "Ukloni %{payee}",
+    "add": "Dodaj %{payee}",
+    "oneTime": {
+      "addButton": "Dodaj jednokratni trošak",
+      "title": "Jednokratni trošak",
+      "payee": "Primatelj",
+      "amount": "Iznos"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Samo plaća %{date}",
+    "hint": "Zadani iznos je %{amount}. Ostale plaće zadržavaju zadani.",
+    "useDefault": "Koristi zadani iznos"
+  },
+  "settings": {
+    "appearance": "Izgled",
+    "light": "Svijetli",
+    "dark": "Tamni",
+    "system": "Sustav",
+    "hideCents": "Sakrij cente",
+    "hideCentsHint": "Prikaži iznose zaokružene na cijele jedinice.",
+    "behavior": "Ponašanje",
+    "autoMarkPaid": "Označi kao plaćeno pri dodiru poveznice",
+    "autoMarkPaidHint": "Dodir poveznice za plaćanje ujedno označava račun kao plaćen.",
+    "region": "Jezik i valuta",
+    "language": "Jezik",
+    "currency": "Valuta",
+    "notifications": "Obavijesti",
+    "paydayReminder": "Podsjetnik za plaću",
+    "paydayReminderHint": "Prije svake plaće primite pregled računa i onoga što ostaje.",
+    "remindWhen": "Podsjeti me",
+    "remindTime": "U",
+    "offsets": {
+      "dayOf": "Na dan plaće",
+      "dayBefore": "Dan prije",
+      "daysBefore": "%{count} dana prije",
+      "weekBefore": "Tjedan prije"
+    },
+    "permissionDeniedTitle": "Obavijesti su isključene",
+    "permissionDeniedBody": "Dopustite obavijesti za Paycheck Planner u postavkama uređaja da biste primali podsjetnike za plaću."
+  },
+  "notifications": {
+    "channelName": "Podsjetnici za plaću",
+    "titleToday": "Plaća danas: %{source}",
+    "titleTomorrow": "Plaća sutra: %{source}",
+    "titleOnDay": "Plaća (%{weekday}): %{source}",
+    "body": "Prihod %{income} · %{bills} · ostaje %{left}",
+    "bodyNoBills": "Prihod %{income} · još nema dodijeljenih računa",
+    "bills": {
+      "one": "%{count} račun (%{amount})",
+      "few": "%{count} računa (%{amount})",
+      "other": "%{count} računa (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Poveznicu nije moguće otvoriti"
+  },
+  "payAmountSheet": {
+    "subtitle": "Samo plaća %{date}",
+    "hint": "Uobičajena plaća je %{amount}. Ostale plaće je zadržavaju.",
+    "useDefault": "Koristi uobičajeni iznos",
+    "invalidAmount": "Unesite valjan iznos plaće."
+  },
+  "moveBillSheet": {
+    "title": "Premjesti račun",
+    "subtitle": "Nedostaje %{amount} (%{date})",
+    "bill": "Račun",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Na plaću",
+    "noBills": "Nema neplaćenih računa za premještanje.",
+    "noPaychecks": "Nema drugih nadolazećih plaća."
+  }
+}

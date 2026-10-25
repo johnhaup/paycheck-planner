@@ -1,0 +1,244 @@
+{
+  "common": {
+    "cancel": "Zrušiť",
+    "delete": "Odstrániť",
+    "done": "Hotovo",
+    "save": "Uložiť",
+    "add": "Pridať",
+    "update": "Aktualizovať",
+    "back": "Späť",
+    "error": "Chyba",
+    "none": "Žiadne",
+    "unknown": "Neznáme",
+    "removed": "Odstránené",
+    "systemDefault": "Podľa systému",
+    "selectDate": "Vybrať dátum",
+    "selectTime": "Vybrať čas",
+    "and": "a",
+    "move": "Presunúť"
+  },
+  "ordinal": {
+    "other": "%{n}."
+  },
+  "tabs": {
+    "paychecks": "Výplaty",
+    "income": "Príjmy",
+    "expenses": "Výdavky"
+  },
+  "screens": {
+    "settings": "Nastavenia",
+    "incomeSource": "Zdroj príjmu",
+    "expense": "Výdavok",
+    "payDate": "Deň výplaty",
+    "language": "Jazyk",
+    "currency": "Mena"
+  },
+  "paychecks": {
+    "today": "Dnes",
+    "goToThisMonth": "Prejsť na tento mesiac",
+    "leftAfterBills": "%{month} · zostáva po účtoch",
+    "heroMeta": "Príjem %{income} · priradené %{assigned}",
+    "monthPaychecks": "Výplaty: %{month}",
+    "emptyTitle": "Zatiaľ žiadne zdroje príjmu",
+    "emptyBody": "Pridajte prvý zdroj príjmu a uvidíte, kam ide každá výplata.",
+    "noBillsYet": "Zatiaľ žiadne účty · ťuknutím priradíte",
+    "paidProgress": "Zaplatené %{paid} z %{total}",
+    "amountLeft": "Zostáva %{amount}",
+    "chartBarLabel": "%{month}, zostáva %{amount}",
+    "opensPaycheck": "Otvorí túto výplatu",
+    "markPaid": "Označiť %{payee} ako zaplatené",
+    "changeAmount": "Zmeniť sumu %{payee} pre túto výplatu",
+    "changePayAmount": "Zmeniť sumu výplaty %{source} len pre túto výplatu",
+    "emptyAction": "Pridať zdroj príjmu",
+    "chartBarCurrentLabel": "%{month} (tento mesiac), zostáva %{amount}",
+    "shortBy": "Chýba %{amount}",
+    "moveBill": "Presunúť účet"
+  },
+  "income": {
+    "emptyTitle": "Zatiaľ žiadne príjmy",
+    "emptyBody": "Pridajte svoje výplaty a začnite plánovať.",
+    "perMonth": "Mesačne",
+    "nextPayday": "Najbližšia výplata",
+    "sources": "Zdroje",
+    "swipeHint": "Potiahnutím doľava zdroj odstránite.",
+    "addSource": "Pridať zdroj príjmu",
+    "perCheck": "na výplatu",
+    "deleteTitle": "Odstrániť zdroj príjmu",
+    "deleteMessage": "Odstrániť „%{name}“ a všetky priradenia výdavkov?",
+    "frequency": {
+      "weekly": "Týždenne",
+      "biweekly": "Každé dva týždne",
+      "semiMonthly": "Dvakrát mesačne",
+      "monthly": "Mesačne"
+    },
+    "schedule": {
+      "weekly": "Týždenne · %{weekday}",
+      "biweekly": "Každé dva týždne · %{weekday}",
+      "semiMonthly": "Dvakrát mesačne · %{first} a %{second}",
+      "monthly": "Mesačne · %{day}"
+    },
+    "form": {
+      "name": "Názov",
+      "namePlaceholder": "napr. Acme Corp",
+      "payAmount": "Suma (na výplatu)",
+      "payAmountPlaceholder": "napr. 2500.00",
+      "payFrequency": "Frekvencia výplat",
+      "payDays": "Dni výplaty v mesiaci",
+      "payDaysHint": "Zadajte 31 pre posledný deň mesiaca (pri kratších mesiacoch sa upraví automaticky)",
+      "adjustToWorkday": "Posunúť na pracovný deň",
+      "adjustHint": "Ak výplata pripadne na víkend, posunie sa na predchádzajúci piatok.",
+      "firstPayDate": "Dátum prvej výplaty",
+      "addButton": "Pridať zdroj príjmu",
+      "updateButton": "Aktualizovať zdroj príjmu",
+      "nameRequired": "Názov je povinný.",
+      "invalidAmount": "Zadajte platnú sumu výplaty.",
+      "payDaysRange": "Dni výplaty musia byť v rozsahu 1 až 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Zatiaľ žiadne výdavky",
+    "emptyBody": "Pridajte účty a potom ich priraďte k výplatám.",
+    "nothingHere": "Zatiaľ tu nič nie je.",
+    "monthlySummary": {
+      "one": "%{amount} mesačne za %{count} účet",
+      "few": "%{amount} mesačne za %{count} účty",
+      "many": "%{amount} mesačne za %{count} účtu",
+      "other": "%{amount} mesačne za %{count} účtov"
+    },
+    "filters": {
+      "all": "Všetky",
+      "recurring": "Opakované",
+      "oneTime": "Jednorazové"
+    },
+    "addExpense": "Pridať výdavok",
+    "openLink": "Otvoriť platobný odkaz: %{payee}",
+    "deleteTitle": "Odstrániť výdavok",
+    "deleteMessage": "Odstrániť „%{payee}“ a všetky jeho priradenia?",
+    "sections": {
+      "notLinked": "Neprepojené",
+      "oneTime": "Jednorazové"
+    },
+    "perMonthTotal": "%{amount}/mes.",
+    "meta": {
+      "everyPaycheck": "Každá výplata",
+      "slotEachMonth": "%{slot} každý mesiac",
+      "assignPerPaycheck": "Priraďovať pri každej výplate",
+      "due": "Splatnosť %{date}",
+      "oneTime": "Jednorazový"
+    },
+    "cadence": {
+      "perCheck": "na výplatu",
+      "monthly": "mesačne",
+      "recurring": "opakovaný",
+      "oneTime": "jednorazový"
+    },
+    "slot": {
+      "last": "Posledná výplata",
+      "lastShort": "Posledná",
+      "ordinalPaycheck": "%{ordinal} výplata",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Príjemca",
+      "payeePlaceholder": "napr. Elektrárne",
+      "amount": "Suma",
+      "amountPlaceholder": "napr. 150.00",
+      "link": "Platobný odkaz (nepovinné)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Výplata",
+      "moveHint": "Presunúť tento výdavok k inej výplate.",
+      "linkedSource": "Prepojený zdroj príjmu",
+      "linkedHint": "Po prepojení sa tento výdavok automaticky pridá k výplatám z daného zdroja.",
+      "howOften": "Ako často",
+      "everyPaycheck": "Každá výplata",
+      "monthly": "Mesačne",
+      "whichPaycheck": "Ktorá výplata",
+      "slotHintLast": "Pripadne na poslednú výplatu v mesiaci, aj v mesiacoch s výplatou navyše.",
+      "slotHintOrdinal": "Výplaty navyše v dlhších mesiacoch sa preskočia. Zvoľte „Posledná“, ak chcete vždy použiť tú záverečnú.",
+      "addButton": "Pridať výdavok",
+      "updateButton": "Aktualizovať výdavok",
+      "payeeRequired": "Názov príjemcu je povinný.",
+      "invalidAmount": "Zadajte platnú sumu."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Táto výplata",
+    "available": "K dispozícii",
+    "emptyAssigned": "Zatiaľ nič nie je priradené. Pridajte účty zo zoznamu nižšie.",
+    "leftAfterBills": "Zostáva po účtoch",
+    "summaryMeta": "Výplata %{pay} · priradené %{assigned}",
+    "linked": "Prepojené",
+    "remove": "Odstrániť %{payee}",
+    "add": "Pridať %{payee}",
+    "oneTime": {
+      "addButton": "Pridať jednorazový výdavok",
+      "title": "Jednorazový výdavok",
+      "payee": "Príjemca",
+      "amount": "Suma"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Len výplata %{date}",
+    "hint": "Predvolená suma je %{amount}. Ostatné výplaty si ju ponechajú.",
+    "useDefault": "Použiť predvolenú sumu"
+  },
+  "settings": {
+    "appearance": "Vzhľad",
+    "light": "Svetlý",
+    "dark": "Tmavý",
+    "system": "Systémový",
+    "hideCents": "Skryť centy",
+    "hideCentsHint": "Zobrazovať sumy zaokrúhlené na celé jednotky.",
+    "behavior": "Správanie",
+    "autoMarkPaid": "Po ťuknutí na odkaz označiť ako zaplatené",
+    "autoMarkPaidHint": "Ťuknutie na platobný odkaz zároveň označí účet ako zaplatený.",
+    "region": "Jazyk a mena",
+    "language": "Jazyk",
+    "currency": "Mena",
+    "notifications": "Upozornenia",
+    "paydayReminder": "Pripomenutie výplaty",
+    "paydayReminderHint": "Dostávajte pred každou výplatou prehľad účtov a toho, čo zostane.",
+    "remindWhen": "Pripomenúť",
+    "remindTime": "O",
+    "offsets": {
+      "dayOf": "V deň výplaty",
+      "dayBefore": "Deň vopred",
+      "daysBefore": "%{count} dni vopred",
+      "weekBefore": "Týždeň vopred"
+    },
+    "permissionDeniedTitle": "Upozornenia sú vypnuté",
+    "permissionDeniedBody": "Povoľte aplikácii Paycheck Planner upozornenia v nastaveniach zariadenia, aby ste dostávali pripomenutia výplaty."
+  },
+  "notifications": {
+    "channelName": "Pripomenutia výplaty",
+    "titleToday": "Výplata dnes: %{source}",
+    "titleTomorrow": "Výplata zajtra: %{source}",
+    "titleOnDay": "Výplata (%{weekday}): %{source}",
+    "body": "Príjem %{income} · %{bills} · zostáva %{left}",
+    "bodyNoBills": "Príjem %{income} · zatiaľ žiadne priradené účty",
+    "bills": {
+      "one": "%{count} účet (%{amount})",
+      "few": "%{count} účty (%{amount})",
+      "many": "%{count} účtu (%{amount})",
+      "other": "%{count} účtov (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Odkaz sa nepodarilo otvoriť"
+  },
+  "payAmountSheet": {
+    "subtitle": "Len výplata %{date}",
+    "hint": "Obvyklá výplata je %{amount}. Ostatné výplaty si ju ponechajú.",
+    "useDefault": "Použiť obvyklú sumu",
+    "invalidAmount": "Zadajte platnú sumu výplaty."
+  },
+  "moveBillSheet": {
+    "title": "Presunúť účet",
+    "subtitle": "Chýba %{amount} (%{date})",
+    "bill": "Účet",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "K výplate",
+    "noBills": "Žiadne nezaplatené účty na presunutie.",
+    "noPaychecks": "Žiadne ďalšie nadchádzajúce výplaty."
+  }
+}

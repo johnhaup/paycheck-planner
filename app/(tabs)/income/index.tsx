@@ -8,6 +8,7 @@ import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppCard } from "@/components/AppCard";
+import { AppEmptyState } from "@/components/AppEmptyState";
 import { AppFab } from "@/components/AppFab";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { IncomeSourceRow } from "@/components/income/IncomeSourceRow";
@@ -104,10 +105,13 @@ export default function IncomeScreen() {
   return (
     <View style={containerStyle}>
       {incomeSources.length === 0 ? (
-        <View style={styles.empty}>
-          <AppText variant="title" center>{t("income.emptyTitle")}</AppText>
-          <AppText variant="meta" center>{t("income.emptyBody")}</AppText>
-        </View>
+        <AppEmptyState
+          icon="cash-outline"
+          title={t("income.emptyTitle")}
+          body={t("income.emptyBody")}
+          actionLabel={t("income.addSource")}
+          onAction={handleAdd}
+        />
       ) : (
         <FlatList
           data={incomeSources}
@@ -145,12 +149,5 @@ const styles = StyleSheet.create({
   hint: {
     marginTop: MEASUREMENTS.spacing.md + 2,
     paddingHorizontal: MEASUREMENTS.spacing.xs,
-  },
-  empty: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    gap: MEASUREMENTS.spacing.md,
-    paddingHorizontal: MEASUREMENTS.spacing.section,
   },
 });

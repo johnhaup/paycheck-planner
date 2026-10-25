@@ -71,7 +71,12 @@ export function PaycheckExpenseRow({
           hitSlop={MEASUREMENTS.hitSlop}
           accessibilityRole={expense.link ? "link" : undefined}
         >
-          <AppText variant="body" color={textColor} numberOfLines={1}>
+          <AppText
+            variant="body"
+            color={textColor}
+            numberOfLines={1}
+            style={expense.paid ? styles.paid : undefined}
+          >
             {expense.payee}
           </AppText>
           {expense.link ? (
@@ -114,5 +119,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: MEASUREMENTS.spacing.sm + 2,
+  },
+  paid: {
+    textDecorationLine: "line-through",
   },
 });

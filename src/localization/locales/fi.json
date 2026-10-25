@@ -1,0 +1,240 @@
+{
+  "common": {
+    "cancel": "Peruuta",
+    "delete": "Poista",
+    "done": "Valmis",
+    "save": "Tallenna",
+    "add": "Lisää",
+    "update": "Päivitä",
+    "back": "Takaisin",
+    "error": "Virhe",
+    "none": "Ei mitään",
+    "unknown": "Tuntematon",
+    "removed": "Poistettu",
+    "systemDefault": "Järjestelmän oletus",
+    "selectDate": "Valitse päivä",
+    "selectTime": "Valitse aika",
+    "and": "ja",
+    "move": "Siirrä"
+  },
+  "ordinal": {
+    "other": "%{n}."
+  },
+  "tabs": {
+    "paychecks": "Palkat",
+    "income": "Tulot",
+    "expenses": "Menot"
+  },
+  "screens": {
+    "settings": "Asetukset",
+    "incomeSource": "Tulonlähde",
+    "expense": "Meno",
+    "payDate": "Palkkapäivä",
+    "language": "Kieli",
+    "currency": "Valuutta"
+  },
+  "paychecks": {
+    "today": "Tänään",
+    "goToThisMonth": "Siirry tähän kuukauteen",
+    "leftAfterBills": "%{month} · jäljellä laskujen jälkeen",
+    "heroMeta": "%{income} tuloja · %{assigned} kohdistettu",
+    "monthPaychecks": "Palkat · %{month}",
+    "emptyTitle": "Ei vielä tulonlähteitä",
+    "emptyBody": "Lisää ensimmäinen tulonlähde nähdäksesi, mihin kukin palkka menee.",
+    "noBillsYet": "Ei vielä laskuja · napauta kohdistaaksesi",
+    "paidProgress": "%{paid}/%{total} maksettu",
+    "amountLeft": "%{amount} jäljellä",
+    "chartBarLabel": "%{month}, %{amount} jäljellä",
+    "opensPaycheck": "Avaa tämän palkan",
+    "markPaid": "Merkitse %{payee} maksetuksi",
+    "changeAmount": "Muuta laskun %{payee} summaa tälle palkalle",
+    "changePayAmount": "Muuta lähteen %{source} palkkasummaa tälle palkalle",
+    "emptyAction": "Lisää tulonlähde",
+    "chartBarCurrentLabel": "%{month} (tämä kuukausi), %{amount} jäljellä",
+    "shortBy": "Vajaus %{amount}",
+    "moveBill": "Siirrä lasku"
+  },
+  "income": {
+    "emptyTitle": "Ei vielä tuloja",
+    "emptyBody": "Lisää palkkasi aloittaaksesi suunnittelun.",
+    "perMonth": "Kuukaudessa",
+    "nextPayday": "Seuraava palkkapäivä",
+    "sources": "Lähteet",
+    "swipeHint": "Pyyhkäise lähdettä vasemmalle poistaaksesi sen.",
+    "addSource": "Lisää tulonlähde",
+    "perCheck": "per palkka",
+    "deleteTitle": "Poista tulonlähde",
+    "deleteMessage": "Poistetaanko ”%{name}” ja kaikki sen menokohdistukset?",
+    "frequency": {
+      "weekly": "Viikoittain",
+      "biweekly": "Joka toinen viikko",
+      "semiMonthly": "Kaksi kertaa kuussa",
+      "monthly": "Kuukausittain"
+    },
+    "schedule": {
+      "weekly": "Viikoittain · joka %{weekday}",
+      "biweekly": "Joka toinen viikko · %{weekday}",
+      "semiMonthly": "Kaksi kertaa kuussa · %{first} & %{second}",
+      "monthly": "Kuukausittain · %{day}"
+    },
+    "form": {
+      "name": "Nimi",
+      "namePlaceholder": "esim. Acme Oy",
+      "payAmount": "Palkka (per maksu)",
+      "payAmountPlaceholder": "esim. 2500.00",
+      "payFrequency": "Palkanmaksuväli",
+      "payDays": "Palkkapäivät kuukaudessa",
+      "payDaysHint": "Käytä 31 kuun viimeiselle päivälle (mukautuu automaattisesti lyhyemmissä kuukausissa)",
+      "adjustToWorkday": "Siirrä arkipäivälle",
+      "adjustHint": "Jos palkkapäivä osuu viikonlopulle, se siirtyy edeltävälle perjantaille.",
+      "firstPayDate": "Ensimmäinen palkkapäivä",
+      "addButton": "Lisää tulonlähde",
+      "updateButton": "Päivitä tulonlähde",
+      "nameRequired": "Nimi on pakollinen.",
+      "invalidAmount": "Anna kelvollinen palkkasumma.",
+      "payDaysRange": "Palkkapäivien on oltava välillä 1–31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Ei vielä menoja",
+    "emptyBody": "Lisää laskusi ja kohdista ne sitten palkkoihin.",
+    "nothingHere": "Täällä ei ole vielä mitään.",
+    "monthlySummary": {
+      "one": "%{amount} kuukaudessa, %{count} lasku",
+      "other": "%{amount} kuukaudessa, %{count} laskua"
+    },
+    "filters": {
+      "all": "Kaikki",
+      "recurring": "Toistuvat",
+      "oneTime": "Kertaluonteiset"
+    },
+    "addExpense": "Lisää meno",
+    "openLink": "Avaa maksulinkki: %{payee}",
+    "deleteTitle": "Poista meno",
+    "deleteMessage": "Poistetaanko ”%{payee}” ja kaikki sen kohdistukset?",
+    "sections": {
+      "notLinked": "Ei linkitetty",
+      "oneTime": "Kertaluonteiset"
+    },
+    "perMonthTotal": "%{amount}/kk",
+    "meta": {
+      "everyPaycheck": "Joka palkka",
+      "slotEachMonth": "%{slot} joka kuukausi",
+      "assignPerPaycheck": "Kohdista palkoittain",
+      "due": "Eräpäivä %{date}",
+      "oneTime": "Kertaluonteinen"
+    },
+    "cadence": {
+      "perCheck": "per palkka",
+      "monthly": "kuukausittain",
+      "recurring": "toistuva",
+      "oneTime": "kertaluonteinen"
+    },
+    "slot": {
+      "last": "Viimeinen palkka",
+      "lastShort": "Viimeinen",
+      "ordinalPaycheck": "%{ordinal} palkka",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Maksunsaaja",
+      "payeePlaceholder": "esim. Sähköyhtiö",
+      "amount": "Summa",
+      "amountPlaceholder": "esim. 150.00",
+      "link": "Maksulinkki (valinnainen)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Palkka",
+      "moveHint": "Siirrä tämä meno toiselle palkalle.",
+      "linkedSource": "Linkitetty tulonlähde",
+      "linkedHint": "Kun meno on linkitetty, se lisätään valmiiksi kyseisen lähteen palkkoihin.",
+      "howOften": "Kuinka usein",
+      "everyPaycheck": "Joka palkka",
+      "monthly": "Kuukausittain",
+      "whichPaycheck": "Mikä palkka",
+      "slotHintLast": "Osuu kuukauden viimeiselle palkalle, myös kuukausina, joissa on ylimääräinen palkka.",
+      "slotHintOrdinal": "Pitempien kuukausien ylimääräiset palkat ohitetaan. Valitse Viimeinen käyttääksesi aina viimeistä.",
+      "addButton": "Lisää meno",
+      "updateButton": "Päivitä meno",
+      "payeeRequired": "Maksunsaajan nimi on pakollinen.",
+      "invalidAmount": "Anna kelvollinen summa."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Tämä palkka",
+    "available": "Käytettävissä",
+    "emptyAssigned": "Ei vielä kohdistuksia. Lisää laskuja alla olevasta luettelosta.",
+    "leftAfterBills": "Jäljellä laskujen jälkeen",
+    "summaryMeta": "Palkka %{pay} · %{assigned} kohdistettu",
+    "linked": "Linkitetty",
+    "remove": "Poista %{payee}",
+    "add": "Lisää %{payee}",
+    "oneTime": {
+      "addButton": "Lisää kertaluonteinen meno",
+      "title": "Kertaluonteinen meno",
+      "payee": "Maksunsaaja",
+      "amount": "Summa"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Vain palkka %{date}",
+    "hint": "Oletus on %{amount}. Muut palkat säilyttävät oletuksen.",
+    "useDefault": "Käytä oletussummaa"
+  },
+  "settings": {
+    "appearance": "Ulkoasu",
+    "light": "Vaalea",
+    "dark": "Tumma",
+    "system": "Järjestelmä",
+    "hideCents": "Piilota sentit",
+    "hideCentsHint": "Näytä summat pyöristettyinä kokonaisiin yksiköihin.",
+    "behavior": "Toiminta",
+    "autoMarkPaid": "Merkitse maksetuksi linkkiä napautettaessa",
+    "autoMarkPaidHint": "Maksulinkin napautus merkitsee laskun myös maksetuksi.",
+    "region": "Kieli ja valuutta",
+    "language": "Kieli",
+    "currency": "Valuutta",
+    "notifications": "Ilmoitukset",
+    "paydayReminder": "Palkkapäivämuistutus",
+    "paydayReminderHint": "Saa ennen jokaista palkkapäivää yhteenveto palkan laskuista ja siitä, mitä jää jäljelle.",
+    "remindWhen": "Muistuta",
+    "remindTime": "Klo",
+    "offsets": {
+      "dayOf": "Samana päivänä",
+      "dayBefore": "Edellisenä päivänä",
+      "daysBefore": "%{count} päivää ennen",
+      "weekBefore": "Viikkoa ennen"
+    },
+    "permissionDeniedTitle": "Ilmoitukset ovat pois",
+    "permissionDeniedBody": "Salli ilmoitukset Paycheck Planner -sovellukselle laitteen asetuksissa saadaksesi palkkapäivämuistutuksia."
+  },
+  "notifications": {
+    "channelName": "Palkkapäivämuistutukset",
+    "titleToday": "Palkkapäivä tänään: %{source}",
+    "titleTomorrow": "Palkkapäivä huomenna: %{source}",
+    "titleOnDay": "Palkkapäivä %{weekday}: %{source}",
+    "body": "%{income} tuloja · %{bills} · %{left} jäljellä",
+    "bodyNoBills": "%{income} tuloja · ei vielä kohdistettuja laskuja",
+    "bills": {
+      "one": "%{count} lasku (%{amount})",
+      "other": "%{count} laskua (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Linkkiä ei voitu avata"
+  },
+  "payAmountSheet": {
+    "subtitle": "Vain palkka %{date}",
+    "hint": "Tavallinen palkka on %{amount}. Muut palkat säilyttävät sen.",
+    "useDefault": "Käytä tavallista summaa",
+    "invalidAmount": "Anna kelvollinen palkkasumma."
+  },
+  "moveBillSheet": {
+    "title": "Siirrä lasku",
+    "subtitle": "Vajaus %{amount} %{date}",
+    "bill": "Lasku",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Palkalle",
+    "noBills": "Ei siirrettäviä maksamattomia laskuja.",
+    "noPaychecks": "Ei muita tulevia palkkoja."
+  }
+}

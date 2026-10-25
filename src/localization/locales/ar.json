@@ -1,0 +1,248 @@
+{
+  "common": {
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "done": "تم",
+    "save": "حفظ",
+    "add": "إضافة",
+    "update": "تحديث",
+    "back": "رجوع",
+    "error": "خطأ",
+    "none": "لا شيء",
+    "unknown": "غير معروف",
+    "removed": "تمت الإزالة",
+    "systemDefault": "افتراضي النظام",
+    "selectDate": "اختيار التاريخ",
+    "selectTime": "اختيار الوقت",
+    "and": "و",
+    "move": "نقل"
+  },
+  "ordinal": {
+    "other": "%{n}"
+  },
+  "tabs": {
+    "paychecks": "الرواتب",
+    "income": "الدخل",
+    "expenses": "المصروفات"
+  },
+  "screens": {
+    "settings": "الإعدادات",
+    "incomeSource": "مصدر الدخل",
+    "expense": "مصروف",
+    "payDate": "تاريخ الراتب",
+    "language": "اللغة",
+    "currency": "العملة"
+  },
+  "paychecks": {
+    "today": "اليوم",
+    "goToThisMonth": "الانتقال إلى هذا الشهر",
+    "leftAfterBills": "%{month} · المتبقي بعد الفواتير",
+    "heroMeta": "%{income} دخل · %{assigned} مخصص",
+    "monthPaychecks": "رواتب %{month}",
+    "emptyTitle": "لا توجد مصادر دخل بعد",
+    "emptyBody": "أضف أول مصدر دخل لترى أين يذهب كل راتب.",
+    "noBillsYet": "لا فواتير بعد · اضغط للتخصيص",
+    "paidProgress": "تم دفع %{paid} من %{total}",
+    "amountLeft": "%{amount} متبقي",
+    "chartBarLabel": "%{month}، المتبقي %{amount}",
+    "opensPaycheck": "يفتح هذا الراتب",
+    "markPaid": "تحديد %{payee} كمدفوع",
+    "changeAmount": "تغيير مبلغ %{payee} لهذا الراتب",
+    "changePayAmount": "تغيير مبلغ راتب %{source} لهذا الراتب",
+    "emptyAction": "إضافة مصدر دخل",
+    "chartBarCurrentLabel": "%{month} (هذا الشهر)، المتبقي %{amount}",
+    "shortBy": "عجز بمقدار %{amount}",
+    "moveBill": "نقل فاتورة"
+  },
+  "income": {
+    "emptyTitle": "لا يوجد دخل بعد",
+    "emptyBody": "أضف رواتبك لبدء التخطيط.",
+    "perMonth": "شهريًا",
+    "nextPayday": "يوم الراتب القادم",
+    "sources": "المصادر",
+    "swipeHint": "اسحب على أحد المصادر لحذفه.",
+    "addSource": "إضافة مصدر دخل",
+    "perCheck": "لكل راتب",
+    "deleteTitle": "حذف مصدر الدخل",
+    "deleteMessage": "هل تريد حذف \"%{name}\" وجميع تخصيصات مصروفاته؟",
+    "frequency": {
+      "weekly": "أسبوعي",
+      "biweekly": "كل أسبوعين",
+      "semiMonthly": "نصف شهري",
+      "monthly": "شهري"
+    },
+    "schedule": {
+      "weekly": "أسبوعي · أيام %{weekday}",
+      "biweekly": "كل أسبوعين · أيام %{weekday}",
+      "semiMonthly": "نصف شهري · يومي %{first} و%{second}",
+      "monthly": "شهري · يوم %{day}"
+    },
+    "form": {
+      "name": "الاسم",
+      "namePlaceholder": "مثلاً شركة أكمي",
+      "payAmount": "مبلغ الراتب (لكل راتب)",
+      "payAmountPlaceholder": "مثلاً 2500.00",
+      "payFrequency": "تكرار الراتب",
+      "payDays": "أيام الراتب في الشهر",
+      "payDaysHint": "استخدم 31 لآخر يوم في الشهر (يُعدَّل تلقائيًا للأشهر الأقصر)",
+      "adjustToWorkday": "التعديل إلى يوم عمل",
+      "adjustHint": "إذا وقع تاريخ الراتب في عطلة نهاية الأسبوع، يُنقل إلى يوم الجمعة السابق.",
+      "firstPayDate": "تاريخ أول راتب",
+      "addButton": "إضافة مصدر دخل",
+      "updateButton": "تحديث مصدر الدخل",
+      "nameRequired": "الاسم مطلوب.",
+      "invalidAmount": "أدخل مبلغ راتب صالحًا.",
+      "payDaysRange": "يجب أن تكون أيام الراتب بين 1 و31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "لا توجد مصروفات بعد",
+    "emptyBody": "أضف فواتيرك، ثم خصصها للرواتب.",
+    "nothingHere": "لا شيء هنا بعد.",
+    "monthlySummary": {
+      "zero": "%{amount} شهريًا على %{count} فاتورة",
+      "one": "%{amount} شهريًا على %{count} فاتورة",
+      "two": "%{amount} شهريًا على %{count} فاتورتين",
+      "few": "%{amount} شهريًا على %{count} فواتير",
+      "many": "%{amount} شهريًا على %{count} فاتورة",
+      "other": "%{amount} شهريًا على %{count} فاتورة"
+    },
+    "filters": {
+      "all": "الكل",
+      "recurring": "متكرر",
+      "oneTime": "لمرة واحدة"
+    },
+    "addExpense": "إضافة مصروف",
+    "openLink": "فتح رابط الدفع لـ %{payee}",
+    "deleteTitle": "حذف المصروف",
+    "deleteMessage": "هل تريد حذف \"%{payee}\" وجميع تخصيصاته؟",
+    "sections": {
+      "notLinked": "غير مرتبط",
+      "oneTime": "لمرة واحدة"
+    },
+    "perMonthTotal": "%{amount}/شهر",
+    "meta": {
+      "everyPaycheck": "كل راتب",
+      "slotEachMonth": "%{slot} كل شهر",
+      "assignPerPaycheck": "تخصيص لكل راتب",
+      "due": "يستحق %{date}",
+      "oneTime": "لمرة واحدة"
+    },
+    "cadence": {
+      "perCheck": "لكل راتب",
+      "monthly": "شهري",
+      "recurring": "متكرر",
+      "oneTime": "لمرة واحدة"
+    },
+    "slot": {
+      "last": "الراتب الأخير",
+      "lastShort": "الأخير",
+      "ordinalPaycheck": "الراتب رقم %{ordinal}",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "المستفيد",
+      "payeePlaceholder": "مثلاً شركة الكهرباء",
+      "amount": "المبلغ",
+      "amountPlaceholder": "مثلاً 150.00",
+      "link": "رابط الدفع (اختياري)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "الراتب",
+      "moveHint": "انقل هذا المصروف إلى راتب آخر.",
+      "linkedSource": "مصدر الدخل المرتبط",
+      "linkedHint": "عند الربط، يُحمَّل هذا المصروف مسبقًا على رواتب ذلك المصدر.",
+      "howOften": "التكرار",
+      "everyPaycheck": "كل راتب",
+      "monthly": "شهري",
+      "whichPaycheck": "أي راتب",
+      "slotHintLast": "يقع على الراتب الأخير من كل شهر، بما في ذلك الأشهر التي فيها راتب إضافي.",
+      "slotHintOrdinal": "تُتجاوز الرواتب الإضافية في الأشهر الأطول. اختر «الأخير» لاستخدام الراتب الأخير دائمًا.",
+      "addButton": "إضافة مصروف",
+      "updateButton": "تحديث المصروف",
+      "payeeRequired": "اسم المستفيد مطلوب.",
+      "invalidAmount": "أدخل مبلغًا صالحًا."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "هذا الراتب",
+    "available": "متاح",
+    "emptyAssigned": "لم يُخصص شيء بعد. أضف فواتير من القائمة أدناه.",
+    "leftAfterBills": "المتبقي بعد الفواتير",
+    "summaryMeta": "راتب %{pay} · %{assigned} مخصص",
+    "linked": "مرتبط",
+    "remove": "إزالة %{payee}",
+    "add": "إضافة %{payee}",
+    "oneTime": {
+      "addButton": "إضافة مصروف لمرة واحدة",
+      "title": "مصروف لمرة واحدة",
+      "payee": "المستفيد",
+      "amount": "المبلغ"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "راتب %{date} فقط",
+    "hint": "المبلغ الافتراضي هو %{amount}. تحتفظ الرواتب الأخرى بالافتراضي.",
+    "useDefault": "استخدام المبلغ الافتراضي"
+  },
+  "settings": {
+    "appearance": "المظهر",
+    "light": "فاتح",
+    "dark": "داكن",
+    "system": "النظام",
+    "hideCents": "إخفاء الكسور",
+    "hideCentsHint": "عرض المبالغ مقربة إلى أقرب وحدة كاملة.",
+    "behavior": "السلوك",
+    "autoMarkPaid": "تحديد كمدفوع عند فتح الرابط",
+    "autoMarkPaidHint": "عند الضغط على رابط الدفع، تُحدَّد تلك الفاتورة كمدفوعة أيضًا.",
+    "region": "اللغة والعملة",
+    "language": "اللغة",
+    "currency": "العملة",
+    "notifications": "الإشعارات",
+    "paydayReminder": "تذكير يوم الراتب",
+    "paydayReminderHint": "احصل على ملخص لفواتير كل راتب والمتبقي منه قبل وصوله.",
+    "remindWhen": "ذكّرني",
+    "remindTime": "في",
+    "offsets": {
+      "dayOf": "في نفس اليوم",
+      "dayBefore": "قبل يوم",
+      "daysBefore": "قبل %{count} أيام",
+      "weekBefore": "قبل أسبوع"
+    },
+    "permissionDeniedTitle": "الإشعارات متوقفة",
+    "permissionDeniedBody": "اسمح بالإشعارات لتطبيق Paycheck Planner في إعدادات جهازك لتلقي تذكيرات يوم الراتب."
+  },
+  "notifications": {
+    "channelName": "تذكيرات يوم الراتب",
+    "titleToday": "يوم الراتب اليوم: %{source}",
+    "titleTomorrow": "يوم الراتب غدًا: %{source}",
+    "titleOnDay": "يوم الراتب %{weekday}: %{source}",
+    "body": "%{income} دخل · %{bills} · %{left} متبقي",
+    "bodyNoBills": "%{income} دخل · لا فواتير مخصصة بعد",
+    "bills": {
+      "zero": "%{count} فاتورة (%{amount})",
+      "one": "%{count} فاتورة (%{amount})",
+      "two": "%{count} فاتورتان (%{amount})",
+      "few": "%{count} فواتير (%{amount})",
+      "many": "%{count} فاتورة (%{amount})",
+      "other": "%{count} فاتورة (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "تعذر فتح الرابط"
+  },
+  "payAmountSheet": {
+    "subtitle": "راتب %{date} فقط",
+    "hint": "الراتب المعتاد هو %{amount}. تحتفظ الرواتب الأخرى به.",
+    "useDefault": "استخدام المبلغ المعتاد",
+    "invalidAmount": "أدخل مبلغ راتب صالحًا."
+  },
+  "moveBillSheet": {
+    "title": "نقل فاتورة",
+    "subtitle": "عجز بمقدار %{amount} في %{date}",
+    "bill": "الفاتورة",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "إلى الراتب",
+    "noBills": "لا توجد فواتير غير مدفوعة لنقلها.",
+    "noPaychecks": "لا توجد رواتب قادمة أخرى."
+  }
+}

@@ -54,14 +54,26 @@ export default function PayDateDetailScreen() {
     [incomeSources, sourceId]
   );
 
-  const assignedExpenseIds = useMemo(() => {
-    const matched = assignments.filter(
-      (a) => a.payDate === payDate && a.employerId === sourceId
-    );
-    return new Map(
-      matched.map((a) => [a.expenseId, { assignmentId: a.id, paid: !!a.paid, amount: a.amount }])
-    );
-  }, [assignments, payDate, sourceId]);
+  const paycheckAssignments = useMemo(
+    () => assignments.filter((a) => a.payDate === payDate && a.employerId === sourceId),
+    [assignments, payDate, sourceId]
+  );
+
+  const assignedExpenseIds = useMemo(
+    () =>
+      new Map(
+        paycheckAssignments
+          .filter((a) => !a.skipped)
+          .map((a) => [a.expenseId, { assignmentId: a.id, paid: !!a.paid, amount: a.amount }])
+      ),
+    [paycheckAssignments]
+  );
+
+  // Linked bills moved off this paycheck; they show under Available instead
+  const skippedExpenseIds = useMemo(
+    () => new Set(paycheckAssignments.filter((a) => a.skipped).map((a) => a.expenseId)),
+    [paycheckAssignments]
+  );
 
   const handleAssign = useCallback(
     (expenseId: string) => {
@@ -110,6 +122,13 @@ export default function PayDateDetailScreen() {
     });
   }, [router, payDate, sourceId]);
 
+  const handleMoveBill = useCallback(() => {
+    router.push({
+      pathname: "/move-bill",
+      params: { payDate, sourceId },
+    });
+  }, [router, payDate, sourceId]);
+
   const handleOpenLink = useCallback(
     (link: string, expenseId: string) => {
       openPaymentLink(link);
@@ -136,13 +155,14 @@ export default function PayDateDetailScreen() {
     for (const e of expenses) {
       if (
         !assignedExpenseIds.has(e.id) &&
+        !skippedExpenseIds.has(e.id) &&
         isExpenseLinkedToPaycheck(e, sourceId, paycheck, incomeSource)
       ) {
         ids.add(e.id);
       }
     }
     return ids;
-  }, [expenses, sourceId, paycheck, incomeSource, assignedExpenseIds]);
+  }, [expenses, sourceId, paycheck, incomeSource, assignedExpenseIds, skippedExpenseIds]);
 
   const assignedExpenses = useMemo(
     () => expenses.filter((e) => assignedExpenseIds.has(e.id) || linkedExpenseIds.has(e.id)),
@@ -181,6 +201,11 @@ export default function PayDateDetailScreen() {
   );
 
   const remaining = useMemo(() => payAmount - totalAssigned, [payAmount, totalAssigned]);
+
+  const canMoveBill = useMemo(
+    () => assignedExpenses.some((e) => !assignedExpenseIds.get(e.id)?.paid),
+    [assignedExpenses, assignedExpenseIds]
+  );
 
   const listData = useMemo(() => {
     const items: ListItem[] = [
@@ -240,7 +265,9 @@ export default function PayDateDetailScreen() {
               payAmount={payAmount}
               totalAssigned={totalAssigned}
               remaining={remaining}
+              canMoveBill={canMoveBill}
               onEditPayAmount={handleEditPayAmount}
+              onMoveBill={handleMoveBill}
             />
           );
         case "one-time-form":
@@ -283,7 +310,9 @@ export default function PayDateDetailScreen() {
       payAmount,
       totalAssigned,
       remaining,
+      canMoveBill,
       handleEditPayAmount,
+      handleMoveBill,
       assignedExpenseIds,
       handleAssign,
       handleUnassign,

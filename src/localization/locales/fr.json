@@ -1,0 +1,241 @@
+{
+  "common": {
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "done": "OK",
+    "save": "Enregistrer",
+    "add": "Ajouter",
+    "update": "Mettre à jour",
+    "back": "Retour",
+    "error": "Erreur",
+    "none": "Aucun",
+    "unknown": "Inconnu",
+    "removed": "Supprimé",
+    "systemDefault": "Par défaut (système)",
+    "selectDate": "Choisir une date",
+    "selectTime": "Choisir une heure",
+    "and": "et",
+    "move": "Déplacer"
+  },
+  "ordinal": {
+    "one": "%{n}er",
+    "other": "%{n}e"
+  },
+  "tabs": {
+    "paychecks": "Salaires",
+    "income": "Revenus",
+    "expenses": "Dépenses"
+  },
+  "screens": {
+    "settings": "Réglages",
+    "incomeSource": "Source de revenus",
+    "expense": "Dépense",
+    "payDate": "Date de paie",
+    "language": "Langue",
+    "currency": "Devise"
+  },
+  "paychecks": {
+    "today": "Aujourd'hui",
+    "goToThisMonth": "Aller à ce mois",
+    "leftAfterBills": "%{month} · reste après factures",
+    "heroMeta": "%{income} reçus · %{assigned} affectés",
+    "monthPaychecks": "Salaires de %{month}",
+    "emptyTitle": "Aucune source de revenus",
+    "emptyBody": "Ajoutez votre première source de revenus pour voir où va chaque salaire.",
+    "noBillsYet": "Aucune facture · touchez pour affecter",
+    "paidProgress": "%{paid} sur %{total} payées",
+    "amountLeft": "Reste %{amount}",
+    "chartBarLabel": "%{month}, reste %{amount}",
+    "opensPaycheck": "Ouvre ce salaire",
+    "markPaid": "Marquer %{payee} comme payée",
+    "changeAmount": "Modifier le montant de %{payee} pour ce salaire",
+    "changePayAmount": "Modifier le montant du salaire %{source} pour cette paie",
+    "emptyAction": "Ajouter une source de revenus",
+    "chartBarCurrentLabel": "%{month} (ce mois-ci), reste %{amount}",
+    "shortBy": "Il manque %{amount}",
+    "moveBill": "Déplacer une facture"
+  },
+  "income": {
+    "emptyTitle": "Aucun revenu",
+    "emptyBody": "Ajoutez vos salaires pour commencer à planifier.",
+    "perMonth": "Par mois",
+    "nextPayday": "Prochaine paie",
+    "sources": "Sources",
+    "swipeHint": "Balayez une source vers la gauche pour la supprimer.",
+    "addSource": "Ajouter une source de revenus",
+    "perCheck": "par salaire",
+    "deleteTitle": "Supprimer la source de revenus",
+    "deleteMessage": "Supprimer « %{name} » et toutes ses dépenses affectées ?",
+    "frequency": {
+      "weekly": "Hebdomadaire",
+      "biweekly": "Toutes les deux semaines",
+      "semiMonthly": "Deux fois par mois",
+      "monthly": "Mensuel"
+    },
+    "schedule": {
+      "weekly": "Hebdomadaire · le %{weekday}",
+      "biweekly": "Toutes les deux semaines · le %{weekday}",
+      "semiMonthly": "Deux fois par mois · le %{first} et le %{second}",
+      "monthly": "Mensuel · le %{day}"
+    },
+    "form": {
+      "name": "Nom",
+      "namePlaceholder": "ex. : Acme Corp",
+      "payAmount": "Montant (par salaire)",
+      "payAmountPlaceholder": "ex. : 2500.00",
+      "payFrequency": "Fréquence de paie",
+      "payDays": "Jours de paie du mois",
+      "payDaysHint": "Utilisez 31 pour le dernier jour du mois (ajusté pour les mois plus courts)",
+      "adjustToWorkday": "Décaler sur un jour ouvré",
+      "adjustHint": "Si une date de paie tombe un week-end, elle est avancée au vendredi précédent.",
+      "firstPayDate": "Première date de paie",
+      "addButton": "Ajouter la source de revenus",
+      "updateButton": "Mettre à jour la source",
+      "nameRequired": "Le nom est obligatoire.",
+      "invalidAmount": "Saisissez un montant valide.",
+      "payDaysRange": "Les jours de paie doivent être compris entre 1 et 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Aucune dépense",
+    "emptyBody": "Ajoutez vos factures, puis affectez-les à vos salaires.",
+    "nothingHere": "Rien ici pour le moment.",
+    "monthlySummary": {
+      "one": "%{amount} par mois pour %{count} facture",
+      "other": "%{amount} par mois pour %{count} factures"
+    },
+    "filters": {
+      "all": "Toutes",
+      "recurring": "Récurrentes",
+      "oneTime": "Ponctuelles"
+    },
+    "addExpense": "Ajouter une dépense",
+    "openLink": "Ouvrir le lien de paiement de %{payee}",
+    "deleteTitle": "Supprimer la dépense",
+    "deleteMessage": "Supprimer « %{payee} » et toutes ses affectations ?",
+    "sections": {
+      "notLinked": "Non liées",
+      "oneTime": "Ponctuelles"
+    },
+    "perMonthTotal": "%{amount}/mois",
+    "meta": {
+      "everyPaycheck": "Chaque salaire",
+      "slotEachMonth": "%{slot} de chaque mois",
+      "assignPerPaycheck": "Affecter par salaire",
+      "due": "Échéance le %{date}",
+      "oneTime": "Ponctuelle"
+    },
+    "cadence": {
+      "perCheck": "par salaire",
+      "monthly": "mensuelle",
+      "recurring": "récurrente",
+      "oneTime": "ponctuelle"
+    },
+    "slot": {
+      "last": "Dernier salaire",
+      "lastShort": "Dernier",
+      "ordinalPaycheck": "%{ordinal} salaire",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Bénéficiaire",
+      "payeePlaceholder": "ex. : Fournisseur d'électricité",
+      "amount": "Montant",
+      "amountPlaceholder": "ex. : 150.00",
+      "link": "Lien de paiement (facultatif)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Salaire",
+      "moveHint": "Déplacez cette dépense vers un autre salaire.",
+      "linkedSource": "Source de revenus liée",
+      "linkedHint": "Une fois liée, cette dépense est préremplie sur les salaires de cette source.",
+      "howOften": "Fréquence",
+      "everyPaycheck": "Chaque salaire",
+      "monthly": "Mensuelle",
+      "whichPaycheck": "Quel salaire",
+      "slotHintLast": "Tombe sur le dernier salaire de chaque mois, y compris les mois qui en comptent un de plus.",
+      "slotHintOrdinal": "Les salaires supplémentaires des mois plus longs sont ignorés. Choisissez Dernier pour toujours utiliser le dernier.",
+      "addButton": "Ajouter la dépense",
+      "updateButton": "Mettre à jour la dépense",
+      "payeeRequired": "Le nom du bénéficiaire est obligatoire.",
+      "invalidAmount": "Saisissez un montant valide."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Ce salaire",
+    "available": "Disponibles",
+    "emptyAssigned": "Rien d'affecté pour le moment. Ajoutez des factures depuis la liste ci-dessous.",
+    "leftAfterBills": "Reste après factures",
+    "summaryMeta": "Salaire de %{pay} · %{assigned} affectés",
+    "linked": "Liée",
+    "remove": "Retirer %{payee}",
+    "add": "Ajouter %{payee}",
+    "oneTime": {
+      "addButton": "Ajouter une dépense ponctuelle",
+      "title": "Dépense ponctuelle",
+      "payee": "Bénéficiaire",
+      "amount": "Montant"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Salaire du %{date} uniquement",
+    "hint": "Le montant par défaut est %{amount}. Les autres salaires le conservent.",
+    "useDefault": "Utiliser le montant par défaut"
+  },
+  "settings": {
+    "appearance": "Apparence",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système",
+    "hideCents": "Masquer les centimes",
+    "hideCentsHint": "Affiche les montants arrondis à l'unité.",
+    "behavior": "Comportement",
+    "autoMarkPaid": "Marquer payée à l'ouverture du lien",
+    "autoMarkPaidHint": "Toucher un lien de paiement marque aussi la facture comme payée.",
+    "region": "Langue et devise",
+    "language": "Langue",
+    "currency": "Devise",
+    "notifications": "Notifications",
+    "paydayReminder": "Rappel de paie",
+    "paydayReminderHint": "Recevez un récapitulatif des factures de chaque salaire et du reste avant son arrivée.",
+    "remindWhen": "Me rappeler",
+    "remindTime": "À",
+    "offsets": {
+      "dayOf": "Le jour même",
+      "dayBefore": "La veille",
+      "daysBefore": "%{count} jours avant",
+      "weekBefore": "Une semaine avant"
+    },
+    "permissionDeniedTitle": "Les notifications sont désactivées",
+    "permissionDeniedBody": "Autorisez les notifications pour Paycheck Planner dans les réglages de votre appareil pour recevoir les rappels de paie."
+  },
+  "notifications": {
+    "channelName": "Rappels de paie",
+    "titleToday": "Paie aujourd'hui : %{source}",
+    "titleTomorrow": "Paie demain : %{source}",
+    "titleOnDay": "Paie %{weekday} : %{source}",
+    "body": "%{income} reçus · %{bills} · reste %{left}",
+    "bodyNoBills": "%{income} reçus · aucune facture affectée",
+    "bills": {
+      "one": "%{count} facture (%{amount})",
+      "other": "%{count} factures (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Impossible d'ouvrir le lien"
+  },
+  "payAmountSheet": {
+    "subtitle": "Salaire du %{date} uniquement",
+    "hint": "Le salaire habituel est %{amount}. Les autres le conservent.",
+    "useDefault": "Utiliser le montant habituel",
+    "invalidAmount": "Saisissez un montant valide."
+  },
+  "moveBillSheet": {
+    "title": "Déplacer une facture",
+    "subtitle": "Il manque %{amount} le %{date}",
+    "bill": "Facture",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Vers le salaire",
+    "noBills": "Aucune facture impayée à déplacer.",
+    "noPaychecks": "Aucun autre salaire à venir."
+  }
+}

@@ -120,6 +120,7 @@ export default function RootLayout() {
           <Stack.Screen name="currency" options={currencyOptions} />
           <Stack.Screen name="expense-amount" options={sheetOptions} />
           <Stack.Screen name="paycheck-amount" options={sheetOptions} />
+          <Stack.Screen name="move-bill" options={sheetOptions} />
           <Stack.Screen name="date-picker" options={sheetOptions} />
         </Stack>
       </ThemeProvider>

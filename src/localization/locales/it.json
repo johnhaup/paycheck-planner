@@ -1,0 +1,241 @@
+{
+  "common": {
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "done": "Fine",
+    "save": "Salva",
+    "add": "Aggiungi",
+    "update": "Aggiorna",
+    "back": "Indietro",
+    "error": "Errore",
+    "none": "Nessuno",
+    "unknown": "Sconosciuto",
+    "removed": "Rimosso",
+    "systemDefault": "Predefinito di sistema",
+    "selectDate": "Seleziona data",
+    "selectTime": "Seleziona ora",
+    "and": "e",
+    "move": "Sposta"
+  },
+  "ordinal": {
+    "many": "%{n}º",
+    "other": "%{n}º"
+  },
+  "tabs": {
+    "paychecks": "Stipendi",
+    "income": "Entrate",
+    "expenses": "Spese"
+  },
+  "screens": {
+    "settings": "Impostazioni",
+    "incomeSource": "Fonte di reddito",
+    "expense": "Spesa",
+    "payDate": "Data di paga",
+    "language": "Lingua",
+    "currency": "Valuta"
+  },
+  "paychecks": {
+    "today": "Oggi",
+    "goToThisMonth": "Vai a questo mese",
+    "leftAfterBills": "%{month} · rimasto dopo le bollette",
+    "heroMeta": "%{income} in entrata · %{assigned} assegnati",
+    "monthPaychecks": "Stipendi di %{month}",
+    "emptyTitle": "Nessuna fonte di reddito",
+    "emptyBody": "Aggiungi la tua prima fonte di reddito per vedere dove va ogni stipendio.",
+    "noBillsYet": "Nessuna bolletta · tocca per assegnare",
+    "paidProgress": "%{paid} di %{total} pagate",
+    "amountLeft": "Rimangono %{amount}",
+    "chartBarLabel": "%{month}, rimangono %{amount}",
+    "opensPaycheck": "Apre questo stipendio",
+    "markPaid": "Segna %{payee} come pagata",
+    "changeAmount": "Modifica l'importo di %{payee} per questo stipendio",
+    "changePayAmount": "Modifica l'importo dello stipendio di %{source} per questa data",
+    "emptyAction": "Aggiungi fonte di reddito",
+    "chartBarCurrentLabel": "%{month} (questo mese), rimangono %{amount}",
+    "shortBy": "Mancano %{amount}",
+    "moveBill": "Sposta una bolletta"
+  },
+  "income": {
+    "emptyTitle": "Nessuna entrata",
+    "emptyBody": "Aggiungi i tuoi stipendi per iniziare a pianificare.",
+    "perMonth": "Al mese",
+    "nextPayday": "Prossima paga",
+    "sources": "Fonti",
+    "swipeHint": "Scorri verso sinistra su una fonte per eliminarla.",
+    "addSource": "Aggiungi fonte di reddito",
+    "perCheck": "per stipendio",
+    "deleteTitle": "Elimina fonte di reddito",
+    "deleteMessage": "Eliminare \"%{name}\" e tutte le spese assegnate?",
+    "frequency": {
+      "weekly": "Settimanale",
+      "biweekly": "Ogni due settimane",
+      "semiMonthly": "Due volte al mese",
+      "monthly": "Mensile"
+    },
+    "schedule": {
+      "weekly": "Settimanale · ogni %{weekday}",
+      "biweekly": "Ogni due settimane · %{weekday}",
+      "semiMonthly": "Due volte al mese · giorni %{first} e %{second}",
+      "monthly": "Mensile · giorno %{day}"
+    },
+    "form": {
+      "name": "Nome",
+      "namePlaceholder": "es. Acme Corp",
+      "payAmount": "Importo (per stipendio)",
+      "payAmountPlaceholder": "es. 2500.00",
+      "payFrequency": "Frequenza di paga",
+      "payDays": "Giorni di paga del mese",
+      "payDaysHint": "Usa 31 per l'ultimo giorno del mese (si adatta ai mesi più corti)",
+      "adjustToWorkday": "Sposta al giorno lavorativo",
+      "adjustHint": "Se una data di paga cade nel fine settimana, viene anticipata al venerdì precedente.",
+      "firstPayDate": "Prima data di paga",
+      "addButton": "Aggiungi fonte di reddito",
+      "updateButton": "Aggiorna fonte di reddito",
+      "nameRequired": "Il nome è obbligatorio.",
+      "invalidAmount": "Inserisci un importo valido.",
+      "payDaysRange": "I giorni di paga devono essere compresi tra 1 e 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Nessuna spesa",
+    "emptyBody": "Aggiungi le tue bollette, poi assegnale agli stipendi.",
+    "nothingHere": "Ancora niente qui.",
+    "monthlySummary": {
+      "one": "%{amount} al mese per %{count} bolletta",
+      "other": "%{amount} al mese per %{count} bollette"
+    },
+    "filters": {
+      "all": "Tutte",
+      "recurring": "Ricorrenti",
+      "oneTime": "Una tantum"
+    },
+    "addExpense": "Aggiungi spesa",
+    "openLink": "Apri il link di pagamento di %{payee}",
+    "deleteTitle": "Elimina spesa",
+    "deleteMessage": "Eliminare \"%{payee}\" e tutte le sue assegnazioni?",
+    "sections": {
+      "notLinked": "Non collegate",
+      "oneTime": "Una tantum"
+    },
+    "perMonthTotal": "%{amount}/mese",
+    "meta": {
+      "everyPaycheck": "Ogni stipendio",
+      "slotEachMonth": "%{slot} di ogni mese",
+      "assignPerPaycheck": "Assegna per stipendio",
+      "due": "Scade il %{date}",
+      "oneTime": "Una tantum"
+    },
+    "cadence": {
+      "perCheck": "per stipendio",
+      "monthly": "mensile",
+      "recurring": "ricorrente",
+      "oneTime": "una tantum"
+    },
+    "slot": {
+      "last": "Ultimo stipendio",
+      "lastShort": "Ultimo",
+      "ordinalPaycheck": "%{ordinal} stipendio",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Beneficiario",
+      "payeePlaceholder": "es. Azienda elettrica",
+      "amount": "Importo",
+      "amountPlaceholder": "es. 150.00",
+      "link": "Link di pagamento (facoltativo)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Stipendio",
+      "moveHint": "Sposta questa spesa su un altro stipendio.",
+      "linkedSource": "Fonte di reddito collegata",
+      "linkedHint": "Se collegata, questa spesa viene precaricata sugli stipendi di quella fonte.",
+      "howOften": "Frequenza",
+      "everyPaycheck": "Ogni stipendio",
+      "monthly": "Mensile",
+      "whichPaycheck": "Quale stipendio",
+      "slotHintLast": "Va sull'ultimo stipendio di ogni mese, compresi i mesi con uno in più.",
+      "slotHintOrdinal": "Gli stipendi extra dei mesi più lunghi vengono ignorati. Scegli Ultimo per usare sempre l'ultimo.",
+      "addButton": "Aggiungi spesa",
+      "updateButton": "Aggiorna spesa",
+      "payeeRequired": "Il nome del beneficiario è obbligatorio.",
+      "invalidAmount": "Inserisci un importo valido."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Questo stipendio",
+    "available": "Disponibili",
+    "emptyAssigned": "Niente assegnato. Aggiungi le bollette dall'elenco qui sotto.",
+    "leftAfterBills": "Rimasto dopo le bollette",
+    "summaryMeta": "Stipendio di %{pay} · %{assigned} assegnati",
+    "linked": "Collegata",
+    "remove": "Rimuovi %{payee}",
+    "add": "Aggiungi %{payee}",
+    "oneTime": {
+      "addButton": "Aggiungi spesa una tantum",
+      "title": "Spesa una tantum",
+      "payee": "Beneficiario",
+      "amount": "Importo"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Solo stipendio del %{date}",
+    "hint": "L'importo predefinito è %{amount}. Gli altri stipendi lo mantengono.",
+    "useDefault": "Usa importo predefinito"
+  },
+  "settings": {
+    "appearance": "Aspetto",
+    "light": "Chiaro",
+    "dark": "Scuro",
+    "system": "Sistema",
+    "hideCents": "Nascondi centesimi",
+    "hideCentsHint": "Mostra gli importi arrotondati all'unità.",
+    "behavior": "Comportamento",
+    "autoMarkPaid": "Segna pagata al tocco del link",
+    "autoMarkPaidHint": "Toccando un link di pagamento, la bolletta viene segnata come pagata.",
+    "region": "Lingua e valuta",
+    "language": "Lingua",
+    "currency": "Valuta",
+    "notifications": "Notifiche",
+    "paydayReminder": "Promemoria giorno di paga",
+    "paydayReminderHint": "Ricevi un riepilogo delle bollette di ogni stipendio e di quanto rimane prima che arrivi.",
+    "remindWhen": "Ricordamelo",
+    "remindTime": "Alle",
+    "offsets": {
+      "dayOf": "Il giorno stesso",
+      "dayBefore": "Il giorno prima",
+      "daysBefore": "%{count} giorni prima",
+      "weekBefore": "Una settimana prima"
+    },
+    "permissionDeniedTitle": "Le notifiche sono disattivate",
+    "permissionDeniedBody": "Consenti le notifiche di Paycheck Planner nelle impostazioni del dispositivo per ricevere i promemoria del giorno di paga."
+  },
+  "notifications": {
+    "channelName": "Promemoria giorno di paga",
+    "titleToday": "Oggi è giorno di paga: %{source}",
+    "titleTomorrow": "Domani è giorno di paga: %{source}",
+    "titleOnDay": "Giorno di paga %{weekday}: %{source}",
+    "body": "%{income} in entrata · %{bills} · rimangono %{left}",
+    "bodyNoBills": "%{income} in entrata · nessuna bolletta assegnata",
+    "bills": {
+      "one": "%{count} bolletta (%{amount})",
+      "other": "%{count} bollette (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Impossibile aprire il link"
+  },
+  "payAmountSheet": {
+    "subtitle": "Solo stipendio del %{date}",
+    "hint": "Lo stipendio abituale è %{amount}. Gli altri lo mantengono.",
+    "useDefault": "Usa importo abituale",
+    "invalidAmount": "Inserisci un importo valido."
+  },
+  "moveBillSheet": {
+    "title": "Sposta una bolletta",
+    "subtitle": "Mancano %{amount} il %{date}",
+    "bill": "Bolletta",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Allo stipendio",
+    "noBills": "Nessuna bolletta da pagare da spostare.",
+    "noPaychecks": "Nessun altro stipendio in arrivo."
+  }
+}

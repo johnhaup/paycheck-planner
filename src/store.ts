@@ -2,7 +2,14 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { randomUUID } from "expo-crypto";
-import type { IncomeSource, Expense, ExpenseAssignment, PaycheckOverride } from "@/types";
+import { getPaycheck, isExpenseLinkedToPaycheck } from "@/utils/payDates";
+import type {
+  IncomeSource,
+  Expense,
+  ExpenseAssignment,
+  PaycheckOverride,
+  PaycheckRef,
+} from "@/types";
 
 interface AppState {
   incomeSources: IncomeSource[];
@@ -24,13 +31,15 @@ interface AppState {
   setAssignmentAmount: (assignmentId: string, amount: number | undefined) => void;
   /** Moves a one-time expense to a single paycheck, keeping its paid state */
   rescheduleExpense: (expenseId: string, payDate: string, incomeSourceId: string) => void;
+  /** Moves one paycheck's bill to another paycheck, keeping its amount and paid state */
+  moveExpense: (expenseId: string, from: PaycheckRef, to: PaycheckRef) => void;
   /** Overrides one paycheck's pay amount; undefined restores the source's usual amount */
   setPaycheckAmount: (sourceId: string, payDate: string, payAmount: number | undefined) => void;
 }
 
 export const useStore = create<AppState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       incomeSources: [],
       expenses: [],
       assignments: [],
@@ -82,6 +91,22 @@ export const useStore = create<AppState>()(
         })),
 
       assignExpense: (expenseId, payDate, incomeSourceId) => {
+        // Re-adding a bill that was moved away revives its skip marker
+        const skipped = get().assignments.find(
+          (a) =>
+            a.skipped &&
+            a.expenseId === expenseId &&
+            a.payDate === payDate &&
+            a.employerId === incomeSourceId
+        );
+        if (skipped) {
+          set((s) => ({
+            assignments: s.assignments.map((a) =>
+              a.id === skipped.id ? { id: a.id, expenseId, payDate, employerId: incomeSourceId } : a
+            ),
+          }));
+          return skipped.id;
+        }
         const id = randomUUID();
         set((s) => ({
           assignments: [
@@ -129,6 +154,45 @@ export const useStore = create<AppState>()(
                 amount: current?.amount,
               },
             ],
+          };
+        }),
+
+      moveExpense: (expenseId, from, to) =>
+        set((s) => {
+          const expense = s.expenses.find((e) => e.id === expenseId);
+          const source = s.incomeSources.find((src) => src.id === from.sourceId);
+          const isAt = (a: ExpenseAssignment, ref: PaycheckRef) =>
+            a.expenseId === expenseId && a.payDate === ref.payDate && a.employerId === ref.sourceId;
+          const current = s.assignments.find((a) => isAt(a, from));
+          // A linked bill would reappear on the paycheck it left, so leave a skip marker behind
+          const leaveSkip =
+            !!expense &&
+            !!source &&
+            isExpenseLinkedToPaycheck(expense, from.sourceId, getPaycheck(source, from.payDate), source);
+          const assignments = s.assignments.filter((a) => !isAt(a, from) && !isAt(a, to));
+          if (leaveSkip) {
+            assignments.push({
+              id: current?.id ?? randomUUID(),
+              expenseId,
+              payDate: from.payDate,
+              employerId: from.sourceId,
+              skipped: true,
+            });
+          }
+          assignments.push({
+            id: randomUUID(),
+            expenseId,
+            payDate: to.payDate,
+            employerId: to.sourceId,
+            paid: current?.paid,
+            amount: current?.amount,
+          });
+          return {
+            assignments,
+            expenses:
+              expense && !expense.isRecurring
+                ? s.expenses.map((e) => (e.id === expenseId ? { ...e, dueDate: to.payDate } : e))
+                : s.expenses,
           };
         }),
 

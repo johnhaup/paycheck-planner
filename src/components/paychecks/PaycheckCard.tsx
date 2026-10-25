@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
@@ -24,6 +25,7 @@ interface Props {
   onLinkTap: LinkTapHandler;
   onEditAmount: EditAmountHandler;
   onEditPayAmount: (payDate: string, sourceId: string) => void;
+  onMoveBill: (payDate: string, sourceId: string) => void;
 }
 
 export function PaycheckCard({
@@ -33,6 +35,7 @@ export function PaycheckCard({
   onLinkTap,
   onEditAmount,
   onEditPayAmount,
+  onMoveBill,
 }: Props) {
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
@@ -46,12 +49,22 @@ export function PaycheckCard({
     onEditPayAmount(item.payDate, item.sourceId);
   }, [onEditPayAmount, item.payDate, item.sourceId]);
 
+  const handleMoveBill = useCallback(() => {
+    onMoveBill(item.payDate, item.sourceId);
+  }, [onMoveBill, item.payDate, item.sourceId]);
+
+  const shortRowStyle = useMemo(
+    () => [styles.shortRow, { borderTopColor: colors.divider }],
+    [colors]
+  );
+
   const emptyRowStyle = useMemo(
     () => [styles.emptyRow, { borderTopColor: colors.divider }],
     [colors]
   );
 
   const billCount = item.expenses.length;
+  const canMoveBill = item.remaining < 0 && item.paidCount < billCount;
   const weekday = formatWeekday(item.date);
   const meta =
     billCount === 0
@@ -103,6 +116,20 @@ export function PaycheckCard({
           <AppText variant="meta" color="textMuted">{t("paychecks.noBillsYet")}</AppText>
         </Pressable>
       )}
+      {canMoveBill ? (
+        <Pressable
+          style={shortRowStyle}
+          onPress={handleMoveBill}
+          accessibilityRole="button"
+          accessibilityLabel={t("paychecks.moveBill")}
+        >
+          <Ionicons name="alert-circle" size={16} color={colors.destructive} />
+          <AppText variant="meta" color="destructive" style={styles.shortText}>
+            {t("paychecks.shortBy", { amount: formatMoney(-item.remaining) })}
+          </AppText>
+          <AppText variant="bodyStrong" color="primaryText">{t("paychecks.moveBill")}</AppText>
+        </Pressable>
+      ) : null}
     </AppCard>
   );
 }
@@ -129,5 +156,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: MEASUREMENTS.spacing.lg,
     paddingVertical: MEASUREMENTS.spacing.base,
     borderTopWidth: 1,
+  },
+  shortRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: MEASUREMENTS.spacing.md,
+    paddingHorizontal: MEASUREMENTS.spacing.lg,
+    paddingVertical: MEASUREMENTS.spacing.base,
+    borderTopWidth: 1,
+  },
+  shortText: {
+    flex: 1,
   },
 });

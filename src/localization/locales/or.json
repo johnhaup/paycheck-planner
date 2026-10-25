@@ -1,0 +1,240 @@
+{
+  "common": {
+    "cancel": "ବାତିଲ୍ କରନ୍ତୁ",
+    "delete": "ଡିଲିଟ୍ କରନ୍ତୁ",
+    "done": "ହୋଇଗଲା",
+    "save": "ସେଭ୍ କରନ୍ତୁ",
+    "add": "ଯୋଡ଼ନ୍ତୁ",
+    "update": "ଅପଡେଟ୍ କରନ୍ତୁ",
+    "back": "ପଛକୁ",
+    "error": "ତ୍ରୁଟି",
+    "none": "କିଛି ନାହିଁ",
+    "unknown": "ଅଜଣା",
+    "removed": "ହଟାଯାଇଛି",
+    "systemDefault": "ସିଷ୍ଟମ୍ ଡିଫଲ୍ଟ",
+    "selectDate": "ତାରିଖ ବାଛନ୍ତୁ",
+    "selectTime": "ସମୟ ବାଛନ୍ତୁ",
+    "and": "ଏବଂ",
+    "move": "ଘୁଞ୍ଚାନ୍ତୁ"
+  },
+  "ordinal": {
+    "other": "%{n}ମ"
+  },
+  "tabs": {
+    "paychecks": "ଦରମା",
+    "income": "ଆୟ",
+    "expenses": "ଖର୍ଚ୍ଚ"
+  },
+  "screens": {
+    "settings": "ସେଟିଂସ୍",
+    "incomeSource": "ଆୟର ଉତ୍ସ",
+    "expense": "ଖର୍ଚ୍ଚ",
+    "payDate": "ଦରମା ତାରିଖ",
+    "language": "ଭାଷା",
+    "currency": "ମୁଦ୍ରା"
+  },
+  "paychecks": {
+    "today": "ଆଜି",
+    "goToThisMonth": "ଏହି ମାସକୁ ଯାଆନ୍ତୁ",
+    "leftAfterBills": "%{month} · ବିଲ୍ ପରେ ବାକି",
+    "heroMeta": "%{income} ଆସିଲା · %{assigned} ଆସାଇନ୍",
+    "monthPaychecks": "%{month}ର ଦରମା",
+    "emptyTitle": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଆୟ ଉତ୍ସ ନାହିଁ",
+    "emptyBody": "ପ୍ରତ୍ୟେକ ଦରମା କୁଆଡ଼େ ଯାଏ ଦେଖିବାକୁ ଆପଣଙ୍କର ପ୍ରଥମ ଆୟ ଉତ୍ସ ଯୋଡ଼ନ୍ତୁ।",
+    "noBillsYet": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ବିଲ୍ ନାହିଁ · ଆସାଇନ୍ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ",
+    "paidProgress": "%{total} ମଧ୍ୟରୁ %{paid} ପଇଠ ହୋଇଛି",
+    "amountLeft": "%{amount} ବାକି",
+    "chartBarLabel": "%{month}, %{amount} ବାକି",
+    "opensPaycheck": "ଏହି ଦରମା ଖୋଲେ",
+    "markPaid": "%{payee} ପଇଠ ହୋଇଛି ବୋଲି ମାର୍କ କରନ୍ତୁ",
+    "changeAmount": "ଏହି ଦରମା ପାଇଁ %{payee}ର ରାଶି ବଦଳାନ୍ତୁ",
+    "changePayAmount": "ଏହି ଥର ପାଇଁ %{source}ର ଦରମା ରାଶି ବଦଳାନ୍ତୁ",
+    "emptyAction": "ଆୟ ଉତ୍ସ ଯୋଡ଼ନ୍ତୁ",
+    "chartBarCurrentLabel": "%{month} (ଏହି ମାସ), %{amount} ବାକି",
+    "shortBy": "%{amount} କମ୍",
+    "moveBill": "ବିଲ୍ ଘୁଞ୍ଚାନ୍ତୁ"
+  },
+  "income": {
+    "emptyTitle": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଆୟ ନାହିଁ",
+    "emptyBody": "ଯୋଜନା ଆରମ୍ଭ କରିବାକୁ ଆପଣଙ୍କର ଦରମା ଯୋଡ଼ନ୍ତୁ।",
+    "perMonth": "ପ୍ରତି ମାସ",
+    "nextPayday": "ପରବର୍ତ୍ତୀ ଦରମା",
+    "sources": "ଉତ୍ସ",
+    "swipeHint": "କୌଣସି ଉତ୍ସ ଡିଲିଟ୍ କରିବାକୁ ତା ଉପରେ ବାମକୁ ସ୍ୱାଇପ୍ କରନ୍ତୁ।",
+    "addSource": "ଆୟ ଉତ୍ସ ଯୋଡ଼ନ୍ତୁ",
+    "perCheck": "ପ୍ରତି ଦରମା",
+    "deleteTitle": "ଆୟ ଉତ୍ସ ଡିଲିଟ୍ କରନ୍ତୁ",
+    "deleteMessage": "\"%{name}\" ଏବଂ ଏହାର ସବୁ ଖର୍ଚ୍ଚ ଆସାଇନ୍‌ମେଣ୍ଟ ଡିଲିଟ୍ କରିବେ?",
+    "frequency": {
+      "weekly": "ସାପ୍ତାହିକ",
+      "biweekly": "ପ୍ରତି ଦୁଇ ସପ୍ତାହ",
+      "semiMonthly": "ମାସକୁ ଦୁଇ ଥର",
+      "monthly": "ମାସିକ"
+    },
+    "schedule": {
+      "weekly": "ସାପ୍ତାହିକ · ପ୍ରତି %{weekday}",
+      "biweekly": "ପ୍ରତି ଦୁଇ ସପ୍ତାହ · %{weekday}",
+      "semiMonthly": "ମାସକୁ ଦୁଇ ଥର · %{first} ଓ %{second}",
+      "monthly": "ମାସିକ · %{day}"
+    },
+    "form": {
+      "name": "ନାମ",
+      "namePlaceholder": "ଯେପରି Acme Corp",
+      "payAmount": "ଦରମା ରାଶି (ପ୍ରତି ଦରମା)",
+      "payAmountPlaceholder": "ଯେପରି 2500.00",
+      "payFrequency": "ଦରମା କେତେ ଥର",
+      "payDays": "ମାସର ଦରମା ତାରିଖ",
+      "payDaysHint": "ମାସର ଶେଷ ଦିନ ପାଇଁ 31 ବ୍ୟବହାର କରନ୍ତୁ (ଛୋଟ ମାସରେ ଆପେ ଆପେ ସଜାଡ଼ି ହୁଏ)",
+      "adjustToWorkday": "କାର୍ଯ୍ୟ ଦିବସକୁ ସଜାଡ଼ନ୍ତୁ",
+      "adjustHint": "ଦରମା ତାରିଖ ୱିକେଣ୍ଡରେ ପଡ଼ିଲେ ତାହା ପୂର୍ବ ଶୁକ୍ରବାରକୁ ଚାଲିଯାଏ।",
+      "firstPayDate": "ପ୍ରଥମ ଦରମା ତାରିଖ",
+      "addButton": "ଆୟ ଉତ୍ସ ଯୋଡ଼ନ୍ତୁ",
+      "updateButton": "ଆୟ ଉତ୍ସ ଅପଡେଟ୍ କରନ୍ତୁ",
+      "nameRequired": "ନାମ ଆବଶ୍ୟକ।",
+      "invalidAmount": "ସଠିକ୍ ଦରମା ରାଶି ଦିଅନ୍ତୁ।",
+      "payDaysRange": "ଦରମା ତାରିଖ 1 ରୁ 31 ମଧ୍ୟରେ ହେବା ଆବଶ୍ୟକ।"
+    }
+  },
+  "expenses": {
+    "emptyTitle": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଖର୍ଚ୍ଚ ନାହିଁ",
+    "emptyBody": "ଆପଣଙ୍କର ବିଲ୍ ଯୋଡ଼ନ୍ତୁ, ତା ପରେ ସେଗୁଡ଼ିକୁ ଦରମାରେ ଆସାଇନ୍ କରନ୍ତୁ।",
+    "nothingHere": "ଏଠାରେ ଏପର୍ଯ୍ୟନ୍ତ କିଛି ନାହିଁ।",
+    "monthlySummary": {
+      "one": "%{count}ଟି ବିଲ୍‌ରେ ମାସକୁ %{amount}",
+      "other": "%{count}ଟି ବିଲ୍‌ରେ ମାସକୁ %{amount}"
+    },
+    "filters": {
+      "all": "ସବୁ",
+      "recurring": "ନିୟମିତ",
+      "oneTime": "ଏକ ଥର"
+    },
+    "addExpense": "ଖର୍ଚ୍ଚ ଯୋଡ଼ନ୍ତୁ",
+    "openLink": "%{payee}ର ପେମେଣ୍ଟ ଲିଙ୍କ୍ ଖୋଲନ୍ତୁ",
+    "deleteTitle": "ଖର୍ଚ୍ଚ ଡିଲିଟ୍ କରନ୍ତୁ",
+    "deleteMessage": "\"%{payee}\" ଏବଂ ଏହାର ସବୁ ଆସାଇନ୍‌ମେଣ୍ଟ ଡିଲିଟ୍ କରିବେ?",
+    "sections": {
+      "notLinked": "ଲିଙ୍କ୍ ହୋଇନାହିଁ",
+      "oneTime": "ଏକ ଥର"
+    },
+    "perMonthTotal": "%{amount}/ମାସ",
+    "meta": {
+      "everyPaycheck": "ପ୍ରତ୍ୟେକ ଦରମା",
+      "slotEachMonth": "ପ୍ରତି ମାସ %{slot}",
+      "assignPerPaycheck": "ପ୍ରତି ଦରମାରେ ଆସାଇନ୍ କରନ୍ତୁ",
+      "due": "%{date} ସୁଦ୍ଧା",
+      "oneTime": "ଏକ ଥର"
+    },
+    "cadence": {
+      "perCheck": "ପ୍ରତି ଦରମା",
+      "monthly": "ମାସିକ",
+      "recurring": "ନିୟମିତ",
+      "oneTime": "ଏକ ଥର"
+    },
+    "slot": {
+      "last": "ଶେଷ ଦରମା",
+      "lastShort": "ଶେଷ",
+      "ordinalPaycheck": "%{ordinal} ଦରମା",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "ପ୍ରାପ୍ତକର୍ତ୍ତା",
+      "payeePlaceholder": "ଯେପରି ବିଜୁଳି କମ୍ପାନୀ",
+      "amount": "ରାଶି",
+      "amountPlaceholder": "ଯେପରି 150.00",
+      "link": "ପେମେଣ୍ଟ ଲିଙ୍କ୍ (ଐଚ୍ଛିକ)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "ଦରମା",
+      "moveHint": "ଏହି ଖର୍ଚ୍ଚକୁ ଅନ୍ୟ ଦରମାକୁ ଘୁଞ୍ଚାନ୍ତୁ।",
+      "linkedSource": "ଲିଙ୍କ୍ ହୋଇଥିବା ଆୟ ଉତ୍ସ",
+      "linkedHint": "ଲିଙ୍କ୍ ହୋଇଥିଲେ ଏହି ଖର୍ଚ୍ଚ ସେହି ଉତ୍ସର ଦରମାରେ ଆଗରୁ ଯୋଡ଼ା ହୋଇ ରହେ।",
+      "howOften": "କେତେ ଥର",
+      "everyPaycheck": "ପ୍ରତ୍ୟେକ ଦରମା",
+      "monthly": "ମାସିକ",
+      "whichPaycheck": "କେଉଁ ଦରମା",
+      "slotHintLast": "ପ୍ରତି ମାସର ଶେଷ ଦରମାରେ ପଡ଼େ, ଅତିରିକ୍ତ ଦରମା ଥିବା ମାସରେ ମଧ୍ୟ।",
+      "slotHintOrdinal": "ଲମ୍ବା ମାସର ଅତିରିକ୍ତ ଦରମା ଛାଡ଼ି ଦିଆଯାଏ। ସବୁବେଳେ ଶେଷଟି ବ୍ୟବହାର କରିବାକୁ 'ଶେଷ' ବାଛନ୍ତୁ।",
+      "addButton": "ଖର୍ଚ୍ଚ ଯୋଡ଼ନ୍ତୁ",
+      "updateButton": "ଖର୍ଚ୍ଚ ଅପଡେଟ୍ କରନ୍ତୁ",
+      "payeeRequired": "ପ୍ରାପ୍ତକର୍ତ୍ତାର ନାମ ଆବଶ୍ୟକ।",
+      "invalidAmount": "ସଠିକ୍ ରାଶି ଦିଅନ୍ତୁ।"
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "ଏହି ଦରମା",
+    "available": "ଉପଲବ୍ଧ",
+    "emptyAssigned": "ଏପର୍ଯ୍ୟନ୍ତ କିଛି ଆସାଇନ୍ ହୋଇନାହିଁ। ତଳ ତାଲିକାରୁ ବିଲ୍ ଯୋଡ଼ନ୍ତୁ।",
+    "leftAfterBills": "ବିଲ୍ ପରେ ବାକି",
+    "summaryMeta": "%{pay} ଦରମା · %{assigned} ଆସାଇନ୍",
+    "linked": "ଲିଙ୍କ୍ ହୋଇଛି",
+    "remove": "%{payee} ହଟାନ୍ତୁ",
+    "add": "%{payee} ଯୋଡ଼ନ୍ତୁ",
+    "oneTime": {
+      "addButton": "ଏକ ଥରର ଖର୍ଚ୍ଚ ଯୋଡ଼ନ୍ତୁ",
+      "title": "ଏକ ଥରର ଖର୍ଚ୍ଚ",
+      "payee": "ପ୍ରାପ୍ତକର୍ତ୍ତା",
+      "amount": "ରାଶି"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "କେବଳ %{date}ର ଦରମା",
+    "hint": "ଡିଫଲ୍ଟ %{amount}। ଅନ୍ୟ ଦରମାରେ ଡିଫଲ୍ଟ ହିଁ ରହିବ।",
+    "useDefault": "ଡିଫଲ୍ଟ ରାଶି ବ୍ୟବହାର କରନ୍ତୁ"
+  },
+  "settings": {
+    "appearance": "ଥିମ୍",
+    "light": "ଲାଇଟ୍",
+    "dark": "ଡାର୍କ",
+    "system": "ସିଷ୍ଟମ୍",
+    "hideCents": "ପଇସା ଲୁଚାନ୍ତୁ",
+    "hideCentsHint": "ରାଶିକୁ ନିକଟତମ ପୂର୍ଣ୍ଣ ସଂଖ୍ୟାକୁ ରାଉଣ୍ଡ କରି ଦେଖାନ୍ତୁ।",
+    "behavior": "ଆଚରଣ",
+    "autoMarkPaid": "ଲିଙ୍କ୍ ଟ୍ୟାପ୍‌ରେ ଆପେ ପଇଠ ମାର୍କ କରନ୍ତୁ",
+    "autoMarkPaidHint": "ପେମେଣ୍ଟ ଲିଙ୍କ୍ ଟ୍ୟାପ୍ କଲେ ସେହି ବିଲ୍ ପଇଠ ହୋଇଛି ବୋଲି ମଧ୍ୟ ମାର୍କ ହୁଏ।",
+    "region": "ଭାଷା ଓ ମୁଦ୍ରା",
+    "language": "ଭାଷା",
+    "currency": "ମୁଦ୍ରା",
+    "notifications": "ବିଜ୍ଞପ୍ତି",
+    "paydayReminder": "ଦରମା ରିମାଇଣ୍ଡର",
+    "paydayReminderHint": "ପ୍ରତ୍ୟେକ ଦରମା ଆସିବା ପୂର୍ବରୁ ତାର ବିଲ୍ ଓ ବାକି ରାଶିର ସାରାଂଶ ପାଆନ୍ତୁ।",
+    "remindWhen": "କେବେ ମନେ ପକାଇବ",
+    "remindTime": "ସମୟ",
+    "offsets": {
+      "dayOf": "ସେହି ଦିନ",
+      "dayBefore": "ଏକ ଦିନ ଆଗରୁ",
+      "daysBefore": "%{count} ଦିନ ଆଗରୁ",
+      "weekBefore": "ଏକ ସପ୍ତାହ ଆଗରୁ"
+    },
+    "permissionDeniedTitle": "ବିଜ୍ଞପ୍ତି ବନ୍ଦ ଅଛି",
+    "permissionDeniedBody": "ଦରମା ରିମାଇଣ୍ଡର ପାଇବାକୁ ଡିଭାଇସ୍ ସେଟିଂସ୍‌ରେ Paycheck Planner ପାଇଁ ବିଜ୍ଞପ୍ତି ଚାଲୁ କରନ୍ତୁ।"
+  },
+  "notifications": {
+    "channelName": "ଦରମା ରିମାଇଣ୍ଡର",
+    "titleToday": "ଆଜି ଦରମା: %{source}",
+    "titleTomorrow": "ଆସନ୍ତାକାଲି ଦରମା: %{source}",
+    "titleOnDay": "%{weekday}ରେ ଦରମା: %{source}",
+    "body": "%{income} ଆସିଲା · %{bills} · %{left} ବାକି",
+    "bodyNoBills": "%{income} ଆସିଲା · ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ବିଲ୍ ଆସାଇନ୍ ହୋଇନାହିଁ",
+    "bills": {
+      "one": "%{count}ଟି ବିଲ୍ (%{amount})",
+      "other": "%{count}ଟି ବିଲ୍ (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "ଲିଙ୍କ୍ ଖୋଲି ହେଲା ନାହିଁ"
+  },
+  "payAmountSheet": {
+    "subtitle": "କେବଳ %{date}ର ଦରମା",
+    "hint": "ସାଧାରଣ ଦରମା %{amount}। ଅନ୍ୟ ଦରମାରେ ତାହା ହିଁ ରହିବ।",
+    "useDefault": "ସାଧାରଣ ରାଶି ବ୍ୟବହାର କରନ୍ତୁ",
+    "invalidAmount": "ସଠିକ୍ ଦରମା ରାଶି ଦିଅନ୍ତୁ।"
+  },
+  "moveBillSheet": {
+    "title": "ବିଲ୍ ଘୁଞ୍ଚାନ୍ତୁ",
+    "subtitle": "%{date}ରେ %{amount} କମ୍",
+    "bill": "ବିଲ୍",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "ଏହି ଦରମାକୁ",
+    "noBills": "ଘୁଞ୍ଚାଇବାକୁ କୌଣସି ବାକି ବିଲ୍ ନାହିଁ।",
+    "noPaychecks": "ଆଗକୁ ଅନ୍ୟ କୌଣସି ଦରମା ନାହିଁ।"
+  }
+}

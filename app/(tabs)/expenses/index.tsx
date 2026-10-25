@@ -7,6 +7,7 @@ import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
+import { AppEmptyState } from "@/components/AppEmptyState";
 import { AppFab } from "@/components/AppFab";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { AppSegmentedControl, type SegmentOption } from "@/components/AppSegmentedControl";
@@ -131,10 +132,13 @@ export default function ExpensesScreen() {
   return (
     <View style={containerStyle}>
       {expenses.length === 0 ? (
-        <View style={styles.empty}>
-          <AppText variant="title" center>{t("expenses.emptyTitle")}</AppText>
-          <AppText variant="meta" center>{t("expenses.emptyBody")}</AppText>
-        </View>
+        <AppEmptyState
+          icon="receipt-outline"
+          title={t("expenses.emptyTitle")}
+          body={t("expenses.emptyBody")}
+          actionLabel={t("expenses.addExpense")}
+          onAction={handleAdd}
+        />
       ) : (
         <SectionList
           sections={sections}
@@ -167,12 +171,5 @@ const styles = StyleSheet.create({
   },
   filterEmpty: {
     marginTop: MEASUREMENTS.spacing.section,
-  },
-  empty: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    gap: MEASUREMENTS.spacing.md,
-    paddingHorizontal: MEASUREMENTS.spacing.section,
   },
 });

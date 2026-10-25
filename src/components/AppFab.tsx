@@ -1,9 +1,10 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { hapticTap } from "@/utils/haptics";
 
 interface Props {
   accessibilityLabel: string;
@@ -13,6 +14,11 @@ interface Props {
 export function AppFab({ accessibilityLabel, onPress }: Props) {
   const colors = useColors();
   const insets = useSafeAreaInsets();
+
+  const handlePress = useCallback(() => {
+    hapticTap();
+    onPress();
+  }, [onPress]);
 
   const fabStyle = useMemo(
     () => [
@@ -29,7 +35,7 @@ export function AppFab({ accessibilityLabel, onPress }: Props) {
   return (
     <Pressable
       style={fabStyle}
-      onPress={onPress}
+      onPress={handlePress}
       hitSlop={MEASUREMENTS.hitSlop}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}

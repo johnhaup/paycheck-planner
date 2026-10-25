@@ -1,0 +1,244 @@
+{
+  "common": {
+    "cancel": "Zrušit",
+    "delete": "Smazat",
+    "done": "Hotovo",
+    "save": "Uložit",
+    "add": "Přidat",
+    "update": "Aktualizovat",
+    "back": "Zpět",
+    "error": "Chyba",
+    "none": "Žádné",
+    "unknown": "Neznámé",
+    "removed": "Odebráno",
+    "systemDefault": "Podle systému",
+    "selectDate": "Vybrat datum",
+    "selectTime": "Vybrat čas",
+    "and": "a",
+    "move": "Přesunout"
+  },
+  "ordinal": {
+    "other": "%{n}."
+  },
+  "tabs": {
+    "paychecks": "Výplaty",
+    "income": "Příjmy",
+    "expenses": "Výdaje"
+  },
+  "screens": {
+    "settings": "Nastavení",
+    "incomeSource": "Zdroj příjmu",
+    "expense": "Výdaj",
+    "payDate": "Den výplaty",
+    "language": "Jazyk",
+    "currency": "Měna"
+  },
+  "paychecks": {
+    "today": "Dnes",
+    "goToThisMonth": "Přejít na tento měsíc",
+    "leftAfterBills": "%{month} · zbývá po účtech",
+    "heroMeta": "Příjem %{income} · přiřazeno %{assigned}",
+    "monthPaychecks": "Výplaty: %{month}",
+    "emptyTitle": "Zatím žádné zdroje příjmu",
+    "emptyBody": "Přidejte první zdroj příjmu a uvidíte, kam každá výplata jde.",
+    "noBillsYet": "Zatím žádné účty · klepnutím přiřadíte",
+    "paidProgress": "Zaplaceno %{paid} z %{total}",
+    "amountLeft": "Zbývá %{amount}",
+    "chartBarLabel": "%{month}, zbývá %{amount}",
+    "opensPaycheck": "Otevře tuto výplatu",
+    "markPaid": "Označit %{payee} jako zaplacené",
+    "changeAmount": "Změnit částku %{payee} pro tuto výplatu",
+    "changePayAmount": "Změnit částku výplaty %{source} jen pro tuto výplatu",
+    "emptyAction": "Přidat zdroj příjmu",
+    "chartBarCurrentLabel": "%{month} (tento měsíc), zbývá %{amount}",
+    "shortBy": "Chybí %{amount}",
+    "moveBill": "Přesunout účet"
+  },
+  "income": {
+    "emptyTitle": "Zatím žádné příjmy",
+    "emptyBody": "Přidejte své výplaty a začněte plánovat.",
+    "perMonth": "Měsíčně",
+    "nextPayday": "Příští výplata",
+    "sources": "Zdroje",
+    "swipeHint": "Přejetím doleva zdroj smažete.",
+    "addSource": "Přidat zdroj příjmu",
+    "perCheck": "na výplatu",
+    "deleteTitle": "Smazat zdroj příjmu",
+    "deleteMessage": "Smazat „%{name}“ a všechna přiřazení výdajů?",
+    "frequency": {
+      "weekly": "Týdně",
+      "biweekly": "Každé dva týdny",
+      "semiMonthly": "Dvakrát měsíčně",
+      "monthly": "Měsíčně"
+    },
+    "schedule": {
+      "weekly": "Týdně · %{weekday}",
+      "biweekly": "Každé dva týdny · %{weekday}",
+      "semiMonthly": "Dvakrát měsíčně · %{first} a %{second}",
+      "monthly": "Měsíčně · %{day}"
+    },
+    "form": {
+      "name": "Název",
+      "namePlaceholder": "např. Acme Corp",
+      "payAmount": "Částka (na výplatu)",
+      "payAmountPlaceholder": "např. 2500.00",
+      "payFrequency": "Frekvence výplat",
+      "payDays": "Dny výplaty v měsíci",
+      "payDaysHint": "Zadejte 31 pro poslední den měsíce (u kratších měsíců se upraví automaticky)",
+      "adjustToWorkday": "Posunout na pracovní den",
+      "adjustHint": "Pokud výplata připadne na víkend, posune se na předchozí pátek.",
+      "firstPayDate": "Datum první výplaty",
+      "addButton": "Přidat zdroj příjmu",
+      "updateButton": "Aktualizovat zdroj příjmu",
+      "nameRequired": "Název je povinný.",
+      "invalidAmount": "Zadejte platnou částku výplaty.",
+      "payDaysRange": "Dny výplaty musí být v rozsahu 1 až 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Zatím žádné výdaje",
+    "emptyBody": "Přidejte účty a pak je přiřaďte k výplatám.",
+    "nothingHere": "Zatím tu nic není.",
+    "monthlySummary": {
+      "one": "%{amount} měsíčně za %{count} účet",
+      "few": "%{amount} měsíčně za %{count} účty",
+      "many": "%{amount} měsíčně za %{count} účtu",
+      "other": "%{amount} měsíčně za %{count} účtů"
+    },
+    "filters": {
+      "all": "Vše",
+      "recurring": "Opakované",
+      "oneTime": "Jednorázové"
+    },
+    "addExpense": "Přidat výdaj",
+    "openLink": "Otevřít platební odkaz: %{payee}",
+    "deleteTitle": "Smazat výdaj",
+    "deleteMessage": "Smazat „%{payee}“ a všechna jeho přiřazení?",
+    "sections": {
+      "notLinked": "Nepropojené",
+      "oneTime": "Jednorázové"
+    },
+    "perMonthTotal": "%{amount}/měs.",
+    "meta": {
+      "everyPaycheck": "Každá výplata",
+      "slotEachMonth": "%{slot} každý měsíc",
+      "assignPerPaycheck": "Přiřazovat u každé výplaty",
+      "due": "Splatnost %{date}",
+      "oneTime": "Jednorázový"
+    },
+    "cadence": {
+      "perCheck": "na výplatu",
+      "monthly": "měsíčně",
+      "recurring": "opakovaný",
+      "oneTime": "jednorázový"
+    },
+    "slot": {
+      "last": "Poslední výplata",
+      "lastShort": "Poslední",
+      "ordinalPaycheck": "%{ordinal} výplata",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Příjemce",
+      "payeePlaceholder": "např. Elektrárny",
+      "amount": "Částka",
+      "amountPlaceholder": "např. 150.00",
+      "link": "Platební odkaz (nepovinné)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Výplata",
+      "moveHint": "Přesunout tento výdaj k jiné výplatě.",
+      "linkedSource": "Propojený zdroj příjmu",
+      "linkedHint": "Po propojení se tento výdaj automaticky přidá k výplatám z daného zdroje.",
+      "howOften": "Jak často",
+      "everyPaycheck": "Každá výplata",
+      "monthly": "Měsíčně",
+      "whichPaycheck": "Která výplata",
+      "slotHintLast": "Připadne na poslední výplatu v měsíci, i v měsících s výplatou navíc.",
+      "slotHintOrdinal": "Výplaty navíc v delších měsících se přeskočí. Zvolte „Poslední“, pokud chcete vždy použít tu závěrečnou.",
+      "addButton": "Přidat výdaj",
+      "updateButton": "Aktualizovat výdaj",
+      "payeeRequired": "Název příjemce je povinný.",
+      "invalidAmount": "Zadejte platnou částku."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Tato výplata",
+    "available": "K dispozici",
+    "emptyAssigned": "Zatím nic nepřiřazeno. Přidejte účty ze seznamu níže.",
+    "leftAfterBills": "Zbývá po účtech",
+    "summaryMeta": "Výplata %{pay} · přiřazeno %{assigned}",
+    "linked": "Propojené",
+    "remove": "Odebrat %{payee}",
+    "add": "Přidat %{payee}",
+    "oneTime": {
+      "addButton": "Přidat jednorázový výdaj",
+      "title": "Jednorázový výdaj",
+      "payee": "Příjemce",
+      "amount": "Částka"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Jen výplata %{date}",
+    "hint": "Výchozí částka je %{amount}. Ostatní výplaty si ji ponechají.",
+    "useDefault": "Použít výchozí částku"
+  },
+  "settings": {
+    "appearance": "Vzhled",
+    "light": "Světlý",
+    "dark": "Tmavý",
+    "system": "Systémový",
+    "hideCents": "Skrýt haléře",
+    "hideCentsHint": "Zobrazovat částky zaokrouhlené na celé jednotky.",
+    "behavior": "Chování",
+    "autoMarkPaid": "Po klepnutí na odkaz označit jako zaplacené",
+    "autoMarkPaidHint": "Klepnutí na platební odkaz zároveň označí účet jako zaplacený.",
+    "region": "Jazyk a měna",
+    "language": "Jazyk",
+    "currency": "Měna",
+    "notifications": "Oznámení",
+    "paydayReminder": "Připomenutí výplaty",
+    "paydayReminderHint": "Dostávejte před každou výplatou přehled účtů a toho, co zbude.",
+    "remindWhen": "Připomenout",
+    "remindTime": "V",
+    "offsets": {
+      "dayOf": "V den výplaty",
+      "dayBefore": "Den předem",
+      "daysBefore": "%{count} dny předem",
+      "weekBefore": "Týden předem"
+    },
+    "permissionDeniedTitle": "Oznámení jsou vypnutá",
+    "permissionDeniedBody": "Povolte aplikaci Paycheck Planner oznámení v nastavení zařízení, abyste dostávali připomenutí výplaty."
+  },
+  "notifications": {
+    "channelName": "Připomenutí výplaty",
+    "titleToday": "Výplata dnes: %{source}",
+    "titleTomorrow": "Výplata zítra: %{source}",
+    "titleOnDay": "Výplata (%{weekday}): %{source}",
+    "body": "Příjem %{income} · %{bills} · zbývá %{left}",
+    "bodyNoBills": "Příjem %{income} · zatím žádné přiřazené účty",
+    "bills": {
+      "one": "%{count} účet (%{amount})",
+      "few": "%{count} účty (%{amount})",
+      "many": "%{count} účtu (%{amount})",
+      "other": "%{count} účtů (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Odkaz se nepodařilo otevřít"
+  },
+  "payAmountSheet": {
+    "subtitle": "Jen výplata %{date}",
+    "hint": "Obvyklá výplata je %{amount}. Ostatní výplaty si ji ponechají.",
+    "useDefault": "Použít obvyklou částku",
+    "invalidAmount": "Zadejte platnou částku výplaty."
+  },
+  "moveBillSheet": {
+    "title": "Přesunout účet",
+    "subtitle": "Chybí %{amount} (%{date})",
+    "bill": "Účet",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "K výplatě",
+    "noBills": "Žádné nezaplacené účty k přesunutí.",
+    "noPaychecks": "Žádné další nadcházející výplaty."
+  }
+}

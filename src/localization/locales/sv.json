@@ -1,0 +1,241 @@
+{
+  "common": {
+    "cancel": "Avbryt",
+    "delete": "Ta bort",
+    "done": "Klar",
+    "save": "Spara",
+    "add": "Lägg till",
+    "update": "Uppdatera",
+    "back": "Tillbaka",
+    "error": "Fel",
+    "none": "Ingen",
+    "unknown": "Okänd",
+    "removed": "Borttagen",
+    "systemDefault": "Systemstandard",
+    "selectDate": "Välj datum",
+    "selectTime": "Välj tid",
+    "and": "och",
+    "move": "Flytta"
+  },
+  "ordinal": {
+    "one": "%{n}:a",
+    "other": "%{n}:e"
+  },
+  "tabs": {
+    "paychecks": "Lön",
+    "income": "Inkomst",
+    "expenses": "Utgifter"
+  },
+  "screens": {
+    "settings": "Inställningar",
+    "incomeSource": "Inkomstkälla",
+    "expense": "Utgift",
+    "payDate": "Lönedag",
+    "language": "Språk",
+    "currency": "Valuta"
+  },
+  "paychecks": {
+    "today": "I dag",
+    "goToThisMonth": "Gå till den här månaden",
+    "leftAfterBills": "%{month} · kvar efter räkningar",
+    "heroMeta": "%{income} in · %{assigned} tilldelat",
+    "monthPaychecks": "Löneutbetalningar i %{month}",
+    "emptyTitle": "Inga inkomstkällor än",
+    "emptyBody": "Lägg till din första inkomstkälla för att se vart varje lön går.",
+    "noBillsYet": "Inga räkningar än · tryck för att tilldela",
+    "paidProgress": "%{paid} av %{total} betalda",
+    "amountLeft": "%{amount} kvar",
+    "chartBarLabel": "%{month}, %{amount} kvar",
+    "opensPaycheck": "Öppnar den här lönen",
+    "markPaid": "Markera %{payee} som betald",
+    "changeAmount": "Ändra belopp för %{payee} för den här lönen",
+    "changePayAmount": "Ändra lönebelopp för %{source} för den här utbetalningen",
+    "emptyAction": "Lägg till inkomstkälla",
+    "chartBarCurrentLabel": "%{month} (den här månaden), %{amount} kvar",
+    "shortBy": "Saknas %{amount}",
+    "moveBill": "Flytta en räkning"
+  },
+  "income": {
+    "emptyTitle": "Ingen inkomst än",
+    "emptyBody": "Lägg till din lön för att börja planera.",
+    "perMonth": "Per månad",
+    "nextPayday": "Nästa lönedag",
+    "sources": "Källor",
+    "swipeHint": "Svep åt vänster på en källa för att ta bort den.",
+    "addSource": "Lägg till inkomstkälla",
+    "perCheck": "per utbetalning",
+    "deleteTitle": "Ta bort inkomstkälla",
+    "deleteMessage": "Ta bort \"%{name}\" och alla dess utgiftstilldelningar?",
+    "frequency": {
+      "weekly": "Varje vecka",
+      "biweekly": "Varannan vecka",
+      "semiMonthly": "Två gånger i månaden",
+      "monthly": "Varje månad"
+    },
+    "schedule": {
+      "weekly": "Varje vecka · %{weekday}ar",
+      "biweekly": "Varannan vecka · %{weekday}ar",
+      "semiMonthly": "Två gånger i månaden · %{first} & %{second}",
+      "monthly": "Varje månad · %{day}"
+    },
+    "form": {
+      "name": "Namn",
+      "namePlaceholder": "t.ex. Acme AB",
+      "payAmount": "Lönebelopp (per utbetalning)",
+      "payAmountPlaceholder": "t.ex. 2500.00",
+      "payFrequency": "Lönefrekvens",
+      "payDays": "Lönedagar i månaden",
+      "payDaysHint": "Använd 31 för månadens sista dag (justeras automatiskt för kortare månader)",
+      "adjustToWorkday": "Justera till vardag",
+      "adjustHint": "Om en lönedag infaller på en helg flyttas den till fredagen innan.",
+      "firstPayDate": "Första lönedag",
+      "addButton": "Lägg till inkomstkälla",
+      "updateButton": "Uppdatera inkomstkälla",
+      "nameRequired": "Namn krävs.",
+      "invalidAmount": "Ange ett giltigt lönebelopp.",
+      "payDaysRange": "Lönedagar måste vara mellan 1 och 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Inga utgifter än",
+    "emptyBody": "Lägg till dina räkningar och tilldela dem sedan till löner.",
+    "nothingHere": "Inget här än.",
+    "monthlySummary": {
+      "one": "%{amount} i månaden för %{count} räkning",
+      "other": "%{amount} i månaden för %{count} räkningar"
+    },
+    "filters": {
+      "all": "Alla",
+      "recurring": "Återkommande",
+      "oneTime": "Engångs"
+    },
+    "addExpense": "Lägg till utgift",
+    "openLink": "Öppna betalningslänk för %{payee}",
+    "deleteTitle": "Ta bort utgift",
+    "deleteMessage": "Ta bort \"%{payee}\" och alla dess tilldelningar?",
+    "sections": {
+      "notLinked": "Inte kopplad",
+      "oneTime": "Engångs"
+    },
+    "perMonthTotal": "%{amount}/mån",
+    "meta": {
+      "everyPaycheck": "Varje lön",
+      "slotEachMonth": "%{slot} varje månad",
+      "assignPerPaycheck": "Tilldela per lön",
+      "due": "Förfaller %{date}",
+      "oneTime": "Engångs"
+    },
+    "cadence": {
+      "perCheck": "per utbetalning",
+      "monthly": "månadsvis",
+      "recurring": "återkommande",
+      "oneTime": "engångs"
+    },
+    "slot": {
+      "last": "Sista lönen",
+      "lastShort": "Sista",
+      "ordinalPaycheck": "%{ordinal} lönen",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Mottagare",
+      "payeePlaceholder": "t.ex. Elbolaget",
+      "amount": "Belopp",
+      "amountPlaceholder": "t.ex. 150.00",
+      "link": "Betalningslänk (valfritt)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Lön",
+      "moveHint": "Flytta den här utgiften till en annan lön.",
+      "linkedSource": "Kopplad inkomstkälla",
+      "linkedHint": "När den är kopplad läggs utgiften automatiskt på löner från den källan.",
+      "howOften": "Hur ofta",
+      "everyPaycheck": "Varje lön",
+      "monthly": "Varje månad",
+      "whichPaycheck": "Vilken lön",
+      "slotHintLast": "Hamnar på månadens sista lön, även i månader med en extra.",
+      "slotHintOrdinal": "Extra löner i längre månader hoppas över. Välj Sista för att alltid använda den sista.",
+      "addButton": "Lägg till utgift",
+      "updateButton": "Uppdatera utgift",
+      "payeeRequired": "Mottagarens namn krävs.",
+      "invalidAmount": "Ange ett giltigt belopp."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Den här lönen",
+    "available": "Tillgängligt",
+    "emptyAssigned": "Inget tilldelat än. Lägg till räkningar från listan nedan.",
+    "leftAfterBills": "Kvar efter räkningar",
+    "summaryMeta": "%{pay} lön · %{assigned} tilldelat",
+    "linked": "Kopplad",
+    "remove": "Ta bort %{payee}",
+    "add": "Lägg till %{payee}",
+    "oneTime": {
+      "addButton": "Lägg till engångsutgift",
+      "title": "Engångsutgift",
+      "payee": "Mottagare",
+      "amount": "Belopp"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Endast lönen %{date}",
+    "hint": "Standard är %{amount}. Andra löner behåller standarden.",
+    "useDefault": "Använd standardbelopp"
+  },
+  "settings": {
+    "appearance": "Utseende",
+    "light": "Ljust",
+    "dark": "Mörkt",
+    "system": "System",
+    "hideCents": "Dölj ören",
+    "hideCentsHint": "Visa belopp avrundade till närmaste hela enhet.",
+    "behavior": "Beteende",
+    "autoMarkPaid": "Markera som betald vid tryck på länk",
+    "autoMarkPaidHint": "När du trycker på en betalningslänk markeras räkningen också som betald.",
+    "region": "Språk och valuta",
+    "language": "Språk",
+    "currency": "Valuta",
+    "notifications": "Notiser",
+    "paydayReminder": "Lönedagspåminnelse",
+    "paydayReminderHint": "Få en översikt över varje löns räkningar och vad som blir kvar innan den kommer.",
+    "remindWhen": "Påminn mig",
+    "remindTime": "Kl.",
+    "offsets": {
+      "dayOf": "Samma dag",
+      "dayBefore": "Dagen innan",
+      "daysBefore": "%{count} dagar innan",
+      "weekBefore": "Veckan innan"
+    },
+    "permissionDeniedTitle": "Notiser är avstängda",
+    "permissionDeniedBody": "Tillåt notiser för Paycheck Planner i enhetens inställningar för att få lönedagspåminnelser."
+  },
+  "notifications": {
+    "channelName": "Lönedagspåminnelser",
+    "titleToday": "Lönedag i dag: %{source}",
+    "titleTomorrow": "Lönedag i morgon: %{source}",
+    "titleOnDay": "Lönedag %{weekday}: %{source}",
+    "body": "%{income} in · %{bills} · %{left} kvar",
+    "bodyNoBills": "%{income} in · inga räkningar tilldelade än",
+    "bills": {
+      "one": "%{count} räkning (%{amount})",
+      "other": "%{count} räkningar (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Kunde inte öppna länken"
+  },
+  "payAmountSheet": {
+    "subtitle": "Endast lönen %{date}",
+    "hint": "Vanlig lön är %{amount}. Andra löner behåller den.",
+    "useDefault": "Använd vanligt belopp",
+    "invalidAmount": "Ange ett giltigt lönebelopp."
+  },
+  "moveBillSheet": {
+    "title": "Flytta en räkning",
+    "subtitle": "Saknas %{amount} den %{date}",
+    "bill": "Räkning",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Till lön",
+    "noBills": "Inga obetalda räkningar att flytta.",
+    "noPaychecks": "Inga andra kommande löner."
+  }
+}

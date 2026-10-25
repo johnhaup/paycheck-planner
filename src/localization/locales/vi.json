@@ -1,0 +1,238 @@
+{
+  "common": {
+    "cancel": "Hủy",
+    "delete": "Xóa",
+    "done": "Xong",
+    "save": "Lưu",
+    "add": "Thêm",
+    "update": "Cập nhật",
+    "back": "Quay lại",
+    "error": "Lỗi",
+    "none": "Không có",
+    "unknown": "Không rõ",
+    "removed": "Đã xóa",
+    "systemDefault": "Mặc định hệ thống",
+    "selectDate": "Chọn ngày",
+    "selectTime": "Chọn giờ",
+    "and": "và",
+    "move": "Chuyển"
+  },
+  "ordinal": {
+    "other": "thứ %{n}"
+  },
+  "tabs": {
+    "paychecks": "Kỳ lương",
+    "income": "Thu nhập",
+    "expenses": "Chi tiêu"
+  },
+  "screens": {
+    "settings": "Cài đặt",
+    "incomeSource": "Nguồn thu nhập",
+    "expense": "Khoản chi",
+    "payDate": "Ngày nhận lương",
+    "language": "Ngôn ngữ",
+    "currency": "Tiền tệ"
+  },
+  "paychecks": {
+    "today": "Hôm nay",
+    "goToThisMonth": "Về tháng này",
+    "leftAfterBills": "%{month} · còn lại sau hóa đơn",
+    "heroMeta": "Thu %{income} · đã phân bổ %{assigned}",
+    "monthPaychecks": "Kỳ lương %{month}",
+    "emptyTitle": "Chưa có nguồn thu nhập",
+    "emptyBody": "Thêm nguồn thu nhập đầu tiên để xem mỗi kỳ lương được chi vào đâu.",
+    "noBillsYet": "Chưa có hóa đơn · chạm để phân bổ",
+    "paidProgress": "Đã trả %{paid}/%{total}",
+    "amountLeft": "Còn %{amount}",
+    "chartBarLabel": "%{month}, còn %{amount}",
+    "opensPaycheck": "Mở kỳ lương này",
+    "markPaid": "Đánh dấu %{payee} đã trả",
+    "changeAmount": "Đổi số tiền %{payee} cho kỳ lương này",
+    "changePayAmount": "Đổi số tiền lương %{source} cho kỳ lương này",
+    "emptyAction": "Thêm nguồn thu nhập",
+    "chartBarCurrentLabel": "%{month} (tháng này), còn %{amount}",
+    "shortBy": "Thiếu %{amount}",
+    "moveBill": "Chuyển hóa đơn"
+  },
+  "income": {
+    "emptyTitle": "Chưa có thu nhập",
+    "emptyBody": "Thêm kỳ lương của bạn để bắt đầu lập kế hoạch.",
+    "perMonth": "Mỗi tháng",
+    "nextPayday": "Ngày nhận lương tới",
+    "sources": "Nguồn thu",
+    "swipeHint": "Vuốt sang trái trên một nguồn thu để xóa.",
+    "addSource": "Thêm nguồn thu nhập",
+    "perCheck": "mỗi kỳ",
+    "deleteTitle": "Xóa nguồn thu nhập",
+    "deleteMessage": "Xóa \"%{name}\" và tất cả phân bổ chi tiêu của nó?",
+    "frequency": {
+      "weekly": "Hàng tuần",
+      "biweekly": "Hai tuần một lần",
+      "semiMonthly": "Hai lần mỗi tháng",
+      "monthly": "Hàng tháng"
+    },
+    "schedule": {
+      "weekly": "Hàng tuần · %{weekday}",
+      "biweekly": "Hai tuần một lần · %{weekday}",
+      "semiMonthly": "Hai lần mỗi tháng · ngày %{firstDate} và %{secondDate}",
+      "monthly": "Hàng tháng · ngày %{date}"
+    },
+    "form": {
+      "name": "Tên",
+      "namePlaceholder": "VD: Công ty Acme",
+      "payAmount": "Số tiền lương (mỗi kỳ)",
+      "payAmountPlaceholder": "VD: 2500.00",
+      "payFrequency": "Tần suất trả lương",
+      "payDays": "Ngày trả lương trong tháng",
+      "payDaysHint": "Dùng 31 cho ngày cuối tháng (tự điều chỉnh với tháng ngắn hơn)",
+      "adjustToWorkday": "Điều chỉnh sang ngày làm việc",
+      "adjustHint": "Nếu ngày trả lương rơi vào cuối tuần, sẽ chuyển sang thứ Sáu trước đó.",
+      "firstPayDate": "Ngày trả lương đầu tiên",
+      "addButton": "Thêm nguồn thu nhập",
+      "updateButton": "Cập nhật nguồn thu nhập",
+      "nameRequired": "Vui lòng nhập tên.",
+      "invalidAmount": "Nhập số tiền lương hợp lệ.",
+      "payDaysRange": "Ngày trả lương phải từ 1 đến 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Chưa có khoản chi",
+    "emptyBody": "Thêm hóa đơn, rồi phân bổ vào các kỳ lương.",
+    "nothingHere": "Chưa có gì ở đây.",
+    "monthlySummary": {
+      "other": "%{amount} mỗi tháng cho %{count} hóa đơn"
+    },
+    "filters": {
+      "all": "Tất cả",
+      "recurring": "Định kỳ",
+      "oneTime": "Một lần"
+    },
+    "addExpense": "Thêm khoản chi",
+    "openLink": "Mở liên kết thanh toán của %{payee}",
+    "deleteTitle": "Xóa khoản chi",
+    "deleteMessage": "Xóa \"%{payee}\" và tất cả phân bổ của nó?",
+    "sections": {
+      "notLinked": "Chưa liên kết",
+      "oneTime": "Một lần"
+    },
+    "perMonthTotal": "%{amount}/tháng",
+    "meta": {
+      "everyPaycheck": "Mỗi kỳ lương",
+      "slotEachMonth": "%{slot} mỗi tháng",
+      "assignPerPaycheck": "Phân bổ theo kỳ lương",
+      "due": "Hạn %{date}",
+      "oneTime": "Một lần"
+    },
+    "cadence": {
+      "perCheck": "mỗi kỳ",
+      "monthly": "hàng tháng",
+      "recurring": "định kỳ",
+      "oneTime": "một lần"
+    },
+    "slot": {
+      "last": "Kỳ lương cuối",
+      "lastShort": "Cuối",
+      "ordinalPaycheck": "Kỳ lương %{ordinal}",
+      "dayOfMonth": "Ngày %{date}"
+    },
+    "form": {
+      "payee": "Người nhận",
+      "payeePlaceholder": "VD: Công ty Điện lực",
+      "amount": "Số tiền",
+      "amountPlaceholder": "VD: 150.00",
+      "link": "Liên kết thanh toán (tùy chọn)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Kỳ lương",
+      "moveHint": "Chuyển khoản chi này sang kỳ lương khác.",
+      "linkedSource": "Nguồn thu nhập liên kết",
+      "linkedHint": "Khi liên kết, khoản chi này được thêm sẵn vào các kỳ lương từ nguồn đó.",
+      "howOften": "Tần suất",
+      "everyPaycheck": "Mỗi kỳ lương",
+      "monthly": "Hàng tháng",
+      "whichPaycheck": "Kỳ lương nào",
+      "slotHintLast": "Rơi vào kỳ lương cuối của mỗi tháng, kể cả tháng có thêm một kỳ.",
+      "slotHintOrdinal": "Kỳ lương thêm trong tháng dài hơn sẽ bị bỏ qua. Chọn Cuối để luôn dùng kỳ cuối.",
+      "addButton": "Thêm khoản chi",
+      "updateButton": "Cập nhật khoản chi",
+      "payeeRequired": "Vui lòng nhập tên người nhận.",
+      "invalidAmount": "Nhập số tiền hợp lệ."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Kỳ lương này",
+    "available": "Khả dụng",
+    "emptyAssigned": "Chưa phân bổ gì. Thêm hóa đơn từ danh sách bên dưới.",
+    "leftAfterBills": "Còn lại sau hóa đơn",
+    "summaryMeta": "Lương %{pay} · đã phân bổ %{assigned}",
+    "linked": "Đã liên kết",
+    "remove": "Bỏ %{payee}",
+    "add": "Thêm %{payee}",
+    "oneTime": {
+      "addButton": "Thêm khoản chi một lần",
+      "title": "Khoản chi một lần",
+      "payee": "Người nhận",
+      "amount": "Số tiền"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Chỉ kỳ lương %{date}",
+    "hint": "Mặc định là %{amount}. Các kỳ lương khác giữ mặc định.",
+    "useDefault": "Dùng số tiền mặc định"
+  },
+  "settings": {
+    "appearance": "Giao diện",
+    "light": "Sáng",
+    "dark": "Tối",
+    "system": "Hệ thống",
+    "hideCents": "Ẩn số lẻ",
+    "hideCentsHint": "Hiển thị số tiền làm tròn đến đơn vị gần nhất.",
+    "behavior": "Hành vi",
+    "autoMarkPaid": "Tự đánh dấu đã trả khi chạm liên kết",
+    "autoMarkPaidHint": "Chạm vào liên kết thanh toán cũng đánh dấu hóa đơn đó đã trả.",
+    "region": "Ngôn ngữ & Tiền tệ",
+    "language": "Ngôn ngữ",
+    "currency": "Tiền tệ",
+    "notifications": "Thông báo",
+    "paydayReminder": "Nhắc ngày nhận lương",
+    "paydayReminderHint": "Nhận tóm tắt hóa đơn và số tiền còn lại của mỗi kỳ lương trước khi lương về.",
+    "remindWhen": "Nhắc tôi",
+    "remindTime": "Lúc",
+    "offsets": {
+      "dayOf": "Trong ngày",
+      "dayBefore": "Trước 1 ngày",
+      "daysBefore": "Trước %{count} ngày",
+      "weekBefore": "Trước 1 tuần"
+    },
+    "permissionDeniedTitle": "Thông báo đang tắt",
+    "permissionDeniedBody": "Cho phép thông báo cho Paycheck Planner trong cài đặt thiết bị để nhận nhắc ngày nhận lương."
+  },
+  "notifications": {
+    "channelName": "Nhắc ngày nhận lương",
+    "titleToday": "Hôm nay nhận lương: %{source}",
+    "titleTomorrow": "Mai nhận lương: %{source}",
+    "titleOnDay": "Nhận lương %{weekday}: %{source}",
+    "body": "Thu %{income} · %{bills} · còn %{left}",
+    "bodyNoBills": "Thu %{income} · chưa phân bổ hóa đơn",
+    "bills": {
+      "other": "%{count} hóa đơn (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Không mở được liên kết"
+  },
+  "payAmountSheet": {
+    "subtitle": "Chỉ kỳ lương %{date}",
+    "hint": "Lương thường là %{amount}. Các kỳ lương khác giữ nguyên.",
+    "useDefault": "Dùng số tiền thường",
+    "invalidAmount": "Nhập số tiền lương hợp lệ."
+  },
+  "moveBillSheet": {
+    "title": "Chuyển hóa đơn",
+    "subtitle": "Thiếu %{amount} vào %{date}",
+    "bill": "Hóa đơn",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Sang kỳ lương",
+    "noBills": "Không có hóa đơn chưa trả để chuyển.",
+    "noPaychecks": "Không có kỳ lương sắp tới nào khác."
+  }
+}

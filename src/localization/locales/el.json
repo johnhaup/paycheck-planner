@@ -1,0 +1,240 @@
+{
+  "common": {
+    "cancel": "Άκυρο",
+    "delete": "Διαγραφή",
+    "done": "Τέλος",
+    "save": "Αποθήκευση",
+    "add": "Προσθήκη",
+    "update": "Ενημέρωση",
+    "back": "Πίσω",
+    "error": "Σφάλμα",
+    "none": "Κανένα",
+    "unknown": "Άγνωστο",
+    "removed": "Αφαιρέθηκε",
+    "systemDefault": "Προεπιλογή συστήματος",
+    "selectDate": "Επιλογή ημερομηνίας",
+    "selectTime": "Επιλογή ώρας",
+    "and": "και",
+    "move": "Μετακίνηση"
+  },
+  "ordinal": {
+    "other": "%{n}η"
+  },
+  "tabs": {
+    "paychecks": "Μισθοί",
+    "income": "Έσοδα",
+    "expenses": "Έξοδα"
+  },
+  "screens": {
+    "settings": "Ρυθμίσεις",
+    "incomeSource": "Πηγή εσόδων",
+    "expense": "Έξοδο",
+    "payDate": "Ημερομηνία πληρωμής",
+    "language": "Γλώσσα",
+    "currency": "Νόμισμα"
+  },
+  "paychecks": {
+    "today": "Σήμερα",
+    "goToThisMonth": "Μετάβαση στον τρέχοντα μήνα",
+    "leftAfterBills": "%{month} · υπόλοιπο μετά τους λογαριασμούς",
+    "heroMeta": "%{income} έσοδα · %{assigned} ανατεθειμένα",
+    "monthPaychecks": "Μισθοί %{month}",
+    "emptyTitle": "Καμία πηγή εσόδων ακόμα",
+    "emptyBody": "Πρόσθεσε την πρώτη σου πηγή εσόδων για να δεις πού πηγαίνει κάθε μισθός.",
+    "noBillsYet": "Κανένας λογαριασμός ακόμα · πάτησε για ανάθεση",
+    "paidProgress": "%{paid} από %{total} πληρωμένοι",
+    "amountLeft": "Υπόλοιπο %{amount}",
+    "chartBarLabel": "%{month}, υπόλοιπο %{amount}",
+    "opensPaycheck": "Ανοίγει αυτόν τον μισθό",
+    "markPaid": "Σήμανση %{payee} ως πληρωμένου",
+    "changeAmount": "Αλλαγή ποσού %{payee} για αυτόν τον μισθό",
+    "changePayAmount": "Αλλαγή ποσού μισθού %{source} για αυτόν τον μισθό",
+    "emptyAction": "Προσθήκη πηγής εσόδων",
+    "chartBarCurrentLabel": "%{month} (τρέχων μήνας), υπόλοιπο %{amount}",
+    "shortBy": "Έλλειμμα %{amount}",
+    "moveBill": "Μετακίνηση λογαριασμού"
+  },
+  "income": {
+    "emptyTitle": "Κανένα έσοδο ακόμα",
+    "emptyBody": "Πρόσθεσε τους μισθούς σου για να ξεκινήσεις τον προγραμματισμό.",
+    "perMonth": "Ανά μήνα",
+    "nextPayday": "Επόμενη πληρωμή",
+    "sources": "Πηγές",
+    "swipeHint": "Σύρε αριστερά μια πηγή για να τη διαγράψεις.",
+    "addSource": "Προσθήκη πηγής εσόδων",
+    "perCheck": "ανά μισθό",
+    "deleteTitle": "Διαγραφή πηγής εσόδων",
+    "deleteMessage": "Διαγραφή του \"%{name}\" και όλων των αναθέσεων εξόδων του;",
+    "frequency": {
+      "weekly": "Εβδομαδιαία",
+      "biweekly": "Ανά δύο εβδομάδες",
+      "semiMonthly": "Δύο φορές τον μήνα",
+      "monthly": "Μηνιαία"
+    },
+    "schedule": {
+      "weekly": "Εβδομαδιαία · κάθε %{weekday}",
+      "biweekly": "Ανά δύο εβδομάδες · %{weekday}",
+      "semiMonthly": "Δύο φορές τον μήνα · %{first} & %{second}",
+      "monthly": "Μηνιαία · %{day}"
+    },
+    "form": {
+      "name": "Όνομα",
+      "namePlaceholder": "π.χ. Acme Corp",
+      "payAmount": "Ποσό μισθού (ανά πληρωμή)",
+      "payAmountPlaceholder": "π.χ. 2500.00",
+      "payFrequency": "Συχνότητα πληρωμής",
+      "payDays": "Ημέρες πληρωμής του μήνα",
+      "payDaysHint": "Βάλε 31 για την τελευταία ημέρα του μήνα (προσαρμόζεται αυτόματα σε μικρότερους μήνες)",
+      "adjustToWorkday": "Μετάθεση σε εργάσιμη",
+      "adjustHint": "Αν η πληρωμή πέφτει Σαββατοκύριακο, μετατίθεται στην προηγούμενη Παρασκευή.",
+      "firstPayDate": "Πρώτη ημερομηνία πληρωμής",
+      "addButton": "Προσθήκη πηγής εσόδων",
+      "updateButton": "Ενημέρωση πηγής εσόδων",
+      "nameRequired": "Το όνομα είναι υποχρεωτικό.",
+      "invalidAmount": "Βάλε ένα έγκυρο ποσό μισθού.",
+      "payDaysRange": "Οι ημέρες πληρωμής πρέπει να είναι από 1 έως 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Κανένα έξοδο ακόμα",
+    "emptyBody": "Πρόσθεσε τους λογαριασμούς σου και ανάθεσέ τους σε μισθούς.",
+    "nothingHere": "Τίποτα εδώ ακόμα.",
+    "monthlySummary": {
+      "one": "%{amount} τον μήνα σε %{count} λογαριασμό",
+      "other": "%{amount} τον μήνα σε %{count} λογαριασμούς"
+    },
+    "filters": {
+      "all": "Όλα",
+      "recurring": "Επαναλαμβανόμενα",
+      "oneTime": "Εφάπαξ"
+    },
+    "addExpense": "Προσθήκη εξόδου",
+    "openLink": "Άνοιγμα συνδέσμου πληρωμής για %{payee}",
+    "deleteTitle": "Διαγραφή εξόδου",
+    "deleteMessage": "Διαγραφή του \"%{payee}\" και όλων των αναθέσεών του;",
+    "sections": {
+      "notLinked": "Μη συνδεδεμένα",
+      "oneTime": "Εφάπαξ"
+    },
+    "perMonthTotal": "%{amount}/μήνα",
+    "meta": {
+      "everyPaycheck": "Κάθε μισθό",
+      "slotEachMonth": "%{slot} κάθε μήνα",
+      "assignPerPaycheck": "Ανάθεση ανά μισθό",
+      "due": "Λήξη %{date}",
+      "oneTime": "Εφάπαξ"
+    },
+    "cadence": {
+      "perCheck": "ανά μισθό",
+      "monthly": "μηνιαία",
+      "recurring": "επαναλαμβανόμενο",
+      "oneTime": "εφάπαξ"
+    },
+    "slot": {
+      "last": "Τελευταία μισθοδοσία",
+      "lastShort": "Τελευταία",
+      "ordinalPaycheck": "%{ordinal} μισθοδοσία",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Δικαιούχος",
+      "payeePlaceholder": "π.χ. Εταιρεία ρεύματος",
+      "amount": "Ποσό",
+      "amountPlaceholder": "π.χ. 150.00",
+      "link": "Σύνδεσμος πληρωμής (προαιρετικό)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Μισθός",
+      "moveHint": "Μετακίνησε αυτό το έξοδο σε άλλον μισθό.",
+      "linkedSource": "Συνδεδεμένη πηγή εσόδων",
+      "linkedHint": "Όταν συνδεθεί, το έξοδο προφορτώνεται στους μισθούς από αυτή την πηγή.",
+      "howOften": "Πόσο συχνά",
+      "everyPaycheck": "Κάθε μισθό",
+      "monthly": "Μηνιαία",
+      "whichPaycheck": "Ποιος μισθός",
+      "slotHintLast": "Μπαίνει στον τελευταίο μισθό κάθε μήνα, και στους μήνες με έναν επιπλέον.",
+      "slotHintOrdinal": "Οι επιπλέον μισθοί σε μεγαλύτερους μήνες παραλείπονται. Διάλεξε «Τελευταία» για να χρησιμοποιείται πάντα ο τελευταίος.",
+      "addButton": "Προσθήκη εξόδου",
+      "updateButton": "Ενημέρωση εξόδου",
+      "payeeRequired": "Το όνομα δικαιούχου είναι υποχρεωτικό.",
+      "invalidAmount": "Βάλε ένα έγκυρο ποσό."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Αυτός ο μισθός",
+    "available": "Διαθέσιμο",
+    "emptyAssigned": "Δεν έχει ανατεθεί τίποτα ακόμα. Πρόσθεσε λογαριασμούς από την παρακάτω λίστα.",
+    "leftAfterBills": "Υπόλοιπο μετά τους λογαριασμούς",
+    "summaryMeta": "Μισθός %{pay} · %{assigned} ανατεθειμένα",
+    "linked": "Συνδεδεμένο",
+    "remove": "Αφαίρεση %{payee}",
+    "add": "Προσθήκη %{payee}",
+    "oneTime": {
+      "addButton": "Προσθήκη εφάπαξ εξόδου",
+      "title": "Εφάπαξ έξοδο",
+      "payee": "Δικαιούχος",
+      "amount": "Ποσό"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Μόνο για τον μισθό %{date}",
+    "hint": "Η προεπιλογή είναι %{amount}. Οι άλλοι μισθοί κρατούν την προεπιλογή.",
+    "useDefault": "Χρήση προεπιλεγμένου ποσού"
+  },
+  "settings": {
+    "appearance": "Εμφάνιση",
+    "light": "Φωτεινό",
+    "dark": "Σκούρο",
+    "system": "Σύστημα",
+    "hideCents": "Απόκρυψη λεπτών",
+    "hideCentsHint": "Εμφάνιση ποσών στρογγυλεμένων στην πλησιέστερη ακέραια μονάδα.",
+    "behavior": "Συμπεριφορά",
+    "autoMarkPaid": "Αυτόματη σήμανση πληρωμής στο πάτημα συνδέσμου",
+    "autoMarkPaidHint": "Το πάτημα ενός συνδέσμου πληρωμής σημαίνει και τον λογαριασμό ως πληρωμένο.",
+    "region": "Γλώσσα & Νόμισμα",
+    "language": "Γλώσσα",
+    "currency": "Νόμισμα",
+    "notifications": "Ειδοποιήσεις",
+    "paydayReminder": "Υπενθύμιση μισθού",
+    "paydayReminderHint": "Λάβε μια σύνοψη των λογαριασμών κάθε μισθού και του υπολοίπου πριν έρθει.",
+    "remindWhen": "Υπενθύμιση",
+    "remindTime": "Στις",
+    "offsets": {
+      "dayOf": "Την ίδια μέρα",
+      "dayBefore": "Μία μέρα πριν",
+      "daysBefore": "%{count} μέρες πριν",
+      "weekBefore": "Μία εβδομάδα πριν"
+    },
+    "permissionDeniedTitle": "Οι ειδοποιήσεις είναι απενεργοποιημένες",
+    "permissionDeniedBody": "Επίτρεψε τις ειδοποιήσεις για το Paycheck Planner στις ρυθμίσεις της συσκευής για να λαμβάνεις υπενθυμίσεις μισθού."
+  },
+  "notifications": {
+    "channelName": "Υπενθυμίσεις μισθού",
+    "titleToday": "Μισθός σήμερα: %{source}",
+    "titleTomorrow": "Μισθός αύριο: %{source}",
+    "titleOnDay": "Μισθός %{weekday}: %{source}",
+    "body": "%{income} έσοδα · %{bills} · υπόλοιπο %{left}",
+    "bodyNoBills": "%{income} έσοδα · κανένας λογαριασμός ακόμα",
+    "bills": {
+      "one": "%{count} λογαριασμός (%{amount})",
+      "other": "%{count} λογαριασμοί (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Δεν ήταν δυνατό το άνοιγμα του συνδέσμου"
+  },
+  "payAmountSheet": {
+    "subtitle": "Μόνο για τον μισθό %{date}",
+    "hint": "Ο συνήθης μισθός είναι %{amount}. Οι άλλοι μισθοί τον κρατούν.",
+    "useDefault": "Χρήση συνήθους ποσού",
+    "invalidAmount": "Βάλε ένα έγκυρο ποσό μισθού."
+  },
+  "moveBillSheet": {
+    "title": "Μετακίνηση λογαριασμού",
+    "subtitle": "Έλλειμμα %{amount} στις %{date}",
+    "bill": "Λογαριασμός",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Στον μισθό",
+    "noBills": "Δεν υπάρχουν απλήρωτοι λογαριασμοί για μετακίνηση.",
+    "noPaychecks": "Δεν υπάρχουν άλλοι επερχόμενοι μισθοί."
+  }
+}

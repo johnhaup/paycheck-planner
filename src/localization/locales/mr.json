@@ -1,0 +1,243 @@
+{
+  "common": {
+    "cancel": "रद्द करा",
+    "delete": "हटवा",
+    "done": "झाले",
+    "save": "सेव्ह करा",
+    "add": "जोडा",
+    "update": "अपडेट करा",
+    "back": "मागे",
+    "error": "त्रुटी",
+    "none": "काही नाही",
+    "unknown": "अज्ञात",
+    "removed": "काढले",
+    "systemDefault": "सिस्टम डिफॉल्ट",
+    "selectDate": "तारीख निवडा",
+    "selectTime": "वेळ निवडा",
+    "and": "आणि",
+    "move": "हलवा"
+  },
+  "ordinal": {
+    "one": "%{n}ला",
+    "two": "%{n}रा",
+    "few": "%{n}था",
+    "other": "%{n}वा"
+  },
+  "tabs": {
+    "paychecks": "पगार",
+    "income": "उत्पन्न",
+    "expenses": "खर्च"
+  },
+  "screens": {
+    "settings": "सेटिंग्ज",
+    "incomeSource": "उत्पन्नाचा स्रोत",
+    "expense": "खर्च",
+    "payDate": "पगाराची तारीख",
+    "language": "भाषा",
+    "currency": "चलन"
+  },
+  "paychecks": {
+    "today": "आज",
+    "goToThisMonth": "या महिन्यावर जा",
+    "leftAfterBills": "%{month} · बिलांनंतर शिल्लक",
+    "heroMeta": "%{income} आले · %{assigned} नेमून दिले",
+    "monthPaychecks": "%{month}चे पगार",
+    "emptyTitle": "अजून उत्पन्नाचा स्रोत नाही",
+    "emptyBody": "प्रत्येक पगार कुठे जातो हे पाहण्यासाठी पहिला उत्पन्नाचा स्रोत जोडा.",
+    "noBillsYet": "अजून बिल नाहीत · नेमण्यासाठी टॅप करा",
+    "paidProgress": "%{total} पैकी %{paid} भरले",
+    "amountLeft": "%{amount} शिल्लक",
+    "chartBarLabel": "%{month}, %{amount} शिल्लक",
+    "opensPaycheck": "हा पगार उघडतो",
+    "markPaid": "%{payee} भरले म्हणून मार्क करा",
+    "changeAmount": "या पगारासाठी %{payee}ची रक्कम बदला",
+    "changePayAmount": "या वेळेसाठी %{source}ची पगार रक्कम बदला",
+    "emptyAction": "उत्पन्नाचा स्रोत जोडा",
+    "chartBarCurrentLabel": "%{month} (हा महिना), %{amount} शिल्लक",
+    "shortBy": "%{amount} कमी",
+    "moveBill": "बिल हलवा"
+  },
+  "income": {
+    "emptyTitle": "अजून उत्पन्न नाही",
+    "emptyBody": "नियोजन सुरू करण्यासाठी तुमचे पगार जोडा.",
+    "perMonth": "दरमहा",
+    "nextPayday": "पुढचा पगार",
+    "sources": "स्रोत",
+    "swipeHint": "स्रोत हटवण्यासाठी त्यावर डावीकडे स्वाइप करा.",
+    "addSource": "उत्पन्नाचा स्रोत जोडा",
+    "perCheck": "प्रति पगार",
+    "deleteTitle": "उत्पन्नाचा स्रोत हटवा",
+    "deleteMessage": "\"%{name}\" आणि त्याच्या सर्व खर्च नेमणुका हटवायच्या?",
+    "frequency": {
+      "weekly": "साप्ताहिक",
+      "biweekly": "दर दोन आठवड्यांनी",
+      "semiMonthly": "महिन्यात दोनदा",
+      "monthly": "मासिक"
+    },
+    "schedule": {
+      "weekly": "साप्ताहिक · दर %{weekday}",
+      "biweekly": "दर दोन आठवड्यांनी · %{weekday}",
+      "semiMonthly": "महिन्यात दोनदा · %{first} आणि %{second}",
+      "monthly": "मासिक · %{day}"
+    },
+    "form": {
+      "name": "नाव",
+      "namePlaceholder": "उदा. Acme Corp",
+      "payAmount": "पगार रक्कम (प्रति पगार)",
+      "payAmountPlaceholder": "उदा. 2500.00",
+      "payFrequency": "पगार किती वेळा",
+      "payDays": "महिन्यातील पगाराच्या तारखा",
+      "payDaysHint": "महिन्याच्या शेवटच्या दिवसासाठी 31 वापरा (लहान महिन्यांत आपोआप जुळवले जाते)",
+      "adjustToWorkday": "कामाच्या दिवशी जुळवा",
+      "adjustHint": "पगाराची तारीख वीकेंडला आली तर ती आधीच्या शुक्रवारी जाते.",
+      "firstPayDate": "पहिल्या पगाराची तारीख",
+      "addButton": "उत्पन्नाचा स्रोत जोडा",
+      "updateButton": "उत्पन्नाचा स्रोत अपडेट करा",
+      "nameRequired": "नाव आवश्यक आहे.",
+      "invalidAmount": "योग्य पगार रक्कम टाका.",
+      "payDaysRange": "पगाराच्या तारखा 1 ते 31 मध्ये असाव्यात."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "अजून खर्च नाहीत",
+    "emptyBody": "तुमची बिले जोडा, मग ती पगारांना नेमून द्या.",
+    "nothingHere": "इथे अजून काही नाही.",
+    "monthlySummary": {
+      "one": "%{count} बिलासाठी दरमहा %{amount}",
+      "other": "%{count} बिलांसाठी दरमहा %{amount}"
+    },
+    "filters": {
+      "all": "सर्व",
+      "recurring": "नियमित",
+      "oneTime": "एकदाच"
+    },
+    "addExpense": "खर्च जोडा",
+    "openLink": "%{payee}ची पेमेंट लिंक उघडा",
+    "deleteTitle": "खर्च हटवा",
+    "deleteMessage": "\"%{payee}\" आणि त्याच्या सर्व नेमणुका हटवायच्या?",
+    "sections": {
+      "notLinked": "लिंक नाही",
+      "oneTime": "एकदाच"
+    },
+    "perMonthTotal": "%{amount}/महिना",
+    "meta": {
+      "everyPaycheck": "प्रत्येक पगार",
+      "slotEachMonth": "दरमहा %{slot}",
+      "assignPerPaycheck": "प्रति पगार नेमून द्या",
+      "due": "%{date} पर्यंत",
+      "oneTime": "एकदाच"
+    },
+    "cadence": {
+      "perCheck": "प्रति पगार",
+      "monthly": "मासिक",
+      "recurring": "नियमित",
+      "oneTime": "एकदाच"
+    },
+    "slot": {
+      "last": "शेवटचा पगार",
+      "lastShort": "शेवटचा",
+      "ordinalPaycheck": "%{ordinal} पगार",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "प्राप्तकर्ता",
+      "payeePlaceholder": "उदा. वीज कंपनी",
+      "amount": "रक्कम",
+      "amountPlaceholder": "उदा. 150.00",
+      "link": "पेमेंट लिंक (ऐच्छिक)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "पगार",
+      "moveHint": "हा खर्च दुसऱ्या पगारावर हलवा.",
+      "linkedSource": "लिंक केलेला उत्पन्नाचा स्रोत",
+      "linkedHint": "लिंक केल्यावर हा खर्च त्या स्रोताच्या पगारांवर आधीच लावलेला असतो.",
+      "howOften": "किती वेळा",
+      "everyPaycheck": "प्रत्येक पगार",
+      "monthly": "मासिक",
+      "whichPaycheck": "कोणता पगार",
+      "slotHintLast": "दर महिन्याच्या शेवटच्या पगारावर लागतो, जास्तीचा पगार असलेल्या महिन्यांतही.",
+      "slotHintOrdinal": "मोठ्या महिन्यांतील जास्तीचे पगार वगळले जातात. नेहमी शेवटचा वापरण्यासाठी 'शेवटचा' निवडा.",
+      "addButton": "खर्च जोडा",
+      "updateButton": "खर्च अपडेट करा",
+      "payeeRequired": "प्राप्तकर्त्याचे नाव आवश्यक आहे.",
+      "invalidAmount": "योग्य रक्कम टाका."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "हा पगार",
+    "available": "उपलब्ध",
+    "emptyAssigned": "अजून काही नेमलेले नाही. खालील यादीतून बिले जोडा.",
+    "leftAfterBills": "बिलांनंतर शिल्लक",
+    "summaryMeta": "%{pay} पगार · %{assigned} नेमून दिले",
+    "linked": "लिंक केलेले",
+    "remove": "%{payee} काढा",
+    "add": "%{payee} जोडा",
+    "oneTime": {
+      "addButton": "एकवेळचा खर्च जोडा",
+      "title": "एकवेळचा खर्च",
+      "payee": "प्राप्तकर्ता",
+      "amount": "रक्कम"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "फक्त %{date}चा पगार",
+    "hint": "डिफॉल्ट %{amount} आहे. इतर पगारांवर डिफॉल्टच राहते.",
+    "useDefault": "डिफॉल्ट रक्कम वापरा"
+  },
+  "settings": {
+    "appearance": "थीम",
+    "light": "लाइट",
+    "dark": "डार्क",
+    "system": "सिस्टम",
+    "hideCents": "पैसे लपवा",
+    "hideCentsHint": "रकमा जवळच्या पूर्ण संख्येत राउंड करून दाखवा.",
+    "behavior": "वर्तन",
+    "autoMarkPaid": "लिंक टॅप केल्यावर आपोआप भरले मार्क करा",
+    "autoMarkPaidHint": "पेमेंट लिंक टॅप केल्यावर ते बिल भरले म्हणूनही मार्क होते.",
+    "region": "भाषा आणि चलन",
+    "language": "भाषा",
+    "currency": "चलन",
+    "notifications": "सूचना",
+    "paydayReminder": "पगार रिमाइंडर",
+    "paydayReminderHint": "प्रत्येक पगार येण्याआधी त्याची बिले आणि शिल्लक रकमेचा सारांश मिळवा.",
+    "remindWhen": "कधी आठवण करायची",
+    "remindTime": "वेळ",
+    "offsets": {
+      "dayOf": "त्याच दिवशी",
+      "dayBefore": "एक दिवस आधी",
+      "daysBefore": "%{count} दिवस आधी",
+      "weekBefore": "एक आठवडा आधी"
+    },
+    "permissionDeniedTitle": "सूचना बंद आहेत",
+    "permissionDeniedBody": "पगार रिमाइंडर मिळवण्यासाठी डिव्हाइस सेटिंग्जमध्ये Paycheck Planner च्या सूचना सुरू करा."
+  },
+  "notifications": {
+    "channelName": "पगार रिमाइंडर",
+    "titleToday": "आज पगार: %{source}",
+    "titleTomorrow": "उद्या पगार: %{source}",
+    "titleOnDay": "%{weekday} रोजी पगार: %{source}",
+    "body": "%{income} आले · %{bills} · %{left} शिल्लक",
+    "bodyNoBills": "%{income} आले · अजून बिले नेमलेली नाहीत",
+    "bills": {
+      "one": "%{count} बिल (%{amount})",
+      "other": "%{count} बिले (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "लिंक उघडता आली नाही"
+  },
+  "payAmountSheet": {
+    "subtitle": "फक्त %{date}चा पगार",
+    "hint": "नेहमीचा पगार %{amount} आहे. इतर पगारांवर तोच राहतो.",
+    "useDefault": "नेहमीची रक्कम वापरा",
+    "invalidAmount": "योग्य पगार रक्कम टाका."
+  },
+  "moveBillSheet": {
+    "title": "बिल हलवा",
+    "subtitle": "%{date}ला %{amount} कमी",
+    "bill": "बिल",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "या पगारावर",
+    "noBills": "हलवण्यासाठी न भरलेली बिले नाहीत.",
+    "noPaychecks": "पुढे इतर पगार नाहीत."
+  }
+}

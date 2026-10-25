@@ -1,0 +1,238 @@
+{
+  "common": {
+    "cancel": "Batal",
+    "delete": "Padam",
+    "done": "Selesai",
+    "save": "Simpan",
+    "add": "Tambah",
+    "update": "Kemas kini",
+    "back": "Kembali",
+    "error": "Ralat",
+    "none": "Tiada",
+    "unknown": "Tidak diketahui",
+    "removed": "Dibuang",
+    "systemDefault": "Lalai sistem",
+    "selectDate": "Pilih Tarikh",
+    "selectTime": "Pilih Masa",
+    "and": "dan",
+    "move": "Alihkan"
+  },
+  "ordinal": {
+    "other": "ke-%{n}"
+  },
+  "tabs": {
+    "paychecks": "Gaji",
+    "income": "Pendapatan",
+    "expenses": "Perbelanjaan"
+  },
+  "screens": {
+    "settings": "Tetapan",
+    "incomeSource": "Sumber Pendapatan",
+    "expense": "Perbelanjaan",
+    "payDate": "Tarikh Gaji",
+    "language": "Bahasa",
+    "currency": "Mata Wang"
+  },
+  "paychecks": {
+    "today": "Hari ini",
+    "goToThisMonth": "Pergi ke bulan ini",
+    "leftAfterBills": "%{month} · baki selepas bil",
+    "heroMeta": "%{income} masuk · %{assigned} diperuntukkan",
+    "monthPaychecks": "Gaji %{month}",
+    "emptyTitle": "Belum ada sumber pendapatan",
+    "emptyBody": "Tambah sumber pendapatan pertama anda untuk melihat ke mana setiap gaji digunakan.",
+    "noBillsYet": "Belum ada bil · ketik untuk peruntukkan",
+    "paidProgress": "%{paid} daripada %{total} dibayar",
+    "amountLeft": "Baki %{amount}",
+    "chartBarLabel": "%{month}, baki %{amount}",
+    "opensPaycheck": "Membuka gaji ini",
+    "markPaid": "Tandakan %{payee} telah dibayar",
+    "changeAmount": "Tukar jumlah %{payee} untuk gaji ini",
+    "changePayAmount": "Tukar jumlah gaji %{source} untuk gaji ini",
+    "emptyAction": "Tambah sumber pendapatan",
+    "chartBarCurrentLabel": "%{month} (bulan ini), baki %{amount}",
+    "shortBy": "Kurang %{amount}",
+    "moveBill": "Alihkan bil"
+  },
+  "income": {
+    "emptyTitle": "Belum ada pendapatan",
+    "emptyBody": "Tambah gaji anda untuk mula merancang.",
+    "perMonth": "Sebulan",
+    "nextPayday": "Hari gaji seterusnya",
+    "sources": "Sumber",
+    "swipeHint": "Leret ke kiri pada sumber untuk memadamnya.",
+    "addSource": "Tambah sumber pendapatan",
+    "perCheck": "setiap gaji",
+    "deleteTitle": "Padam Sumber Pendapatan",
+    "deleteMessage": "Padam \"%{name}\" dan semua peruntukan perbelanjaannya?",
+    "frequency": {
+      "weekly": "Mingguan",
+      "biweekly": "Dwimingguan",
+      "semiMonthly": "Dua kali sebulan",
+      "monthly": "Bulanan"
+    },
+    "schedule": {
+      "weekly": "Mingguan · setiap hari %{weekday}",
+      "biweekly": "Dwimingguan · setiap hari %{weekday}",
+      "semiMonthly": "Dua kali sebulan · %{firstDate} & %{secondDate} hari bulan",
+      "monthly": "Bulanan · %{date} hari bulan"
+    },
+    "form": {
+      "name": "Nama",
+      "namePlaceholder": "cth. Acme Sdn Bhd",
+      "payAmount": "Jumlah Gaji (setiap gaji)",
+      "payAmountPlaceholder": "cth. 2500.00",
+      "payFrequency": "Kekerapan Gaji",
+      "payDays": "Hari Gaji dalam Bulan",
+      "payDaysHint": "Gunakan 31 untuk hari terakhir bulan (dilaraskan secara automatik bagi bulan yang lebih pendek)",
+      "adjustToWorkday": "Laraskan ke hari bekerja",
+      "adjustHint": "Jika tarikh gaji jatuh pada hujung minggu, ia akan dialihkan ke hari Jumaat sebelumnya.",
+      "firstPayDate": "Tarikh Gaji Pertama",
+      "addButton": "Tambah Sumber Pendapatan",
+      "updateButton": "Kemas Kini Sumber Pendapatan",
+      "nameRequired": "Nama diperlukan.",
+      "invalidAmount": "Masukkan jumlah gaji yang sah.",
+      "payDaysRange": "Hari gaji mesti antara 1 hingga 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Belum ada perbelanjaan",
+    "emptyBody": "Tambah bil anda, kemudian peruntukkan kepada gaji.",
+    "nothingHere": "Tiada apa-apa di sini lagi.",
+    "monthlySummary": {
+      "other": "%{amount} sebulan merangkumi %{count} bil"
+    },
+    "filters": {
+      "all": "Semua",
+      "recurring": "Berulang",
+      "oneTime": "Sekali sahaja"
+    },
+    "addExpense": "Tambah perbelanjaan",
+    "openLink": "Buka pautan pembayaran untuk %{payee}",
+    "deleteTitle": "Padam Perbelanjaan",
+    "deleteMessage": "Padam \"%{payee}\" dan semua peruntukannya?",
+    "sections": {
+      "notLinked": "Tidak dipautkan",
+      "oneTime": "Sekali sahaja"
+    },
+    "perMonthTotal": "%{amount}/bln",
+    "meta": {
+      "everyPaycheck": "Setiap gaji",
+      "slotEachMonth": "%{slot} setiap bulan",
+      "assignPerPaycheck": "Peruntukkan mengikut gaji",
+      "due": "Perlu dibayar %{date}",
+      "oneTime": "Sekali sahaja"
+    },
+    "cadence": {
+      "perCheck": "setiap gaji",
+      "monthly": "bulanan",
+      "recurring": "berulang",
+      "oneTime": "sekali sahaja"
+    },
+    "slot": {
+      "last": "Gaji terakhir",
+      "lastShort": "Terakhir",
+      "ordinalPaycheck": "Gaji %{ordinal}",
+      "dayOfMonth": "%{date} hari bulan"
+    },
+    "form": {
+      "payee": "Penerima",
+      "payeePlaceholder": "cth. Tenaga Nasional",
+      "amount": "Jumlah",
+      "amountPlaceholder": "cth. 150.00",
+      "link": "Pautan Pembayaran (pilihan)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Gaji",
+      "moveHint": "Alihkan perbelanjaan ini ke gaji lain.",
+      "linkedSource": "Sumber Pendapatan Dipautkan",
+      "linkedHint": "Apabila dipautkan, perbelanjaan ini dimuatkan terlebih dahulu pada gaji daripada sumber itu.",
+      "howOften": "Berapa Kerap",
+      "everyPaycheck": "Setiap gaji",
+      "monthly": "Bulanan",
+      "whichPaycheck": "Gaji yang Mana",
+      "slotHintLast": "Jatuh pada gaji terakhir setiap bulan, termasuk bulan yang ada gaji tambahan.",
+      "slotHintOrdinal": "Gaji tambahan pada bulan yang lebih panjang dilangkau. Pilih Terakhir untuk sentiasa menggunakan yang terakhir.",
+      "addButton": "Tambah Perbelanjaan",
+      "updateButton": "Kemas Kini Perbelanjaan",
+      "payeeRequired": "Nama penerima diperlukan.",
+      "invalidAmount": "Masukkan jumlah yang sah."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Gaji ini",
+    "available": "Tersedia",
+    "emptyAssigned": "Belum ada yang diperuntukkan. Tambah bil daripada senarai di bawah.",
+    "leftAfterBills": "Baki selepas bil",
+    "summaryMeta": "Gaji %{pay} · %{assigned} diperuntukkan",
+    "linked": "Dipautkan",
+    "remove": "Buang %{payee}",
+    "add": "Tambah %{payee}",
+    "oneTime": {
+      "addButton": "Tambah Perbelanjaan Sekali Sahaja",
+      "title": "Perbelanjaan Sekali Sahaja",
+      "payee": "Penerima",
+      "amount": "Jumlah"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Gaji %{date} sahaja",
+    "hint": "Lalai ialah %{amount}. Gaji lain kekal dengan nilai lalai.",
+    "useDefault": "Guna jumlah lalai"
+  },
+  "settings": {
+    "appearance": "Penampilan",
+    "light": "Cerah",
+    "dark": "Gelap",
+    "system": "Sistem",
+    "hideCents": "Sembunyikan sen",
+    "hideCentsHint": "Tunjukkan jumlah yang dibundarkan kepada unit terdekat.",
+    "behavior": "Tingkah laku",
+    "autoMarkPaid": "Tanda dibayar apabila pautan diketik",
+    "autoMarkPaidHint": "Mengetik pautan pembayaran turut menandakan bil itu telah dibayar.",
+    "region": "Bahasa & Mata Wang",
+    "language": "Bahasa",
+    "currency": "Mata Wang",
+    "notifications": "Pemberitahuan",
+    "paydayReminder": "Peringatan hari gaji",
+    "paydayReminderHint": "Dapatkan ringkasan bil dan baki setiap gaji sebelum gaji masuk.",
+    "remindWhen": "Ingatkan saya",
+    "remindTime": "Pada",
+    "offsets": {
+      "dayOf": "Hari yang sama",
+      "dayBefore": "Sehari sebelum",
+      "daysBefore": "%{count} hari sebelum",
+      "weekBefore": "Seminggu sebelum"
+    },
+    "permissionDeniedTitle": "Pemberitahuan dimatikan",
+    "permissionDeniedBody": "Benarkan pemberitahuan untuk Paycheck Planner dalam tetapan peranti anda untuk menerima peringatan hari gaji."
+  },
+  "notifications": {
+    "channelName": "Peringatan hari gaji",
+    "titleToday": "Hari gaji hari ini: %{source}",
+    "titleTomorrow": "Hari gaji esok: %{source}",
+    "titleOnDay": "Hari gaji %{weekday}: %{source}",
+    "body": "%{income} masuk · %{bills} · baki %{left}",
+    "bodyNoBills": "%{income} masuk · belum ada bil diperuntukkan",
+    "bills": {
+      "other": "%{count} bil (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Tidak dapat membuka pautan"
+  },
+  "payAmountSheet": {
+    "subtitle": "Gaji %{date} sahaja",
+    "hint": "Gaji biasa ialah %{amount}. Gaji lain kekal sama.",
+    "useDefault": "Guna jumlah biasa",
+    "invalidAmount": "Masukkan jumlah gaji yang sah."
+  },
+  "moveBillSheet": {
+    "title": "Alihkan bil",
+    "subtitle": "Kurang %{amount} pada %{date}",
+    "bill": "Bil",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Ke gaji",
+    "noBills": "Tiada bil belum dibayar untuk dialihkan.",
+    "noPaychecks": "Tiada gaji akan datang yang lain."
+  }
+}

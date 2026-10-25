@@ -1,0 +1,240 @@
+{
+  "common": {
+    "cancel": "منسوخ",
+    "delete": "حذف کریں",
+    "done": "ہو گیا",
+    "save": "محفوظ کریں",
+    "add": "شامل کریں",
+    "update": "اپ ڈیٹ",
+    "back": "واپس",
+    "error": "خرابی",
+    "none": "کوئی نہیں",
+    "unknown": "نامعلوم",
+    "removed": "ہٹا دیا گیا",
+    "systemDefault": "سسٹم ڈیفالٹ",
+    "selectDate": "تاریخ منتخب کریں",
+    "selectTime": "وقت منتخب کریں",
+    "and": "اور",
+    "move": "منتقل کریں"
+  },
+  "ordinal": {
+    "other": "%{n}"
+  },
+  "tabs": {
+    "paychecks": "تنخواہیں",
+    "income": "آمدنی",
+    "expenses": "اخراجات"
+  },
+  "screens": {
+    "settings": "ترتیبات",
+    "incomeSource": "آمدنی کا ذریعہ",
+    "expense": "خرچ",
+    "payDate": "تنخواہ کی تاریخ",
+    "language": "زبان",
+    "currency": "کرنسی"
+  },
+  "paychecks": {
+    "today": "آج",
+    "goToThisMonth": "اس مہینے پر جائیں",
+    "leftAfterBills": "%{month} · بلوں کے بعد باقی",
+    "heroMeta": "%{income} آمدنی · %{assigned} مختص",
+    "monthPaychecks": "%{month} کی تنخواہیں",
+    "emptyTitle": "ابھی کوئی آمدنی کا ذریعہ نہیں",
+    "emptyBody": "اپنا پہلا آمدنی کا ذریعہ شامل کریں تاکہ دیکھ سکیں کہ ہر تنخواہ کہاں جاتی ہے۔",
+    "noBillsYet": "ابھی کوئی بل نہیں · مختص کرنے کے لیے ٹیپ کریں",
+    "paidProgress": "%{total} میں سے %{paid} ادا شدہ",
+    "amountLeft": "%{amount} باقی",
+    "chartBarLabel": "%{month}، %{amount} باقی",
+    "opensPaycheck": "یہ تنخواہ کھولتا ہے",
+    "markPaid": "%{payee} کو ادا شدہ نشان زد کریں",
+    "changeAmount": "اس تنخواہ کے لیے %{payee} کی رقم تبدیل کریں",
+    "changePayAmount": "اس تنخواہ کے لیے %{source} کی تنخواہ کی رقم تبدیل کریں",
+    "emptyAction": "آمدنی کا ذریعہ شامل کریں",
+    "chartBarCurrentLabel": "%{month} (یہ مہینہ)، %{amount} باقی",
+    "shortBy": "%{amount} کم",
+    "moveBill": "بل منتقل کریں"
+  },
+  "income": {
+    "emptyTitle": "ابھی کوئی آمدنی نہیں",
+    "emptyBody": "منصوبہ بندی شروع کرنے کے لیے اپنی تنخواہیں شامل کریں۔",
+    "perMonth": "ماہانہ",
+    "nextPayday": "اگلی تنخواہ کا دن",
+    "sources": "ذرائع",
+    "swipeHint": "کسی ذریعے کو حذف کرنے کے لیے اس پر سوائپ کریں۔",
+    "addSource": "آمدنی کا ذریعہ شامل کریں",
+    "perCheck": "فی تنخواہ",
+    "deleteTitle": "آمدنی کا ذریعہ حذف کریں",
+    "deleteMessage": "\"%{name}\" اور اس کے تمام اخراجات کی تخصیصات حذف کریں؟",
+    "frequency": {
+      "weekly": "ہفتہ وار",
+      "biweekly": "دو ہفتہ وار",
+      "semiMonthly": "مہینے میں دو بار",
+      "monthly": "ماہانہ"
+    },
+    "schedule": {
+      "weekly": "ہفتہ وار · ہر %{weekday}",
+      "biweekly": "دو ہفتہ وار · ہر دوسرے %{weekday}",
+      "semiMonthly": "مہینے میں دو بار · %{first} اور %{second} تاریخ",
+      "monthly": "ماہانہ · %{day} تاریخ"
+    },
+    "form": {
+      "name": "نام",
+      "namePlaceholder": "مثلاً ایکمی کارپوریشن",
+      "payAmount": "تنخواہ کی رقم (فی تنخواہ)",
+      "payAmountPlaceholder": "مثلاً 2500.00",
+      "payFrequency": "تنخواہ کی تعدد",
+      "payDays": "مہینے میں تنخواہ کی تاریخیں",
+      "payDaysHint": "مہینے کے آخری دن کے لیے 31 استعمال کریں (چھوٹے مہینوں کے لیے خود بخود ایڈجسٹ ہو جاتا ہے)",
+      "adjustToWorkday": "کام کے دن پر ایڈجسٹ کریں",
+      "adjustHint": "اگر تنخواہ کی تاریخ ہفتے کے آخر میں آئے تو یہ پچھلے جمعہ پر منتقل ہو جاتی ہے۔",
+      "firstPayDate": "پہلی تنخواہ کی تاریخ",
+      "addButton": "آمدنی کا ذریعہ شامل کریں",
+      "updateButton": "آمدنی کا ذریعہ اپ ڈیٹ کریں",
+      "nameRequired": "نام درکار ہے۔",
+      "invalidAmount": "تنخواہ کی درست رقم درج کریں۔",
+      "payDaysRange": "تنخواہ کی تاریخیں 1 اور 31 کے درمیان ہونی چاہئیں۔"
+    }
+  },
+  "expenses": {
+    "emptyTitle": "ابھی کوئی خرچ نہیں",
+    "emptyBody": "اپنے بل شامل کریں، پھر انہیں تنخواہوں کو مختص کریں۔",
+    "nothingHere": "یہاں ابھی کچھ نہیں۔",
+    "monthlySummary": {
+      "one": "%{count} بل پر ماہانہ %{amount}",
+      "other": "%{count} بلوں پر ماہانہ %{amount}"
+    },
+    "filters": {
+      "all": "سب",
+      "recurring": "بار بار",
+      "oneTime": "ایک بار"
+    },
+    "addExpense": "خرچ شامل کریں",
+    "openLink": "%{payee} کے لیے ادائیگی کا لنک کھولیں",
+    "deleteTitle": "خرچ حذف کریں",
+    "deleteMessage": "\"%{payee}\" اور اس کی تمام تخصیصات حذف کریں؟",
+    "sections": {
+      "notLinked": "غیر منسلک",
+      "oneTime": "ایک بار"
+    },
+    "perMonthTotal": "%{amount}/ماہ",
+    "meta": {
+      "everyPaycheck": "ہر تنخواہ",
+      "slotEachMonth": "ہر مہینے %{slot}",
+      "assignPerPaycheck": "فی تنخواہ مختص کریں",
+      "due": "%{date} کو واجب",
+      "oneTime": "ایک بار"
+    },
+    "cadence": {
+      "perCheck": "فی تنخواہ",
+      "monthly": "ماہانہ",
+      "recurring": "بار بار",
+      "oneTime": "ایک بار"
+    },
+    "slot": {
+      "last": "آخری تنخواہ",
+      "lastShort": "آخری",
+      "ordinalPaycheck": "تنخواہ نمبر %{ordinal}",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "وصول کنندہ",
+      "payeePlaceholder": "مثلاً بجلی کمپنی",
+      "amount": "رقم",
+      "amountPlaceholder": "مثلاً 150.00",
+      "link": "ادائیگی کا لنک (اختیاری)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "تنخواہ",
+      "moveHint": "اس خرچ کو کسی دوسری تنخواہ میں منتقل کریں۔",
+      "linkedSource": "منسلک آمدنی کا ذریعہ",
+      "linkedHint": "منسلک ہونے پر یہ خرچ اس ذریعے کی تنخواہوں پر پہلے سے شامل ہوتا ہے۔",
+      "howOften": "کتنی بار",
+      "everyPaycheck": "ہر تنخواہ",
+      "monthly": "ماہانہ",
+      "whichPaycheck": "کون سی تنخواہ",
+      "slotHintLast": "ہر مہینے کی آخری تنخواہ پر آتا ہے، بشمول وہ مہینے جن میں ایک اضافی تنخواہ ہو۔",
+      "slotHintOrdinal": "لمبے مہینوں کی اضافی تنخواہیں چھوڑ دی جاتی ہیں۔ ہمیشہ آخری تنخواہ استعمال کرنے کے لیے 'آخری' منتخب کریں۔",
+      "addButton": "خرچ شامل کریں",
+      "updateButton": "خرچ اپ ڈیٹ کریں",
+      "payeeRequired": "وصول کنندہ کا نام درکار ہے۔",
+      "invalidAmount": "درست رقم درج کریں۔"
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "یہ تنخواہ",
+    "available": "دستیاب",
+    "emptyAssigned": "ابھی کچھ مختص نہیں۔ نیچے دی گئی فہرست سے بل شامل کریں۔",
+    "leftAfterBills": "بلوں کے بعد باقی",
+    "summaryMeta": "%{pay} تنخواہ · %{assigned} مختص",
+    "linked": "منسلک",
+    "remove": "%{payee} ہٹائیں",
+    "add": "%{payee} شامل کریں",
+    "oneTime": {
+      "addButton": "ایک بار کا خرچ شامل کریں",
+      "title": "ایک بار کا خرچ",
+      "payee": "وصول کنندہ",
+      "amount": "رقم"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "صرف %{date} کی تنخواہ",
+    "hint": "ڈیفالٹ %{amount} ہے۔ باقی تنخواہیں ڈیفالٹ پر رہیں گی۔",
+    "useDefault": "ڈیفالٹ رقم استعمال کریں"
+  },
+  "settings": {
+    "appearance": "ظاہری شکل",
+    "light": "روشن",
+    "dark": "تاریک",
+    "system": "سسٹم",
+    "hideCents": "پیسے چھپائیں",
+    "hideCentsHint": "رقوم کو قریب ترین مکمل اکائی تک گول کر کے دکھائیں۔",
+    "behavior": "رویہ",
+    "autoMarkPaid": "لنک ٹیپ پر خودکار ادا شدہ",
+    "autoMarkPaidHint": "ادائیگی کے لنک پر ٹیپ کرنے سے وہ بل ادا شدہ بھی نشان زد ہو جاتا ہے۔",
+    "region": "زبان اور کرنسی",
+    "language": "زبان",
+    "currency": "کرنسی",
+    "notifications": "اطلاعات",
+    "paydayReminder": "تنخواہ کے دن کی یاددہانی",
+    "paydayReminderHint": "ہر تنخواہ کے آنے سے پہلے اس کے بلوں اور باقی رقم کا خلاصہ حاصل کریں۔",
+    "remindWhen": "مجھے یاد دلائیں",
+    "remindTime": "وقت",
+    "offsets": {
+      "dayOf": "اسی دن",
+      "dayBefore": "ایک دن پہلے",
+      "daysBefore": "%{count} دن پہلے",
+      "weekBefore": "ایک ہفتہ پہلے"
+    },
+    "permissionDeniedTitle": "اطلاعات بند ہیں",
+    "permissionDeniedBody": "تنخواہ کے دن کی یاددہانیاں پانے کے لیے اپنے آلے کی ترتیبات میں Paycheck Planner کے لیے اطلاعات کی اجازت دیں۔"
+  },
+  "notifications": {
+    "channelName": "تنخواہ کے دن کی یاددہانیاں",
+    "titleToday": "آج تنخواہ کا دن: %{source}",
+    "titleTomorrow": "کل تنخواہ کا دن: %{source}",
+    "titleOnDay": "%{weekday} تنخواہ کا دن: %{source}",
+    "body": "%{income} آمدنی · %{bills} · %{left} باقی",
+    "bodyNoBills": "%{income} آمدنی · ابھی کوئی بل مختص نہیں",
+    "bills": {
+      "one": "%{count} بل (%{amount})",
+      "other": "%{count} بل (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "لنک نہیں کھل سکا"
+  },
+  "payAmountSheet": {
+    "subtitle": "صرف %{date} کی تنخواہ",
+    "hint": "معمول کی تنخواہ %{amount} ہے۔ باقی تنخواہیں اسی پر رہیں گی۔",
+    "useDefault": "معمول کی رقم استعمال کریں",
+    "invalidAmount": "تنخواہ کی درست رقم درج کریں۔"
+  },
+  "moveBillSheet": {
+    "title": "بل منتقل کریں",
+    "subtitle": "%{date} کو %{amount} کم",
+    "bill": "بل",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "اس تنخواہ میں",
+    "noBills": "منتقل کرنے کے لیے کوئی غیر ادا شدہ بل نہیں۔",
+    "noPaychecks": "کوئی اور آنے والی تنخواہ نہیں۔"
+  }
+}

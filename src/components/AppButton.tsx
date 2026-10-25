@@ -14,7 +14,7 @@ interface Props {
   disabled?: boolean;
 }
 
-export function AppButton({ title, variant = "primary", style, ...rest }: Props) {
+export function AppButton({ title, variant = "primary", style, disabled, ...rest }: Props) {
   const colors = useColors();
 
   const buttonStyle = useMemo(() => {
@@ -28,11 +28,11 @@ export function AppButton({ title, variant = "primary", style, ...rest }: Props)
               borderWidth: StyleSheet.hairlineWidth,
               borderColor: colors.border,
             };
-    return [styles.base, variantStyle, style];
-  }, [variant, style, colors]);
+    return [styles.base, variantStyle, disabled ? styles.disabled : undefined, style];
+  }, [variant, style, disabled, colors]);
 
   return (
-    <Pressable style={buttonStyle} {...rest}>
+    <Pressable style={buttonStyle} disabled={disabled} {...rest}>
       <AppText variant="bodyStrong" color={variant === "outline" ? "textDefault" : "onPrimary"}>
         {title}
       </AppText>
@@ -47,5 +47,8 @@ const styles = StyleSheet.create({
     borderRadius: MEASUREMENTS.radius.lg,
     alignItems: "center",
     justifyContent: "center",
+  },
+  disabled: {
+    opacity: 0.4,
   },
 });

@@ -1,0 +1,238 @@
+{
+  "common": {
+    "cancel": "취소",
+    "delete": "삭제",
+    "done": "완료",
+    "save": "저장",
+    "add": "추가",
+    "update": "업데이트",
+    "back": "뒤로",
+    "error": "오류",
+    "none": "없음",
+    "unknown": "알 수 없음",
+    "removed": "삭제됨",
+    "systemDefault": "시스템 기본값",
+    "selectDate": "날짜 선택",
+    "selectTime": "시간 선택",
+    "and": "및",
+    "move": "이동"
+  },
+  "ordinal": {
+    "other": "%{n}번째"
+  },
+  "tabs": {
+    "paychecks": "급여",
+    "income": "수입",
+    "expenses": "지출"
+  },
+  "screens": {
+    "settings": "설정",
+    "incomeSource": "수입원",
+    "expense": "지출",
+    "payDate": "급여일",
+    "language": "언어",
+    "currency": "통화"
+  },
+  "paychecks": {
+    "today": "오늘",
+    "goToThisMonth": "이번 달로 이동",
+    "leftAfterBills": "%{month} · 납부 후 남은 금액",
+    "heroMeta": "수입 %{income} · 배정 %{assigned}",
+    "monthPaychecks": "%{month} 급여",
+    "emptyTitle": "아직 수입원이 없습니다",
+    "emptyBody": "첫 수입원을 추가하고 급여가 어디에 쓰이는지 확인해 보세요.",
+    "noBillsYet": "청구서 없음 · 탭하여 배정",
+    "paidProgress": "%{total}건 중 %{paid}건 납부 완료",
+    "amountLeft": "%{amount} 남음",
+    "chartBarLabel": "%{month}, %{amount} 남음",
+    "opensPaycheck": "이 급여 열기",
+    "markPaid": "%{payee} 납부 완료로 표시",
+    "changeAmount": "이 급여의 %{payee} 금액 변경",
+    "changePayAmount": "이 급여의 %{source} 급여액 변경",
+    "emptyAction": "수입원 추가",
+    "chartBarCurrentLabel": "%{month} (이번 달), %{amount} 남음",
+    "shortBy": "%{amount} 부족",
+    "moveBill": "청구서 이동"
+  },
+  "income": {
+    "emptyTitle": "아직 수입이 없습니다",
+    "emptyBody": "급여를 추가하고 계획을 시작하세요.",
+    "perMonth": "월별",
+    "nextPayday": "다음 급여일",
+    "sources": "수입원",
+    "swipeHint": "수입원을 왼쪽으로 스와이프하면 삭제할 수 있습니다.",
+    "addSource": "수입원 추가",
+    "perCheck": "회당",
+    "deleteTitle": "수입원 삭제",
+    "deleteMessage": "\"%{name}\"과(와) 모든 지출 배정을 삭제할까요?",
+    "frequency": {
+      "weekly": "매주",
+      "biweekly": "2주마다",
+      "semiMonthly": "월 2회",
+      "monthly": "매월"
+    },
+    "schedule": {
+      "weekly": "매주 · %{weekday}",
+      "biweekly": "2주마다 · %{weekday}",
+      "semiMonthly": "월 2회 · %{firstDate} 및 %{secondDate}",
+      "monthly": "매월 · %{date}"
+    },
+    "form": {
+      "name": "이름",
+      "namePlaceholder": "예: Acme Corp",
+      "payAmount": "급여액 (회당)",
+      "payAmountPlaceholder": "예: 2500.00",
+      "payFrequency": "급여 주기",
+      "payDays": "매월 급여일",
+      "payDaysHint": "말일은 31로 입력하세요 (짧은 달은 자동 조정됩니다)",
+      "adjustToWorkday": "평일로 조정",
+      "adjustHint": "급여일이 주말이면 직전 금요일로 당겨집니다.",
+      "firstPayDate": "첫 급여일",
+      "addButton": "수입원 추가",
+      "updateButton": "수입원 업데이트",
+      "nameRequired": "이름을 입력하세요.",
+      "invalidAmount": "올바른 급여액을 입력하세요.",
+      "payDaysRange": "급여일은 1에서 31 사이여야 합니다."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "아직 지출이 없습니다",
+    "emptyBody": "청구서를 추가한 뒤 급여에 배정하세요.",
+    "nothingHere": "아직 아무것도 없습니다.",
+    "monthlySummary": {
+      "other": "청구서 %{count}건, 월 %{amount}"
+    },
+    "filters": {
+      "all": "전체",
+      "recurring": "반복",
+      "oneTime": "1회성"
+    },
+    "addExpense": "지출 추가",
+    "openLink": "%{payee} 결제 링크 열기",
+    "deleteTitle": "지출 삭제",
+    "deleteMessage": "\"%{payee}\"과(와) 모든 배정을 삭제할까요?",
+    "sections": {
+      "notLinked": "연결 안 됨",
+      "oneTime": "1회성"
+    },
+    "perMonthTotal": "월 %{amount}",
+    "meta": {
+      "everyPaycheck": "매 급여",
+      "slotEachMonth": "매월 %{slot}",
+      "assignPerPaycheck": "급여별 배정",
+      "due": "%{date} 마감",
+      "oneTime": "1회성"
+    },
+    "cadence": {
+      "perCheck": "회당",
+      "monthly": "매월",
+      "recurring": "반복",
+      "oneTime": "1회성"
+    },
+    "slot": {
+      "last": "마지막 급여",
+      "lastShort": "마지막",
+      "ordinalPaycheck": "%{ordinal} 급여",
+      "dayOfMonth": "%{date}"
+    },
+    "form": {
+      "payee": "수취인",
+      "payeePlaceholder": "예: 전력 회사",
+      "amount": "금액",
+      "amountPlaceholder": "예: 150.00",
+      "link": "결제 링크 (선택)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "급여",
+      "moveHint": "이 지출을 다른 급여로 이동합니다.",
+      "linkedSource": "연결된 수입원",
+      "linkedHint": "연결하면 해당 수입원의 급여에 이 지출이 미리 추가됩니다.",
+      "howOften": "주기",
+      "everyPaycheck": "매 급여",
+      "monthly": "매월",
+      "whichPaycheck": "어느 급여",
+      "slotHintLast": "매월 마지막 급여에 배정됩니다. 급여가 한 번 더 있는 달도 포함됩니다.",
+      "slotHintOrdinal": "급여가 더 많은 달의 추가 급여는 건너뜁니다. 항상 마지막 급여를 사용하려면 '마지막'을 선택하세요.",
+      "addButton": "지출 추가",
+      "updateButton": "지출 업데이트",
+      "payeeRequired": "수취인 이름을 입력하세요.",
+      "invalidAmount": "올바른 금액을 입력하세요."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "이 급여",
+    "available": "사용 가능",
+    "emptyAssigned": "아직 배정된 항목이 없습니다. 아래 목록에서 청구서를 추가하세요.",
+    "leftAfterBills": "납부 후 남은 금액",
+    "summaryMeta": "급여 %{pay} · 배정 %{assigned}",
+    "linked": "연결됨",
+    "remove": "%{payee} 제거",
+    "add": "%{payee} 추가",
+    "oneTime": {
+      "addButton": "1회성 지출 추가",
+      "title": "1회성 지출",
+      "payee": "수취인",
+      "amount": "금액"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "%{date} 급여에만 적용",
+    "hint": "기본값은 %{amount}입니다. 다른 급여는 기본값을 유지합니다.",
+    "useDefault": "기본 금액 사용"
+  },
+  "settings": {
+    "appearance": "화면 모드",
+    "light": "라이트",
+    "dark": "다크",
+    "system": "시스템",
+    "hideCents": "소수점 숨기기",
+    "hideCentsHint": "금액을 정수로 반올림해 표시합니다.",
+    "behavior": "동작",
+    "autoMarkPaid": "링크 탭 시 납부 완료 처리",
+    "autoMarkPaidHint": "결제 링크를 탭하면 해당 청구서도 납부 완료로 표시됩니다.",
+    "region": "언어 및 통화",
+    "language": "언어",
+    "currency": "통화",
+    "notifications": "알림",
+    "paydayReminder": "급여일 알림",
+    "paydayReminderHint": "급여일 전에 각 급여의 청구서와 남은 금액 요약을 받아보세요.",
+    "remindWhen": "알림 시점",
+    "remindTime": "시간",
+    "offsets": {
+      "dayOf": "당일",
+      "dayBefore": "하루 전",
+      "daysBefore": "%{count}일 전",
+      "weekBefore": "일주일 전"
+    },
+    "permissionDeniedTitle": "알림이 꺼져 있습니다",
+    "permissionDeniedBody": "급여일 알림을 받으려면 기기 설정에서 Paycheck Planner의 알림을 허용하세요."
+  },
+  "notifications": {
+    "channelName": "급여일 알림",
+    "titleToday": "오늘은 급여일: %{source}",
+    "titleTomorrow": "내일은 급여일: %{source}",
+    "titleOnDay": "%{weekday} 급여일: %{source}",
+    "body": "수입 %{income} · %{bills} · %{left} 남음",
+    "bodyNoBills": "수입 %{income} · 아직 배정된 청구서 없음",
+    "bills": {
+      "other": "청구서 %{count}건 (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "링크를 열 수 없습니다"
+  },
+  "payAmountSheet": {
+    "subtitle": "%{date} 급여에만 적용",
+    "hint": "평소 급여액은 %{amount}입니다. 다른 급여는 그대로 유지됩니다.",
+    "useDefault": "평소 금액 사용",
+    "invalidAmount": "올바른 급여액을 입력하세요."
+  },
+  "moveBillSheet": {
+    "title": "청구서 이동",
+    "subtitle": "%{date}에 %{amount} 부족",
+    "bill": "청구서",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "이동할 급여",
+    "noBills": "이동할 미납 청구서가 없습니다.",
+    "noPaychecks": "다른 예정된 급여가 없습니다."
+  }
+}

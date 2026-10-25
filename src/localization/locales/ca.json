@@ -1,0 +1,243 @@
+{
+  "common": {
+    "cancel": "Cancel·la",
+    "delete": "Suprimeix",
+    "done": "Fet",
+    "save": "Desa",
+    "add": "Afegeix",
+    "update": "Actualitza",
+    "back": "Enrere",
+    "error": "Error",
+    "none": "Cap",
+    "unknown": "Desconegut",
+    "removed": "Suprimit",
+    "systemDefault": "Per defecte del sistema",
+    "selectDate": "Selecciona la data",
+    "selectTime": "Selecciona l'hora",
+    "and": "i",
+    "move": "Mou"
+  },
+  "ordinal": {
+    "one": "%{n}r",
+    "two": "%{n}n",
+    "few": "%{n}t",
+    "other": "%{n}è"
+  },
+  "tabs": {
+    "paychecks": "Sous",
+    "income": "Ingressos",
+    "expenses": "Despeses"
+  },
+  "screens": {
+    "settings": "Configuració",
+    "incomeSource": "Font d'ingressos",
+    "expense": "Despesa",
+    "payDate": "Data de cobrament",
+    "language": "Idioma",
+    "currency": "Moneda"
+  },
+  "paychecks": {
+    "today": "Avui",
+    "goToThisMonth": "Ves a aquest mes",
+    "leftAfterBills": "%{month} · disponible després de les factures",
+    "heroMeta": "%{income} d'ingressos · %{assigned} assignats",
+    "monthPaychecks": "Sous de %{month}",
+    "emptyTitle": "Encara no hi ha fonts d'ingressos",
+    "emptyBody": "Afegeix la primera font d'ingressos per veure on va cada sou.",
+    "noBillsYet": "Encara sense factures · toca per assignar",
+    "paidProgress": "%{paid} de %{total} pagades",
+    "amountLeft": "Queden %{amount}",
+    "chartBarLabel": "%{month}, queden %{amount}",
+    "opensPaycheck": "Obre aquest sou",
+    "markPaid": "Marca %{payee} com a pagada",
+    "changeAmount": "Canvia l'import de %{payee} per a aquest sou",
+    "changePayAmount": "Canvia l'import del sou de %{source} per a aquest cobrament",
+    "emptyAction": "Afegeix una font d'ingressos",
+    "chartBarCurrentLabel": "%{month} (aquest mes), queden %{amount}",
+    "shortBy": "Falten %{amount}",
+    "moveBill": "Mou una factura"
+  },
+  "income": {
+    "emptyTitle": "Encara no hi ha ingressos",
+    "emptyBody": "Afegeix els teus sous per començar a planificar.",
+    "perMonth": "Al mes",
+    "nextPayday": "Pròxim cobrament",
+    "sources": "Fonts",
+    "swipeHint": "Llisca una font cap a l'esquerra per suprimir-la.",
+    "addSource": "Afegeix una font d'ingressos",
+    "perCheck": "per sou",
+    "deleteTitle": "Suprimir la font d'ingressos",
+    "deleteMessage": "Vols suprimir \"%{name}\" i totes les despeses assignades?",
+    "frequency": {
+      "weekly": "Setmanal",
+      "biweekly": "Cada dues setmanes",
+      "semiMonthly": "Dues vegades al mes",
+      "monthly": "Mensual"
+    },
+    "schedule": {
+      "weekly": "Setmanal · cada %{weekday}",
+      "biweekly": "Cada dues setmanes · %{weekday}",
+      "semiMonthly": "Dues vegades al mes · dies %{first} i %{second}",
+      "monthly": "Mensual · dia %{day}"
+    },
+    "form": {
+      "name": "Nom",
+      "namePlaceholder": "p. ex. Acme Corp",
+      "payAmount": "Import del sou (per cobrament)",
+      "payAmountPlaceholder": "p. ex. 2500.00",
+      "payFrequency": "Freqüència de cobrament",
+      "payDays": "Dies de cobrament del mes",
+      "payDaysHint": "Fes servir 31 per a l'últim dia del mes (s'ajusta en els mesos més curts)",
+      "adjustToWorkday": "Ajusta a dia laborable",
+      "adjustHint": "Si una data de cobrament cau en cap de setmana, passa al divendres anterior.",
+      "firstPayDate": "Primera data de cobrament",
+      "addButton": "Afegeix la font d'ingressos",
+      "updateButton": "Actualitza la font d'ingressos",
+      "nameRequired": "El nom és obligatori.",
+      "invalidAmount": "Introdueix un import vàlid.",
+      "payDaysRange": "Els dies de cobrament han d'estar entre 1 i 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Encara no hi ha despeses",
+    "emptyBody": "Afegeix les teves factures i assigna-les als sous.",
+    "nothingHere": "Encara no hi ha res aquí.",
+    "monthlySummary": {
+      "one": "%{amount} al mes en %{count} factura",
+      "other": "%{amount} al mes en %{count} factures"
+    },
+    "filters": {
+      "all": "Totes",
+      "recurring": "Recurrents",
+      "oneTime": "Puntuals"
+    },
+    "addExpense": "Afegeix una despesa",
+    "openLink": "Obre l'enllaç de pagament de %{payee}",
+    "deleteTitle": "Suprimir la despesa",
+    "deleteMessage": "Vols suprimir \"%{payee}\" i totes les seves assignacions?",
+    "sections": {
+      "notLinked": "Sense vincular",
+      "oneTime": "Puntuals"
+    },
+    "perMonthTotal": "%{amount}/mes",
+    "meta": {
+      "everyPaycheck": "Cada sou",
+      "slotEachMonth": "%{slot} de cada mes",
+      "assignPerPaycheck": "Assigna per sou",
+      "due": "Venç el %{date}",
+      "oneTime": "Puntual"
+    },
+    "cadence": {
+      "perCheck": "per sou",
+      "monthly": "mensual",
+      "recurring": "recurrent",
+      "oneTime": "puntual"
+    },
+    "slot": {
+      "last": "Últim sou",
+      "lastShort": "Últim",
+      "ordinalPaycheck": "%{ordinal} sou",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Beneficiari",
+      "payeePlaceholder": "p. ex. Companyia elèctrica",
+      "amount": "Import",
+      "amountPlaceholder": "p. ex. 150.00",
+      "link": "Enllaç de pagament (opcional)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Sou",
+      "moveHint": "Mou aquesta despesa a un altre sou.",
+      "linkedSource": "Font d'ingressos vinculada",
+      "linkedHint": "Quan està vinculada, aquesta despesa es carrega automàticament als sous d'aquesta font.",
+      "howOften": "Freqüència",
+      "everyPaycheck": "Cada sou",
+      "monthly": "Mensual",
+      "whichPaycheck": "Quin sou",
+      "slotHintLast": "S'assigna a l'últim sou de cada mes, inclosos els mesos amb un d'extra.",
+      "slotHintOrdinal": "Els sous extra dels mesos més llargs s'ometen. Tria Últim per fer servir sempre el final.",
+      "addButton": "Afegeix la despesa",
+      "updateButton": "Actualitza la despesa",
+      "payeeRequired": "El nom del beneficiari és obligatori.",
+      "invalidAmount": "Introdueix un import vàlid."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Aquest sou",
+    "available": "Disponible",
+    "emptyAssigned": "Encara no hi ha res assignat. Afegeix factures de la llista de sota.",
+    "leftAfterBills": "Disponible després de les factures",
+    "summaryMeta": "Sou de %{pay} · %{assigned} assignats",
+    "linked": "Vinculada",
+    "remove": "Treu %{payee}",
+    "add": "Afegeix %{payee}",
+    "oneTime": {
+      "addButton": "Afegeix una despesa puntual",
+      "title": "Despesa puntual",
+      "payee": "Beneficiari",
+      "amount": "Import"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Només el sou del %{date}",
+    "hint": "L'import per defecte és %{amount}. Els altres sous el mantenen.",
+    "useDefault": "Fes servir l'import per defecte"
+  },
+  "settings": {
+    "appearance": "Aparença",
+    "light": "Clar",
+    "dark": "Fosc",
+    "system": "Sistema",
+    "hideCents": "Amaga els cèntims",
+    "hideCentsHint": "Mostra els imports arrodonits a la unitat.",
+    "behavior": "Comportament",
+    "autoMarkPaid": "Marca com a pagada al tocar l'enllaç",
+    "autoMarkPaidHint": "Quan toques un enllaç de pagament, la factura també es marca com a pagada.",
+    "region": "Idioma i moneda",
+    "language": "Idioma",
+    "currency": "Moneda",
+    "notifications": "Notificacions",
+    "paydayReminder": "Recordatori de cobrament",
+    "paydayReminderHint": "Rep un resum de les factures de cada sou i del que queda abans de cobrar.",
+    "remindWhen": "Recorda-m'ho",
+    "remindTime": "A les",
+    "offsets": {
+      "dayOf": "El mateix dia",
+      "dayBefore": "El dia abans",
+      "daysBefore": "%{count} dies abans",
+      "weekBefore": "Una setmana abans"
+    },
+    "permissionDeniedTitle": "Les notificacions estan desactivades",
+    "permissionDeniedBody": "Permet les notificacions de Paycheck Planner a la configuració del dispositiu per rebre recordatoris de cobrament."
+  },
+  "notifications": {
+    "channelName": "Recordatoris de cobrament",
+    "titleToday": "Avui cobres: %{source}",
+    "titleTomorrow": "Demà cobres: %{source}",
+    "titleOnDay": "Cobres %{weekday}: %{source}",
+    "body": "%{income} d'ingressos · %{bills} · queden %{left}",
+    "bodyNoBills": "%{income} d'ingressos · encara sense factures assignades",
+    "bills": {
+      "one": "%{count} factura (%{amount})",
+      "other": "%{count} factures (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "No s'ha pogut obrir l'enllaç"
+  },
+  "payAmountSheet": {
+    "subtitle": "Només el sou del %{date}",
+    "hint": "El sou habitual és %{amount}. Els altres sous el mantenen.",
+    "useDefault": "Fes servir l'import habitual",
+    "invalidAmount": "Introdueix un import vàlid."
+  },
+  "moveBillSheet": {
+    "title": "Mou una factura",
+    "subtitle": "Falten %{amount} el %{date}",
+    "bill": "Factura",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Al sou",
+    "noBills": "No hi ha factures pendents per moure.",
+    "noPaychecks": "No hi ha altres sous pròxims."
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "common": {
+    "cancel": "取消",
+    "delete": "删除",
+    "done": "完成",
+    "save": "保存",
+    "add": "添加",
+    "update": "更新",
+    "back": "返回",
+    "error": "错误",
+    "none": "无",
+    "unknown": "未知",
+    "removed": "已移除",
+    "systemDefault": "系统默认",
+    "selectDate": "选择日期",
+    "selectTime": "选择时间",
+    "and": "和",
+    "move": "移动"
+  },
+  "ordinal": {
+    "other": "第%{n}"
+  },
+  "tabs": {
+    "paychecks": "工资",
+    "income": "收入",
+    "expenses": "支出"
+  },
+  "screens": {
+    "settings": "设置",
+    "incomeSource": "收入来源",
+    "expense": "支出",
+    "payDate": "发薪日",
+    "language": "语言",
+    "currency": "货币"
+  },
+  "paychecks": {
+    "today": "今天",
+    "goToThisMonth": "回到本月",
+    "leftAfterBills": "%{month} · 付完账单后剩余",
+    "heroMeta": "收入 %{income} · 已分配 %{assigned}",
+    "monthPaychecks": "%{month}工资",
+    "emptyTitle": "还没有收入来源",
+    "emptyBody": "添加第一个收入来源，看看每笔工资花在哪里。",
+    "noBillsYet": "还没有账单 · 点击分配",
+    "paidProgress": "已付 %{paid}/%{total}",
+    "amountLeft": "剩余 %{amount}",
+    "chartBarLabel": "%{month}，剩余 %{amount}",
+    "opensPaycheck": "打开这笔工资",
+    "markPaid": "将%{payee}标记为已付",
+    "changeAmount": "修改这笔工资中%{payee}的金额",
+    "changePayAmount": "修改这笔工资中%{source}的发薪金额",
+    "emptyAction": "添加收入来源",
+    "chartBarCurrentLabel": "%{month}（本月），剩余 %{amount}",
+    "shortBy": "差 %{amount}",
+    "moveBill": "移动账单"
+  },
+  "income": {
+    "emptyTitle": "还没有收入",
+    "emptyBody": "添加你的工资，开始规划。",
+    "perMonth": "每月",
+    "nextPayday": "下个发薪日",
+    "sources": "收入来源",
+    "swipeHint": "向左滑动收入来源即可删除。",
+    "addSource": "添加收入来源",
+    "perCheck": "每笔",
+    "deleteTitle": "删除收入来源",
+    "deleteMessage": "删除“%{name}”及其所有支出分配？",
+    "frequency": {
+      "weekly": "每周",
+      "biweekly": "每两周",
+      "semiMonthly": "每月两次",
+      "monthly": "每月"
+    },
+    "schedule": {
+      "weekly": "每周 · %{weekday}",
+      "biweekly": "每两周 · %{weekday}",
+      "semiMonthly": "每月两次 · %{firstDate}和%{secondDate}",
+      "monthly": "每月 · %{date}"
+    },
+    "form": {
+      "name": "名称",
+      "namePlaceholder": "例如：Acme 公司",
+      "payAmount": "发薪金额（每笔）",
+      "payAmountPlaceholder": "例如：2500.00",
+      "payFrequency": "发薪频率",
+      "payDays": "每月发薪日",
+      "payDaysHint": "月末请填 31（短月自动调整）",
+      "adjustToWorkday": "调整至工作日",
+      "adjustHint": "如果发薪日落在周末，将提前到上一个周五。",
+      "firstPayDate": "首次发薪日",
+      "addButton": "添加收入来源",
+      "updateButton": "更新收入来源",
+      "nameRequired": "请输入名称。",
+      "invalidAmount": "请输入有效的发薪金额。",
+      "payDaysRange": "发薪日必须在 1 到 31 之间。"
+    }
+  },
+  "expenses": {
+    "emptyTitle": "还没有支出",
+    "emptyBody": "添加账单，然后分配到工资。",
+    "nothingHere": "这里还没有内容。",
+    "monthlySummary": {
+      "other": "%{count}笔账单，每月 %{amount}"
+    },
+    "filters": {
+      "all": "全部",
+      "recurring": "定期",
+      "oneTime": "一次性"
+    },
+    "addExpense": "添加支出",
+    "openLink": "打开%{payee}的付款链接",
+    "deleteTitle": "删除支出",
+    "deleteMessage": "删除“%{payee}”及其所有分配？",
+    "sections": {
+      "notLinked": "未关联",
+      "oneTime": "一次性"
+    },
+    "perMonthTotal": "%{amount}/月",
+    "meta": {
+      "everyPaycheck": "每笔工资",
+      "slotEachMonth": "每月%{slot}",
+      "assignPerPaycheck": "按工资分配",
+      "due": "%{date}到期",
+      "oneTime": "一次性"
+    },
+    "cadence": {
+      "perCheck": "每笔",
+      "monthly": "每月",
+      "recurring": "定期",
+      "oneTime": "一次性"
+    },
+    "slot": {
+      "last": "最后一笔工资",
+      "lastShort": "最后一笔",
+      "ordinalPaycheck": "%{ordinal}笔工资",
+      "dayOfMonth": "%{date}"
+    },
+    "form": {
+      "payee": "收款方",
+      "payeePlaceholder": "例如：电力公司",
+      "amount": "金额",
+      "amountPlaceholder": "例如：150.00",
+      "link": "付款链接（可选）",
+      "linkPlaceholder": "https://...",
+      "paycheck": "工资",
+      "moveHint": "将此支出移到另一笔工资。",
+      "linkedSource": "关联的收入来源",
+      "linkedHint": "关联后，此支出会预先加入该来源的每笔工资。",
+      "howOften": "频率",
+      "everyPaycheck": "每笔工资",
+      "monthly": "每月",
+      "whichPaycheck": "哪笔工资",
+      "slotHintLast": "分配到每月最后一笔工资，包括多发一笔的月份。",
+      "slotHintOrdinal": "较长月份多出的工资会被跳过。选择“最后一笔”可始终使用最后一笔工资。",
+      "addButton": "添加支出",
+      "updateButton": "更新支出",
+      "payeeRequired": "请输入收款方名称。",
+      "invalidAmount": "请输入有效金额。"
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "这笔工资",
+    "available": "可用",
+    "emptyAssigned": "还没有分配任何账单。从下方列表添加。",
+    "leftAfterBills": "付完账单后剩余",
+    "summaryMeta": "工资 %{pay} · 已分配 %{assigned}",
+    "linked": "已关联",
+    "remove": "移除%{payee}",
+    "add": "添加%{payee}",
+    "oneTime": {
+      "addButton": "添加一次性支出",
+      "title": "一次性支出",
+      "payee": "收款方",
+      "amount": "金额"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "仅%{date}这笔工资",
+    "hint": "默认金额为 %{amount}。其他工资保持默认。",
+    "useDefault": "使用默认金额"
+  },
+  "settings": {
+    "appearance": "外观",
+    "light": "浅色",
+    "dark": "深色",
+    "system": "跟随系统",
+    "hideCents": "隐藏小数",
+    "hideCentsHint": "金额四舍五入为整数显示。",
+    "behavior": "行为",
+    "autoMarkPaid": "点击链接时自动标记为已付",
+    "autoMarkPaidHint": "点击付款链接时，同时将该账单标记为已付。",
+    "region": "语言与货币",
+    "language": "语言",
+    "currency": "货币",
+    "notifications": "通知",
+    "paydayReminder": "发薪日提醒",
+    "paydayReminderHint": "在发薪日之前收到每笔工资的账单和剩余金额摘要。",
+    "remindWhen": "提前",
+    "remindTime": "时间",
+    "offsets": {
+      "dayOf": "当天",
+      "dayBefore": "前一天",
+      "daysBefore": "提前 %{count} 天",
+      "weekBefore": "提前一周"
+    },
+    "permissionDeniedTitle": "通知已关闭",
+    "permissionDeniedBody": "请在设备设置中允许 Paycheck Planner 发送通知，以接收发薪日提醒。"
+  },
+  "notifications": {
+    "channelName": "发薪日提醒",
+    "titleToday": "今天发薪：%{source}",
+    "titleTomorrow": "明天发薪：%{source}",
+    "titleOnDay": "%{weekday}发薪：%{source}",
+    "body": "收入 %{income} · %{bills} · 剩余 %{left}",
+    "bodyNoBills": "收入 %{income} · 尚未分配账单",
+    "bills": {
+      "other": "%{count}笔账单（%{amount}）"
+    }
+  },
+  "links": {
+    "openFailed": "无法打开链接"
+  },
+  "payAmountSheet": {
+    "subtitle": "仅%{date}这笔工资",
+    "hint": "通常发薪金额为 %{amount}。其他工资保持不变。",
+    "useDefault": "使用通常金额",
+    "invalidAmount": "请输入有效的发薪金额。"
+  },
+  "moveBillSheet": {
+    "title": "移动账单",
+    "subtitle": "%{date}差 %{amount}",
+    "bill": "账单",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "移至工资",
+    "noBills": "没有可移动的未付账单。",
+    "noPaychecks": "没有其他即将到来的工资。"
+  }
+}

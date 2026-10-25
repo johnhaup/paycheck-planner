@@ -14,7 +14,8 @@
     "systemDefault": "System default",
     "selectDate": "Select Date",
     "selectTime": "Select Time",
-    "and": "and"
+    "and": "and",
+    "move": "Move"
   },
   "ordinal": {
     "one": "%{n}st",
@@ -42,7 +43,7 @@
     "heroMeta": "%{income} in · %{assigned} assigned",
     "monthPaychecks": "%{month} paychecks",
     "emptyTitle": "No income sources yet",
-    "emptyBody": "Add one in the Income tab to see your upcoming paychecks.",
+    "emptyBody": "Add your first income source to see where each paycheck goes.",
     "noBillsYet": "No bills yet · tap to assign",
     "paidProgress": "%{paid} of %{total} paid",
     "amountLeft": "%{amount} left",
@@ -50,11 +51,15 @@
     "opensPaycheck": "Opens this paycheck",
     "markPaid": "Mark %{payee} paid",
     "changeAmount": "Change %{payee} amount for this paycheck",
-    "changePayAmount": "Change %{source} pay amount for this paycheck"
+    "changePayAmount": "Change %{source} pay amount for this paycheck",
+    "emptyAction": "Add income source",
+    "chartBarCurrentLabel": "%{month} (this month), %{amount} left",
+    "shortBy": "Short by %{amount}",
+    "moveBill": "Move a bill"
   },
   "income": {
     "emptyTitle": "No income yet",
-    "emptyBody": "Add your paychecks with the + button to start planning.",
+    "emptyBody": "Add your paychecks to start planning.",
     "perMonth": "Per month",
     "nextPayday": "Next payday",
     "sources": "Sources",
@@ -95,7 +100,7 @@
   },
   "expenses": {
     "emptyTitle": "No expenses yet",
-    "emptyBody": "Add your bills with the + button, then assign them to paychecks.",
+    "emptyBody": "Add your bills, then assign them to paychecks.",
     "nothingHere": "Nothing here yet.",
     "monthlySummary": {
       "one": "%{amount} a month across %{count} bill",
@@ -131,7 +136,8 @@
     "slot": {
       "last": "Last paycheck",
       "lastShort": "Last",
-      "ordinalPaycheck": "%{ordinal} paycheck"
+      "ordinalPaycheck": "%{ordinal} paycheck",
+      "dayOfMonth": "%{day}"
     },
     "form": {
       "payee": "Payee",
@@ -224,5 +230,14 @@
     "hint": "Usual pay is %{amount}. Other paychecks keep it.",
     "useDefault": "Use usual amount",
     "invalidAmount": "Enter a valid pay amount."
+  },
+  "moveBillSheet": {
+    "title": "Move a bill",
+    "subtitle": "Short by %{amount} on %{date}",
+    "bill": "Bill",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "To paycheck",
+    "noBills": "No unpaid bills to move.",
+    "noPaychecks": "No other upcoming paychecks."
   }
 }

@@ -1,0 +1,238 @@
+{
+  "common": {
+    "cancel": "取消",
+    "delete": "刪除",
+    "done": "完成",
+    "save": "儲存",
+    "add": "新增",
+    "update": "更新",
+    "back": "返回",
+    "error": "錯誤",
+    "none": "無",
+    "unknown": "未知",
+    "removed": "已移除",
+    "systemDefault": "系統預設",
+    "selectDate": "選擇日期",
+    "selectTime": "選擇時間",
+    "and": "和",
+    "move": "移動"
+  },
+  "ordinal": {
+    "other": "第%{n}"
+  },
+  "tabs": {
+    "paychecks": "薪水",
+    "income": "收入",
+    "expenses": "支出"
+  },
+  "screens": {
+    "settings": "設定",
+    "incomeSource": "收入來源",
+    "expense": "支出",
+    "payDate": "發薪日",
+    "language": "語言",
+    "currency": "幣別"
+  },
+  "paychecks": {
+    "today": "今天",
+    "goToThisMonth": "回到本月",
+    "leftAfterBills": "%{month} · 付完帳單後剩餘",
+    "heroMeta": "收入 %{income} · 已分配 %{assigned}",
+    "monthPaychecks": "%{month}薪水",
+    "emptyTitle": "還沒有收入來源",
+    "emptyBody": "新增第一個收入來源，看看每筆薪水花到哪裡去。",
+    "noBillsYet": "還沒有帳單 · 點一下分配",
+    "paidProgress": "已付 %{paid}/%{total}",
+    "amountLeft": "剩餘 %{amount}",
+    "chartBarLabel": "%{month}，剩餘 %{amount}",
+    "opensPaycheck": "開啟這筆薪水",
+    "markPaid": "將%{payee}標示為已付",
+    "changeAmount": "修改這筆薪水中%{payee}的金額",
+    "changePayAmount": "修改這筆薪水中%{source}的薪資金額",
+    "emptyAction": "新增收入來源",
+    "chartBarCurrentLabel": "%{month}（本月），剩餘 %{amount}",
+    "shortBy": "短少 %{amount}",
+    "moveBill": "移動帳單"
+  },
+  "income": {
+    "emptyTitle": "還沒有收入",
+    "emptyBody": "新增你的薪水，開始規劃。",
+    "perMonth": "每月",
+    "nextPayday": "下個發薪日",
+    "sources": "收入來源",
+    "swipeHint": "向左滑動收入來源即可刪除。",
+    "addSource": "新增收入來源",
+    "perCheck": "每筆",
+    "deleteTitle": "刪除收入來源",
+    "deleteMessage": "要刪除「%{name}」及其所有支出分配嗎？",
+    "frequency": {
+      "weekly": "每週",
+      "biweekly": "每兩週",
+      "semiMonthly": "每月兩次",
+      "monthly": "每月"
+    },
+    "schedule": {
+      "weekly": "每週 · %{weekday}",
+      "biweekly": "每兩週 · %{weekday}",
+      "semiMonthly": "每月兩次 · %{firstDate}和%{secondDate}",
+      "monthly": "每月 · %{date}"
+    },
+    "form": {
+      "name": "名稱",
+      "namePlaceholder": "例如：Acme 公司",
+      "payAmount": "薪資金額（每筆）",
+      "payAmountPlaceholder": "例如：2500.00",
+      "payFrequency": "發薪頻率",
+      "payDays": "每月發薪日",
+      "payDaysHint": "月底請填 31（較短的月份會自動調整）",
+      "adjustToWorkday": "調整至工作日",
+      "adjustHint": "如果發薪日遇到週末，會提前到前一個週五。",
+      "firstPayDate": "首次發薪日",
+      "addButton": "新增收入來源",
+      "updateButton": "更新收入來源",
+      "nameRequired": "請輸入名稱。",
+      "invalidAmount": "請輸入有效的薪資金額。",
+      "payDaysRange": "發薪日必須介於 1 到 31 之間。"
+    }
+  },
+  "expenses": {
+    "emptyTitle": "還沒有支出",
+    "emptyBody": "新增帳單，再分配到薪水。",
+    "nothingHere": "這裡還沒有內容。",
+    "monthlySummary": {
+      "other": "%{count}筆帳單，每月 %{amount}"
+    },
+    "filters": {
+      "all": "全部",
+      "recurring": "定期",
+      "oneTime": "一次性"
+    },
+    "addExpense": "新增支出",
+    "openLink": "開啟%{payee}的付款連結",
+    "deleteTitle": "刪除支出",
+    "deleteMessage": "要刪除「%{payee}」及其所有分配嗎？",
+    "sections": {
+      "notLinked": "未連結",
+      "oneTime": "一次性"
+    },
+    "perMonthTotal": "%{amount}/月",
+    "meta": {
+      "everyPaycheck": "每筆薪水",
+      "slotEachMonth": "每月%{slot}",
+      "assignPerPaycheck": "依薪水分配",
+      "due": "%{date}到期",
+      "oneTime": "一次性"
+    },
+    "cadence": {
+      "perCheck": "每筆",
+      "monthly": "每月",
+      "recurring": "定期",
+      "oneTime": "一次性"
+    },
+    "slot": {
+      "last": "最後一筆薪水",
+      "lastShort": "最後一筆",
+      "ordinalPaycheck": "%{ordinal}筆薪水",
+      "dayOfMonth": "%{date}"
+    },
+    "form": {
+      "payee": "收款人",
+      "payeePlaceholder": "例如：電力公司",
+      "amount": "金額",
+      "amountPlaceholder": "例如：150.00",
+      "link": "付款連結（選填）",
+      "linkPlaceholder": "https://...",
+      "paycheck": "薪水",
+      "moveHint": "將這筆支出移到另一筆薪水。",
+      "linkedSource": "連結的收入來源",
+      "linkedHint": "連結後，這筆支出會預先加入該來源的每筆薪水。",
+      "howOften": "頻率",
+      "everyPaycheck": "每筆薪水",
+      "monthly": "每月",
+      "whichPaycheck": "哪一筆薪水",
+      "slotHintLast": "分配到每月最後一筆薪水，包括多發一筆的月份。",
+      "slotHintOrdinal": "較長月份多出的薪水會被略過。選擇「最後一筆」可一律使用最後一筆薪水。",
+      "addButton": "新增支出",
+      "updateButton": "更新支出",
+      "payeeRequired": "請輸入收款人名稱。",
+      "invalidAmount": "請輸入有效金額。"
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "這筆薪水",
+    "available": "可用",
+    "emptyAssigned": "還沒有分配任何帳單。從下方清單新增。",
+    "leftAfterBills": "付完帳單後剩餘",
+    "summaryMeta": "薪水 %{pay} · 已分配 %{assigned}",
+    "linked": "已連結",
+    "remove": "移除%{payee}",
+    "add": "新增%{payee}",
+    "oneTime": {
+      "addButton": "新增一次性支出",
+      "title": "一次性支出",
+      "payee": "收款人",
+      "amount": "金額"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "僅限%{date}這筆薪水",
+    "hint": "預設金額為 %{amount}。其他薪水維持預設。",
+    "useDefault": "使用預設金額"
+  },
+  "settings": {
+    "appearance": "外觀",
+    "light": "淺色",
+    "dark": "深色",
+    "system": "系統",
+    "hideCents": "隱藏小數",
+    "hideCentsHint": "金額四捨五入為整數顯示。",
+    "behavior": "行為",
+    "autoMarkPaid": "點連結時自動標示為已付",
+    "autoMarkPaidHint": "點一下付款連結時，同時將該帳單標示為已付。",
+    "region": "語言與幣別",
+    "language": "語言",
+    "currency": "幣別",
+    "notifications": "通知",
+    "paydayReminder": "發薪日提醒",
+    "paydayReminderHint": "在發薪日前收到每筆薪水的帳單與剩餘金額摘要。",
+    "remindWhen": "提前",
+    "remindTime": "時間",
+    "offsets": {
+      "dayOf": "當天",
+      "dayBefore": "前一天",
+      "daysBefore": "提前 %{count} 天",
+      "weekBefore": "提前一週"
+    },
+    "permissionDeniedTitle": "通知已關閉",
+    "permissionDeniedBody": "請在裝置設定中允許 Paycheck Planner 傳送通知，才能收到發薪日提醒。"
+  },
+  "notifications": {
+    "channelName": "發薪日提醒",
+    "titleToday": "今天發薪：%{source}",
+    "titleTomorrow": "明天發薪：%{source}",
+    "titleOnDay": "%{weekday}發薪：%{source}",
+    "body": "收入 %{income} · %{bills} · 剩餘 %{left}",
+    "bodyNoBills": "收入 %{income} · 尚未分配帳單",
+    "bills": {
+      "other": "%{count}筆帳單（%{amount}）"
+    }
+  },
+  "links": {
+    "openFailed": "無法開啟連結"
+  },
+  "payAmountSheet": {
+    "subtitle": "僅限%{date}這筆薪水",
+    "hint": "平常的薪資金額為 %{amount}。其他薪水維持不變。",
+    "useDefault": "使用平常金額",
+    "invalidAmount": "請輸入有效的薪資金額。"
+  },
+  "moveBillSheet": {
+    "title": "移動帳單",
+    "subtitle": "%{date}短少 %{amount}",
+    "bill": "帳單",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "移至薪水",
+    "noBills": "沒有可移動的未付帳單。",
+    "noPaychecks": "沒有其他即將到來的薪水。"
+  }
+}

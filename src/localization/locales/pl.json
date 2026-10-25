@@ -1,0 +1,244 @@
+{
+  "common": {
+    "cancel": "Anuluj",
+    "delete": "Usuń",
+    "done": "Gotowe",
+    "save": "Zapisz",
+    "add": "Dodaj",
+    "update": "Aktualizuj",
+    "back": "Wstecz",
+    "error": "Błąd",
+    "none": "Brak",
+    "unknown": "Nieznane",
+    "removed": "Usunięto",
+    "systemDefault": "Domyślne systemowe",
+    "selectDate": "Wybierz datę",
+    "selectTime": "Wybierz godzinę",
+    "and": "i",
+    "move": "Przenieś"
+  },
+  "ordinal": {
+    "other": "%{n}."
+  },
+  "tabs": {
+    "paychecks": "Wypłaty",
+    "income": "Dochody",
+    "expenses": "Wydatki"
+  },
+  "screens": {
+    "settings": "Ustawienia",
+    "incomeSource": "Źródło dochodu",
+    "expense": "Wydatek",
+    "payDate": "Dzień wypłaty",
+    "language": "Język",
+    "currency": "Waluta"
+  },
+  "paychecks": {
+    "today": "Dziś",
+    "goToThisMonth": "Przejdź do bieżącego miesiąca",
+    "leftAfterBills": "%{month} · zostaje po rachunkach",
+    "heroMeta": "Wpływy %{income} · przypisano %{assigned}",
+    "monthPaychecks": "Wypłaty: %{month}",
+    "emptyTitle": "Brak źródeł dochodu",
+    "emptyBody": "Dodaj pierwsze źródło dochodu, aby zobaczyć, na co idzie każda wypłata.",
+    "noBillsYet": "Brak rachunków · dotknij, aby przypisać",
+    "paidProgress": "Opłacono %{paid} z %{total}",
+    "amountLeft": "Zostaje %{amount}",
+    "chartBarLabel": "%{month}, zostaje %{amount}",
+    "opensPaycheck": "Otwiera tę wypłatę",
+    "markPaid": "Oznacz %{payee} jako opłacone",
+    "changeAmount": "Zmień kwotę %{payee} dla tej wypłaty",
+    "changePayAmount": "Zmień kwotę wypłaty %{source} tylko dla tej wypłaty",
+    "emptyAction": "Dodaj źródło dochodu",
+    "chartBarCurrentLabel": "%{month} (bieżący miesiąc), zostaje %{amount}",
+    "shortBy": "Brakuje %{amount}",
+    "moveBill": "Przenieś rachunek"
+  },
+  "income": {
+    "emptyTitle": "Brak dochodów",
+    "emptyBody": "Dodaj swoje wypłaty, aby zacząć planować.",
+    "perMonth": "Miesięcznie",
+    "nextPayday": "Następna wypłata",
+    "sources": "Źródła",
+    "swipeHint": "Przesuń źródło w lewo, aby je usunąć.",
+    "addSource": "Dodaj źródło dochodu",
+    "perCheck": "na wypłatę",
+    "deleteTitle": "Usuń źródło dochodu",
+    "deleteMessage": "Usunąć „%{name}” i wszystkie przypisane do niego wydatki?",
+    "frequency": {
+      "weekly": "Co tydzień",
+      "biweekly": "Co dwa tygodnie",
+      "semiMonthly": "Dwa razy w miesiącu",
+      "monthly": "Co miesiąc"
+    },
+    "schedule": {
+      "weekly": "Co tydzień · %{weekday}",
+      "biweekly": "Co dwa tygodnie · %{weekday}",
+      "semiMonthly": "Dwa razy w miesiącu · %{first} i %{second}",
+      "monthly": "Co miesiąc · %{day}"
+    },
+    "form": {
+      "name": "Nazwa",
+      "namePlaceholder": "np. Acme Corp",
+      "payAmount": "Kwota (na wypłatę)",
+      "payAmountPlaceholder": "np. 2500.00",
+      "payFrequency": "Częstotliwość wypłat",
+      "payDays": "Dni wypłaty w miesiącu",
+      "payDaysHint": "Wpisz 31 dla ostatniego dnia miesiąca (automatycznie dopasuje się do krótszych miesięcy)",
+      "adjustToWorkday": "Przesuń na dzień roboczy",
+      "adjustHint": "Jeśli wypłata wypada w weekend, zostaje przesunięta na poprzedzający piątek.",
+      "firstPayDate": "Data pierwszej wypłaty",
+      "addButton": "Dodaj źródło dochodu",
+      "updateButton": "Aktualizuj źródło dochodu",
+      "nameRequired": "Nazwa jest wymagana.",
+      "invalidAmount": "Wpisz prawidłową kwotę wypłaty.",
+      "payDaysRange": "Dni wypłaty muszą być z zakresu od 1 do 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Brak wydatków",
+    "emptyBody": "Dodaj rachunki, a następnie przypisz je do wypłat.",
+    "nothingHere": "Nic tu jeszcze nie ma.",
+    "monthlySummary": {
+      "one": "%{amount} miesięcznie za %{count} rachunek",
+      "few": "%{amount} miesięcznie za %{count} rachunki",
+      "many": "%{amount} miesięcznie za %{count} rachunków",
+      "other": "%{amount} miesięcznie za %{count} rachunku"
+    },
+    "filters": {
+      "all": "Wszystkie",
+      "recurring": "Cykliczne",
+      "oneTime": "Jednorazowe"
+    },
+    "addExpense": "Dodaj wydatek",
+    "openLink": "Otwórz link do płatności: %{payee}",
+    "deleteTitle": "Usuń wydatek",
+    "deleteMessage": "Usunąć „%{payee}” i wszystkie jego przypisania?",
+    "sections": {
+      "notLinked": "Niepowiązane",
+      "oneTime": "Jednorazowe"
+    },
+    "perMonthTotal": "%{amount}/mies.",
+    "meta": {
+      "everyPaycheck": "Każda wypłata",
+      "slotEachMonth": "%{slot} co miesiąc",
+      "assignPerPaycheck": "Przypisuj do każdej wypłaty osobno",
+      "due": "Termin: %{date}",
+      "oneTime": "Jednorazowy"
+    },
+    "cadence": {
+      "perCheck": "na wypłatę",
+      "monthly": "miesięcznie",
+      "recurring": "cykliczny",
+      "oneTime": "jednorazowy"
+    },
+    "slot": {
+      "last": "Ostatnia wypłata",
+      "lastShort": "Ostatnia",
+      "ordinalPaycheck": "%{ordinal} wypłata",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Odbiorca",
+      "payeePlaceholder": "np. Zakład energetyczny",
+      "amount": "Kwota",
+      "amountPlaceholder": "np. 150.00",
+      "link": "Link do płatności (opcjonalnie)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Wypłata",
+      "moveHint": "Przenieś ten wydatek do innej wypłaty.",
+      "linkedSource": "Powiązane źródło dochodu",
+      "linkedHint": "Po powiązaniu ten wydatek jest automatycznie dodawany do wypłat z tego źródła.",
+      "howOften": "Jak często",
+      "everyPaycheck": "Każda wypłata",
+      "monthly": "Co miesiąc",
+      "whichPaycheck": "Która wypłata",
+      "slotHintLast": "Trafia na ostatnią wypłatę w miesiącu, także w miesiącach z dodatkową wypłatą.",
+      "slotHintOrdinal": "Dodatkowe wypłaty w dłuższych miesiącach są pomijane. Wybierz „Ostatnia”, aby zawsze używać ostatniej.",
+      "addButton": "Dodaj wydatek",
+      "updateButton": "Aktualizuj wydatek",
+      "payeeRequired": "Nazwa odbiorcy jest wymagana.",
+      "invalidAmount": "Wpisz prawidłową kwotę."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Ta wypłata",
+    "available": "Dostępne",
+    "emptyAssigned": "Nic jeszcze nie przypisano. Dodaj rachunki z listy poniżej.",
+    "leftAfterBills": "Zostaje po rachunkach",
+    "summaryMeta": "Wypłata %{pay} · przypisano %{assigned}",
+    "linked": "Powiązane",
+    "remove": "Usuń %{payee}",
+    "add": "Dodaj %{payee}",
+    "oneTime": {
+      "addButton": "Dodaj jednorazowy wydatek",
+      "title": "Jednorazowy wydatek",
+      "payee": "Odbiorca",
+      "amount": "Kwota"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Tylko wypłata %{date}",
+    "hint": "Domyślnie %{amount}. Pozostałe wypłaty zachowują wartość domyślną.",
+    "useDefault": "Użyj kwoty domyślnej"
+  },
+  "settings": {
+    "appearance": "Wygląd",
+    "light": "Jasny",
+    "dark": "Ciemny",
+    "system": "Systemowy",
+    "hideCents": "Ukryj grosze",
+    "hideCentsHint": "Pokazuj kwoty zaokrąglone do pełnych jednostek.",
+    "behavior": "Działanie",
+    "autoMarkPaid": "Oznaczaj jako opłacone po otwarciu linku",
+    "autoMarkPaidHint": "Dotknięcie linku do płatności oznacza też ten rachunek jako opłacony.",
+    "region": "Język i waluta",
+    "language": "Język",
+    "currency": "Waluta",
+    "notifications": "Powiadomienia",
+    "paydayReminder": "Przypomnienie o wypłacie",
+    "paydayReminderHint": "Otrzymuj podsumowanie rachunków i tego, co zostaje z każdej wypłaty, zanim ona wpłynie.",
+    "remindWhen": "Przypomnij mi",
+    "remindTime": "O godzinie",
+    "offsets": {
+      "dayOf": "W dniu wypłaty",
+      "dayBefore": "Dzień wcześniej",
+      "daysBefore": "%{count} dni wcześniej",
+      "weekBefore": "Tydzień wcześniej"
+    },
+    "permissionDeniedTitle": "Powiadomienia są wyłączone",
+    "permissionDeniedBody": "Zezwól na powiadomienia dla Paycheck Planner w ustawieniach urządzenia, aby otrzymywać przypomnienia o wypłacie."
+  },
+  "notifications": {
+    "channelName": "Przypomnienia o wypłacie",
+    "titleToday": "Wypłata dziś: %{source}",
+    "titleTomorrow": "Wypłata jutro: %{source}",
+    "titleOnDay": "Wypłata (%{weekday}): %{source}",
+    "body": "Wpływy %{income} · %{bills} · zostaje %{left}",
+    "bodyNoBills": "Wpływy %{income} · brak przypisanych rachunków",
+    "bills": {
+      "one": "%{count} rachunek (%{amount})",
+      "few": "%{count} rachunki (%{amount})",
+      "many": "%{count} rachunków (%{amount})",
+      "other": "%{count} rachunku (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Nie udało się otworzyć linku"
+  },
+  "payAmountSheet": {
+    "subtitle": "Tylko wypłata %{date}",
+    "hint": "Zwykła wypłata to %{amount}. Pozostałe wypłaty ją zachowują.",
+    "useDefault": "Użyj zwykłej kwoty",
+    "invalidAmount": "Wpisz prawidłową kwotę wypłaty."
+  },
+  "moveBillSheet": {
+    "title": "Przenieś rachunek",
+    "subtitle": "Brakuje %{amount} (%{date})",
+    "bill": "Rachunek",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Do wypłaty",
+    "noBills": "Brak nieopłaconych rachunków do przeniesienia.",
+    "noPaychecks": "Brak innych nadchodzących wypłat."
+  }
+}

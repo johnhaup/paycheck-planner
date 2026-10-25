@@ -1,0 +1,244 @@
+{
+  "common": {
+    "cancel": "ביטול",
+    "delete": "מחיקה",
+    "done": "סיום",
+    "save": "שמירה",
+    "add": "הוספה",
+    "update": "עדכון",
+    "back": "חזרה",
+    "error": "שגיאה",
+    "none": "ללא",
+    "unknown": "לא ידוע",
+    "removed": "הוסר",
+    "systemDefault": "ברירת המחדל של המערכת",
+    "selectDate": "בחירת תאריך",
+    "selectTime": "בחירת שעה",
+    "and": "ו",
+    "move": "העברה"
+  },
+  "ordinal": {
+    "other": "ה-%{n}"
+  },
+  "tabs": {
+    "paychecks": "משכורות",
+    "income": "הכנסות",
+    "expenses": "הוצאות"
+  },
+  "screens": {
+    "settings": "הגדרות",
+    "incomeSource": "מקור הכנסה",
+    "expense": "הוצאה",
+    "payDate": "תאריך משכורת",
+    "language": "שפה",
+    "currency": "מטבע"
+  },
+  "paychecks": {
+    "today": "היום",
+    "goToThisMonth": "מעבר לחודש הנוכחי",
+    "leftAfterBills": "%{month} · נותר אחרי חשבונות",
+    "heroMeta": "%{income} הכנסה · %{assigned} שובצו",
+    "monthPaychecks": "משכורות %{month}",
+    "emptyTitle": "אין עדיין מקורות הכנסה",
+    "emptyBody": "הוסיפו מקור הכנסה ראשון כדי לראות לאן הולכת כל משכורת.",
+    "noBillsYet": "אין עדיין חשבונות · הקישו לשיבוץ",
+    "paidProgress": "%{paid} מתוך %{total} שולמו",
+    "amountLeft": "נותרו %{amount}",
+    "chartBarLabel": "%{month}, נותרו %{amount}",
+    "opensPaycheck": "פותח את המשכורת הזו",
+    "markPaid": "סימון %{payee} כשולם",
+    "changeAmount": "שינוי הסכום של %{payee} למשכורת זו",
+    "changePayAmount": "שינוי סכום המשכורת מ%{source} למשכורת זו",
+    "emptyAction": "הוספת מקור הכנסה",
+    "chartBarCurrentLabel": "%{month} (החודש), נותרו %{amount}",
+    "shortBy": "חסרים %{amount}",
+    "moveBill": "העברת חשבון"
+  },
+  "income": {
+    "emptyTitle": "אין עדיין הכנסות",
+    "emptyBody": "הוסיפו את המשכורות שלכם כדי להתחיל לתכנן.",
+    "perMonth": "לחודש",
+    "nextPayday": "יום המשכורת הבא",
+    "sources": "מקורות",
+    "swipeHint": "החליקו על מקור כדי למחוק אותו.",
+    "addSource": "הוספת מקור הכנסה",
+    "perCheck": "למשכורת",
+    "deleteTitle": "מחיקת מקור הכנסה",
+    "deleteMessage": "למחוק את \"%{name}\" ואת כל שיבוצי ההוצאות שלו?",
+    "frequency": {
+      "weekly": "שבועי",
+      "biweekly": "דו-שבועי",
+      "semiMonthly": "פעמיים בחודש",
+      "monthly": "חודשי"
+    },
+    "schedule": {
+      "weekly": "שבועי · בכל %{weekday}",
+      "biweekly": "דו-שבועי · %{weekday}",
+      "semiMonthly": "פעמיים בחודש · %{first} ו%{second}",
+      "monthly": "חודשי · %{day}"
+    },
+    "form": {
+      "name": "שם",
+      "namePlaceholder": "לדוגמה: חברת אקמה",
+      "payAmount": "סכום המשכורת (לכל תשלום)",
+      "payAmountPlaceholder": "לדוגמה: 2500.00",
+      "payFrequency": "תדירות התשלום",
+      "payDays": "ימי התשלום בחודש",
+      "payDaysHint": "השתמשו ב-31 ליום האחרון בחודש (מותאם אוטומטית לחודשים קצרים יותר)",
+      "adjustToWorkday": "התאמה ליום עבודה",
+      "adjustHint": "אם תאריך התשלום נופל בסוף שבוע, הוא מוקדם ליום שישי שלפניו.",
+      "firstPayDate": "תאריך משכורת ראשון",
+      "addButton": "הוספת מקור הכנסה",
+      "updateButton": "עדכון מקור הכנסה",
+      "nameRequired": "יש להזין שם.",
+      "invalidAmount": "הזינו סכום משכורת תקין.",
+      "payDaysRange": "ימי התשלום חייבים להיות בין 1 ל-31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "אין עדיין הוצאות",
+    "emptyBody": "הוסיפו את החשבונות שלכם ושבצו אותם למשכורות.",
+    "nothingHere": "אין כאן כלום עדיין.",
+    "monthlySummary": {
+      "one": "%{amount} בחודש על %{count} חשבון",
+      "two": "%{amount} בחודש על %{count} חשבונות",
+      "many": "%{amount} בחודש על %{count} חשבונות",
+      "other": "%{amount} בחודש על %{count} חשבונות"
+    },
+    "filters": {
+      "all": "הכול",
+      "recurring": "חוזר",
+      "oneTime": "חד-פעמי"
+    },
+    "addExpense": "הוספת הוצאה",
+    "openLink": "פתיחת קישור התשלום של %{payee}",
+    "deleteTitle": "מחיקת הוצאה",
+    "deleteMessage": "למחוק את \"%{payee}\" ואת כל השיבוצים שלו?",
+    "sections": {
+      "notLinked": "לא מקושר",
+      "oneTime": "חד-פעמי"
+    },
+    "perMonthTotal": "%{amount}/חודש",
+    "meta": {
+      "everyPaycheck": "כל משכורת",
+      "slotEachMonth": "%{slot} בכל חודש",
+      "assignPerPaycheck": "שיבוץ לפי משכורת",
+      "due": "לתשלום עד %{date}",
+      "oneTime": "חד-פעמי"
+    },
+    "cadence": {
+      "perCheck": "למשכורת",
+      "monthly": "חודשי",
+      "recurring": "חוזר",
+      "oneTime": "חד-פעמי"
+    },
+    "slot": {
+      "last": "המשכורת האחרונה",
+      "lastShort": "אחרונה",
+      "ordinalPaycheck": "המשכורת %{ordinal}",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "מוטב",
+      "payeePlaceholder": "לדוגמה: חברת החשמל",
+      "amount": "סכום",
+      "amountPlaceholder": "לדוגמה: 150.00",
+      "link": "קישור לתשלום (אופציונלי)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "משכורת",
+      "moveHint": "העבירו את ההוצאה הזו למשכורת אחרת.",
+      "linkedSource": "מקור הכנסה מקושר",
+      "linkedHint": "כשההוצאה מקושרת, היא נטענת מראש על המשכורות מאותו מקור.",
+      "howOften": "תדירות",
+      "everyPaycheck": "כל משכורת",
+      "monthly": "חודשי",
+      "whichPaycheck": "איזו משכורת",
+      "slotHintLast": "חל על המשכורת האחרונה בכל חודש, כולל חודשים עם משכורת נוספת.",
+      "slotHintOrdinal": "משכורות נוספות בחודשים ארוכים יותר מדולגות. בחרו 'אחרונה' כדי להשתמש תמיד במשכורת האחרונה.",
+      "addButton": "הוספת הוצאה",
+      "updateButton": "עדכון הוצאה",
+      "payeeRequired": "יש להזין שם מוטב.",
+      "invalidAmount": "הזינו סכום תקין."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "המשכורת הזו",
+    "available": "זמין",
+    "emptyAssigned": "עוד לא שובץ כלום. הוסיפו חשבונות מהרשימה למטה.",
+    "leftAfterBills": "נותר אחרי חשבונות",
+    "summaryMeta": "משכורת %{pay} · %{assigned} שובצו",
+    "linked": "מקושר",
+    "remove": "הסרת %{payee}",
+    "add": "הוספת %{payee}",
+    "oneTime": {
+      "addButton": "הוספת הוצאה חד-פעמית",
+      "title": "הוצאה חד-פעמית",
+      "payee": "מוטב",
+      "amount": "סכום"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "משכורת %{date} בלבד",
+    "hint": "ברירת המחדל היא %{amount}. שאר המשכורות נשארות עם ברירת המחדל.",
+    "useDefault": "שימוש בסכום ברירת המחדל"
+  },
+  "settings": {
+    "appearance": "מראה",
+    "light": "בהיר",
+    "dark": "כהה",
+    "system": "מערכת",
+    "hideCents": "הסתרת אגורות",
+    "hideCentsHint": "הצגת סכומים מעוגלים ליחידה השלמה הקרובה.",
+    "behavior": "התנהגות",
+    "autoMarkPaid": "סימון כשולם בלחיצה על קישור",
+    "autoMarkPaidHint": "הקשה על קישור תשלום מסמנת גם את החשבון כשולם.",
+    "region": "שפה ומטבע",
+    "language": "שפה",
+    "currency": "מטבע",
+    "notifications": "התראות",
+    "paydayReminder": "תזכורת ליום המשכורת",
+    "paydayReminderHint": "קבלו סיכום של החשבונות בכל משכורת ומה נשאר, לפני שהיא מגיעה.",
+    "remindWhen": "להזכיר לי",
+    "remindTime": "בשעה",
+    "offsets": {
+      "dayOf": "באותו יום",
+      "dayBefore": "יום לפני",
+      "daysBefore": "%{count} ימים לפני",
+      "weekBefore": "שבוע לפני"
+    },
+    "permissionDeniedTitle": "ההתראות כבויות",
+    "permissionDeniedBody": "אפשרו התראות ל-Paycheck Planner בהגדרות המכשיר כדי לקבל תזכורות ליום המשכורת."
+  },
+  "notifications": {
+    "channelName": "תזכורות ליום המשכורת",
+    "titleToday": "יום משכורת היום: %{source}",
+    "titleTomorrow": "יום משכורת מחר: %{source}",
+    "titleOnDay": "יום משכורת ב%{weekday}: %{source}",
+    "body": "%{income} הכנסה · %{bills} · נותרו %{left}",
+    "bodyNoBills": "%{income} הכנסה · עוד לא שובצו חשבונות",
+    "bills": {
+      "one": "%{count} חשבון (%{amount})",
+      "two": "%{count} חשבונות (%{amount})",
+      "many": "%{count} חשבונות (%{amount})",
+      "other": "%{count} חשבונות (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "לא ניתן לפתוח את הקישור"
+  },
+  "payAmountSheet": {
+    "subtitle": "משכורת %{date} בלבד",
+    "hint": "המשכורת הרגילה היא %{amount}. שאר המשכורות נשארות איתה.",
+    "useDefault": "שימוש בסכום הרגיל",
+    "invalidAmount": "הזינו סכום משכורת תקין."
+  },
+  "moveBillSheet": {
+    "title": "העברת חשבון",
+    "subtitle": "חסרים %{amount} ב-%{date}",
+    "bill": "חשבון",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "למשכורת",
+    "noBills": "אין חשבונות שלא שולמו להעברה.",
+    "noPaychecks": "אין משכורות קרובות אחרות."
+  }
+}

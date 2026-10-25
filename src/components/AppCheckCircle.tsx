@@ -1,8 +1,9 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { hapticTap } from "@/utils/haptics";
 
 interface Props {
   checked: boolean;
@@ -12,6 +13,11 @@ interface Props {
 
 export function AppCheckCircle({ checked, onPress, accessibilityLabel }: Props) {
   const colors = useColors();
+
+  const handlePress = useCallback(() => {
+    hapticTap();
+    onPress();
+  }, [onPress]);
 
   const circleStyle = useMemo(
     () => [
@@ -28,7 +34,7 @@ export function AppCheckCircle({ checked, onPress, accessibilityLabel }: Props) 
   return (
     <Pressable
       style={circleStyle}
-      onPress={onPress}
+      onPress={handlePress}
       hitSlop={MEASUREMENTS.hitSlop}
       accessibilityRole="checkbox"
       accessibilityState={accessibilityState}

@@ -1,0 +1,244 @@
+{
+  "common": {
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "done": "Готово",
+    "save": "Сохранить",
+    "add": "Добавить",
+    "update": "Обновить",
+    "back": "Назад",
+    "error": "Ошибка",
+    "none": "Нет",
+    "unknown": "Неизвестно",
+    "removed": "Удалено",
+    "systemDefault": "Как в системе",
+    "selectDate": "Выберите дату",
+    "selectTime": "Выберите время",
+    "and": "и",
+    "move": "Перенести"
+  },
+  "ordinal": {
+    "other": "%{n}."
+  },
+  "tabs": {
+    "paychecks": "Зарплаты",
+    "income": "Доходы",
+    "expenses": "Расходы"
+  },
+  "screens": {
+    "settings": "Настройки",
+    "incomeSource": "Источник дохода",
+    "expense": "Расход",
+    "payDate": "День зарплаты",
+    "language": "Язык",
+    "currency": "Валюта"
+  },
+  "paychecks": {
+    "today": "Сегодня",
+    "goToThisMonth": "Перейти к текущему месяцу",
+    "leftAfterBills": "%{month} · остаток после счетов",
+    "heroMeta": "Доход %{income} · назначено %{assigned}",
+    "monthPaychecks": "Зарплаты: %{month}",
+    "emptyTitle": "Пока нет источников дохода",
+    "emptyBody": "Добавьте первый источник дохода, чтобы увидеть, куда уходит каждая зарплата.",
+    "noBillsYet": "Счетов пока нет · нажмите, чтобы назначить",
+    "paidProgress": "Оплачено %{paid} из %{total}",
+    "amountLeft": "Остаётся %{amount}",
+    "chartBarLabel": "%{month}, остаётся %{amount}",
+    "opensPaycheck": "Открывает эту зарплату",
+    "markPaid": "Отметить %{payee} как оплаченный",
+    "changeAmount": "Изменить сумму %{payee} для этой зарплаты",
+    "changePayAmount": "Изменить сумму зарплаты %{source} только для этой выплаты",
+    "emptyAction": "Добавить источник дохода",
+    "chartBarCurrentLabel": "%{month} (текущий месяц), остаётся %{amount}",
+    "shortBy": "Не хватает %{amount}",
+    "moveBill": "Перенести счёт"
+  },
+  "income": {
+    "emptyTitle": "Пока нет доходов",
+    "emptyBody": "Добавьте свои зарплаты, чтобы начать планировать.",
+    "perMonth": "В месяц",
+    "nextPayday": "Следующая зарплата",
+    "sources": "Источники",
+    "swipeHint": "Смахните источник влево, чтобы удалить его.",
+    "addSource": "Добавить источник дохода",
+    "perCheck": "за выплату",
+    "deleteTitle": "Удалить источник дохода",
+    "deleteMessage": "Удалить «%{name}» и все назначенные ему расходы?",
+    "frequency": {
+      "weekly": "Еженедельно",
+      "biweekly": "Раз в две недели",
+      "semiMonthly": "Два раза в месяц",
+      "monthly": "Ежемесячно"
+    },
+    "schedule": {
+      "weekly": "Еженедельно · %{weekday}",
+      "biweekly": "Раз в две недели · %{weekday}",
+      "semiMonthly": "Два раза в месяц · %{firstDate}-го и %{secondDate}-го",
+      "monthly": "Ежемесячно · %{date}-го числа"
+    },
+    "form": {
+      "name": "Название",
+      "namePlaceholder": "напр. ООО «Ромашка»",
+      "payAmount": "Сумма (за выплату)",
+      "payAmountPlaceholder": "напр. 2500.00",
+      "payFrequency": "Периодичность выплат",
+      "payDays": "Дни выплат в месяце",
+      "payDaysHint": "Укажите 31 для последнего дня месяца (для коротких месяцев подстроится автоматически)",
+      "adjustToWorkday": "Переносить на рабочий день",
+      "adjustHint": "Если день зарплаты выпадает на выходные, он переносится на предыдущую пятницу.",
+      "firstPayDate": "Дата первой выплаты",
+      "addButton": "Добавить источник дохода",
+      "updateButton": "Обновить источник дохода",
+      "nameRequired": "Укажите название.",
+      "invalidAmount": "Введите корректную сумму зарплаты.",
+      "payDaysRange": "Дни выплат должны быть от 1 до 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Пока нет расходов",
+    "emptyBody": "Добавьте счета, затем распределите их по зарплатам.",
+    "nothingHere": "Здесь пока пусто.",
+    "monthlySummary": {
+      "one": "%{amount} в месяц за %{count} счёт",
+      "few": "%{amount} в месяц за %{count} счёта",
+      "many": "%{amount} в месяц за %{count} счетов",
+      "other": "%{amount} в месяц за %{count} счёта"
+    },
+    "filters": {
+      "all": "Все",
+      "recurring": "Регулярные",
+      "oneTime": "Разовые"
+    },
+    "addExpense": "Добавить расход",
+    "openLink": "Открыть ссылку на оплату: %{payee}",
+    "deleteTitle": "Удалить расход",
+    "deleteMessage": "Удалить «%{payee}» и все его назначения?",
+    "sections": {
+      "notLinked": "Не привязаны",
+      "oneTime": "Разовые"
+    },
+    "perMonthTotal": "%{amount}/мес.",
+    "meta": {
+      "everyPaycheck": "Каждая зарплата",
+      "slotEachMonth": "%{slot} каждый месяц",
+      "assignPerPaycheck": "Назначать для каждой зарплаты",
+      "due": "Срок %{date}",
+      "oneTime": "Разовый"
+    },
+    "cadence": {
+      "perCheck": "за выплату",
+      "monthly": "ежемесячно",
+      "recurring": "регулярный",
+      "oneTime": "разовый"
+    },
+    "slot": {
+      "last": "Последняя зарплата",
+      "lastShort": "Последняя",
+      "ordinalPaycheck": "%{ordinal} зарплата",
+      "dayOfMonth": "%{date}-е"
+    },
+    "form": {
+      "payee": "Получатель",
+      "payeePlaceholder": "напр. Энергосбыт",
+      "amount": "Сумма",
+      "amountPlaceholder": "напр. 150.00",
+      "link": "Ссылка на оплату (необязательно)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Зарплата",
+      "moveHint": "Перенести этот расход на другую зарплату.",
+      "linkedSource": "Привязанный источник дохода",
+      "linkedHint": "При привязке этот расход автоматически добавляется к зарплатам из этого источника.",
+      "howOften": "Как часто",
+      "everyPaycheck": "Каждая зарплата",
+      "monthly": "Ежемесячно",
+      "whichPaycheck": "Какая зарплата",
+      "slotHintLast": "Попадает на последнюю зарплату месяца, в том числе в месяцах с дополнительной выплатой.",
+      "slotHintOrdinal": "Дополнительные выплаты в длинных месяцах пропускаются. Выберите «Последняя», чтобы всегда использовать завершающую.",
+      "addButton": "Добавить расход",
+      "updateButton": "Обновить расход",
+      "payeeRequired": "Укажите получателя.",
+      "invalidAmount": "Введите корректную сумму."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Эта зарплата",
+    "available": "Доступно",
+    "emptyAssigned": "Пока ничего не назначено. Добавьте счета из списка ниже.",
+    "leftAfterBills": "Остаток после счетов",
+    "summaryMeta": "Зарплата %{pay} · назначено %{assigned}",
+    "linked": "Привязано",
+    "remove": "Убрать %{payee}",
+    "add": "Добавить %{payee}",
+    "oneTime": {
+      "addButton": "Добавить разовый расход",
+      "title": "Разовый расход",
+      "payee": "Получатель",
+      "amount": "Сумма"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Только зарплата %{date}",
+    "hint": "По умолчанию %{amount}. Для остальных зарплат останется значение по умолчанию.",
+    "useDefault": "Использовать сумму по умолчанию"
+  },
+  "settings": {
+    "appearance": "Оформление",
+    "light": "Светлое",
+    "dark": "Тёмное",
+    "system": "Системное",
+    "hideCents": "Скрывать копейки",
+    "hideCentsHint": "Показывать суммы, округлённые до целых.",
+    "behavior": "Поведение",
+    "autoMarkPaid": "Отмечать оплаченным при переходе по ссылке",
+    "autoMarkPaidHint": "Нажатие на ссылку оплаты также отмечает счёт как оплаченный.",
+    "region": "Язык и валюта",
+    "language": "Язык",
+    "currency": "Валюта",
+    "notifications": "Уведомления",
+    "paydayReminder": "Напоминание о зарплате",
+    "paydayReminderHint": "Получайте перед каждой зарплатой сводку по счетам и остатку.",
+    "remindWhen": "Напоминать",
+    "remindTime": "Время",
+    "offsets": {
+      "dayOf": "В день зарплаты",
+      "dayBefore": "За день",
+      "daysBefore": "За %{count} дня",
+      "weekBefore": "За неделю"
+    },
+    "permissionDeniedTitle": "Уведомления отключены",
+    "permissionDeniedBody": "Разрешите уведомления для Paycheck Planner в настройках устройства, чтобы получать напоминания о зарплате."
+  },
+  "notifications": {
+    "channelName": "Напоминания о зарплате",
+    "titleToday": "Зарплата сегодня: %{source}",
+    "titleTomorrow": "Зарплата завтра: %{source}",
+    "titleOnDay": "Зарплата (%{weekday}): %{source}",
+    "body": "Доход %{income} · %{bills} · остаётся %{left}",
+    "bodyNoBills": "Доход %{income} · счета пока не назначены",
+    "bills": {
+      "one": "%{count} счёт (%{amount})",
+      "few": "%{count} счёта (%{amount})",
+      "many": "%{count} счетов (%{amount})",
+      "other": "%{count} счёта (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Не удалось открыть ссылку"
+  },
+  "payAmountSheet": {
+    "subtitle": "Только зарплата %{date}",
+    "hint": "Обычная зарплата — %{amount}. Для остальных выплат она сохранится.",
+    "useDefault": "Использовать обычную сумму",
+    "invalidAmount": "Введите корректную сумму зарплаты."
+  },
+  "moveBillSheet": {
+    "title": "Перенести счёт",
+    "subtitle": "Не хватает %{amount} (%{date})",
+    "bill": "Счёт",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "На зарплату",
+    "noBills": "Нет неоплаченных счетов для переноса.",
+    "noPaychecks": "Других предстоящих зарплат нет."
+  }
+}

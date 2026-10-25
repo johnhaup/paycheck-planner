@@ -1,0 +1,240 @@
+{
+  "common": {
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "done": "Fertig",
+    "save": "Speichern",
+    "add": "Hinzufügen",
+    "update": "Aktualisieren",
+    "back": "Zurück",
+    "error": "Fehler",
+    "none": "Keine",
+    "unknown": "Unbekannt",
+    "removed": "Entfernt",
+    "systemDefault": "Systemstandard",
+    "selectDate": "Datum wählen",
+    "selectTime": "Uhrzeit wählen",
+    "and": "und",
+    "move": "Verschieben"
+  },
+  "ordinal": {
+    "other": "%{n}."
+  },
+  "tabs": {
+    "paychecks": "Gehalt",
+    "income": "Einkommen",
+    "expenses": "Ausgaben"
+  },
+  "screens": {
+    "settings": "Einstellungen",
+    "incomeSource": "Einkommensquelle",
+    "expense": "Ausgabe",
+    "payDate": "Zahltag",
+    "language": "Sprache",
+    "currency": "Währung"
+  },
+  "paychecks": {
+    "today": "Heute",
+    "goToThisMonth": "Zu diesem Monat",
+    "leftAfterBills": "%{month} · übrig nach Rechnungen",
+    "heroMeta": "%{income} Einkommen · %{assigned} zugewiesen",
+    "monthPaychecks": "Gehaltszahlungen im %{month}",
+    "emptyTitle": "Noch keine Einkommensquellen",
+    "emptyBody": "Füge deine erste Einkommensquelle hinzu, um zu sehen, wohin jedes Gehalt fließt.",
+    "noBillsYet": "Noch keine Rechnungen · tippen zum Zuweisen",
+    "paidProgress": "%{paid} von %{total} bezahlt",
+    "amountLeft": "%{amount} übrig",
+    "chartBarLabel": "%{month}, %{amount} übrig",
+    "opensPaycheck": "Öffnet dieses Gehalt",
+    "markPaid": "%{payee} als bezahlt markieren",
+    "changeAmount": "Betrag für %{payee} bei diesem Gehalt ändern",
+    "changePayAmount": "Gehaltsbetrag von %{source} für diese Zahlung ändern",
+    "emptyAction": "Einkommensquelle hinzufügen",
+    "chartBarCurrentLabel": "%{month} (dieser Monat), %{amount} übrig",
+    "shortBy": "%{amount} fehlen",
+    "moveBill": "Rechnung verschieben"
+  },
+  "income": {
+    "emptyTitle": "Noch kein Einkommen",
+    "emptyBody": "Füge dein Gehalt hinzu, um mit der Planung zu beginnen.",
+    "perMonth": "Pro Monat",
+    "nextPayday": "Nächster Zahltag",
+    "sources": "Quellen",
+    "swipeHint": "Wische auf einer Quelle nach links, um sie zu löschen.",
+    "addSource": "Einkommensquelle hinzufügen",
+    "perCheck": "pro Zahlung",
+    "deleteTitle": "Einkommensquelle löschen",
+    "deleteMessage": "„%{name}“ und alle zugehörigen Ausgabenzuweisungen löschen?",
+    "frequency": {
+      "weekly": "Wöchentlich",
+      "biweekly": "Alle zwei Wochen",
+      "semiMonthly": "Zweimal monatlich",
+      "monthly": "Monatlich"
+    },
+    "schedule": {
+      "weekly": "Wöchentlich · jeden %{weekday}",
+      "biweekly": "Alle zwei Wochen · %{weekday}",
+      "semiMonthly": "Zweimal monatlich · %{first} & %{second}",
+      "monthly": "Monatlich · %{day}"
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "z. B. Acme GmbH",
+      "payAmount": "Gehalt (pro Zahlung)",
+      "payAmountPlaceholder": "z. B. 2500.00",
+      "payFrequency": "Zahlungsrhythmus",
+      "payDays": "Zahltage im Monat",
+      "payDaysHint": "31 steht für den letzten Tag des Monats (wird bei kürzeren Monaten automatisch angepasst)",
+      "adjustToWorkday": "An Werktag anpassen",
+      "adjustHint": "Fällt ein Zahltag auf ein Wochenende, wird er auf den Freitag davor verschoben.",
+      "firstPayDate": "Erster Zahltag",
+      "addButton": "Einkommensquelle hinzufügen",
+      "updateButton": "Einkommensquelle aktualisieren",
+      "nameRequired": "Name ist erforderlich.",
+      "invalidAmount": "Gib einen gültigen Gehaltsbetrag ein.",
+      "payDaysRange": "Zahltage müssen zwischen 1 und 31 liegen."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Noch keine Ausgaben",
+    "emptyBody": "Füge deine Rechnungen hinzu und weise sie dann Gehaltszahlungen zu.",
+    "nothingHere": "Hier ist noch nichts.",
+    "monthlySummary": {
+      "one": "%{amount} pro Monat für %{count} Rechnung",
+      "other": "%{amount} pro Monat für %{count} Rechnungen"
+    },
+    "filters": {
+      "all": "Alle",
+      "recurring": "Wiederkehrend",
+      "oneTime": "Einmalig"
+    },
+    "addExpense": "Ausgabe hinzufügen",
+    "openLink": "Zahlungslink für %{payee} öffnen",
+    "deleteTitle": "Ausgabe löschen",
+    "deleteMessage": "„%{payee}“ und alle Zuweisungen löschen?",
+    "sections": {
+      "notLinked": "Nicht verknüpft",
+      "oneTime": "Einmalig"
+    },
+    "perMonthTotal": "%{amount}/Monat",
+    "meta": {
+      "everyPaycheck": "Jedes Gehalt",
+      "slotEachMonth": "%{slot} jeden Monat",
+      "assignPerPaycheck": "Pro Gehalt zuweisen",
+      "due": "Fällig am %{date}",
+      "oneTime": "Einmalig"
+    },
+    "cadence": {
+      "perCheck": "pro Gehalt",
+      "monthly": "monatlich",
+      "recurring": "wiederkehrend",
+      "oneTime": "einmalig"
+    },
+    "slot": {
+      "last": "Letztes Gehalt",
+      "lastShort": "Letztes",
+      "ordinalPaycheck": "%{ordinal} Gehalt",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Empfänger",
+      "payeePlaceholder": "z. B. Stadtwerke",
+      "amount": "Betrag",
+      "amountPlaceholder": "z. B. 150.00",
+      "link": "Zahlungslink (optional)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Gehalt",
+      "moveHint": "Diese Ausgabe einem anderen Gehalt zuweisen.",
+      "linkedSource": "Verknüpfte Einkommensquelle",
+      "linkedHint": "Wenn verknüpft, wird diese Ausgabe bei Gehaltszahlungen dieser Quelle automatisch vorbelegt.",
+      "howOften": "Wie oft",
+      "everyPaycheck": "Jedes Gehalt",
+      "monthly": "Monatlich",
+      "whichPaycheck": "Welches Gehalt",
+      "slotHintLast": "Landet auf dem letzten Gehalt jedes Monats, auch in Monaten mit einer zusätzlichen Zahlung.",
+      "slotHintOrdinal": "Zusätzliche Gehaltszahlungen in längeren Monaten werden übersprungen. Wähle „Letztes“, um immer die letzte zu verwenden.",
+      "addButton": "Ausgabe hinzufügen",
+      "updateButton": "Ausgabe aktualisieren",
+      "payeeRequired": "Empfängername ist erforderlich.",
+      "invalidAmount": "Gib einen gültigen Betrag ein."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Dieses Gehalt",
+    "available": "Verfügbar",
+    "emptyAssigned": "Noch nichts zugewiesen. Füge Rechnungen aus der Liste unten hinzu.",
+    "leftAfterBills": "Übrig nach Rechnungen",
+    "summaryMeta": "%{pay} Gehalt · %{assigned} zugewiesen",
+    "linked": "Verknüpft",
+    "remove": "%{payee} entfernen",
+    "add": "%{payee} hinzufügen",
+    "oneTime": {
+      "addButton": "Einmalige Ausgabe hinzufügen",
+      "title": "Einmalige Ausgabe",
+      "payee": "Empfänger",
+      "amount": "Betrag"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Nur Gehalt vom %{date}",
+    "hint": "Standard ist %{amount}. Andere Gehaltszahlungen behalten den Standard.",
+    "useDefault": "Standardbetrag verwenden"
+  },
+  "settings": {
+    "appearance": "Darstellung",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System",
+    "hideCents": "Cent ausblenden",
+    "hideCentsHint": "Beträge auf ganze Einheiten gerundet anzeigen.",
+    "behavior": "Verhalten",
+    "autoMarkPaid": "Bei Link-Tipp als bezahlt markieren",
+    "autoMarkPaidHint": "Beim Antippen eines Zahlungslinks wird die Rechnung auch als bezahlt markiert.",
+    "region": "Sprache & Währung",
+    "language": "Sprache",
+    "currency": "Währung",
+    "notifications": "Mitteilungen",
+    "paydayReminder": "Zahltag-Erinnerung",
+    "paydayReminderHint": "Erhalte vor jedem Zahltag eine Übersicht der Rechnungen und was übrig bleibt.",
+    "remindWhen": "Erinnern",
+    "remindTime": "Um",
+    "offsets": {
+      "dayOf": "Am Zahltag",
+      "dayBefore": "Tag davor",
+      "daysBefore": "%{count} Tage davor",
+      "weekBefore": "Woche davor"
+    },
+    "permissionDeniedTitle": "Mitteilungen sind aus",
+    "permissionDeniedBody": "Erlaube Mitteilungen für Paycheck Planner in den Geräteeinstellungen, um Zahltag-Erinnerungen zu erhalten."
+  },
+  "notifications": {
+    "channelName": "Zahltag-Erinnerungen",
+    "titleToday": "Heute Zahltag: %{source}",
+    "titleTomorrow": "Morgen Zahltag: %{source}",
+    "titleOnDay": "Zahltag am %{weekday}: %{source}",
+    "body": "%{income} Einkommen · %{bills} · %{left} übrig",
+    "bodyNoBills": "%{income} Einkommen · noch keine Rechnungen zugewiesen",
+    "bills": {
+      "one": "%{count} Rechnung (%{amount})",
+      "other": "%{count} Rechnungen (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Link konnte nicht geöffnet werden"
+  },
+  "payAmountSheet": {
+    "subtitle": "Nur Gehalt vom %{date}",
+    "hint": "Übliches Gehalt ist %{amount}. Andere Zahlungen behalten es.",
+    "useDefault": "Üblichen Betrag verwenden",
+    "invalidAmount": "Gib einen gültigen Gehaltsbetrag ein."
+  },
+  "moveBillSheet": {
+    "title": "Rechnung verschieben",
+    "subtitle": "%{amount} fehlen am %{date}",
+    "bill": "Rechnung",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Zu Gehalt",
+    "noBills": "Keine unbezahlten Rechnungen zum Verschieben.",
+    "noPaychecks": "Keine weiteren anstehenden Gehaltszahlungen."
+  }
+}

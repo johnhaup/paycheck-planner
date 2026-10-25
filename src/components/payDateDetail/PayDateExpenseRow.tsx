@@ -87,7 +87,12 @@ export function PayDateExpenseRow({
             disabled={!expense.link}
             accessibilityRole={expense.link ? "link" : undefined}
           >
-            <AppText variant="body" color={textColor} numberOfLines={1} style={styles.title}>
+            <AppText
+              variant="body"
+              color={textColor}
+              numberOfLines={1}
+              style={isPaid ? styles.titlePaid : styles.title}
+            >
               {expense.payee}
             </AppText>
             {expense.link ? (
@@ -148,5 +153,9 @@ const styles = StyleSheet.create({
   },
   title: {
     flexShrink: 1,
+  },
+  titlePaid: {
+    flexShrink: 1,
+    textDecorationLine: "line-through",
   },
 });

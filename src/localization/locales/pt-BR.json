@@ -1,0 +1,240 @@
+{
+  "common": {
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "done": "Concluído",
+    "save": "Salvar",
+    "add": "Adicionar",
+    "update": "Atualizar",
+    "back": "Voltar",
+    "error": "Erro",
+    "none": "Nenhum",
+    "unknown": "Desconhecido",
+    "removed": "Removido",
+    "systemDefault": "Padrão do sistema",
+    "selectDate": "Selecionar data",
+    "selectTime": "Selecionar hora",
+    "and": "e",
+    "move": "Mover"
+  },
+  "ordinal": {
+    "other": "%{n}º"
+  },
+  "tabs": {
+    "paychecks": "Pagamentos",
+    "income": "Renda",
+    "expenses": "Despesas"
+  },
+  "screens": {
+    "settings": "Configurações",
+    "incomeSource": "Fonte de renda",
+    "expense": "Despesa",
+    "payDate": "Data de pagamento",
+    "language": "Idioma",
+    "currency": "Moeda"
+  },
+  "paychecks": {
+    "today": "Hoje",
+    "goToThisMonth": "Ir para este mês",
+    "leftAfterBills": "%{month} · sobra após as contas",
+    "heroMeta": "%{income} recebidos · %{assigned} atribuídos",
+    "monthPaychecks": "Pagamentos de %{month}",
+    "emptyTitle": "Nenhuma fonte de renda ainda",
+    "emptyBody": "Adicione sua primeira fonte de renda para ver para onde vai cada pagamento.",
+    "noBillsYet": "Nenhuma conta ainda · toque para atribuir",
+    "paidProgress": "%{paid} de %{total} pagas",
+    "amountLeft": "Sobram %{amount}",
+    "chartBarLabel": "%{month}, sobram %{amount}",
+    "opensPaycheck": "Abre este pagamento",
+    "markPaid": "Marcar %{payee} como paga",
+    "changeAmount": "Alterar o valor de %{payee} neste pagamento",
+    "changePayAmount": "Alterar o valor recebido de %{source} neste pagamento",
+    "emptyAction": "Adicionar fonte de renda",
+    "chartBarCurrentLabel": "%{month} (este mês), sobram %{amount}",
+    "shortBy": "Faltam %{amount}",
+    "moveBill": "Mover uma conta"
+  },
+  "income": {
+    "emptyTitle": "Nenhuma renda ainda",
+    "emptyBody": "Adicione seus pagamentos para começar a planejar.",
+    "perMonth": "Por mês",
+    "nextPayday": "Próximo pagamento",
+    "sources": "Fontes",
+    "swipeHint": "Deslize uma fonte para a esquerda para excluí-la.",
+    "addSource": "Adicionar fonte de renda",
+    "perCheck": "por pagamento",
+    "deleteTitle": "Excluir fonte de renda",
+    "deleteMessage": "Excluir \"%{name}\" e todas as despesas atribuídas a ela?",
+    "frequency": {
+      "weekly": "Semanal",
+      "biweekly": "Quinzenal",
+      "semiMonthly": "Duas vezes por mês",
+      "monthly": "Mensal"
+    },
+    "schedule": {
+      "weekly": "Semanal · cada %{weekday}",
+      "biweekly": "Quinzenal · %{weekday}",
+      "semiMonthly": "Duas vezes por mês · dias %{first} e %{second}",
+      "monthly": "Mensal · dia %{day}"
+    },
+    "form": {
+      "name": "Nome",
+      "namePlaceholder": "ex.: Acme Corp",
+      "payAmount": "Valor por pagamento",
+      "payAmountPlaceholder": "ex.: 2500.00",
+      "payFrequency": "Frequência de pagamento",
+      "payDays": "Dias de pagamento no mês",
+      "payDaysHint": "Use 31 para o último dia do mês (ajusta automaticamente em meses mais curtos)",
+      "adjustToWorkday": "Ajustar para dia útil",
+      "adjustHint": "Se a data de pagamento cair no fim de semana, ela passa para a sexta-feira anterior.",
+      "firstPayDate": "Primeira data de pagamento",
+      "addButton": "Adicionar fonte de renda",
+      "updateButton": "Atualizar fonte de renda",
+      "nameRequired": "O nome é obrigatório.",
+      "invalidAmount": "Informe um valor válido.",
+      "payDaysRange": "Os dias de pagamento devem estar entre 1 e 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Nenhuma despesa ainda",
+    "emptyBody": "Adicione suas contas e depois atribua cada uma a um pagamento.",
+    "nothingHere": "Nada aqui ainda.",
+    "monthlySummary": {
+      "one": "%{amount} por mês em %{count} conta",
+      "other": "%{amount} por mês em %{count} contas"
+    },
+    "filters": {
+      "all": "Todas",
+      "recurring": "Recorrentes",
+      "oneTime": "Únicas"
+    },
+    "addExpense": "Adicionar despesa",
+    "openLink": "Abrir link de pagamento de %{payee}",
+    "deleteTitle": "Excluir despesa",
+    "deleteMessage": "Excluir \"%{payee}\" e todas as suas atribuições?",
+    "sections": {
+      "notLinked": "Não vinculadas",
+      "oneTime": "Únicas"
+    },
+    "perMonthTotal": "%{amount}/mês",
+    "meta": {
+      "everyPaycheck": "Todo pagamento",
+      "slotEachMonth": "%{slot} de cada mês",
+      "assignPerPaycheck": "Atribuir por pagamento",
+      "due": "Vence em %{date}",
+      "oneTime": "Única"
+    },
+    "cadence": {
+      "perCheck": "por pagamento",
+      "monthly": "mensal",
+      "recurring": "recorrente",
+      "oneTime": "única"
+    },
+    "slot": {
+      "last": "Último pagamento",
+      "lastShort": "Último",
+      "ordinalPaycheck": "%{ordinal} pagamento",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Beneficiário",
+      "payeePlaceholder": "ex.: Companhia de energia",
+      "amount": "Valor",
+      "amountPlaceholder": "ex.: 150.00",
+      "link": "Link de pagamento (opcional)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Pagamento",
+      "moveHint": "Mova esta despesa para outro pagamento.",
+      "linkedSource": "Fonte de renda vinculada",
+      "linkedHint": "Quando vinculada, esta despesa já aparece nos pagamentos dessa fonte.",
+      "howOften": "Frequência",
+      "everyPaycheck": "Todo pagamento",
+      "monthly": "Mensal",
+      "whichPaycheck": "Qual pagamento",
+      "slotHintLast": "Cai no último pagamento de cada mês, inclusive nos meses com um pagamento extra.",
+      "slotHintOrdinal": "Pagamentos extras em meses mais longos são ignorados. Escolha Último para usar sempre o final.",
+      "addButton": "Adicionar despesa",
+      "updateButton": "Atualizar despesa",
+      "payeeRequired": "O nome do beneficiário é obrigatório.",
+      "invalidAmount": "Informe um valor válido."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Este pagamento",
+    "available": "Disponíveis",
+    "emptyAssigned": "Nada atribuído ainda. Adicione contas da lista abaixo.",
+    "leftAfterBills": "Sobra após as contas",
+    "summaryMeta": "Pagamento de %{pay} · %{assigned} atribuídos",
+    "linked": "Vinculada",
+    "remove": "Remover %{payee}",
+    "add": "Adicionar %{payee}",
+    "oneTime": {
+      "addButton": "Adicionar despesa única",
+      "title": "Despesa única",
+      "payee": "Beneficiário",
+      "amount": "Valor"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Somente o pagamento de %{date}",
+    "hint": "O valor padrão é %{amount}. Os outros pagamentos mantêm o padrão.",
+    "useDefault": "Usar valor padrão"
+  },
+  "settings": {
+    "appearance": "Aparência",
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Sistema",
+    "hideCents": "Ocultar centavos",
+    "hideCentsHint": "Mostra os valores arredondados para a unidade mais próxima.",
+    "behavior": "Comportamento",
+    "autoMarkPaid": "Marcar como paga ao abrir o link",
+    "autoMarkPaidHint": "Tocar em um link de pagamento também marca a conta como paga.",
+    "region": "Idioma e moeda",
+    "language": "Idioma",
+    "currency": "Moeda",
+    "notifications": "Notificações",
+    "paydayReminder": "Lembrete de pagamento",
+    "paydayReminderHint": "Receba um resumo das contas de cada pagamento e do que sobra antes de ele chegar.",
+    "remindWhen": "Lembrar",
+    "remindTime": "Às",
+    "offsets": {
+      "dayOf": "No dia",
+      "dayBefore": "Um dia antes",
+      "daysBefore": "%{count} dias antes",
+      "weekBefore": "Uma semana antes"
+    },
+    "permissionDeniedTitle": "As notificações estão desativadas",
+    "permissionDeniedBody": "Permita as notificações do Paycheck Planner nas configurações do dispositivo para receber lembretes de pagamento."
+  },
+  "notifications": {
+    "channelName": "Lembretes de pagamento",
+    "titleToday": "Pagamento hoje: %{source}",
+    "titleTomorrow": "Pagamento amanhã: %{source}",
+    "titleOnDay": "Pagamento %{weekday}: %{source}",
+    "body": "%{income} recebidos · %{bills} · sobram %{left}",
+    "bodyNoBills": "%{income} recebidos · nenhuma conta atribuída ainda",
+    "bills": {
+      "one": "%{count} conta (%{amount})",
+      "other": "%{count} contas (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Não foi possível abrir o link"
+  },
+  "payAmountSheet": {
+    "subtitle": "Somente o pagamento de %{date}",
+    "hint": "O valor habitual é %{amount}. Os outros pagamentos mantêm esse valor.",
+    "useDefault": "Usar valor habitual",
+    "invalidAmount": "Informe um valor válido."
+  },
+  "moveBillSheet": {
+    "title": "Mover uma conta",
+    "subtitle": "Faltam %{amount} em %{date}",
+    "bill": "Conta",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Para o pagamento",
+    "noBills": "Nenhuma conta pendente para mover.",
+    "noPaychecks": "Nenhum outro pagamento em breve."
+  }
+}

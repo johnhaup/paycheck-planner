@@ -1,0 +1,244 @@
+{
+  "common": {
+    "cancel": "રદ કરો",
+    "delete": "ડિલીટ કરો",
+    "done": "થઈ ગયું",
+    "save": "સેવ કરો",
+    "add": "ઉમેરો",
+    "update": "અપડેટ કરો",
+    "back": "પાછળ",
+    "error": "ભૂલ",
+    "none": "કોઈ નહીં",
+    "unknown": "અજાણ",
+    "removed": "દૂર કર્યું",
+    "systemDefault": "સિસ્ટમ ડિફોલ્ટ",
+    "selectDate": "તારીખ પસંદ કરો",
+    "selectTime": "સમય પસંદ કરો",
+    "and": "અને",
+    "move": "ખસેડો"
+  },
+  "ordinal": {
+    "one": "%{n}લો",
+    "two": "%{n}જો",
+    "few": "%{n}થો",
+    "many": "%{n}ઠ્ઠો",
+    "other": "%{n}મો"
+  },
+  "tabs": {
+    "paychecks": "પગાર",
+    "income": "આવક",
+    "expenses": "ખર્ચ"
+  },
+  "screens": {
+    "settings": "સેટિંગ્સ",
+    "incomeSource": "આવકનો સ્રોત",
+    "expense": "ખર્ચ",
+    "payDate": "પગારની તારીખ",
+    "language": "ભાષા",
+    "currency": "ચલણ"
+  },
+  "paychecks": {
+    "today": "આજે",
+    "goToThisMonth": "આ મહિના પર જાઓ",
+    "leftAfterBills": "%{month} · બિલ પછી બાકી",
+    "heroMeta": "%{income} આવ્યા · %{assigned} ફાળવેલ",
+    "monthPaychecks": "%{month}ના પગાર",
+    "emptyTitle": "હજી કોઈ આવકનો સ્રોત નથી",
+    "emptyBody": "દરેક પગાર ક્યાં જાય છે તે જોવા તમારો પહેલો આવકનો સ્રોત ઉમેરો.",
+    "noBillsYet": "હજી કોઈ બિલ નથી · ફાળવવા ટૅપ કરો",
+    "paidProgress": "%{total}માંથી %{paid} ચૂકવાયા",
+    "amountLeft": "%{amount} બાકી",
+    "chartBarLabel": "%{month}, %{amount} બાકી",
+    "opensPaycheck": "આ પગાર ખોલે છે",
+    "markPaid": "%{payee} ચૂકવેલ માર્ક કરો",
+    "changeAmount": "આ પગાર માટે %{payee}ની રકમ બદલો",
+    "changePayAmount": "આ વખત માટે %{source}ની પગાર રકમ બદલો",
+    "emptyAction": "આવકનો સ્રોત ઉમેરો",
+    "chartBarCurrentLabel": "%{month} (આ મહિનો), %{amount} બાકી",
+    "shortBy": "%{amount} ઘટે છે",
+    "moveBill": "બિલ ખસેડો"
+  },
+  "income": {
+    "emptyTitle": "હજી કોઈ આવક નથી",
+    "emptyBody": "પ્લાનિંગ શરૂ કરવા તમારા પગાર ઉમેરો.",
+    "perMonth": "દર મહિને",
+    "nextPayday": "આગલો પગાર",
+    "sources": "સ્રોત",
+    "swipeHint": "સ્રોત ડિલીટ કરવા તેના પર ડાબે સ્વાઇપ કરો.",
+    "addSource": "આવકનો સ્રોત ઉમેરો",
+    "perCheck": "પ્રતિ પગાર",
+    "deleteTitle": "આવકનો સ્રોત ડિલીટ કરો",
+    "deleteMessage": "\"%{name}\" અને તેની બધી ખર્ચ ફાળવણી ડિલીટ કરવી?",
+    "frequency": {
+      "weekly": "સાપ્તાહિક",
+      "biweekly": "દર બે અઠવાડિયે",
+      "semiMonthly": "મહિનામાં બે વાર",
+      "monthly": "માસિક"
+    },
+    "schedule": {
+      "weekly": "સાપ્તાહિક · દર %{weekday}",
+      "biweekly": "દર બે અઠવાડિયે · %{weekday}",
+      "semiMonthly": "મહિનામાં બે વાર · %{first} અને %{second}",
+      "monthly": "માસિક · %{day}"
+    },
+    "form": {
+      "name": "નામ",
+      "namePlaceholder": "દા.ત. Acme Corp",
+      "payAmount": "પગાર રકમ (પ્રતિ પગાર)",
+      "payAmountPlaceholder": "દા.ત. 2500.00",
+      "payFrequency": "પગાર કેટલી વાર",
+      "payDays": "મહિનાની પગાર તારીખો",
+      "payDaysHint": "મહિનાના છેલ્લા દિવસ માટે 31 વાપરો (નાના મહિનામાં આપમેળે ગોઠવાય છે)",
+      "adjustToWorkday": "કામકાજના દિવસે ગોઠવો",
+      "adjustHint": "પગારની તારીખ વીકએન્ડમાં આવે તો તે આગલા શુક્રવારે ખસે છે.",
+      "firstPayDate": "પહેલા પગારની તારીખ",
+      "addButton": "આવકનો સ્રોત ઉમેરો",
+      "updateButton": "આવકનો સ્રોત અપડેટ કરો",
+      "nameRequired": "નામ જરૂરી છે.",
+      "invalidAmount": "માન્ય પગાર રકમ દાખલ કરો.",
+      "payDaysRange": "પગાર તારીખો 1 થી 31 વચ્ચે હોવી જોઈએ."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "હજી કોઈ ખર્ચ નથી",
+    "emptyBody": "તમારા બિલ ઉમેરો, પછી તેમને પગાર પર ફાળવો.",
+    "nothingHere": "અહીં હજી કંઈ નથી.",
+    "monthlySummary": {
+      "one": "%{count} બિલમાં દર મહિને %{amount}",
+      "other": "%{count} બિલમાં દર મહિને %{amount}"
+    },
+    "filters": {
+      "all": "બધા",
+      "recurring": "નિયમિત",
+      "oneTime": "એક વાર"
+    },
+    "addExpense": "ખર્ચ ઉમેરો",
+    "openLink": "%{payee}ની પેમેન્ટ લિંક ખોલો",
+    "deleteTitle": "ખર્ચ ડિલીટ કરો",
+    "deleteMessage": "\"%{payee}\" અને તેની બધી ફાળવણી ડિલીટ કરવી?",
+    "sections": {
+      "notLinked": "લિંક નથી",
+      "oneTime": "એક વાર"
+    },
+    "perMonthTotal": "%{amount}/મહિનો",
+    "meta": {
+      "everyPaycheck": "દરેક પગાર",
+      "slotEachMonth": "દર મહિને %{slot}",
+      "assignPerPaycheck": "દરેક પગાર પર ફાળવો",
+      "due": "%{date} સુધી",
+      "oneTime": "એક વાર"
+    },
+    "cadence": {
+      "perCheck": "પ્રતિ પગાર",
+      "monthly": "માસિક",
+      "recurring": "નિયમિત",
+      "oneTime": "એક વાર"
+    },
+    "slot": {
+      "last": "છેલ્લો પગાર",
+      "lastShort": "છેલ્લો",
+      "ordinalPaycheck": "%{ordinal} પગાર",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "પ્રાપ્તકર્તા",
+      "payeePlaceholder": "દા.ત. વીજળી કંપની",
+      "amount": "રકમ",
+      "amountPlaceholder": "દા.ત. 150.00",
+      "link": "પેમેન્ટ લિંક (વૈકલ્પિક)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "પગાર",
+      "moveHint": "આ ખર્ચને બીજા પગાર પર ખસેડો.",
+      "linkedSource": "લિંક કરેલો આવકનો સ્રોત",
+      "linkedHint": "લિંક કરેલું હોય ત્યારે આ ખર્ચ તે સ્રોતના પગાર પર પહેલેથી ઉમેરાયેલો રહે છે.",
+      "howOften": "કેટલી વાર",
+      "everyPaycheck": "દરેક પગાર",
+      "monthly": "માસિક",
+      "whichPaycheck": "કયો પગાર",
+      "slotHintLast": "દર મહિનાના છેલ્લા પગાર પર લાગે છે, વધારાનો પગાર હોય તેવા મહિનામાં પણ.",
+      "slotHintOrdinal": "લાંબા મહિનાના વધારાના પગાર છોડી દેવાય છે. હંમેશાં છેલ્લો વાપરવા 'છેલ્લો' પસંદ કરો.",
+      "addButton": "ખર્ચ ઉમેરો",
+      "updateButton": "ખર્ચ અપડેટ કરો",
+      "payeeRequired": "પ્રાપ્તકર્તાનું નામ જરૂરી છે.",
+      "invalidAmount": "માન્ય રકમ દાખલ કરો."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "આ પગાર",
+    "available": "ઉપલબ્ધ",
+    "emptyAssigned": "હજી કંઈ ફાળવેલ નથી. નીચેની યાદીમાંથી બિલ ઉમેરો.",
+    "leftAfterBills": "બિલ પછી બાકી",
+    "summaryMeta": "%{pay} પગાર · %{assigned} ફાળવેલ",
+    "linked": "લિંક કરેલ",
+    "remove": "%{payee} દૂર કરો",
+    "add": "%{payee} ઉમેરો",
+    "oneTime": {
+      "addButton": "એક વખતનો ખર્ચ ઉમેરો",
+      "title": "એક વખતનો ખર્ચ",
+      "payee": "પ્રાપ્તકર્તા",
+      "amount": "રકમ"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "ફક્ત %{date}નો પગાર",
+    "hint": "ડિફોલ્ટ %{amount} છે. બીજા પગાર પર ડિફોલ્ટ જ રહે છે.",
+    "useDefault": "ડિફોલ્ટ રકમ વાપરો"
+  },
+  "settings": {
+    "appearance": "દેખાવ",
+    "light": "લાઇટ",
+    "dark": "ડાર્ક",
+    "system": "સિસ્ટમ",
+    "hideCents": "પૈસા છુપાવો",
+    "hideCentsHint": "રકમ નજીકના પૂર્ણ આંકડામાં રાઉન્ડ કરીને બતાવો.",
+    "behavior": "વર્તન",
+    "autoMarkPaid": "લિંક ટૅપ પર આપમેળે ચૂકવેલ માર્ક કરો",
+    "autoMarkPaidHint": "પેમેન્ટ લિંક ટૅપ કરવાથી તે બિલ ચૂકવેલ પણ માર્ક થાય છે.",
+    "region": "ભાષા અને ચલણ",
+    "language": "ભાષા",
+    "currency": "ચલણ",
+    "notifications": "નોટિફિકેશન",
+    "paydayReminder": "પગાર રિમાઇન્ડર",
+    "paydayReminderHint": "દરેક પગાર આવે તે પહેલાં તેના બિલ અને બાકી રકમનો સાર મેળવો.",
+    "remindWhen": "ક્યારે યાદ કરાવવું",
+    "remindTime": "સમય",
+    "offsets": {
+      "dayOf": "તે જ દિવસે",
+      "dayBefore": "એક દિવસ પહેલાં",
+      "daysBefore": "%{count} દિવસ પહેલાં",
+      "weekBefore": "એક અઠવાડિયા પહેલાં"
+    },
+    "permissionDeniedTitle": "નોટિફિકેશન બંધ છે",
+    "permissionDeniedBody": "પગાર રિમાઇન્ડર મેળવવા ડિવાઇસ સેટિંગ્સમાં Paycheck Planner માટે નોટિફિકેશન ચાલુ કરો."
+  },
+  "notifications": {
+    "channelName": "પગાર રિમાઇન્ડર",
+    "titleToday": "આજે પગાર: %{source}",
+    "titleTomorrow": "કાલે પગાર: %{source}",
+    "titleOnDay": "%{weekday}ના રોજ પગાર: %{source}",
+    "body": "%{income} આવ્યા · %{bills} · %{left} બાકી",
+    "bodyNoBills": "%{income} આવ્યા · હજી કોઈ બિલ ફાળવેલ નથી",
+    "bills": {
+      "one": "%{count} બિલ (%{amount})",
+      "other": "%{count} બિલ (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "લિંક ખોલી શકાઈ નહીં"
+  },
+  "payAmountSheet": {
+    "subtitle": "ફક્ત %{date}નો પગાર",
+    "hint": "સામાન્ય પગાર %{amount} છે. બીજા પગાર પર તે જ રહે છે.",
+    "useDefault": "સામાન્ય રકમ વાપરો",
+    "invalidAmount": "માન્ય પગાર રકમ દાખલ કરો."
+  },
+  "moveBillSheet": {
+    "title": "બિલ ખસેડો",
+    "subtitle": "%{date}એ %{amount} ઘટે છે",
+    "bill": "બિલ",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "આ પગાર પર",
+    "noBills": "ખસેડવા માટે કોઈ બાકી બિલ નથી.",
+    "noPaychecks": "આગળ બીજો કોઈ પગાર નથી."
+  }
+}

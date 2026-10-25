@@ -1,0 +1,240 @@
+{
+  "common": {
+    "cancel": "ரத்துசெய்",
+    "delete": "நீக்கு",
+    "done": "முடிந்தது",
+    "save": "சேமி",
+    "add": "சேர்",
+    "update": "புதுப்பி",
+    "back": "பின்",
+    "error": "பிழை",
+    "none": "ஏதுமில்லை",
+    "unknown": "தெரியாதது",
+    "removed": "நீக்கப்பட்டது",
+    "systemDefault": "சாதன இயல்புநிலை",
+    "selectDate": "தேதியைத் தேர்வுசெய்",
+    "selectTime": "நேரத்தைத் தேர்வுசெய்",
+    "and": "மற்றும்",
+    "move": "நகர்த்து"
+  },
+  "ordinal": {
+    "other": "%{n}-வது"
+  },
+  "tabs": {
+    "paychecks": "சம்பளங்கள்",
+    "income": "வருமானம்",
+    "expenses": "செலவுகள்"
+  },
+  "screens": {
+    "settings": "அமைப்புகள்",
+    "incomeSource": "வருமான ஆதாரம்",
+    "expense": "செலவு",
+    "payDate": "சம்பள தேதி",
+    "language": "மொழி",
+    "currency": "நாணயம்"
+  },
+  "paychecks": {
+    "today": "இன்று",
+    "goToThisMonth": "இந்த மாதத்திற்குச் செல்",
+    "leftAfterBills": "%{month} · பில்களுக்குப் பின் மீதம்",
+    "heroMeta": "%{income} வரவு · %{assigned} ஒதுக்கீடு",
+    "monthPaychecks": "%{month} சம்பளங்கள்",
+    "emptyTitle": "இன்னும் வருமான ஆதாரங்கள் இல்லை",
+    "emptyBody": "ஒவ்வொரு சம்பளமும் எங்கே செல்கிறது என்பதைக் காண உங்கள் முதல் வருமான ஆதாரத்தைச் சேர்க்கவும்.",
+    "noBillsYet": "இன்னும் பில்கள் இல்லை · ஒதுக்கத் தட்டவும்",
+    "paidProgress": "%{total}-இல் %{paid} செலுத்தப்பட்டது",
+    "amountLeft": "%{amount} மீதம்",
+    "chartBarLabel": "%{month}, %{amount} மீதம்",
+    "opensPaycheck": "இந்தச் சம்பளத்தைத் திறக்கும்",
+    "markPaid": "%{payee} செலுத்தியதாகக் குறி",
+    "changeAmount": "இந்தச் சம்பளத்திற்கு %{payee} தொகையை மாற்று",
+    "changePayAmount": "இந்தச் சம்பளத்திற்கு %{source} ஊதியத் தொகையை மாற்று",
+    "emptyAction": "வருமான ஆதாரத்தைச் சேர்",
+    "chartBarCurrentLabel": "%{month} (இந்த மாதம்), %{amount} மீதம்",
+    "shortBy": "%{amount} பற்றாக்குறை",
+    "moveBill": "பில்லை நகர்த்து"
+  },
+  "income": {
+    "emptyTitle": "இன்னும் வருமானம் இல்லை",
+    "emptyBody": "திட்டமிடத் தொடங்க உங்கள் சம்பளங்களைச் சேர்க்கவும்.",
+    "perMonth": "மாதத்திற்கு",
+    "nextPayday": "அடுத்த சம்பள நாள்",
+    "sources": "ஆதாரங்கள்",
+    "swipeHint": "ஆதாரத்தை நீக்க அதன் மீது இடப்புறம் ஸ்வைப் செய்யவும்.",
+    "addSource": "வருமான ஆதாரத்தைச் சேர்",
+    "perCheck": "ஒரு சம்பளத்திற்கு",
+    "deleteTitle": "வருமான ஆதாரத்தை நீக்கு",
+    "deleteMessage": "\"%{name}\" மற்றும் அதன் எல்லா செலவு ஒதுக்கீடுகளையும் நீக்கவா?",
+    "frequency": {
+      "weekly": "வாராந்திரம்",
+      "biweekly": "இரு வாரத்திற்கு ஒருமுறை",
+      "semiMonthly": "மாதம் இருமுறை",
+      "monthly": "மாதாந்திரம்"
+    },
+    "schedule": {
+      "weekly": "வாராந்திரம் · ஒவ்வொரு %{weekday}",
+      "biweekly": "இரு வாரத்திற்கு ஒருமுறை · ஒவ்வொரு %{weekday}",
+      "semiMonthly": "மாதம் இருமுறை · %{first} & %{second}",
+      "monthly": "மாதாந்திரம் · %{day}"
+    },
+    "form": {
+      "name": "பெயர்",
+      "namePlaceholder": "எ.கா. Acme Corp",
+      "payAmount": "ஊதியத் தொகை (ஒரு சம்பளத்திற்கு)",
+      "payAmountPlaceholder": "எ.கா. 2500.00",
+      "payFrequency": "சம்பள இடைவெளி",
+      "payDays": "மாதத்தின் சம்பள நாட்கள்",
+      "payDaysHint": "மாதத்தின் கடைசி நாளுக்கு 31 பயன்படுத்தவும் (குறைந்த நாட்கள் உள்ள மாதங்களுக்குத் தானாகச் சரிசெய்யப்படும்)",
+      "adjustToWorkday": "வேலை நாளுக்குச் சரிசெய்",
+      "adjustHint": "சம்பள தேதி வார இறுதியில் வந்தால், அதற்கு முந்தைய வெள்ளிக்கிழமைக்கு மாற்றப்படும்.",
+      "firstPayDate": "முதல் சம்பள தேதி",
+      "addButton": "வருமான ஆதாரத்தைச் சேர்",
+      "updateButton": "வருமான ஆதாரத்தைப் புதுப்பி",
+      "nameRequired": "பெயர் தேவை.",
+      "invalidAmount": "சரியான ஊதியத் தொகையை உள்ளிடவும்.",
+      "payDaysRange": "சம்பள நாட்கள் 1 முதல் 31 வரை இருக்க வேண்டும்."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "இன்னும் செலவுகள் இல்லை",
+    "emptyBody": "உங்கள் பில்களைச் சேர்த்து, பின் சம்பளங்களுக்கு ஒதுக்கவும்.",
+    "nothingHere": "இங்கே இன்னும் எதுவும் இல்லை.",
+    "monthlySummary": {
+      "one": "%{count} பில்லில் மாதம் %{amount}",
+      "other": "%{count} பில்களில் மாதம் %{amount}"
+    },
+    "filters": {
+      "all": "எல்லாம்",
+      "recurring": "தொடர்ச்சியானவை",
+      "oneTime": "ஒருமுறை"
+    },
+    "addExpense": "செலவைச் சேர்",
+    "openLink": "%{payee}க்கான கட்டண இணைப்பைத் திற",
+    "deleteTitle": "செலவை நீக்கு",
+    "deleteMessage": "\"%{payee}\" மற்றும் அதன் எல்லா ஒதுக்கீடுகளையும் நீக்கவா?",
+    "sections": {
+      "notLinked": "இணைக்கப்படாதவை",
+      "oneTime": "ஒருமுறை"
+    },
+    "perMonthTotal": "%{amount}/மாதம்",
+    "meta": {
+      "everyPaycheck": "ஒவ்வொரு சம்பளமும்",
+      "slotEachMonth": "ஒவ்வொரு மாதமும் %{slot}",
+      "assignPerPaycheck": "சம்பளத்திற்கேற்ப ஒதுக்கு",
+      "due": "%{date} அன்று செலுத்த வேண்டும்",
+      "oneTime": "ஒருமுறை"
+    },
+    "cadence": {
+      "perCheck": "ஒரு சம்பளத்திற்கு",
+      "monthly": "மாதாந்திரம்",
+      "recurring": "தொடர்ச்சியானது",
+      "oneTime": "ஒருமுறை"
+    },
+    "slot": {
+      "last": "கடைசிச் சம்பளம்",
+      "lastShort": "கடைசி",
+      "ordinalPaycheck": "%{ordinal} சம்பளம்",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "பெறுநர்",
+      "payeePlaceholder": "எ.கா. மின்சார வாரியம்",
+      "amount": "தொகை",
+      "amountPlaceholder": "எ.கா. 150.00",
+      "link": "கட்டண இணைப்பு (விருப்பம்)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "சம்பளம்",
+      "moveHint": "இந்தச் செலவை வேறு சம்பளத்திற்கு நகர்த்தவும்.",
+      "linkedSource": "இணைக்கப்பட்ட வருமான ஆதாரம்",
+      "linkedHint": "இணைக்கப்பட்டால், அந்த ஆதாரத்தின் சம்பளங்களில் இந்தச் செலவு முன்கூட்டியே சேர்க்கப்படும்.",
+      "howOften": "எவ்வளவு அடிக்கடி",
+      "everyPaycheck": "ஒவ்வொரு சம்பளமும்",
+      "monthly": "மாதாந்திரம்",
+      "whichPaycheck": "எந்தச் சம்பளம்",
+      "slotHintLast": "கூடுதல் சம்பளம் உள்ள மாதங்கள் உட்பட, ஒவ்வொரு மாதத்தின் கடைசிச் சம்பளத்தில் சேரும்.",
+      "slotHintOrdinal": "நீண்ட மாதங்களின் கூடுதல் சம்பளங்கள் தவிர்க்கப்படும். எப்போதும் கடைசியைப் பயன்படுத்த \"கடைசி\" என்பதைத் தேர்வுசெய்யவும்.",
+      "addButton": "செலவைச் சேர்",
+      "updateButton": "செலவைப் புதுப்பி",
+      "payeeRequired": "பெறுநர் பெயர் தேவை.",
+      "invalidAmount": "சரியான தொகையை உள்ளிடவும்."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "இந்தச் சம்பளம்",
+    "available": "கிடைக்கக்கூடியவை",
+    "emptyAssigned": "இன்னும் எதுவும் ஒதுக்கப்படவில்லை. கீழே உள்ள பட்டியலிலிருந்து பில்களைச் சேர்க்கவும்.",
+    "leftAfterBills": "பில்களுக்குப் பின் மீதம்",
+    "summaryMeta": "%{pay} சம்பளம் · %{assigned} ஒதுக்கீடு",
+    "linked": "இணைக்கப்பட்டது",
+    "remove": "%{payee} நீக்கு",
+    "add": "%{payee} சேர்",
+    "oneTime": {
+      "addButton": "ஒருமுறை செலவைச் சேர்",
+      "title": "ஒருமுறை செலவு",
+      "payee": "பெறுநர்",
+      "amount": "தொகை"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "%{date} சம்பளத்திற்கு மட்டும்",
+    "hint": "இயல்புநிலை %{amount}. மற்ற சம்பளங்கள் இயல்புநிலையிலே இருக்கும்.",
+    "useDefault": "இயல்புநிலைத் தொகையைப் பயன்படுத்து"
+  },
+  "settings": {
+    "appearance": "தோற்றம்",
+    "light": "வெளிர்",
+    "dark": "இருள்",
+    "system": "சாதனம்",
+    "hideCents": "சில்லறையை மறை",
+    "hideCentsHint": "தொகைகளை அருகிலுள்ள முழு எண்ணாகக் காட்டு.",
+    "behavior": "செயல்பாடு",
+    "autoMarkPaid": "இணைப்பைத் தட்டினால் செலுத்தியதாகக் குறி",
+    "autoMarkPaidHint": "கட்டண இணைப்பைத் தட்டும்போது அந்தப் பில்லும் செலுத்தியதாகக் குறிக்கப்படும்.",
+    "region": "மொழி & நாணயம்",
+    "language": "மொழி",
+    "currency": "நாணயம்",
+    "notifications": "அறிவிப்புகள்",
+    "paydayReminder": "சம்பள நாள் நினைவூட்டல்",
+    "paydayReminderHint": "ஒவ்வொரு சம்பளத்தின் பில்கள் மற்றும் மீதத் தொகையின் சுருக்கத்தை அது வருவதற்கு முன் பெறுங்கள்.",
+    "remindWhen": "நினைவூட்டு",
+    "remindTime": "நேரம்",
+    "offsets": {
+      "dayOf": "அந்த நாளில்",
+      "dayBefore": "ஒரு நாள் முன்",
+      "daysBefore": "%{count} நாட்கள் முன்",
+      "weekBefore": "ஒரு வாரம் முன்"
+    },
+    "permissionDeniedTitle": "அறிவிப்புகள் முடக்கப்பட்டுள்ளன",
+    "permissionDeniedBody": "சம்பள நாள் நினைவூட்டல்களைப் பெற, சாதன அமைப்புகளில் Paycheck Planner-க்கு அறிவிப்புகளை அனுமதிக்கவும்."
+  },
+  "notifications": {
+    "channelName": "சம்பள நாள் நினைவூட்டல்கள்",
+    "titleToday": "இன்று சம்பள நாள்: %{source}",
+    "titleTomorrow": "நாளை சம்பள நாள்: %{source}",
+    "titleOnDay": "%{weekday} சம்பள நாள்: %{source}",
+    "body": "%{income} வரவு · %{bills} · %{left} மீதம்",
+    "bodyNoBills": "%{income} வரவு · இன்னும் பில்கள் ஒதுக்கப்படவில்லை",
+    "bills": {
+      "one": "%{count} பில் (%{amount})",
+      "other": "%{count} பில்கள் (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "இணைப்பைத் திறக்க முடியவில்லை"
+  },
+  "payAmountSheet": {
+    "subtitle": "%{date} சம்பளத்திற்கு மட்டும்",
+    "hint": "வழக்கமான ஊதியம் %{amount}. மற்ற சம்பளங்கள் அதையே வைத்திருக்கும்.",
+    "useDefault": "வழக்கமான தொகையைப் பயன்படுத்து",
+    "invalidAmount": "சரியான ஊதியத் தொகையை உள்ளிடவும்."
+  },
+  "moveBillSheet": {
+    "title": "பில்லை நகர்த்து",
+    "subtitle": "%{date} அன்று %{amount} பற்றாக்குறை",
+    "bill": "பில்",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "இந்தச் சம்பளத்திற்கு",
+    "noBills": "நகர்த்த செலுத்தப்படாத பில்கள் இல்லை.",
+    "noPaychecks": "வரவிருக்கும் வேறு சம்பளங்கள் இல்லை."
+  }
+}

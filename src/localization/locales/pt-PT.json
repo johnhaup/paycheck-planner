@@ -1,0 +1,240 @@
+{
+  "common": {
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "done": "Concluído",
+    "save": "Guardar",
+    "add": "Adicionar",
+    "update": "Atualizar",
+    "back": "Voltar",
+    "error": "Erro",
+    "none": "Nenhum",
+    "unknown": "Desconhecido",
+    "removed": "Removido",
+    "systemDefault": "Predefinição do sistema",
+    "selectDate": "Selecionar data",
+    "selectTime": "Selecionar hora",
+    "and": "e",
+    "move": "Mover"
+  },
+  "ordinal": {
+    "other": "%{n}.º"
+  },
+  "tabs": {
+    "paychecks": "Ordenados",
+    "income": "Rendimentos",
+    "expenses": "Despesas"
+  },
+  "screens": {
+    "settings": "Definições",
+    "incomeSource": "Fonte de rendimento",
+    "expense": "Despesa",
+    "payDate": "Data de pagamento",
+    "language": "Idioma",
+    "currency": "Moeda"
+  },
+  "paychecks": {
+    "today": "Hoje",
+    "goToThisMonth": "Ir para este mês",
+    "leftAfterBills": "%{month} · sobra após as faturas",
+    "heroMeta": "%{income} recebidos · %{assigned} atribuídos",
+    "monthPaychecks": "Ordenados de %{month}",
+    "emptyTitle": "Ainda não há fontes de rendimento",
+    "emptyBody": "Adicione a sua primeira fonte de rendimento para ver para onde vai cada ordenado.",
+    "noBillsYet": "Ainda sem faturas · toque para atribuir",
+    "paidProgress": "%{paid} de %{total} pagas",
+    "amountLeft": "Sobram %{amount}",
+    "chartBarLabel": "%{month}, sobram %{amount}",
+    "opensPaycheck": "Abre este ordenado",
+    "markPaid": "Marcar %{payee} como paga",
+    "changeAmount": "Alterar o valor de %{payee} neste ordenado",
+    "changePayAmount": "Alterar o valor do ordenado de %{source} nesta data",
+    "emptyAction": "Adicionar fonte de rendimento",
+    "chartBarCurrentLabel": "%{month} (este mês), sobram %{amount}",
+    "shortBy": "Faltam %{amount}",
+    "moveBill": "Mover uma fatura"
+  },
+  "income": {
+    "emptyTitle": "Ainda não há rendimentos",
+    "emptyBody": "Adicione os seus ordenados para começar a planear.",
+    "perMonth": "Por mês",
+    "nextPayday": "Próximo pagamento",
+    "sources": "Fontes",
+    "swipeHint": "Deslize uma fonte para a esquerda para a eliminar.",
+    "addSource": "Adicionar fonte de rendimento",
+    "perCheck": "por ordenado",
+    "deleteTitle": "Eliminar fonte de rendimento",
+    "deleteMessage": "Eliminar \"%{name}\" e todas as despesas que lhe estão atribuídas?",
+    "frequency": {
+      "weekly": "Semanal",
+      "biweekly": "Quinzenal",
+      "semiMonthly": "Duas vezes por mês",
+      "monthly": "Mensal"
+    },
+    "schedule": {
+      "weekly": "Semanal · cada %{weekday}",
+      "biweekly": "Quinzenal · %{weekday}",
+      "semiMonthly": "Duas vezes por mês · dias %{first} e %{second}",
+      "monthly": "Mensal · dia %{day}"
+    },
+    "form": {
+      "name": "Nome",
+      "namePlaceholder": "p. ex. Acme Corp",
+      "payAmount": "Valor por ordenado",
+      "payAmountPlaceholder": "p. ex. 2500.00",
+      "payFrequency": "Frequência de pagamento",
+      "payDays": "Dias de pagamento do mês",
+      "payDaysHint": "Utilize 31 para o último dia do mês (ajusta-se automaticamente nos meses mais curtos)",
+      "adjustToWorkday": "Ajustar para dia útil",
+      "adjustHint": "Se a data de pagamento calhar ao fim de semana, passa para a sexta-feira anterior.",
+      "firstPayDate": "Primeira data de pagamento",
+      "addButton": "Adicionar fonte de rendimento",
+      "updateButton": "Atualizar fonte de rendimento",
+      "nameRequired": "O nome é obrigatório.",
+      "invalidAmount": "Introduza um valor válido.",
+      "payDaysRange": "Os dias de pagamento têm de estar entre 1 e 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Ainda não há despesas",
+    "emptyBody": "Adicione as suas faturas e atribua-as aos ordenados.",
+    "nothingHere": "Ainda não há nada aqui.",
+    "monthlySummary": {
+      "one": "%{amount} por mês em %{count} fatura",
+      "other": "%{amount} por mês em %{count} faturas"
+    },
+    "filters": {
+      "all": "Todas",
+      "recurring": "Recorrentes",
+      "oneTime": "Pontuais"
+    },
+    "addExpense": "Adicionar despesa",
+    "openLink": "Abrir ligação de pagamento de %{payee}",
+    "deleteTitle": "Eliminar despesa",
+    "deleteMessage": "Eliminar \"%{payee}\" e todas as suas atribuições?",
+    "sections": {
+      "notLinked": "Não associadas",
+      "oneTime": "Pontuais"
+    },
+    "perMonthTotal": "%{amount}/mês",
+    "meta": {
+      "everyPaycheck": "Todos os ordenados",
+      "slotEachMonth": "%{slot} de cada mês",
+      "assignPerPaycheck": "Atribuir por ordenado",
+      "due": "Vence a %{date}",
+      "oneTime": "Pontual"
+    },
+    "cadence": {
+      "perCheck": "por ordenado",
+      "monthly": "mensal",
+      "recurring": "recorrente",
+      "oneTime": "pontual"
+    },
+    "slot": {
+      "last": "Último ordenado",
+      "lastShort": "Último",
+      "ordinalPaycheck": "%{ordinal} ordenado",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Beneficiário",
+      "payeePlaceholder": "p. ex. Companhia de eletricidade",
+      "amount": "Valor",
+      "amountPlaceholder": "p. ex. 150.00",
+      "link": "Ligação de pagamento (opcional)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Ordenado",
+      "moveHint": "Mova esta despesa para outro ordenado.",
+      "linkedSource": "Fonte de rendimento associada",
+      "linkedHint": "Quando associada, esta despesa aparece automaticamente nos ordenados dessa fonte.",
+      "howOften": "Frequência",
+      "everyPaycheck": "Todos os ordenados",
+      "monthly": "Mensal",
+      "whichPaycheck": "Qual o ordenado",
+      "slotHintLast": "Fica no último ordenado de cada mês, incluindo os meses com um ordenado extra.",
+      "slotHintOrdinal": "Os ordenados extra dos meses mais longos são ignorados. Escolha Último para usar sempre o final.",
+      "addButton": "Adicionar despesa",
+      "updateButton": "Atualizar despesa",
+      "payeeRequired": "O nome do beneficiário é obrigatório.",
+      "invalidAmount": "Introduza um valor válido."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Este ordenado",
+    "available": "Disponíveis",
+    "emptyAssigned": "Ainda nada atribuído. Adicione faturas da lista abaixo.",
+    "leftAfterBills": "Sobra após as faturas",
+    "summaryMeta": "Ordenado de %{pay} · %{assigned} atribuídos",
+    "linked": "Associada",
+    "remove": "Remover %{payee}",
+    "add": "Adicionar %{payee}",
+    "oneTime": {
+      "addButton": "Adicionar despesa pontual",
+      "title": "Despesa pontual",
+      "payee": "Beneficiário",
+      "amount": "Valor"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Apenas o ordenado de %{date}",
+    "hint": "O valor predefinido é %{amount}. Os outros ordenados mantêm-no.",
+    "useDefault": "Usar valor predefinido"
+  },
+  "settings": {
+    "appearance": "Aspeto",
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Sistema",
+    "hideCents": "Ocultar cêntimos",
+    "hideCentsHint": "Mostra os valores arredondados à unidade.",
+    "behavior": "Comportamento",
+    "autoMarkPaid": "Marcar como paga ao abrir a ligação",
+    "autoMarkPaidHint": "Ao tocar numa ligação de pagamento, a fatura é também marcada como paga.",
+    "region": "Idioma e moeda",
+    "language": "Idioma",
+    "currency": "Moeda",
+    "notifications": "Notificações",
+    "paydayReminder": "Lembrete do dia de pagamento",
+    "paydayReminderHint": "Receba um resumo das faturas de cada ordenado e do que sobra antes de o receber.",
+    "remindWhen": "Lembrar-me",
+    "remindTime": "Às",
+    "offsets": {
+      "dayOf": "No próprio dia",
+      "dayBefore": "No dia anterior",
+      "daysBefore": "%{count} dias antes",
+      "weekBefore": "Uma semana antes"
+    },
+    "permissionDeniedTitle": "As notificações estão desativadas",
+    "permissionDeniedBody": "Permita as notificações do Paycheck Planner nas definições do dispositivo para receber lembretes do dia de pagamento."
+  },
+  "notifications": {
+    "channelName": "Lembretes do dia de pagamento",
+    "titleToday": "Hoje é dia de pagamento: %{source}",
+    "titleTomorrow": "Amanhã é dia de pagamento: %{source}",
+    "titleOnDay": "Dia de pagamento %{weekday}: %{source}",
+    "body": "%{income} recebidos · %{bills} · sobram %{left}",
+    "bodyNoBills": "%{income} recebidos · ainda sem faturas atribuídas",
+    "bills": {
+      "one": "%{count} fatura (%{amount})",
+      "other": "%{count} faturas (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Não foi possível abrir a ligação"
+  },
+  "payAmountSheet": {
+    "subtitle": "Apenas o ordenado de %{date}",
+    "hint": "O ordenado habitual é %{amount}. Os outros mantêm-no.",
+    "useDefault": "Usar valor habitual",
+    "invalidAmount": "Introduza um valor válido."
+  },
+  "moveBillSheet": {
+    "title": "Mover uma fatura",
+    "subtitle": "Faltam %{amount} a %{date}",
+    "bill": "Fatura",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Para o ordenado",
+    "noBills": "Não há faturas por pagar para mover.",
+    "noPaychecks": "Não há outros ordenados próximos."
+  }
+}

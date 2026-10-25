@@ -1,6 +1,11 @@
 import { addMonths, endOfMonth, format, isSameYear } from "date-fns";
 import { formatMonthLong, formatMonthShort } from "@/utils/dates";
-import { getPaychecksThrough, formatPayDate, isExpenseLinkedToPaycheck } from "@/utils/payDates";
+import {
+  getPaychecksThrough,
+  formatPayDate,
+  isExpenseLinkedToPaycheck,
+  type Paycheck,
+} from "@/utils/payDates";
 import type { Expense, ExpenseAssignment, IncomeSource, PaycheckOverride } from "@/types";
 import type { MonthGroup, PaycheckExpense, PaycheckItem } from "@/components/paychecks/types";
 
@@ -19,6 +24,63 @@ export function getPayAmount(
   );
 }
 
+/** One paycheck with its bills: explicit assignments first, then linked bills not yet assigned. */
+export function buildPaycheckItem(
+  source: IncomeSource,
+  paycheck: Paycheck,
+  expenses: Expense[],
+  assignments: ExpenseAssignment[],
+  overrides: PaycheckOverride[]
+): PaycheckItem {
+  const expensesById = new Map(expenses.map((e) => [e.id, e]));
+  const payDate = formatPayDate(paycheck.date);
+  const matched = assignments.filter((a) => a.payDate === payDate && a.employerId === source.id);
+  // Skip markers hide a moved linked bill, so they count as assigned but add no row
+  const assignedIds = new Set(matched.map((a) => a.expenseId));
+  const items: PaycheckExpense[] = matched
+    .filter((a) => !a.skipped)
+    .map((a) => {
+      const expense = expensesById.get(a.expenseId);
+      return {
+        expenseId: a.expenseId,
+        payee: expense?.payee ?? "Unknown",
+        amount: a.amount ?? expense?.amount ?? 0,
+        assignmentId: a.id,
+        link: expense?.link,
+        paid: a.paid,
+      };
+    });
+  for (const expense of expenses) {
+    if (
+      !assignedIds.has(expense.id) &&
+      isExpenseLinkedToPaycheck(expense, source.id, paycheck, source)
+    ) {
+      items.push({
+        expenseId: expense.id,
+        payee: expense.payee,
+        amount: expense.amount,
+        assignmentId: "",
+        link: expense.link,
+      });
+    }
+  }
+  const totalExpenses = items.reduce((sum, e) => sum + e.amount, 0);
+  const payAmount = getPayAmount(source, payDate, overrides);
+
+  return {
+    key: `${source.id}-${payDate}`,
+    date: paycheck.date,
+    payDate,
+    sourceName: source.name,
+    sourceId: source.id,
+    payAmount,
+    expenses: items,
+    paidCount: items.filter((e) => e.paid).length,
+    totalExpenses,
+    remaining: payAmount - totalExpenses,
+  };
+}
+
 /** Upcoming paychecks for every source, with their bills, grouped by calendar month. */
 export function buildMonthGroups(
   incomeSources: IncomeSource[],
@@ -27,60 +89,12 @@ export function buildMonthGroups(
   overrides: PaycheckOverride[],
   now: Date
 ): MonthGroup[] {
-  const expensesById = new Map(expenses.map((e) => [e.id, e]));
-  const allPaychecks: PaycheckItem[] = [];
   const until = endOfMonth(addMonths(now, FULL_MONTHS_AHEAD));
-
-  for (const source of incomeSources) {
-    for (const paycheck of getPaychecksThrough(source, now, until)) {
-      const { date } = paycheck;
-      const payDate = formatPayDate(date);
-      const matched = assignments.filter(
-        (a) => a.payDate === payDate && a.employerId === source.id
-      );
-      const assignedIds = new Set(matched.map((a) => a.expenseId));
-      const items: PaycheckExpense[] = matched.map((a) => {
-        const expense = expensesById.get(a.expenseId);
-        return {
-          expenseId: a.expenseId,
-          payee: expense?.payee ?? "Unknown",
-          amount: a.amount ?? expense?.amount ?? 0,
-          assignmentId: a.id,
-          link: expense?.link,
-          paid: a.paid,
-        };
-      });
-      for (const expense of expenses) {
-        if (
-          !assignedIds.has(expense.id) &&
-          isExpenseLinkedToPaycheck(expense, source.id, paycheck, source)
-        ) {
-          items.push({
-            expenseId: expense.id,
-            payee: expense.payee,
-            amount: expense.amount,
-            assignmentId: "",
-            link: expense.link,
-          });
-        }
-      }
-      const totalExpenses = items.reduce((sum, e) => sum + e.amount, 0);
-      const payAmount = getPayAmount(source, payDate, overrides);
-
-      allPaychecks.push({
-        key: `${source.id}-${payDate}`,
-        date,
-        payDate,
-        sourceName: source.name,
-        sourceId: source.id,
-        payAmount,
-        expenses: items,
-        paidCount: items.filter((e) => e.paid).length,
-        totalExpenses,
-        remaining: payAmount - totalExpenses,
-      });
-    }
-  }
+  const allPaychecks = incomeSources.flatMap((source) =>
+    getPaychecksThrough(source, now, until).map((paycheck) =>
+      buildPaycheckItem(source, paycheck, expenses, assignments, overrides)
+    )
+  );
 
   allPaychecks.sort((a, b) => a.date.getTime() - b.date.getTime());
 

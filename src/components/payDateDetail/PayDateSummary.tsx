@@ -16,7 +16,10 @@ interface Props {
   payAmount: number;
   totalAssigned: number;
   remaining: number;
+  /** Whether at least one unpaid bill could be moved off this paycheck */
+  canMoveBill: boolean;
   onEditPayAmount: () => void;
+  onMoveBill: () => void;
 }
 
 export function PayDateSummary({
@@ -25,7 +28,9 @@ export function PayDateSummary({
   payAmount,
   totalAssigned,
   remaining,
+  canMoveBill,
   onEditPayAmount,
+  onMoveBill,
 }: Props) {
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
@@ -55,6 +60,21 @@ export function PayDateSummary({
         </AppText>
         <Ionicons name="create-outline" size={14} color={colors.textMuted} />
       </Pressable>
+      {remaining < 0 && canMoveBill ? (
+        <Pressable
+          style={styles.shortRow}
+          onPress={onMoveBill}
+          hitSlop={MEASUREMENTS.hitSlop}
+          accessibilityRole="button"
+          accessibilityLabel={t("paychecks.moveBill")}
+        >
+          <Ionicons name="alert-circle" size={16} color={colors.destructive} />
+          <AppText variant="meta" color="destructive">
+            {t("paychecks.shortBy", { amount: formatMoney(-remaining) })}
+          </AppText>
+          <AppText variant="bodyStrong" color="primaryText">{t("paychecks.moveBill")}</AppText>
+        </Pressable>
+      ) : null}
     </View>
   );
 }
@@ -76,5 +96,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: MEASUREMENTS.spacing.sm + 2,
+  },
+  shortRow: {
+    alignSelf: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: MEASUREMENTS.spacing.md,
+    marginTop: MEASUREMENTS.spacing.base,
   },
 });

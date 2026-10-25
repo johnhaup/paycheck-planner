@@ -1,0 +1,238 @@
+{
+  "common": {
+    "cancel": "ยกเลิก",
+    "delete": "ลบ",
+    "done": "เสร็จสิ้น",
+    "save": "บันทึก",
+    "add": "เพิ่ม",
+    "update": "อัปเดต",
+    "back": "กลับ",
+    "error": "ข้อผิดพลาด",
+    "none": "ไม่มี",
+    "unknown": "ไม่ทราบ",
+    "removed": "ลบแล้ว",
+    "systemDefault": "ค่าเริ่มต้นของระบบ",
+    "selectDate": "เลือกวันที่",
+    "selectTime": "เลือกเวลา",
+    "and": "และ",
+    "move": "ย้าย"
+  },
+  "ordinal": {
+    "other": "ที่ %{n}"
+  },
+  "tabs": {
+    "paychecks": "เงินเดือน",
+    "income": "รายรับ",
+    "expenses": "รายจ่าย"
+  },
+  "screens": {
+    "settings": "การตั้งค่า",
+    "incomeSource": "แหล่งรายรับ",
+    "expense": "รายจ่าย",
+    "payDate": "วันจ่ายเงิน",
+    "language": "ภาษา",
+    "currency": "สกุลเงิน"
+  },
+  "paychecks": {
+    "today": "วันนี้",
+    "goToThisMonth": "ไปที่เดือนนี้",
+    "leftAfterBills": "%{month} · เหลือหลังจ่ายบิล",
+    "heroMeta": "รายรับ %{income} · จัดสรรแล้ว %{assigned}",
+    "monthPaychecks": "เงินเดือนประจำ%{month}",
+    "emptyTitle": "ยังไม่มีแหล่งรายรับ",
+    "emptyBody": "เพิ่มแหล่งรายรับแรกของคุณเพื่อดูว่าเงินเดือนแต่ละงวดถูกใช้ไปกับอะไร",
+    "noBillsYet": "ยังไม่มีบิล · แตะเพื่อจัดสรร",
+    "paidProgress": "จ่ายแล้ว %{paid} จาก %{total}",
+    "amountLeft": "เหลือ %{amount}",
+    "chartBarLabel": "%{month} เหลือ %{amount}",
+    "opensPaycheck": "เปิดเงินเดือนงวดนี้",
+    "markPaid": "ทำเครื่องหมายว่าจ่าย %{payee} แล้ว",
+    "changeAmount": "เปลี่ยนจำนวนเงิน %{payee} สำหรับเงินเดือนงวดนี้",
+    "changePayAmount": "เปลี่ยนจำนวนเงินเดือน %{source} สำหรับงวดนี้",
+    "emptyAction": "เพิ่มแหล่งรายรับ",
+    "chartBarCurrentLabel": "%{month} (เดือนนี้) เหลือ %{amount}",
+    "shortBy": "ขาดอีก %{amount}",
+    "moveBill": "ย้ายบิล"
+  },
+  "income": {
+    "emptyTitle": "ยังไม่มีรายรับ",
+    "emptyBody": "เพิ่มเงินเดือนของคุณเพื่อเริ่มวางแผน",
+    "perMonth": "ต่อเดือน",
+    "nextPayday": "วันจ่ายเงินถัดไป",
+    "sources": "แหล่งรายรับ",
+    "swipeHint": "ปัดแหล่งรายรับไปทางซ้ายเพื่อลบ",
+    "addSource": "เพิ่มแหล่งรายรับ",
+    "perCheck": "ต่องวด",
+    "deleteTitle": "ลบแหล่งรายรับ",
+    "deleteMessage": "ลบ \"%{name}\" และการจัดสรรรายจ่ายทั้งหมดหรือไม่",
+    "frequency": {
+      "weekly": "รายสัปดาห์",
+      "biweekly": "ทุก 2 สัปดาห์",
+      "semiMonthly": "เดือนละ 2 ครั้ง",
+      "monthly": "รายเดือน"
+    },
+    "schedule": {
+      "weekly": "รายสัปดาห์ · ทุก%{weekday}",
+      "biweekly": "ทุก 2 สัปดาห์ · %{weekday}",
+      "semiMonthly": "เดือนละ 2 ครั้ง · วันที่ %{firstDate} และ %{secondDate}",
+      "monthly": "รายเดือน · วันที่ %{date}"
+    },
+    "form": {
+      "name": "ชื่อ",
+      "namePlaceholder": "เช่น Acme Corp",
+      "payAmount": "จำนวนเงินเดือน (ต่องวด)",
+      "payAmountPlaceholder": "เช่น 2500.00",
+      "payFrequency": "ความถี่การจ่าย",
+      "payDays": "วันที่จ่ายของเดือน",
+      "payDaysHint": "ใช้ 31 สำหรับวันสุดท้ายของเดือน (ปรับอัตโนมัติสำหรับเดือนที่สั้นกว่า)",
+      "adjustToWorkday": "ปรับเป็นวันทำงาน",
+      "adjustHint": "หากวันจ่ายเงินตรงกับวันหยุดสุดสัปดาห์ จะเลื่อนไปวันศุกร์ก่อนหน้า",
+      "firstPayDate": "วันจ่ายเงินครั้งแรก",
+      "addButton": "เพิ่มแหล่งรายรับ",
+      "updateButton": "อัปเดตแหล่งรายรับ",
+      "nameRequired": "กรุณาใส่ชื่อ",
+      "invalidAmount": "กรุณาใส่จำนวนเงินเดือนที่ถูกต้อง",
+      "payDaysRange": "วันที่จ่ายต้องอยู่ระหว่าง 1 ถึง 31"
+    }
+  },
+  "expenses": {
+    "emptyTitle": "ยังไม่มีรายจ่าย",
+    "emptyBody": "เพิ่มบิลของคุณ แล้วจัดสรรให้กับเงินเดือนแต่ละงวด",
+    "nothingHere": "ยังไม่มีอะไรที่นี่",
+    "monthlySummary": {
+      "other": "%{amount} ต่อเดือน จาก %{count} บิล"
+    },
+    "filters": {
+      "all": "ทั้งหมด",
+      "recurring": "ประจำ",
+      "oneTime": "ครั้งเดียว"
+    },
+    "addExpense": "เพิ่มรายจ่าย",
+    "openLink": "เปิดลิงก์ชำระเงินของ %{payee}",
+    "deleteTitle": "ลบรายจ่าย",
+    "deleteMessage": "ลบ \"%{payee}\" และการจัดสรรทั้งหมดหรือไม่",
+    "sections": {
+      "notLinked": "ไม่ได้เชื่อมโยง",
+      "oneTime": "ครั้งเดียว"
+    },
+    "perMonthTotal": "%{amount}/เดือน",
+    "meta": {
+      "everyPaycheck": "ทุกงวดเงินเดือน",
+      "slotEachMonth": "%{slot} ของทุกเดือน",
+      "assignPerPaycheck": "จัดสรรแยกตามงวด",
+      "due": "ครบกำหนด %{date}",
+      "oneTime": "ครั้งเดียว"
+    },
+    "cadence": {
+      "perCheck": "ต่องวด",
+      "monthly": "รายเดือน",
+      "recurring": "ประจำ",
+      "oneTime": "ครั้งเดียว"
+    },
+    "slot": {
+      "last": "เงินเดือนงวดสุดท้าย",
+      "lastShort": "งวดสุดท้าย",
+      "ordinalPaycheck": "เงินเดือนงวด%{ordinal}",
+      "dayOfMonth": "วันที่ %{date}"
+    },
+    "form": {
+      "payee": "ผู้รับเงิน",
+      "payeePlaceholder": "เช่น การไฟฟ้า",
+      "amount": "จำนวนเงิน",
+      "amountPlaceholder": "เช่น 150.00",
+      "link": "ลิงก์ชำระเงิน (ไม่บังคับ)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "เงินเดือน",
+      "moveHint": "ย้ายรายจ่ายนี้ไปยังเงินเดือนงวดอื่น",
+      "linkedSource": "แหล่งรายรับที่เชื่อมโยง",
+      "linkedHint": "เมื่อเชื่อมโยงแล้ว รายจ่ายนี้จะถูกใส่ไว้ล่วงหน้าในเงินเดือนจากแหล่งนั้น",
+      "howOften": "ความถี่",
+      "everyPaycheck": "ทุกงวดเงินเดือน",
+      "monthly": "รายเดือน",
+      "whichPaycheck": "เงินเดือนงวดไหน",
+      "slotHintLast": "จะอยู่ในเงินเดือนงวดสุดท้ายของแต่ละเดือน รวมถึงเดือนที่มีงวดพิเศษด้วย",
+      "slotHintOrdinal": "งวดพิเศษในเดือนที่ยาวกว่าจะถูกข้าม เลือก \"งวดสุดท้าย\" เพื่อใช้งวดสุดท้ายเสมอ",
+      "addButton": "เพิ่มรายจ่าย",
+      "updateButton": "อัปเดตรายจ่าย",
+      "payeeRequired": "กรุณาใส่ชื่อผู้รับเงิน",
+      "invalidAmount": "กรุณาใส่จำนวนเงินที่ถูกต้อง"
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "เงินเดือนงวดนี้",
+    "available": "ใช้ได้",
+    "emptyAssigned": "ยังไม่ได้จัดสรรอะไร เพิ่มบิลจากรายการด้านล่าง",
+    "leftAfterBills": "เหลือหลังจ่ายบิล",
+    "summaryMeta": "เงินเดือน %{pay} · จัดสรรแล้ว %{assigned}",
+    "linked": "เชื่อมโยงแล้ว",
+    "remove": "นำ %{payee} ออก",
+    "add": "เพิ่ม %{payee}",
+    "oneTime": {
+      "addButton": "เพิ่มรายจ่ายครั้งเดียว",
+      "title": "รายจ่ายครั้งเดียว",
+      "payee": "ผู้รับเงิน",
+      "amount": "จำนวนเงิน"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "เฉพาะเงินเดือนงวด %{date}",
+    "hint": "ค่าเริ่มต้นคือ %{amount} งวดอื่นจะยังใช้ค่าเริ่มต้น",
+    "useDefault": "ใช้จำนวนเงินเริ่มต้น"
+  },
+  "settings": {
+    "appearance": "ธีม",
+    "light": "สว่าง",
+    "dark": "มืด",
+    "system": "ระบบ",
+    "hideCents": "ซ่อนเศษสตางค์",
+    "hideCentsHint": "แสดงจำนวนเงินปัดเป็นจำนวนเต็ม",
+    "behavior": "การทำงาน",
+    "autoMarkPaid": "ทำเครื่องหมายว่าจ่ายแล้วเมื่อแตะลิงก์",
+    "autoMarkPaidHint": "การแตะลิงก์ชำระเงินจะทำเครื่องหมายบิลนั้นว่าจ่ายแล้วด้วย",
+    "region": "ภาษาและสกุลเงิน",
+    "language": "ภาษา",
+    "currency": "สกุลเงิน",
+    "notifications": "การแจ้งเตือน",
+    "paydayReminder": "แจ้งเตือนวันจ่ายเงิน",
+    "paydayReminderHint": "รับสรุปบิลและยอดคงเหลือของเงินเดือนแต่ละงวดก่อนถึงวันจ่าย",
+    "remindWhen": "เตือนฉัน",
+    "remindTime": "เวลา",
+    "offsets": {
+      "dayOf": "วันจ่ายเงิน",
+      "dayBefore": "1 วันก่อน",
+      "daysBefore": "%{count} วันก่อน",
+      "weekBefore": "1 สัปดาห์ก่อน"
+    },
+    "permissionDeniedTitle": "การแจ้งเตือนปิดอยู่",
+    "permissionDeniedBody": "อนุญาตการแจ้งเตือนสำหรับ Paycheck Planner ในการตั้งค่าอุปกรณ์เพื่อรับการแจ้งเตือนวันจ่ายเงิน"
+  },
+  "notifications": {
+    "channelName": "การแจ้งเตือนวันจ่ายเงิน",
+    "titleToday": "วันนี้เงินเดือนออก: %{source}",
+    "titleTomorrow": "พรุ่งนี้เงินเดือนออก: %{source}",
+    "titleOnDay": "เงินเดือนออก%{weekday}: %{source}",
+    "body": "รายรับ %{income} · %{bills} · เหลือ %{left}",
+    "bodyNoBills": "รายรับ %{income} · ยังไม่ได้จัดสรรบิล",
+    "bills": {
+      "other": "%{count} บิล (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "เปิดลิงก์ไม่ได้"
+  },
+  "payAmountSheet": {
+    "subtitle": "เฉพาะเงินเดือนงวด %{date}",
+    "hint": "เงินเดือนปกติคือ %{amount} งวดอื่นจะไม่เปลี่ยน",
+    "useDefault": "ใช้จำนวนเงินปกติ",
+    "invalidAmount": "กรุณาใส่จำนวนเงินเดือนที่ถูกต้อง"
+  },
+  "moveBillSheet": {
+    "title": "ย้ายบิล",
+    "subtitle": "ขาดอีก %{amount} ในงวด %{date}",
+    "bill": "บิล",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "ไปยังเงินเดือนงวด",
+    "noBills": "ไม่มีบิลที่ยังไม่จ่ายให้ย้าย",
+    "noPaychecks": "ไม่มีเงินเดือนงวดอื่นที่กำลังจะถึง"
+  }
+}

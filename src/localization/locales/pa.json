@@ -1,0 +1,240 @@
+{
+  "common": {
+    "cancel": "ਰੱਦ ਕਰੋ",
+    "delete": "ਮਿਟਾਓ",
+    "done": "ਹੋ ਗਿਆ",
+    "save": "ਸੇਵ ਕਰੋ",
+    "add": "ਸ਼ਾਮਲ ਕਰੋ",
+    "update": "ਅੱਪਡੇਟ ਕਰੋ",
+    "back": "ਪਿੱਛੇ",
+    "error": "ਗਲਤੀ",
+    "none": "ਕੋਈ ਨਹੀਂ",
+    "unknown": "ਅਣਜਾਣ",
+    "removed": "ਹਟਾਇਆ ਗਿਆ",
+    "systemDefault": "ਸਿਸਟਮ ਡਿਫ਼ੌਲਟ",
+    "selectDate": "ਤਾਰੀਖ਼ ਚੁਣੋ",
+    "selectTime": "ਸਮਾਂ ਚੁਣੋ",
+    "and": "ਅਤੇ",
+    "move": "ਮੂਵ ਕਰੋ"
+  },
+  "ordinal": {
+    "other": "%{n}ਵੀਂ"
+  },
+  "tabs": {
+    "paychecks": "ਤਨਖ਼ਾਹਾਂ",
+    "income": "ਆਮਦਨ",
+    "expenses": "ਖਰਚੇ"
+  },
+  "screens": {
+    "settings": "ਸੈਟਿੰਗਾਂ",
+    "incomeSource": "ਆਮਦਨ ਦਾ ਸਰੋਤ",
+    "expense": "ਖਰਚਾ",
+    "payDate": "ਤਨਖ਼ਾਹ ਦੀ ਤਾਰੀਖ਼",
+    "language": "ਭਾਸ਼ਾ",
+    "currency": "ਮੁਦਰਾ"
+  },
+  "paychecks": {
+    "today": "ਅੱਜ",
+    "goToThisMonth": "ਇਸ ਮਹੀਨੇ 'ਤੇ ਜਾਓ",
+    "leftAfterBills": "%{month} · ਬਿੱਲਾਂ ਤੋਂ ਬਾਅਦ ਬਾਕੀ",
+    "heroMeta": "%{income} ਆਏ · %{assigned} ਅਸਾਈਨ",
+    "monthPaychecks": "%{month} ਦੀਆਂ ਤਨਖ਼ਾਹਾਂ",
+    "emptyTitle": "ਹਾਲੇ ਕੋਈ ਆਮਦਨ ਸਰੋਤ ਨਹੀਂ",
+    "emptyBody": "ਹਰ ਤਨਖ਼ਾਹ ਕਿੱਥੇ ਜਾਂਦੀ ਹੈ, ਇਹ ਦੇਖਣ ਲਈ ਆਪਣਾ ਪਹਿਲਾ ਆਮਦਨ ਸਰੋਤ ਸ਼ਾਮਲ ਕਰੋ।",
+    "noBillsYet": "ਹਾਲੇ ਕੋਈ ਬਿੱਲ ਨਹੀਂ · ਅਸਾਈਨ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ",
+    "paidProgress": "%{total} ਵਿੱਚੋਂ %{paid} ਭਰੇ",
+    "amountLeft": "%{amount} ਬਾਕੀ",
+    "chartBarLabel": "%{month}, %{amount} ਬਾਕੀ",
+    "opensPaycheck": "ਇਹ ਤਨਖ਼ਾਹ ਖੋਲ੍ਹਦਾ ਹੈ",
+    "markPaid": "%{payee} ਨੂੰ ਭਰਿਆ ਮਾਰਕ ਕਰੋ",
+    "changeAmount": "ਇਸ ਤਨਖ਼ਾਹ ਲਈ %{payee} ਦੀ ਰਕਮ ਬਦਲੋ",
+    "changePayAmount": "ਇਸ ਵਾਰ ਲਈ %{source} ਦੀ ਤਨਖ਼ਾਹ ਰਕਮ ਬਦਲੋ",
+    "emptyAction": "ਆਮਦਨ ਸਰੋਤ ਸ਼ਾਮਲ ਕਰੋ",
+    "chartBarCurrentLabel": "%{month} (ਇਹ ਮਹੀਨਾ), %{amount} ਬਾਕੀ",
+    "shortBy": "%{amount} ਘੱਟ",
+    "moveBill": "ਬਿੱਲ ਮੂਵ ਕਰੋ"
+  },
+  "income": {
+    "emptyTitle": "ਹਾਲੇ ਕੋਈ ਆਮਦਨ ਨਹੀਂ",
+    "emptyBody": "ਪਲੈਨਿੰਗ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਆਪਣੀਆਂ ਤਨਖ਼ਾਹਾਂ ਸ਼ਾਮਲ ਕਰੋ।",
+    "perMonth": "ਹਰ ਮਹੀਨੇ",
+    "nextPayday": "ਅਗਲੀ ਤਨਖ਼ਾਹ",
+    "sources": "ਸਰੋਤ",
+    "swipeHint": "ਕਿਸੇ ਸਰੋਤ ਨੂੰ ਮਿਟਾਉਣ ਲਈ ਉਸ 'ਤੇ ਖੱਬੇ ਸਵਾਈਪ ਕਰੋ।",
+    "addSource": "ਆਮਦਨ ਸਰੋਤ ਸ਼ਾਮਲ ਕਰੋ",
+    "perCheck": "ਪ੍ਰਤੀ ਤਨਖ਼ਾਹ",
+    "deleteTitle": "ਆਮਦਨ ਸਰੋਤ ਮਿਟਾਓ",
+    "deleteMessage": "\"%{name}\" ਅਤੇ ਇਸ ਦੇ ਸਾਰੇ ਖਰਚ ਅਸਾਈਨਮੈਂਟ ਮਿਟਾਉਣੇ ਹਨ?",
+    "frequency": {
+      "weekly": "ਹਫ਼ਤਾਵਾਰ",
+      "biweekly": "ਹਰ ਦੋ ਹਫ਼ਤੇ",
+      "semiMonthly": "ਮਹੀਨੇ ਵਿੱਚ ਦੋ ਵਾਰ",
+      "monthly": "ਮਹੀਨਾਵਾਰ"
+    },
+    "schedule": {
+      "weekly": "ਹਫ਼ਤਾਵਾਰ · ਹਰ %{weekday}",
+      "biweekly": "ਹਰ ਦੋ ਹਫ਼ਤੇ · %{weekday} ਨੂੰ",
+      "semiMonthly": "ਮਹੀਨੇ ਵਿੱਚ ਦੋ ਵਾਰ · %{firstDate} ਅਤੇ %{secondDate} ਤਾਰੀਖ",
+      "monthly": "ਮਹੀਨਾਵਾਰ · %{date} ਤਾਰੀਖ"
+    },
+    "form": {
+      "name": "ਨਾਮ",
+      "namePlaceholder": "ਜਿਵੇਂ Acme Corp",
+      "payAmount": "ਤਨਖ਼ਾਹ ਰਕਮ (ਪ੍ਰਤੀ ਤਨਖ਼ਾਹ)",
+      "payAmountPlaceholder": "ਜਿਵੇਂ 2500.00",
+      "payFrequency": "ਤਨਖ਼ਾਹ ਕਿੰਨੀ ਵਾਰ",
+      "payDays": "ਮਹੀਨੇ ਦੀਆਂ ਤਨਖ਼ਾਹ ਤਾਰੀਖ਼ਾਂ",
+      "payDaysHint": "ਮਹੀਨੇ ਦੇ ਆਖਰੀ ਦਿਨ ਲਈ 31 ਵਰਤੋ (ਛੋਟੇ ਮਹੀਨਿਆਂ ਵਿੱਚ ਆਪਣੇ ਆਪ ਅਡਜਸਟ ਹੁੰਦਾ ਹੈ)",
+      "adjustToWorkday": "ਕੰਮ ਵਾਲੇ ਦਿਨ 'ਤੇ ਅਡਜਸਟ ਕਰੋ",
+      "adjustHint": "ਜੇ ਤਨਖ਼ਾਹ ਦੀ ਤਾਰੀਖ਼ ਵੀਕਐਂਡ 'ਤੇ ਆਵੇ, ਤਾਂ ਇਹ ਪਿਛਲੇ ਸ਼ੁੱਕਰਵਾਰ 'ਤੇ ਚਲੀ ਜਾਂਦੀ ਹੈ।",
+      "firstPayDate": "ਪਹਿਲੀ ਤਨਖ਼ਾਹ ਦੀ ਤਾਰੀਖ਼",
+      "addButton": "ਆਮਦਨ ਸਰੋਤ ਸ਼ਾਮਲ ਕਰੋ",
+      "updateButton": "ਆਮਦਨ ਸਰੋਤ ਅੱਪਡੇਟ ਕਰੋ",
+      "nameRequired": "ਨਾਮ ਜ਼ਰੂਰੀ ਹੈ।",
+      "invalidAmount": "ਸਹੀ ਤਨਖ਼ਾਹ ਰਕਮ ਭਰੋ।",
+      "payDaysRange": "ਤਨਖ਼ਾਹ ਤਾਰੀਖ਼ਾਂ 1 ਤੋਂ 31 ਵਿਚਕਾਰ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
+    }
+  },
+  "expenses": {
+    "emptyTitle": "ਹਾਲੇ ਕੋਈ ਖਰਚਾ ਨਹੀਂ",
+    "emptyBody": "ਆਪਣੇ ਬਿੱਲ ਸ਼ਾਮਲ ਕਰੋ, ਫਿਰ ਉਨ੍ਹਾਂ ਨੂੰ ਤਨਖ਼ਾਹਾਂ 'ਤੇ ਅਸਾਈਨ ਕਰੋ।",
+    "nothingHere": "ਇੱਥੇ ਹਾਲੇ ਕੁਝ ਨਹੀਂ।",
+    "monthlySummary": {
+      "one": "%{count} ਬਿੱਲ ਵਿੱਚ ਹਰ ਮਹੀਨੇ %{amount}",
+      "other": "%{count} ਬਿੱਲਾਂ ਵਿੱਚ ਹਰ ਮਹੀਨੇ %{amount}"
+    },
+    "filters": {
+      "all": "ਸਾਰੇ",
+      "recurring": "ਵਾਰ-ਵਾਰ",
+      "oneTime": "ਇੱਕ ਵਾਰ"
+    },
+    "addExpense": "ਖਰਚਾ ਸ਼ਾਮਲ ਕਰੋ",
+    "openLink": "%{payee} ਦਾ ਪੇਮੈਂਟ ਲਿੰਕ ਖੋਲ੍ਹੋ",
+    "deleteTitle": "ਖਰਚਾ ਮਿਟਾਓ",
+    "deleteMessage": "\"%{payee}\" ਅਤੇ ਇਸ ਦੇ ਸਾਰੇ ਅਸਾਈਨਮੈਂਟ ਮਿਟਾਉਣੇ ਹਨ?",
+    "sections": {
+      "notLinked": "ਲਿੰਕ ਨਹੀਂ",
+      "oneTime": "ਇੱਕ ਵਾਰ"
+    },
+    "perMonthTotal": "%{amount}/ਮਹੀਨਾ",
+    "meta": {
+      "everyPaycheck": "ਹਰ ਤਨਖ਼ਾਹ",
+      "slotEachMonth": "ਹਰ ਮਹੀਨੇ %{slot}",
+      "assignPerPaycheck": "ਹਰ ਤਨਖ਼ਾਹ 'ਤੇ ਅਸਾਈਨ ਕਰੋ",
+      "due": "%{date} ਤੱਕ",
+      "oneTime": "ਇੱਕ ਵਾਰ"
+    },
+    "cadence": {
+      "perCheck": "ਪ੍ਰਤੀ ਤਨਖ਼ਾਹ",
+      "monthly": "ਮਹੀਨਾਵਾਰ",
+      "recurring": "ਵਾਰ-ਵਾਰ",
+      "oneTime": "ਇੱਕ ਵਾਰ"
+    },
+    "slot": {
+      "last": "ਆਖਰੀ ਤਨਖ਼ਾਹ",
+      "lastShort": "ਆਖਰੀ",
+      "ordinalPaycheck": "%{ordinal} ਤਨਖ਼ਾਹ",
+      "dayOfMonth": "%{date} ਤਾਰੀਖ"
+    },
+    "form": {
+      "payee": "ਪ੍ਰਾਪਤਕਰਤਾ",
+      "payeePlaceholder": "ਜਿਵੇਂ ਬਿਜਲੀ ਕੰਪਨੀ",
+      "amount": "ਰਕਮ",
+      "amountPlaceholder": "ਜਿਵੇਂ 150.00",
+      "link": "ਪੇਮੈਂਟ ਲਿੰਕ (ਵਿਕਲਪਿਕ)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "ਤਨਖ਼ਾਹ",
+      "moveHint": "ਇਸ ਖਰਚੇ ਨੂੰ ਕਿਸੇ ਹੋਰ ਤਨਖ਼ਾਹ 'ਤੇ ਮੂਵ ਕਰੋ।",
+      "linkedSource": "ਲਿੰਕ ਕੀਤਾ ਆਮਦਨ ਸਰੋਤ",
+      "linkedHint": "ਲਿੰਕ ਹੋਣ 'ਤੇ ਇਹ ਖਰਚਾ ਉਸ ਸਰੋਤ ਦੀਆਂ ਤਨਖ਼ਾਹਾਂ 'ਤੇ ਪਹਿਲਾਂ ਹੀ ਲੱਗਿਆ ਰਹਿੰਦਾ ਹੈ।",
+      "howOften": "ਕਿੰਨੀ ਵਾਰ",
+      "everyPaycheck": "ਹਰ ਤਨਖ਼ਾਹ",
+      "monthly": "ਮਹੀਨਾਵਾਰ",
+      "whichPaycheck": "ਕਿਹੜੀ ਤਨਖ਼ਾਹ",
+      "slotHintLast": "ਹਰ ਮਹੀਨੇ ਦੀ ਆਖਰੀ ਤਨਖ਼ਾਹ 'ਤੇ ਲੱਗਦਾ ਹੈ, ਉਨ੍ਹਾਂ ਮਹੀਨਿਆਂ ਵਿੱਚ ਵੀ ਜਿਨ੍ਹਾਂ ਵਿੱਚ ਇੱਕ ਵਾਧੂ ਹੋਵੇ।",
+      "slotHintOrdinal": "ਲੰਬੇ ਮਹੀਨਿਆਂ ਦੀਆਂ ਵਾਧੂ ਤਨਖ਼ਾਹਾਂ ਛੱਡ ਦਿੱਤੀਆਂ ਜਾਂਦੀਆਂ ਹਨ। ਹਮੇਸ਼ਾ ਆਖਰੀ ਵਰਤਣ ਲਈ 'ਆਖਰੀ' ਚੁਣੋ।",
+      "addButton": "ਖਰਚਾ ਸ਼ਾਮਲ ਕਰੋ",
+      "updateButton": "ਖਰਚਾ ਅੱਪਡੇਟ ਕਰੋ",
+      "payeeRequired": "ਪ੍ਰਾਪਤਕਰਤਾ ਦਾ ਨਾਮ ਜ਼ਰੂਰੀ ਹੈ।",
+      "invalidAmount": "ਸਹੀ ਰਕਮ ਭਰੋ।"
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "ਇਹ ਤਨਖ਼ਾਹ",
+    "available": "ਉਪਲਬਧ",
+    "emptyAssigned": "ਹਾਲੇ ਕੁਝ ਅਸਾਈਨ ਨਹੀਂ। ਹੇਠਾਂ ਦੀ ਸੂਚੀ ਤੋਂ ਬਿੱਲ ਸ਼ਾਮਲ ਕਰੋ।",
+    "leftAfterBills": "ਬਿੱਲਾਂ ਤੋਂ ਬਾਅਦ ਬਾਕੀ",
+    "summaryMeta": "%{pay} ਤਨਖ਼ਾਹ · %{assigned} ਅਸਾਈਨ",
+    "linked": "ਲਿੰਕ ਕੀਤਾ",
+    "remove": "%{payee} ਹਟਾਓ",
+    "add": "%{payee} ਸ਼ਾਮਲ ਕਰੋ",
+    "oneTime": {
+      "addButton": "ਇੱਕ ਵਾਰ ਦਾ ਖਰਚਾ ਸ਼ਾਮਲ ਕਰੋ",
+      "title": "ਇੱਕ ਵਾਰ ਦਾ ਖਰਚਾ",
+      "payee": "ਪ੍ਰਾਪਤਕਰਤਾ",
+      "amount": "ਰਕਮ"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "ਸਿਰਫ਼ %{date} ਦੀ ਤਨਖ਼ਾਹ",
+    "hint": "ਡਿਫ਼ੌਲਟ %{amount} ਹੈ। ਬਾਕੀ ਤਨਖ਼ਾਹਾਂ 'ਤੇ ਡਿਫ਼ੌਲਟ ਹੀ ਰਹੇਗਾ।",
+    "useDefault": "ਡਿਫ਼ੌਲਟ ਰਕਮ ਵਰਤੋ"
+  },
+  "settings": {
+    "appearance": "ਦਿੱਖ",
+    "light": "ਲਾਈਟ",
+    "dark": "ਡਾਰਕ",
+    "system": "ਸਿਸਟਮ",
+    "hideCents": "ਪੈਸੇ ਲੁਕਾਓ",
+    "hideCentsHint": "ਰਕਮਾਂ ਨੂੰ ਨੇੜਲੇ ਪੂਰੇ ਅੰਕ ਤੱਕ ਰਾਊਂਡ ਕਰਕੇ ਦਿਖਾਓ।",
+    "behavior": "ਵਿਹਾਰ",
+    "autoMarkPaid": "ਲਿੰਕ ਟੈਪ 'ਤੇ ਆਪਣੇ ਆਪ ਭਰਿਆ ਮਾਰਕ ਕਰੋ",
+    "autoMarkPaidHint": "ਪੇਮੈਂਟ ਲਿੰਕ ਟੈਪ ਕਰਨ 'ਤੇ ਉਹ ਬਿੱਲ ਭਰਿਆ ਵੀ ਮਾਰਕ ਹੋ ਜਾਂਦਾ ਹੈ।",
+    "region": "ਭਾਸ਼ਾ ਅਤੇ ਮੁਦਰਾ",
+    "language": "ਭਾਸ਼ਾ",
+    "currency": "ਮੁਦਰਾ",
+    "notifications": "ਸੂਚਨਾਵਾਂ",
+    "paydayReminder": "ਤਨਖ਼ਾਹ ਰਿਮਾਈਂਡਰ",
+    "paydayReminderHint": "ਹਰ ਤਨਖ਼ਾਹ ਆਉਣ ਤੋਂ ਪਹਿਲਾਂ ਉਸ ਦੇ ਬਿੱਲਾਂ ਅਤੇ ਬਾਕੀ ਰਕਮ ਦਾ ਸਾਰ ਪਾਓ।",
+    "remindWhen": "ਕਦੋਂ ਯਾਦ ਕਰਾਉਣਾ",
+    "remindTime": "ਸਮਾਂ",
+    "offsets": {
+      "dayOf": "ਉਸੇ ਦਿਨ",
+      "dayBefore": "ਇੱਕ ਦਿਨ ਪਹਿਲਾਂ",
+      "daysBefore": "%{count} ਦਿਨ ਪਹਿਲਾਂ",
+      "weekBefore": "ਇੱਕ ਹਫ਼ਤਾ ਪਹਿਲਾਂ"
+    },
+    "permissionDeniedTitle": "ਸੂਚਨਾਵਾਂ ਬੰਦ ਹਨ",
+    "permissionDeniedBody": "ਤਨਖ਼ਾਹ ਰਿਮਾਈਂਡਰ ਪਾਉਣ ਲਈ ਡਿਵਾਈਸ ਸੈਟਿੰਗਾਂ ਵਿੱਚ Paycheck Planner ਲਈ ਸੂਚਨਾਵਾਂ ਚਾਲੂ ਕਰੋ।"
+  },
+  "notifications": {
+    "channelName": "ਤਨਖ਼ਾਹ ਰਿਮਾਈਂਡਰ",
+    "titleToday": "ਅੱਜ ਤਨਖ਼ਾਹ: %{source}",
+    "titleTomorrow": "ਕੱਲ੍ਹ ਤਨਖ਼ਾਹ: %{source}",
+    "titleOnDay": "%{weekday} ਨੂੰ ਤਨਖ਼ਾਹ: %{source}",
+    "body": "%{income} ਆਏ · %{bills} · %{left} ਬਾਕੀ",
+    "bodyNoBills": "%{income} ਆਏ · ਹਾਲੇ ਕੋਈ ਬਿੱਲ ਅਸਾਈਨ ਨਹੀਂ",
+    "bills": {
+      "one": "%{count} ਬਿੱਲ (%{amount})",
+      "other": "%{count} ਬਿੱਲ (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "ਲਿੰਕ ਨਹੀਂ ਖੁੱਲ੍ਹ ਸਕਿਆ"
+  },
+  "payAmountSheet": {
+    "subtitle": "ਸਿਰਫ਼ %{date} ਦੀ ਤਨਖ਼ਾਹ",
+    "hint": "ਆਮ ਤਨਖ਼ਾਹ %{amount} ਹੈ। ਬਾਕੀ ਤਨਖ਼ਾਹਾਂ 'ਤੇ ਉਹੀ ਰਹੇਗੀ।",
+    "useDefault": "ਆਮ ਰਕਮ ਵਰਤੋ",
+    "invalidAmount": "ਸਹੀ ਤਨਖ਼ਾਹ ਰਕਮ ਭਰੋ।"
+  },
+  "moveBillSheet": {
+    "title": "ਬਿੱਲ ਮੂਵ ਕਰੋ",
+    "subtitle": "%{date} ਨੂੰ %{amount} ਘੱਟ",
+    "bill": "ਬਿੱਲ",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "ਇਸ ਤਨਖ਼ਾਹ 'ਤੇ",
+    "noBills": "ਮੂਵ ਕਰਨ ਲਈ ਕੋਈ ਬਕਾਇਆ ਬਿੱਲ ਨਹੀਂ।",
+    "noPaychecks": "ਅੱਗੇ ਕੋਈ ਹੋਰ ਤਨਖ਼ਾਹ ਨਹੀਂ।"
+  }
+}

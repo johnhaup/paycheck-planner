@@ -1,0 +1,240 @@
+{
+  "common": {
+    "cancel": "Annuller",
+    "delete": "Slet",
+    "done": "Færdig",
+    "save": "Gem",
+    "add": "Tilføj",
+    "update": "Opdater",
+    "back": "Tilbage",
+    "error": "Fejl",
+    "none": "Ingen",
+    "unknown": "Ukendt",
+    "removed": "Fjernet",
+    "systemDefault": "Systemstandard",
+    "selectDate": "Vælg dato",
+    "selectTime": "Vælg tidspunkt",
+    "and": "og",
+    "move": "Flyt"
+  },
+  "ordinal": {
+    "other": "%{n}."
+  },
+  "tabs": {
+    "paychecks": "Løn",
+    "income": "Indkomst",
+    "expenses": "Udgifter"
+  },
+  "screens": {
+    "settings": "Indstillinger",
+    "incomeSource": "Indkomstkilde",
+    "expense": "Udgift",
+    "payDate": "Lønningsdag",
+    "language": "Sprog",
+    "currency": "Valuta"
+  },
+  "paychecks": {
+    "today": "I dag",
+    "goToThisMonth": "Gå til denne måned",
+    "leftAfterBills": "%{month} · tilbage efter regninger",
+    "heroMeta": "%{income} ind · %{assigned} tildelt",
+    "monthPaychecks": "Lønudbetalinger i %{month}",
+    "emptyTitle": "Ingen indkomstkilder endnu",
+    "emptyBody": "Tilføj din første indkomstkilde for at se, hvor hver lønudbetaling går hen.",
+    "noBillsYet": "Ingen regninger endnu · tryk for at tildele",
+    "paidProgress": "%{paid} af %{total} betalt",
+    "amountLeft": "%{amount} tilbage",
+    "chartBarLabel": "%{month}, %{amount} tilbage",
+    "opensPaycheck": "Åbner denne lønudbetaling",
+    "markPaid": "Markér %{payee} som betalt",
+    "changeAmount": "Ændr beløb for %{payee} for denne lønudbetaling",
+    "changePayAmount": "Ændr lønbeløb for %{source} for denne lønudbetaling",
+    "emptyAction": "Tilføj indkomstkilde",
+    "chartBarCurrentLabel": "%{month} (denne måned), %{amount} tilbage",
+    "shortBy": "Mangler %{amount}",
+    "moveBill": "Flyt en regning"
+  },
+  "income": {
+    "emptyTitle": "Ingen indkomst endnu",
+    "emptyBody": "Tilføj din løn for at begynde at planlægge.",
+    "perMonth": "Pr. måned",
+    "nextPayday": "Næste lønningsdag",
+    "sources": "Kilder",
+    "swipeHint": "Swipe til venstre på en kilde for at slette den.",
+    "addSource": "Tilføj indkomstkilde",
+    "perCheck": "pr. udbetaling",
+    "deleteTitle": "Slet indkomstkilde",
+    "deleteMessage": "Slet \"%{name}\" og alle dens udgiftstildelinger?",
+    "frequency": {
+      "weekly": "Ugentligt",
+      "biweekly": "Hver 14. dag",
+      "semiMonthly": "To gange om måneden",
+      "monthly": "Månedligt"
+    },
+    "schedule": {
+      "weekly": "Ugentligt · hver %{weekday}",
+      "biweekly": "Hver 14. dag · %{weekday}",
+      "semiMonthly": "To gange om måneden · %{first} & %{second}",
+      "monthly": "Månedligt · %{day}"
+    },
+    "form": {
+      "name": "Navn",
+      "namePlaceholder": "f.eks. Acme A/S",
+      "payAmount": "Lønbeløb (pr. udbetaling)",
+      "payAmountPlaceholder": "f.eks. 2500.00",
+      "payFrequency": "Lønfrekvens",
+      "payDays": "Lønningsdage i måneden",
+      "payDaysHint": "Brug 31 for månedens sidste dag (justeres automatisk i kortere måneder)",
+      "adjustToWorkday": "Justér til hverdag",
+      "adjustHint": "Hvis en lønningsdag falder i en weekend, flyttes den til fredagen før.",
+      "firstPayDate": "Første lønningsdag",
+      "addButton": "Tilføj indkomstkilde",
+      "updateButton": "Opdater indkomstkilde",
+      "nameRequired": "Navn er påkrævet.",
+      "invalidAmount": "Indtast et gyldigt lønbeløb.",
+      "payDaysRange": "Lønningsdage skal være mellem 1 og 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Ingen udgifter endnu",
+    "emptyBody": "Tilføj dine regninger, og tildel dem derefter til lønudbetalinger.",
+    "nothingHere": "Her er intet endnu.",
+    "monthlySummary": {
+      "one": "%{amount} om måneden fordelt på %{count} regning",
+      "other": "%{amount} om måneden fordelt på %{count} regninger"
+    },
+    "filters": {
+      "all": "Alle",
+      "recurring": "Tilbagevendende",
+      "oneTime": "Engangs"
+    },
+    "addExpense": "Tilføj udgift",
+    "openLink": "Åbn betalingslink for %{payee}",
+    "deleteTitle": "Slet udgift",
+    "deleteMessage": "Slet \"%{payee}\" og alle dens tildelinger?",
+    "sections": {
+      "notLinked": "Ikke tilknyttet",
+      "oneTime": "Engangs"
+    },
+    "perMonthTotal": "%{amount}/md.",
+    "meta": {
+      "everyPaycheck": "Hver lønudbetaling",
+      "slotEachMonth": "%{slot} hver måned",
+      "assignPerPaycheck": "Tildel pr. lønudbetaling",
+      "due": "Forfalder %{date}",
+      "oneTime": "Engangs"
+    },
+    "cadence": {
+      "perCheck": "pr. udbetaling",
+      "monthly": "månedligt",
+      "recurring": "tilbagevendende",
+      "oneTime": "engangs"
+    },
+    "slot": {
+      "last": "Sidste lønudbetaling",
+      "lastShort": "Sidste",
+      "ordinalPaycheck": "%{ordinal} lønudbetaling",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Modtager",
+      "payeePlaceholder": "f.eks. Elselskabet",
+      "amount": "Beløb",
+      "amountPlaceholder": "f.eks. 150.00",
+      "link": "Betalingslink (valgfrit)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Lønudbetaling",
+      "moveHint": "Flyt denne udgift til en anden lønudbetaling.",
+      "linkedSource": "Tilknyttet indkomstkilde",
+      "linkedHint": "Når den er tilknyttet, lægges denne udgift automatisk på lønudbetalinger fra den kilde.",
+      "howOften": "Hvor ofte",
+      "everyPaycheck": "Hver lønudbetaling",
+      "monthly": "Månedligt",
+      "whichPaycheck": "Hvilken lønudbetaling",
+      "slotHintLast": "Lander på månedens sidste lønudbetaling, også i måneder med en ekstra.",
+      "slotHintOrdinal": "Ekstra lønudbetalinger i længere måneder springes over. Vælg Sidste for altid at bruge den sidste.",
+      "addButton": "Tilføj udgift",
+      "updateButton": "Opdater udgift",
+      "payeeRequired": "Modtagernavn er påkrævet.",
+      "invalidAmount": "Indtast et gyldigt beløb."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Denne lønudbetaling",
+    "available": "Tilgængeligt",
+    "emptyAssigned": "Intet tildelt endnu. Tilføj regninger fra listen nedenfor.",
+    "leftAfterBills": "Tilbage efter regninger",
+    "summaryMeta": "%{pay} løn · %{assigned} tildelt",
+    "linked": "Tilknyttet",
+    "remove": "Fjern %{payee}",
+    "add": "Tilføj %{payee}",
+    "oneTime": {
+      "addButton": "Tilføj engangsudgift",
+      "title": "Engangsudgift",
+      "payee": "Modtager",
+      "amount": "Beløb"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Kun lønudbetalingen %{date}",
+    "hint": "Standard er %{amount}. Andre lønudbetalinger beholder standarden.",
+    "useDefault": "Brug standardbeløb"
+  },
+  "settings": {
+    "appearance": "Udseende",
+    "light": "Lys",
+    "dark": "Mørk",
+    "system": "System",
+    "hideCents": "Skjul ører",
+    "hideCentsHint": "Vis beløb rundet til nærmeste hele enhed.",
+    "behavior": "Adfærd",
+    "autoMarkPaid": "Markér som betalt ved tryk på link",
+    "autoMarkPaidHint": "Når du trykker på et betalingslink, markeres regningen også som betalt.",
+    "region": "Sprog og valuta",
+    "language": "Sprog",
+    "currency": "Valuta",
+    "notifications": "Notifikationer",
+    "paydayReminder": "Lønningsdagspåmindelse",
+    "paydayReminderHint": "Få en oversigt over hver lønudbetalings regninger, og hvad der er tilbage, før den kommer.",
+    "remindWhen": "Påmind mig",
+    "remindTime": "Kl.",
+    "offsets": {
+      "dayOf": "På dagen",
+      "dayBefore": "Dagen før",
+      "daysBefore": "%{count} dage før",
+      "weekBefore": "Ugen før"
+    },
+    "permissionDeniedTitle": "Notifikationer er slået fra",
+    "permissionDeniedBody": "Tillad notifikationer for Paycheck Planner i enhedens indstillinger for at få lønningsdagspåmindelser."
+  },
+  "notifications": {
+    "channelName": "Lønningsdagspåmindelser",
+    "titleToday": "Lønningsdag i dag: %{source}",
+    "titleTomorrow": "Lønningsdag i morgen: %{source}",
+    "titleOnDay": "Lønningsdag %{weekday}: %{source}",
+    "body": "%{income} ind · %{bills} · %{left} tilbage",
+    "bodyNoBills": "%{income} ind · ingen regninger tildelt endnu",
+    "bills": {
+      "one": "%{count} regning (%{amount})",
+      "other": "%{count} regninger (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Kunne ikke åbne linket"
+  },
+  "payAmountSheet": {
+    "subtitle": "Kun lønudbetalingen %{date}",
+    "hint": "Normal løn er %{amount}. Andre lønudbetalinger beholder den.",
+    "useDefault": "Brug normalt beløb",
+    "invalidAmount": "Indtast et gyldigt lønbeløb."
+  },
+  "moveBillSheet": {
+    "title": "Flyt en regning",
+    "subtitle": "Mangler %{amount} den %{date}",
+    "bill": "Regning",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Til lønudbetaling",
+    "noBills": "Ingen ubetalte regninger at flytte.",
+    "noPaychecks": "Ingen andre kommende lønudbetalinger."
+  }
+}

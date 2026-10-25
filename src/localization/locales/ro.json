@@ -1,0 +1,243 @@
+{
+  "common": {
+    "cancel": "Anulează",
+    "delete": "Șterge",
+    "done": "Gata",
+    "save": "Salvează",
+    "add": "Adaugă",
+    "update": "Actualizează",
+    "back": "Înapoi",
+    "error": "Eroare",
+    "none": "Niciunul",
+    "unknown": "Necunoscut",
+    "removed": "Eliminat",
+    "systemDefault": "Implicit sistem",
+    "selectDate": "Alege data",
+    "selectTime": "Alege ora",
+    "and": "și",
+    "move": "Mută"
+  },
+  "ordinal": {
+    "one": "%{n}",
+    "other": "%{n}"
+  },
+  "tabs": {
+    "paychecks": "Salarii",
+    "income": "Venituri",
+    "expenses": "Cheltuieli"
+  },
+  "screens": {
+    "settings": "Setări",
+    "incomeSource": "Sursă de venit",
+    "expense": "Cheltuială",
+    "payDate": "Data plății",
+    "language": "Limbă",
+    "currency": "Monedă"
+  },
+  "paychecks": {
+    "today": "Azi",
+    "goToThisMonth": "Mergi la luna curentă",
+    "leftAfterBills": "%{month} · rămas după facturi",
+    "heroMeta": "%{income} venit · %{assigned} alocat",
+    "monthPaychecks": "Salarii %{month}",
+    "emptyTitle": "Nicio sursă de venit încă",
+    "emptyBody": "Adaugă prima sursă de venit ca să vezi unde se duce fiecare salariu.",
+    "noBillsYet": "Nicio factură încă · atinge pentru a aloca",
+    "paidProgress": "%{paid} din %{total} plătite",
+    "amountLeft": "%{amount} rămas",
+    "chartBarLabel": "%{month}, %{amount} rămas",
+    "opensPaycheck": "Deschide acest salariu",
+    "markPaid": "Marchează %{payee} ca plătit",
+    "changeAmount": "Schimbă suma pentru %{payee} la acest salariu",
+    "changePayAmount": "Schimbă suma salariului %{source} pentru acest salariu",
+    "emptyAction": "Adaugă sursă de venit",
+    "chartBarCurrentLabel": "%{month} (luna curentă), %{amount} rămas",
+    "shortBy": "Lipsesc %{amount}",
+    "moveBill": "Mută o factură"
+  },
+  "income": {
+    "emptyTitle": "Niciun venit încă",
+    "emptyBody": "Adaugă salariile tale pentru a începe planificarea.",
+    "perMonth": "Pe lună",
+    "nextPayday": "Următoarea zi de salariu",
+    "sources": "Surse",
+    "swipeHint": "Glisează la stânga pe o sursă pentru a o șterge.",
+    "addSource": "Adaugă sursă de venit",
+    "perCheck": "pe salariu",
+    "deleteTitle": "Șterge sursa de venit",
+    "deleteMessage": "Ștergi „%{name}” și toate alocările sale de cheltuieli?",
+    "frequency": {
+      "weekly": "Săptămânal",
+      "biweekly": "La două săptămâni",
+      "semiMonthly": "De două ori pe lună",
+      "monthly": "Lunar"
+    },
+    "schedule": {
+      "weekly": "Săptămânal · în fiecare %{weekday}",
+      "biweekly": "La două săptămâni · %{weekday}",
+      "semiMonthly": "De două ori pe lună · pe %{first} și %{second}",
+      "monthly": "Lunar · pe %{day}"
+    },
+    "form": {
+      "name": "Nume",
+      "namePlaceholder": "ex. Acme SRL",
+      "payAmount": "Suma salariului (pe salariu)",
+      "payAmountPlaceholder": "ex. 2500.00",
+      "payFrequency": "Frecvența plății",
+      "payDays": "Zilele de plată din lună",
+      "payDaysHint": "Folosește 31 pentru ultima zi a lunii (se ajustează automat pentru lunile mai scurte)",
+      "adjustToWorkday": "Ajustează la zi lucrătoare",
+      "adjustHint": "Dacă data plății cade în weekend, se mută pe vinerea dinainte.",
+      "firstPayDate": "Prima dată de plată",
+      "addButton": "Adaugă sursă de venit",
+      "updateButton": "Actualizează sursa de venit",
+      "nameRequired": "Numele este obligatoriu.",
+      "invalidAmount": "Introdu o sumă validă pentru salariu.",
+      "payDaysRange": "Zilele de plată trebuie să fie între 1 și 31."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Nicio cheltuială încă",
+    "emptyBody": "Adaugă facturile, apoi alocă-le la salarii.",
+    "nothingHere": "Nimic aici încă.",
+    "monthlySummary": {
+      "one": "%{amount} pe lună pentru %{count} factură",
+      "few": "%{amount} pe lună pentru %{count} facturi",
+      "other": "%{amount} pe lună pentru %{count} de facturi"
+    },
+    "filters": {
+      "all": "Toate",
+      "recurring": "Recurente",
+      "oneTime": "O singură dată"
+    },
+    "addExpense": "Adaugă cheltuială",
+    "openLink": "Deschide linkul de plată pentru %{payee}",
+    "deleteTitle": "Șterge cheltuiala",
+    "deleteMessage": "Ștergi „%{payee}” și toate alocările sale?",
+    "sections": {
+      "notLinked": "Nelegate",
+      "oneTime": "O singură dată"
+    },
+    "perMonthTotal": "%{amount}/lună",
+    "meta": {
+      "everyPaycheck": "Fiecare salariu",
+      "slotEachMonth": "%{slot} în fiecare lună",
+      "assignPerPaycheck": "Alocă per salariu",
+      "due": "Scadent %{date}",
+      "oneTime": "O singură dată"
+    },
+    "cadence": {
+      "perCheck": "pe salariu",
+      "monthly": "lunar",
+      "recurring": "recurentă",
+      "oneTime": "o singură dată"
+    },
+    "slot": {
+      "last": "Ultimul salariu",
+      "lastShort": "Ultimul",
+      "ordinalPaycheck": "Salariul %{ordinal}",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Beneficiar",
+      "payeePlaceholder": "ex. Compania de electricitate",
+      "amount": "Sumă",
+      "amountPlaceholder": "ex. 150.00",
+      "link": "Link de plată (opțional)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Salariu",
+      "moveHint": "Mută această cheltuială la alt salariu.",
+      "linkedSource": "Sursă de venit legată",
+      "linkedHint": "Când e legată, cheltuiala apare automat pe salariile din acea sursă.",
+      "howOften": "Cât de des",
+      "everyPaycheck": "Fiecare salariu",
+      "monthly": "Lunar",
+      "whichPaycheck": "Care salariu",
+      "slotHintLast": "Cade pe ultimul salariu al fiecărei luni, inclusiv în lunile cu un salariu în plus.",
+      "slotHintOrdinal": "Salariile în plus din lunile mai lungi sunt sărite. Alege Ultimul pentru a folosi mereu ultimul salariu.",
+      "addButton": "Adaugă cheltuială",
+      "updateButton": "Actualizează cheltuiala",
+      "payeeRequired": "Numele beneficiarului este obligatoriu.",
+      "invalidAmount": "Introdu o sumă validă."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Acest salariu",
+    "available": "Disponibil",
+    "emptyAssigned": "Nimic alocat încă. Adaugă facturi din lista de mai jos.",
+    "leftAfterBills": "Rămas după facturi",
+    "summaryMeta": "Salariu %{pay} · %{assigned} alocat",
+    "linked": "Legată",
+    "remove": "Elimină %{payee}",
+    "add": "Adaugă %{payee}",
+    "oneTime": {
+      "addButton": "Adaugă cheltuială unică",
+      "title": "Cheltuială unică",
+      "payee": "Beneficiar",
+      "amount": "Sumă"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Doar salariul din %{date}",
+    "hint": "Suma implicită este %{amount}. Celelalte salarii păstrează suma implicită.",
+    "useDefault": "Folosește suma implicită"
+  },
+  "settings": {
+    "appearance": "Aspect",
+    "light": "Luminos",
+    "dark": "Întunecat",
+    "system": "Sistem",
+    "hideCents": "Ascunde zecimalele",
+    "hideCentsHint": "Afișează sumele rotunjite la cea mai apropiată unitate întreagă.",
+    "behavior": "Comportament",
+    "autoMarkPaid": "Marchează plătit la deschiderea linkului",
+    "autoMarkPaidHint": "Atingerea unui link de plată marchează factura și ca plătită.",
+    "region": "Limbă și monedă",
+    "language": "Limbă",
+    "currency": "Monedă",
+    "notifications": "Notificări",
+    "paydayReminder": "Memento zi de salariu",
+    "paydayReminderHint": "Primește un rezumat al facturilor fiecărui salariu și cât rămâne, înainte să sosească.",
+    "remindWhen": "Amintește-mi",
+    "remindTime": "La ora",
+    "offsets": {
+      "dayOf": "În ziua respectivă",
+      "dayBefore": "Cu o zi înainte",
+      "daysBefore": "Cu %{count} zile înainte",
+      "weekBefore": "Cu o săptămână înainte"
+    },
+    "permissionDeniedTitle": "Notificările sunt oprite",
+    "permissionDeniedBody": "Permite notificările pentru Paycheck Planner în setările dispozitivului pentru a primi mementouri de salariu."
+  },
+  "notifications": {
+    "channelName": "Mementouri zi de salariu",
+    "titleToday": "Azi e zi de salariu: %{source}",
+    "titleTomorrow": "Mâine e zi de salariu: %{source}",
+    "titleOnDay": "Zi de salariu %{weekday}: %{source}",
+    "body": "%{income} venit · %{bills} · %{left} rămas",
+    "bodyNoBills": "%{income} venit · nicio factură alocată încă",
+    "bills": {
+      "one": "%{count} factură (%{amount})",
+      "few": "%{count} facturi (%{amount})",
+      "other": "%{count} de facturi (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Linkul nu a putut fi deschis"
+  },
+  "payAmountSheet": {
+    "subtitle": "Doar salariul din %{date}",
+    "hint": "Salariul obișnuit este %{amount}. Celelalte salarii îl păstrează.",
+    "useDefault": "Folosește suma obișnuită",
+    "invalidAmount": "Introdu o sumă validă pentru salariu."
+  },
+  "moveBillSheet": {
+    "title": "Mută o factură",
+    "subtitle": "Lipsesc %{amount} pe %{date}",
+    "bill": "Factură",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "La salariul",
+    "noBills": "Nicio factură neplătită de mutat.",
+    "noPaychecks": "Niciun alt salariu viitor."
+  }
+}

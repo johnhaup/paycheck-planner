@@ -1,0 +1,240 @@
+{
+  "common": {
+    "cancel": "İptal",
+    "delete": "Sil",
+    "done": "Bitti",
+    "save": "Kaydet",
+    "add": "Ekle",
+    "update": "Güncelle",
+    "back": "Geri",
+    "error": "Hata",
+    "none": "Yok",
+    "unknown": "Bilinmiyor",
+    "removed": "Kaldırıldı",
+    "systemDefault": "Sistem varsayılanı",
+    "selectDate": "Tarih Seç",
+    "selectTime": "Saat Seç",
+    "and": "ve",
+    "move": "Taşı"
+  },
+  "ordinal": {
+    "other": "%{n}."
+  },
+  "tabs": {
+    "paychecks": "Maaşlar",
+    "income": "Gelir",
+    "expenses": "Giderler"
+  },
+  "screens": {
+    "settings": "Ayarlar",
+    "incomeSource": "Gelir Kaynağı",
+    "expense": "Gider",
+    "payDate": "Maaş Tarihi",
+    "language": "Dil",
+    "currency": "Para Birimi"
+  },
+  "paychecks": {
+    "today": "Bugün",
+    "goToThisMonth": "Bu aya git",
+    "leftAfterBills": "%{month} · faturalardan sonra kalan",
+    "heroMeta": "%{income} gelir · %{assigned} atanmış",
+    "monthPaychecks": "%{month} maaşları",
+    "emptyTitle": "Henüz gelir kaynağı yok",
+    "emptyBody": "Her maaşın nereye gittiğini görmek için ilk gelir kaynağını ekle.",
+    "noBillsYet": "Henüz fatura yok · atamak için dokun",
+    "paidProgress": "%{paid}/%{total} ödendi",
+    "amountLeft": "%{amount} kaldı",
+    "chartBarLabel": "%{month}, %{amount} kaldı",
+    "opensPaycheck": "Bu maaşı açar",
+    "markPaid": "%{payee} ödendi olarak işaretle",
+    "changeAmount": "Bu maaş için %{payee} tutarını değiştir",
+    "changePayAmount": "Bu maaş için %{source} maaş tutarını değiştir",
+    "emptyAction": "Gelir kaynağı ekle",
+    "chartBarCurrentLabel": "%{month} (bu ay), %{amount} kaldı",
+    "shortBy": "%{amount} eksik",
+    "moveBill": "Fatura taşı"
+  },
+  "income": {
+    "emptyTitle": "Henüz gelir yok",
+    "emptyBody": "Planlamaya başlamak için maaşlarını ekle.",
+    "perMonth": "Aylık",
+    "nextPayday": "Sonraki maaş günü",
+    "sources": "Kaynaklar",
+    "swipeHint": "Silmek için bir kaynağı sola kaydır.",
+    "addSource": "Gelir kaynağı ekle",
+    "perCheck": "maaş başına",
+    "deleteTitle": "Gelir Kaynağını Sil",
+    "deleteMessage": "\"%{name}\" ve tüm gider atamaları silinsin mi?",
+    "frequency": {
+      "weekly": "Haftalık",
+      "biweekly": "İki haftada bir",
+      "semiMonthly": "Ayda iki kez",
+      "monthly": "Aylık"
+    },
+    "schedule": {
+      "weekly": "Haftalık · %{weekday} günleri",
+      "biweekly": "İki haftada bir · %{weekday} günleri",
+      "semiMonthly": "Ayda iki kez · ayın %{first} ve %{second} günü",
+      "monthly": "Aylık · ayın %{day} günü"
+    },
+    "form": {
+      "name": "Ad",
+      "namePlaceholder": "örn. Acme A.Ş.",
+      "payAmount": "Maaş Tutarı (maaş başına)",
+      "payAmountPlaceholder": "örn. 2500.00",
+      "payFrequency": "Maaş Sıklığı",
+      "payDays": "Ayın Maaş Günleri",
+      "payDaysHint": "Ayın son günü için 31 kullan (kısa aylarda otomatik ayarlanır)",
+      "adjustToWorkday": "İş gününe kaydır",
+      "adjustHint": "Maaş tarihi hafta sonuna denk gelirse önceki cumaya kaydırılır.",
+      "firstPayDate": "İlk Maaş Tarihi",
+      "addButton": "Gelir Kaynağı Ekle",
+      "updateButton": "Gelir Kaynağını Güncelle",
+      "nameRequired": "Ad gerekli.",
+      "invalidAmount": "Geçerli bir maaş tutarı gir.",
+      "payDaysRange": "Maaş günleri 1 ile 31 arasında olmalı."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Henüz gider yok",
+    "emptyBody": "Faturalarını ekle, sonra maaşlara ata.",
+    "nothingHere": "Burada henüz bir şey yok.",
+    "monthlySummary": {
+      "one": "%{count} fatura için ayda %{amount}",
+      "other": "%{count} fatura için ayda %{amount}"
+    },
+    "filters": {
+      "all": "Tümü",
+      "recurring": "Düzenli",
+      "oneTime": "Tek seferlik"
+    },
+    "addExpense": "Gider ekle",
+    "openLink": "%{payee} için ödeme bağlantısını aç",
+    "deleteTitle": "Gideri Sil",
+    "deleteMessage": "\"%{payee}\" ve tüm atamaları silinsin mi?",
+    "sections": {
+      "notLinked": "Bağlı değil",
+      "oneTime": "Tek seferlik"
+    },
+    "perMonthTotal": "%{amount}/ay",
+    "meta": {
+      "everyPaycheck": "Her maaş",
+      "slotEachMonth": "Her ay %{slot}",
+      "assignPerPaycheck": "Maaş başına ata",
+      "due": "Son ödeme %{date}",
+      "oneTime": "Tek seferlik"
+    },
+    "cadence": {
+      "perCheck": "maaş başına",
+      "monthly": "aylık",
+      "recurring": "düzenli",
+      "oneTime": "tek seferlik"
+    },
+    "slot": {
+      "last": "Son maaş",
+      "lastShort": "Son",
+      "ordinalPaycheck": "%{ordinal} maaş",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Alıcı",
+      "payeePlaceholder": "örn. Elektrik Şirketi",
+      "amount": "Tutar",
+      "amountPlaceholder": "örn. 150.00",
+      "link": "Ödeme Bağlantısı (isteğe bağlı)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Maaş",
+      "moveHint": "Bu gideri başka bir maaşa taşı.",
+      "linkedSource": "Bağlı Gelir Kaynağı",
+      "linkedHint": "Bağlandığında bu gider, o kaynağın maaşlarına önceden eklenir.",
+      "howOften": "Ne Sıklıkla",
+      "everyPaycheck": "Her maaş",
+      "monthly": "Aylık",
+      "whichPaycheck": "Hangi Maaş",
+      "slotHintLast": "Her ayın son maaşına denk gelir; fazladan maaş olan aylar dahil.",
+      "slotHintOrdinal": "Uzun aylardaki fazladan maaşlar atlanır. Her zaman sonuncuyu kullanmak için Son'u seç.",
+      "addButton": "Gider Ekle",
+      "updateButton": "Gideri Güncelle",
+      "payeeRequired": "Alıcı adı gerekli.",
+      "invalidAmount": "Geçerli bir tutar gir."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Bu maaş",
+    "available": "Kullanılabilir",
+    "emptyAssigned": "Henüz bir şey atanmadı. Aşağıdaki listeden fatura ekle.",
+    "leftAfterBills": "Faturalardan sonra kalan",
+    "summaryMeta": "%{pay} maaş · %{assigned} atanmış",
+    "linked": "Bağlı",
+    "remove": "%{payee} kaldır",
+    "add": "%{payee} ekle",
+    "oneTime": {
+      "addButton": "Tek Seferlik Gider Ekle",
+      "title": "Tek Seferlik Gider",
+      "payee": "Alıcı",
+      "amount": "Tutar"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Yalnızca %{date} maaşı",
+    "hint": "Varsayılan %{amount}. Diğer maaşlar varsayılanı korur.",
+    "useDefault": "Varsayılan tutarı kullan"
+  },
+  "settings": {
+    "appearance": "Görünüm",
+    "light": "Açık",
+    "dark": "Koyu",
+    "system": "Sistem",
+    "hideCents": "Kuruşları gizle",
+    "hideCentsHint": "Tutarları en yakın tam birime yuvarlayarak göster.",
+    "behavior": "Davranış",
+    "autoMarkPaid": "Bağlantıya dokununca ödendi işaretle",
+    "autoMarkPaidHint": "Ödeme bağlantısına dokunmak o faturayı ödendi olarak da işaretler.",
+    "region": "Dil ve Para Birimi",
+    "language": "Dil",
+    "currency": "Para Birimi",
+    "notifications": "Bildirimler",
+    "paydayReminder": "Maaş günü hatırlatıcısı",
+    "paydayReminderHint": "Her maaş gelmeden önce faturalarının ve kalan tutarın özetini al.",
+    "remindWhen": "Hatırlat",
+    "remindTime": "Saat",
+    "offsets": {
+      "dayOf": "Aynı gün",
+      "dayBefore": "Bir gün önce",
+      "daysBefore": "%{count} gün önce",
+      "weekBefore": "Bir hafta önce"
+    },
+    "permissionDeniedTitle": "Bildirimler kapalı",
+    "permissionDeniedBody": "Maaş günü hatırlatıcıları almak için cihaz ayarlarından Paycheck Planner bildirimlerine izin ver."
+  },
+  "notifications": {
+    "channelName": "Maaş günü hatırlatıcıları",
+    "titleToday": "Bugün maaş günü: %{source}",
+    "titleTomorrow": "Yarın maaş günü: %{source}",
+    "titleOnDay": "%{weekday} maaş günü: %{source}",
+    "body": "%{income} gelir · %{bills} · %{left} kaldı",
+    "bodyNoBills": "%{income} gelir · henüz fatura atanmadı",
+    "bills": {
+      "one": "%{count} fatura (%{amount})",
+      "other": "%{count} fatura (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Bağlantı açılamadı"
+  },
+  "payAmountSheet": {
+    "subtitle": "Yalnızca %{date} maaşı",
+    "hint": "Normal maaş %{amount}. Diğer maaşlar bunu korur.",
+    "useDefault": "Normal tutarı kullan",
+    "invalidAmount": "Geçerli bir maaş tutarı gir."
+  },
+  "moveBillSheet": {
+    "title": "Fatura taşı",
+    "subtitle": "%{date} tarihinde %{amount} eksik",
+    "bill": "Fatura",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Şu maaşa",
+    "noBills": "Taşınacak ödenmemiş fatura yok.",
+    "noPaychecks": "Yaklaşan başka maaş yok."
+  }
+}

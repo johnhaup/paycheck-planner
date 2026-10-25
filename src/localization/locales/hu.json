@@ -1,0 +1,241 @@
+{
+  "common": {
+    "cancel": "Mégse",
+    "delete": "Törlés",
+    "done": "Kész",
+    "save": "Mentés",
+    "add": "Hozzáadás",
+    "update": "Frissítés",
+    "back": "Vissza",
+    "error": "Hiba",
+    "none": "Nincs",
+    "unknown": "Ismeretlen",
+    "removed": "Eltávolítva",
+    "systemDefault": "Rendszer alapértelmezése",
+    "selectDate": "Dátum kiválasztása",
+    "selectTime": "Időpont kiválasztása",
+    "and": "és",
+    "move": "Áthelyezés"
+  },
+  "ordinal": {
+    "one": "%{n}.",
+    "other": "%{n}."
+  },
+  "tabs": {
+    "paychecks": "Fizetések",
+    "income": "Bevétel",
+    "expenses": "Kiadások"
+  },
+  "screens": {
+    "settings": "Beállítások",
+    "incomeSource": "Bevételi forrás",
+    "expense": "Kiadás",
+    "payDate": "Fizetésnap",
+    "language": "Nyelv",
+    "currency": "Pénznem"
+  },
+  "paychecks": {
+    "today": "Ma",
+    "goToThisMonth": "Ugrás erre a hónapra",
+    "leftAfterBills": "%{month} · marad a számlák után",
+    "heroMeta": "%{income} bevétel · %{assigned} beosztva",
+    "monthPaychecks": "%{month} fizetései",
+    "emptyTitle": "Még nincs bevételi forrás",
+    "emptyBody": "Add hozzá az első bevételi forrásodat, hogy lásd, mire megy el minden fizetés.",
+    "noBillsYet": "Még nincs számla · koppints a beosztáshoz",
+    "paidProgress": "%{paid}/%{total} fizetve",
+    "amountLeft": "%{amount} marad",
+    "chartBarLabel": "%{month}, %{amount} marad",
+    "opensPaycheck": "Megnyitja ezt a fizetést",
+    "markPaid": "%{payee} megjelölése fizetettként",
+    "changeAmount": "%{payee} összegének módosítása ennél a fizetésnél",
+    "changePayAmount": "%{source} fizetési összegének módosítása ennél a fizetésnél",
+    "emptyAction": "Bevételi forrás hozzáadása",
+    "chartBarCurrentLabel": "%{month} (ez a hónap), %{amount} marad",
+    "shortBy": "%{amount} hiányzik",
+    "moveBill": "Számla áthelyezése"
+  },
+  "income": {
+    "emptyTitle": "Még nincs bevétel",
+    "emptyBody": "Add hozzá a fizetéseidet a tervezés megkezdéséhez.",
+    "perMonth": "Havonta",
+    "nextPayday": "Következő fizetésnap",
+    "sources": "Források",
+    "swipeHint": "Törléshez húzd balra a forrást.",
+    "addSource": "Bevételi forrás hozzáadása",
+    "perCheck": "fizetésenként",
+    "deleteTitle": "Bevételi forrás törlése",
+    "deleteMessage": "Törlöd a(z) „%{name}” forrást és minden kiadás-beosztását?",
+    "frequency": {
+      "weekly": "Hetente",
+      "biweekly": "Kéthetente",
+      "semiMonthly": "Havonta kétszer",
+      "monthly": "Havonta"
+    },
+    "schedule": {
+      "weekly": "Hetente · minden %{weekday}",
+      "biweekly": "Kéthetente · minden második %{weekday}",
+      "semiMonthly": "Havonta kétszer · %{first} és %{second}",
+      "monthly": "Havonta · %{day}"
+    },
+    "form": {
+      "name": "Név",
+      "namePlaceholder": "pl. Acme Kft.",
+      "payAmount": "Fizetés összege (fizetésenként)",
+      "payAmountPlaceholder": "pl. 2500.00",
+      "payFrequency": "Fizetés gyakorisága",
+      "payDays": "Fizetésnapok a hónapban",
+      "payDaysHint": "A hónap utolsó napjához írj 31-et (rövidebb hónapoknál automatikusan igazodik)",
+      "adjustToWorkday": "Igazítás munkanapra",
+      "adjustHint": "Ha a fizetésnap hétvégére esik, az előtte lévő péntekre kerül.",
+      "firstPayDate": "Első fizetésnap",
+      "addButton": "Bevételi forrás hozzáadása",
+      "updateButton": "Bevételi forrás frissítése",
+      "nameRequired": "A név megadása kötelező.",
+      "invalidAmount": "Adj meg egy érvényes fizetési összeget.",
+      "payDaysRange": "A fizetésnapoknak 1 és 31 között kell lenniük."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Még nincs kiadás",
+    "emptyBody": "Add hozzá a számláidat, majd oszd be őket a fizetésekhez.",
+    "nothingHere": "Itt még nincs semmi.",
+    "monthlySummary": {
+      "one": "%{amount} havonta, %{count} számla",
+      "other": "%{amount} havonta, %{count} számla"
+    },
+    "filters": {
+      "all": "Összes",
+      "recurring": "Ismétlődő",
+      "oneTime": "Egyszeri"
+    },
+    "addExpense": "Kiadás hozzáadása",
+    "openLink": "%{payee} fizetési linkjének megnyitása",
+    "deleteTitle": "Kiadás törlése",
+    "deleteMessage": "Törlöd a(z) „%{payee}” kiadást és minden beosztását?",
+    "sections": {
+      "notLinked": "Nincs összekapcsolva",
+      "oneTime": "Egyszeri"
+    },
+    "perMonthTotal": "%{amount}/hó",
+    "meta": {
+      "everyPaycheck": "Minden fizetés",
+      "slotEachMonth": "%{slot} minden hónapban",
+      "assignPerPaycheck": "Beosztás fizetésenként",
+      "due": "Esedékes: %{date}",
+      "oneTime": "Egyszeri"
+    },
+    "cadence": {
+      "perCheck": "fizetésenként",
+      "monthly": "havonta",
+      "recurring": "ismétlődő",
+      "oneTime": "egyszeri"
+    },
+    "slot": {
+      "last": "Utolsó fizetés",
+      "lastShort": "Utolsó",
+      "ordinalPaycheck": "%{ordinal} fizetés",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Kedvezményezett",
+      "payeePlaceholder": "pl. Áramszolgáltató",
+      "amount": "Összeg",
+      "amountPlaceholder": "pl. 150.00",
+      "link": "Fizetési link (opcionális)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Fizetés",
+      "moveHint": "Helyezd át ezt a kiadást egy másik fizetéshez.",
+      "linkedSource": "Összekapcsolt bevételi forrás",
+      "linkedHint": "Összekapcsolva ez a kiadás előre betöltődik az adott forrás fizetéseire.",
+      "howOften": "Milyen gyakran",
+      "everyPaycheck": "Minden fizetés",
+      "monthly": "Havonta",
+      "whichPaycheck": "Melyik fizetés",
+      "slotHintLast": "Minden hónap utolsó fizetésére kerül, az extra fizetéses hónapokban is.",
+      "slotHintOrdinal": "A hosszabb hónapok extra fizetései kimaradnak. Válaszd az Utolsót, hogy mindig az utolsóra kerüljön.",
+      "addButton": "Kiadás hozzáadása",
+      "updateButton": "Kiadás frissítése",
+      "payeeRequired": "A kedvezményezett neve kötelező.",
+      "invalidAmount": "Adj meg egy érvényes összeget."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Ez a fizetés",
+    "available": "Elérhető",
+    "emptyAssigned": "Még nincs semmi beosztva. Adj hozzá számlákat az alábbi listából.",
+    "leftAfterBills": "Marad a számlák után",
+    "summaryMeta": "%{pay} fizetés · %{assigned} beosztva",
+    "linked": "Összekapcsolva",
+    "remove": "%{payee} eltávolítása",
+    "add": "%{payee} hozzáadása",
+    "oneTime": {
+      "addButton": "Egyszeri kiadás hozzáadása",
+      "title": "Egyszeri kiadás",
+      "payee": "Kedvezményezett",
+      "amount": "Összeg"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Csak a %{date} fizetésre",
+    "hint": "Az alapértelmezett %{amount}. A többi fizetés az alapértelmezettet tartja.",
+    "useDefault": "Alapértelmezett összeg használata"
+  },
+  "settings": {
+    "appearance": "Megjelenés",
+    "light": "Világos",
+    "dark": "Sötét",
+    "system": "Rendszer",
+    "hideCents": "Fillérek elrejtése",
+    "hideCentsHint": "Az összegek egész egységre kerekítve jelennek meg.",
+    "behavior": "Működés",
+    "autoMarkPaid": "Fizetett a link megnyitásakor",
+    "autoMarkPaidHint": "A fizetési linkre koppintva a számla fizetettként is megjelölődik.",
+    "region": "Nyelv és pénznem",
+    "language": "Nyelv",
+    "currency": "Pénznem",
+    "notifications": "Értesítések",
+    "paydayReminder": "Fizetésnapi emlékeztető",
+    "paydayReminderHint": "Kapj összefoglalót minden fizetés számláiról és a maradékról, még mielőtt megérkezik.",
+    "remindWhen": "Emlékeztess",
+    "remindTime": "Időpont",
+    "offsets": {
+      "dayOf": "Aznap",
+      "dayBefore": "Egy nappal előtte",
+      "daysBefore": "%{count} nappal előtte",
+      "weekBefore": "Egy héttel előtte"
+    },
+    "permissionDeniedTitle": "Az értesítések ki vannak kapcsolva",
+    "permissionDeniedBody": "Engedélyezd a Paycheck Planner értesítéseit a készülék beállításaiban, hogy fizetésnapi emlékeztetőket kapj."
+  },
+  "notifications": {
+    "channelName": "Fizetésnapi emlékeztetők",
+    "titleToday": "Ma fizetésnap: %{source}",
+    "titleTomorrow": "Holnap fizetésnap: %{source}",
+    "titleOnDay": "Fizetésnap (%{weekday}): %{source}",
+    "body": "%{income} bevétel · %{bills} · %{left} marad",
+    "bodyNoBills": "%{income} bevétel · még nincs számla beosztva",
+    "bills": {
+      "one": "%{count} számla (%{amount})",
+      "other": "%{count} számla (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "A link nem nyitható meg"
+  },
+  "payAmountSheet": {
+    "subtitle": "Csak a %{date} fizetésre",
+    "hint": "A szokásos fizetés %{amount}. A többi fizetés ezt tartja.",
+    "useDefault": "Szokásos összeg használata",
+    "invalidAmount": "Adj meg egy érvényes fizetési összeget."
+  },
+  "moveBillSheet": {
+    "title": "Számla áthelyezése",
+    "subtitle": "%{amount} hiányzik: %{date}",
+    "bill": "Számla",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Erre a fizetésre",
+    "noBills": "Nincs áthelyezhető kifizetetlen számla.",
+    "noPaychecks": "Nincs több közeli fizetés."
+  }
+}

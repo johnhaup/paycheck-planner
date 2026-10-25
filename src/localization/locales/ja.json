@@ -1,0 +1,238 @@
+{
+  "common": {
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "done": "完了",
+    "save": "保存",
+    "add": "追加",
+    "update": "更新",
+    "back": "戻る",
+    "error": "エラー",
+    "none": "なし",
+    "unknown": "不明",
+    "removed": "削除済み",
+    "systemDefault": "システム設定に従う",
+    "selectDate": "日付を選択",
+    "selectTime": "時刻を選択",
+    "and": "と",
+    "move": "移動"
+  },
+  "ordinal": {
+    "other": "%{n}回目"
+  },
+  "tabs": {
+    "paychecks": "給料",
+    "income": "収入",
+    "expenses": "支出"
+  },
+  "screens": {
+    "settings": "設定",
+    "incomeSource": "収入源",
+    "expense": "支出",
+    "payDate": "給料日",
+    "language": "言語",
+    "currency": "通貨"
+  },
+  "paychecks": {
+    "today": "今日",
+    "goToThisMonth": "今月へ移動",
+    "leftAfterBills": "%{month} · 支払い後の残り",
+    "heroMeta": "収入 %{income} · 割り当て %{assigned}",
+    "monthPaychecks": "%{month}の給料",
+    "emptyTitle": "収入源がまだありません",
+    "emptyBody": "最初の収入源を追加して、給料の使い道を確認しましょう。",
+    "noBillsYet": "支払いはまだありません · タップして割り当て",
+    "paidProgress": "%{total}件中%{paid}件支払い済み",
+    "amountLeft": "残り %{amount}",
+    "chartBarLabel": "%{month}、残り %{amount}",
+    "opensPaycheck": "この給料を開く",
+    "markPaid": "%{payee}を支払い済みにする",
+    "changeAmount": "この給料の%{payee}の金額を変更",
+    "changePayAmount": "この給料の%{source}の支給額を変更",
+    "emptyAction": "収入源を追加",
+    "chartBarCurrentLabel": "%{month}（今月）、残り %{amount}",
+    "shortBy": "%{amount}不足",
+    "moveBill": "支払いを移動"
+  },
+  "income": {
+    "emptyTitle": "収入がまだありません",
+    "emptyBody": "給料を追加して計画を始めましょう。",
+    "perMonth": "月あたり",
+    "nextPayday": "次の給料日",
+    "sources": "収入源",
+    "swipeHint": "収入源を左にスワイプすると削除できます。",
+    "addSource": "収入源を追加",
+    "perCheck": "1回あたり",
+    "deleteTitle": "収入源を削除",
+    "deleteMessage": "「%{name}」とその支出の割り当てをすべて削除しますか？",
+    "frequency": {
+      "weekly": "毎週",
+      "biweekly": "2週ごと",
+      "semiMonthly": "月2回",
+      "monthly": "毎月"
+    },
+    "schedule": {
+      "weekly": "毎週 · %{weekday}",
+      "biweekly": "2週ごと · %{weekday}",
+      "semiMonthly": "月2回 · %{firstDate}と%{secondDate}",
+      "monthly": "毎月 · %{date}"
+    },
+    "form": {
+      "name": "名前",
+      "namePlaceholder": "例：Acme Corp",
+      "payAmount": "支給額（1回あたり）",
+      "payAmountPlaceholder": "例：2500.00",
+      "payFrequency": "支給頻度",
+      "payDays": "毎月の支給日",
+      "payDaysHint": "月末日にするには31を指定してください（短い月は自動調整されます）",
+      "adjustToWorkday": "平日に調整",
+      "adjustHint": "給料日が週末に当たる場合、直前の金曜日に繰り上げます。",
+      "firstPayDate": "初回の給料日",
+      "addButton": "収入源を追加",
+      "updateButton": "収入源を更新",
+      "nameRequired": "名前を入力してください。",
+      "invalidAmount": "有効な支給額を入力してください。",
+      "payDaysRange": "支給日は1〜31の範囲で指定してください。"
+    }
+  },
+  "expenses": {
+    "emptyTitle": "支出がまだありません",
+    "emptyBody": "支払いを追加して、給料に割り当てましょう。",
+    "nothingHere": "まだ何もありません。",
+    "monthlySummary": {
+      "other": "%{count}件の支払いで月%{amount}"
+    },
+    "filters": {
+      "all": "すべて",
+      "recurring": "定期",
+      "oneTime": "1回限り"
+    },
+    "addExpense": "支出を追加",
+    "openLink": "%{payee}の支払いリンクを開く",
+    "deleteTitle": "支出を削除",
+    "deleteMessage": "「%{payee}」とその割り当てをすべて削除しますか？",
+    "sections": {
+      "notLinked": "未リンク",
+      "oneTime": "1回限り"
+    },
+    "perMonthTotal": "%{amount}/月",
+    "meta": {
+      "everyPaycheck": "毎回の給料",
+      "slotEachMonth": "毎月%{slot}",
+      "assignPerPaycheck": "給料ごとに割り当て",
+      "due": "期限 %{date}",
+      "oneTime": "1回限り"
+    },
+    "cadence": {
+      "perCheck": "1回あたり",
+      "monthly": "毎月",
+      "recurring": "定期",
+      "oneTime": "1回限り"
+    },
+    "slot": {
+      "last": "最後の給料",
+      "lastShort": "最後",
+      "ordinalPaycheck": "%{ordinal}の給料",
+      "dayOfMonth": "%{date}"
+    },
+    "form": {
+      "payee": "支払先",
+      "payeePlaceholder": "例：電力会社",
+      "amount": "金額",
+      "amountPlaceholder": "例：150.00",
+      "link": "支払いリンク（任意）",
+      "linkPlaceholder": "https://...",
+      "paycheck": "給料",
+      "moveHint": "この支出を別の給料に移動します。",
+      "linkedSource": "リンクする収入源",
+      "linkedHint": "リンクすると、その収入源の給料にこの支出があらかじめ入ります。",
+      "howOften": "頻度",
+      "everyPaycheck": "毎回の給料",
+      "monthly": "毎月",
+      "whichPaycheck": "どの給料",
+      "slotHintLast": "毎月最後の給料に割り当てます（給料が1回多い月も含む）。",
+      "slotHintOrdinal": "給料回数が多い月の追加分はスキップされます。常に最後の給料に割り当てるには「最後」を選択してください。",
+      "addButton": "支出を追加",
+      "updateButton": "支出を更新",
+      "payeeRequired": "支払先の名前を入力してください。",
+      "invalidAmount": "有効な金額を入力してください。"
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "この給料",
+    "available": "利用可能",
+    "emptyAssigned": "まだ何も割り当てられていません。下のリストから支払いを追加してください。",
+    "leftAfterBills": "支払い後の残り",
+    "summaryMeta": "給料 %{pay} · 割り当て %{assigned}",
+    "linked": "リンク済み",
+    "remove": "%{payee}を削除",
+    "add": "%{payee}を追加",
+    "oneTime": {
+      "addButton": "1回限りの支出を追加",
+      "title": "1回限りの支出",
+      "payee": "支払先",
+      "amount": "金額"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "%{date}の給料のみ",
+    "hint": "デフォルトは%{amount}です。他の給料はデフォルトのままです。",
+    "useDefault": "デフォルトの金額を使う"
+  },
+  "settings": {
+    "appearance": "外観",
+    "light": "ライト",
+    "dark": "ダーク",
+    "system": "システム",
+    "hideCents": "小数点以下を隠す",
+    "hideCentsHint": "金額を整数に丸めて表示します。",
+    "behavior": "動作",
+    "autoMarkPaid": "リンクをタップで支払い済みにする",
+    "autoMarkPaidHint": "支払いリンクをタップすると、その支払いも支払い済みになります。",
+    "region": "言語と通貨",
+    "language": "言語",
+    "currency": "通貨",
+    "notifications": "通知",
+    "paydayReminder": "給料日のリマインダー",
+    "paydayReminderHint": "給料日の前に、各給料の支払いと残りの概要をお知らせします。",
+    "remindWhen": "通知タイミング",
+    "remindTime": "時刻",
+    "offsets": {
+      "dayOf": "当日",
+      "dayBefore": "前日",
+      "daysBefore": "%{count}日前",
+      "weekBefore": "1週間前"
+    },
+    "permissionDeniedTitle": "通知がオフです",
+    "permissionDeniedBody": "給料日のリマインダーを受け取るには、端末の設定でPaycheck Plannerの通知を許可してください。"
+  },
+  "notifications": {
+    "channelName": "給料日のリマインダー",
+    "titleToday": "今日は給料日：%{source}",
+    "titleTomorrow": "明日は給料日：%{source}",
+    "titleOnDay": "%{weekday}は給料日：%{source}",
+    "body": "収入 %{income} · %{bills} · 残り %{left}",
+    "bodyNoBills": "収入 %{income} · 支払いはまだ割り当てられていません",
+    "bills": {
+      "other": "支払い%{count}件（%{amount}）"
+    }
+  },
+  "links": {
+    "openFailed": "リンクを開けませんでした"
+  },
+  "payAmountSheet": {
+    "subtitle": "%{date}の給料のみ",
+    "hint": "通常の支給額は%{amount}です。他の給料はそのままです。",
+    "useDefault": "通常の金額を使う",
+    "invalidAmount": "有効な支給額を入力してください。"
+  },
+  "moveBillSheet": {
+    "title": "支払いを移動",
+    "subtitle": "%{date}に%{amount}不足",
+    "bill": "支払い",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "移動先の給料",
+    "noBills": "移動できる未払いの支払いはありません。",
+    "noPaychecks": "他に今後の給料はありません。"
+  }
+}

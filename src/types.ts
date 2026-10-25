@@ -52,4 +52,11 @@ export interface ExpenseAssignment {
   paid?: boolean;
   /** Overrides the expense's default amount for this paycheck only */
   amount?: number;
+  /** A linked bill moved off this paycheck; the marker keeps it from reappearing */
+  skipped?: boolean;
+}
+
+export interface PaycheckRef {
+  payDate: string;
+  sourceId: string;
 }

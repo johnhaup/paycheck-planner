@@ -1,0 +1,240 @@
+{
+  "common": {
+    "cancel": "Annuleren",
+    "delete": "Verwijderen",
+    "done": "Gereed",
+    "save": "Opslaan",
+    "add": "Toevoegen",
+    "update": "Bijwerken",
+    "back": "Terug",
+    "error": "Fout",
+    "none": "Geen",
+    "unknown": "Onbekend",
+    "removed": "Verwijderd",
+    "systemDefault": "Systeemstandaard",
+    "selectDate": "Datum kiezen",
+    "selectTime": "Tijd kiezen",
+    "and": "en",
+    "move": "Verplaatsen"
+  },
+  "ordinal": {
+    "other": "%{n}e"
+  },
+  "tabs": {
+    "paychecks": "Salaris",
+    "income": "Inkomen",
+    "expenses": "Uitgaven"
+  },
+  "screens": {
+    "settings": "Instellingen",
+    "incomeSource": "Inkomstenbron",
+    "expense": "Uitgave",
+    "payDate": "Betaaldatum",
+    "language": "Taal",
+    "currency": "Valuta"
+  },
+  "paychecks": {
+    "today": "Vandaag",
+    "goToThisMonth": "Naar deze maand",
+    "leftAfterBills": "%{month} · over na rekeningen",
+    "heroMeta": "%{income} binnen · %{assigned} toegewezen",
+    "monthPaychecks": "Salarissen in %{month}",
+    "emptyTitle": "Nog geen inkomstenbronnen",
+    "emptyBody": "Voeg je eerste inkomstenbron toe om te zien waar elk salaris naartoe gaat.",
+    "noBillsYet": "Nog geen rekeningen · tik om toe te wijzen",
+    "paidProgress": "%{paid} van %{total} betaald",
+    "amountLeft": "%{amount} over",
+    "chartBarLabel": "%{month}, %{amount} over",
+    "opensPaycheck": "Opent dit salaris",
+    "markPaid": "%{payee} markeren als betaald",
+    "changeAmount": "Bedrag van %{payee} voor dit salaris wijzigen",
+    "changePayAmount": "Salarisbedrag van %{source} voor deze uitbetaling wijzigen",
+    "emptyAction": "Inkomstenbron toevoegen",
+    "chartBarCurrentLabel": "%{month} (deze maand), %{amount} over",
+    "shortBy": "%{amount} tekort",
+    "moveBill": "Rekening verplaatsen"
+  },
+  "income": {
+    "emptyTitle": "Nog geen inkomen",
+    "emptyBody": "Voeg je salaris toe om te beginnen met plannen.",
+    "perMonth": "Per maand",
+    "nextPayday": "Volgende betaaldag",
+    "sources": "Bronnen",
+    "swipeHint": "Veeg naar links op een bron om deze te verwijderen.",
+    "addSource": "Inkomstenbron toevoegen",
+    "perCheck": "per uitbetaling",
+    "deleteTitle": "Inkomstenbron verwijderen",
+    "deleteMessage": "'%{name}' en alle bijbehorende uitgaventoewijzingen verwijderen?",
+    "frequency": {
+      "weekly": "Wekelijks",
+      "biweekly": "Tweewekelijks",
+      "semiMonthly": "Twee keer per maand",
+      "monthly": "Maandelijks"
+    },
+    "schedule": {
+      "weekly": "Wekelijks · op %{weekday}",
+      "biweekly": "Tweewekelijks · op %{weekday}",
+      "semiMonthly": "Twee keer per maand · %{first} & %{second}",
+      "monthly": "Maandelijks · %{day}"
+    },
+    "form": {
+      "name": "Naam",
+      "namePlaceholder": "bijv. Acme BV",
+      "payAmount": "Salaris (per uitbetaling)",
+      "payAmountPlaceholder": "bijv. 2500.00",
+      "payFrequency": "Betaalfrequentie",
+      "payDays": "Betaaldagen van de maand",
+      "payDaysHint": "Gebruik 31 voor de laatste dag van de maand (past zich automatisch aan bij kortere maanden)",
+      "adjustToWorkday": "Aanpassen aan werkdag",
+      "adjustHint": "Valt een betaaldag in het weekend, dan verschuift deze naar de vrijdag ervoor.",
+      "firstPayDate": "Eerste betaaldatum",
+      "addButton": "Inkomstenbron toevoegen",
+      "updateButton": "Inkomstenbron bijwerken",
+      "nameRequired": "Naam is verplicht.",
+      "invalidAmount": "Voer een geldig salarisbedrag in.",
+      "payDaysRange": "Betaaldagen moeten tussen 1 en 31 liggen."
+    }
+  },
+  "expenses": {
+    "emptyTitle": "Nog geen uitgaven",
+    "emptyBody": "Voeg je rekeningen toe en wijs ze toe aan salarissen.",
+    "nothingHere": "Hier is nog niets.",
+    "monthlySummary": {
+      "one": "%{amount} per maand voor %{count} rekening",
+      "other": "%{amount} per maand voor %{count} rekeningen"
+    },
+    "filters": {
+      "all": "Alle",
+      "recurring": "Terugkerend",
+      "oneTime": "Eenmalig"
+    },
+    "addExpense": "Uitgave toevoegen",
+    "openLink": "Betaallink voor %{payee} openen",
+    "deleteTitle": "Uitgave verwijderen",
+    "deleteMessage": "'%{payee}' en alle toewijzingen verwijderen?",
+    "sections": {
+      "notLinked": "Niet gekoppeld",
+      "oneTime": "Eenmalig"
+    },
+    "perMonthTotal": "%{amount}/mnd",
+    "meta": {
+      "everyPaycheck": "Elk salaris",
+      "slotEachMonth": "%{slot} elke maand",
+      "assignPerPaycheck": "Per salaris toewijzen",
+      "due": "Vervalt %{date}",
+      "oneTime": "Eenmalig"
+    },
+    "cadence": {
+      "perCheck": "per salaris",
+      "monthly": "maandelijks",
+      "recurring": "terugkerend",
+      "oneTime": "eenmalig"
+    },
+    "slot": {
+      "last": "Laatste salaris",
+      "lastShort": "Laatste",
+      "ordinalPaycheck": "%{ordinal} salaris",
+      "dayOfMonth": "%{day}"
+    },
+    "form": {
+      "payee": "Begunstigde",
+      "payeePlaceholder": "bijv. Energiebedrijf",
+      "amount": "Bedrag",
+      "amountPlaceholder": "bijv. 150.00",
+      "link": "Betaallink (optioneel)",
+      "linkPlaceholder": "https://...",
+      "paycheck": "Salaris",
+      "moveHint": "Verplaats deze uitgave naar een ander salaris.",
+      "linkedSource": "Gekoppelde inkomstenbron",
+      "linkedHint": "Als deze gekoppeld is, wordt deze uitgave vooraf ingevuld bij salarissen van die bron.",
+      "howOften": "Hoe vaak",
+      "everyPaycheck": "Elk salaris",
+      "monthly": "Maandelijks",
+      "whichPaycheck": "Welk salaris",
+      "slotHintLast": "Komt op het laatste salaris van elke maand, ook in maanden met een extra salaris.",
+      "slotHintOrdinal": "Extra salarissen in langere maanden worden overgeslagen. Kies Laatste om altijd het laatste te gebruiken.",
+      "addButton": "Uitgave toevoegen",
+      "updateButton": "Uitgave bijwerken",
+      "payeeRequired": "Naam van begunstigde is verplicht.",
+      "invalidAmount": "Voer een geldig bedrag in."
+    }
+  },
+  "payDate": {
+    "thisPaycheck": "Dit salaris",
+    "available": "Beschikbaar",
+    "emptyAssigned": "Nog niets toegewezen. Voeg rekeningen toe uit de lijst hieronder.",
+    "leftAfterBills": "Over na rekeningen",
+    "summaryMeta": "%{pay} salaris · %{assigned} toegewezen",
+    "linked": "Gekoppeld",
+    "remove": "%{payee} verwijderen",
+    "add": "%{payee} toevoegen",
+    "oneTime": {
+      "addButton": "Eenmalige uitgave toevoegen",
+      "title": "Eenmalige uitgave",
+      "payee": "Begunstigde",
+      "amount": "Bedrag"
+    }
+  },
+  "amountSheet": {
+    "subtitle": "Alleen salaris van %{date}",
+    "hint": "Standaard is %{amount}. Andere salarissen behouden de standaard.",
+    "useDefault": "Standaardbedrag gebruiken"
+  },
+  "settings": {
+    "appearance": "Weergave",
+    "light": "Licht",
+    "dark": "Donker",
+    "system": "Systeem",
+    "hideCents": "Centen verbergen",
+    "hideCentsHint": "Bedragen afgerond op hele eenheden tonen.",
+    "behavior": "Gedrag",
+    "autoMarkPaid": "Automatisch betaald bij tikken op link",
+    "autoMarkPaidHint": "Bij tikken op een betaallink wordt de rekening ook als betaald gemarkeerd.",
+    "region": "Taal en valuta",
+    "language": "Taal",
+    "currency": "Valuta",
+    "notifications": "Meldingen",
+    "paydayReminder": "Betaaldagherinnering",
+    "paydayReminderHint": "Ontvang vóór elke betaaldag een overzicht van de rekeningen en wat er overblijft.",
+    "remindWhen": "Herinner me",
+    "remindTime": "Om",
+    "offsets": {
+      "dayOf": "Op de dag zelf",
+      "dayBefore": "Dag ervoor",
+      "daysBefore": "%{count} dagen ervoor",
+      "weekBefore": "Week ervoor"
+    },
+    "permissionDeniedTitle": "Meldingen staan uit",
+    "permissionDeniedBody": "Sta meldingen toe voor Paycheck Planner in de instellingen van je apparaat om betaaldagherinneringen te ontvangen."
+  },
+  "notifications": {
+    "channelName": "Betaaldagherinneringen",
+    "titleToday": "Vandaag betaaldag: %{source}",
+    "titleTomorrow": "Morgen betaaldag: %{source}",
+    "titleOnDay": "Betaaldag %{weekday}: %{source}",
+    "body": "%{income} binnen · %{bills} · %{left} over",
+    "bodyNoBills": "%{income} binnen · nog geen rekeningen toegewezen",
+    "bills": {
+      "one": "%{count} rekening (%{amount})",
+      "other": "%{count} rekeningen (%{amount})"
+    }
+  },
+  "links": {
+    "openFailed": "Kon link niet openen"
+  },
+  "payAmountSheet": {
+    "subtitle": "Alleen salaris van %{date}",
+    "hint": "Gebruikelijk salaris is %{amount}. Andere salarissen behouden dit.",
+    "useDefault": "Gebruikelijk bedrag gebruiken",
+    "invalidAmount": "Voer een geldig salarisbedrag in."
+  },
+  "moveBillSheet": {
+    "title": "Rekening verplaatsen",
+    "subtitle": "%{amount} tekort op %{date}",
+    "bill": "Rekening",
+    "billLabel": "%{payee} · %{amount}",
+    "toPaycheck": "Naar salaris",
+    "noBills": "Geen onbetaalde rekeningen om te verplaatsen.",
+    "noPaychecks": "Geen andere komende salarissen."
+  }
+}

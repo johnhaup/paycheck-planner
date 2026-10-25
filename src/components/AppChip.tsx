@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, ViewStyle, StyleProp } from "react-native";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
+import { hapticSelection } from "@/utils/haptics";
 
 interface Props<T> {
   label: string;
@@ -16,8 +17,11 @@ export function AppChip<T>({ label, value, selected, onSelect, style }: Props<T>
   const colors = useColors();
 
   const handlePress = useCallback(() => {
+    if (!selected) {
+      hapticSelection();
+    }
     onSelect(value);
-  }, [onSelect, value]);
+  }, [onSelect, value, selected]);
 
   const chipStyle = useMemo(
     () => [

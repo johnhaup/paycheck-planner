@@ -2,6 +2,7 @@ import { useCallback, useMemo } from "react";
 import { Pressable, View, StyleSheet } from "react-native";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { hapticTap } from "@/utils/haptics";
 
 interface Props {
   value: boolean;
@@ -17,6 +18,7 @@ export function AppToggle({ value, onValueChange }: Props) {
   const colors = useColors();
 
   const handlePress = useCallback(() => {
+    hapticTap();
     onValueChange(!value);
   }, [value, onValueChange]);
 
