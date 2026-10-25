@@ -44,3 +44,6 @@ yarn-error.*
 ship/screenshots/maestro-debug/
 ship/screenshots/framed/*
 !ship/screenshots/framed/en-US/
+
+# Local EAS build output
+build/
