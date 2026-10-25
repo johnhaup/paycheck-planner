@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "اليوم",
     "goToThisMonth": "الانتقال إلى هذا الشهر",
-    "leftAfterBills": "%{month} · المتبقي بعد الفواتير",
+    "leftAfterBills": "%{month} · المتبقي",
     "heroMeta": "%{income} دخل · %{assigned} مخصص",
     "monthPaychecks": "رواتب %{month}",
     "emptyTitle": "لا توجد مصادر دخل بعد",
@@ -52,7 +52,8 @@
     "emptyAction": "إضافة مصدر دخل",
     "chartBarCurrentLabel": "%{month} (هذا الشهر)، المتبقي %{amount}",
     "shortBy": "عجز بمقدار %{amount}",
-    "moveBill": "نقل فاتورة"
+    "moveBill": "نقل فاتورة",
+    "markSetAside": "تحديد %{payee} كمبلغ محجوز"
   },
   "income": {
     "emptyTitle": "لا يوجد دخل بعد",
@@ -118,7 +119,8 @@
     "deleteMessage": "هل تريد حذف \"%{payee}\" وجميع تخصيصاته؟",
     "sections": {
       "notLinked": "غير مرتبط",
-      "oneTime": "لمرة واحدة"
+      "oneTime": "لمرة واحدة",
+      "setAsides": "المبالغ المحجوزة"
     },
     "perMonthTotal": "%{amount}/شهر",
     "meta": {
@@ -126,7 +128,8 @@
       "slotEachMonth": "%{slot} كل شهر",
       "assignPerPaycheck": "تخصيص لكل راتب",
       "due": "يستحق %{date}",
-      "oneTime": "لمرة واحدة"
+      "oneTime": "لمرة واحدة",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "لكل راتب",
@@ -160,14 +163,24 @@
       "addButton": "إضافة مصروف",
       "updateButton": "تحديث المصروف",
       "payeeRequired": "اسم المستفيد مطلوب.",
-      "invalidAmount": "أدخل مبلغًا صالحًا."
+      "invalidAmount": "أدخل مبلغًا صالحًا.",
+      "name": "الاسم",
+      "setAsidePlaceholder": "مثلاً مصروف شخصي",
+      "setAsideHint": "مال تحتفظ به من الراتب، مثل مصروف الجيب أو المدخرات. يُخصم مما يتبقى، تمامًا مثل الفاتورة.",
+      "addSetAside": "إضافة مبلغ محجوز",
+      "updateSetAside": "تحديث المبلغ المحجوز",
+      "nameRequired": "الاسم مطلوب."
+    },
+    "kind": {
+      "bill": "فاتورة",
+      "setAside": "مبلغ محجوز"
     }
   },
   "payDate": {
     "thisPaycheck": "هذا الراتب",
     "available": "متاح",
     "emptyAssigned": "لم يُخصص شيء بعد. أضف فواتير من القائمة أدناه.",
-    "leftAfterBills": "المتبقي بعد الفواتير",
+    "leftAfterBills": "المتبقي",
     "summaryMeta": "راتب %{pay} · %{assigned} مخصص",
     "linked": "مرتبط",
     "remove": "إزالة %{payee}",
@@ -225,7 +238,9 @@
       "few": "%{count} فواتير (%{amount})",
       "many": "%{count} فاتورة (%{amount})",
       "other": "%{count} فاتورة (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} دخل · %{bills} · %{setAside} محجوز · %{left} متبقي",
+    "bodySetAsideOnly": "%{income} دخل · %{setAside} محجوز · %{left} متبقي"
   },
   "links": {
     "openFailed": "تعذر فتح الرابط"

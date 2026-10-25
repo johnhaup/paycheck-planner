@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "Bugün",
     "goToThisMonth": "Bu aya git",
-    "leftAfterBills": "%{month} · faturalardan sonra kalan",
+    "leftAfterBills": "%{month} · kalan",
     "heroMeta": "%{income} gelir · %{assigned} atanmış",
     "monthPaychecks": "%{month} maaşları",
     "emptyTitle": "Henüz gelir kaynağı yok",
@@ -52,7 +52,8 @@
     "emptyAction": "Gelir kaynağı ekle",
     "chartBarCurrentLabel": "%{month} (bu ay), %{amount} kaldı",
     "shortBy": "%{amount} eksik",
-    "moveBill": "Fatura taşı"
+    "moveBill": "Fatura taşı",
+    "markSetAside": "%{payee} ayrıldı olarak işaretle"
   },
   "income": {
     "emptyTitle": "Henüz gelir yok",
@@ -114,7 +115,8 @@
     "deleteMessage": "\"%{payee}\" ve tüm atamaları silinsin mi?",
     "sections": {
       "notLinked": "Bağlı değil",
-      "oneTime": "Tek seferlik"
+      "oneTime": "Tek seferlik",
+      "setAsides": "Rezervler"
     },
     "perMonthTotal": "%{amount}/ay",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "Her ay %{slot}",
       "assignPerPaycheck": "Maaş başına ata",
       "due": "Son ödeme %{date}",
-      "oneTime": "Tek seferlik"
+      "oneTime": "Tek seferlik",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "maaş başına",
@@ -156,14 +159,24 @@
       "addButton": "Gider Ekle",
       "updateButton": "Gideri Güncelle",
       "payeeRequired": "Alıcı adı gerekli.",
-      "invalidAmount": "Geçerli bir tutar gir."
+      "invalidAmount": "Geçerli bir tutar gir.",
+      "name": "Ad",
+      "setAsidePlaceholder": "örn. Harçlık",
+      "setAsideHint": "Maaştan kenara ayırdığın para; harcama parası ya da birikim gibi. Tıpkı bir fatura gibi kalandan düşülür.",
+      "addSetAside": "Rezerv Ekle",
+      "updateSetAside": "Rezervi Güncelle",
+      "nameRequired": "Ad gerekli."
+    },
+    "kind": {
+      "bill": "Fatura",
+      "setAside": "Rezerv"
     }
   },
   "payDate": {
     "thisPaycheck": "Bu maaş",
     "available": "Kullanılabilir",
     "emptyAssigned": "Henüz bir şey atanmadı. Aşağıdaki listeden fatura ekle.",
-    "leftAfterBills": "Faturalardan sonra kalan",
+    "leftAfterBills": "Kalan",
     "summaryMeta": "%{pay} maaş · %{assigned} atanmış",
     "linked": "Bağlı",
     "remove": "%{payee} kaldır",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count} fatura (%{amount})",
       "other": "%{count} fatura (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} gelir · %{bills} · %{setAside} ayrıldı · %{left} kaldı",
+    "bodySetAsideOnly": "%{income} gelir · %{setAside} ayrıldı · %{left} kaldı"
   },
   "links": {
     "openFailed": "Bağlantı açılamadı"

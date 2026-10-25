@@ -6,6 +6,7 @@ export interface PaycheckExpense {
   assignmentId: string;
   link?: string;
   paid?: boolean;
+  isSetAside?: boolean;
 }
 
 export interface PaycheckItem {

@@ -7,6 +7,7 @@ import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppCheckCircle } from "@/components/AppCheckCircle";
+import { AppSetAsideIcon } from "@/components/AppSetAsideIcon";
 import type {
   EditAmountHandler,
   LinkTapHandler,
@@ -61,7 +62,9 @@ export function PaycheckExpenseRow({
       <AppCheckCircle
         checked={!!expense.paid}
         onPress={handleTogglePaid}
-        accessibilityLabel={t("paychecks.markPaid", { payee: expense.payee })}
+        accessibilityLabel={t(expense.isSetAside ? "paychecks.markSetAside" : "paychecks.markPaid", {
+          payee: expense.payee,
+        })}
       />
       <View style={styles.content}>
         <Pressable
@@ -71,6 +74,7 @@ export function PaycheckExpenseRow({
           hitSlop={MEASUREMENTS.hitSlop}
           accessibilityRole={expense.link ? "link" : undefined}
         >
+          {expense.isSetAside ? <AppSetAsideIcon /> : null}
           <AppText
             variant="body"
             color={textColor}

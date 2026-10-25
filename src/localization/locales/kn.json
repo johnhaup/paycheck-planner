@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "ಇಂದು",
     "goToThisMonth": "ಈ ತಿಂಗಳಿಗೆ ಹೋಗಿ",
-    "leftAfterBills": "%{month} · ಬಿಲ್‌ಗಳ ನಂತರ ಉಳಿದಿದೆ",
+    "leftAfterBills": "%{month} · ಉಳಿದಿದೆ",
     "heroMeta": "%{income} ಆದಾಯ · %{assigned} ನಿಗದಿ",
     "monthPaychecks": "%{month} ಸಂಬಳಗಳು",
     "emptyTitle": "ಇನ್ನೂ ಆದಾಯ ಮೂಲಗಳಿಲ್ಲ",
@@ -52,7 +52,8 @@
     "emptyAction": "ಆದಾಯ ಮೂಲ ಸೇರಿಸಿ",
     "chartBarCurrentLabel": "%{month} (ಈ ತಿಂಗಳು), %{amount} ಉಳಿದಿದೆ",
     "shortBy": "%{amount} ಕೊರತೆ",
-    "moveBill": "ಬಿಲ್ ಸರಿಸಿ"
+    "moveBill": "ಬಿಲ್ ಸರಿಸಿ",
+    "markSetAside": "%{payee} ಮೀಸಲಿಟ್ಟಿದೆ ಎಂದು ಗುರುತಿಸಿ"
   },
   "income": {
     "emptyTitle": "ಇನ್ನೂ ಆದಾಯವಿಲ್ಲ",
@@ -114,7 +115,8 @@
     "deleteMessage": "\"%{payee}\" ಮತ್ತು ಅದರ ಎಲ್ಲಾ ನಿಗದಿಗಳನ್ನು ಅಳಿಸಬೇಕೆ?",
     "sections": {
       "notLinked": "ಲಿಂಕ್ ಆಗಿಲ್ಲ",
-      "oneTime": "ಒಂದು ಬಾರಿ"
+      "oneTime": "ಒಂದು ಬಾರಿ",
+      "setAsides": "ಮೀಸಲುಗಳು"
     },
     "perMonthTotal": "%{amount}/ತಿಂಗಳು",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "ಪ್ರತಿ ತಿಂಗಳು %{slot}",
       "assignPerPaycheck": "ಸಂಬಳದ ಪ್ರಕಾರ ನಿಗದಿಪಡಿಸಿ",
       "due": "ಬಾಕಿ %{date}",
-      "oneTime": "ಒಂದು ಬಾರಿ"
+      "oneTime": "ಒಂದು ಬಾರಿ",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "ಪ್ರತಿ ಸಂಬಳಕ್ಕೆ",
@@ -156,14 +159,24 @@
       "addButton": "ಖರ್ಚು ಸೇರಿಸಿ",
       "updateButton": "ಖರ್ಚು ಅಪ್‌ಡೇಟ್ ಮಾಡಿ",
       "payeeRequired": "ಪಾವತಿ ಪಡೆಯುವವರ ಹೆಸರು ಅಗತ್ಯ.",
-      "invalidAmount": "ಸರಿಯಾದ ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ."
+      "invalidAmount": "ಸರಿಯಾದ ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ.",
+      "name": "ಹೆಸರು",
+      "setAsidePlaceholder": "ಉದಾ. ಕೈಖರ್ಚು",
+      "setAsideHint": "ಸಂಬಳದಿಂದ ನೀವು ಇಟ್ಟುಕೊಳ್ಳುವ ಹಣ, ಉದಾಹರಣೆಗೆ ಕೈಖರ್ಚು ಅಥವಾ ಉಳಿತಾಯ. ಇದು ಬಿಲ್‌ನಂತೆಯೇ ಉಳಿದ ಮೊತ್ತದಿಂದ ಕಡಿತವಾಗುತ್ತದೆ.",
+      "addSetAside": "ಮೀಸಲು ಸೇರಿಸಿ",
+      "updateSetAside": "ಮೀಸಲು ಅಪ್‌ಡೇಟ್ ಮಾಡಿ",
+      "nameRequired": "ಹೆಸರು ಅಗತ್ಯ."
+    },
+    "kind": {
+      "bill": "ಬಿಲ್",
+      "setAside": "ಮೀಸಲು"
     }
   },
   "payDate": {
     "thisPaycheck": "ಈ ಸಂಬಳ",
     "available": "ಲಭ್ಯ",
     "emptyAssigned": "ಇನ್ನೂ ಏನೂ ನಿಗದಿಯಾಗಿಲ್ಲ. ಕೆಳಗಿನ ಪಟ್ಟಿಯಿಂದ ಬಿಲ್‌ಗಳನ್ನು ಸೇರಿಸಿ.",
-    "leftAfterBills": "ಬಿಲ್‌ಗಳ ನಂತರ ಉಳಿದಿದೆ",
+    "leftAfterBills": "ಉಳಿದಿದೆ",
     "summaryMeta": "%{pay} ಸಂಬಳ · %{assigned} ನಿಗದಿ",
     "linked": "ಲಿಂಕ್ ಆಗಿದೆ",
     "remove": "%{payee} ತೆಗೆದುಹಾಕಿ",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count} ಬಿಲ್ (%{amount})",
       "other": "%{count} ಬಿಲ್‌ಗಳು (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} ಆದಾಯ · %{bills} · %{setAside} ಮೀಸಲು · %{left} ಉಳಿದಿದೆ",
+    "bodySetAsideOnly": "%{income} ಆದಾಯ · %{setAside} ಮೀಸಲು · %{left} ಉಳಿದಿದೆ"
   },
   "links": {
     "openFailed": "ಲಿಂಕ್ ತೆರೆಯಲಾಗಲಿಲ್ಲ"

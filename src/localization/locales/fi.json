@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "Tänään",
     "goToThisMonth": "Siirry tähän kuukauteen",
-    "leftAfterBills": "%{month} · jäljellä laskujen jälkeen",
+    "leftAfterBills": "%{month} · jäljellä",
     "heroMeta": "%{income} tuloja · %{assigned} kohdistettu",
     "monthPaychecks": "Palkat · %{month}",
     "emptyTitle": "Ei vielä tulonlähteitä",
@@ -52,7 +52,8 @@
     "emptyAction": "Lisää tulonlähde",
     "chartBarCurrentLabel": "%{month} (tämä kuukausi), %{amount} jäljellä",
     "shortBy": "Vajaus %{amount}",
-    "moveBill": "Siirrä lasku"
+    "moveBill": "Siirrä lasku",
+    "markSetAside": "Merkitse %{payee} varatuksi"
   },
   "income": {
     "emptyTitle": "Ei vielä tuloja",
@@ -114,7 +115,8 @@
     "deleteMessage": "Poistetaanko ”%{payee}” ja kaikki sen kohdistukset?",
     "sections": {
       "notLinked": "Ei linkitetty",
-      "oneTime": "Kertaluonteiset"
+      "oneTime": "Kertaluonteiset",
+      "setAsides": "Varaukset"
     },
     "perMonthTotal": "%{amount}/kk",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "%{slot} joka kuukausi",
       "assignPerPaycheck": "Kohdista palkoittain",
       "due": "Eräpäivä %{date}",
-      "oneTime": "Kertaluonteinen"
+      "oneTime": "Kertaluonteinen",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "per palkka",
@@ -156,14 +159,24 @@
       "addButton": "Lisää meno",
       "updateButton": "Päivitä meno",
       "payeeRequired": "Maksunsaajan nimi on pakollinen.",
-      "invalidAmount": "Anna kelvollinen summa."
+      "invalidAmount": "Anna kelvollinen summa.",
+      "name": "Nimi",
+      "setAsidePlaceholder": "esim. Käyttöraha",
+      "setAsideHint": "Rahaa, jonka pidät palkasta itselläsi, kuten käyttörahaa tai säästöjä. Se vähennetään jäljellä olevasta laskun tavoin.",
+      "addSetAside": "Lisää varaus",
+      "updateSetAside": "Päivitä varaus",
+      "nameRequired": "Nimi on pakollinen."
+    },
+    "kind": {
+      "bill": "Lasku",
+      "setAside": "Varaus"
     }
   },
   "payDate": {
     "thisPaycheck": "Tämä palkka",
     "available": "Käytettävissä",
     "emptyAssigned": "Ei vielä kohdistuksia. Lisää laskuja alla olevasta luettelosta.",
-    "leftAfterBills": "Jäljellä laskujen jälkeen",
+    "leftAfterBills": "Jäljellä",
     "summaryMeta": "Palkka %{pay} · %{assigned} kohdistettu",
     "linked": "Linkitetty",
     "remove": "Poista %{payee}",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count} lasku (%{amount})",
       "other": "%{count} laskua (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} tuloja · %{bills} · %{setAside} varattu · %{left} jäljellä",
+    "bodySetAsideOnly": "%{income} tuloja · %{setAside} varattu · %{left} jäljellä"
   },
   "links": {
     "openFailed": "Linkkiä ei voitu avata"

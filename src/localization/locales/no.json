@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "I dag",
     "goToThisMonth": "Gå til denne måneden",
-    "leftAfterBills": "%{month} · igjen etter regninger",
+    "leftAfterBills": "%{month} · igjen",
     "heroMeta": "%{income} inn · %{assigned} tildelt",
     "monthPaychecks": "Lønnsutbetalinger i %{month}",
     "emptyTitle": "Ingen inntektskilder enda",
@@ -52,7 +52,8 @@
     "emptyAction": "Legg til inntektskilde",
     "chartBarCurrentLabel": "%{month} (denne måneden), %{amount} igjen",
     "shortBy": "Mangler %{amount}",
-    "moveBill": "Flytt en regning"
+    "moveBill": "Flytt en regning",
+    "markSetAside": "Merk %{payee} som satt av"
   },
   "income": {
     "emptyTitle": "Ingen inntekt enda",
@@ -114,7 +115,8 @@
     "deleteMessage": "Slette «%{payee}» og alle tildelingene?",
     "sections": {
       "notLinked": "Ikke koblet",
-      "oneTime": "Engangs"
+      "oneTime": "Engangs",
+      "setAsides": "Avsetninger"
     },
     "perMonthTotal": "%{amount}/mnd",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "%{slot} hver måned",
       "assignPerPaycheck": "Tildel per lønn",
       "due": "Forfaller %{date}",
-      "oneTime": "Engangs"
+      "oneTime": "Engangs",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "per utbetaling",
@@ -156,14 +159,24 @@
       "addButton": "Legg til utgift",
       "updateButton": "Oppdater utgift",
       "payeeRequired": "Mottakernavn er påkrevd.",
-      "invalidAmount": "Skriv inn et gyldig beløp."
+      "invalidAmount": "Skriv inn et gyldig beløp.",
+      "name": "Navn",
+      "setAsidePlaceholder": "f.eks. Brukspenger",
+      "setAsideHint": "Penger du holder av fra en lønn, som brukspenger eller sparing. Det trekkes fra det som er igjen, akkurat som en regning.",
+      "addSetAside": "Legg til avsetning",
+      "updateSetAside": "Oppdater avsetning",
+      "nameRequired": "Navn er påkrevd."
+    },
+    "kind": {
+      "bill": "Regning",
+      "setAside": "Avsetning"
     }
   },
   "payDate": {
     "thisPaycheck": "Denne lønnen",
     "available": "Tilgjengelig",
     "emptyAssigned": "Ingenting tildelt enda. Legg til regninger fra listen nedenfor.",
-    "leftAfterBills": "Igjen etter regninger",
+    "leftAfterBills": "Igjen",
     "summaryMeta": "%{pay} lønn · %{assigned} tildelt",
     "linked": "Koblet",
     "remove": "Fjern %{payee}",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count} regning (%{amount})",
       "other": "%{count} regninger (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} inn · %{bills} · %{setAside} satt av · %{left} igjen",
+    "bodySetAsideOnly": "%{income} inn · %{setAside} satt av · %{left} igjen"
   },
   "links": {
     "openFailed": "Kunne ikke åpne lenken"

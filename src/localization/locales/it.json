@@ -37,7 +37,7 @@
   "paychecks": {
     "today": "Oggi",
     "goToThisMonth": "Vai a questo mese",
-    "leftAfterBills": "%{month} · rimasto dopo le bollette",
+    "leftAfterBills": "%{month} · rimanente",
     "heroMeta": "%{income} in entrata · %{assigned} assegnati",
     "monthPaychecks": "Stipendi di %{month}",
     "emptyTitle": "Nessuna fonte di reddito",
@@ -53,7 +53,8 @@
     "emptyAction": "Aggiungi fonte di reddito",
     "chartBarCurrentLabel": "%{month} (questo mese), rimangono %{amount}",
     "shortBy": "Mancano %{amount}",
-    "moveBill": "Sposta una bolletta"
+    "moveBill": "Sposta una bolletta",
+    "markSetAside": "Segna %{payee} come accantonato"
   },
   "income": {
     "emptyTitle": "Nessuna entrata",
@@ -115,7 +116,8 @@
     "deleteMessage": "Eliminare \"%{payee}\" e tutte le sue assegnazioni?",
     "sections": {
       "notLinked": "Non collegate",
-      "oneTime": "Una tantum"
+      "oneTime": "Una tantum",
+      "setAsides": "Accantonamenti"
     },
     "perMonthTotal": "%{amount}/mese",
     "meta": {
@@ -123,7 +125,8 @@
       "slotEachMonth": "%{slot} di ogni mese",
       "assignPerPaycheck": "Assegna per stipendio",
       "due": "Scade il %{date}",
-      "oneTime": "Una tantum"
+      "oneTime": "Una tantum",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "per stipendio",
@@ -157,14 +160,24 @@
       "addButton": "Aggiungi spesa",
       "updateButton": "Aggiorna spesa",
       "payeeRequired": "Il nome del beneficiario è obbligatorio.",
-      "invalidAmount": "Inserisci un importo valido."
+      "invalidAmount": "Inserisci un importo valido.",
+      "name": "Nome",
+      "setAsidePlaceholder": "es. Soldi per le spese",
+      "setAsideHint": "Soldi che tieni da uno stipendio, come contanti da spendere o risparmi. Vengono sottratti da ciò che rimane, proprio come una bolletta.",
+      "addSetAside": "Aggiungi accantonamento",
+      "updateSetAside": "Aggiorna accantonamento",
+      "nameRequired": "Il nome è obbligatorio."
+    },
+    "kind": {
+      "bill": "Bolletta",
+      "setAside": "Accantonamento"
     }
   },
   "payDate": {
     "thisPaycheck": "Questo stipendio",
     "available": "Disponibili",
     "emptyAssigned": "Niente assegnato. Aggiungi le bollette dall'elenco qui sotto.",
-    "leftAfterBills": "Rimasto dopo le bollette",
+    "leftAfterBills": "Rimanente",
     "summaryMeta": "Stipendio di %{pay} · %{assigned} assegnati",
     "linked": "Collegata",
     "remove": "Rimuovi %{payee}",
@@ -218,7 +231,9 @@
     "bills": {
       "one": "%{count} bolletta (%{amount})",
       "other": "%{count} bollette (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} in entrata · %{bills} · %{setAside} accantonati · rimangono %{left}",
+    "bodySetAsideOnly": "%{income} in entrata · %{setAside} accantonati · rimangono %{left}"
   },
   "links": {
     "openFailed": "Impossibile aprire il link"

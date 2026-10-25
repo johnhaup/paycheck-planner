@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "今天",
     "goToThisMonth": "回到本月",
-    "leftAfterBills": "%{month} · 付完帳單後剩餘",
+    "leftAfterBills": "%{month} · 剩餘",
     "heroMeta": "收入 %{income} · 已分配 %{assigned}",
     "monthPaychecks": "%{month}薪水",
     "emptyTitle": "還沒有收入來源",
@@ -52,7 +52,8 @@
     "emptyAction": "新增收入來源",
     "chartBarCurrentLabel": "%{month}（本月），剩餘 %{amount}",
     "shortBy": "短少 %{amount}",
-    "moveBill": "移動帳單"
+    "moveBill": "移動帳單",
+    "markSetAside": "將%{payee}標示為已預留"
   },
   "income": {
     "emptyTitle": "還沒有收入",
@@ -113,7 +114,8 @@
     "deleteMessage": "要刪除「%{payee}」及其所有分配嗎？",
     "sections": {
       "notLinked": "未連結",
-      "oneTime": "一次性"
+      "oneTime": "一次性",
+      "setAsides": "預留款項"
     },
     "perMonthTotal": "%{amount}/月",
     "meta": {
@@ -121,7 +123,8 @@
       "slotEachMonth": "每月%{slot}",
       "assignPerPaycheck": "依薪水分配",
       "due": "%{date}到期",
-      "oneTime": "一次性"
+      "oneTime": "一次性",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "每筆",
@@ -155,14 +158,24 @@
       "addButton": "新增支出",
       "updateButton": "更新支出",
       "payeeRequired": "請輸入收款人名稱。",
-      "invalidAmount": "請輸入有效金額。"
+      "invalidAmount": "請輸入有效金額。",
+      "name": "名稱",
+      "setAsidePlaceholder": "例如：零用錢",
+      "setAsideHint": "從薪水中留出的錢，例如零用錢或儲蓄。它和帳單一樣會從剩餘金額中扣除。",
+      "addSetAside": "新增預留",
+      "updateSetAside": "更新預留",
+      "nameRequired": "請輸入名稱。"
+    },
+    "kind": {
+      "bill": "帳單",
+      "setAside": "預留"
     }
   },
   "payDate": {
     "thisPaycheck": "這筆薪水",
     "available": "可用",
     "emptyAssigned": "還沒有分配任何帳單。從下方清單新增。",
-    "leftAfterBills": "付完帳單後剩餘",
+    "leftAfterBills": "剩餘",
     "summaryMeta": "薪水 %{pay} · 已分配 %{assigned}",
     "linked": "已連結",
     "remove": "移除%{payee}",
@@ -215,7 +228,9 @@
     "bodyNoBills": "收入 %{income} · 尚未分配帳單",
     "bills": {
       "other": "%{count}筆帳單（%{amount}）"
-    }
+    },
+    "bodyWithSetAside": "收入 %{income} · %{bills} · 預留 %{setAside} · 剩餘 %{left}",
+    "bodySetAsideOnly": "收入 %{income} · 預留 %{setAside} · 剩餘 %{left}"
   },
   "links": {
     "openFailed": "無法開啟連結"

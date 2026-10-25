@@ -37,7 +37,7 @@
   "paychecks": {
     "today": "I dag",
     "goToThisMonth": "Gå till den här månaden",
-    "leftAfterBills": "%{month} · kvar efter räkningar",
+    "leftAfterBills": "%{month} · kvar",
     "heroMeta": "%{income} in · %{assigned} tilldelat",
     "monthPaychecks": "Löneutbetalningar i %{month}",
     "emptyTitle": "Inga inkomstkällor än",
@@ -53,7 +53,8 @@
     "emptyAction": "Lägg till inkomstkälla",
     "chartBarCurrentLabel": "%{month} (den här månaden), %{amount} kvar",
     "shortBy": "Saknas %{amount}",
-    "moveBill": "Flytta en räkning"
+    "moveBill": "Flytta en räkning",
+    "markSetAside": "Markera %{payee} som avsatt"
   },
   "income": {
     "emptyTitle": "Ingen inkomst än",
@@ -115,7 +116,8 @@
     "deleteMessage": "Ta bort \"%{payee}\" och alla dess tilldelningar?",
     "sections": {
       "notLinked": "Inte kopplad",
-      "oneTime": "Engångs"
+      "oneTime": "Engångs",
+      "setAsides": "Avsättningar"
     },
     "perMonthTotal": "%{amount}/mån",
     "meta": {
@@ -123,7 +125,8 @@
       "slotEachMonth": "%{slot} varje månad",
       "assignPerPaycheck": "Tilldela per lön",
       "due": "Förfaller %{date}",
-      "oneTime": "Engångs"
+      "oneTime": "Engångs",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "per utbetalning",
@@ -157,14 +160,24 @@
       "addButton": "Lägg till utgift",
       "updateButton": "Uppdatera utgift",
       "payeeRequired": "Mottagarens namn krävs.",
-      "invalidAmount": "Ange ett giltigt belopp."
+      "invalidAmount": "Ange ett giltigt belopp.",
+      "name": "Namn",
+      "setAsidePlaceholder": "t.ex. Fickpengar",
+      "setAsideHint": "Pengar du behåller från en lön, som fickpengar eller sparande. De dras från det som blir kvar, precis som en räkning.",
+      "addSetAside": "Lägg till avsättning",
+      "updateSetAside": "Uppdatera avsättning",
+      "nameRequired": "Namn krävs."
+    },
+    "kind": {
+      "bill": "Räkning",
+      "setAside": "Avsättning"
     }
   },
   "payDate": {
     "thisPaycheck": "Den här lönen",
     "available": "Tillgängligt",
     "emptyAssigned": "Inget tilldelat än. Lägg till räkningar från listan nedan.",
-    "leftAfterBills": "Kvar efter räkningar",
+    "leftAfterBills": "Kvar",
     "summaryMeta": "%{pay} lön · %{assigned} tilldelat",
     "linked": "Kopplad",
     "remove": "Ta bort %{payee}",
@@ -218,7 +231,9 @@
     "bills": {
       "one": "%{count} räkning (%{amount})",
       "other": "%{count} räkningar (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} in · %{bills} · %{setAside} avsatt · %{left} kvar",
+    "bodySetAsideOnly": "%{income} in · %{setAside} avsatt · %{left} kvar"
   },
   "links": {
     "openFailed": "Kunde inte öppna länken"

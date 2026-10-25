@@ -40,7 +40,7 @@
   "paychecks": {
     "today": "आज",
     "goToThisMonth": "इस महीने पर जाएं",
-    "leftAfterBills": "%{month} · बिलों के बाद बचा",
+    "leftAfterBills": "%{month} · बचा",
     "heroMeta": "%{income} आया · %{assigned} असाइन",
     "monthPaychecks": "%{month} की सैलरी",
     "emptyTitle": "अभी कोई आय स्रोत नहीं",
@@ -56,7 +56,8 @@
     "emptyAction": "आय स्रोत जोड़ें",
     "chartBarCurrentLabel": "%{month} (इस महीने), %{amount} बचा",
     "shortBy": "%{amount} की कमी",
-    "moveBill": "बिल मूव करें"
+    "moveBill": "बिल मूव करें",
+    "markSetAside": "%{payee} को अलग रखा मार्क करें"
   },
   "income": {
     "emptyTitle": "अभी कोई आय नहीं",
@@ -118,7 +119,8 @@
     "deleteMessage": "\"%{payee}\" और इसके सभी असाइनमेंट हटाएं?",
     "sections": {
       "notLinked": "लिंक नहीं",
-      "oneTime": "एक बार"
+      "oneTime": "एक बार",
+      "setAsides": "अलग रखी रकमें"
     },
     "perMonthTotal": "%{amount}/माह",
     "meta": {
@@ -126,7 +128,8 @@
       "slotEachMonth": "हर महीने %{slot}",
       "assignPerPaycheck": "हर सैलरी पर असाइन करें",
       "due": "%{date} तक",
-      "oneTime": "एक बार"
+      "oneTime": "एक बार",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "प्रति सैलरी",
@@ -160,14 +163,24 @@
       "addButton": "खर्च जोड़ें",
       "updateButton": "खर्च अपडेट करें",
       "payeeRequired": "प्राप्तकर्ता का नाम ज़रूरी है।",
-      "invalidAmount": "सही राशि डालें।"
+      "invalidAmount": "सही राशि डालें।",
+      "name": "नाम",
+      "setAsidePlaceholder": "जैसे जेब खर्च",
+      "setAsideHint": "सैलरी में से जो पैसा आप अपने पास रखते हैं, जैसे जेब खर्च या बचत। यह बिल की तरह ही बची रकम से घटता है।",
+      "addSetAside": "अलग रखी रकम जोड़ें",
+      "updateSetAside": "अलग रखी रकम अपडेट करें",
+      "nameRequired": "नाम ज़रूरी है।"
+    },
+    "kind": {
+      "bill": "बिल",
+      "setAside": "अलग रखी रकम"
     }
   },
   "payDate": {
     "thisPaycheck": "यह सैलरी",
     "available": "उपलब्ध",
     "emptyAssigned": "अभी कुछ असाइन नहीं। नीचे की सूची से बिल जोड़ें।",
-    "leftAfterBills": "बिलों के बाद बचा",
+    "leftAfterBills": "बचा",
     "summaryMeta": "%{pay} सैलरी · %{assigned} असाइन",
     "linked": "लिंक्ड",
     "remove": "%{payee} हटाएं",
@@ -221,7 +234,9 @@
     "bills": {
       "one": "%{count} बिल (%{amount})",
       "other": "%{count} बिल (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} आया · %{bills} · %{setAside} अलग रखा · %{left} बचा",
+    "bodySetAsideOnly": "%{income} आया · %{setAside} अलग रखा · %{left} बचा"
   },
   "links": {
     "openFailed": "लिंक नहीं खुल सका"

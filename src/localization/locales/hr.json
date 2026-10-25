@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "Danas",
     "goToThisMonth": "Idi na ovaj mjesec",
-    "leftAfterBills": "%{month} · ostaje nakon računa",
+    "leftAfterBills": "%{month} · ostaje",
     "heroMeta": "Prihod %{income} · dodijeljeno %{assigned}",
     "monthPaychecks": "Plaće: %{month}",
     "emptyTitle": "Još nema izvora prihoda",
@@ -52,7 +52,8 @@
     "emptyAction": "Dodaj izvor prihoda",
     "chartBarCurrentLabel": "%{month} (ovaj mjesec), ostaje %{amount}",
     "shortBy": "Nedostaje %{amount}",
-    "moveBill": "Premjesti račun"
+    "moveBill": "Premjesti račun",
+    "markSetAside": "Označi %{payee} kao odvojeno"
   },
   "income": {
     "emptyTitle": "Još nema prihoda",
@@ -115,7 +116,8 @@
     "deleteMessage": "Izbrisati „%{payee}” i sve njegove dodjele?",
     "sections": {
       "notLinked": "Nepovezani",
-      "oneTime": "Jednokratni"
+      "oneTime": "Jednokratni",
+      "setAsides": "Odvojena sredstva"
     },
     "perMonthTotal": "%{amount}/mj.",
     "meta": {
@@ -123,7 +125,8 @@
       "slotEachMonth": "%{slot} svaki mjesec",
       "assignPerPaycheck": "Dodijeli uz svaku plaću",
       "due": "Dospijeva %{date}",
-      "oneTime": "Jednokratni"
+      "oneTime": "Jednokratni",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "po plaći",
@@ -157,14 +160,24 @@
       "addButton": "Dodaj trošak",
       "updateButton": "Ažuriraj trošak",
       "payeeRequired": "Naziv primatelja je obavezan.",
-      "invalidAmount": "Unesite valjan iznos."
+      "invalidAmount": "Unesite valjan iznos.",
+      "name": "Naziv",
+      "setAsidePlaceholder": "npr. Džeparac",
+      "setAsideHint": "Novac koji zadržavate od plaće, npr. za trošenje ili štednju. Oduzima se od ostatka, baš kao račun.",
+      "addSetAside": "Dodaj odvojena sredstva",
+      "updateSetAside": "Ažuriraj odvojena sredstva",
+      "nameRequired": "Naziv je obavezan."
+    },
+    "kind": {
+      "bill": "Račun",
+      "setAside": "Odvojeno"
     }
   },
   "payDate": {
     "thisPaycheck": "Ova plaća",
     "available": "Dostupno",
     "emptyAssigned": "Još ništa nije dodijeljeno. Dodajte račune s popisa u nastavku.",
-    "leftAfterBills": "Ostaje nakon računa",
+    "leftAfterBills": "Ostaje",
     "summaryMeta": "Plaća %{pay} · dodijeljeno %{assigned}",
     "linked": "Povezano",
     "remove": "Ukloni %{payee}",
@@ -219,7 +232,9 @@
       "one": "%{count} račun (%{amount})",
       "few": "%{count} računa (%{amount})",
       "other": "%{count} računa (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "Prihod %{income} · %{bills} · odvojeno %{setAside} · ostaje %{left}",
+    "bodySetAsideOnly": "Prihod %{income} · odvojeno %{setAside} · ostaje %{left}"
   },
   "links": {
     "openFailed": "Poveznicu nije moguće otvoriti"

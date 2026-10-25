@@ -38,9 +38,13 @@ function monthlyCost(expense: Expense, source: IncomeSource | undefined): number
     : expense.amount;
 }
 
+function isSetAside(expense: Expense) {
+  return expense.kind === "set-aside";
+}
+
 export function summarizeExpenses(expenses: Expense[], incomeSources: IncomeSource[]): Summary {
   const sourcesById = new Map(incomeSources.map((s) => [s.id, s]));
-  const recurring = expenses.filter((e) => e.isRecurring);
+  const recurring = expenses.filter((e) => e.isRecurring && !isSetAside(e));
   return {
     monthlyTotal: recurring.reduce(
       (sum, e) =>
@@ -51,16 +55,61 @@ export function summarizeExpenses(expenses: Expense[], incomeSources: IncomeSour
   };
 }
 
-/** Recurring expenses grouped by linked income source, then unlinked, then one-time. */
+function scheduleMeta(expense: Expense, source: IncomeSource) {
+  const slot = getLinkedSlot(expense, source);
+  return slot === undefined
+    ? t("expenses.meta.everyPaycheck")
+    : t("expenses.meta.slotEachMonth", { slot: getPaycheckSlotLabel(source, slot) });
+}
+
+function cadenceLabel(expense: Expense, source: IncomeSource) {
+  return getLinkedSlot(expense, source) === undefined
+    ? t("expenses.cadence.perCheck")
+    : t("expenses.cadence.monthly");
+}
+
+/** Recurring set-asides, then recurring bills by linked income source, then unlinked, then one-time. */
 export function buildExpenseSections(
-  expenses: Expense[],
+  allExpenses: Expense[],
   incomeSources: IncomeSource[],
   filter: ExpenseFilter,
   formatMoney: (amount: number) => string
 ): ExpenseSection[] {
   const sections: ExpenseSection[] = [];
+  const sourcesById = new Map(incomeSources.map((s) => [s.id, s]));
+  // Recurring set-asides get their own section; one-time ones stay with the other one-time items
+  const expenses = allExpenses.filter((e) => !(e.isRecurring && isSetAside(e)));
 
   if (filter !== "one-time") {
+    const setAsides = allExpenses.filter((e) => e.isRecurring && isSetAside(e));
+    if (setAsides.length > 0) {
+      const sourceIndex = new Map(incomeSources.map((s, i) => [s.id, i]));
+      sections.push({
+        key: "set-asides",
+        title: t("expenses.sections.setAsides"),
+        total: t("expenses.perMonthTotal", {
+          amount: formatMoney(
+            setAsides.reduce(
+              (sum, e) =>
+                sum + monthlyCost(e, e.incomeSourceId ? sourcesById.get(e.incomeSourceId) : undefined),
+              0
+            )
+          ),
+        }),
+        data: setAsides.map((expense) => {
+          const source = expense.incomeSourceId ? sourcesById.get(expense.incomeSourceId) : undefined;
+          return {
+            expense,
+            tintIndex: source ? sourceIndex.get(source.id) : undefined,
+            meta: source
+              ? t("expenses.meta.withSource", { source: source.name, meta: scheduleMeta(expense, source) })
+              : t("expenses.meta.assignPerPaycheck"),
+            cadence: source ? cadenceLabel(expense, source) : t("expenses.cadence.recurring"),
+          };
+        }),
+      });
+    }
+
     incomeSources.forEach((source, tintIndex) => {
       const linked = expenses.filter((e) => e.isRecurring && e.incomeSourceId === source.id);
       if (linked.length === 0) return;
@@ -70,24 +119,17 @@ export function buildExpenseSections(
         total: t("expenses.perMonthTotal", {
           amount: formatMoney(linked.reduce((sum, e) => sum + monthlyCost(e, source), 0)),
         }),
-        data: linked.map((expense) => {
-          const slot = getLinkedSlot(expense, source);
-          return {
-            expense,
-            tintIndex,
-            meta:
-              slot === undefined
-                ? t("expenses.meta.everyPaycheck")
-                : t("expenses.meta.slotEachMonth", { slot: getPaycheckSlotLabel(source, slot) }),
-            cadence: slot === undefined ? t("expenses.cadence.perCheck") : t("expenses.cadence.monthly"),
-          };
-        }),
+        data: linked.map((expense) => ({
+          expense,
+          tintIndex,
+          meta: scheduleMeta(expense, source),
+          cadence: cadenceLabel(expense, source),
+        })),
       });
     });
 
-    const sourceIds = new Set(incomeSources.map((s) => s.id));
     const unlinked = expenses.filter(
-      (e) => e.isRecurring && (!e.incomeSourceId || !sourceIds.has(e.incomeSourceId))
+      (e) => e.isRecurring && (!e.incomeSourceId || !sourcesById.has(e.incomeSourceId))
     );
     if (unlinked.length > 0) {
       sections.push({

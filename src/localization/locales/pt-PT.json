@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "Hoje",
     "goToThisMonth": "Ir para este mês",
-    "leftAfterBills": "%{month} · sobra após as faturas",
+    "leftAfterBills": "%{month} · sobra",
     "heroMeta": "%{income} recebidos · %{assigned} atribuídos",
     "monthPaychecks": "Ordenados de %{month}",
     "emptyTitle": "Ainda não há fontes de rendimento",
@@ -52,7 +52,8 @@
     "emptyAction": "Adicionar fonte de rendimento",
     "chartBarCurrentLabel": "%{month} (este mês), sobram %{amount}",
     "shortBy": "Faltam %{amount}",
-    "moveBill": "Mover uma fatura"
+    "moveBill": "Mover uma fatura",
+    "markSetAside": "Marcar %{payee} como reservada"
   },
   "income": {
     "emptyTitle": "Ainda não há rendimentos",
@@ -114,7 +115,8 @@
     "deleteMessage": "Eliminar \"%{payee}\" e todas as suas atribuições?",
     "sections": {
       "notLinked": "Não associadas",
-      "oneTime": "Pontuais"
+      "oneTime": "Pontuais",
+      "setAsides": "Reservas"
     },
     "perMonthTotal": "%{amount}/mês",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "%{slot} de cada mês",
       "assignPerPaycheck": "Atribuir por ordenado",
       "due": "Vence a %{date}",
-      "oneTime": "Pontual"
+      "oneTime": "Pontual",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "por ordenado",
@@ -156,14 +159,24 @@
       "addButton": "Adicionar despesa",
       "updateButton": "Atualizar despesa",
       "payeeRequired": "O nome do beneficiário é obrigatório.",
-      "invalidAmount": "Introduza um valor válido."
+      "invalidAmount": "Introduza um valor válido.",
+      "name": "Nome",
+      "setAsidePlaceholder": "p. ex. Dinheiro para gastos",
+      "setAsideHint": "Dinheiro que separa de um ordenado, como para gastos ou poupança. Sai do que sobra, tal como uma fatura.",
+      "addSetAside": "Adicionar reserva",
+      "updateSetAside": "Atualizar reserva",
+      "nameRequired": "O nome é obrigatório."
+    },
+    "kind": {
+      "bill": "Fatura",
+      "setAside": "Reserva"
     }
   },
   "payDate": {
     "thisPaycheck": "Este ordenado",
     "available": "Disponíveis",
     "emptyAssigned": "Ainda nada atribuído. Adicione faturas da lista abaixo.",
-    "leftAfterBills": "Sobra após as faturas",
+    "leftAfterBills": "Sobra",
     "summaryMeta": "Ordenado de %{pay} · %{assigned} atribuídos",
     "linked": "Associada",
     "remove": "Remover %{payee}",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count} fatura (%{amount})",
       "other": "%{count} faturas (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} recebidos · %{bills} · %{setAside} reservados · sobram %{left}",
+    "bodySetAsideOnly": "%{income} recebidos · %{setAside} reservados · sobram %{left}"
   },
   "links": {
     "openFailed": "Não foi possível abrir a ligação"

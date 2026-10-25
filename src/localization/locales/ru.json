@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "Сегодня",
     "goToThisMonth": "Перейти к текущему месяцу",
-    "leftAfterBills": "%{month} · остаток после счетов",
+    "leftAfterBills": "%{month} · остаётся",
     "heroMeta": "Доход %{income} · назначено %{assigned}",
     "monthPaychecks": "Зарплаты: %{month}",
     "emptyTitle": "Пока нет источников дохода",
@@ -52,7 +52,8 @@
     "emptyAction": "Добавить источник дохода",
     "chartBarCurrentLabel": "%{month} (текущий месяц), остаётся %{amount}",
     "shortBy": "Не хватает %{amount}",
-    "moveBill": "Перенести счёт"
+    "moveBill": "Перенести счёт",
+    "markSetAside": "Отметить %{payee} как отложенный"
   },
   "income": {
     "emptyTitle": "Пока нет доходов",
@@ -116,7 +117,8 @@
     "deleteMessage": "Удалить «%{payee}» и все его назначения?",
     "sections": {
       "notLinked": "Не привязаны",
-      "oneTime": "Разовые"
+      "oneTime": "Разовые",
+      "setAsides": "Резервы"
     },
     "perMonthTotal": "%{amount}/мес.",
     "meta": {
@@ -124,7 +126,8 @@
       "slotEachMonth": "%{slot} каждый месяц",
       "assignPerPaycheck": "Назначать для каждой зарплаты",
       "due": "Срок %{date}",
-      "oneTime": "Разовый"
+      "oneTime": "Разовый",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "за выплату",
@@ -158,14 +161,24 @@
       "addButton": "Добавить расход",
       "updateButton": "Обновить расход",
       "payeeRequired": "Укажите получателя.",
-      "invalidAmount": "Введите корректную сумму."
+      "invalidAmount": "Введите корректную сумму.",
+      "name": "Название",
+      "setAsidePlaceholder": "напр. Карманные деньги",
+      "setAsideHint": "Деньги, которые вы оставляете себе из зарплаты, например на расходы или сбережения. Они вычитаются из остатка, как и счёт.",
+      "addSetAside": "Добавить резерв",
+      "updateSetAside": "Обновить резерв",
+      "nameRequired": "Укажите название."
+    },
+    "kind": {
+      "bill": "Счёт",
+      "setAside": "Резерв"
     }
   },
   "payDate": {
     "thisPaycheck": "Эта зарплата",
     "available": "Доступно",
     "emptyAssigned": "Пока ничего не назначено. Добавьте счета из списка ниже.",
-    "leftAfterBills": "Остаток после счетов",
+    "leftAfterBills": "Остаётся",
     "summaryMeta": "Зарплата %{pay} · назначено %{assigned}",
     "linked": "Привязано",
     "remove": "Убрать %{payee}",
@@ -221,7 +234,9 @@
       "few": "%{count} счёта (%{amount})",
       "many": "%{count} счетов (%{amount})",
       "other": "%{count} счёта (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "Доход %{income} · %{bills} · отложено %{setAside} · остаётся %{left}",
+    "bodySetAsideOnly": "Доход %{income} · отложено %{setAside} · остаётся %{left}"
   },
   "links": {
     "openFailed": "Не удалось открыть ссылку"

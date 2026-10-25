@@ -13,8 +13,12 @@ export interface IncomeSource {
   adjustToWorkday?: boolean;
 }
 
+export type ExpenseKind = "bill" | "set-aside";
+
 export interface Expense {
   id: string;
+  /** Set-asides are money kept from a paycheck (spending cash, savings); unset means a bill */
+  kind?: ExpenseKind;
   payee: string;
   amount: number;
   /** Optional URL to open for payment */

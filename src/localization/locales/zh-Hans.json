@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "今天",
     "goToThisMonth": "回到本月",
-    "leftAfterBills": "%{month} · 付完账单后剩余",
+    "leftAfterBills": "%{month} · 剩余",
     "heroMeta": "收入 %{income} · 已分配 %{assigned}",
     "monthPaychecks": "%{month}工资",
     "emptyTitle": "还没有收入来源",
@@ -52,7 +52,8 @@
     "emptyAction": "添加收入来源",
     "chartBarCurrentLabel": "%{month}（本月），剩余 %{amount}",
     "shortBy": "差 %{amount}",
-    "moveBill": "移动账单"
+    "moveBill": "移动账单",
+    "markSetAside": "将%{payee}标记为已预留"
   },
   "income": {
     "emptyTitle": "还没有收入",
@@ -113,7 +114,8 @@
     "deleteMessage": "删除“%{payee}”及其所有分配？",
     "sections": {
       "notLinked": "未关联",
-      "oneTime": "一次性"
+      "oneTime": "一次性",
+      "setAsides": "预留款项"
     },
     "perMonthTotal": "%{amount}/月",
     "meta": {
@@ -121,7 +123,8 @@
       "slotEachMonth": "每月%{slot}",
       "assignPerPaycheck": "按工资分配",
       "due": "%{date}到期",
-      "oneTime": "一次性"
+      "oneTime": "一次性",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "每笔",
@@ -155,14 +158,24 @@
       "addButton": "添加支出",
       "updateButton": "更新支出",
       "payeeRequired": "请输入收款方名称。",
-      "invalidAmount": "请输入有效金额。"
+      "invalidAmount": "请输入有效金额。",
+      "name": "名称",
+      "setAsidePlaceholder": "例如：零花钱",
+      "setAsideHint": "从工资中留出的钱，例如零花钱或储蓄。它和账单一样会从剩余金额中扣除。",
+      "addSetAside": "添加预留",
+      "updateSetAside": "更新预留",
+      "nameRequired": "请输入名称。"
+    },
+    "kind": {
+      "bill": "账单",
+      "setAside": "预留"
     }
   },
   "payDate": {
     "thisPaycheck": "这笔工资",
     "available": "可用",
     "emptyAssigned": "还没有分配任何账单。从下方列表添加。",
-    "leftAfterBills": "付完账单后剩余",
+    "leftAfterBills": "剩余",
     "summaryMeta": "工资 %{pay} · 已分配 %{assigned}",
     "linked": "已关联",
     "remove": "移除%{payee}",
@@ -215,7 +228,9 @@
     "bodyNoBills": "收入 %{income} · 尚未分配账单",
     "bills": {
       "other": "%{count}笔账单（%{amount}）"
-    }
+    },
+    "bodyWithSetAside": "收入 %{income} · %{bills} · 预留 %{setAside} · 剩余 %{left}",
+    "bodySetAsideOnly": "收入 %{income} · 预留 %{setAside} · 剩余 %{left}"
   },
   "links": {
     "openFailed": "无法打开链接"

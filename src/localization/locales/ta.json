@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "இன்று",
     "goToThisMonth": "இந்த மாதத்திற்குச் செல்",
-    "leftAfterBills": "%{month} · பில்களுக்குப் பின் மீதம்",
+    "leftAfterBills": "%{month} · மீதம்",
     "heroMeta": "%{income} வரவு · %{assigned} ஒதுக்கீடு",
     "monthPaychecks": "%{month} சம்பளங்கள்",
     "emptyTitle": "இன்னும் வருமான ஆதாரங்கள் இல்லை",
@@ -52,7 +52,8 @@
     "emptyAction": "வருமான ஆதாரத்தைச் சேர்",
     "chartBarCurrentLabel": "%{month} (இந்த மாதம்), %{amount} மீதம்",
     "shortBy": "%{amount} பற்றாக்குறை",
-    "moveBill": "பில்லை நகர்த்து"
+    "moveBill": "பில்லை நகர்த்து",
+    "markSetAside": "%{payee} ஒதுக்கி வைத்ததாகக் குறி"
   },
   "income": {
     "emptyTitle": "இன்னும் வருமானம் இல்லை",
@@ -114,7 +115,8 @@
     "deleteMessage": "\"%{payee}\" மற்றும் அதன் எல்லா ஒதுக்கீடுகளையும் நீக்கவா?",
     "sections": {
       "notLinked": "இணைக்கப்படாதவை",
-      "oneTime": "ஒருமுறை"
+      "oneTime": "ஒருமுறை",
+      "setAsides": "ஒதுக்கி வைப்புகள்"
     },
     "perMonthTotal": "%{amount}/மாதம்",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "ஒவ்வொரு மாதமும் %{slot}",
       "assignPerPaycheck": "சம்பளத்திற்கேற்ப ஒதுக்கு",
       "due": "%{date} அன்று செலுத்த வேண்டும்",
-      "oneTime": "ஒருமுறை"
+      "oneTime": "ஒருமுறை",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "ஒரு சம்பளத்திற்கு",
@@ -156,14 +159,24 @@
       "addButton": "செலவைச் சேர்",
       "updateButton": "செலவைப் புதுப்பி",
       "payeeRequired": "பெறுநர் பெயர் தேவை.",
-      "invalidAmount": "சரியான தொகையை உள்ளிடவும்."
+      "invalidAmount": "சரியான தொகையை உள்ளிடவும்.",
+      "name": "பெயர்",
+      "setAsidePlaceholder": "எ.கா. செலவுப் பணம்",
+      "setAsideHint": "சம்பளத்திலிருந்து நீங்கள் ஒதுக்கி வைக்கும் பணம், செலவுப் பணம் அல்லது சேமிப்பு போல. பில் போலவே இது மீதத்திலிருந்து கழிக்கப்படும்.",
+      "addSetAside": "ஒதுக்கி வைப்பைச் சேர்",
+      "updateSetAside": "ஒதுக்கி வைப்பைப் புதுப்பி",
+      "nameRequired": "பெயர் தேவை."
+    },
+    "kind": {
+      "bill": "பில்",
+      "setAside": "ஒதுக்கி வைப்பு"
     }
   },
   "payDate": {
     "thisPaycheck": "இந்தச் சம்பளம்",
     "available": "கிடைக்கக்கூடியவை",
     "emptyAssigned": "இன்னும் எதுவும் ஒதுக்கப்படவில்லை. கீழே உள்ள பட்டியலிலிருந்து பில்களைச் சேர்க்கவும்.",
-    "leftAfterBills": "பில்களுக்குப் பின் மீதம்",
+    "leftAfterBills": "மீதம்",
     "summaryMeta": "%{pay} சம்பளம் · %{assigned} ஒதுக்கீடு",
     "linked": "இணைக்கப்பட்டது",
     "remove": "%{payee} நீக்கு",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count} பில் (%{amount})",
       "other": "%{count} பில்கள் (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} வரவு · %{bills} · %{setAside} ஒதுக்கி வைத்தது · %{left} மீதம்",
+    "bodySetAsideOnly": "%{income} வரவு · %{setAside} ஒதுக்கி வைத்தது · %{left} மீதம்"
   },
   "links": {
     "openFailed": "இணைப்பைத் திறக்க முடியவில்லை"

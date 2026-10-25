@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "آج",
     "goToThisMonth": "اس مہینے پر جائیں",
-    "leftAfterBills": "%{month} · بلوں کے بعد باقی",
+    "leftAfterBills": "%{month} · باقی",
     "heroMeta": "%{income} آمدنی · %{assigned} مختص",
     "monthPaychecks": "%{month} کی تنخواہیں",
     "emptyTitle": "ابھی کوئی آمدنی کا ذریعہ نہیں",
@@ -52,7 +52,8 @@
     "emptyAction": "آمدنی کا ذریعہ شامل کریں",
     "chartBarCurrentLabel": "%{month} (یہ مہینہ)، %{amount} باقی",
     "shortBy": "%{amount} کم",
-    "moveBill": "بل منتقل کریں"
+    "moveBill": "بل منتقل کریں",
+    "markSetAside": "%{payee} کو الگ رکھا نشان زد کریں"
   },
   "income": {
     "emptyTitle": "ابھی کوئی آمدنی نہیں",
@@ -114,7 +115,8 @@
     "deleteMessage": "\"%{payee}\" اور اس کی تمام تخصیصات حذف کریں؟",
     "sections": {
       "notLinked": "غیر منسلک",
-      "oneTime": "ایک بار"
+      "oneTime": "ایک بار",
+      "setAsides": "الگ رکھی رقمیں"
     },
     "perMonthTotal": "%{amount}/ماہ",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "ہر مہینے %{slot}",
       "assignPerPaycheck": "فی تنخواہ مختص کریں",
       "due": "%{date} کو واجب",
-      "oneTime": "ایک بار"
+      "oneTime": "ایک بار",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "فی تنخواہ",
@@ -156,14 +159,24 @@
       "addButton": "خرچ شامل کریں",
       "updateButton": "خرچ اپ ڈیٹ کریں",
       "payeeRequired": "وصول کنندہ کا نام درکار ہے۔",
-      "invalidAmount": "درست رقم درج کریں۔"
+      "invalidAmount": "درست رقم درج کریں۔",
+      "name": "نام",
+      "setAsidePlaceholder": "مثلاً خرچ کے پیسے",
+      "setAsideHint": "وہ رقم جو آپ تنخواہ سے الگ رکھتے ہیں، جیسے خرچ کے پیسے یا بچت۔ یہ بل کی طرح باقی رقم سے کٹ جاتی ہے۔",
+      "addSetAside": "الگ رکھی رقم شامل کریں",
+      "updateSetAside": "الگ رکھی رقم اپ ڈیٹ کریں",
+      "nameRequired": "نام درکار ہے۔"
+    },
+    "kind": {
+      "bill": "بل",
+      "setAside": "الگ رکھی رقم"
     }
   },
   "payDate": {
     "thisPaycheck": "یہ تنخواہ",
     "available": "دستیاب",
     "emptyAssigned": "ابھی کچھ مختص نہیں۔ نیچے دی گئی فہرست سے بل شامل کریں۔",
-    "leftAfterBills": "بلوں کے بعد باقی",
+    "leftAfterBills": "باقی",
     "summaryMeta": "%{pay} تنخواہ · %{assigned} مختص",
     "linked": "منسلک",
     "remove": "%{payee} ہٹائیں",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count} بل (%{amount})",
       "other": "%{count} بل (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} آمدنی · %{bills} · %{setAside} الگ رکھے · %{left} باقی",
+    "bodySetAsideOnly": "%{income} آمدنی · %{setAside} الگ رکھے · %{left} باقی"
   },
   "links": {
     "openFailed": "لنک نہیں کھل سکا"

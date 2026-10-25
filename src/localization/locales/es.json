@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "Hoy",
     "goToThisMonth": "Ir a este mes",
-    "leftAfterBills": "%{month} · restante tras las facturas",
+    "leftAfterBills": "%{month} · lo que queda",
     "heroMeta": "%{income} de ingresos · %{assigned} asignados",
     "monthPaychecks": "Sueldos de %{month}",
     "emptyTitle": "Aún no hay fuentes de ingresos",
@@ -52,7 +52,8 @@
     "emptyAction": "Añadir fuente de ingresos",
     "chartBarCurrentLabel": "%{month} (este mes), quedan %{amount}",
     "shortBy": "Faltan %{amount}",
-    "moveBill": "Mover una factura"
+    "moveBill": "Mover una factura",
+    "markSetAside": "Marcar %{payee} como apartado"
   },
   "income": {
     "emptyTitle": "Aún no hay ingresos",
@@ -114,7 +115,8 @@
     "deleteMessage": "¿Eliminar \"%{payee}\" y todas sus asignaciones?",
     "sections": {
       "notLinked": "Sin vincular",
-      "oneTime": "Puntuales"
+      "oneTime": "Puntuales",
+      "setAsides": "Apartados"
     },
     "perMonthTotal": "%{amount}/mes",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "%{slot} de cada mes",
       "assignPerPaycheck": "Asignar por sueldo",
       "due": "Vence %{date}",
-      "oneTime": "Puntual"
+      "oneTime": "Puntual",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "por sueldo",
@@ -156,14 +159,24 @@
       "addButton": "Añadir gasto",
       "updateButton": "Actualizar gasto",
       "payeeRequired": "El nombre del beneficiario es obligatorio.",
-      "invalidAmount": "Escribe un importe válido."
+      "invalidAmount": "Escribe un importe válido.",
+      "name": "Nombre",
+      "setAsidePlaceholder": "p. ej. Dinero para gastos",
+      "setAsideHint": "Dinero que te guardas de un sueldo, como dinero para gastos o ahorros. Se descuenta de lo que queda, igual que una factura.",
+      "addSetAside": "Añadir apartado",
+      "updateSetAside": "Actualizar apartado",
+      "nameRequired": "El nombre es obligatorio."
+    },
+    "kind": {
+      "bill": "Factura",
+      "setAside": "Apartado"
     }
   },
   "payDate": {
     "thisPaycheck": "Este sueldo",
     "available": "Disponible",
     "emptyAssigned": "Aún no hay nada asignado. Añade facturas de la lista de abajo.",
-    "leftAfterBills": "Restante tras las facturas",
+    "leftAfterBills": "Lo que queda",
     "summaryMeta": "Sueldo de %{pay} · %{assigned} asignados",
     "linked": "Vinculado",
     "remove": "Quitar %{payee}",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count} factura (%{amount})",
       "other": "%{count} facturas (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} de ingresos · %{bills} · %{setAside} apartados · quedan %{left}",
+    "bodySetAsideOnly": "%{income} de ingresos · %{setAside} apartados · quedan %{left}"
   },
   "links": {
     "openFailed": "No se pudo abrir el enlace"

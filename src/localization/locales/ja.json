@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "今日",
     "goToThisMonth": "今月へ移動",
-    "leftAfterBills": "%{month} · 支払い後の残り",
+    "leftAfterBills": "%{month} · 残り",
     "heroMeta": "収入 %{income} · 割り当て %{assigned}",
     "monthPaychecks": "%{month}の給料",
     "emptyTitle": "収入源がまだありません",
@@ -52,7 +52,8 @@
     "emptyAction": "収入源を追加",
     "chartBarCurrentLabel": "%{month}（今月）、残り %{amount}",
     "shortBy": "%{amount}不足",
-    "moveBill": "支払いを移動"
+    "moveBill": "支払いを移動",
+    "markSetAside": "%{payee}を取り置き済みにする"
   },
   "income": {
     "emptyTitle": "収入がまだありません",
@@ -113,7 +114,8 @@
     "deleteMessage": "「%{payee}」とその割り当てをすべて削除しますか？",
     "sections": {
       "notLinked": "未リンク",
-      "oneTime": "1回限り"
+      "oneTime": "1回限り",
+      "setAsides": "取り置き"
     },
     "perMonthTotal": "%{amount}/月",
     "meta": {
@@ -121,7 +123,8 @@
       "slotEachMonth": "毎月%{slot}",
       "assignPerPaycheck": "給料ごとに割り当て",
       "due": "期限 %{date}",
-      "oneTime": "1回限り"
+      "oneTime": "1回限り",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "1回あたり",
@@ -155,14 +158,24 @@
       "addButton": "支出を追加",
       "updateButton": "支出を更新",
       "payeeRequired": "支払先の名前を入力してください。",
-      "invalidAmount": "有効な金額を入力してください。"
+      "invalidAmount": "有効な金額を入力してください。",
+      "name": "名前",
+      "setAsidePlaceholder": "例：おこづかい",
+      "setAsideHint": "給料から手元に残しておくお金です（おこづかいや貯金など）。支払いと同じように残りから差し引かれます。",
+      "addSetAside": "取り置きを追加",
+      "updateSetAside": "取り置きを更新",
+      "nameRequired": "名前を入力してください。"
+    },
+    "kind": {
+      "bill": "支払い",
+      "setAside": "取り置き"
     }
   },
   "payDate": {
     "thisPaycheck": "この給料",
     "available": "利用可能",
     "emptyAssigned": "まだ何も割り当てられていません。下のリストから支払いを追加してください。",
-    "leftAfterBills": "支払い後の残り",
+    "leftAfterBills": "残り",
     "summaryMeta": "給料 %{pay} · 割り当て %{assigned}",
     "linked": "リンク済み",
     "remove": "%{payee}を削除",
@@ -215,7 +228,9 @@
     "bodyNoBills": "収入 %{income} · 支払いはまだ割り当てられていません",
     "bills": {
       "other": "支払い%{count}件（%{amount}）"
-    }
+    },
+    "bodyWithSetAside": "収入 %{income} · %{bills} · 取り置き %{setAside} · 残り %{left}",
+    "bodySetAsideOnly": "収入 %{income} · 取り置き %{setAside} · 残り %{left}"
   },
   "links": {
     "openFailed": "リンクを開けませんでした"

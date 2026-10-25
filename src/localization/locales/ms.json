@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "Hari ini",
     "goToThisMonth": "Pergi ke bulan ini",
-    "leftAfterBills": "%{month} · baki selepas bil",
+    "leftAfterBills": "%{month} · baki",
     "heroMeta": "%{income} masuk · %{assigned} diperuntukkan",
     "monthPaychecks": "Gaji %{month}",
     "emptyTitle": "Belum ada sumber pendapatan",
@@ -52,7 +52,8 @@
     "emptyAction": "Tambah sumber pendapatan",
     "chartBarCurrentLabel": "%{month} (bulan ini), baki %{amount}",
     "shortBy": "Kurang %{amount}",
-    "moveBill": "Alihkan bil"
+    "moveBill": "Alihkan bil",
+    "markSetAside": "Tandakan %{payee} telah disimpan"
   },
   "income": {
     "emptyTitle": "Belum ada pendapatan",
@@ -113,7 +114,8 @@
     "deleteMessage": "Padam \"%{payee}\" dan semua peruntukannya?",
     "sections": {
       "notLinked": "Tidak dipautkan",
-      "oneTime": "Sekali sahaja"
+      "oneTime": "Sekali sahaja",
+      "setAsides": "Simpanan"
     },
     "perMonthTotal": "%{amount}/bln",
     "meta": {
@@ -121,7 +123,8 @@
       "slotEachMonth": "%{slot} setiap bulan",
       "assignPerPaycheck": "Peruntukkan mengikut gaji",
       "due": "Perlu dibayar %{date}",
-      "oneTime": "Sekali sahaja"
+      "oneTime": "Sekali sahaja",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "setiap gaji",
@@ -155,14 +158,24 @@
       "addButton": "Tambah Perbelanjaan",
       "updateButton": "Kemas Kini Perbelanjaan",
       "payeeRequired": "Nama penerima diperlukan.",
-      "invalidAmount": "Masukkan jumlah yang sah."
+      "invalidAmount": "Masukkan jumlah yang sah.",
+      "name": "Nama",
+      "setAsidePlaceholder": "cth. Wang belanja",
+      "setAsideHint": "Wang yang anda simpan daripada gaji, seperti wang belanja atau tabungan. Ia ditolak daripada baki, sama seperti bil.",
+      "addSetAside": "Tambah Simpanan",
+      "updateSetAside": "Kemas Kini Simpanan",
+      "nameRequired": "Nama diperlukan."
+    },
+    "kind": {
+      "bill": "Bil",
+      "setAside": "Simpanan"
     }
   },
   "payDate": {
     "thisPaycheck": "Gaji ini",
     "available": "Tersedia",
     "emptyAssigned": "Belum ada yang diperuntukkan. Tambah bil daripada senarai di bawah.",
-    "leftAfterBills": "Baki selepas bil",
+    "leftAfterBills": "Baki",
     "summaryMeta": "Gaji %{pay} · %{assigned} diperuntukkan",
     "linked": "Dipautkan",
     "remove": "Buang %{payee}",
@@ -215,7 +228,9 @@
     "bodyNoBills": "%{income} masuk · belum ada bil diperuntukkan",
     "bills": {
       "other": "%{count} bil (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} masuk · %{bills} · %{setAside} disimpan · baki %{left}",
+    "bodySetAsideOnly": "%{income} masuk · %{setAside} disimpan · baki %{left}"
   },
   "links": {
     "openFailed": "Tidak dapat membuka pautan"

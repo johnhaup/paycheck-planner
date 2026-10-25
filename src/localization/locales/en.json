@@ -39,7 +39,7 @@
   "paychecks": {
     "today": "Today",
     "goToThisMonth": "Go to this month",
-    "leftAfterBills": "%{month} · left after bills",
+    "leftAfterBills": "%{month} · left over",
     "heroMeta": "%{income} in · %{assigned} assigned",
     "monthPaychecks": "%{month} paychecks",
     "emptyTitle": "No income sources yet",
@@ -55,7 +55,8 @@
     "emptyAction": "Add income source",
     "chartBarCurrentLabel": "%{month} (this month), %{amount} left",
     "shortBy": "Short by %{amount}",
-    "moveBill": "Move a bill"
+    "moveBill": "Move a bill",
+    "markSetAside": "Mark %{payee} set aside"
   },
   "income": {
     "emptyTitle": "No income yet",
@@ -117,7 +118,8 @@
     "deleteMessage": "Delete \"%{payee}\" and all its assignments?",
     "sections": {
       "notLinked": "Not linked",
-      "oneTime": "One-time"
+      "oneTime": "One-time",
+      "setAsides": "Set-asides"
     },
     "perMonthTotal": "%{amount}/mo",
     "meta": {
@@ -125,7 +127,8 @@
       "slotEachMonth": "%{slot} each month",
       "assignPerPaycheck": "Assign per paycheck",
       "due": "Due %{date}",
-      "oneTime": "One-time"
+      "oneTime": "One-time",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "per check",
@@ -159,14 +162,24 @@
       "addButton": "Add Expense",
       "updateButton": "Update Expense",
       "payeeRequired": "Payee name is required.",
-      "invalidAmount": "Enter a valid amount."
+      "invalidAmount": "Enter a valid amount.",
+      "name": "Name",
+      "setAsidePlaceholder": "e.g. Spending money",
+      "setAsideHint": "Money you keep from a paycheck, like spending cash or savings. It comes out of what's left, just like a bill.",
+      "addSetAside": "Add Set-Aside",
+      "updateSetAside": "Update Set-Aside",
+      "nameRequired": "Name is required."
+    },
+    "kind": {
+      "bill": "Bill",
+      "setAside": "Set-aside"
     }
   },
   "payDate": {
     "thisPaycheck": "This paycheck",
     "available": "Available",
     "emptyAssigned": "Nothing assigned yet. Add bills from the list below.",
-    "leftAfterBills": "Left after bills",
+    "leftAfterBills": "Left over",
     "summaryMeta": "%{pay} paycheck · %{assigned} assigned",
     "linked": "Linked",
     "remove": "Remove %{payee}",
@@ -220,7 +233,9 @@
     "bills": {
       "one": "%{count} bill (%{amount})",
       "other": "%{count} bills (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} in · %{bills} · %{setAside} set aside · %{left} left",
+    "bodySetAsideOnly": "%{income} in · %{setAside} set aside · %{left} left"
   },
   "links": {
     "openFailed": "Couldn't open link"

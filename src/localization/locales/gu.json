@@ -40,7 +40,7 @@
   "paychecks": {
     "today": "આજે",
     "goToThisMonth": "આ મહિના પર જાઓ",
-    "leftAfterBills": "%{month} · બિલ પછી બાકી",
+    "leftAfterBills": "%{month} · બાકી",
     "heroMeta": "%{income} આવ્યા · %{assigned} ફાળવેલ",
     "monthPaychecks": "%{month}ના પગાર",
     "emptyTitle": "હજી કોઈ આવકનો સ્રોત નથી",
@@ -56,7 +56,8 @@
     "emptyAction": "આવકનો સ્રોત ઉમેરો",
     "chartBarCurrentLabel": "%{month} (આ મહિનો), %{amount} બાકી",
     "shortBy": "%{amount} ઘટે છે",
-    "moveBill": "બિલ ખસેડો"
+    "moveBill": "બિલ ખસેડો",
+    "markSetAside": "%{payee} અલગ રાખેલ માર્ક કરો"
   },
   "income": {
     "emptyTitle": "હજી કોઈ આવક નથી",
@@ -118,7 +119,8 @@
     "deleteMessage": "\"%{payee}\" અને તેની બધી ફાળવણી ડિલીટ કરવી?",
     "sections": {
       "notLinked": "લિંક નથી",
-      "oneTime": "એક વાર"
+      "oneTime": "એક વાર",
+      "setAsides": "અલગ રાખેલ રકમ"
     },
     "perMonthTotal": "%{amount}/મહિનો",
     "meta": {
@@ -126,7 +128,8 @@
       "slotEachMonth": "દર મહિને %{slot}",
       "assignPerPaycheck": "દરેક પગાર પર ફાળવો",
       "due": "%{date} સુધી",
-      "oneTime": "એક વાર"
+      "oneTime": "એક વાર",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "પ્રતિ પગાર",
@@ -160,14 +163,24 @@
       "addButton": "ખર્ચ ઉમેરો",
       "updateButton": "ખર્ચ અપડેટ કરો",
       "payeeRequired": "પ્રાપ્તકર્તાનું નામ જરૂરી છે.",
-      "invalidAmount": "માન્ય રકમ દાખલ કરો."
+      "invalidAmount": "માન્ય રકમ દાખલ કરો.",
+      "name": "નામ",
+      "setAsidePlaceholder": "દા.ત. હાથખર્ચ",
+      "setAsideHint": "પગારમાંથી તમે રાખી મૂકો તે પૈસા, જેમ કે હાથખર્ચ કે બચત. બિલની જેમ જ તે બાકી રકમમાંથી બાદ થાય છે.",
+      "addSetAside": "અલગ રકમ ઉમેરો",
+      "updateSetAside": "અલગ રકમ અપડેટ કરો",
+      "nameRequired": "નામ જરૂરી છે."
+    },
+    "kind": {
+      "bill": "બિલ",
+      "setAside": "અલગ રકમ"
     }
   },
   "payDate": {
     "thisPaycheck": "આ પગાર",
     "available": "ઉપલબ્ધ",
     "emptyAssigned": "હજી કંઈ ફાળવેલ નથી. નીચેની યાદીમાંથી બિલ ઉમેરો.",
-    "leftAfterBills": "બિલ પછી બાકી",
+    "leftAfterBills": "બાકી",
     "summaryMeta": "%{pay} પગાર · %{assigned} ફાળવેલ",
     "linked": "લિંક કરેલ",
     "remove": "%{payee} દૂર કરો",
@@ -221,7 +234,9 @@
     "bills": {
       "one": "%{count} બિલ (%{amount})",
       "other": "%{count} બિલ (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} આવ્યા · %{bills} · %{setAside} અલગ રાખ્યા · %{left} બાકી",
+    "bodySetAsideOnly": "%{income} આવ્યા · %{setAside} અલગ રાખ્યા · %{left} બાકי"
   },
   "links": {
     "openFailed": "લિંક ખોલી શકાઈ નહીં"

@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "Dziś",
     "goToThisMonth": "Przejdź do bieżącego miesiąca",
-    "leftAfterBills": "%{month} · zostaje po rachunkach",
+    "leftAfterBills": "%{month} · zostaje",
     "heroMeta": "Wpływy %{income} · przypisano %{assigned}",
     "monthPaychecks": "Wypłaty: %{month}",
     "emptyTitle": "Brak źródeł dochodu",
@@ -52,7 +52,8 @@
     "emptyAction": "Dodaj źródło dochodu",
     "chartBarCurrentLabel": "%{month} (bieżący miesiąc), zostaje %{amount}",
     "shortBy": "Brakuje %{amount}",
-    "moveBill": "Przenieś rachunek"
+    "moveBill": "Przenieś rachunek",
+    "markSetAside": "Oznacz %{payee} jako odłożone"
   },
   "income": {
     "emptyTitle": "Brak dochodów",
@@ -116,7 +117,8 @@
     "deleteMessage": "Usunąć „%{payee}” i wszystkie jego przypisania?",
     "sections": {
       "notLinked": "Niepowiązane",
-      "oneTime": "Jednorazowe"
+      "oneTime": "Jednorazowe",
+      "setAsides": "Rezerwy"
     },
     "perMonthTotal": "%{amount}/mies.",
     "meta": {
@@ -124,7 +126,8 @@
       "slotEachMonth": "%{slot} co miesiąc",
       "assignPerPaycheck": "Przypisuj do każdej wypłaty osobno",
       "due": "Termin: %{date}",
-      "oneTime": "Jednorazowy"
+      "oneTime": "Jednorazowy",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "na wypłatę",
@@ -158,14 +161,24 @@
       "addButton": "Dodaj wydatek",
       "updateButton": "Aktualizuj wydatek",
       "payeeRequired": "Nazwa odbiorcy jest wymagana.",
-      "invalidAmount": "Wpisz prawidłową kwotę."
+      "invalidAmount": "Wpisz prawidłową kwotę.",
+      "name": "Nazwa",
+      "setAsidePlaceholder": "np. Kieszonkowe",
+      "setAsideHint": "Pieniądze, które zatrzymujesz z wypłaty, np. na bieżące wydatki lub oszczędności. Pomniejszają to, co zostaje, tak jak rachunek.",
+      "addSetAside": "Dodaj rezerwę",
+      "updateSetAside": "Aktualizuj rezerwę",
+      "nameRequired": "Nazwa jest wymagana."
+    },
+    "kind": {
+      "bill": "Rachunek",
+      "setAside": "Rezerwa"
     }
   },
   "payDate": {
     "thisPaycheck": "Ta wypłata",
     "available": "Dostępne",
     "emptyAssigned": "Nic jeszcze nie przypisano. Dodaj rachunki z listy poniżej.",
-    "leftAfterBills": "Zostaje po rachunkach",
+    "leftAfterBills": "Zostaje",
     "summaryMeta": "Wypłata %{pay} · przypisano %{assigned}",
     "linked": "Powiązane",
     "remove": "Usuń %{payee}",
@@ -221,7 +234,9 @@
       "few": "%{count} rachunki (%{amount})",
       "many": "%{count} rachunków (%{amount})",
       "other": "%{count} rachunku (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "Wpływy %{income} · %{bills} · odłożone %{setAside} · zostaje %{left}",
+    "bodySetAsideOnly": "Wpływy %{income} · odłożone %{setAside} · zostaje %{left}"
   },
   "links": {
     "openFailed": "Nie udało się otworzyć linku"

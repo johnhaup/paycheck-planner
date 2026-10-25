@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "Dnes",
     "goToThisMonth": "Přejít na tento měsíc",
-    "leftAfterBills": "%{month} · zbývá po účtech",
+    "leftAfterBills": "%{month} · zbývá",
     "heroMeta": "Příjem %{income} · přiřazeno %{assigned}",
     "monthPaychecks": "Výplaty: %{month}",
     "emptyTitle": "Zatím žádné zdroje příjmu",
@@ -52,7 +52,8 @@
     "emptyAction": "Přidat zdroj příjmu",
     "chartBarCurrentLabel": "%{month} (tento měsíc), zbývá %{amount}",
     "shortBy": "Chybí %{amount}",
-    "moveBill": "Přesunout účet"
+    "moveBill": "Přesunout účet",
+    "markSetAside": "Označit %{payee} jako odložené"
   },
   "income": {
     "emptyTitle": "Zatím žádné příjmy",
@@ -116,7 +117,8 @@
     "deleteMessage": "Smazat „%{payee}“ a všechna jeho přiřazení?",
     "sections": {
       "notLinked": "Nepropojené",
-      "oneTime": "Jednorázové"
+      "oneTime": "Jednorázové",
+      "setAsides": "Rezervy"
     },
     "perMonthTotal": "%{amount}/měs.",
     "meta": {
@@ -124,7 +126,8 @@
       "slotEachMonth": "%{slot} každý měsíc",
       "assignPerPaycheck": "Přiřazovat u každé výplaty",
       "due": "Splatnost %{date}",
-      "oneTime": "Jednorázový"
+      "oneTime": "Jednorázový",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "na výplatu",
@@ -158,14 +161,24 @@
       "addButton": "Přidat výdaj",
       "updateButton": "Aktualizovat výdaj",
       "payeeRequired": "Název příjemce je povinný.",
-      "invalidAmount": "Zadejte platnou částku."
+      "invalidAmount": "Zadejte platnou částku.",
+      "name": "Název",
+      "setAsidePlaceholder": "např. Kapesné",
+      "setAsideHint": "Peníze, které si z výplaty necháváte, třeba na útratu nebo spoření. Odečítají se od zbytku stejně jako účet.",
+      "addSetAside": "Přidat rezervu",
+      "updateSetAside": "Aktualizovat rezervu",
+      "nameRequired": "Název je povinný."
+    },
+    "kind": {
+      "bill": "Účet",
+      "setAside": "Rezerva"
     }
   },
   "payDate": {
     "thisPaycheck": "Tato výplata",
     "available": "K dispozici",
     "emptyAssigned": "Zatím nic nepřiřazeno. Přidejte účty ze seznamu níže.",
-    "leftAfterBills": "Zbývá po účtech",
+    "leftAfterBills": "Zbývá",
     "summaryMeta": "Výplata %{pay} · přiřazeno %{assigned}",
     "linked": "Propojené",
     "remove": "Odebrat %{payee}",
@@ -221,7 +234,9 @@
       "few": "%{count} účty (%{amount})",
       "many": "%{count} účtu (%{amount})",
       "other": "%{count} účtů (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "Příjem %{income} · %{bills} · odloženo %{setAside} · zbývá %{left}",
+    "bodySetAsideOnly": "Příjem %{income} · odloženo %{setAside} · zbývá %{left}"
   },
   "links": {
     "openFailed": "Odkaz se nepodařilo otevřít"

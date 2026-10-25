@@ -18,7 +18,7 @@ import { AppSegmentedControl, type SegmentOption } from "@/components/AppSegment
 import { PaycheckPicker, type PaycheckChoice } from "@/components/expenseForm/PaycheckPicker";
 import { getMonthlySlotCount, getPaycheckSlotLabel, hasExtraPaychecks } from "@/utils/payDates";
 import { normalizeLink } from "@/utils/links";
-import type { LinkSchedule, PaycheckSlot } from "@/types";
+import type { ExpenseKind, LinkSchedule, PaycheckSlot } from "@/types";
 
 export default function ExpenseFormScreen() {
   const router = useRouter();
@@ -37,6 +37,7 @@ export default function ExpenseFormScreen() {
     [id, expenses]
   );
 
+  const [kind, setKind] = useState<ExpenseKind>(existing?.kind ?? "bill");
   const [payee, setPayee] = useState(existing?.payee ?? "");
   const [amount, setAmount] = useState(
     existing ? String(existing.amount) : ""
@@ -55,6 +56,7 @@ export default function ExpenseFormScreen() {
   });
 
   const isOneTime = existing ? !existing.isRecurring : false;
+  const isSetAside = kind === "set-aside";
 
   const selectedSource = useMemo(
     () => incomeSources.find((s) => s.id === selectedSourceId),
@@ -73,7 +75,10 @@ export default function ExpenseFormScreen() {
 
   const handleSave = useCallback(() => {
     if (!payee.trim()) {
-      Alert.alert(t("common.error"), t("expenses.form.payeeRequired"));
+      Alert.alert(
+        t("common.error"),
+        t(isSetAside ? "expenses.form.nameRequired" : "expenses.form.payeeRequired")
+      );
       return;
     }
     const parsedAmount = parseFloat(amount);
@@ -83,9 +88,10 @@ export default function ExpenseFormScreen() {
     }
 
     const data = {
+      kind: isSetAside ? kind : undefined,
       payee: payee.trim(),
       amount: parsedAmount,
-      link: normalizeLink(link),
+      link: isSetAside ? undefined : normalizeLink(link),
       isRecurring: !isOneTime,
       incomeSourceId: selectedSourceId,
       linkSchedule: isMonthly ? linkSchedule : undefined,
@@ -102,6 +108,8 @@ export default function ExpenseFormScreen() {
     }
     router.back();
   }, [
+    isSetAside,
+    kind,
     payee,
     amount,
     link,
@@ -122,6 +130,14 @@ export default function ExpenseFormScreen() {
   const handleSelectSource = useCallback((sourceId: string | undefined) => {
     setSelectedSourceId(sourceId);
   }, []);
+
+  const kindOptions = useMemo<SegmentOption<ExpenseKind>[]>(
+    () => [
+      { value: "bill", label: t("expenses.kind.bill") },
+      { value: "set-aside", label: t("expenses.kind.setAside") },
+    ],
+    [t]
+  );
 
   const scheduleOptions = useMemo<SegmentOption<LinkSchedule>[]>(
     () => [
@@ -166,11 +182,20 @@ export default function ExpenseFormScreen() {
       contentContainerStyle={styles.content}
       keyboardShouldPersistTaps="handled"
     >
-      <AppText variant="section" style={styles.label}>{t("expenses.form.payee")}</AppText>
+      <AppSegmentedControl options={kindOptions} value={kind} onChange={setKind} />
+      {isSetAside ? (
+        <AppText variant="caption" style={styles.hint}>
+          {t("expenses.form.setAsideHint")}
+        </AppText>
+      ) : null}
+
+      <AppText variant="section" style={styles.label}>
+        {t(isSetAside ? "expenses.form.name" : "expenses.form.payee")}
+      </AppText>
       <AppInput
         value={payee}
         onChangeText={setPayee}
-        placeholder={t("expenses.form.payeePlaceholder")}
+        placeholder={t(isSetAside ? "expenses.form.setAsidePlaceholder" : "expenses.form.payeePlaceholder")}
       />
 
       <AppText variant="section" style={styles.label}>{t("expenses.form.amount")}</AppText>
@@ -181,14 +206,18 @@ export default function ExpenseFormScreen() {
         keyboardType="decimal-pad"
       />
 
-      <AppText variant="section" style={styles.label}>{t("expenses.form.link")}</AppText>
-      <AppInput
-        value={link}
-        onChangeText={setLink}
-        placeholder={t("expenses.form.linkPlaceholder")}
-        keyboardType="url"
-        autoCapitalize="none"
-      />
+      {isSetAside ? null : (
+        <>
+          <AppText variant="section" style={styles.label}>{t("expenses.form.link")}</AppText>
+          <AppInput
+            value={link}
+            onChangeText={setLink}
+            placeholder={t("expenses.form.linkPlaceholder")}
+            keyboardType="url"
+            autoCapitalize="none"
+          />
+        </>
+      )}
 
       {isOneTime && incomeSources.length > 0 ? (
         <>
@@ -254,7 +283,15 @@ export default function ExpenseFormScreen() {
       ) : null}
 
       <AppButton
-        title={existing ? t("expenses.form.updateButton") : t("expenses.form.addButton")}
+        title={t(
+          existing
+            ? isSetAside
+              ? "expenses.form.updateSetAside"
+              : "expenses.form.updateButton"
+            : isSetAside
+              ? "expenses.form.addSetAside"
+              : "expenses.form.addButton"
+        )}
         onPress={handleSave}
         style={styles.saveButton}
       />

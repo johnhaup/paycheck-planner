@@ -37,7 +37,7 @@
   "paychecks": {
     "today": "Aujourd'hui",
     "goToThisMonth": "Aller à ce mois",
-    "leftAfterBills": "%{month} · reste après factures",
+    "leftAfterBills": "%{month} · reste",
     "heroMeta": "%{income} reçus · %{assigned} affectés",
     "monthPaychecks": "Salaires de %{month}",
     "emptyTitle": "Aucune source de revenus",
@@ -53,7 +53,8 @@
     "emptyAction": "Ajouter une source de revenus",
     "chartBarCurrentLabel": "%{month} (ce mois-ci), reste %{amount}",
     "shortBy": "Il manque %{amount}",
-    "moveBill": "Déplacer une facture"
+    "moveBill": "Déplacer une facture",
+    "markSetAside": "Marquer %{payee} comme mise de côté"
   },
   "income": {
     "emptyTitle": "Aucun revenu",
@@ -115,7 +116,8 @@
     "deleteMessage": "Supprimer « %{payee} » et toutes ses affectations ?",
     "sections": {
       "notLinked": "Non liées",
-      "oneTime": "Ponctuelles"
+      "oneTime": "Ponctuelles",
+      "setAsides": "Mises de côté"
     },
     "perMonthTotal": "%{amount}/mois",
     "meta": {
@@ -123,7 +125,8 @@
       "slotEachMonth": "%{slot} de chaque mois",
       "assignPerPaycheck": "Affecter par salaire",
       "due": "Échéance le %{date}",
-      "oneTime": "Ponctuelle"
+      "oneTime": "Ponctuelle",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "par salaire",
@@ -157,14 +160,24 @@
       "addButton": "Ajouter la dépense",
       "updateButton": "Mettre à jour la dépense",
       "payeeRequired": "Le nom du bénéficiaire est obligatoire.",
-      "invalidAmount": "Saisissez un montant valide."
+      "invalidAmount": "Saisissez un montant valide.",
+      "name": "Nom",
+      "setAsidePlaceholder": "ex. : Argent de poche",
+      "setAsideHint": "Argent que vous gardez sur un salaire, comme de l'argent de poche ou de l'épargne. Il est déduit du reste, comme une facture.",
+      "addSetAside": "Ajouter la mise de côté",
+      "updateSetAside": "Mettre à jour la mise de côté",
+      "nameRequired": "Le nom est obligatoire."
+    },
+    "kind": {
+      "bill": "Facture",
+      "setAside": "Mise de côté"
     }
   },
   "payDate": {
     "thisPaycheck": "Ce salaire",
     "available": "Disponibles",
     "emptyAssigned": "Rien d'affecté pour le moment. Ajoutez des factures depuis la liste ci-dessous.",
-    "leftAfterBills": "Reste après factures",
+    "leftAfterBills": "Reste",
     "summaryMeta": "Salaire de %{pay} · %{assigned} affectés",
     "linked": "Liée",
     "remove": "Retirer %{payee}",
@@ -218,7 +231,9 @@
     "bills": {
       "one": "%{count} facture (%{amount})",
       "other": "%{count} factures (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} reçus · %{bills} · %{setAside} mis de côté · reste %{left}",
+    "bodySetAsideOnly": "%{income} reçus · %{setAside} mis de côté · reste %{left}"
   },
   "links": {
     "openFailed": "Impossible d'ouvrir le lien"

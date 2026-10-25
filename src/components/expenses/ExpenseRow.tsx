@@ -9,6 +9,7 @@ import { useGroupedRowStyles } from "@/hooks/useGroupedRowStyles";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppLetterTile } from "@/components/AppLetterTile";
+import { AppSetAsideIcon } from "@/components/AppSetAsideIcon";
 import { AppSwipeToDelete } from "@/components/AppSwipeToDelete";
 import type { Expense } from "@/types";
 
@@ -67,6 +68,7 @@ export function ExpenseRow({
         <AppLetterTile label={expense.payee} tintIndex={tintIndex} />
         <View style={styles.text}>
           <View style={styles.titleRow}>
+            {expense.kind === "set-aside" ? <AppSetAsideIcon size={15} /> : null}
             <AppText variant="rowTitle" numberOfLines={1} style={styles.title}>
               {expense.payee}
             </AppText>

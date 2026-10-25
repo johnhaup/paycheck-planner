@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "오늘",
     "goToThisMonth": "이번 달로 이동",
-    "leftAfterBills": "%{month} · 납부 후 남은 금액",
+    "leftAfterBills": "%{month} · 남은 금액",
     "heroMeta": "수입 %{income} · 배정 %{assigned}",
     "monthPaychecks": "%{month} 급여",
     "emptyTitle": "아직 수입원이 없습니다",
@@ -52,7 +52,8 @@
     "emptyAction": "수입원 추가",
     "chartBarCurrentLabel": "%{month} (이번 달), %{amount} 남음",
     "shortBy": "%{amount} 부족",
-    "moveBill": "청구서 이동"
+    "moveBill": "청구서 이동",
+    "markSetAside": "%{payee} 따로 모음으로 표시"
   },
   "income": {
     "emptyTitle": "아직 수입이 없습니다",
@@ -113,7 +114,8 @@
     "deleteMessage": "\"%{payee}\"과(와) 모든 배정을 삭제할까요?",
     "sections": {
       "notLinked": "연결 안 됨",
-      "oneTime": "1회성"
+      "oneTime": "1회성",
+      "setAsides": "따로 모음"
     },
     "perMonthTotal": "월 %{amount}",
     "meta": {
@@ -121,7 +123,8 @@
       "slotEachMonth": "매월 %{slot}",
       "assignPerPaycheck": "급여별 배정",
       "due": "%{date} 마감",
-      "oneTime": "1회성"
+      "oneTime": "1회성",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "회당",
@@ -155,14 +158,24 @@
       "addButton": "지출 추가",
       "updateButton": "지출 업데이트",
       "payeeRequired": "수취인 이름을 입력하세요.",
-      "invalidAmount": "올바른 금액을 입력하세요."
+      "invalidAmount": "올바른 금액을 입력하세요.",
+      "name": "이름",
+      "setAsidePlaceholder": "예: 용돈",
+      "setAsideHint": "급여에서 따로 떼어 두는 돈입니다(용돈, 저축 등). 청구서처럼 남은 금액에서 차감됩니다.",
+      "addSetAside": "따로 모음 추가",
+      "updateSetAside": "따로 모음 업데이트",
+      "nameRequired": "이름을 입력하세요."
+    },
+    "kind": {
+      "bill": "청구서",
+      "setAside": "따로 모음"
     }
   },
   "payDate": {
     "thisPaycheck": "이 급여",
     "available": "사용 가능",
     "emptyAssigned": "아직 배정된 항목이 없습니다. 아래 목록에서 청구서를 추가하세요.",
-    "leftAfterBills": "납부 후 남은 금액",
+    "leftAfterBills": "남은 금액",
     "summaryMeta": "급여 %{pay} · 배정 %{assigned}",
     "linked": "연결됨",
     "remove": "%{payee} 제거",
@@ -215,7 +228,9 @@
     "bodyNoBills": "수입 %{income} · 아직 배정된 청구서 없음",
     "bills": {
       "other": "청구서 %{count}건 (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "수입 %{income} · %{bills} · 따로 모음 %{setAside} · %{left} 남음",
+    "bodySetAsideOnly": "수입 %{income} · 따로 모음 %{setAside} · %{left} 남음"
   },
   "links": {
     "openFailed": "링크를 열 수 없습니다"

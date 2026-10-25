@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "ଆଜି",
     "goToThisMonth": "ଏହି ମାସକୁ ଯାଆନ୍ତୁ",
-    "leftAfterBills": "%{month} · ବିଲ୍ ପରେ ବାକି",
+    "leftAfterBills": "%{month} · ବାକି",
     "heroMeta": "%{income} ଆସିଲା · %{assigned} ଆସାଇନ୍",
     "monthPaychecks": "%{month}ର ଦରମା",
     "emptyTitle": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଆୟ ଉତ୍ସ ନାହିଁ",
@@ -52,7 +52,8 @@
     "emptyAction": "ଆୟ ଉତ୍ସ ଯୋଡ଼ନ୍ତୁ",
     "chartBarCurrentLabel": "%{month} (ଏହି ମାସ), %{amount} ବାକି",
     "shortBy": "%{amount} କମ୍",
-    "moveBill": "ବିଲ୍ ଘୁଞ୍ଚାନ୍ତୁ"
+    "moveBill": "ବିଲ୍ ଘୁଞ୍ଚାନ୍ତୁ",
+    "markSetAside": "%{payee} ଅଲଗା ରଖାଗଲା ବୋଲି ମାର୍କ କରନ୍ତୁ"
   },
   "income": {
     "emptyTitle": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଆୟ ନାହିଁ",
@@ -114,7 +115,8 @@
     "deleteMessage": "\"%{payee}\" ଏବଂ ଏହାର ସବୁ ଆସାଇନ୍‌ମେଣ୍ଟ ଡିଲିଟ୍ କରିବେ?",
     "sections": {
       "notLinked": "ଲିଙ୍କ୍ ହୋଇନାହିଁ",
-      "oneTime": "ଏକ ଥର"
+      "oneTime": "ଏକ ଥର",
+      "setAsides": "ଅଲଗା ରଖା"
     },
     "perMonthTotal": "%{amount}/ମାସ",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "ପ୍ରତି ମାସ %{slot}",
       "assignPerPaycheck": "ପ୍ରତି ଦରମାରେ ଆସାଇନ୍ କରନ୍ତୁ",
       "due": "%{date} ସୁଦ୍ଧା",
-      "oneTime": "ଏକ ଥର"
+      "oneTime": "ଏକ ଥର",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "ପ୍ରତି ଦରମା",
@@ -156,14 +159,24 @@
       "addButton": "ଖର୍ଚ୍ଚ ଯୋଡ଼ନ୍ତୁ",
       "updateButton": "ଖର୍ଚ୍ଚ ଅପଡେଟ୍ କରନ୍ତୁ",
       "payeeRequired": "ପ୍ରାପ୍ତକର୍ତ୍ତାର ନାମ ଆବଶ୍ୟକ।",
-      "invalidAmount": "ସଠିକ୍ ରାଶି ଦିଅନ୍ତୁ।"
+      "invalidAmount": "ସଠିକ୍ ରାଶି ଦିଅନ୍ତୁ।",
+      "name": "ନାମ",
+      "setAsidePlaceholder": "ଯେପରି ଖର୍ଚ୍ଚ ଟଙ୍କା",
+      "setAsideHint": "ଦରମାରୁ ଆପଣ ଅଲଗା ରଖୁଥିବା ଟଙ୍କା, ଯେପରି ଖର୍ଚ୍ଚ ଟଙ୍କା କିମ୍ବା ସଞ୍ଚୟ। ଏହା ଏକ ବିଲ୍ ପରି ବାକି ରାଶିରୁ କଟିଯାଏ।",
+      "addSetAside": "ଅଲଗା ରଖା ଯୋଡ଼ନ୍ତୁ",
+      "updateSetAside": "ଅଲଗା ରଖା ଅପଡେଟ୍ କରନ୍ତୁ",
+      "nameRequired": "ନାମ ଆବଶ୍ୟକ।"
+    },
+    "kind": {
+      "bill": "ବିଲ୍",
+      "setAside": "ଅଲଗା ରଖା"
     }
   },
   "payDate": {
     "thisPaycheck": "ଏହି ଦରମା",
     "available": "ଉପଲବ୍ଧ",
     "emptyAssigned": "ଏପର୍ଯ୍ୟନ୍ତ କିଛି ଆସାଇନ୍ ହୋଇନାହିଁ। ତଳ ତାଲିକାରୁ ବିଲ୍ ଯୋଡ଼ନ୍ତୁ।",
-    "leftAfterBills": "ବିଲ୍ ପରେ ବାକି",
+    "leftAfterBills": "ବାକି",
     "summaryMeta": "%{pay} ଦରମା · %{assigned} ଆସାଇନ୍",
     "linked": "ଲିଙ୍କ୍ ହୋଇଛି",
     "remove": "%{payee} ହଟାନ୍ତୁ",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count}ଟି ବିଲ୍ (%{amount})",
       "other": "%{count}ଟି ବିଲ୍ (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} ଆସିଲା · %{bills} · %{setAside} ଅଲଗା ରଖାଗଲା · %{left} ବାକି",
+    "bodySetAsideOnly": "%{income} ଆସିଲା · %{setAside} ଅଲଗା ରଖାଗଲା · %{left} ବାକି"
   },
   "links": {
     "openFailed": "ଲିଙ୍କ୍ ଖୋଲି ହେଲା ନାହିଁ"

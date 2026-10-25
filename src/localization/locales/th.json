@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "วันนี้",
     "goToThisMonth": "ไปที่เดือนนี้",
-    "leftAfterBills": "%{month} · เหลือหลังจ่ายบิล",
+    "leftAfterBills": "%{month} · เหลือ",
     "heroMeta": "รายรับ %{income} · จัดสรรแล้ว %{assigned}",
     "monthPaychecks": "เงินเดือนประจำ%{month}",
     "emptyTitle": "ยังไม่มีแหล่งรายรับ",
@@ -52,7 +52,8 @@
     "emptyAction": "เพิ่มแหล่งรายรับ",
     "chartBarCurrentLabel": "%{month} (เดือนนี้) เหลือ %{amount}",
     "shortBy": "ขาดอีก %{amount}",
-    "moveBill": "ย้ายบิล"
+    "moveBill": "ย้ายบิล",
+    "markSetAside": "ทำเครื่องหมายว่ากันเงิน %{payee} แล้ว"
   },
   "income": {
     "emptyTitle": "ยังไม่มีรายรับ",
@@ -113,7 +114,8 @@
     "deleteMessage": "ลบ \"%{payee}\" และการจัดสรรทั้งหมดหรือไม่",
     "sections": {
       "notLinked": "ไม่ได้เชื่อมโยง",
-      "oneTime": "ครั้งเดียว"
+      "oneTime": "ครั้งเดียว",
+      "setAsides": "เงินกันไว้"
     },
     "perMonthTotal": "%{amount}/เดือน",
     "meta": {
@@ -121,7 +123,8 @@
       "slotEachMonth": "%{slot} ของทุกเดือน",
       "assignPerPaycheck": "จัดสรรแยกตามงวด",
       "due": "ครบกำหนด %{date}",
-      "oneTime": "ครั้งเดียว"
+      "oneTime": "ครั้งเดียว",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "ต่องวด",
@@ -155,14 +158,24 @@
       "addButton": "เพิ่มรายจ่าย",
       "updateButton": "อัปเดตรายจ่าย",
       "payeeRequired": "กรุณาใส่ชื่อผู้รับเงิน",
-      "invalidAmount": "กรุณาใส่จำนวนเงินที่ถูกต้อง"
+      "invalidAmount": "กรุณาใส่จำนวนเงินที่ถูกต้อง",
+      "name": "ชื่อ",
+      "setAsidePlaceholder": "เช่น เงินใช้จ่าย",
+      "setAsideHint": "เงินที่คุณกันไว้จากเงินเดือน เช่น เงินใช้จ่ายหรือเงินออม ซึ่งจะหักออกจากยอดที่เหลือเหมือนบิล",
+      "addSetAside": "เพิ่มเงินกันไว้",
+      "updateSetAside": "อัปเดตเงินกันไว้",
+      "nameRequired": "กรุณาใส่ชื่อ"
+    },
+    "kind": {
+      "bill": "บิล",
+      "setAside": "เงินกันไว้"
     }
   },
   "payDate": {
     "thisPaycheck": "เงินเดือนงวดนี้",
     "available": "ใช้ได้",
     "emptyAssigned": "ยังไม่ได้จัดสรรอะไร เพิ่มบิลจากรายการด้านล่าง",
-    "leftAfterBills": "เหลือหลังจ่ายบิล",
+    "leftAfterBills": "เหลือ",
     "summaryMeta": "เงินเดือน %{pay} · จัดสรรแล้ว %{assigned}",
     "linked": "เชื่อมโยงแล้ว",
     "remove": "นำ %{payee} ออก",
@@ -215,7 +228,9 @@
     "bodyNoBills": "รายรับ %{income} · ยังไม่ได้จัดสรรบิล",
     "bills": {
       "other": "%{count} บิล (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "รายรับ %{income} · %{bills} · กันไว้ %{setAside} · เหลือ %{left}",
+    "bodySetAsideOnly": "รายรับ %{income} · กันไว้ %{setAside} · เหลือ %{left}"
   },
   "links": {
     "openFailed": "เปิดลิงก์ไม่ได้"

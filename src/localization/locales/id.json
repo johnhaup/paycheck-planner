@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "Hari ini",
     "goToThisMonth": "Ke bulan ini",
-    "leftAfterBills": "%{month} · sisa setelah tagihan",
+    "leftAfterBills": "%{month} · sisa",
     "heroMeta": "%{income} masuk · %{assigned} dialokasikan",
     "monthPaychecks": "Gaji %{month}",
     "emptyTitle": "Belum ada sumber pemasukan",
@@ -52,7 +52,8 @@
     "emptyAction": "Tambah sumber pemasukan",
     "chartBarCurrentLabel": "%{month} (bulan ini), sisa %{amount}",
     "shortBy": "Kurang %{amount}",
-    "moveBill": "Pindahkan tagihan"
+    "moveBill": "Pindahkan tagihan",
+    "markSetAside": "Tandai %{payee} sudah disisihkan"
   },
   "income": {
     "emptyTitle": "Belum ada pemasukan",
@@ -113,7 +114,8 @@
     "deleteMessage": "Hapus \"%{payee}\" beserta semua alokasinya?",
     "sections": {
       "notLinked": "Tidak tertaut",
-      "oneTime": "Sekali"
+      "oneTime": "Sekali",
+      "setAsides": "Sisihan"
     },
     "perMonthTotal": "%{amount}/bln",
     "meta": {
@@ -121,7 +123,8 @@
       "slotEachMonth": "%{slot} setiap bulan",
       "assignPerPaycheck": "Alokasikan per gaji",
       "due": "Jatuh tempo %{date}",
-      "oneTime": "Sekali"
+      "oneTime": "Sekali",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "per gaji",
@@ -155,14 +158,24 @@
       "addButton": "Tambah Pengeluaran",
       "updateButton": "Perbarui Pengeluaran",
       "payeeRequired": "Nama penerima wajib diisi.",
-      "invalidAmount": "Masukkan jumlah yang valid."
+      "invalidAmount": "Masukkan jumlah yang valid.",
+      "name": "Nama",
+      "setAsidePlaceholder": "mis. Uang jajan",
+      "setAsideHint": "Uang yang kamu simpan dari gaji, seperti uang jajan atau tabungan. Dipotong dari sisa, sama seperti tagihan.",
+      "addSetAside": "Tambah Sisihan",
+      "updateSetAside": "Perbarui Sisihan",
+      "nameRequired": "Nama wajib diisi."
+    },
+    "kind": {
+      "bill": "Tagihan",
+      "setAside": "Sisihan"
     }
   },
   "payDate": {
     "thisPaycheck": "Gaji ini",
     "available": "Tersedia",
     "emptyAssigned": "Belum ada yang dialokasikan. Tambahkan tagihan dari daftar di bawah.",
-    "leftAfterBills": "Sisa setelah tagihan",
+    "leftAfterBills": "Sisa",
     "summaryMeta": "Gaji %{pay} · %{assigned} dialokasikan",
     "linked": "Tertaut",
     "remove": "Hapus %{payee}",
@@ -215,7 +228,9 @@
     "bodyNoBills": "%{income} masuk · belum ada tagihan dialokasikan",
     "bills": {
       "other": "%{count} tagihan (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} masuk · %{bills} · %{setAside} disisihkan · sisa %{left}",
+    "bodySetAsideOnly": "%{income} masuk · %{setAside} disisihkan · sisa %{left}"
   },
   "links": {
     "openFailed": "Tautan tidak bisa dibuka"

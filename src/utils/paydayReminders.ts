@@ -74,17 +74,24 @@ function buildContent(paycheck: PaycheckItem, daysBefore: number, hideCents: boo
         ? t("notifications.titleTomorrow", { source })
         : t("notifications.titleOnDay", { source, weekday: formatWeekday(paycheck.date) });
   const income = formatMoney(paycheck.payAmount, hideCents);
-  const body =
-    paycheck.expenses.length === 0
-      ? t("notifications.bodyNoBills", { income })
-      : t("notifications.body", {
-          income,
-          bills: t("notifications.bills", {
-            count: paycheck.expenses.length,
-            amount: formatMoney(paycheck.totalExpenses, hideCents),
-          }),
-          left: formatMoney(paycheck.remaining, hideCents),
-        });
+  const left = formatMoney(paycheck.remaining, hideCents);
+  const bills = paycheck.expenses.filter((e) => !e.isSetAside);
+  const setAsideTotal = paycheck.expenses.reduce((sum, e) => sum + (e.isSetAside ? e.amount : 0), 0);
+  const billsText = t("notifications.bills", {
+    count: bills.length,
+    amount: formatMoney(paycheck.totalExpenses - setAsideTotal, hideCents),
+  });
+  const setAside = formatMoney(setAsideTotal, hideCents);
+  let body: string;
+  if (paycheck.expenses.length === 0) {
+    body = t("notifications.bodyNoBills", { income });
+  } else if (setAsideTotal === 0) {
+    body = t("notifications.body", { income, bills: billsText, left });
+  } else if (bills.length === 0) {
+    body = t("notifications.bodySetAsideOnly", { income, setAside, left });
+  } else {
+    body = t("notifications.bodyWithSetAside", { income, bills: billsText, setAside, left });
+  }
   return { title, body };
 }
 

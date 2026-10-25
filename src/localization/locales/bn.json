@@ -40,7 +40,7 @@
   "paychecks": {
     "today": "আজ",
     "goToThisMonth": "এই মাসে যান",
-    "leftAfterBills": "%{month} · বিলের পরে বাকি",
+    "leftAfterBills": "%{month} · বাকি",
     "heroMeta": "%{income} এসেছে · %{assigned} বরাদ্দ",
     "monthPaychecks": "%{month}-এর বেতন",
     "emptyTitle": "এখনও কোনো আয়ের উৎস নেই",
@@ -56,7 +56,8 @@
     "emptyAction": "আয়ের উৎস যোগ করুন",
     "chartBarCurrentLabel": "%{month} (এই মাস), %{amount} বাকি",
     "shortBy": "%{amount} কম",
-    "moveBill": "বিল সরান"
+    "moveBill": "বিল সরান",
+    "markSetAside": "%{payee} আলাদা রাখা হয়েছে হিসেবে চিহ্নিত করুন"
   },
   "income": {
     "emptyTitle": "এখনও কোনো আয় নেই",
@@ -118,7 +119,8 @@
     "deleteMessage": "\"%{payee}\" এবং এর সব বরাদ্দ মুছবেন?",
     "sections": {
       "notLinked": "লিঙ্ক করা নেই",
-      "oneTime": "একবার"
+      "oneTime": "একবার",
+      "setAsides": "আলাদা রাখা অর্থ"
     },
     "perMonthTotal": "%{amount}/মাস",
     "meta": {
@@ -126,7 +128,8 @@
       "slotEachMonth": "প্রতি মাসে %{slot}",
       "assignPerPaycheck": "বেতন অনুযায়ী বরাদ্দ করুন",
       "due": "শেষ তারিখ %{date}",
-      "oneTime": "একবার"
+      "oneTime": "একবার",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "প্রতি বেতনে",
@@ -160,14 +163,24 @@
       "addButton": "খরচ যোগ করুন",
       "updateButton": "খরচ আপডেট করুন",
       "payeeRequired": "প্রাপকের নাম দেওয়া আবশ্যক।",
-      "invalidAmount": "সঠিক পরিমাণ দিন।"
+      "invalidAmount": "সঠিক পরিমাণ দিন।",
+      "name": "নাম",
+      "setAsidePlaceholder": "যেমন হাতখরচ",
+      "setAsideHint": "বেতন থেকে যে টাকা আপনি রেখে দেন, যেমন হাতখরচ বা সঞ্চয়। বিলের মতোই এটি বাকি টাকা থেকে কাটা হয়।",
+      "addSetAside": "আলাদা রাখা অর্থ যোগ করুন",
+      "updateSetAside": "আলাদা রাখা অর্থ আপডেট করুন",
+      "nameRequired": "নাম দেওয়া আবশ্যক।"
+    },
+    "kind": {
+      "bill": "বিল",
+      "setAside": "আলাদা রাখা"
     }
   },
   "payDate": {
     "thisPaycheck": "এই বেতন",
     "available": "উপলব্ধ",
     "emptyAssigned": "এখনও কিছু বরাদ্দ নেই। নিচের তালিকা থেকে বিল যোগ করুন।",
-    "leftAfterBills": "বিলের পরে বাকি",
+    "leftAfterBills": "বাকি",
     "summaryMeta": "%{pay} বেতন · %{assigned} বরাদ্দ",
     "linked": "লিঙ্ক করা",
     "remove": "%{payee} সরান",
@@ -221,7 +234,9 @@
     "bills": {
       "one": "%{count}টি বিল (%{amount})",
       "other": "%{count}টি বিল (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} এসেছে · %{bills} · %{setAside} আলাদা রাখা · %{left} বাকি",
+    "bodySetAsideOnly": "%{income} এসেছে · %{setAside} আলাদা রাখা · %{left} বাকি"
   },
   "links": {
     "openFailed": "লিঙ্ক খোলা যায়নি"

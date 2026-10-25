@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "Vandaag",
     "goToThisMonth": "Naar deze maand",
-    "leftAfterBills": "%{month} · over na rekeningen",
+    "leftAfterBills": "%{month} · over",
     "heroMeta": "%{income} binnen · %{assigned} toegewezen",
     "monthPaychecks": "Salarissen in %{month}",
     "emptyTitle": "Nog geen inkomstenbronnen",
@@ -52,7 +52,8 @@
     "emptyAction": "Inkomstenbron toevoegen",
     "chartBarCurrentLabel": "%{month} (deze maand), %{amount} over",
     "shortBy": "%{amount} tekort",
-    "moveBill": "Rekening verplaatsen"
+    "moveBill": "Rekening verplaatsen",
+    "markSetAside": "%{payee} markeren als apart gezet"
   },
   "income": {
     "emptyTitle": "Nog geen inkomen",
@@ -114,7 +115,8 @@
     "deleteMessage": "'%{payee}' en alle toewijzingen verwijderen?",
     "sections": {
       "notLinked": "Niet gekoppeld",
-      "oneTime": "Eenmalig"
+      "oneTime": "Eenmalig",
+      "setAsides": "Reserveringen"
     },
     "perMonthTotal": "%{amount}/mnd",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "%{slot} elke maand",
       "assignPerPaycheck": "Per salaris toewijzen",
       "due": "Vervalt %{date}",
-      "oneTime": "Eenmalig"
+      "oneTime": "Eenmalig",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "per salaris",
@@ -156,14 +159,24 @@
       "addButton": "Uitgave toevoegen",
       "updateButton": "Uitgave bijwerken",
       "payeeRequired": "Naam van begunstigde is verplicht.",
-      "invalidAmount": "Voer een geldig bedrag in."
+      "invalidAmount": "Voer een geldig bedrag in.",
+      "name": "Naam",
+      "setAsidePlaceholder": "bijv. Zakgeld",
+      "setAsideHint": "Geld dat je van een salaris apart houdt, zoals zakgeld of spaargeld. Het gaat af van wat er over is, net als een rekening.",
+      "addSetAside": "Reservering toevoegen",
+      "updateSetAside": "Reservering bijwerken",
+      "nameRequired": "Naam is verplicht."
+    },
+    "kind": {
+      "bill": "Rekening",
+      "setAside": "Reservering"
     }
   },
   "payDate": {
     "thisPaycheck": "Dit salaris",
     "available": "Beschikbaar",
     "emptyAssigned": "Nog niets toegewezen. Voeg rekeningen toe uit de lijst hieronder.",
-    "leftAfterBills": "Over na rekeningen",
+    "leftAfterBills": "Over",
     "summaryMeta": "%{pay} salaris · %{assigned} toegewezen",
     "linked": "Gekoppeld",
     "remove": "%{payee} verwijderen",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count} rekening (%{amount})",
       "other": "%{count} rekeningen (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} binnen · %{bills} · %{setAside} apart gezet · %{left} over",
+    "bodySetAsideOnly": "%{income} binnen · %{setAside} apart gezet · %{left} over"
   },
   "links": {
     "openFailed": "Kon link niet openen"

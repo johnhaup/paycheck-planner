@@ -8,6 +8,7 @@ import { useGroupedRowStyles } from "@/hooks/useGroupedRowStyles";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppCheckCircle } from "@/components/AppCheckCircle";
+import { AppSetAsideIcon } from "@/components/AppSetAsideIcon";
 import type { Expense } from "@/types";
 
 interface Props {
@@ -69,6 +70,7 @@ export function PayDateExpenseRow({
   }, [isAssigned, onAssign, onUnassign, expense.id]);
 
   const textColor = isPaid ? "textMuted" : "textDefault";
+  const isSetAside = expense.kind === "set-aside";
 
   return (
     <View style={groupedStyles.container}>
@@ -77,7 +79,9 @@ export function PayDateExpenseRow({
           <AppCheckCircle
             checked={isPaid}
             onPress={handleTogglePaid}
-            accessibilityLabel={t("paychecks.markPaid", { payee: expense.payee })}
+            accessibilityLabel={t(isSetAside ? "paychecks.markSetAside" : "paychecks.markPaid", {
+              payee: expense.payee,
+            })}
           />
         ) : null}
         <View style={styles.info}>
@@ -87,6 +91,7 @@ export function PayDateExpenseRow({
             disabled={!expense.link}
             accessibilityRole={expense.link ? "link" : undefined}
           >
+            {isSetAside ? <AppSetAsideIcon /> : null}
             <AppText
               variant="body"
               color={textColor}

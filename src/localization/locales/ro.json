@@ -37,7 +37,7 @@
   "paychecks": {
     "today": "Azi",
     "goToThisMonth": "Mergi la luna curentă",
-    "leftAfterBills": "%{month} · rămas după facturi",
+    "leftAfterBills": "%{month} · rămas",
     "heroMeta": "%{income} venit · %{assigned} alocat",
     "monthPaychecks": "Salarii %{month}",
     "emptyTitle": "Nicio sursă de venit încă",
@@ -53,7 +53,8 @@
     "emptyAction": "Adaugă sursă de venit",
     "chartBarCurrentLabel": "%{month} (luna curentă), %{amount} rămas",
     "shortBy": "Lipsesc %{amount}",
-    "moveBill": "Mută o factură"
+    "moveBill": "Mută o factură",
+    "markSetAside": "Marchează %{payee} ca pus deoparte"
   },
   "income": {
     "emptyTitle": "Niciun venit încă",
@@ -116,7 +117,8 @@
     "deleteMessage": "Ștergi „%{payee}” și toate alocările sale?",
     "sections": {
       "notLinked": "Nelegate",
-      "oneTime": "O singură dată"
+      "oneTime": "O singură dată",
+      "setAsides": "Rezerve"
     },
     "perMonthTotal": "%{amount}/lună",
     "meta": {
@@ -124,7 +126,8 @@
       "slotEachMonth": "%{slot} în fiecare lună",
       "assignPerPaycheck": "Alocă per salariu",
       "due": "Scadent %{date}",
-      "oneTime": "O singură dată"
+      "oneTime": "O singură dată",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "pe salariu",
@@ -158,14 +161,24 @@
       "addButton": "Adaugă cheltuială",
       "updateButton": "Actualizează cheltuiala",
       "payeeRequired": "Numele beneficiarului este obligatoriu.",
-      "invalidAmount": "Introdu o sumă validă."
+      "invalidAmount": "Introdu o sumă validă.",
+      "name": "Nume",
+      "setAsidePlaceholder": "ex. Bani de cheltuială",
+      "setAsideHint": "Bani pe care îi păstrezi dintr-un salariu, cum ar fi bani de cheltuială sau economii. Se scad din ce rămâne, la fel ca o factură.",
+      "addSetAside": "Adaugă rezervă",
+      "updateSetAside": "Actualizează rezerva",
+      "nameRequired": "Numele este obligatoriu."
+    },
+    "kind": {
+      "bill": "Factură",
+      "setAside": "Rezervă"
     }
   },
   "payDate": {
     "thisPaycheck": "Acest salariu",
     "available": "Disponibil",
     "emptyAssigned": "Nimic alocat încă. Adaugă facturi din lista de mai jos.",
-    "leftAfterBills": "Rămas după facturi",
+    "leftAfterBills": "Rămas",
     "summaryMeta": "Salariu %{pay} · %{assigned} alocat",
     "linked": "Legată",
     "remove": "Elimină %{payee}",
@@ -220,7 +233,9 @@
       "one": "%{count} factură (%{amount})",
       "few": "%{count} facturi (%{amount})",
       "other": "%{count} de facturi (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} venit · %{bills} · %{setAside} puși deoparte · %{left} rămas",
+    "bodySetAsideOnly": "%{income} venit · %{setAside} puși deoparte · %{left} rămas"
   },
   "links": {
     "openFailed": "Linkul nu a putut fi deschis"

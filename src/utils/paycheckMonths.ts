@@ -48,6 +48,7 @@ export function buildPaycheckItem(
         assignmentId: a.id,
         link: expense?.link,
         paid: a.paid,
+        isSetAside: expense?.kind === "set-aside",
       };
     });
   for (const expense of expenses) {
@@ -61,9 +62,12 @@ export function buildPaycheckItem(
         amount: expense.amount,
         assignmentId: "",
         link: expense.link,
+        isSetAside: expense.kind === "set-aside",
       });
     }
   }
+  // Bills first, then set-asides
+  items.sort((a, b) => Number(!!a.isSetAside) - Number(!!b.isSetAside));
   const totalExpenses = items.reduce((sum, e) => sum + e.amount, 0);
   const payAmount = getPayAmount(source, payDate, overrides);
 

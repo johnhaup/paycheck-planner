@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "Сьогодні",
     "goToThisMonth": "Перейти до поточного місяця",
-    "leftAfterBills": "%{month} · залишок після рахунків",
+    "leftAfterBills": "%{month} · залишається",
     "heroMeta": "Дохід %{income} · призначено %{assigned}",
     "monthPaychecks": "Зарплати: %{month}",
     "emptyTitle": "Поки немає джерел доходу",
@@ -52,7 +52,8 @@
     "emptyAction": "Додати джерело доходу",
     "chartBarCurrentLabel": "%{month} (поточний місяць), залишається %{amount}",
     "shortBy": "Не вистачає %{amount}",
-    "moveBill": "Перенести рахунок"
+    "moveBill": "Перенести рахунок",
+    "markSetAside": "Позначити %{payee} як відкладений"
   },
   "income": {
     "emptyTitle": "Поки немає доходів",
@@ -116,7 +117,8 @@
     "deleteMessage": "Видалити «%{payee}» і всі її призначення?",
     "sections": {
       "notLinked": "Не прив’язані",
-      "oneTime": "Разові"
+      "oneTime": "Разові",
+      "setAsides": "Резерви"
     },
     "perMonthTotal": "%{amount}/міс.",
     "meta": {
@@ -124,7 +126,8 @@
       "slotEachMonth": "%{slot} щомісяця",
       "assignPerPaycheck": "Призначати для кожної зарплати",
       "due": "Термін %{date}",
-      "oneTime": "Разова"
+      "oneTime": "Разова",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "за виплату",
@@ -158,14 +161,24 @@
       "addButton": "Додати витрату",
       "updateButton": "Оновити витрату",
       "payeeRequired": "Вкажіть отримувача.",
-      "invalidAmount": "Введіть коректну суму."
+      "invalidAmount": "Введіть коректну суму.",
+      "name": "Назва",
+      "setAsidePlaceholder": "напр. Кишенькові гроші",
+      "setAsideHint": "Гроші, які ви залишаєте собі із зарплати, наприклад на витрати чи заощадження. Вони віднімаються від залишку, як і рахунок.",
+      "addSetAside": "Додати резерв",
+      "updateSetAside": "Оновити резерв",
+      "nameRequired": "Вкажіть назву."
+    },
+    "kind": {
+      "bill": "Рахунок",
+      "setAside": "Резерв"
     }
   },
   "payDate": {
     "thisPaycheck": "Ця зарплата",
     "available": "Доступно",
     "emptyAssigned": "Поки нічого не призначено. Додайте рахунки зі списку нижче.",
-    "leftAfterBills": "Залишок після рахунків",
+    "leftAfterBills": "Залишається",
     "summaryMeta": "Зарплата %{pay} · призначено %{assigned}",
     "linked": "Прив’язано",
     "remove": "Прибрати %{payee}",
@@ -221,7 +234,9 @@
       "few": "%{count} рахунки (%{amount})",
       "many": "%{count} рахунків (%{amount})",
       "other": "%{count} рахунка (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "Дохід %{income} · %{bills} · відкладено %{setAside} · залишається %{left}",
+    "bodySetAsideOnly": "Дохід %{income} · відкладено %{setAside} · залишається %{left}"
   },
   "links": {
     "openFailed": "Не вдалося відкрити посилання"

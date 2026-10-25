@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "I dag",
     "goToThisMonth": "Gå til denne måned",
-    "leftAfterBills": "%{month} · tilbage efter regninger",
+    "leftAfterBills": "%{month} · tilbage",
     "heroMeta": "%{income} ind · %{assigned} tildelt",
     "monthPaychecks": "Lønudbetalinger i %{month}",
     "emptyTitle": "Ingen indkomstkilder endnu",
@@ -52,7 +52,8 @@
     "emptyAction": "Tilføj indkomstkilde",
     "chartBarCurrentLabel": "%{month} (denne måned), %{amount} tilbage",
     "shortBy": "Mangler %{amount}",
-    "moveBill": "Flyt en regning"
+    "moveBill": "Flyt en regning",
+    "markSetAside": "Markér %{payee} som afsat"
   },
   "income": {
     "emptyTitle": "Ingen indkomst endnu",
@@ -114,7 +115,8 @@
     "deleteMessage": "Slet \"%{payee}\" og alle dens tildelinger?",
     "sections": {
       "notLinked": "Ikke tilknyttet",
-      "oneTime": "Engangs"
+      "oneTime": "Engangs",
+      "setAsides": "Afsatte beløb"
     },
     "perMonthTotal": "%{amount}/md.",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "%{slot} hver måned",
       "assignPerPaycheck": "Tildel pr. lønudbetaling",
       "due": "Forfalder %{date}",
-      "oneTime": "Engangs"
+      "oneTime": "Engangs",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "pr. udbetaling",
@@ -156,14 +159,24 @@
       "addButton": "Tilføj udgift",
       "updateButton": "Opdater udgift",
       "payeeRequired": "Modtagernavn er påkrævet.",
-      "invalidAmount": "Indtast et gyldigt beløb."
+      "invalidAmount": "Indtast et gyldigt beløb.",
+      "name": "Navn",
+      "setAsidePlaceholder": "f.eks. Lommepenge",
+      "setAsideHint": "Penge, du beholder af en lønudbetaling, f.eks. til forbrug eller opsparing. De trækkes fra det, der er tilbage, ligesom en regning.",
+      "addSetAside": "Tilføj afsat beløb",
+      "updateSetAside": "Opdater afsat beløb",
+      "nameRequired": "Navn er påkrævet."
+    },
+    "kind": {
+      "bill": "Regning",
+      "setAside": "Afsat beløb"
     }
   },
   "payDate": {
     "thisPaycheck": "Denne lønudbetaling",
     "available": "Tilgængeligt",
     "emptyAssigned": "Intet tildelt endnu. Tilføj regninger fra listen nedenfor.",
-    "leftAfterBills": "Tilbage efter regninger",
+    "leftAfterBills": "Tilbage",
     "summaryMeta": "%{pay} løn · %{assigned} tildelt",
     "linked": "Tilknyttet",
     "remove": "Fjern %{payee}",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count} regning (%{amount})",
       "other": "%{count} regninger (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} ind · %{bills} · %{setAside} afsat · %{left} tilbage",
+    "bodySetAsideOnly": "%{income} ind · %{setAside} afsat · %{left} tilbage"
   },
   "links": {
     "openFailed": "Kunne ikke åbne linket"

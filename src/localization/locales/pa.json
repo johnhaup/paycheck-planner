@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "ਅੱਜ",
     "goToThisMonth": "ਇਸ ਮਹੀਨੇ 'ਤੇ ਜਾਓ",
-    "leftAfterBills": "%{month} · ਬਿੱਲਾਂ ਤੋਂ ਬਾਅਦ ਬਾਕੀ",
+    "leftAfterBills": "%{month} · ਬਾਕੀ",
     "heroMeta": "%{income} ਆਏ · %{assigned} ਅਸਾਈਨ",
     "monthPaychecks": "%{month} ਦੀਆਂ ਤਨਖ਼ਾਹਾਂ",
     "emptyTitle": "ਹਾਲੇ ਕੋਈ ਆਮਦਨ ਸਰੋਤ ਨਹੀਂ",
@@ -52,7 +52,8 @@
     "emptyAction": "ਆਮਦਨ ਸਰੋਤ ਸ਼ਾਮਲ ਕਰੋ",
     "chartBarCurrentLabel": "%{month} (ਇਹ ਮਹੀਨਾ), %{amount} ਬਾਕੀ",
     "shortBy": "%{amount} ਘੱਟ",
-    "moveBill": "ਬਿੱਲ ਮੂਵ ਕਰੋ"
+    "moveBill": "ਬਿੱਲ ਮੂਵ ਕਰੋ",
+    "markSetAside": "%{payee} ਨੂੰ ਵੱਖ ਰੱਖਿਆ ਮਾਰਕ ਕਰੋ"
   },
   "income": {
     "emptyTitle": "ਹਾਲੇ ਕੋਈ ਆਮਦਨ ਨਹੀਂ",
@@ -114,7 +115,8 @@
     "deleteMessage": "\"%{payee}\" ਅਤੇ ਇਸ ਦੇ ਸਾਰੇ ਅਸਾਈਨਮੈਂਟ ਮਿਟਾਉਣੇ ਹਨ?",
     "sections": {
       "notLinked": "ਲਿੰਕ ਨਹੀਂ",
-      "oneTime": "ਇੱਕ ਵਾਰ"
+      "oneTime": "ਇੱਕ ਵਾਰ",
+      "setAsides": "ਰਾਖਵੀਆਂ ਰਕਮਾਂ"
     },
     "perMonthTotal": "%{amount}/ਮਹੀਨਾ",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "ਹਰ ਮਹੀਨੇ %{slot}",
       "assignPerPaycheck": "ਹਰ ਤਨਖ਼ਾਹ 'ਤੇ ਅਸਾਈਨ ਕਰੋ",
       "due": "%{date} ਤੱਕ",
-      "oneTime": "ਇੱਕ ਵਾਰ"
+      "oneTime": "ਇੱਕ ਵਾਰ",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "ਪ੍ਰਤੀ ਤਨਖ਼ਾਹ",
@@ -156,14 +159,24 @@
       "addButton": "ਖਰਚਾ ਸ਼ਾਮਲ ਕਰੋ",
       "updateButton": "ਖਰਚਾ ਅੱਪਡੇਟ ਕਰੋ",
       "payeeRequired": "ਪ੍ਰਾਪਤਕਰਤਾ ਦਾ ਨਾਮ ਜ਼ਰੂਰੀ ਹੈ।",
-      "invalidAmount": "ਸਹੀ ਰਕਮ ਭਰੋ।"
+      "invalidAmount": "ਸਹੀ ਰਕਮ ਭਰੋ।",
+      "name": "ਨਾਮ",
+      "setAsidePlaceholder": "ਜਿਵੇਂ ਖਰਚਣ ਵਾਲੇ ਪੈਸੇ",
+      "setAsideHint": "ਉਹ ਪੈਸੇ ਜੋ ਤੁਸੀਂ ਤਨਖ਼ਾਹ ਵਿੱਚੋਂ ਵੱਖ ਰੱਖਦੇ ਹੋ, ਜਿਵੇਂ ਖਰਚਣ ਵਾਲੇ ਪੈਸੇ ਜਾਂ ਬੱਚਤ। ਇਹ ਬਿੱਲ ਵਾਂਗ ਹੀ ਬਾਕੀ ਰਕਮ ਵਿੱਚੋਂ ਘਟਦੇ ਹਨ।",
+      "addSetAside": "ਰਾਖਵੀਂ ਰਕਮ ਸ਼ਾਮਲ ਕਰੋ",
+      "updateSetAside": "ਰਾਖਵੀਂ ਰਕਮ ਅੱਪਡੇਟ ਕਰੋ",
+      "nameRequired": "ਨਾਮ ਜ਼ਰੂਰੀ ਹੈ।"
+    },
+    "kind": {
+      "bill": "ਬਿੱਲ",
+      "setAside": "ਰਾਖਵੀਂ ਰਕਮ"
     }
   },
   "payDate": {
     "thisPaycheck": "ਇਹ ਤਨਖ਼ਾਹ",
     "available": "ਉਪਲਬਧ",
     "emptyAssigned": "ਹਾਲੇ ਕੁਝ ਅਸਾਈਨ ਨਹੀਂ। ਹੇਠਾਂ ਦੀ ਸੂਚੀ ਤੋਂ ਬਿੱਲ ਸ਼ਾਮਲ ਕਰੋ।",
-    "leftAfterBills": "ਬਿੱਲਾਂ ਤੋਂ ਬਾਅਦ ਬਾਕੀ",
+    "leftAfterBills": "ਬਾਕੀ",
     "summaryMeta": "%{pay} ਤਨਖ਼ਾਹ · %{assigned} ਅਸਾਈਨ",
     "linked": "ਲਿੰਕ ਕੀਤਾ",
     "remove": "%{payee} ਹਟਾਓ",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count} ਬਿੱਲ (%{amount})",
       "other": "%{count} ਬਿੱਲ (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} ਆਏ · %{bills} · %{setAside} ਵੱਖ ਰੱਖੇ · %{left} ਬਾਕੀ",
+    "bodySetAsideOnly": "%{income} ਆਏ · %{setAside} ਵੱਖ ਰੱਖੇ · %{left} ਬਾਕੀ"
   },
   "links": {
     "openFailed": "ਲਿੰਕ ਨਹੀਂ ਖੁੱਲ੍ਹ ਸਕਿਆ"

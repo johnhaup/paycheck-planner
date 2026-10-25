@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "Hoje",
     "goToThisMonth": "Ir para este mês",
-    "leftAfterBills": "%{month} · sobra após as contas",
+    "leftAfterBills": "%{month} · sobra",
     "heroMeta": "%{income} recebidos · %{assigned} atribuídos",
     "monthPaychecks": "Pagamentos de %{month}",
     "emptyTitle": "Nenhuma fonte de renda ainda",
@@ -52,7 +52,8 @@
     "emptyAction": "Adicionar fonte de renda",
     "chartBarCurrentLabel": "%{month} (este mês), sobram %{amount}",
     "shortBy": "Faltam %{amount}",
-    "moveBill": "Mover uma conta"
+    "moveBill": "Mover uma conta",
+    "markSetAside": "Marcar %{payee} como reservada"
   },
   "income": {
     "emptyTitle": "Nenhuma renda ainda",
@@ -114,7 +115,8 @@
     "deleteMessage": "Excluir \"%{payee}\" e todas as suas atribuições?",
     "sections": {
       "notLinked": "Não vinculadas",
-      "oneTime": "Únicas"
+      "oneTime": "Únicas",
+      "setAsides": "Reservas"
     },
     "perMonthTotal": "%{amount}/mês",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "%{slot} de cada mês",
       "assignPerPaycheck": "Atribuir por pagamento",
       "due": "Vence em %{date}",
-      "oneTime": "Única"
+      "oneTime": "Única",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "por pagamento",
@@ -156,14 +159,24 @@
       "addButton": "Adicionar despesa",
       "updateButton": "Atualizar despesa",
       "payeeRequired": "O nome do beneficiário é obrigatório.",
-      "invalidAmount": "Informe um valor válido."
+      "invalidAmount": "Informe um valor válido.",
+      "name": "Nome",
+      "setAsidePlaceholder": "ex.: Dinheiro para gastos",
+      "setAsideHint": "Dinheiro que você separa de um pagamento, como para gastos ou poupança. Sai do que sobra, assim como uma conta.",
+      "addSetAside": "Adicionar reserva",
+      "updateSetAside": "Atualizar reserva",
+      "nameRequired": "O nome é obrigatório."
+    },
+    "kind": {
+      "bill": "Conta",
+      "setAside": "Reserva"
     }
   },
   "payDate": {
     "thisPaycheck": "Este pagamento",
     "available": "Disponíveis",
     "emptyAssigned": "Nada atribuído ainda. Adicione contas da lista abaixo.",
-    "leftAfterBills": "Sobra após as contas",
+    "leftAfterBills": "Sobra",
     "summaryMeta": "Pagamento de %{pay} · %{assigned} atribuídos",
     "linked": "Vinculada",
     "remove": "Remover %{payee}",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count} conta (%{amount})",
       "other": "%{count} contas (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} recebidos · %{bills} · %{setAside} reservados · sobram %{left}",
+    "bodySetAsideOnly": "%{income} recebidos · %{setAside} reservados · sobram %{left}"
   },
   "links": {
     "openFailed": "Não foi possível abrir o link"

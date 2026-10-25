@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "ഇന്ന്",
     "goToThisMonth": "ഈ മാസത്തിലേക്ക് പോകുക",
-    "leftAfterBills": "%{month} · ബില്ലുകൾക്ക് ശേഷം ബാക്കി",
+    "leftAfterBills": "%{month} · ബാക്കി",
     "heroMeta": "%{income} വരവ് · %{assigned} നീക്കിവെച്ചു",
     "monthPaychecks": "%{month} ശമ്പളങ്ങൾ",
     "emptyTitle": "ഇതുവരെ വരുമാന സ്രോതസ്സുകളില്ല",
@@ -52,7 +52,8 @@
     "emptyAction": "വരുമാന സ്രോതസ്സ് ചേർക്കുക",
     "chartBarCurrentLabel": "%{month} (ഈ മാസം), %{amount} ബാക്കി",
     "shortBy": "%{amount} കുറവ്",
-    "moveBill": "ഒരു ബിൽ മാറ്റുക"
+    "moveBill": "ഒരു ബിൽ മാറ്റുക",
+    "markSetAside": "%{payee} മാറ്റിവെച്ചതായി അടയാളപ്പെടുത്തുക"
   },
   "income": {
     "emptyTitle": "ഇതുവരെ വരുമാനമില്ല",
@@ -114,7 +115,8 @@
     "deleteMessage": "\"%{payee}\" ഉം അതിന്റെ എല്ലാ നീക്കിവെപ്പുകളും ഇല്ലാതാക്കണോ?",
     "sections": {
       "notLinked": "ലിങ്ക് ചെയ്യാത്തവ",
-      "oneTime": "ഒറ്റത്തവണ"
+      "oneTime": "ഒറ്റത്തവണ",
+      "setAsides": "മാറ്റിവെപ്പുകൾ"
     },
     "perMonthTotal": "%{amount}/മാസം",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "ഓരോ മാസവും %{slot}",
       "assignPerPaycheck": "ഓരോ ശമ്പളത്തിനും നീക്കിവെക്കുക",
       "due": "%{date} അവസാന തീയതി",
-      "oneTime": "ഒറ്റത്തവണ"
+      "oneTime": "ഒറ്റത്തവണ",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "ഓരോ ശമ്പളത്തിനും",
@@ -156,14 +159,24 @@
       "addButton": "ചെലവ് ചേർക്കുക",
       "updateButton": "ചെലവ് അപ്‌ഡേറ്റ് ചെയ്യുക",
       "payeeRequired": "സ്വീകർത്താവിന്റെ പേര് ആവശ്യമാണ്.",
-      "invalidAmount": "സാധുവായ തുക നൽകുക."
+      "invalidAmount": "സാധുവായ തുക നൽകുക.",
+      "name": "പേര്",
+      "setAsidePlaceholder": "ഉദാ. കൈച്ചെലവ്",
+      "setAsideHint": "ശമ്പളത്തിൽ നിന്ന് നിങ്ങൾ മാറ്റിവെക്കുന്ന പണം, ഉദാഹരണത്തിന് കൈച്ചെലവോ സമ്പാദ്യമോ. ബിൽ പോലെ തന്നെ ഇത് ബാക്കിയിൽ നിന്ന് കുറയും.",
+      "addSetAside": "മാറ്റിവെപ്പ് ചേർക്കുക",
+      "updateSetAside": "മാറ്റിവെപ്പ് അപ്‌ഡേറ്റ് ചെയ്യുക",
+      "nameRequired": "പേര് ആവശ്യമാണ്."
+    },
+    "kind": {
+      "bill": "ബിൽ",
+      "setAside": "മാറ്റിവെപ്പ്"
     }
   },
   "payDate": {
     "thisPaycheck": "ഈ ശമ്പളം",
     "available": "ലഭ്യം",
     "emptyAssigned": "ഇതുവരെ ഒന്നും നീക്കിവെച്ചിട്ടില്ല. താഴെയുള്ള ലിസ്‌റ്റിൽ നിന്ന് ബില്ലുകൾ ചേർക്കുക.",
-    "leftAfterBills": "ബില്ലുകൾക്ക് ശേഷം ബാക്കി",
+    "leftAfterBills": "ബാക്കി",
     "summaryMeta": "%{pay} ശമ്പളം · %{assigned} നീക്കിവെച്ചു",
     "linked": "ലിങ്ക് ചെയ്തു",
     "remove": "%{payee} നീക്കം ചെയ്യുക",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count} ബിൽ (%{amount})",
       "other": "%{count} ബില്ലുകൾ (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} വരവ് · %{bills} · %{setAside} മാറ്റിവെച്ചു · %{left} ബാക്കി",
+    "bodySetAsideOnly": "%{income} വരവ് · %{setAside} മാറ്റിവെച്ചു · %{left} ബാക്കി"
   },
   "links": {
     "openFailed": "ലിങ്ക് തുറക്കാനായില്ല"

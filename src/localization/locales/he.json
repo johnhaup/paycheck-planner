@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "היום",
     "goToThisMonth": "מעבר לחודש הנוכחי",
-    "leftAfterBills": "%{month} · נותר אחרי חשבונות",
+    "leftAfterBills": "%{month} · נותר",
     "heroMeta": "%{income} הכנסה · %{assigned} שובצו",
     "monthPaychecks": "משכורות %{month}",
     "emptyTitle": "אין עדיין מקורות הכנסה",
@@ -52,7 +52,8 @@
     "emptyAction": "הוספת מקור הכנסה",
     "chartBarCurrentLabel": "%{month} (החודש), נותרו %{amount}",
     "shortBy": "חסרים %{amount}",
-    "moveBill": "העברת חשבון"
+    "moveBill": "העברת חשבון",
+    "markSetAside": "סימון %{payee} כהפרשה"
   },
   "income": {
     "emptyTitle": "אין עדיין הכנסות",
@@ -116,7 +117,8 @@
     "deleteMessage": "למחוק את \"%{payee}\" ואת כל השיבוצים שלו?",
     "sections": {
       "notLinked": "לא מקושר",
-      "oneTime": "חד-פעמי"
+      "oneTime": "חד-פעמי",
+      "setAsides": "הפרשות"
     },
     "perMonthTotal": "%{amount}/חודש",
     "meta": {
@@ -124,7 +126,8 @@
       "slotEachMonth": "%{slot} בכל חודש",
       "assignPerPaycheck": "שיבוץ לפי משכורת",
       "due": "לתשלום עד %{date}",
-      "oneTime": "חד-פעמי"
+      "oneTime": "חד-פעמי",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "למשכורת",
@@ -158,14 +161,24 @@
       "addButton": "הוספת הוצאה",
       "updateButton": "עדכון הוצאה",
       "payeeRequired": "יש להזין שם מוטב.",
-      "invalidAmount": "הזינו סכום תקין."
+      "invalidAmount": "הזינו סכום תקין.",
+      "name": "שם",
+      "setAsidePlaceholder": "לדוגמה: דמי כיס",
+      "setAsideHint": "כסף שאתם שומרים מהמשכורת, כמו כסף לבזבוזים או חיסכון. הוא יורד ממה שנותר, בדיוק כמו חשבון.",
+      "addSetAside": "הוספת הפרשה",
+      "updateSetAside": "עדכון הפרשה",
+      "nameRequired": "יש להזין שם."
+    },
+    "kind": {
+      "bill": "חשבון",
+      "setAside": "הפרשה"
     }
   },
   "payDate": {
     "thisPaycheck": "המשכורת הזו",
     "available": "זמין",
     "emptyAssigned": "עוד לא שובץ כלום. הוסיפו חשבונות מהרשימה למטה.",
-    "leftAfterBills": "נותר אחרי חשבונות",
+    "leftAfterBills": "נותר",
     "summaryMeta": "משכורת %{pay} · %{assigned} שובצו",
     "linked": "מקושר",
     "remove": "הסרת %{payee}",
@@ -221,7 +234,9 @@
       "two": "%{count} חשבונות (%{amount})",
       "many": "%{count} חשבונות (%{amount})",
       "other": "%{count} חשבונות (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} הכנסה · %{bills} · %{setAside} הופרשו · נותרו %{left}",
+    "bodySetAsideOnly": "%{income} הכנסה · %{setAside} הופרשו · נותרו %{left}"
   },
   "links": {
     "openFailed": "לא ניתן לפתוח את הקישור"

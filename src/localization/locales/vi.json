@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "Hôm nay",
     "goToThisMonth": "Về tháng này",
-    "leftAfterBills": "%{month} · còn lại sau hóa đơn",
+    "leftAfterBills": "%{month} · còn lại",
     "heroMeta": "Thu %{income} · đã phân bổ %{assigned}",
     "monthPaychecks": "Kỳ lương %{month}",
     "emptyTitle": "Chưa có nguồn thu nhập",
@@ -52,7 +52,8 @@
     "emptyAction": "Thêm nguồn thu nhập",
     "chartBarCurrentLabel": "%{month} (tháng này), còn %{amount}",
     "shortBy": "Thiếu %{amount}",
-    "moveBill": "Chuyển hóa đơn"
+    "moveBill": "Chuyển hóa đơn",
+    "markSetAside": "Đánh dấu %{payee} đã để dành"
   },
   "income": {
     "emptyTitle": "Chưa có thu nhập",
@@ -113,7 +114,8 @@
     "deleteMessage": "Xóa \"%{payee}\" và tất cả phân bổ của nó?",
     "sections": {
       "notLinked": "Chưa liên kết",
-      "oneTime": "Một lần"
+      "oneTime": "Một lần",
+      "setAsides": "Khoản để dành"
     },
     "perMonthTotal": "%{amount}/tháng",
     "meta": {
@@ -121,7 +123,8 @@
       "slotEachMonth": "%{slot} mỗi tháng",
       "assignPerPaycheck": "Phân bổ theo kỳ lương",
       "due": "Hạn %{date}",
-      "oneTime": "Một lần"
+      "oneTime": "Một lần",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "mỗi kỳ",
@@ -155,14 +158,24 @@
       "addButton": "Thêm khoản chi",
       "updateButton": "Cập nhật khoản chi",
       "payeeRequired": "Vui lòng nhập tên người nhận.",
-      "invalidAmount": "Nhập số tiền hợp lệ."
+      "invalidAmount": "Nhập số tiền hợp lệ.",
+      "name": "Tên",
+      "setAsidePlaceholder": "VD: Tiền tiêu vặt",
+      "setAsideHint": "Tiền bạn giữ lại từ kỳ lương, như tiền tiêu vặt hoặc tiền tiết kiệm. Khoản này được trừ vào số còn lại, giống như hóa đơn.",
+      "addSetAside": "Thêm khoản để dành",
+      "updateSetAside": "Cập nhật khoản để dành",
+      "nameRequired": "Vui lòng nhập tên."
+    },
+    "kind": {
+      "bill": "Hóa đơn",
+      "setAside": "Khoản để dành"
     }
   },
   "payDate": {
     "thisPaycheck": "Kỳ lương này",
     "available": "Khả dụng",
     "emptyAssigned": "Chưa phân bổ gì. Thêm hóa đơn từ danh sách bên dưới.",
-    "leftAfterBills": "Còn lại sau hóa đơn",
+    "leftAfterBills": "Còn lại",
     "summaryMeta": "Lương %{pay} · đã phân bổ %{assigned}",
     "linked": "Đã liên kết",
     "remove": "Bỏ %{payee}",
@@ -215,7 +228,9 @@
     "bodyNoBills": "Thu %{income} · chưa phân bổ hóa đơn",
     "bills": {
       "other": "%{count} hóa đơn (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "Thu %{income} · %{bills} · để dành %{setAside} · còn %{left}",
+    "bodySetAsideOnly": "Thu %{income} · để dành %{setAside} · còn %{left}"
   },
   "links": {
     "openFailed": "Không mở được liên kết"

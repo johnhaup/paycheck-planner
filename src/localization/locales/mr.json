@@ -39,7 +39,7 @@
   "paychecks": {
     "today": "आज",
     "goToThisMonth": "या महिन्यावर जा",
-    "leftAfterBills": "%{month} · बिलांनंतर शिल्लक",
+    "leftAfterBills": "%{month} · शिल्लक",
     "heroMeta": "%{income} आले · %{assigned} नेमून दिले",
     "monthPaychecks": "%{month}चे पगार",
     "emptyTitle": "अजून उत्पन्नाचा स्रोत नाही",
@@ -55,7 +55,8 @@
     "emptyAction": "उत्पन्नाचा स्रोत जोडा",
     "chartBarCurrentLabel": "%{month} (हा महिना), %{amount} शिल्लक",
     "shortBy": "%{amount} कमी",
-    "moveBill": "बिल हलवा"
+    "moveBill": "बिल हलवा",
+    "markSetAside": "%{payee} बाजूला ठेवले म्हणून मार्क करा"
   },
   "income": {
     "emptyTitle": "अजून उत्पन्न नाही",
@@ -117,7 +118,8 @@
     "deleteMessage": "\"%{payee}\" आणि त्याच्या सर्व नेमणुका हटवायच्या?",
     "sections": {
       "notLinked": "लिंक नाही",
-      "oneTime": "एकदाच"
+      "oneTime": "एकदाच",
+      "setAsides": "राखीव रकमा"
     },
     "perMonthTotal": "%{amount}/महिना",
     "meta": {
@@ -125,7 +127,8 @@
       "slotEachMonth": "दरमहा %{slot}",
       "assignPerPaycheck": "प्रति पगार नेमून द्या",
       "due": "%{date} पर्यंत",
-      "oneTime": "एकदाच"
+      "oneTime": "एकदाच",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "प्रति पगार",
@@ -159,14 +162,24 @@
       "addButton": "खर्च जोडा",
       "updateButton": "खर्च अपडेट करा",
       "payeeRequired": "प्राप्तकर्त्याचे नाव आवश्यक आहे.",
-      "invalidAmount": "योग्य रक्कम टाका."
+      "invalidAmount": "योग्य रक्कम टाका.",
+      "name": "नाव",
+      "setAsidePlaceholder": "उदा. हातखर्च",
+      "setAsideHint": "पगारातून तुम्ही बाजूला ठेवता ते पैसे, जसे हातखर्च किंवा बचत. बिलाप्रमाणेच ही रक्कम शिल्लकीतून वजा होते.",
+      "addSetAside": "राखीव रक्कम जोडा",
+      "updateSetAside": "राखीव रक्कम अपडेट करा",
+      "nameRequired": "नाव आवश्यक आहे."
+    },
+    "kind": {
+      "bill": "बिल",
+      "setAside": "राखीव रक्कम"
     }
   },
   "payDate": {
     "thisPaycheck": "हा पगार",
     "available": "उपलब्ध",
     "emptyAssigned": "अजून काही नेमलेले नाही. खालील यादीतून बिले जोडा.",
-    "leftAfterBills": "बिलांनंतर शिल्लक",
+    "leftAfterBills": "शिल्लक",
     "summaryMeta": "%{pay} पगार · %{assigned} नेमून दिले",
     "linked": "लिंक केलेले",
     "remove": "%{payee} काढा",
@@ -220,7 +233,9 @@
     "bills": {
       "one": "%{count} बिल (%{amount})",
       "other": "%{count} बिले (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} आले · %{bills} · %{setAside} बाजूला · %{left} शिल्लक",
+    "bodySetAsideOnly": "%{income} आले · %{setAside} बाजूला · %{left} शिल्लक"
   },
   "links": {
     "openFailed": "लिंक उघडता आली नाही"

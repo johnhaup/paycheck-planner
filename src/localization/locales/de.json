@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "Heute",
     "goToThisMonth": "Zu diesem Monat",
-    "leftAfterBills": "%{month} · übrig nach Rechnungen",
+    "leftAfterBills": "%{month} · übrig",
     "heroMeta": "%{income} Einkommen · %{assigned} zugewiesen",
     "monthPaychecks": "Gehaltszahlungen im %{month}",
     "emptyTitle": "Noch keine Einkommensquellen",
@@ -52,7 +52,8 @@
     "emptyAction": "Einkommensquelle hinzufügen",
     "chartBarCurrentLabel": "%{month} (dieser Monat), %{amount} übrig",
     "shortBy": "%{amount} fehlen",
-    "moveBill": "Rechnung verschieben"
+    "moveBill": "Rechnung verschieben",
+    "markSetAside": "%{payee} als zurückgelegt markieren"
   },
   "income": {
     "emptyTitle": "Noch kein Einkommen",
@@ -114,7 +115,8 @@
     "deleteMessage": "„%{payee}“ und alle Zuweisungen löschen?",
     "sections": {
       "notLinked": "Nicht verknüpft",
-      "oneTime": "Einmalig"
+      "oneTime": "Einmalig",
+      "setAsides": "Rücklagen"
     },
     "perMonthTotal": "%{amount}/Monat",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "%{slot} jeden Monat",
       "assignPerPaycheck": "Pro Gehalt zuweisen",
       "due": "Fällig am %{date}",
-      "oneTime": "Einmalig"
+      "oneTime": "Einmalig",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "pro Gehalt",
@@ -156,14 +159,24 @@
       "addButton": "Ausgabe hinzufügen",
       "updateButton": "Ausgabe aktualisieren",
       "payeeRequired": "Empfängername ist erforderlich.",
-      "invalidAmount": "Gib einen gültigen Betrag ein."
+      "invalidAmount": "Gib einen gültigen Betrag ein.",
+      "name": "Name",
+      "setAsidePlaceholder": "z. B. Taschengeld",
+      "setAsideHint": "Geld, das du von einem Gehalt behältst, etwa zum Ausgeben oder Sparen. Es wird wie eine Rechnung vom Rest abgezogen.",
+      "addSetAside": "Rücklage hinzufügen",
+      "updateSetAside": "Rücklage aktualisieren",
+      "nameRequired": "Name ist erforderlich."
+    },
+    "kind": {
+      "bill": "Rechnung",
+      "setAside": "Rücklage"
     }
   },
   "payDate": {
     "thisPaycheck": "Dieses Gehalt",
     "available": "Verfügbar",
     "emptyAssigned": "Noch nichts zugewiesen. Füge Rechnungen aus der Liste unten hinzu.",
-    "leftAfterBills": "Übrig nach Rechnungen",
+    "leftAfterBills": "Übrig",
     "summaryMeta": "%{pay} Gehalt · %{assigned} zugewiesen",
     "linked": "Verknüpft",
     "remove": "%{payee} entfernen",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count} Rechnung (%{amount})",
       "other": "%{count} Rechnungen (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} Einkommen · %{bills} · %{setAside} zurückgelegt · %{left} übrig",
+    "bodySetAsideOnly": "%{income} Einkommen · %{setAside} zurückgelegt · %{left} übrig"
   },
   "links": {
     "openFailed": "Link konnte nicht geöffnet werden"

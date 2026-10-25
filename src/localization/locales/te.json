@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "ఈరోజు",
     "goToThisMonth": "ఈ నెలకు వెళ్లు",
-    "leftAfterBills": "%{month} · బిల్లుల తర్వాత మిగిలింది",
+    "leftAfterBills": "%{month} · మిగిలింది",
     "heroMeta": "%{income} ఆదాయం · %{assigned} కేటాయించారు",
     "monthPaychecks": "%{month} జీతాలు",
     "emptyTitle": "ఇంకా ఆదాయ వనరులు లేవు",
@@ -52,7 +52,8 @@
     "emptyAction": "ఆదాయ వనరును జోడించు",
     "chartBarCurrentLabel": "%{month} (ఈ నెల), %{amount} మిగిలింది",
     "shortBy": "%{amount} తక్కువ",
-    "moveBill": "బిల్లును తరలించు"
+    "moveBill": "బిల్లును తరలించు",
+    "markSetAside": "%{payee} పక్కన పెట్టినట్లు గుర్తించు"
   },
   "income": {
     "emptyTitle": "ఇంకా ఆదాయం లేదు",
@@ -114,7 +115,8 @@
     "deleteMessage": "\"%{payee}\" మరియు దాని అన్ని కేటాయింపులను తొలగించాలా?",
     "sections": {
       "notLinked": "లింక్ చేయనివి",
-      "oneTime": "ఒకసారి"
+      "oneTime": "ఒకసారి",
+      "setAsides": "నిల్వలు"
     },
     "perMonthTotal": "%{amount}/నెల",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "ప్రతి నెల %{slot}",
       "assignPerPaycheck": "జీతం వారీగా కేటాయించు",
       "due": "%{date} గడువు",
-      "oneTime": "ఒకసారి"
+      "oneTime": "ఒకసారి",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "ఒక జీతానికి",
@@ -156,14 +159,24 @@
       "addButton": "ఖర్చును జోడించు",
       "updateButton": "ఖర్చును అప్‌డేట్ చేయి",
       "payeeRequired": "గ్రహీత పేరు అవసరం.",
-      "invalidAmount": "సరైన మొత్తాన్ని నమోదు చేయండి."
+      "invalidAmount": "సరైన మొత్తాన్ని నమోదు చేయండి.",
+      "name": "పేరు",
+      "setAsidePlaceholder": "ఉదా. ఖర్చు డబ్బు",
+      "setAsideHint": "జీతం నుండి మీరు పక్కన పెట్టుకునే డబ్బు, ఖర్చు డబ్బు లేదా పొదుపు లాంటిది. ఇది బిల్లు లాగానే మిగిలిన మొత్తం నుండి తగ్గుతుంది.",
+      "addSetAside": "నిల్వను జోడించు",
+      "updateSetAside": "నిల్వను అప్‌డేట్ చేయి",
+      "nameRequired": "పేరు అవసరం."
+    },
+    "kind": {
+      "bill": "బిల్లు",
+      "setAside": "నిల్వ"
     }
   },
   "payDate": {
     "thisPaycheck": "ఈ జీతం",
     "available": "అందుబాటులో",
     "emptyAssigned": "ఇంకా ఏమీ కేటాయించలేదు. కింది జాబితా నుంచి బిల్లులను జోడించండి.",
-    "leftAfterBills": "బిల్లుల తర్వాత మిగిలింది",
+    "leftAfterBills": "మిగిలింది",
     "summaryMeta": "%{pay} జీతం · %{assigned} కేటాయించారు",
     "linked": "లింక్ చేయబడింది",
     "remove": "%{payee} తీసివేయి",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count} బిల్లు (%{amount})",
       "other": "%{count} బిల్లులు (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} ఆదాయం · %{bills} · %{setAside} పక్కన పెట్టారు · %{left} మిగిలింది",
+    "bodySetAsideOnly": "%{income} ఆదాయం · %{setAside} పక్కన పెట్టారు · %{left} మిగిలింది"
   },
   "links": {
     "openFailed": "లింక్ తెరవలేకపోయాం"

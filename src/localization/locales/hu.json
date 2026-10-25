@@ -37,7 +37,7 @@
   "paychecks": {
     "today": "Ma",
     "goToThisMonth": "Ugrás erre a hónapra",
-    "leftAfterBills": "%{month} · marad a számlák után",
+    "leftAfterBills": "%{month} · marad",
     "heroMeta": "%{income} bevétel · %{assigned} beosztva",
     "monthPaychecks": "%{month} fizetései",
     "emptyTitle": "Még nincs bevételi forrás",
@@ -53,7 +53,8 @@
     "emptyAction": "Bevételi forrás hozzáadása",
     "chartBarCurrentLabel": "%{month} (ez a hónap), %{amount} marad",
     "shortBy": "%{amount} hiányzik",
-    "moveBill": "Számla áthelyezése"
+    "moveBill": "Számla áthelyezése",
+    "markSetAside": "%{payee} megjelölése félretettként"
   },
   "income": {
     "emptyTitle": "Még nincs bevétel",
@@ -115,7 +116,8 @@
     "deleteMessage": "Törlöd a(z) „%{payee}” kiadást és minden beosztását?",
     "sections": {
       "notLinked": "Nincs összekapcsolva",
-      "oneTime": "Egyszeri"
+      "oneTime": "Egyszeri",
+      "setAsides": "Félretett összegek"
     },
     "perMonthTotal": "%{amount}/hó",
     "meta": {
@@ -123,7 +125,8 @@
       "slotEachMonth": "%{slot} minden hónapban",
       "assignPerPaycheck": "Beosztás fizetésenként",
       "due": "Esedékes: %{date}",
-      "oneTime": "Egyszeri"
+      "oneTime": "Egyszeri",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "fizetésenként",
@@ -157,14 +160,24 @@
       "addButton": "Kiadás hozzáadása",
       "updateButton": "Kiadás frissítése",
       "payeeRequired": "A kedvezményezett neve kötelező.",
-      "invalidAmount": "Adj meg egy érvényes összeget."
+      "invalidAmount": "Adj meg egy érvényes összeget.",
+      "name": "Név",
+      "setAsidePlaceholder": "pl. Zsebpénz",
+      "setAsideHint": "Pénz, amelyet megtartasz egy fizetésből, például költőpénznek vagy megtakarításnak. A számlákhoz hasonlóan a maradékból vonódik le.",
+      "addSetAside": "Félretett összeg hozzáadása",
+      "updateSetAside": "Félretett összeg frissítése",
+      "nameRequired": "A név kötelező."
+    },
+    "kind": {
+      "bill": "Számla",
+      "setAside": "Félretett"
     }
   },
   "payDate": {
     "thisPaycheck": "Ez a fizetés",
     "available": "Elérhető",
     "emptyAssigned": "Még nincs semmi beosztva. Adj hozzá számlákat az alábbi listából.",
-    "leftAfterBills": "Marad a számlák után",
+    "leftAfterBills": "Marad",
     "summaryMeta": "%{pay} fizetés · %{assigned} beosztva",
     "linked": "Összekapcsolva",
     "remove": "%{payee} eltávolítása",
@@ -218,7 +231,9 @@
     "bills": {
       "one": "%{count} számla (%{amount})",
       "other": "%{count} számla (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} bevétel · %{bills} · %{setAside} félretéve · %{left} marad",
+    "bodySetAsideOnly": "%{income} bevétel · %{setAside} félretéve · %{left} marad"
   },
   "links": {
     "openFailed": "A link nem nyitható meg"

@@ -39,7 +39,7 @@
   "paychecks": {
     "today": "Avui",
     "goToThisMonth": "Ves a aquest mes",
-    "leftAfterBills": "%{month} · disponible després de les factures",
+    "leftAfterBills": "%{month} · el que queda",
     "heroMeta": "%{income} d'ingressos · %{assigned} assignats",
     "monthPaychecks": "Sous de %{month}",
     "emptyTitle": "Encara no hi ha fonts d'ingressos",
@@ -55,7 +55,8 @@
     "emptyAction": "Afegeix una font d'ingressos",
     "chartBarCurrentLabel": "%{month} (aquest mes), queden %{amount}",
     "shortBy": "Falten %{amount}",
-    "moveBill": "Mou una factura"
+    "moveBill": "Mou una factura",
+    "markSetAside": "Marca %{payee} com a reservada"
   },
   "income": {
     "emptyTitle": "Encara no hi ha ingressos",
@@ -117,7 +118,8 @@
     "deleteMessage": "Vols suprimir \"%{payee}\" i totes les seves assignacions?",
     "sections": {
       "notLinked": "Sense vincular",
-      "oneTime": "Puntuals"
+      "oneTime": "Puntuals",
+      "setAsides": "Reserves"
     },
     "perMonthTotal": "%{amount}/mes",
     "meta": {
@@ -125,7 +127,8 @@
       "slotEachMonth": "%{slot} de cada mes",
       "assignPerPaycheck": "Assigna per sou",
       "due": "Venç el %{date}",
-      "oneTime": "Puntual"
+      "oneTime": "Puntual",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "per sou",
@@ -159,14 +162,24 @@
       "addButton": "Afegeix la despesa",
       "updateButton": "Actualitza la despesa",
       "payeeRequired": "El nom del beneficiari és obligatori.",
-      "invalidAmount": "Introdueix un import vàlid."
+      "invalidAmount": "Introdueix un import vàlid.",
+      "name": "Nom",
+      "setAsidePlaceholder": "p. ex. Diners per gastar",
+      "setAsideHint": "Diners que guardes d'un sou, com ara diners per gastar o estalvis. Es resta del que queda, igual que una factura.",
+      "addSetAside": "Afegeix la reserva",
+      "updateSetAside": "Actualitza la reserva",
+      "nameRequired": "El nom és obligatori."
+    },
+    "kind": {
+      "bill": "Factura",
+      "setAside": "Reserva"
     }
   },
   "payDate": {
     "thisPaycheck": "Aquest sou",
     "available": "Disponible",
     "emptyAssigned": "Encara no hi ha res assignat. Afegeix factures de la llista de sota.",
-    "leftAfterBills": "Disponible després de les factures",
+    "leftAfterBills": "El que queda",
     "summaryMeta": "Sou de %{pay} · %{assigned} assignats",
     "linked": "Vinculada",
     "remove": "Treu %{payee}",
@@ -220,7 +233,9 @@
     "bills": {
       "one": "%{count} factura (%{amount})",
       "other": "%{count} factures (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} d'ingressos · %{bills} · %{setAside} reservats · queden %{left}",
+    "bodySetAsideOnly": "%{income} d'ingressos · %{setAside} reservats · queden %{left}"
   },
   "links": {
     "openFailed": "No s'ha pogut obrir l'enllaç"

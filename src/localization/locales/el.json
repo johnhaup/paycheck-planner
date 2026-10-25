@@ -36,7 +36,7 @@
   "paychecks": {
     "today": "Σήμερα",
     "goToThisMonth": "Μετάβαση στον τρέχοντα μήνα",
-    "leftAfterBills": "%{month} · υπόλοιπο μετά τους λογαριασμούς",
+    "leftAfterBills": "%{month} · υπόλοιπο",
     "heroMeta": "%{income} έσοδα · %{assigned} ανατεθειμένα",
     "monthPaychecks": "Μισθοί %{month}",
     "emptyTitle": "Καμία πηγή εσόδων ακόμα",
@@ -52,7 +52,8 @@
     "emptyAction": "Προσθήκη πηγής εσόδων",
     "chartBarCurrentLabel": "%{month} (τρέχων μήνας), υπόλοιπο %{amount}",
     "shortBy": "Έλλειμμα %{amount}",
-    "moveBill": "Μετακίνηση λογαριασμού"
+    "moveBill": "Μετακίνηση λογαριασμού",
+    "markSetAside": "Σήμανση %{payee} ως αποθεματικού"
   },
   "income": {
     "emptyTitle": "Κανένα έσοδο ακόμα",
@@ -114,7 +115,8 @@
     "deleteMessage": "Διαγραφή του \"%{payee}\" και όλων των αναθέσεών του;",
     "sections": {
       "notLinked": "Μη συνδεδεμένα",
-      "oneTime": "Εφάπαξ"
+      "oneTime": "Εφάπαξ",
+      "setAsides": "Αποθεματικά"
     },
     "perMonthTotal": "%{amount}/μήνα",
     "meta": {
@@ -122,7 +124,8 @@
       "slotEachMonth": "%{slot} κάθε μήνα",
       "assignPerPaycheck": "Ανάθεση ανά μισθό",
       "due": "Λήξη %{date}",
-      "oneTime": "Εφάπαξ"
+      "oneTime": "Εφάπαξ",
+      "withSource": "%{source} · %{meta}"
     },
     "cadence": {
       "perCheck": "ανά μισθό",
@@ -156,14 +159,24 @@
       "addButton": "Προσθήκη εξόδου",
       "updateButton": "Ενημέρωση εξόδου",
       "payeeRequired": "Το όνομα δικαιούχου είναι υποχρεωτικό.",
-      "invalidAmount": "Βάλε ένα έγκυρο ποσό."
+      "invalidAmount": "Βάλε ένα έγκυρο ποσό.",
+      "name": "Όνομα",
+      "setAsidePlaceholder": "π.χ. Χαρτζιλίκι",
+      "setAsideHint": "Χρήματα που κρατάς από έναν μισθό, όπως για τρέχοντα έξοδα ή αποταμίευση. Αφαιρούνται από το υπόλοιπο, όπως ένας λογαριασμός.",
+      "addSetAside": "Προσθήκη αποθεματικού",
+      "updateSetAside": "Ενημέρωση αποθεματικού",
+      "nameRequired": "Το όνομα είναι υποχρεωτικό."
+    },
+    "kind": {
+      "bill": "Λογαριασμός",
+      "setAside": "Αποθεματικό"
     }
   },
   "payDate": {
     "thisPaycheck": "Αυτός ο μισθός",
     "available": "Διαθέσιμο",
     "emptyAssigned": "Δεν έχει ανατεθεί τίποτα ακόμα. Πρόσθεσε λογαριασμούς από την παρακάτω λίστα.",
-    "leftAfterBills": "Υπόλοιπο μετά τους λογαριασμούς",
+    "leftAfterBills": "Υπόλοιπο",
     "summaryMeta": "Μισθός %{pay} · %{assigned} ανατεθειμένα",
     "linked": "Συνδεδεμένο",
     "remove": "Αφαίρεση %{payee}",
@@ -217,7 +230,9 @@
     "bills": {
       "one": "%{count} λογαριασμός (%{amount})",
       "other": "%{count} λογαριασμοί (%{amount})"
-    }
+    },
+    "bodyWithSetAside": "%{income} έσοδα · %{bills} · %{setAside} στην άκρη · υπόλοιπο %{left}",
+    "bodySetAsideOnly": "%{income} έσοδα · %{setAside} στην άκρη · υπόλοιπο %{left}"
   },
   "links": {
     "openFailed": "Δεν ήταν δυνατό το άνοιγμα του συνδέσμου"

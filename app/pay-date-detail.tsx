@@ -31,6 +31,10 @@ function keyExtractor(item: ListItem) {
   return item.key;
 }
 
+function billsFirst(a: Expense, b: Expense) {
+  return Number(a.kind === "set-aside") - Number(b.kind === "set-aside");
+}
+
 export default function PayDateDetailScreen() {
   const { payDate, sourceId } = useLocalSearchParams<{
     payDate: string;
@@ -165,7 +169,10 @@ export default function PayDateDetailScreen() {
   }, [expenses, sourceId, paycheck, incomeSource, assignedExpenseIds, skippedExpenseIds]);
 
   const assignedExpenses = useMemo(
-    () => expenses.filter((e) => assignedExpenseIds.has(e.id) || linkedExpenseIds.has(e.id)),
+    () =>
+      expenses
+        .filter((e) => assignedExpenseIds.has(e.id) || linkedExpenseIds.has(e.id))
+        .sort(billsFirst),
     [expenses, assignedExpenseIds, linkedExpenseIds]
   );
 
@@ -180,9 +187,15 @@ export default function PayDateDetailScreen() {
   }, [expenses, assignments, payDate, sourceId]);
 
   const unassignedExpenses = useMemo(
-    () => expenses.filter((e) =>
-      !assignedExpenseIds.has(e.id) && !linkedExpenseIds.has(e.id) && !scheduledElsewhereIds.has(e.id)
-    ),
+    () =>
+      expenses
+        .filter(
+          (e) =>
+            !assignedExpenseIds.has(e.id) &&
+            !linkedExpenseIds.has(e.id) &&
+            !scheduledElsewhereIds.has(e.id)
+        )
+        .sort(billsFirst),
     [expenses, assignedExpenseIds, linkedExpenseIds, scheduledElsewhereIds]
   );
 
