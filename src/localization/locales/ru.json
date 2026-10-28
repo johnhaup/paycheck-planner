@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (текущий месяц), остаётся %{amount}",
     "shortBy": "Не хватает %{amount}",
     "moveBill": "Перенести счёт",
-    "markSetAside": "Отметить %{payee} как отложенный"
+    "markSetAside": "Отметить %{payee} как отложенный",
+    "markUnpaid": "Отметить %{payee} как неоплаченный",
+    "moveThis": "Перенести %{payee}"
   },
   "income": {
     "emptyTitle": "Пока нет доходов",
@@ -184,7 +186,8 @@
       "title": "Разовый расход",
       "payee": "Получатель",
       "amount": "Сумма"
-    }
+    },
+    "markAllPaid": "Отметить всё как оплаченное"
   },
   "amountSheet": {
     "subtitle": "Только зарплата %{date}",
@@ -250,12 +253,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "На зарплату",
     "noBills": "Нет неоплаченных счетов для переноса.",
-    "noPaychecks": "Других предстоящих зарплат нет."
+    "noPaychecks": "Других предстоящих зарплат нет.",
+    "fromPaycheck": "С %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "«%{payee}» удалено",
     "incomeDeleted": "«%{name}» удалено",
     "billMoved": "«%{payee}» перенесено на %{date}",
-    "remindersOn": "Напоминания о зарплате включены"
+    "remindersOn": "Напоминания о зарплате включены",
+    "markedAllPaid": "Всё отмечено как оплаченное"
   }
 }

@@ -56,7 +56,9 @@
     "chartBarCurrentLabel": "%{month} (this month), %{amount} left",
     "shortBy": "Short by %{amount}",
     "moveBill": "Move a bill",
-    "markSetAside": "Mark %{payee} set aside"
+    "markSetAside": "Mark %{payee} set aside",
+    "markUnpaid": "Mark %{payee} unpaid",
+    "moveThis": "Move %{payee}"
   },
   "income": {
     "emptyTitle": "No income yet",
@@ -185,7 +187,8 @@
       "title": "One-Time Expense",
       "payee": "Payee",
       "amount": "Amount"
-    }
+    },
+    "markAllPaid": "Mark all paid"
   },
   "amountSheet": {
     "subtitle": "%{date} paycheck only",
@@ -249,12 +252,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "To paycheck",
     "noBills": "No unpaid bills to move.",
-    "noPaychecks": "No other upcoming paychecks."
+    "noPaychecks": "No other upcoming paychecks.",
+    "fromPaycheck": "From %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "Deleted \"%{payee}\"",
     "incomeDeleted": "Deleted \"%{name}\"",
     "billMoved": "Moved \"%{payee}\" to %{date}",
-    "remindersOn": "Payday reminders on"
+    "remindersOn": "Payday reminders on",
+    "markedAllPaid": "Marked all paid"
   }
 }

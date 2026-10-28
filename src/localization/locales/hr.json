@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (ovaj mjesec), ostaje %{amount}",
     "shortBy": "Nedostaje %{amount}",
     "moveBill": "Premjesti račun",
-    "markSetAside": "Označi %{payee} kao odvojeno"
+    "markSetAside": "Označi %{payee} kao odvojeno",
+    "markUnpaid": "Označi %{payee} kao neplaćeno",
+    "moveThis": "Premjesti %{payee}"
   },
   "income": {
     "emptyTitle": "Još nema prihoda",
@@ -183,7 +185,8 @@
       "title": "Jednokratni trošak",
       "payee": "Primatelj",
       "amount": "Iznos"
-    }
+    },
+    "markAllPaid": "Označi sve kao plaćeno"
   },
   "amountSheet": {
     "subtitle": "Samo plaća %{date}",
@@ -248,12 +251,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Na plaću",
     "noBills": "Nema neplaćenih računa za premještanje.",
-    "noPaychecks": "Nema drugih nadolazećih plaća."
+    "noPaychecks": "Nema drugih nadolazećih plaća.",
+    "fromPaycheck": "Od %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "Izbrisano „%{payee}”",
     "incomeDeleted": "Izbrisano „%{name}”",
     "billMoved": "„%{payee}” premješteno na %{date}",
-    "remindersOn": "Podsjetnici za plaću uključeni"
+    "remindersOn": "Podsjetnici za plaću uključeni",
+    "markedAllPaid": "Sve označeno kao plaćeno"
   }
 }

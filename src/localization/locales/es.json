@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (este mes), quedan %{amount}",
     "shortBy": "Faltan %{amount}",
     "moveBill": "Mover una factura",
-    "markSetAside": "Marcar %{payee} como apartado"
+    "markSetAside": "Marcar %{payee} como apartado",
+    "markUnpaid": "Marcar %{payee} como no pagada",
+    "moveThis": "Mover %{payee}"
   },
   "income": {
     "emptyTitle": "Aún no hay ingresos",
@@ -182,7 +184,8 @@
       "title": "Gasto puntual",
       "payee": "Beneficiario",
       "amount": "Importe"
-    }
+    },
+    "markAllPaid": "Marcar todo como pagado"
   },
   "amountSheet": {
     "subtitle": "Solo el sueldo del %{date}",
@@ -246,12 +249,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Al sueldo",
     "noBills": "No hay facturas pendientes que mover.",
-    "noPaychecks": "No hay otros sueldos próximos."
+    "noPaychecks": "No hay otros sueldos próximos.",
+    "fromPaycheck": "Desde el %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "Se eliminó \"%{payee}\"",
     "incomeDeleted": "Se eliminó \"%{name}\"",
     "billMoved": "Se movió \"%{payee}\" al %{date}",
-    "remindersOn": "Recordatorios de cobro activados"
+    "remindersOn": "Recordatorios de cobro activados",
+    "markedAllPaid": "Todo marcado como pagado"
   }
 }

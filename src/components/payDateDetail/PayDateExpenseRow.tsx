@@ -79,9 +79,10 @@ export function PayDateExpenseRow({
           <AppCheckCircle
             checked={isPaid}
             onPress={handleTogglePaid}
-            accessibilityLabel={t(isSetAside ? "paychecks.markSetAside" : "paychecks.markPaid", {
-              payee: expense.payee,
-            })}
+            accessibilityLabel={t(
+              isPaid ? "paychecks.markUnpaid" : isSetAside ? "paychecks.markSetAside" : "paychecks.markPaid",
+              { payee: expense.payee }
+            )}
           />
         ) : null}
         <View style={styles.info}>

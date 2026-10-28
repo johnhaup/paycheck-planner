@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (ఈ నెల), %{amount} మిగిలింది",
     "shortBy": "%{amount} తక్కువ",
     "moveBill": "బిల్లును తరలించు",
-    "markSetAside": "%{payee} పక్కన పెట్టినట్లు గుర్తించు"
+    "markSetAside": "%{payee} పక్కన పెట్టినట్లు గుర్తించు",
+    "markUnpaid": "%{payee} చెల్లించలేదని గుర్తించు",
+    "moveThis": "%{payee} తరలించు"
   },
   "income": {
     "emptyTitle": "ఇంకా ఆదాయం లేదు",
@@ -182,7 +184,8 @@
       "title": "ఒకసారి ఖర్చు",
       "payee": "చెల్లింపు గ్రహీత",
       "amount": "మొత్తం"
-    }
+    },
+    "markAllPaid": "అన్నీ చెల్లించినట్లు గుర్తించు"
   },
   "amountSheet": {
     "subtitle": "%{date} జీతానికి మాత్రమే",
@@ -246,12 +249,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "ఈ జీతానికి",
     "noBills": "తరలించడానికి చెల్లించని బిల్లులు లేవు.",
-    "noPaychecks": "రాబోయే ఇతర జీతాలు లేవు."
+    "noPaychecks": "రాబోయే ఇతర జీతాలు లేవు.",
+    "fromPaycheck": "%{date} · %{source} నుండి"
   },
   "toasts": {
     "expenseDeleted": "\"%{payee}\" తొలగించబడింది",
     "incomeDeleted": "\"%{name}\" తొలగించబడింది",
     "billMoved": "\"%{payee}\" %{date}కి తరలించబడింది",
-    "remindersOn": "జీతం రోజు రిమైండర్‌లు ఆన్"
+    "remindersOn": "జీతం రోజు రిమైండర్‌లు ఆన్",
+    "markedAllPaid": "అన్నీ చెల్లించినట్లు గుర్తించబడ్డాయి"
   }
 }

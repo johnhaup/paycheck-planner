@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (החודש), נותרו %{amount}",
     "shortBy": "חסרים %{amount}",
     "moveBill": "העברת חשבון",
-    "markSetAside": "סימון %{payee} כהפרשה"
+    "markSetAside": "סימון %{payee} כהפרשה",
+    "markUnpaid": "סימון %{payee} כלא שולם",
+    "moveThis": "העברת %{payee}"
   },
   "income": {
     "emptyTitle": "אין עדיין הכנסות",
@@ -184,7 +186,8 @@
       "title": "הוצאה חד-פעמית",
       "payee": "מוטב",
       "amount": "סכום"
-    }
+    },
+    "markAllPaid": "סימון הכול כשולם"
   },
   "amountSheet": {
     "subtitle": "משכורת %{date} בלבד",
@@ -250,12 +253,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "למשכורת",
     "noBills": "אין חשבונות שלא שולמו להעברה.",
-    "noPaychecks": "אין משכורות קרובות אחרות."
+    "noPaychecks": "אין משכורות קרובות אחרות.",
+    "fromPaycheck": "מ-%{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "\"%{payee}\" נמחק",
     "incomeDeleted": "\"%{name}\" נמחק",
     "billMoved": "\"%{payee}\" הועבר ל-%{date}",
-    "remindersOn": "תזכורות ליום המשכורת הופעלו"
+    "remindersOn": "תזכורות ליום המשכורת הופעלו",
+    "markedAllPaid": "הכול סומן כשולם"
   }
 }

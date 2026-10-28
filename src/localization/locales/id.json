@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (bulan ini), sisa %{amount}",
     "shortBy": "Kurang %{amount}",
     "moveBill": "Pindahkan tagihan",
-    "markSetAside": "Tandai %{payee} sudah disisihkan"
+    "markSetAside": "Tandai %{payee} sudah disisihkan",
+    "markUnpaid": "Tandai %{payee} belum dibayar",
+    "moveThis": "Pindahkan %{payee}"
   },
   "income": {
     "emptyTitle": "Belum ada pemasukan",
@@ -181,7 +183,8 @@
       "title": "Pengeluaran Sekali",
       "payee": "Penerima",
       "amount": "Jumlah"
-    }
+    },
+    "markAllPaid": "Tandai semua sudah dibayar"
   },
   "amountSheet": {
     "subtitle": "Hanya gaji %{date}",
@@ -244,12 +247,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Ke gaji",
     "noBills": "Tidak ada tagihan belum dibayar untuk dipindahkan.",
-    "noPaychecks": "Tidak ada gaji mendatang lainnya."
+    "noPaychecks": "Tidak ada gaji mendatang lainnya.",
+    "fromPaycheck": "Dari %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "\"%{payee}\" dihapus",
     "incomeDeleted": "\"%{name}\" dihapus",
     "billMoved": "\"%{payee}\" dipindahkan ke %{date}",
-    "remindersOn": "Pengingat gajian aktif"
+    "remindersOn": "Pengingat gajian aktif",
+    "markedAllPaid": "Semua ditandai sudah dibayar"
   }
 }

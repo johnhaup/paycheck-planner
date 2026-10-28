@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (ta mesec), ostane %{amount}",
     "shortBy": "Manjka %{amount}",
     "moveBill": "Premakni račun",
-    "markSetAside": "Označi %{payee} kot odloženo"
+    "markSetAside": "Označi %{payee} kot odloženo",
+    "markUnpaid": "Označi %{payee} kot neplačano",
+    "moveThis": "Premakni %{payee}"
   },
   "income": {
     "emptyTitle": "Ni še prihodkov",
@@ -184,7 +186,8 @@
       "title": "Enkratni odhodek",
       "payee": "Prejemnik",
       "amount": "Znesek"
-    }
+    },
+    "markAllPaid": "Označi vse kot plačano"
   },
   "amountSheet": {
     "subtitle": "Samo plača %{date}",
@@ -250,12 +253,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Na plačo",
     "noBills": "Ni neplačanih računov za premik.",
-    "noPaychecks": "Ni drugih prihajajočih plač."
+    "noPaychecks": "Ni drugih prihajajočih plač.",
+    "fromPaycheck": "Od %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "Izbrisano »%{payee}«",
     "incomeDeleted": "Izbrisano »%{name}«",
     "billMoved": "»%{payee}« premaknjeno na %{date}",
-    "remindersOn": "Opomniki za plačo so vklopljeni"
+    "remindersOn": "Opomniki za plačo so vklopljeni",
+    "markedAllPaid": "Vse označeno kot plačano"
   }
 }

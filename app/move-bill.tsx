@@ -25,7 +25,11 @@ export default function MoveBillScreen() {
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
   const t = useT();
-  const { payDate, sourceId } = useLocalSearchParams<{ payDate: string; sourceId: string }>();
+  const { payDate, sourceId, expenseId: initialExpenseId } = useLocalSearchParams<{
+    payDate: string;
+    sourceId: string;
+    expenseId?: string;
+  }>();
   const incomeSources = useStore((s) => s.incomeSources);
   const expenses = useStore((s) => s.expenses);
   const assignments = useStore((s) => s.assignments);
@@ -48,7 +52,9 @@ export default function MoveBillScreen() {
     [item]
   );
 
-  const [expenseId, setExpenseId] = useState<string | undefined>(() => bills[0]?.expenseId);
+  const [expenseId, setExpenseId] = useState<string | undefined>(
+    () => bills.find((b) => b.expenseId === initialExpenseId)?.expenseId ?? bills[0]?.expenseId
+  );
   const [target, setTarget] = useState<PaycheckChoice | undefined>(
     () => getUpcomingPaycheckChoices(incomeSources, new Date(), from)[0]
   );
@@ -58,8 +64,8 @@ export default function MoveBillScreen() {
       return;
     }
     const payee = bills.find((b) => b.expenseId === expenseId)?.payee ?? "";
-    const date = formatShortDate(parseLocalDate(target.payDate));
-    withUndo(t("toasts.billMoved", { payee, date }), () => moveExpense(expenseId, from, target));
+    const targetDate = formatShortDate(parseLocalDate(target.payDate));
+    withUndo(t("toasts.billMoved", { payee, date: targetDate }), () => moveExpense(expenseId, from, target));
     hapticSuccess();
     router.back();
   }, [expenseId, target, bills, moveExpense, from, router, t]);
@@ -69,12 +75,12 @@ export default function MoveBillScreen() {
     [colors]
   );
 
-  const subtitle = item
-    ? t("moveBillSheet.subtitle", {
-        amount: formatMoney(Math.max(0, -item.remaining)),
-        date: formatShortDate(parseLocalDate(payDate)),
-      })
-    : "";
+  const date = formatShortDate(parseLocalDate(payDate));
+  const subtitle = !item
+    ? ""
+    : item.remaining < 0
+      ? t("moveBillSheet.subtitle", { amount: formatMoney(-item.remaining), date })
+      : t("moveBillSheet.fromPaycheck", { date, source: item.sourceName });
   const canMove = !!expenseId && !!target;
 
   return (

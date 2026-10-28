@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (이번 달), %{amount} 남음",
     "shortBy": "%{amount} 부족",
     "moveBill": "청구서 이동",
-    "markSetAside": "%{payee} 따로 모음으로 표시"
+    "markSetAside": "%{payee} 따로 모음으로 표시",
+    "markUnpaid": "%{payee} 미납으로 표시",
+    "moveThis": "%{payee} 이동"
   },
   "income": {
     "emptyTitle": "아직 수입이 없습니다",
@@ -181,7 +183,8 @@
       "title": "1회성 지출",
       "payee": "수취인",
       "amount": "금액"
-    }
+    },
+    "markAllPaid": "모두 납부 완료로 표시"
   },
   "amountSheet": {
     "subtitle": "%{date} 급여에만 적용",
@@ -244,12 +247,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "이동할 급여",
     "noBills": "이동할 미납 청구서가 없습니다.",
-    "noPaychecks": "다른 예정된 급여가 없습니다."
+    "noPaychecks": "다른 예정된 급여가 없습니다.",
+    "fromPaycheck": "%{date} · %{source}에서"
   },
   "toasts": {
     "expenseDeleted": "\"%{payee}\" 삭제됨",
     "incomeDeleted": "\"%{name}\" 삭제됨",
     "billMoved": "\"%{payee}\"을(를) %{date}(으)로 이동함",
-    "remindersOn": "급여일 알림 켜짐"
+    "remindersOn": "급여일 알림 켜짐",
+    "markedAllPaid": "모두 납부 완료로 표시함"
   }
 }

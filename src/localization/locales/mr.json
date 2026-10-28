@@ -56,7 +56,9 @@
     "chartBarCurrentLabel": "%{month} (हा महिना), %{amount} शिल्लक",
     "shortBy": "%{amount} कमी",
     "moveBill": "बिल हलवा",
-    "markSetAside": "%{payee} बाजूला ठेवले म्हणून मार्क करा"
+    "markSetAside": "%{payee} बाजूला ठेवले म्हणून मार्क करा",
+    "markUnpaid": "%{payee} न भरलेले म्हणून मार्क करा",
+    "moveThis": "%{payee} हलवा"
   },
   "income": {
     "emptyTitle": "अजून उत्पन्न नाही",
@@ -185,7 +187,8 @@
       "title": "एकवेळचा खर्च",
       "payee": "प्राप्तकर्ता",
       "amount": "रक्कम"
-    }
+    },
+    "markAllPaid": "सर्व भरले म्हणून मार्क करा"
   },
   "amountSheet": {
     "subtitle": "फक्त %{date}चा पगार",
@@ -249,12 +252,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "या पगारावर",
     "noBills": "हलवण्यासाठी न भरलेली बिले नाहीत.",
-    "noPaychecks": "पुढे इतर पगार नाहीत."
+    "noPaychecks": "पुढे इतर पगार नाहीत.",
+    "fromPaycheck": "%{date} · %{source} पासून"
   },
   "toasts": {
     "expenseDeleted": "\"%{payee}\" हटवले",
     "incomeDeleted": "\"%{name}\" हटवले",
     "billMoved": "\"%{payee}\" %{date} वर हलवले",
-    "remindersOn": "पगार रिमाइंडर सुरू"
+    "remindersOn": "पगार रिमाइंडर सुरू",
+    "markedAllPaid": "सर्व भरले म्हणून मार्क केले"
   }
 }

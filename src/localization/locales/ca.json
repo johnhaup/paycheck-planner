@@ -56,7 +56,9 @@
     "chartBarCurrentLabel": "%{month} (aquest mes), queden %{amount}",
     "shortBy": "Falten %{amount}",
     "moveBill": "Mou una factura",
-    "markSetAside": "Marca %{payee} com a reservada"
+    "markSetAside": "Marca %{payee} com a reservada",
+    "markUnpaid": "Marca %{payee} com a no pagada",
+    "moveThis": "Mou %{payee}"
   },
   "income": {
     "emptyTitle": "Encara no hi ha ingressos",
@@ -185,7 +187,8 @@
       "title": "Despesa puntual",
       "payee": "Beneficiari",
       "amount": "Import"
-    }
+    },
+    "markAllPaid": "Marca-ho tot com a pagat"
   },
   "amountSheet": {
     "subtitle": "Només el sou del %{date}",
@@ -249,12 +252,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Al sou",
     "noBills": "No hi ha factures pendents per moure.",
-    "noPaychecks": "No hi ha altres sous pròxims."
+    "noPaychecks": "No hi ha altres sous pròxims.",
+    "fromPaycheck": "Des del %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "S'ha suprimit \"%{payee}\"",
     "incomeDeleted": "S'ha suprimit \"%{name}\"",
     "billMoved": "S'ha mogut \"%{payee}\" al %{date}",
-    "remindersOn": "Recordatoris de cobrament activats"
+    "remindersOn": "Recordatoris de cobrament activats",
+    "markedAllPaid": "Tot marcat com a pagat"
   }
 }

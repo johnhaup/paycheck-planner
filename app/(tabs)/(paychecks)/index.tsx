@@ -102,6 +102,16 @@ export default function PaychecksScreen() {
     [router]
   );
 
+  const handleMoveExpense = useCallback(
+    (expenseId: string, payDate: string, sourceId: string) => {
+      router.push({
+        pathname: "/move-bill",
+        params: { payDate, sourceId, expenseId },
+      });
+    },
+    [router]
+  );
+
   const handleAddIncome = useCallback(() => {
     router.push("/income-form");
   }, [router]);
@@ -134,6 +144,7 @@ export default function PaychecksScreen() {
         onEditAmount={handleEditAmount}
         onEditPayAmount={handleEditPayAmount}
         onMoveBill={handleMoveBill}
+        onMoveExpense={handleMoveExpense}
       />
     ),
     [
@@ -143,6 +154,7 @@ export default function PaychecksScreen() {
       handleEditAmount,
       handleEditPayAmount,
       handleMoveBill,
+      handleMoveExpense,
     ]
   );
 

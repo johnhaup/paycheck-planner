@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (denne måneden), %{amount} igjen",
     "shortBy": "Mangler %{amount}",
     "moveBill": "Flytt en regning",
-    "markSetAside": "Merk %{payee} som satt av"
+    "markSetAside": "Merk %{payee} som satt av",
+    "markUnpaid": "Merk %{payee} som ikke betalt",
+    "moveThis": "Flytt %{payee}"
   },
   "income": {
     "emptyTitle": "Ingen inntekt enda",
@@ -182,7 +184,8 @@
       "title": "Engangsutgift",
       "payee": "Mottaker",
       "amount": "Beløp"
-    }
+    },
+    "markAllPaid": "Merk alle som betalt"
   },
   "amountSheet": {
     "subtitle": "Kun lønnen %{date}",
@@ -246,12 +249,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Til lønn",
     "noBills": "Ingen ubetalte regninger å flytte.",
-    "noPaychecks": "Ingen andre kommende lønninger."
+    "noPaychecks": "Ingen andre kommende lønninger.",
+    "fromPaycheck": "Fra %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "Slettet «%{payee}»",
     "incomeDeleted": "Slettet «%{name}»",
     "billMoved": "Flyttet «%{payee}» til %{date}",
-    "remindersOn": "Lønningsdagsvarsler er på"
+    "remindersOn": "Lønningsdagsvarsler er på",
+    "markedAllPaid": "Alle merket som betalt"
   }
 }

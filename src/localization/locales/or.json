@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (ଏହି ମାସ), %{amount} ବାକି",
     "shortBy": "%{amount} କମ୍",
     "moveBill": "ବିଲ୍ ଘୁଞ୍ଚାନ୍ତୁ",
-    "markSetAside": "%{payee} ଅଲଗା ରଖାଗଲା ବୋଲି ମାର୍କ କରନ୍ତୁ"
+    "markSetAside": "%{payee} ଅଲଗା ରଖାଗଲା ବୋଲି ମାର୍କ କରନ୍ତୁ",
+    "markUnpaid": "%{payee} ପଇଠ ହୋଇନାହିଁ ବୋଲି ମାର୍କ କରନ୍ତୁ",
+    "moveThis": "%{payee} ଘୁଞ୍ଚାନ୍ତୁ"
   },
   "income": {
     "emptyTitle": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଆୟ ନାହିଁ",
@@ -182,7 +184,8 @@
       "title": "ଏକ ଥରର ଖର୍ଚ୍ଚ",
       "payee": "ପ୍ରାପ୍ତକର୍ତ୍ତା",
       "amount": "ରାଶି"
-    }
+    },
+    "markAllPaid": "ସବୁ ପଇଠ ହୋଇଛି ବୋଲି ମାର୍କ କରନ୍ତୁ"
   },
   "amountSheet": {
     "subtitle": "କେବଳ %{date}ର ଦରମା",
@@ -246,12 +249,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "ଏହି ଦରମାକୁ",
     "noBills": "ଘୁଞ୍ଚାଇବାକୁ କୌଣସି ବାକି ବିଲ୍ ନାହିଁ।",
-    "noPaychecks": "ଆଗକୁ ଅନ୍ୟ କୌଣସି ଦରମା ନାହିଁ।"
+    "noPaychecks": "ଆଗକୁ ଅନ୍ୟ କୌଣସି ଦରମା ନାହିଁ।",
+    "fromPaycheck": "%{date} · %{source} ରୁ"
   },
   "toasts": {
     "expenseDeleted": "\"%{payee}\" ଡିଲିଟ୍ ହେଲା",
     "incomeDeleted": "\"%{name}\" ଡିଲିଟ୍ ହେଲା",
     "billMoved": "\"%{payee}\" କୁ %{date} କୁ ଘୁଞ୍ଚାଗଲା",
-    "remindersOn": "ଦରମା ରିମାଇଣ୍ଡର ଚାଲୁ"
+    "remindersOn": "ଦରମା ରିମାଇଣ୍ଡର ଚାଲୁ",
+    "markedAllPaid": "ସବୁ ପଇଠ ହୋଇଛି ବୋଲି ମାର୍କ ହେଲା"
   }
 }

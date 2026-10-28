@@ -57,7 +57,9 @@
     "chartBarCurrentLabel": "%{month} (આ મહિનો), %{amount} બાકી",
     "shortBy": "%{amount} ઘટે છે",
     "moveBill": "બિલ ખસેડો",
-    "markSetAside": "%{payee} અલગ રાખેલ માર્ક કરો"
+    "markSetAside": "%{payee} અલગ રાખેલ માર્ક કરો",
+    "markUnpaid": "%{payee} ન ચૂકવેલ માર્ક કરો",
+    "moveThis": "%{payee} ખસેડો"
   },
   "income": {
     "emptyTitle": "હજી કોઈ આવક નથી",
@@ -186,7 +188,8 @@
       "title": "એક વખતનો ખર્ચ",
       "payee": "પ્રાપ્તકર્તા",
       "amount": "રકમ"
-    }
+    },
+    "markAllPaid": "બધું ચૂકવેલ માર્ક કરો"
   },
   "amountSheet": {
     "subtitle": "ફક્ત %{date}નો પગાર",
@@ -250,12 +253,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "આ પગાર પર",
     "noBills": "ખસેડવા માટે કોઈ બાકી બિલ નથી.",
-    "noPaychecks": "આગળ બીજો કોઈ પગાર નથી."
+    "noPaychecks": "આગળ બીજો કોઈ પગાર નથી.",
+    "fromPaycheck": "%{date} · %{source} માંથી"
   },
   "toasts": {
     "expenseDeleted": "\"%{payee}\" ડિલીટ કર્યું",
     "incomeDeleted": "\"%{name}\" ડિલીટ કર્યું",
     "billMoved": "\"%{payee}\" ને %{date} પર ખસેડ્યું",
-    "remindersOn": "પગાર રિમાઇન્ડર ચાલુ"
+    "remindersOn": "પગાર રિમાઇન્ડર ચાલુ",
+    "markedAllPaid": "બધું ચૂકવેલ માર્ક થયું"
   }
 }

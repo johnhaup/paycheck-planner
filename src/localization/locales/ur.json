@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (یہ مہینہ)، %{amount} باقی",
     "shortBy": "%{amount} کم",
     "moveBill": "بل منتقل کریں",
-    "markSetAside": "%{payee} کو الگ رکھا نشان زد کریں"
+    "markSetAside": "%{payee} کو الگ رکھا نشان زد کریں",
+    "markUnpaid": "%{payee} کو غیر ادا شدہ نشان زد کریں",
+    "moveThis": "%{payee} منتقل کریں"
   },
   "income": {
     "emptyTitle": "ابھی کوئی آمدنی نہیں",
@@ -182,7 +184,8 @@
       "title": "ایک بار کا خرچ",
       "payee": "وصول کنندہ",
       "amount": "رقم"
-    }
+    },
+    "markAllPaid": "سب کو ادا شدہ نشان زد کریں"
   },
   "amountSheet": {
     "subtitle": "صرف %{date} کی تنخواہ",
@@ -246,12 +249,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "اس تنخواہ میں",
     "noBills": "منتقل کرنے کے لیے کوئی غیر ادا شدہ بل نہیں۔",
-    "noPaychecks": "کوئی اور آنے والی تنخواہ نہیں۔"
+    "noPaychecks": "کوئی اور آنے والی تنخواہ نہیں۔",
+    "fromPaycheck": "%{date} · %{source} سے"
   },
   "toasts": {
     "expenseDeleted": "\"%{payee}\" حذف کر دیا گیا",
     "incomeDeleted": "\"%{name}\" حذف کر دیا گیا",
     "billMoved": "\"%{payee}\" کو %{date} پر منتقل کر دیا گیا",
-    "remindersOn": "تنخواہ کے دن کی یاددہانیاں آن ہیں"
+    "remindersOn": "تنخواہ کے دن کی یاددہانیاں آن ہیں",
+    "markedAllPaid": "سب کو ادا شدہ نشان زد کر دیا گیا"
   }
 }

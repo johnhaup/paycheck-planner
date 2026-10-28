@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (bieżący miesiąc), zostaje %{amount}",
     "shortBy": "Brakuje %{amount}",
     "moveBill": "Przenieś rachunek",
-    "markSetAside": "Oznacz %{payee} jako odłożone"
+    "markSetAside": "Oznacz %{payee} jako odłożone",
+    "markUnpaid": "Oznacz %{payee} jako nieopłacone",
+    "moveThis": "Przenieś %{payee}"
   },
   "income": {
     "emptyTitle": "Brak dochodów",
@@ -184,7 +186,8 @@
       "title": "Jednorazowy wydatek",
       "payee": "Odbiorca",
       "amount": "Kwota"
-    }
+    },
+    "markAllPaid": "Oznacz wszystko jako opłacone"
   },
   "amountSheet": {
     "subtitle": "Tylko wypłata %{date}",
@@ -250,12 +253,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Do wypłaty",
     "noBills": "Brak nieopłaconych rachunków do przeniesienia.",
-    "noPaychecks": "Brak innych nadchodzących wypłat."
+    "noPaychecks": "Brak innych nadchodzących wypłat.",
+    "fromPaycheck": "Z %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "Usunięto „%{payee}”",
     "incomeDeleted": "Usunięto „%{name}”",
     "billMoved": "Przeniesiono „%{payee}” na %{date}",
-    "remindersOn": "Przypomnienia o wypłacie włączone"
+    "remindersOn": "Przypomnienia o wypłacie włączone",
+    "markedAllPaid": "Wszystko oznaczono jako opłacone"
   }
 }

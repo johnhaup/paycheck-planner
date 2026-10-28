@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month}（今月）、残り %{amount}",
     "shortBy": "%{amount}不足",
     "moveBill": "支払いを移動",
-    "markSetAside": "%{payee}を取り置き済みにする"
+    "markSetAside": "%{payee}を取り置き済みにする",
+    "markUnpaid": "%{payee}を未払いにする",
+    "moveThis": "%{payee}を移動"
   },
   "income": {
     "emptyTitle": "収入がまだありません",
@@ -181,7 +183,8 @@
       "title": "1回限りの支出",
       "payee": "支払先",
       "amount": "金額"
-    }
+    },
+    "markAllPaid": "すべて支払い済みにする"
   },
   "amountSheet": {
     "subtitle": "%{date}の給料のみ",
@@ -244,12 +247,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "移動先の給料",
     "noBills": "移動できる未払いの支払いはありません。",
-    "noPaychecks": "他に今後の給料はありません。"
+    "noPaychecks": "他に今後の給料はありません。",
+    "fromPaycheck": "%{date} · %{source}から"
   },
   "toasts": {
     "expenseDeleted": "「%{payee}」を削除しました",
     "incomeDeleted": "「%{name}」を削除しました",
     "billMoved": "「%{payee}」を%{date}に移動しました",
-    "remindersOn": "給料日のリマインダーをオンにしました"
+    "remindersOn": "給料日のリマインダーをオンにしました",
+    "markedAllPaid": "すべて支払い済みにしました"
   }
 }

@@ -28,6 +28,8 @@ interface AppState {
   assignExpense: (expenseId: string, payDate: string, incomeSourceId: string) => string;
   unassignExpense: (assignmentId: string) => void;
   togglePaid: (assignmentId: string) => void;
+  /** Marks these bills paid on one paycheck, assigning any linked bill that isn't yet */
+  markPaid: (expenseIds: string[], payDate: string, incomeSourceId: string) => void;
   setAssignmentAmount: (assignmentId: string, amount: number | undefined) => void;
   /** Moves a one-time expense to a single paycheck, keeping its paid state */
   rescheduleExpense: (expenseId: string, payDate: string, incomeSourceId: string) => void;
@@ -128,6 +130,21 @@ export const useStore = create<AppState>()(
             a.id === assignmentId ? { ...a, paid: !a.paid } : a
           ),
         })),
+
+      markPaid: (expenseIds, payDate, incomeSourceId) =>
+        set((s) => {
+          const ids = new Set(expenseIds);
+          const isTarget = (a: ExpenseAssignment) =>
+            !a.skipped && ids.has(a.expenseId) && a.payDate === payDate && a.employerId === incomeSourceId;
+          const assignments = s.assignments.map((a) => (isTarget(a) ? { ...a, paid: true } : a));
+          const assigned = new Set(assignments.filter(isTarget).map((a) => a.expenseId));
+          for (const expenseId of ids) {
+            if (!assigned.has(expenseId)) {
+              assignments.push({ id: randomUUID(), expenseId, payDate, employerId: incomeSourceId, paid: true });
+            }
+          }
+          return { assignments };
+        }),
 
       setAssignmentAmount: (assignmentId, amount) =>
         set((s) => ({

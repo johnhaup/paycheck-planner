@@ -57,7 +57,9 @@
     "chartBarCurrentLabel": "%{month} (এই মাস), %{amount} বাকি",
     "shortBy": "%{amount} কম",
     "moveBill": "বিল সরান",
-    "markSetAside": "%{payee} আলাদা রাখা হয়েছে হিসেবে চিহ্নিত করুন"
+    "markSetAside": "%{payee} আলাদা রাখা হয়েছে হিসেবে চিহ্নিত করুন",
+    "markUnpaid": "%{payee} অপরিশোধিত হিসেবে চিহ্নিত করুন",
+    "moveThis": "%{payee} সরান"
   },
   "income": {
     "emptyTitle": "এখনও কোনো আয় নেই",
@@ -186,7 +188,8 @@
       "title": "একবারের খরচ",
       "payee": "প্রাপক",
       "amount": "পরিমাণ"
-    }
+    },
+    "markAllPaid": "সব পরিশোধিত চিহ্নিত করুন"
   },
   "amountSheet": {
     "subtitle": "শুধু %{date}-এর বেতন",
@@ -250,12 +253,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "যে বেতনে",
     "noBills": "সরানোর মতো কোনো অপরিশোধিত বিল নেই।",
-    "noPaychecks": "সামনে অন্য কোনো বেতন নেই।"
+    "noPaychecks": "সামনে অন্য কোনো বেতন নেই।",
+    "fromPaycheck": "%{date} · %{source} থেকে"
   },
   "toasts": {
     "expenseDeleted": "\"%{payee}\" মুছে ফেলা হয়েছে",
     "incomeDeleted": "\"%{name}\" মুছে ফেলা হয়েছে",
     "billMoved": "\"%{payee}\" %{date}-এ সরানো হয়েছে",
-    "remindersOn": "বেতনের দিনের রিমাইন্ডার চালু"
+    "remindersOn": "বেতনের দিনের রিমাইন্ডার চালু",
+    "markedAllPaid": "সব পরিশোধিত চিহ্নিত হয়েছে"
   }
 }

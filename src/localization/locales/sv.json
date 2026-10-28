@@ -54,7 +54,9 @@
     "chartBarCurrentLabel": "%{month} (den här månaden), %{amount} kvar",
     "shortBy": "Saknas %{amount}",
     "moveBill": "Flytta en räkning",
-    "markSetAside": "Markera %{payee} som avsatt"
+    "markSetAside": "Markera %{payee} som avsatt",
+    "markUnpaid": "Markera %{payee} som obetald",
+    "moveThis": "Flytta %{payee}"
   },
   "income": {
     "emptyTitle": "Ingen inkomst än",
@@ -183,7 +185,8 @@
       "title": "Engångsutgift",
       "payee": "Mottagare",
       "amount": "Belopp"
-    }
+    },
+    "markAllPaid": "Markera alla som betalda"
   },
   "amountSheet": {
     "subtitle": "Endast lönen %{date}",
@@ -247,12 +250,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Till lön",
     "noBills": "Inga obetalda räkningar att flytta.",
-    "noPaychecks": "Inga andra kommande löner."
+    "noPaychecks": "Inga andra kommande löner.",
+    "fromPaycheck": "Från %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "Tog bort \"%{payee}\"",
     "incomeDeleted": "Tog bort \"%{name}\"",
     "billMoved": "Flyttade \"%{payee}\" till %{date}",
-    "remindersOn": "Lönedagspåminnelser på"
+    "remindersOn": "Lönedagspåminnelser på",
+    "markedAllPaid": "Alla markerade som betalda"
   }
 }

@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (ഈ മാസം), %{amount} ബാക്കി",
     "shortBy": "%{amount} കുറവ്",
     "moveBill": "ഒരു ബിൽ മാറ്റുക",
-    "markSetAside": "%{payee} മാറ്റിവെച്ചതായി അടയാളപ്പെടുത്തുക"
+    "markSetAside": "%{payee} മാറ്റിവെച്ചതായി അടയാളപ്പെടുത്തുക",
+    "markUnpaid": "%{payee} അടച്ചിട്ടില്ലെന്ന് അടയാളപ്പെടുത്തുക",
+    "moveThis": "%{payee} മാറ്റുക"
   },
   "income": {
     "emptyTitle": "ഇതുവരെ വരുമാനമില്ല",
@@ -182,7 +184,8 @@
       "title": "ഒറ്റത്തവണ ചെലവ്",
       "payee": "സ്വീകർത്താവ്",
       "amount": "തുക"
-    }
+    },
+    "markAllPaid": "എല്ലാം അടച്ചതായി അടയാളപ്പെടുത്തുക"
   },
   "amountSheet": {
     "subtitle": "%{date} ശമ്പളത്തിന് മാത്രം",
@@ -246,12 +249,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "ഈ ശമ്പളത്തിലേക്ക്",
     "noBills": "മാറ്റാൻ അടയ്ക്കാത്ത ബില്ലുകളില്ല.",
-    "noPaychecks": "വരാനിരിക്കുന്ന മറ്റ് ശമ്പളങ്ങളില്ല."
+    "noPaychecks": "വരാനിരിക്കുന്ന മറ്റ് ശമ്പളങ്ങളില്ല.",
+    "fromPaycheck": "%{date} · %{source}-ൽ നിന്ന്"
   },
   "toasts": {
     "expenseDeleted": "\"%{payee}\" ഇല്ലാതാക്കി",
     "incomeDeleted": "\"%{name}\" ഇല്ലാതാക്കി",
     "billMoved": "\"%{payee}\" %{date}-ലേക്ക് മാറ്റി",
-    "remindersOn": "ശമ്പള ദിന റിമൈൻഡറുകൾ ഓണാണ്"
+    "remindersOn": "ശമ്പള ദിന റിമൈൻഡറുകൾ ഓണാണ്",
+    "markedAllPaid": "എല്ലാം അടച്ചതായി അടയാളപ്പെടുത്തി"
   }
 }

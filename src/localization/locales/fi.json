@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (tämä kuukausi), %{amount} jäljellä",
     "shortBy": "Vajaus %{amount}",
     "moveBill": "Siirrä lasku",
-    "markSetAside": "Merkitse %{payee} varatuksi"
+    "markSetAside": "Merkitse %{payee} varatuksi",
+    "markUnpaid": "Merkitse %{payee} maksamattomaksi",
+    "moveThis": "Siirrä %{payee}"
   },
   "income": {
     "emptyTitle": "Ei vielä tuloja",
@@ -182,7 +184,8 @@
       "title": "Kertaluonteinen meno",
       "payee": "Maksunsaaja",
       "amount": "Summa"
-    }
+    },
+    "markAllPaid": "Merkitse kaikki maksetuiksi"
   },
   "amountSheet": {
     "subtitle": "Vain palkka %{date}",
@@ -246,12 +249,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Palkalle",
     "noBills": "Ei siirrettäviä maksamattomia laskuja.",
-    "noPaychecks": "Ei muita tulevia palkkoja."
+    "noPaychecks": "Ei muita tulevia palkkoja.",
+    "fromPaycheck": "Päivältä %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "”%{payee}” poistettiin",
     "incomeDeleted": "”%{name}” poistettiin",
     "billMoved": "”%{payee}” siirrettiin päivälle %{date}",
-    "remindersOn": "Palkkapäivämuistutukset käytössä"
+    "remindersOn": "Palkkapäivämuistutukset käytössä",
+    "markedAllPaid": "Kaikki merkitty maksetuiksi"
   }
 }

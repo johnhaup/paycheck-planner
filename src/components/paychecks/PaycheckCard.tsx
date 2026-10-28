@@ -26,6 +26,7 @@ interface Props {
   onEditAmount: EditAmountHandler;
   onEditPayAmount: (payDate: string, sourceId: string) => void;
   onMoveBill: (payDate: string, sourceId: string) => void;
+  onMoveExpense: EditAmountHandler;
 }
 
 export function PaycheckCard({
@@ -36,6 +37,7 @@ export function PaycheckCard({
   onEditAmount,
   onEditPayAmount,
   onMoveBill,
+  onMoveExpense,
 }: Props) {
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
@@ -109,6 +111,7 @@ export function PaycheckCard({
             onTogglePaid={onTogglePaid}
             onLinkTap={onLinkTap}
             onEditAmount={onEditAmount}
+            onMove={onMoveExpense}
           />
         ))
       ) : (

@@ -54,7 +54,9 @@
     "chartBarCurrentLabel": "%{month} (questo mese), rimangono %{amount}",
     "shortBy": "Mancano %{amount}",
     "moveBill": "Sposta una bolletta",
-    "markSetAside": "Segna %{payee} come accantonato"
+    "markSetAside": "Segna %{payee} come accantonato",
+    "markUnpaid": "Segna %{payee} come non pagata",
+    "moveThis": "Sposta %{payee}"
   },
   "income": {
     "emptyTitle": "Nessuna entrata",
@@ -183,7 +185,8 @@
       "title": "Spesa una tantum",
       "payee": "Beneficiario",
       "amount": "Importo"
-    }
+    },
+    "markAllPaid": "Segna tutto come pagato"
   },
   "amountSheet": {
     "subtitle": "Solo stipendio del %{date}",
@@ -247,12 +250,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Allo stipendio",
     "noBills": "Nessuna bolletta da pagare da spostare.",
-    "noPaychecks": "Nessun altro stipendio in arrivo."
+    "noPaychecks": "Nessun altro stipendio in arrivo.",
+    "fromPaycheck": "Dal %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "\"%{payee}\" eliminato",
     "incomeDeleted": "\"%{name}\" eliminato",
     "billMoved": "\"%{payee}\" spostato al %{date}",
-    "remindersOn": "Promemoria giorno di paga attivi"
+    "remindersOn": "Promemoria giorno di paga attivi",
+    "markedAllPaid": "Tutto segnato come pagato"
   }
 }

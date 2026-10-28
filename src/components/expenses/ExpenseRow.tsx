@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { View, StyleSheet } from "react-native";
 import { Pressable } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -10,7 +10,7 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppLetterTile } from "@/components/AppLetterTile";
 import { AppSetAsideIcon } from "@/components/AppSetAsideIcon";
-import { AppSwipeToDelete } from "@/components/AppSwipeToDelete";
+import { AppSwipeActions, type SwipeAction } from "@/components/AppSwipeActions";
 import type { Expense } from "@/types";
 
 interface Props {
@@ -51,6 +51,16 @@ export function ExpenseRow({
     onDelete(expense.id);
   }, [onDelete, expense.id]);
 
+  const deleteAction = useMemo<SwipeAction>(
+    () => ({
+      icon: "trash-outline",
+      color: colors.destructive,
+      accessibilityLabel: t("common.delete"),
+      onPress: handleDelete,
+    }),
+    [colors, t, handleDelete]
+  );
+
   const handleOpenLink = useCallback(() => {
     if (expense.link) {
       onOpenLink(expense.link);
@@ -58,8 +68,8 @@ export function ExpenseRow({
   }, [onOpenLink, expense.link]);
 
   return (
-    <AppSwipeToDelete
-      onDelete={handleDelete}
+    <AppSwipeActions
+      rightAction={deleteAction}
       style={groupedStyles.container}
     >
       <Pressable style={groupedStyles.row} onPress={handlePress}>
@@ -91,7 +101,7 @@ export function ExpenseRow({
           <AppText variant="caption">{cadence}</AppText>
         </View>
       </Pressable>
-    </AppSwipeToDelete>
+    </AppSwipeActions>
   );
 }
 

@@ -54,7 +54,9 @@
     "chartBarCurrentLabel": "%{month} (luna curentă), %{amount} rămas",
     "shortBy": "Lipsesc %{amount}",
     "moveBill": "Mută o factură",
-    "markSetAside": "Marchează %{payee} ca pus deoparte"
+    "markSetAside": "Marchează %{payee} ca pus deoparte",
+    "markUnpaid": "Marchează %{payee} ca neplătit",
+    "moveThis": "Mută %{payee}"
   },
   "income": {
     "emptyTitle": "Niciun venit încă",
@@ -184,7 +186,8 @@
       "title": "Cheltuială unică",
       "payee": "Beneficiar",
       "amount": "Sumă"
-    }
+    },
+    "markAllPaid": "Marchează tot ca plătit"
   },
   "amountSheet": {
     "subtitle": "Doar salariul din %{date}",
@@ -249,12 +252,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "La salariul",
     "noBills": "Nicio factură neplătită de mutat.",
-    "noPaychecks": "Niciun alt salariu viitor."
+    "noPaychecks": "Niciun alt salariu viitor.",
+    "fromPaycheck": "Din %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "„%{payee}” a fost șters",
     "incomeDeleted": "„%{name}” a fost șters",
     "billMoved": "„%{payee}” a fost mutat pe %{date}",
-    "remindersOn": "Mementourile de zi de salariu sunt activate"
+    "remindersOn": "Mementourile de zi de salariu sunt activate",
+    "markedAllPaid": "Totul a fost marcat ca plătit"
   }
 }

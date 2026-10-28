@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (este mês), sobram %{amount}",
     "shortBy": "Faltam %{amount}",
     "moveBill": "Mover uma fatura",
-    "markSetAside": "Marcar %{payee} como reservada"
+    "markSetAside": "Marcar %{payee} como reservada",
+    "markUnpaid": "Marcar %{payee} como não paga",
+    "moveThis": "Mover %{payee}"
   },
   "income": {
     "emptyTitle": "Ainda não há rendimentos",
@@ -182,7 +184,8 @@
       "title": "Despesa pontual",
       "payee": "Beneficiário",
       "amount": "Valor"
-    }
+    },
+    "markAllPaid": "Marcar tudo como pago"
   },
   "amountSheet": {
     "subtitle": "Apenas o ordenado de %{date}",
@@ -246,12 +249,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Para o ordenado",
     "noBills": "Não há faturas por pagar para mover.",
-    "noPaychecks": "Não há outros ordenados próximos."
+    "noPaychecks": "Não há outros ordenados próximos.",
+    "fromPaycheck": "De %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "\"%{payee}\" eliminado",
     "incomeDeleted": "\"%{name}\" eliminado",
     "billMoved": "\"%{payee}\" movido para %{date}",
-    "remindersOn": "Lembretes do dia de pagamento ativados"
+    "remindersOn": "Lembretes do dia de pagamento ativados",
+    "markedAllPaid": "Tudo marcado como pago"
   }
 }

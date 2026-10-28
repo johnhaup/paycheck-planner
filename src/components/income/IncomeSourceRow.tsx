@@ -1,13 +1,14 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { View, StyleSheet } from "react-native";
 import { Pressable } from "react-native-gesture-handler";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { useColors } from "@/hooks/useColors";
 import { useGroupedRowStyles } from "@/hooks/useGroupedRowStyles";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { AppText } from "@/components/AppText";
 import { AppLetterTile } from "@/components/AppLetterTile";
-import { AppSwipeToDelete } from "@/components/AppSwipeToDelete";
+import { AppSwipeActions, type SwipeAction } from "@/components/AppSwipeActions";
 import { describePaySchedule } from "@/utils/payDates";
 import type { IncomeSource } from "@/types";
 
@@ -21,6 +22,7 @@ interface Props {
 }
 
 export function IncomeSourceRow({ source, tintIndex, isFirst, isLast, onEdit, onDelete }: Props) {
+  const colors = useColors();
   const groupedStyles = useGroupedRowStyles(isFirst, isLast);
   const { split } = useMoneyFormat();
   const t = useT();
@@ -34,9 +36,19 @@ export function IncomeSourceRow({ source, tintIndex, isFirst, isLast, onEdit, on
     onDelete(source.id);
   }, [onDelete, source.id]);
 
+  const deleteAction = useMemo<SwipeAction>(
+    () => ({
+      icon: "trash-outline",
+      color: colors.destructive,
+      accessibilityLabel: t("common.delete"),
+      onPress: handleDelete,
+    }),
+    [colors, t, handleDelete]
+  );
+
   return (
-    <AppSwipeToDelete
-      onDelete={handleDelete}
+    <AppSwipeActions
+      rightAction={deleteAction}
       style={groupedStyles.container}
     >
       <Pressable style={groupedStyles.row} onPress={handlePress}>
@@ -53,7 +65,7 @@ export function IncomeSourceRow({ source, tintIndex, isFirst, isLast, onEdit, on
           <AppText variant="caption">{t("income.perCheck")}</AppText>
         </View>
       </Pressable>
-    </AppSwipeToDelete>
+    </AppSwipeActions>
   );
 }
 

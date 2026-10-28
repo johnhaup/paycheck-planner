@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (tháng này), còn %{amount}",
     "shortBy": "Thiếu %{amount}",
     "moveBill": "Chuyển hóa đơn",
-    "markSetAside": "Đánh dấu %{payee} đã để dành"
+    "markSetAside": "Đánh dấu %{payee} đã để dành",
+    "markUnpaid": "Đánh dấu %{payee} chưa trả",
+    "moveThis": "Chuyển %{payee}"
   },
   "income": {
     "emptyTitle": "Chưa có thu nhập",
@@ -181,7 +183,8 @@
       "title": "Khoản chi một lần",
       "payee": "Người nhận",
       "amount": "Số tiền"
-    }
+    },
+    "markAllPaid": "Đánh dấu tất cả đã trả"
   },
   "amountSheet": {
     "subtitle": "Chỉ kỳ lương %{date}",
@@ -244,12 +247,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Sang kỳ lương",
     "noBills": "Không có hóa đơn chưa trả để chuyển.",
-    "noPaychecks": "Không có kỳ lương sắp tới nào khác."
+    "noPaychecks": "Không có kỳ lương sắp tới nào khác.",
+    "fromPaycheck": "Từ %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "Đã xóa \"%{payee}\"",
     "incomeDeleted": "Đã xóa \"%{name}\"",
     "billMoved": "Đã chuyển \"%{payee}\" sang %{date}",
-    "remindersOn": "Đã bật nhắc ngày nhận lương"
+    "remindersOn": "Đã bật nhắc ngày nhận lương",
+    "markedAllPaid": "Đã đánh dấu tất cả đã trả"
   }
 }

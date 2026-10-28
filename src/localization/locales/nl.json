@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (deze maand), %{amount} over",
     "shortBy": "%{amount} tekort",
     "moveBill": "Rekening verplaatsen",
-    "markSetAside": "%{payee} markeren als apart gezet"
+    "markSetAside": "%{payee} markeren als apart gezet",
+    "markUnpaid": "%{payee} markeren als onbetaald",
+    "moveThis": "%{payee} verplaatsen"
   },
   "income": {
     "emptyTitle": "Nog geen inkomen",
@@ -182,7 +184,8 @@
       "title": "Eenmalige uitgave",
       "payee": "Begunstigde",
       "amount": "Bedrag"
-    }
+    },
+    "markAllPaid": "Alles markeren als betaald"
   },
   "amountSheet": {
     "subtitle": "Alleen salaris van %{date}",
@@ -246,12 +249,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Naar salaris",
     "noBills": "Geen onbetaalde rekeningen om te verplaatsen.",
-    "noPaychecks": "Geen andere komende salarissen."
+    "noPaychecks": "Geen andere komende salarissen.",
+    "fromPaycheck": "Van %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "'%{payee}' verwijderd",
     "incomeDeleted": "'%{name}' verwijderd",
     "billMoved": "'%{payee}' verplaatst naar %{date}",
-    "remindersOn": "Betaaldagherinneringen aan"
+    "remindersOn": "Betaaldagherinneringen aan",
+    "markedAllPaid": "Alles gemarkeerd als betaald"
   }
 }

@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (இந்த மாதம்), %{amount} மீதம்",
     "shortBy": "%{amount} பற்றாக்குறை",
     "moveBill": "பில்லை நகர்த்து",
-    "markSetAside": "%{payee} ஒதுக்கி வைத்ததாகக் குறி"
+    "markSetAside": "%{payee} ஒதுக்கி வைத்ததாகக் குறி",
+    "markUnpaid": "%{payee} செலுத்தவில்லை எனக் குறி",
+    "moveThis": "%{payee} நகர்த்து"
   },
   "income": {
     "emptyTitle": "இன்னும் வருமானம் இல்லை",
@@ -182,7 +184,8 @@
       "title": "ஒருமுறை செலவு",
       "payee": "பெறுநர்",
       "amount": "தொகை"
-    }
+    },
+    "markAllPaid": "அனைத்தையும் செலுத்தியதாகக் குறி"
   },
   "amountSheet": {
     "subtitle": "%{date} சம்பளத்திற்கு மட்டும்",
@@ -246,12 +249,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "இந்தச் சம்பளத்திற்கு",
     "noBills": "நகர்த்த செலுத்தப்படாத பில்கள் இல்லை.",
-    "noPaychecks": "வரவிருக்கும் வேறு சம்பளங்கள் இல்லை."
+    "noPaychecks": "வரவிருக்கும் வேறு சம்பளங்கள் இல்லை.",
+    "fromPaycheck": "%{date} · %{source} இலிருந்து"
   },
   "toasts": {
     "expenseDeleted": "\"%{payee}\" நீக்கப்பட்டது",
     "incomeDeleted": "\"%{name}\" நீக்கப்பட்டது",
     "billMoved": "\"%{payee}\" %{date}-க்கு நகர்த்தப்பட்டது",
-    "remindersOn": "சம்பள நாள் நினைவூட்டல்கள் இயக்கத்தில்"
+    "remindersOn": "சம்பள நாள் நினைவூட்டல்கள் இயக்கத்தில்",
+    "markedAllPaid": "அனைத்தும் செலுத்தியதாகக் குறிக்கப்பட்டது"
   }
 }

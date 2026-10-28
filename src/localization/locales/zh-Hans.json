@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month}（本月），剩余 %{amount}",
     "shortBy": "差 %{amount}",
     "moveBill": "移动账单",
-    "markSetAside": "将%{payee}标记为已预留"
+    "markSetAside": "将%{payee}标记为已预留",
+    "markUnpaid": "将%{payee}标记为未付",
+    "moveThis": "移动%{payee}"
   },
   "income": {
     "emptyTitle": "还没有收入",
@@ -181,7 +183,8 @@
       "title": "一次性支出",
       "payee": "收款方",
       "amount": "金额"
-    }
+    },
+    "markAllPaid": "全部标记为已付"
   },
   "amountSheet": {
     "subtitle": "仅%{date}这笔工资",
@@ -244,12 +247,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "移至工资",
     "noBills": "没有可移动的未付账单。",
-    "noPaychecks": "没有其他即将到来的工资。"
+    "noPaychecks": "没有其他即将到来的工资。",
+    "fromPaycheck": "来自%{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "已删除“%{payee}”",
     "incomeDeleted": "已删除“%{name}”",
     "billMoved": "已将“%{payee}”移至%{date}",
-    "remindersOn": "发薪日提醒已开启"
+    "remindersOn": "发薪日提醒已开启",
+    "markedAllPaid": "已全部标记为已付"
   }
 }

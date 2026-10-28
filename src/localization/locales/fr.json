@@ -54,7 +54,9 @@
     "chartBarCurrentLabel": "%{month} (ce mois-ci), reste %{amount}",
     "shortBy": "Il manque %{amount}",
     "moveBill": "Déplacer une facture",
-    "markSetAside": "Marquer %{payee} comme mise de côté"
+    "markSetAside": "Marquer %{payee} comme mise de côté",
+    "markUnpaid": "Marquer %{payee} comme non payée",
+    "moveThis": "Déplacer %{payee}"
   },
   "income": {
     "emptyTitle": "Aucun revenu",
@@ -183,7 +185,8 @@
       "title": "Dépense ponctuelle",
       "payee": "Bénéficiaire",
       "amount": "Montant"
-    }
+    },
+    "markAllPaid": "Tout marquer comme payé"
   },
   "amountSheet": {
     "subtitle": "Salaire du %{date} uniquement",
@@ -247,12 +250,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Vers le salaire",
     "noBills": "Aucune facture impayée à déplacer.",
-    "noPaychecks": "Aucun autre salaire à venir."
+    "noPaychecks": "Aucun autre salaire à venir.",
+    "fromPaycheck": "Depuis le %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "« %{payee} » supprimé",
     "incomeDeleted": "« %{name} » supprimé",
     "billMoved": "« %{payee} » déplacé au %{date}",
-    "remindersOn": "Rappels de paie activés"
+    "remindersOn": "Rappels de paie activés",
+    "markedAllPaid": "Tout est marqué comme payé"
   }
 }

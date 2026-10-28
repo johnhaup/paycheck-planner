@@ -54,7 +54,9 @@
     "chartBarCurrentLabel": "%{month} (ez a hónap), %{amount} marad",
     "shortBy": "%{amount} hiányzik",
     "moveBill": "Számla áthelyezése",
-    "markSetAside": "%{payee} megjelölése félretettként"
+    "markSetAside": "%{payee} megjelölése félretettként",
+    "markUnpaid": "%{payee} megjelölése fizetetlenként",
+    "moveThis": "%{payee} áthelyezése"
   },
   "income": {
     "emptyTitle": "Még nincs bevétel",
@@ -183,7 +185,8 @@
       "title": "Egyszeri kiadás",
       "payee": "Kedvezményezett",
       "amount": "Összeg"
-    }
+    },
+    "markAllPaid": "Összes megjelölése fizetettként"
   },
   "amountSheet": {
     "subtitle": "Csak a %{date} fizetésre",
@@ -247,12 +250,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Erre a fizetésre",
     "noBills": "Nincs áthelyezhető kifizetetlen számla.",
-    "noPaychecks": "Nincs több közeli fizetés."
+    "noPaychecks": "Nincs több közeli fizetés.",
+    "fromPaycheck": "Innen: %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "„%{payee}” törölve",
     "incomeDeleted": "„%{name}” törölve",
     "billMoved": "„%{payee}” áthelyezve: %{date}",
-    "remindersOn": "Fizetésnapi emlékeztetők bekapcsolva"
+    "remindersOn": "Fizetésnapi emlékeztetők bekapcsolva",
+    "markedAllPaid": "Minden fizetettként megjelölve"
   }
 }

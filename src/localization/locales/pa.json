@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (ਇਹ ਮਹੀਨਾ), %{amount} ਬਾਕੀ",
     "shortBy": "%{amount} ਘੱਟ",
     "moveBill": "ਬਿੱਲ ਮੂਵ ਕਰੋ",
-    "markSetAside": "%{payee} ਨੂੰ ਵੱਖ ਰੱਖਿਆ ਮਾਰਕ ਕਰੋ"
+    "markSetAside": "%{payee} ਨੂੰ ਵੱਖ ਰੱਖਿਆ ਮਾਰਕ ਕਰੋ",
+    "markUnpaid": "%{payee} ਨੂੰ ਬਕਾਇਆ ਮਾਰਕ ਕਰੋ",
+    "moveThis": "%{payee} ਮੂਵ ਕਰੋ"
   },
   "income": {
     "emptyTitle": "ਹਾਲੇ ਕੋਈ ਆਮਦਨ ਨਹੀਂ",
@@ -182,7 +184,8 @@
       "title": "ਇੱਕ ਵਾਰ ਦਾ ਖਰਚਾ",
       "payee": "ਪ੍ਰਾਪਤਕਰਤਾ",
       "amount": "ਰਕਮ"
-    }
+    },
+    "markAllPaid": "ਸਭ ਭਰਿਆ ਮਾਰਕ ਕਰੋ"
   },
   "amountSheet": {
     "subtitle": "ਸਿਰਫ਼ %{date} ਦੀ ਤਨਖ਼ਾਹ",
@@ -246,12 +249,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "ਇਸ ਤਨਖ਼ਾਹ 'ਤੇ",
     "noBills": "ਮੂਵ ਕਰਨ ਲਈ ਕੋਈ ਬਕਾਇਆ ਬਿੱਲ ਨਹੀਂ।",
-    "noPaychecks": "ਅੱਗੇ ਕੋਈ ਹੋਰ ਤਨਖ਼ਾਹ ਨਹੀਂ।"
+    "noPaychecks": "ਅੱਗੇ ਕੋਈ ਹੋਰ ਤਨਖ਼ਾਹ ਨਹੀਂ।",
+    "fromPaycheck": "%{date} · %{source} ਤੋਂ"
   },
   "toasts": {
     "expenseDeleted": "\"%{payee}\" ਮਿਟਾਇਆ ਗਿਆ",
     "incomeDeleted": "\"%{name}\" ਮਿਟਾਇਆ ਗਿਆ",
     "billMoved": "\"%{payee}\" ਨੂੰ %{date} 'ਤੇ ਮੂਵ ਕੀਤਾ",
-    "remindersOn": "ਤਨਖ਼ਾਹ ਰਿਮਾਈਂਡਰ ਚਾਲੂ"
+    "remindersOn": "ਤਨਖ਼ਾਹ ਰਿਮਾਈਂਡਰ ਚਾਲੂ",
+    "markedAllPaid": "ਸਭ ਭਰਿਆ ਮਾਰਕ ਕੀਤਾ"
   }
 }

@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (dieser Monat), %{amount} übrig",
     "shortBy": "%{amount} fehlen",
     "moveBill": "Rechnung verschieben",
-    "markSetAside": "%{payee} als zurückgelegt markieren"
+    "markSetAside": "%{payee} als zurückgelegt markieren",
+    "markUnpaid": "%{payee} als unbezahlt markieren",
+    "moveThis": "%{payee} verschieben"
   },
   "income": {
     "emptyTitle": "Noch kein Einkommen",
@@ -182,7 +184,8 @@
       "title": "Einmalige Ausgabe",
       "payee": "Empfänger",
       "amount": "Betrag"
-    }
+    },
+    "markAllPaid": "Alle als bezahlt markieren"
   },
   "amountSheet": {
     "subtitle": "Nur Gehalt vom %{date}",
@@ -246,12 +249,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Zu Gehalt",
     "noBills": "Keine unbezahlten Rechnungen zum Verschieben.",
-    "noPaychecks": "Keine weiteren anstehenden Gehaltszahlungen."
+    "noPaychecks": "Keine weiteren anstehenden Gehaltszahlungen.",
+    "fromPaycheck": "Vom %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "„%{payee}“ gelöscht",
     "incomeDeleted": "„%{name}“ gelöscht",
     "billMoved": "„%{payee}“ auf %{date} verschoben",
-    "remindersOn": "Zahltag-Erinnerungen aktiviert"
+    "remindersOn": "Zahltag-Erinnerungen aktiviert",
+    "markedAllPaid": "Alle als bezahlt markiert"
   }
 }

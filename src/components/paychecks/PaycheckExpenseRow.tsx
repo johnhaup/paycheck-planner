@@ -9,6 +9,7 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppCheckCircle } from "@/components/AppCheckCircle";
 import { AppSetAsideIcon } from "@/components/AppSetAsideIcon";
+import { AppSwipeActions, type SwipeAction } from "@/components/AppSwipeActions";
 import type {
   EditAmountHandler,
   LinkTapHandler,
@@ -23,6 +24,7 @@ interface Props {
   onTogglePaid: TogglePaidHandler;
   onLinkTap: LinkTapHandler;
   onEditAmount: EditAmountHandler;
+  onMove: EditAmountHandler;
 }
 
 export function PaycheckExpenseRow({
@@ -32,6 +34,7 @@ export function PaycheckExpenseRow({
   onTogglePaid,
   onLinkTap,
   onEditAmount,
+  onMove,
 }: Props) {
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
@@ -51,54 +54,88 @@ export function PaycheckExpenseRow({
     onEditAmount(expense.expenseId, payDate, sourceId);
   }, [onEditAmount, expense.expenseId, payDate, sourceId]);
 
+  const handleMove = useCallback(() => {
+    onMove(expense.expenseId, payDate, sourceId);
+  }, [onMove, expense.expenseId, payDate, sourceId]);
+
   const rowStyle = useMemo(
-    () => [styles.row, { borderTopColor: colors.divider }],
+    () => [styles.row, { borderTopColor: colors.divider, backgroundColor: colors.cardBackground }],
     [colors]
+  );
+
+  const markLabel = expense.paid
+    ? t("paychecks.markUnpaid", { payee: expense.payee })
+    : t(expense.isSetAside ? "paychecks.markSetAside" : "paychecks.markPaid", { payee: expense.payee });
+
+  const paidAction = useMemo<SwipeAction>(
+    () => ({
+      icon: expense.paid ? "arrow-undo" : "checkmark",
+      color: expense.paid ? colors.textMuted : colors.primary,
+      accessibilityLabel: markLabel,
+      onPress: handleTogglePaid,
+    }),
+    [expense.paid, colors, markLabel, handleTogglePaid]
+  );
+
+  // Paid bills stay put; moving is for shifting what's still owed
+  const moveAction = useMemo<SwipeAction | undefined>(
+    () =>
+      expense.paid
+        ? undefined
+        : {
+            icon: "swap-horizontal",
+            color: colors.warning,
+            accessibilityLabel: t("paychecks.moveThis", { payee: expense.payee }),
+            onPress: handleMove,
+          },
+    [expense.paid, expense.payee, colors, handleMove, t]
   );
 
   const textColor = expense.paid ? "textMuted" : "textDefault";
 
   return (
-    <Animated.View style={rowStyle} entering={FadeIn} exiting={FadeOut} layout={LinearTransition}>
-      <AppCheckCircle
-        checked={!!expense.paid}
-        onPress={handleTogglePaid}
-        accessibilityLabel={t(expense.isSetAside ? "paychecks.markSetAside" : "paychecks.markPaid", {
-          payee: expense.payee,
-        })}
-      />
-      <View style={styles.content}>
-        <Pressable
-          style={styles.payee}
-          onPress={handleLinkTap}
-          disabled={!expense.link}
-          hitSlop={MEASUREMENTS.hitSlop}
-          accessibilityRole={expense.link ? "link" : undefined}
-        >
-          {expense.isSetAside ? <AppSetAsideIcon /> : null}
-          <AppText
-            variant="body"
-            color={textColor}
-            numberOfLines={1}
-            style={expense.paid ? styles.paid : undefined}
-          >
-            {expense.payee}
-          </AppText>
-          {expense.link ? (
-            <Ionicons name="open-outline" size={14} color={colors.textMuted} />
-          ) : null}
-        </Pressable>
-        <Pressable
-          onPress={handleEditAmount}
-          hitSlop={MEASUREMENTS.hitSlop}
-          accessibilityRole="button"
-          accessibilityLabel={t("paychecks.changeAmount", { payee: expense.payee })}
-        >
-          <AppText variant="body" color={textColor}>
-            {formatMoney(expense.amount)}
-          </AppText>
-        </Pressable>
-      </View>
+    <Animated.View entering={FadeIn} exiting={FadeOut} layout={LinearTransition}>
+      <AppSwipeActions leftAction={paidAction} rightAction={moveAction}>
+        <View style={rowStyle}>
+          <AppCheckCircle
+            checked={!!expense.paid}
+            onPress={handleTogglePaid}
+            accessibilityLabel={markLabel}
+          />
+          <View style={styles.content}>
+            <Pressable
+              style={styles.payee}
+              onPress={handleLinkTap}
+              disabled={!expense.link}
+              hitSlop={MEASUREMENTS.hitSlop}
+              accessibilityRole={expense.link ? "link" : undefined}
+            >
+              {expense.isSetAside ? <AppSetAsideIcon /> : null}
+              <AppText
+                variant="body"
+                color={textColor}
+                numberOfLines={1}
+                style={expense.paid ? styles.paid : undefined}
+              >
+                {expense.payee}
+              </AppText>
+              {expense.link ? (
+                <Ionicons name="open-outline" size={14} color={colors.textMuted} />
+              ) : null}
+            </Pressable>
+            <Pressable
+              onPress={handleEditAmount}
+              hitSlop={MEASUREMENTS.hitSlop}
+              accessibilityRole="button"
+              accessibilityLabel={t("paychecks.changeAmount", { payee: expense.payee })}
+            >
+              <AppText variant="body" color={textColor}>
+                {formatMoney(expense.amount)}
+              </AppText>
+            </Pressable>
+          </View>
+        </View>
+      </AppSwipeActions>
     </Animated.View>
   );
 }

@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (τρέχων μήνας), υπόλοιπο %{amount}",
     "shortBy": "Έλλειμμα %{amount}",
     "moveBill": "Μετακίνηση λογαριασμού",
-    "markSetAside": "Σήμανση %{payee} ως αποθεματικού"
+    "markSetAside": "Σήμανση %{payee} ως αποθεματικού",
+    "markUnpaid": "Σήμανση %{payee} ως απλήρωτου",
+    "moveThis": "Μετακίνηση %{payee}"
   },
   "income": {
     "emptyTitle": "Κανένα έσοδο ακόμα",
@@ -182,7 +184,8 @@
       "title": "Εφάπαξ έξοδο",
       "payee": "Δικαιούχος",
       "amount": "Ποσό"
-    }
+    },
+    "markAllPaid": "Σήμανση όλων ως πληρωμένων"
   },
   "amountSheet": {
     "subtitle": "Μόνο για τον μισθό %{date}",
@@ -246,12 +249,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Στον μισθό",
     "noBills": "Δεν υπάρχουν απλήρωτοι λογαριασμοί για μετακίνηση.",
-    "noPaychecks": "Δεν υπάρχουν άλλοι επερχόμενοι μισθοί."
+    "noPaychecks": "Δεν υπάρχουν άλλοι επερχόμενοι μισθοί.",
+    "fromPaycheck": "Από %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "Το \"%{payee}\" διαγράφηκε",
     "incomeDeleted": "Το \"%{name}\" διαγράφηκε",
     "billMoved": "Το \"%{payee}\" μετακινήθηκε στις %{date}",
-    "remindersOn": "Οι υπενθυμίσεις μισθού ενεργοποιήθηκαν"
+    "remindersOn": "Οι υπενθυμίσεις μισθού ενεργοποιήθηκαν",
+    "markedAllPaid": "Όλα σημειώθηκαν ως πληρωμένα"
   }
 }

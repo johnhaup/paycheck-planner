@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (bu ay), %{amount} kaldı",
     "shortBy": "%{amount} eksik",
     "moveBill": "Fatura taşı",
-    "markSetAside": "%{payee} ayrıldı olarak işaretle"
+    "markSetAside": "%{payee} ayrıldı olarak işaretle",
+    "markUnpaid": "%{payee} ödenmedi olarak işaretle",
+    "moveThis": "%{payee} taşı"
   },
   "income": {
     "emptyTitle": "Henüz gelir yok",
@@ -182,7 +184,8 @@
       "title": "Tek Seferlik Gider",
       "payee": "Alıcı",
       "amount": "Tutar"
-    }
+    },
+    "markAllPaid": "Tümünü ödendi olarak işaretle"
   },
   "amountSheet": {
     "subtitle": "Yalnızca %{date} maaşı",
@@ -246,12 +249,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "Şu maaşa",
     "noBills": "Taşınacak ödenmemiş fatura yok.",
-    "noPaychecks": "Yaklaşan başka maaş yok."
+    "noPaychecks": "Yaklaşan başka maaş yok.",
+    "fromPaycheck": "%{date} · %{source} tarihinden"
   },
   "toasts": {
     "expenseDeleted": "\"%{payee}\" silindi",
     "incomeDeleted": "\"%{name}\" silindi",
     "billMoved": "\"%{payee}\" %{date} tarihine taşındı",
-    "remindersOn": "Maaş günü hatırlatıcıları açık"
+    "remindersOn": "Maaş günü hatırlatıcıları açık",
+    "markedAllPaid": "Tümü ödendi olarak işaretlendi"
   }
 }

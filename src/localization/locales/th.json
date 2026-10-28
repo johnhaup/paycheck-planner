@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (เดือนนี้) เหลือ %{amount}",
     "shortBy": "ขาดอีก %{amount}",
     "moveBill": "ย้ายบิล",
-    "markSetAside": "ทำเครื่องหมายว่ากันเงิน %{payee} แล้ว"
+    "markSetAside": "ทำเครื่องหมายว่ากันเงิน %{payee} แล้ว",
+    "markUnpaid": "ทำเครื่องหมายว่ายังไม่จ่าย %{payee}",
+    "moveThis": "ย้าย %{payee}"
   },
   "income": {
     "emptyTitle": "ยังไม่มีรายรับ",
@@ -181,7 +183,8 @@
       "title": "รายจ่ายครั้งเดียว",
       "payee": "ผู้รับเงิน",
       "amount": "จำนวนเงิน"
-    }
+    },
+    "markAllPaid": "ทำเครื่องหมายว่าจ่ายแล้วทั้งหมด"
   },
   "amountSheet": {
     "subtitle": "เฉพาะเงินเดือนงวด %{date}",
@@ -244,12 +247,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "ไปยังเงินเดือนงวด",
     "noBills": "ไม่มีบิลที่ยังไม่จ่ายให้ย้าย",
-    "noPaychecks": "ไม่มีเงินเดือนงวดอื่นที่กำลังจะถึง"
+    "noPaychecks": "ไม่มีเงินเดือนงวดอื่นที่กำลังจะถึง",
+    "fromPaycheck": "จาก %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "ลบ \"%{payee}\" แล้ว",
     "incomeDeleted": "ลบ \"%{name}\" แล้ว",
     "billMoved": "ย้าย \"%{payee}\" ไปที่ %{date} แล้ว",
-    "remindersOn": "เปิดการแจ้งเตือนวันจ่ายเงินแล้ว"
+    "remindersOn": "เปิดการแจ้งเตือนวันจ่ายเงินแล้ว",
+    "markedAllPaid": "ทำเครื่องหมายว่าจ่ายแล้วทั้งหมด"
   }
 }

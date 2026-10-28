@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (ಈ ತಿಂಗಳು), %{amount} ಉಳಿದಿದೆ",
     "shortBy": "%{amount} ಕೊರತೆ",
     "moveBill": "ಬಿಲ್ ಸರಿಸಿ",
-    "markSetAside": "%{payee} ಮೀಸಲಿಟ್ಟಿದೆ ಎಂದು ಗುರುತಿಸಿ"
+    "markSetAside": "%{payee} ಮೀಸಲಿಟ್ಟಿದೆ ಎಂದು ಗುರುತಿಸಿ",
+    "markUnpaid": "%{payee} ಪಾವತಿಸಿಲ್ಲ ಎಂದು ಗುರುತಿಸಿ",
+    "moveThis": "%{payee} ಸರಿಸಿ"
   },
   "income": {
     "emptyTitle": "ಇನ್ನೂ ಆದಾಯವಿಲ್ಲ",
@@ -182,7 +184,8 @@
       "title": "ಒಂದು ಬಾರಿಯ ಖರ್ಚು",
       "payee": "ಪಾವತಿ ಪಡೆಯುವವರು",
       "amount": "ಮೊತ್ತ"
-    }
+    },
+    "markAllPaid": "ಎಲ್ಲವನ್ನೂ ಪಾವತಿಸಿದೆ ಎಂದು ಗುರುತಿಸಿ"
   },
   "amountSheet": {
     "subtitle": "%{date} ಸಂಬಳಕ್ಕೆ ಮಾತ್ರ",
@@ -246,12 +249,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "ಈ ಸಂಬಳಕ್ಕೆ",
     "noBills": "ಸರಿಸಲು ಪಾವತಿಸದ ಬಿಲ್‌ಗಳಿಲ್ಲ.",
-    "noPaychecks": "ಮುಂಬರುವ ಬೇರೆ ಸಂಬಳಗಳಿಲ್ಲ."
+    "noPaychecks": "ಮುಂಬರುವ ಬೇರೆ ಸಂಬಳಗಳಿಲ್ಲ.",
+    "fromPaycheck": "%{date} · %{source} ನಿಂದ"
   },
   "toasts": {
     "expenseDeleted": "\"%{payee}\" ಅಳಿಸಲಾಗಿದೆ",
     "incomeDeleted": "\"%{name}\" ಅಳಿಸಲಾಗಿದೆ",
     "billMoved": "\"%{payee}\" ಅನ್ನು %{date} ಗೆ ಸರಿಸಲಾಗಿದೆ",
-    "remindersOn": "ಸಂಬಳದ ದಿನದ ಜ್ಞಾಪನೆಗಳು ಆನ್"
+    "remindersOn": "ಸಂಬಳದ ದಿನದ ಜ್ಞಾಪನೆಗಳು ಆನ್",
+    "markedAllPaid": "ಎಲ್ಲವನ್ನೂ ಪಾವತಿಸಿದೆ ಎಂದು ಗುರುತಿಸಲಾಗಿದೆ"
   }
 }

@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
-import { FlatList, StyleSheet } from "react-native";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { FlatList, Pressable, StyleSheet } from "react-native";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useStore } from "@/store";
 import { openPaymentLink } from "@/utils/links";
 import { useThemeStore } from "@/stores/themeStore";
@@ -14,6 +14,8 @@ import { PayDateExpenseRow } from "@/components/payDateDetail/PayDateExpenseRow"
 import { OneTimeExpenseForm } from "@/components/payDateDetail/OneTimeExpenseForm";
 import { getPaycheck, isExpenseLinkedToPaycheck } from "@/utils/payDates";
 import { getPayAmount } from "@/utils/paycheckMonths";
+import { hapticSuccess } from "@/utils/haptics";
+import { withUndo } from "@/utils/undo";
 import type { Expense } from "@/types";
 
 type ListItem =
@@ -51,6 +53,7 @@ export default function PayDateDetailScreen() {
   const assignExpense = useStore((s) => s.assignExpense);
   const unassignExpense = useStore((s) => s.unassignExpense);
   const togglePaid = useStore((s) => s.togglePaid);
+  const markPaid = useStore((s) => s.markPaid);
   const autoMarkPaid = useThemeStore((s) => s.autoMarkPaidOnLinkTap);
 
   const incomeSource = useMemo(
@@ -215,9 +218,30 @@ export default function PayDateDetailScreen() {
 
   const remaining = useMemo(() => payAmount - totalAssigned, [payAmount, totalAssigned]);
 
-  const canMoveBill = useMemo(
-    () => assignedExpenses.some((e) => !assignedExpenseIds.get(e.id)?.paid),
+  const unpaidExpenseIds = useMemo(
+    () => assignedExpenses.filter((e) => !assignedExpenseIds.get(e.id)?.paid).map((e) => e.id),
     [assignedExpenses, assignedExpenseIds]
+  );
+
+  const canMoveBill = unpaidExpenseIds.length > 0;
+
+  const handleMarkAllPaid = useCallback(() => {
+    withUndo(t("toasts.markedAllPaid"), () => markPaid(unpaidExpenseIds, payDate, sourceId));
+    hapticSuccess();
+  }, [unpaidExpenseIds, markPaid, payDate, sourceId, t]);
+
+  const renderMarkAllPaidButton = useCallback(
+    () => (
+      <Pressable onPress={handleMarkAllPaid} hitSlop={MEASUREMENTS.hitSlop} accessibilityRole="button">
+        <AppText variant="bodyStrong" color="primaryText">{t("payDate.markAllPaid")}</AppText>
+      </Pressable>
+    ),
+    [handleMarkAllPaid, t]
+  );
+
+  const screenOptions = useMemo(
+    () => ({ headerRight: canMoveBill ? renderMarkAllPaidButton : undefined }),
+    [canMoveBill, renderMarkAllPaidButton]
   );
 
   const listData = useMemo(() => {
@@ -337,13 +361,16 @@ export default function PayDateDetailScreen() {
   );
 
   return (
-    <FlatList
-      data={listData}
-      keyExtractor={keyExtractor}
-      renderItem={renderItem}
-      style={listStyle}
-      contentContainerStyle={styles.listContent}
-    />
+    <>
+      <Stack.Screen options={screenOptions} />
+      <FlatList
+        data={listData}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+        style={listStyle}
+        contentContainerStyle={styles.listContent}
+      />
+    </>
   );
 }
 

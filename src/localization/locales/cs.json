@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (tento měsíc), zbývá %{amount}",
     "shortBy": "Chybí %{amount}",
     "moveBill": "Přesunout účet",
-    "markSetAside": "Označit %{payee} jako odložené"
+    "markSetAside": "Označit %{payee} jako odložené",
+    "markUnpaid": "Označit %{payee} jako nezaplacené",
+    "moveThis": "Přesunout %{payee}"
   },
   "income": {
     "emptyTitle": "Zatím žádné příjmy",
@@ -184,7 +186,8 @@
       "title": "Jednorázový výdaj",
       "payee": "Příjemce",
       "amount": "Částka"
-    }
+    },
+    "markAllPaid": "Označit vše jako zaplacené"
   },
   "amountSheet": {
     "subtitle": "Jen výplata %{date}",
@@ -250,12 +253,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "K výplatě",
     "noBills": "Žádné nezaplacené účty k přesunutí.",
-    "noPaychecks": "Žádné další nadcházející výplaty."
+    "noPaychecks": "Žádné další nadcházející výplaty.",
+    "fromPaycheck": "Z %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "Smazáno „%{payee}“",
     "incomeDeleted": "Smazáno „%{name}“",
     "billMoved": "„%{payee}“ přesunuto na %{date}",
-    "remindersOn": "Připomenutí výplaty zapnuta"
+    "remindersOn": "Připomenutí výplaty zapnuta",
+    "markedAllPaid": "Vše označeno jako zaplacené"
   }
 }

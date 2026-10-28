@@ -53,7 +53,9 @@
     "chartBarCurrentLabel": "%{month} (tento mesiac), zostáva %{amount}",
     "shortBy": "Chýba %{amount}",
     "moveBill": "Presunúť účet",
-    "markSetAside": "Označiť %{payee} ako odložené"
+    "markSetAside": "Označiť %{payee} ako odložené",
+    "markUnpaid": "Označiť %{payee} ako nezaplatené",
+    "moveThis": "Presunúť %{payee}"
   },
   "income": {
     "emptyTitle": "Zatiaľ žiadne príjmy",
@@ -184,7 +186,8 @@
       "title": "Jednorazový výdavok",
       "payee": "Príjemca",
       "amount": "Suma"
-    }
+    },
+    "markAllPaid": "Označiť všetko ako zaplatené"
   },
   "amountSheet": {
     "subtitle": "Len výplata %{date}",
@@ -250,12 +253,14 @@
     "billLabel": "%{payee} · %{amount}",
     "toPaycheck": "K výplate",
     "noBills": "Žiadne nezaplatené účty na presunutie.",
-    "noPaychecks": "Žiadne ďalšie nadchádzajúce výplaty."
+    "noPaychecks": "Žiadne ďalšie nadchádzajúce výplaty.",
+    "fromPaycheck": "Z %{date} · %{source}"
   },
   "toasts": {
     "expenseDeleted": "Odstránené „%{payee}“",
     "incomeDeleted": "Odstránené „%{name}“",
     "billMoved": "„%{payee}“ presunuté na %{date}",
-    "remindersOn": "Pripomenutia výplaty zapnuté"
+    "remindersOn": "Pripomenutia výplaty zapnuté",
+    "markedAllPaid": "Všetko označené ako zaplatené"
   }
 }
