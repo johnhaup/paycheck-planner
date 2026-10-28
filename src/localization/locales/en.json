@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Cancel",
     "delete": "Delete",
+    "undo": "Undo",
     "done": "Done",
     "save": "Save",
     "add": "Add",
     "update": "Update",
     "back": "Back",
-    "error": "Error",
     "none": "None",
     "unknown": "Unknown",
     "removed": "Removed",
@@ -67,8 +67,6 @@
     "swipeHint": "Swipe left on a source to delete it.",
     "addSource": "Add income source",
     "perCheck": "per check",
-    "deleteTitle": "Delete Income Source",
-    "deleteMessage": "Delete \"%{name}\" and all its expense assignments?",
     "frequency": {
       "weekly": "Weekly",
       "biweekly": "Bi-weekly",
@@ -114,8 +112,6 @@
     },
     "addExpense": "Add expense",
     "openLink": "Open payment link for %{payee}",
-    "deleteTitle": "Delete Expense",
-    "deleteMessage": "Delete \"%{payee}\" and all its assignments?",
     "sections": {
       "notLinked": "Not linked",
       "oneTime": "One-time",
@@ -254,5 +250,11 @@
     "toPaycheck": "To paycheck",
     "noBills": "No unpaid bills to move.",
     "noPaychecks": "No other upcoming paychecks."
+  },
+  "toasts": {
+    "expenseDeleted": "Deleted \"%{payee}\"",
+    "incomeDeleted": "Deleted \"%{name}\"",
+    "billMoved": "Moved \"%{payee}\" to %{date}",
+    "remindersOn": "Payday reminders on"
   }
 }

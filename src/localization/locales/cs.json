@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Zrušit",
     "delete": "Smazat",
+    "undo": "Zpět",
     "done": "Hotovo",
     "save": "Uložit",
     "add": "Přidat",
     "update": "Aktualizovat",
     "back": "Zpět",
-    "error": "Chyba",
     "none": "Žádné",
     "unknown": "Neznámé",
     "removed": "Odebráno",
@@ -64,8 +64,6 @@
     "swipeHint": "Přejetím doleva zdroj smažete.",
     "addSource": "Přidat zdroj příjmu",
     "perCheck": "na výplatu",
-    "deleteTitle": "Smazat zdroj příjmu",
-    "deleteMessage": "Smazat „%{name}“ a všechna přiřazení výdajů?",
     "frequency": {
       "weekly": "Týdně",
       "biweekly": "Každé dva týdny",
@@ -113,8 +111,6 @@
     },
     "addExpense": "Přidat výdaj",
     "openLink": "Otevřít platební odkaz: %{payee}",
-    "deleteTitle": "Smazat výdaj",
-    "deleteMessage": "Smazat „%{payee}“ a všechna jeho přiřazení?",
     "sections": {
       "notLinked": "Nepropojené",
       "oneTime": "Jednorázové",
@@ -255,5 +251,11 @@
     "toPaycheck": "K výplatě",
     "noBills": "Žádné nezaplacené účty k přesunutí.",
     "noPaychecks": "Žádné další nadcházející výplaty."
+  },
+  "toasts": {
+    "expenseDeleted": "Smazáno „%{payee}“",
+    "incomeDeleted": "Smazáno „%{name}“",
+    "billMoved": "„%{payee}“ přesunuto na %{date}",
+    "remindersOn": "Připomenutí výplaty zapnuta"
   }
 }

@@ -13,6 +13,7 @@ import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { AppSegmentedControl, type SegmentOption } from "@/components/AppSegmentedControl";
 import { ExpenseRow } from "@/components/expenses/ExpenseRow";
 import { openPaymentLink } from "@/utils/links";
+import { withUndo } from "@/utils/undo";
 import {
   buildExpenseSections,
   summarizeExpenses,
@@ -54,6 +55,14 @@ export default function ExpensesScreen() {
     [router]
   );
 
+  const handleDelete = useCallback(
+    (id: string) => {
+      const payee = expenses.find((e) => e.id === id)?.payee ?? "";
+      withUndo(t("toasts.expenseDeleted", { payee }), () => deleteExpense(id));
+    },
+    [expenses, deleteExpense, t]
+  );
+
   const renderItem = useCallback(
     ({
       item,
@@ -72,11 +81,11 @@ export default function ExpensesScreen() {
         isFirst={index === 0}
         isLast={index === section.data.length - 1}
         onEdit={handleEdit}
-        onDelete={deleteExpense}
+        onDelete={handleDelete}
         onOpenLink={openPaymentLink}
       />
     ),
-    [handleEdit, deleteExpense]
+    [handleEdit, handleDelete]
   );
 
   const filterOptions = useMemo<SegmentOption<ExpenseFilter>[]>(

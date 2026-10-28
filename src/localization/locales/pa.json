@@ -2,12 +2,12 @@
   "common": {
     "cancel": "ਰੱਦ ਕਰੋ",
     "delete": "ਮਿਟਾਓ",
+    "undo": "ਵਾਪਸ ਕਰੋ",
     "done": "ਹੋ ਗਿਆ",
     "save": "ਸੇਵ ਕਰੋ",
     "add": "ਸ਼ਾਮਲ ਕਰੋ",
     "update": "ਅੱਪਡੇਟ ਕਰੋ",
     "back": "ਪਿੱਛੇ",
-    "error": "ਗਲਤੀ",
     "none": "ਕੋਈ ਨਹੀਂ",
     "unknown": "ਅਣਜਾਣ",
     "removed": "ਹਟਾਇਆ ਗਿਆ",
@@ -64,8 +64,6 @@
     "swipeHint": "ਕਿਸੇ ਸਰੋਤ ਨੂੰ ਮਿਟਾਉਣ ਲਈ ਉਸ 'ਤੇ ਖੱਬੇ ਸਵਾਈਪ ਕਰੋ।",
     "addSource": "ਆਮਦਨ ਸਰੋਤ ਸ਼ਾਮਲ ਕਰੋ",
     "perCheck": "ਪ੍ਰਤੀ ਤਨਖ਼ਾਹ",
-    "deleteTitle": "ਆਮਦਨ ਸਰੋਤ ਮਿਟਾਓ",
-    "deleteMessage": "\"%{name}\" ਅਤੇ ਇਸ ਦੇ ਸਾਰੇ ਖਰਚ ਅਸਾਈਨਮੈਂਟ ਮਿਟਾਉਣੇ ਹਨ?",
     "frequency": {
       "weekly": "ਹਫ਼ਤਾਵਾਰ",
       "biweekly": "ਹਰ ਦੋ ਹਫ਼ਤੇ",
@@ -111,8 +109,6 @@
     },
     "addExpense": "ਖਰਚਾ ਸ਼ਾਮਲ ਕਰੋ",
     "openLink": "%{payee} ਦਾ ਪੇਮੈਂਟ ਲਿੰਕ ਖੋਲ੍ਹੋ",
-    "deleteTitle": "ਖਰਚਾ ਮਿਟਾਓ",
-    "deleteMessage": "\"%{payee}\" ਅਤੇ ਇਸ ਦੇ ਸਾਰੇ ਅਸਾਈਨਮੈਂਟ ਮਿਟਾਉਣੇ ਹਨ?",
     "sections": {
       "notLinked": "ਲਿੰਕ ਨਹੀਂ",
       "oneTime": "ਇੱਕ ਵਾਰ",
@@ -251,5 +247,11 @@
     "toPaycheck": "ਇਸ ਤਨਖ਼ਾਹ 'ਤੇ",
     "noBills": "ਮੂਵ ਕਰਨ ਲਈ ਕੋਈ ਬਕਾਇਆ ਬਿੱਲ ਨਹੀਂ।",
     "noPaychecks": "ਅੱਗੇ ਕੋਈ ਹੋਰ ਤਨਖ਼ਾਹ ਨਹੀਂ।"
+  },
+  "toasts": {
+    "expenseDeleted": "\"%{payee}\" ਮਿਟਾਇਆ ਗਿਆ",
+    "incomeDeleted": "\"%{name}\" ਮਿਟਾਇਆ ਗਿਆ",
+    "billMoved": "\"%{payee}\" ਨੂੰ %{date} 'ਤੇ ਮੂਵ ਕੀਤਾ",
+    "remindersOn": "ਤਨਖ਼ਾਹ ਰਿਮਾਈਂਡਰ ਚਾਲੂ"
   }
 }

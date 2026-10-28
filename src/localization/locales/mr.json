@@ -2,12 +2,12 @@
   "common": {
     "cancel": "रद्द करा",
     "delete": "हटवा",
+    "undo": "पूर्ववत करा",
     "done": "झाले",
     "save": "सेव्ह करा",
     "add": "जोडा",
     "update": "अपडेट करा",
     "back": "मागे",
-    "error": "त्रुटी",
     "none": "काही नाही",
     "unknown": "अज्ञात",
     "removed": "काढले",
@@ -67,8 +67,6 @@
     "swipeHint": "स्रोत हटवण्यासाठी त्यावर डावीकडे स्वाइप करा.",
     "addSource": "उत्पन्नाचा स्रोत जोडा",
     "perCheck": "प्रति पगार",
-    "deleteTitle": "उत्पन्नाचा स्रोत हटवा",
-    "deleteMessage": "\"%{name}\" आणि त्याच्या सर्व खर्च नेमणुका हटवायच्या?",
     "frequency": {
       "weekly": "साप्ताहिक",
       "biweekly": "दर दोन आठवड्यांनी",
@@ -114,8 +112,6 @@
     },
     "addExpense": "खर्च जोडा",
     "openLink": "%{payee}ची पेमेंट लिंक उघडा",
-    "deleteTitle": "खर्च हटवा",
-    "deleteMessage": "\"%{payee}\" आणि त्याच्या सर्व नेमणुका हटवायच्या?",
     "sections": {
       "notLinked": "लिंक नाही",
       "oneTime": "एकदाच",
@@ -254,5 +250,11 @@
     "toPaycheck": "या पगारावर",
     "noBills": "हलवण्यासाठी न भरलेली बिले नाहीत.",
     "noPaychecks": "पुढे इतर पगार नाहीत."
+  },
+  "toasts": {
+    "expenseDeleted": "\"%{payee}\" हटवले",
+    "incomeDeleted": "\"%{name}\" हटवले",
+    "billMoved": "\"%{payee}\" %{date} वर हलवले",
+    "remindersOn": "पगार रिमाइंडर सुरू"
   }
 }

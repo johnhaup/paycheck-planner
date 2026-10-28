@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Batal",
     "delete": "Hapus",
+    "undo": "Urungkan",
     "done": "Selesai",
     "save": "Simpan",
     "add": "Tambah",
     "update": "Perbarui",
     "back": "Kembali",
-    "error": "Kesalahan",
     "none": "Tidak ada",
     "unknown": "Tidak diketahui",
     "removed": "Dihapus",
@@ -64,8 +64,6 @@
     "swipeHint": "Geser ke kiri pada sumber untuk menghapusnya.",
     "addSource": "Tambah sumber pemasukan",
     "perCheck": "per gaji",
-    "deleteTitle": "Hapus Sumber Pemasukan",
-    "deleteMessage": "Hapus \"%{name}\" beserta semua alokasi pengeluarannya?",
     "frequency": {
       "weekly": "Mingguan",
       "biweekly": "Dua mingguan",
@@ -110,8 +108,6 @@
     },
     "addExpense": "Tambah pengeluaran",
     "openLink": "Buka tautan pembayaran untuk %{payee}",
-    "deleteTitle": "Hapus Pengeluaran",
-    "deleteMessage": "Hapus \"%{payee}\" beserta semua alokasinya?",
     "sections": {
       "notLinked": "Tidak tertaut",
       "oneTime": "Sekali",
@@ -249,5 +245,11 @@
     "toPaycheck": "Ke gaji",
     "noBills": "Tidak ada tagihan belum dibayar untuk dipindahkan.",
     "noPaychecks": "Tidak ada gaji mendatang lainnya."
+  },
+  "toasts": {
+    "expenseDeleted": "\"%{payee}\" dihapus",
+    "incomeDeleted": "\"%{name}\" dihapus",
+    "billMoved": "\"%{payee}\" dipindahkan ke %{date}",
+    "remindersOn": "Pengingat gajian aktif"
   }
 }

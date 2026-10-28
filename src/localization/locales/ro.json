@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Anulează",
     "delete": "Șterge",
+    "undo": "Anulează",
     "done": "Gata",
     "save": "Salvează",
     "add": "Adaugă",
     "update": "Actualizează",
     "back": "Înapoi",
-    "error": "Eroare",
     "none": "Niciunul",
     "unknown": "Necunoscut",
     "removed": "Eliminat",
@@ -65,8 +65,6 @@
     "swipeHint": "Glisează la stânga pe o sursă pentru a o șterge.",
     "addSource": "Adaugă sursă de venit",
     "perCheck": "pe salariu",
-    "deleteTitle": "Șterge sursa de venit",
-    "deleteMessage": "Ștergi „%{name}” și toate alocările sale de cheltuieli?",
     "frequency": {
       "weekly": "Săptămânal",
       "biweekly": "La două săptămâni",
@@ -113,8 +111,6 @@
     },
     "addExpense": "Adaugă cheltuială",
     "openLink": "Deschide linkul de plată pentru %{payee}",
-    "deleteTitle": "Șterge cheltuiala",
-    "deleteMessage": "Ștergi „%{payee}” și toate alocările sale?",
     "sections": {
       "notLinked": "Nelegate",
       "oneTime": "O singură dată",
@@ -254,5 +250,11 @@
     "toPaycheck": "La salariul",
     "noBills": "Nicio factură neplătită de mutat.",
     "noPaychecks": "Niciun alt salariu viitor."
+  },
+  "toasts": {
+    "expenseDeleted": "„%{payee}” a fost șters",
+    "incomeDeleted": "„%{name}” a fost șters",
+    "billMoved": "„%{payee}” a fost mutat pe %{date}",
+    "remindersOn": "Mementourile de zi de salariu sunt activate"
   }
 }

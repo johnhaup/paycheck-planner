@@ -18,6 +18,7 @@ import { getPaycheck, parseLocalDate } from "@/utils/payDates";
 import { buildPaycheckItem } from "@/utils/paycheckMonths";
 import { formatShortDate } from "@/utils/dates";
 import { hapticSuccess } from "@/utils/haptics";
+import { withUndo } from "@/utils/undo";
 
 export default function MoveBillScreen() {
   const router = useRouter();
@@ -56,10 +57,12 @@ export default function MoveBillScreen() {
     if (!expenseId || !target) {
       return;
     }
-    moveExpense(expenseId, from, target);
+    const payee = bills.find((b) => b.expenseId === expenseId)?.payee ?? "";
+    const date = formatShortDate(parseLocalDate(target.payDate));
+    withUndo(t("toasts.billMoved", { payee, date }), () => moveExpense(expenseId, from, target));
     hapticSuccess();
     router.back();
-  }, [expenseId, target, moveExpense, from, router]);
+  }, [expenseId, target, bills, moveExpense, from, router, t]);
 
   const containerStyle = useMemo(
     () => [styles.container, { backgroundColor: colors.modalBackground }],

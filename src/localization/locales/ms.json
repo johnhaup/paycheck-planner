@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Batal",
     "delete": "Padam",
+    "undo": "Buat asal",
     "done": "Selesai",
     "save": "Simpan",
     "add": "Tambah",
     "update": "Kemas kini",
     "back": "Kembali",
-    "error": "Ralat",
     "none": "Tiada",
     "unknown": "Tidak diketahui",
     "removed": "Dibuang",
@@ -64,8 +64,6 @@
     "swipeHint": "Leret ke kiri pada sumber untuk memadamnya.",
     "addSource": "Tambah sumber pendapatan",
     "perCheck": "setiap gaji",
-    "deleteTitle": "Padam Sumber Pendapatan",
-    "deleteMessage": "Padam \"%{name}\" dan semua peruntukan perbelanjaannya?",
     "frequency": {
       "weekly": "Mingguan",
       "biweekly": "Dwimingguan",
@@ -110,8 +108,6 @@
     },
     "addExpense": "Tambah perbelanjaan",
     "openLink": "Buka pautan pembayaran untuk %{payee}",
-    "deleteTitle": "Padam Perbelanjaan",
-    "deleteMessage": "Padam \"%{payee}\" dan semua peruntukannya?",
     "sections": {
       "notLinked": "Tidak dipautkan",
       "oneTime": "Sekali sahaja",
@@ -249,5 +245,11 @@
     "toPaycheck": "Ke gaji",
     "noBills": "Tiada bil belum dibayar untuk dialihkan.",
     "noPaychecks": "Tiada gaji akan datang yang lain."
+  },
+  "toasts": {
+    "expenseDeleted": "\"%{payee}\" dipadam",
+    "incomeDeleted": "\"%{name}\" dipadam",
+    "billMoved": "\"%{payee}\" dialihkan ke %{date}",
+    "remindersOn": "Peringatan hari gaji dihidupkan"
   }
 }

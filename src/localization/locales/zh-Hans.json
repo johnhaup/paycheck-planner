@@ -2,12 +2,12 @@
   "common": {
     "cancel": "取消",
     "delete": "删除",
+    "undo": "撤销",
     "done": "完成",
     "save": "保存",
     "add": "添加",
     "update": "更新",
     "back": "返回",
-    "error": "错误",
     "none": "无",
     "unknown": "未知",
     "removed": "已移除",
@@ -64,8 +64,6 @@
     "swipeHint": "向左滑动收入来源即可删除。",
     "addSource": "添加收入来源",
     "perCheck": "每笔",
-    "deleteTitle": "删除收入来源",
-    "deleteMessage": "删除“%{name}”及其所有支出分配？",
     "frequency": {
       "weekly": "每周",
       "biweekly": "每两周",
@@ -110,8 +108,6 @@
     },
     "addExpense": "添加支出",
     "openLink": "打开%{payee}的付款链接",
-    "deleteTitle": "删除支出",
-    "deleteMessage": "删除“%{payee}”及其所有分配？",
     "sections": {
       "notLinked": "未关联",
       "oneTime": "一次性",
@@ -249,5 +245,11 @@
     "toPaycheck": "移至工资",
     "noBills": "没有可移动的未付账单。",
     "noPaychecks": "没有其他即将到来的工资。"
+  },
+  "toasts": {
+    "expenseDeleted": "已删除“%{payee}”",
+    "incomeDeleted": "已删除“%{name}”",
+    "billMoved": "已将“%{payee}”移至%{date}",
+    "remindersOn": "发薪日提醒已开启"
   }
 }

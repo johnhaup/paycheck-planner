@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
-import { View, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { toast } from "sonner-native";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
@@ -34,12 +35,12 @@ export function OneTimeExpenseForm({ payDate, sourceId }: Props) {
 
   const handleAdd = useCallback(() => {
     if (!payee.trim()) {
-      Alert.alert(t("common.error"), t("expenses.form.payeeRequired"));
+      toast.error(t("expenses.form.payeeRequired"));
       return;
     }
     const parsed = parseFloat(amount);
     if (isNaN(parsed) || parsed <= 0) {
-      Alert.alert(t("common.error"), t("expenses.form.invalidAmount"));
+      toast.error(t("expenses.form.invalidAmount"));
       return;
     }
     const expenseId = addExpense({

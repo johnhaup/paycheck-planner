@@ -2,12 +2,12 @@
   "common": {
     "cancel": "إلغاء",
     "delete": "حذف",
+    "undo": "تراجع",
     "done": "تم",
     "save": "حفظ",
     "add": "إضافة",
     "update": "تحديث",
     "back": "رجوع",
-    "error": "خطأ",
     "none": "لا شيء",
     "unknown": "غير معروف",
     "removed": "تمت الإزالة",
@@ -64,8 +64,6 @@
     "swipeHint": "اسحب على أحد المصادر لحذفه.",
     "addSource": "إضافة مصدر دخل",
     "perCheck": "لكل راتب",
-    "deleteTitle": "حذف مصدر الدخل",
-    "deleteMessage": "هل تريد حذف \"%{name}\" وجميع تخصيصات مصروفاته؟",
     "frequency": {
       "weekly": "أسبوعي",
       "biweekly": "كل أسبوعين",
@@ -115,8 +113,6 @@
     },
     "addExpense": "إضافة مصروف",
     "openLink": "فتح رابط الدفع لـ %{payee}",
-    "deleteTitle": "حذف المصروف",
-    "deleteMessage": "هل تريد حذف \"%{payee}\" وجميع تخصيصاته؟",
     "sections": {
       "notLinked": "غير مرتبط",
       "oneTime": "لمرة واحدة",
@@ -259,5 +255,11 @@
     "toPaycheck": "إلى الراتب",
     "noBills": "لا توجد فواتير غير مدفوعة لنقلها.",
     "noPaychecks": "لا توجد رواتب قادمة أخرى."
+  },
+  "toasts": {
+    "expenseDeleted": "تم حذف \"%{payee}\"",
+    "incomeDeleted": "تم حذف \"%{name}\"",
+    "billMoved": "تم نقل \"%{payee}\" إلى %{date}",
+    "remindersOn": "تم تشغيل تذكيرات يوم الراتب"
   }
 }

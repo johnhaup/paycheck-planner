@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
-import { View, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import { toast } from "sonner-native";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
@@ -37,7 +38,7 @@ export default function ExpenseAmountScreen() {
   const handleSave = useCallback(() => {
     const parsed = parseFloat(amount);
     if (isNaN(parsed) || parsed < 0) {
-      Alert.alert(t("common.error"), t("expenses.form.invalidAmount"));
+      toast.error(t("expenses.form.invalidAmount"));
       return;
     }
     // Linked bills have no assignment until something on this paycheck is changed

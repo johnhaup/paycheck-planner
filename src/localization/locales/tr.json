@@ -2,12 +2,12 @@
   "common": {
     "cancel": "İptal",
     "delete": "Sil",
+    "undo": "Geri al",
     "done": "Bitti",
     "save": "Kaydet",
     "add": "Ekle",
     "update": "Güncelle",
     "back": "Geri",
-    "error": "Hata",
     "none": "Yok",
     "unknown": "Bilinmiyor",
     "removed": "Kaldırıldı",
@@ -64,8 +64,6 @@
     "swipeHint": "Silmek için bir kaynağı sola kaydır.",
     "addSource": "Gelir kaynağı ekle",
     "perCheck": "maaş başına",
-    "deleteTitle": "Gelir Kaynağını Sil",
-    "deleteMessage": "\"%{name}\" ve tüm gider atamaları silinsin mi?",
     "frequency": {
       "weekly": "Haftalık",
       "biweekly": "İki haftada bir",
@@ -111,8 +109,6 @@
     },
     "addExpense": "Gider ekle",
     "openLink": "%{payee} için ödeme bağlantısını aç",
-    "deleteTitle": "Gideri Sil",
-    "deleteMessage": "\"%{payee}\" ve tüm atamaları silinsin mi?",
     "sections": {
       "notLinked": "Bağlı değil",
       "oneTime": "Tek seferlik",
@@ -251,5 +247,11 @@
     "toPaycheck": "Şu maaşa",
     "noBills": "Taşınacak ödenmemiş fatura yok.",
     "noPaychecks": "Yaklaşan başka maaş yok."
+  },
+  "toasts": {
+    "expenseDeleted": "\"%{payee}\" silindi",
+    "incomeDeleted": "\"%{name}\" silindi",
+    "billMoved": "\"%{payee}\" %{date} tarihine taşındı",
+    "remindersOn": "Maaş günü hatırlatıcıları açık"
   }
 }

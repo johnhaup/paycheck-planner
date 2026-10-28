@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Peruuta",
     "delete": "Poista",
+    "undo": "Kumoa",
     "done": "Valmis",
     "save": "Tallenna",
     "add": "Lisää",
     "update": "Päivitä",
     "back": "Takaisin",
-    "error": "Virhe",
     "none": "Ei mitään",
     "unknown": "Tuntematon",
     "removed": "Poistettu",
@@ -64,8 +64,6 @@
     "swipeHint": "Pyyhkäise lähdettä vasemmalle poistaaksesi sen.",
     "addSource": "Lisää tulonlähde",
     "perCheck": "per palkka",
-    "deleteTitle": "Poista tulonlähde",
-    "deleteMessage": "Poistetaanko ”%{name}” ja kaikki sen menokohdistukset?",
     "frequency": {
       "weekly": "Viikoittain",
       "biweekly": "Joka toinen viikko",
@@ -111,8 +109,6 @@
     },
     "addExpense": "Lisää meno",
     "openLink": "Avaa maksulinkki: %{payee}",
-    "deleteTitle": "Poista meno",
-    "deleteMessage": "Poistetaanko ”%{payee}” ja kaikki sen kohdistukset?",
     "sections": {
       "notLinked": "Ei linkitetty",
       "oneTime": "Kertaluonteiset",
@@ -251,5 +247,11 @@
     "toPaycheck": "Palkalle",
     "noBills": "Ei siirrettäviä maksamattomia laskuja.",
     "noPaychecks": "Ei muita tulevia palkkoja."
+  },
+  "toasts": {
+    "expenseDeleted": "”%{payee}” poistettiin",
+    "incomeDeleted": "”%{name}” poistettiin",
+    "billMoved": "”%{payee}” siirrettiin päivälle %{date}",
+    "remindersOn": "Palkkapäivämuistutukset käytössä"
   }
 }

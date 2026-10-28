@@ -3,6 +3,7 @@ import { Appearance, Pressable, StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { Toaster } from "sonner-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors, useIsDark } from "@/hooks/useColors";
 import { useStackScreenOptions } from "@/hooks/useStackScreenOptions";
@@ -100,6 +101,17 @@ export default function RootLayout() {
     [modalOptions, renderSettingsCloseButton, t]
   );
 
+  const toastOptions = useMemo(
+    () => ({
+      style: { backgroundColor: colors.cardBackgroundElevated, borderColor: colors.border },
+      titleStyle: { color: colors.textDefault },
+      descriptionStyle: { color: colors.textSecondary },
+      actionButtonStyle: { backgroundColor: colors.primary },
+      actionButtonTextStyle: { color: colors.onPrimary },
+    }),
+    [colors]
+  );
+
   // Native chrome (tab bar, alerts, pickers) follows the OS-level scheme, so
   // mirror the in-app choice there.
   useEffect(() => {
@@ -123,6 +135,7 @@ export default function RootLayout() {
           <Stack.Screen name="move-bill" options={sheetOptions} />
           <Stack.Screen name="date-picker" options={sheetOptions} />
         </Stack>
+        <Toaster theme={isDark ? "dark" : "light"} toastOptions={toastOptions} />
       </ThemeProvider>
     </GestureHandlerRootView>
   );

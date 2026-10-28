@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Avbryt",
     "delete": "Slett",
+    "undo": "Angre",
     "done": "Ferdig",
     "save": "Lagre",
     "add": "Legg til",
     "update": "Oppdater",
     "back": "Tilbake",
-    "error": "Feil",
     "none": "Ingen",
     "unknown": "Ukjent",
     "removed": "Fjernet",
@@ -64,8 +64,6 @@
     "swipeHint": "Sveip til venstre på en kilde for å slette den.",
     "addSource": "Legg til inntektskilde",
     "perCheck": "per utbetaling",
-    "deleteTitle": "Slett inntektskilde",
-    "deleteMessage": "Slette «%{name}» og alle utgiftstildelingene?",
     "frequency": {
       "weekly": "Ukentlig",
       "biweekly": "Annenhver uke",
@@ -111,8 +109,6 @@
     },
     "addExpense": "Legg til utgift",
     "openLink": "Åpne betalingslenke for %{payee}",
-    "deleteTitle": "Slett utgift",
-    "deleteMessage": "Slette «%{payee}» og alle tildelingene?",
     "sections": {
       "notLinked": "Ikke koblet",
       "oneTime": "Engangs",
@@ -251,5 +247,11 @@
     "toPaycheck": "Til lønn",
     "noBills": "Ingen ubetalte regninger å flytte.",
     "noPaychecks": "Ingen andre kommende lønninger."
+  },
+  "toasts": {
+    "expenseDeleted": "Slettet «%{payee}»",
+    "incomeDeleted": "Slettet «%{name}»",
+    "billMoved": "Flyttet «%{payee}» til %{date}",
+    "remindersOn": "Lønningsdagsvarsler er på"
   }
 }

@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Annulla",
     "delete": "Elimina",
+    "undo": "Annulla",
     "done": "Fine",
     "save": "Salva",
     "add": "Aggiungi",
     "update": "Aggiorna",
     "back": "Indietro",
-    "error": "Errore",
     "none": "Nessuno",
     "unknown": "Sconosciuto",
     "removed": "Rimosso",
@@ -65,8 +65,6 @@
     "swipeHint": "Scorri verso sinistra su una fonte per eliminarla.",
     "addSource": "Aggiungi fonte di reddito",
     "perCheck": "per stipendio",
-    "deleteTitle": "Elimina fonte di reddito",
-    "deleteMessage": "Eliminare \"%{name}\" e tutte le spese assegnate?",
     "frequency": {
       "weekly": "Settimanale",
       "biweekly": "Ogni due settimane",
@@ -112,8 +110,6 @@
     },
     "addExpense": "Aggiungi spesa",
     "openLink": "Apri il link di pagamento di %{payee}",
-    "deleteTitle": "Elimina spesa",
-    "deleteMessage": "Eliminare \"%{payee}\" e tutte le sue assegnazioni?",
     "sections": {
       "notLinked": "Non collegate",
       "oneTime": "Una tantum",
@@ -252,5 +248,11 @@
     "toPaycheck": "Allo stipendio",
     "noBills": "Nessuna bolletta da pagare da spostare.",
     "noPaychecks": "Nessun altro stipendio in arrivo."
+  },
+  "toasts": {
+    "expenseDeleted": "\"%{payee}\" eliminato",
+    "incomeDeleted": "\"%{name}\" eliminato",
+    "billMoved": "\"%{payee}\" spostato al %{date}",
+    "remindersOn": "Promemoria giorno di paga attivi"
   }
 }

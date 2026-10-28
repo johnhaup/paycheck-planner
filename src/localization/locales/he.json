@@ -2,12 +2,12 @@
   "common": {
     "cancel": "ביטול",
     "delete": "מחיקה",
+    "undo": "ביטול",
     "done": "סיום",
     "save": "שמירה",
     "add": "הוספה",
     "update": "עדכון",
     "back": "חזרה",
-    "error": "שגיאה",
     "none": "ללא",
     "unknown": "לא ידוע",
     "removed": "הוסר",
@@ -64,8 +64,6 @@
     "swipeHint": "החליקו על מקור כדי למחוק אותו.",
     "addSource": "הוספת מקור הכנסה",
     "perCheck": "למשכורת",
-    "deleteTitle": "מחיקת מקור הכנסה",
-    "deleteMessage": "למחוק את \"%{name}\" ואת כל שיבוצי ההוצאות שלו?",
     "frequency": {
       "weekly": "שבועי",
       "biweekly": "דו-שבועי",
@@ -113,8 +111,6 @@
     },
     "addExpense": "הוספת הוצאה",
     "openLink": "פתיחת קישור התשלום של %{payee}",
-    "deleteTitle": "מחיקת הוצאה",
-    "deleteMessage": "למחוק את \"%{payee}\" ואת כל השיבוצים שלו?",
     "sections": {
       "notLinked": "לא מקושר",
       "oneTime": "חד-פעמי",
@@ -255,5 +251,11 @@
     "toPaycheck": "למשכורת",
     "noBills": "אין חשבונות שלא שולמו להעברה.",
     "noPaychecks": "אין משכורות קרובות אחרות."
+  },
+  "toasts": {
+    "expenseDeleted": "\"%{payee}\" נמחק",
+    "incomeDeleted": "\"%{name}\" נמחק",
+    "billMoved": "\"%{payee}\" הועבר ל-%{date}",
+    "remindersOn": "תזכורות ליום המשכורת הופעלו"
   }
 }

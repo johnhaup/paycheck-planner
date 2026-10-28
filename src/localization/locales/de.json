@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Abbrechen",
     "delete": "Löschen",
+    "undo": "Rückgängig",
     "done": "Fertig",
     "save": "Speichern",
     "add": "Hinzufügen",
     "update": "Aktualisieren",
     "back": "Zurück",
-    "error": "Fehler",
     "none": "Keine",
     "unknown": "Unbekannt",
     "removed": "Entfernt",
@@ -64,8 +64,6 @@
     "swipeHint": "Wische auf einer Quelle nach links, um sie zu löschen.",
     "addSource": "Einkommensquelle hinzufügen",
     "perCheck": "pro Zahlung",
-    "deleteTitle": "Einkommensquelle löschen",
-    "deleteMessage": "„%{name}“ und alle zugehörigen Ausgabenzuweisungen löschen?",
     "frequency": {
       "weekly": "Wöchentlich",
       "biweekly": "Alle zwei Wochen",
@@ -111,8 +109,6 @@
     },
     "addExpense": "Ausgabe hinzufügen",
     "openLink": "Zahlungslink für %{payee} öffnen",
-    "deleteTitle": "Ausgabe löschen",
-    "deleteMessage": "„%{payee}“ und alle Zuweisungen löschen?",
     "sections": {
       "notLinked": "Nicht verknüpft",
       "oneTime": "Einmalig",
@@ -251,5 +247,11 @@
     "toPaycheck": "Zu Gehalt",
     "noBills": "Keine unbezahlten Rechnungen zum Verschieben.",
     "noPaychecks": "Keine weiteren anstehenden Gehaltszahlungen."
+  },
+  "toasts": {
+    "expenseDeleted": "„%{payee}“ gelöscht",
+    "incomeDeleted": "„%{name}“ gelöscht",
+    "billMoved": "„%{payee}“ auf %{date} verschoben",
+    "remindersOn": "Zahltag-Erinnerungen aktiviert"
   }
 }

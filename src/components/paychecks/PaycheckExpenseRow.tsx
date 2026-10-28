@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
+import Animated, { FadeIn, FadeOut, LinearTransition } from "react-native-reanimated";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
@@ -58,7 +59,7 @@ export function PaycheckExpenseRow({
   const textColor = expense.paid ? "textMuted" : "textDefault";
 
   return (
-    <View style={rowStyle}>
+    <Animated.View style={rowStyle} entering={FadeIn} exiting={FadeOut} layout={LinearTransition}>
       <AppCheckCircle
         checked={!!expense.paid}
         onPress={handleTogglePaid}
@@ -98,7 +99,7 @@ export function PaycheckExpenseRow({
           </AppText>
         </Pressable>
       </View>
-    </View>
+    </Animated.View>
   );
 }
 

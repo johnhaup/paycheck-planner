@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Cancelar",
     "delete": "Eliminar",
+    "undo": "Anular",
     "done": "Concluído",
     "save": "Guardar",
     "add": "Adicionar",
     "update": "Atualizar",
     "back": "Voltar",
-    "error": "Erro",
     "none": "Nenhum",
     "unknown": "Desconhecido",
     "removed": "Removido",
@@ -64,8 +64,6 @@
     "swipeHint": "Deslize uma fonte para a esquerda para a eliminar.",
     "addSource": "Adicionar fonte de rendimento",
     "perCheck": "por ordenado",
-    "deleteTitle": "Eliminar fonte de rendimento",
-    "deleteMessage": "Eliminar \"%{name}\" e todas as despesas que lhe estão atribuídas?",
     "frequency": {
       "weekly": "Semanal",
       "biweekly": "Quinzenal",
@@ -111,8 +109,6 @@
     },
     "addExpense": "Adicionar despesa",
     "openLink": "Abrir ligação de pagamento de %{payee}",
-    "deleteTitle": "Eliminar despesa",
-    "deleteMessage": "Eliminar \"%{payee}\" e todas as suas atribuições?",
     "sections": {
       "notLinked": "Não associadas",
       "oneTime": "Pontuais",
@@ -251,5 +247,11 @@
     "toPaycheck": "Para o ordenado",
     "noBills": "Não há faturas por pagar para mover.",
     "noPaychecks": "Não há outros ordenados próximos."
+  },
+  "toasts": {
+    "expenseDeleted": "\"%{payee}\" eliminado",
+    "incomeDeleted": "\"%{name}\" eliminado",
+    "billMoved": "\"%{payee}\" movido para %{date}",
+    "remindersOn": "Lembretes do dia de pagamento ativados"
   }
 }

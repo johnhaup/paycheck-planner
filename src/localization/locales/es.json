@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Cancelar",
     "delete": "Eliminar",
+    "undo": "Deshacer",
     "done": "Listo",
     "save": "Guardar",
     "add": "Añadir",
     "update": "Actualizar",
     "back": "Atrás",
-    "error": "Error",
     "none": "Ninguno",
     "unknown": "Desconocido",
     "removed": "Eliminado",
@@ -64,8 +64,6 @@
     "swipeHint": "Desliza una fuente hacia la izquierda para eliminarla.",
     "addSource": "Añadir fuente de ingresos",
     "perCheck": "por sueldo",
-    "deleteTitle": "Eliminar fuente de ingresos",
-    "deleteMessage": "¿Eliminar \"%{name}\" y todas sus asignaciones de gastos?",
     "frequency": {
       "weekly": "Semanal",
       "biweekly": "Cada dos semanas",
@@ -111,8 +109,6 @@
     },
     "addExpense": "Añadir gasto",
     "openLink": "Abrir enlace de pago de %{payee}",
-    "deleteTitle": "Eliminar gasto",
-    "deleteMessage": "¿Eliminar \"%{payee}\" y todas sus asignaciones?",
     "sections": {
       "notLinked": "Sin vincular",
       "oneTime": "Puntuales",
@@ -251,5 +247,11 @@
     "toPaycheck": "Al sueldo",
     "noBills": "No hay facturas pendientes que mover.",
     "noPaychecks": "No hay otros sueldos próximos."
+  },
+  "toasts": {
+    "expenseDeleted": "Se eliminó \"%{payee}\"",
+    "incomeDeleted": "Se eliminó \"%{name}\"",
+    "billMoved": "Se movió \"%{payee}\" al %{date}",
+    "remindersOn": "Recordatorios de cobro activados"
   }
 }

@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Odustani",
     "delete": "Izbriši",
+    "undo": "Poništi",
     "done": "Gotovo",
     "save": "Spremi",
     "add": "Dodaj",
     "update": "Ažuriraj",
     "back": "Natrag",
-    "error": "Greška",
     "none": "Ništa",
     "unknown": "Nepoznato",
     "removed": "Uklonjeno",
@@ -64,8 +64,6 @@
     "swipeHint": "Povucite izvor ulijevo da ga izbrišete.",
     "addSource": "Dodaj izvor prihoda",
     "perCheck": "po plaći",
-    "deleteTitle": "Izbriši izvor prihoda",
-    "deleteMessage": "Izbrisati „%{name}” i sve dodjele troškova?",
     "frequency": {
       "weekly": "Tjedno",
       "biweekly": "Svaka dva tjedna",
@@ -112,8 +110,6 @@
     },
     "addExpense": "Dodaj trošak",
     "openLink": "Otvori poveznicu za plaćanje: %{payee}",
-    "deleteTitle": "Izbriši trošak",
-    "deleteMessage": "Izbrisati „%{payee}” i sve njegove dodjele?",
     "sections": {
       "notLinked": "Nepovezani",
       "oneTime": "Jednokratni",
@@ -253,5 +249,11 @@
     "toPaycheck": "Na plaću",
     "noBills": "Nema neplaćenih računa za premještanje.",
     "noPaychecks": "Nema drugih nadolazećih plaća."
+  },
+  "toasts": {
+    "expenseDeleted": "Izbrisano „%{payee}”",
+    "incomeDeleted": "Izbrisano „%{name}”",
+    "billMoved": "„%{payee}” premješteno na %{date}",
+    "remindersOn": "Podsjetnici za plaću uključeni"
   }
 }

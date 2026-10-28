@@ -2,12 +2,12 @@
   "common": {
     "cancel": "રદ કરો",
     "delete": "ડિલીટ કરો",
+    "undo": "પૂર્વવત્ કરો",
     "done": "થઈ ગયું",
     "save": "સેવ કરો",
     "add": "ઉમેરો",
     "update": "અપડેટ કરો",
     "back": "પાછળ",
-    "error": "ભૂલ",
     "none": "કોઈ નહીં",
     "unknown": "અજાણ",
     "removed": "દૂર કર્યું",
@@ -68,8 +68,6 @@
     "swipeHint": "સ્રોત ડિલીટ કરવા તેના પર ડાબે સ્વાઇપ કરો.",
     "addSource": "આવકનો સ્રોત ઉમેરો",
     "perCheck": "પ્રતિ પગાર",
-    "deleteTitle": "આવકનો સ્રોત ડિલીટ કરો",
-    "deleteMessage": "\"%{name}\" અને તેની બધી ખર્ચ ફાળવણી ડિલીટ કરવી?",
     "frequency": {
       "weekly": "સાપ્તાહિક",
       "biweekly": "દર બે અઠવાડિયે",
@@ -115,8 +113,6 @@
     },
     "addExpense": "ખર્ચ ઉમેરો",
     "openLink": "%{payee}ની પેમેન્ટ લિંક ખોલો",
-    "deleteTitle": "ખર્ચ ડિલીટ કરો",
-    "deleteMessage": "\"%{payee}\" અને તેની બધી ફાળવણી ડિલીટ કરવી?",
     "sections": {
       "notLinked": "લિંક નથી",
       "oneTime": "એક વાર",
@@ -255,5 +251,11 @@
     "toPaycheck": "આ પગાર પર",
     "noBills": "ખસેડવા માટે કોઈ બાકી બિલ નથી.",
     "noPaychecks": "આગળ બીજો કોઈ પગાર નથી."
+  },
+  "toasts": {
+    "expenseDeleted": "\"%{payee}\" ડિલીટ કર્યું",
+    "incomeDeleted": "\"%{name}\" ડિલીટ કર્યું",
+    "billMoved": "\"%{payee}\" ને %{date} પર ખસેડ્યું",
+    "remindersOn": "પગાર રિમાઇન્ડર ચાલુ"
   }
 }

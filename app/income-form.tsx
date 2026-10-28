@@ -3,9 +3,9 @@ import {
   View,
   ScrollView,
   StyleSheet,
-  Alert,
 } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
+import { toast } from "sonner-native";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
@@ -55,12 +55,12 @@ export default function IncomeFormScreen() {
 
   const handleSave = useCallback(() => {
     if (!name.trim()) {
-      Alert.alert(t("common.error"), t("income.form.nameRequired"));
+      toast.error(t("income.form.nameRequired"));
       return;
     }
     const amount = parseFloat(payAmount);
     if (isNaN(amount) || amount <= 0) {
-      Alert.alert(t("common.error"), t("income.form.invalidAmount"));
+      toast.error(t("income.form.invalidAmount"));
       return;
     }
     const day1 = Number(semiDay1);
@@ -70,7 +70,7 @@ export default function IncomeFormScreen() {
       frequency === "semi-monthly" &&
       !semiMonthlyDays.every((d) => Number.isInteger(d) && d >= 1 && d <= 31)
     ) {
-      Alert.alert(t("common.error"), t("income.form.payDaysRange"));
+      toast.error(t("income.form.payDaysRange"));
       return;
     }
 

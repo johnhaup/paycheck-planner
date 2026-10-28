@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { Alert, ScrollView, StyleSheet, View } from "react-native";
 import { useRouter } from "expo-router";
+import { toast } from "sonner-native";
 import { useColors } from "@/hooks/useColors";
 import { useLocale, useT } from "@/hooks/useLocale";
 import { useThemeStore, ThemeMode } from "@/stores/themeStore";
@@ -55,6 +56,7 @@ export default function SettingsScreen() {
       const granted = await requestReminderPermission();
       if (granted) {
         setRemindersEnabled(true);
+        toast.success(t("toasts.remindersOn"));
       } else {
         Alert.alert(t("settings.permissionDeniedTitle"), t("settings.permissionDeniedBody"));
       }

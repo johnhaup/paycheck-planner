@@ -14,6 +14,7 @@ import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { IncomeSourceRow } from "@/components/income/IncomeSourceRow";
 import { getPaychecks, getPaychecksPerMonth } from "@/utils/payDates";
 import { formatMonthDay } from "@/utils/dates";
+import { withUndo } from "@/utils/undo";
 import type { IncomeSource } from "@/types";
 
 function keyExtractor(item: IncomeSource) {
@@ -39,6 +40,14 @@ export default function IncomeScreen() {
     [router]
   );
 
+  const handleDelete = useCallback(
+    (id: string) => {
+      const name = incomeSources.find((s) => s.id === id)?.name ?? "";
+      withUndo(t("toasts.incomeDeleted", { name }), () => deleteIncomeSource(id));
+    },
+    [incomeSources, deleteIncomeSource, t]
+  );
+
   const renderItem = useCallback(
     ({ item, index }: { item: IncomeSource; index: number }) => (
       <IncomeSourceRow
@@ -47,10 +56,10 @@ export default function IncomeScreen() {
         isFirst={index === 0}
         isLast={index === incomeSources.length - 1}
         onEdit={handleEdit}
-        onDelete={deleteIncomeSource}
+        onDelete={handleDelete}
       />
     ),
-    [handleEdit, deleteIncomeSource, incomeSources.length]
+    [handleEdit, handleDelete, incomeSources.length]
   );
 
   const summary = useMemo(() => {

@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Annuler",
     "delete": "Supprimer",
+    "undo": "Annuler",
     "done": "OK",
     "save": "Enregistrer",
     "add": "Ajouter",
     "update": "Mettre à jour",
     "back": "Retour",
-    "error": "Erreur",
     "none": "Aucun",
     "unknown": "Inconnu",
     "removed": "Supprimé",
@@ -65,8 +65,6 @@
     "swipeHint": "Balayez une source vers la gauche pour la supprimer.",
     "addSource": "Ajouter une source de revenus",
     "perCheck": "par salaire",
-    "deleteTitle": "Supprimer la source de revenus",
-    "deleteMessage": "Supprimer « %{name} » et toutes ses dépenses affectées ?",
     "frequency": {
       "weekly": "Hebdomadaire",
       "biweekly": "Toutes les deux semaines",
@@ -112,8 +110,6 @@
     },
     "addExpense": "Ajouter une dépense",
     "openLink": "Ouvrir le lien de paiement de %{payee}",
-    "deleteTitle": "Supprimer la dépense",
-    "deleteMessage": "Supprimer « %{payee} » et toutes ses affectations ?",
     "sections": {
       "notLinked": "Non liées",
       "oneTime": "Ponctuelles",
@@ -252,5 +248,11 @@
     "toPaycheck": "Vers le salaire",
     "noBills": "Aucune facture impayée à déplacer.",
     "noPaychecks": "Aucun autre salaire à venir."
+  },
+  "toasts": {
+    "expenseDeleted": "« %{payee} » supprimé",
+    "incomeDeleted": "« %{name} » supprimé",
+    "billMoved": "« %{payee} » déplacé au %{date}",
+    "remindersOn": "Rappels de paie activés"
   }
 }

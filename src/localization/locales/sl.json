@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Prekliči",
     "delete": "Izbriši",
+    "undo": "Razveljavi",
     "done": "Končano",
     "save": "Shrani",
     "add": "Dodaj",
     "update": "Posodobi",
     "back": "Nazaj",
-    "error": "Napaka",
     "none": "Brez",
     "unknown": "Neznano",
     "removed": "Odstranjeno",
@@ -64,8 +64,6 @@
     "swipeHint": "Podrsnite vir v levo, da ga izbrišete.",
     "addSource": "Dodaj vir prihodka",
     "perCheck": "na plačo",
-    "deleteTitle": "Izbriši vir prihodka",
-    "deleteMessage": "Izbrišem »%{name}« in vse dodelitve odhodkov?",
     "frequency": {
       "weekly": "Tedensko",
       "biweekly": "Vsaka dva tedna",
@@ -113,8 +111,6 @@
     },
     "addExpense": "Dodaj odhodek",
     "openLink": "Odpri povezavo za plačilo: %{payee}",
-    "deleteTitle": "Izbriši odhodek",
-    "deleteMessage": "Izbrišem »%{payee}« in vse njegove dodelitve?",
     "sections": {
       "notLinked": "Nepovezani",
       "oneTime": "Enkratni",
@@ -255,5 +251,11 @@
     "toPaycheck": "Na plačo",
     "noBills": "Ni neplačanih računov za premik.",
     "noPaychecks": "Ni drugih prihajajočih plač."
+  },
+  "toasts": {
+    "expenseDeleted": "Izbrisano »%{payee}«",
+    "incomeDeleted": "Izbrisano »%{name}«",
+    "billMoved": "»%{payee}« premaknjeno na %{date}",
+    "remindersOn": "Opomniki za plačo so vklopljeni"
   }
 }

@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Cancel·la",
     "delete": "Suprimeix",
+    "undo": "Desfés",
     "done": "Fet",
     "save": "Desa",
     "add": "Afegeix",
     "update": "Actualitza",
     "back": "Enrere",
-    "error": "Error",
     "none": "Cap",
     "unknown": "Desconegut",
     "removed": "Suprimit",
@@ -67,8 +67,6 @@
     "swipeHint": "Llisca una font cap a l'esquerra per suprimir-la.",
     "addSource": "Afegeix una font d'ingressos",
     "perCheck": "per sou",
-    "deleteTitle": "Suprimir la font d'ingressos",
-    "deleteMessage": "Vols suprimir \"%{name}\" i totes les despeses assignades?",
     "frequency": {
       "weekly": "Setmanal",
       "biweekly": "Cada dues setmanes",
@@ -114,8 +112,6 @@
     },
     "addExpense": "Afegeix una despesa",
     "openLink": "Obre l'enllaç de pagament de %{payee}",
-    "deleteTitle": "Suprimir la despesa",
-    "deleteMessage": "Vols suprimir \"%{payee}\" i totes les seves assignacions?",
     "sections": {
       "notLinked": "Sense vincular",
       "oneTime": "Puntuals",
@@ -254,5 +250,11 @@
     "toPaycheck": "Al sou",
     "noBills": "No hi ha factures pendents per moure.",
     "noPaychecks": "No hi ha altres sous pròxims."
+  },
+  "toasts": {
+    "expenseDeleted": "S'ha suprimit \"%{payee}\"",
+    "incomeDeleted": "S'ha suprimit \"%{name}\"",
+    "billMoved": "S'ha mogut \"%{payee}\" al %{date}",
+    "remindersOn": "Recordatoris de cobrament activats"
   }
 }

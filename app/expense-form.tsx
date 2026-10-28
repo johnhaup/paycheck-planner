@@ -3,9 +3,9 @@ import {
   View,
   ScrollView,
   StyleSheet,
-  Alert,
 } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
+import { toast } from "sonner-native";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
@@ -75,15 +75,12 @@ export default function ExpenseFormScreen() {
 
   const handleSave = useCallback(() => {
     if (!payee.trim()) {
-      Alert.alert(
-        t("common.error"),
-        t(isSetAside ? "expenses.form.nameRequired" : "expenses.form.payeeRequired")
-      );
+      toast.error(t(isSetAside ? "expenses.form.nameRequired" : "expenses.form.payeeRequired"));
       return;
     }
     const parsedAmount = parseFloat(amount);
     if (isNaN(parsedAmount) || parsedAmount <= 0) {
-      Alert.alert(t("common.error"), t("expenses.form.invalidAmount"));
+      toast.error(t("expenses.form.invalidAmount"));
       return;
     }
 

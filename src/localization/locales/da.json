@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Annuller",
     "delete": "Slet",
+    "undo": "Fortryd",
     "done": "Færdig",
     "save": "Gem",
     "add": "Tilføj",
     "update": "Opdater",
     "back": "Tilbage",
-    "error": "Fejl",
     "none": "Ingen",
     "unknown": "Ukendt",
     "removed": "Fjernet",
@@ -64,8 +64,6 @@
     "swipeHint": "Swipe til venstre på en kilde for at slette den.",
     "addSource": "Tilføj indkomstkilde",
     "perCheck": "pr. udbetaling",
-    "deleteTitle": "Slet indkomstkilde",
-    "deleteMessage": "Slet \"%{name}\" og alle dens udgiftstildelinger?",
     "frequency": {
       "weekly": "Ugentligt",
       "biweekly": "Hver 14. dag",
@@ -111,8 +109,6 @@
     },
     "addExpense": "Tilføj udgift",
     "openLink": "Åbn betalingslink for %{payee}",
-    "deleteTitle": "Slet udgift",
-    "deleteMessage": "Slet \"%{payee}\" og alle dens tildelinger?",
     "sections": {
       "notLinked": "Ikke tilknyttet",
       "oneTime": "Engangs",
@@ -251,5 +247,11 @@
     "toPaycheck": "Til lønudbetaling",
     "noBills": "Ingen ubetalte regninger at flytte.",
     "noPaychecks": "Ingen andre kommende lønudbetalinger."
+  },
+  "toasts": {
+    "expenseDeleted": "Slettede \"%{payee}\"",
+    "incomeDeleted": "Slettede \"%{name}\"",
+    "billMoved": "Flyttede \"%{payee}\" til %{date}",
+    "remindersOn": "Lønningsdagspåmindelser er slået til"
   }
 }

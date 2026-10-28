@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Annuleren",
     "delete": "Verwijderen",
+    "undo": "Ongedaan maken",
     "done": "Gereed",
     "save": "Opslaan",
     "add": "Toevoegen",
     "update": "Bijwerken",
     "back": "Terug",
-    "error": "Fout",
     "none": "Geen",
     "unknown": "Onbekend",
     "removed": "Verwijderd",
@@ -64,8 +64,6 @@
     "swipeHint": "Veeg naar links op een bron om deze te verwijderen.",
     "addSource": "Inkomstenbron toevoegen",
     "perCheck": "per uitbetaling",
-    "deleteTitle": "Inkomstenbron verwijderen",
-    "deleteMessage": "'%{name}' en alle bijbehorende uitgaventoewijzingen verwijderen?",
     "frequency": {
       "weekly": "Wekelijks",
       "biweekly": "Tweewekelijks",
@@ -111,8 +109,6 @@
     },
     "addExpense": "Uitgave toevoegen",
     "openLink": "Betaallink voor %{payee} openen",
-    "deleteTitle": "Uitgave verwijderen",
-    "deleteMessage": "'%{payee}' en alle toewijzingen verwijderen?",
     "sections": {
       "notLinked": "Niet gekoppeld",
       "oneTime": "Eenmalig",
@@ -251,5 +247,11 @@
     "toPaycheck": "Naar salaris",
     "noBills": "Geen onbetaalde rekeningen om te verplaatsen.",
     "noPaychecks": "Geen andere komende salarissen."
+  },
+  "toasts": {
+    "expenseDeleted": "'%{payee}' verwijderd",
+    "incomeDeleted": "'%{name}' verwijderd",
+    "billMoved": "'%{payee}' verplaatst naar %{date}",
+    "remindersOn": "Betaaldagherinneringen aan"
   }
 }

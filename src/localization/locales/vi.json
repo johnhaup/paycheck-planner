@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Hủy",
     "delete": "Xóa",
+    "undo": "Hoàn tác",
     "done": "Xong",
     "save": "Lưu",
     "add": "Thêm",
     "update": "Cập nhật",
     "back": "Quay lại",
-    "error": "Lỗi",
     "none": "Không có",
     "unknown": "Không rõ",
     "removed": "Đã xóa",
@@ -64,8 +64,6 @@
     "swipeHint": "Vuốt sang trái trên một nguồn thu để xóa.",
     "addSource": "Thêm nguồn thu nhập",
     "perCheck": "mỗi kỳ",
-    "deleteTitle": "Xóa nguồn thu nhập",
-    "deleteMessage": "Xóa \"%{name}\" và tất cả phân bổ chi tiêu của nó?",
     "frequency": {
       "weekly": "Hàng tuần",
       "biweekly": "Hai tuần một lần",
@@ -110,8 +108,6 @@
     },
     "addExpense": "Thêm khoản chi",
     "openLink": "Mở liên kết thanh toán của %{payee}",
-    "deleteTitle": "Xóa khoản chi",
-    "deleteMessage": "Xóa \"%{payee}\" và tất cả phân bổ của nó?",
     "sections": {
       "notLinked": "Chưa liên kết",
       "oneTime": "Một lần",
@@ -249,5 +245,11 @@
     "toPaycheck": "Sang kỳ lương",
     "noBills": "Không có hóa đơn chưa trả để chuyển.",
     "noPaychecks": "Không có kỳ lương sắp tới nào khác."
+  },
+  "toasts": {
+    "expenseDeleted": "Đã xóa \"%{payee}\"",
+    "incomeDeleted": "Đã xóa \"%{name}\"",
+    "billMoved": "Đã chuyển \"%{payee}\" sang %{date}",
+    "remindersOn": "Đã bật nhắc ngày nhận lương"
   }
 }

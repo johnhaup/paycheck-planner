@@ -59,9 +59,7 @@ export function ExpenseRow({
 
   return (
     <AppSwipeToDelete
-      confirmTitle={t("expenses.deleteTitle")}
-      confirmMessage={t("expenses.deleteMessage", { payee: expense.payee })}
-      onConfirm={handleDelete}
+      onDelete={handleDelete}
       style={groupedStyles.container}
     >
       <Pressable style={groupedStyles.row} onPress={handlePress}>

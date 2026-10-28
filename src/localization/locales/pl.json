@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Anuluj",
     "delete": "Usuń",
+    "undo": "Cofnij",
     "done": "Gotowe",
     "save": "Zapisz",
     "add": "Dodaj",
     "update": "Aktualizuj",
     "back": "Wstecz",
-    "error": "Błąd",
     "none": "Brak",
     "unknown": "Nieznane",
     "removed": "Usunięto",
@@ -64,8 +64,6 @@
     "swipeHint": "Przesuń źródło w lewo, aby je usunąć.",
     "addSource": "Dodaj źródło dochodu",
     "perCheck": "na wypłatę",
-    "deleteTitle": "Usuń źródło dochodu",
-    "deleteMessage": "Usunąć „%{name}” i wszystkie przypisane do niego wydatki?",
     "frequency": {
       "weekly": "Co tydzień",
       "biweekly": "Co dwa tygodnie",
@@ -113,8 +111,6 @@
     },
     "addExpense": "Dodaj wydatek",
     "openLink": "Otwórz link do płatności: %{payee}",
-    "deleteTitle": "Usuń wydatek",
-    "deleteMessage": "Usunąć „%{payee}” i wszystkie jego przypisania?",
     "sections": {
       "notLinked": "Niepowiązane",
       "oneTime": "Jednorazowe",
@@ -255,5 +251,11 @@
     "toPaycheck": "Do wypłaty",
     "noBills": "Brak nieopłaconych rachunków do przeniesienia.",
     "noPaychecks": "Brak innych nadchodzących wypłat."
+  },
+  "toasts": {
+    "expenseDeleted": "Usunięto „%{payee}”",
+    "incomeDeleted": "Usunięto „%{name}”",
+    "billMoved": "Przeniesiono „%{payee}” na %{date}",
+    "remindersOn": "Przypomnienia o wypłacie włączone"
   }
 }

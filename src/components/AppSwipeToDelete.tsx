@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useRef, type ReactNode } from "react";
-import { Alert, Pressable, StyleSheet, type StyleProp, type ViewStyle } from "react-native";
+import { Pressable, StyleSheet, type StyleProp, type ViewStyle } from "react-native";
 import ReanimatedSwipeable, {
   type SwipeableMethods,
 } from "react-native-gesture-handler/ReanimatedSwipeable";
@@ -11,32 +11,20 @@ const ACTION_WIDTH = 72;
 
 interface Props {
   children: ReactNode;
-  confirmTitle: string;
-  confirmMessage: string;
-  onConfirm: () => void;
+  onDelete: () => void;
   style?: StyleProp<ViewStyle>;
 }
 
-export function AppSwipeToDelete({ children, confirmTitle, confirmMessage, onConfirm, style }: Props) {
+export function AppSwipeToDelete({ children, onDelete, style }: Props) {
   const colors = useColors();
   const t = useT();
   const swipeableRef = useRef<SwipeableMethods>(null);
 
-  const handleCancel = useCallback(() => {
-    swipeableRef.current?.close();
-  }, []);
-
+  // Undo restores the row, so close it first or it comes back swiped open
   const handleDeletePress = useCallback(() => {
-    Alert.alert(
-      confirmTitle,
-      confirmMessage,
-      [
-        { text: t("common.cancel"), style: "cancel", onPress: handleCancel },
-        { text: t("common.delete"), style: "destructive", onPress: onConfirm },
-      ],
-      { cancelable: true, onDismiss: handleCancel }
-    );
-  }, [confirmTitle, confirmMessage, onConfirm, handleCancel, t]);
+    swipeableRef.current?.close();
+    onDelete();
+  }, [onDelete]);
 
   const actionStyle = useMemo(
     () => [styles.action, { backgroundColor: colors.destructive }],

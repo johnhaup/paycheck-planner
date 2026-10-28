@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Mégse",
     "delete": "Törlés",
+    "undo": "Visszavonás",
     "done": "Kész",
     "save": "Mentés",
     "add": "Hozzáadás",
     "update": "Frissítés",
     "back": "Vissza",
-    "error": "Hiba",
     "none": "Nincs",
     "unknown": "Ismeretlen",
     "removed": "Eltávolítva",
@@ -65,8 +65,6 @@
     "swipeHint": "Törléshez húzd balra a forrást.",
     "addSource": "Bevételi forrás hozzáadása",
     "perCheck": "fizetésenként",
-    "deleteTitle": "Bevételi forrás törlése",
-    "deleteMessage": "Törlöd a(z) „%{name}” forrást és minden kiadás-beosztását?",
     "frequency": {
       "weekly": "Hetente",
       "biweekly": "Kéthetente",
@@ -112,8 +110,6 @@
     },
     "addExpense": "Kiadás hozzáadása",
     "openLink": "%{payee} fizetési linkjének megnyitása",
-    "deleteTitle": "Kiadás törlése",
-    "deleteMessage": "Törlöd a(z) „%{payee}” kiadást és minden beosztását?",
     "sections": {
       "notLinked": "Nincs összekapcsolva",
       "oneTime": "Egyszeri",
@@ -252,5 +248,11 @@
     "toPaycheck": "Erre a fizetésre",
     "noBills": "Nincs áthelyezhető kifizetetlen számla.",
     "noPaychecks": "Nincs több közeli fizetés."
+  },
+  "toasts": {
+    "expenseDeleted": "„%{payee}” törölve",
+    "incomeDeleted": "„%{name}” törölve",
+    "billMoved": "„%{payee}” áthelyezve: %{date}",
+    "remindersOn": "Fizetésnapi emlékeztetők bekapcsolva"
   }
 }

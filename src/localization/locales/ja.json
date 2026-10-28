@@ -2,12 +2,12 @@
   "common": {
     "cancel": "キャンセル",
     "delete": "削除",
+    "undo": "元に戻す",
     "done": "完了",
     "save": "保存",
     "add": "追加",
     "update": "更新",
     "back": "戻る",
-    "error": "エラー",
     "none": "なし",
     "unknown": "不明",
     "removed": "削除済み",
@@ -64,8 +64,6 @@
     "swipeHint": "収入源を左にスワイプすると削除できます。",
     "addSource": "収入源を追加",
     "perCheck": "1回あたり",
-    "deleteTitle": "収入源を削除",
-    "deleteMessage": "「%{name}」とその支出の割り当てをすべて削除しますか？",
     "frequency": {
       "weekly": "毎週",
       "biweekly": "2週ごと",
@@ -110,8 +108,6 @@
     },
     "addExpense": "支出を追加",
     "openLink": "%{payee}の支払いリンクを開く",
-    "deleteTitle": "支出を削除",
-    "deleteMessage": "「%{payee}」とその割り当てをすべて削除しますか？",
     "sections": {
       "notLinked": "未リンク",
       "oneTime": "1回限り",
@@ -249,5 +245,11 @@
     "toPaycheck": "移動先の給料",
     "noBills": "移動できる未払いの支払いはありません。",
     "noPaychecks": "他に今後の給料はありません。"
+  },
+  "toasts": {
+    "expenseDeleted": "「%{payee}」を削除しました",
+    "incomeDeleted": "「%{name}」を削除しました",
+    "billMoved": "「%{payee}」を%{date}に移動しました",
+    "remindersOn": "給料日のリマインダーをオンにしました"
   }
 }

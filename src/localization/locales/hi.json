@@ -2,12 +2,12 @@
   "common": {
     "cancel": "रद्द करें",
     "delete": "हटाएं",
+    "undo": "पहले जैसा करें",
     "done": "हो गया",
     "save": "सेव करें",
     "add": "जोड़ें",
     "update": "अपडेट करें",
     "back": "वापस",
-    "error": "त्रुटि",
     "none": "कोई नहीं",
     "unknown": "अज्ञात",
     "removed": "हटाया गया",
@@ -68,8 +68,6 @@
     "swipeHint": "किसी स्रोत को हटाने के लिए उस पर बाईं ओर स्वाइप करें।",
     "addSource": "आय स्रोत जोड़ें",
     "perCheck": "प्रति सैलरी",
-    "deleteTitle": "आय स्रोत हटाएं",
-    "deleteMessage": "\"%{name}\" और इसके सभी खर्च असाइनमेंट हटाएं?",
     "frequency": {
       "weekly": "साप्ताहिक",
       "biweekly": "हर दो हफ़्ते",
@@ -115,8 +113,6 @@
     },
     "addExpense": "खर्च जोड़ें",
     "openLink": "%{payee} का पेमेंट लिंक खोलें",
-    "deleteTitle": "खर्च हटाएं",
-    "deleteMessage": "\"%{payee}\" और इसके सभी असाइनमेंट हटाएं?",
     "sections": {
       "notLinked": "लिंक नहीं",
       "oneTime": "एक बार",
@@ -255,5 +251,11 @@
     "toPaycheck": "इस सैलरी पर",
     "noBills": "मूव करने के लिए कोई बकाया बिल नहीं।",
     "noPaychecks": "आगे कोई और सैलरी नहीं।"
+  },
+  "toasts": {
+    "expenseDeleted": "\"%{payee}\" हटाया गया",
+    "incomeDeleted": "\"%{name}\" हटाया गया",
+    "billMoved": "\"%{payee}\" को %{date} पर मूव किया गया",
+    "remindersOn": "सैलरी रिमाइंडर चालू"
   }
 }

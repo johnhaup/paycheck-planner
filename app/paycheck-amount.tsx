@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
-import { View, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import { toast } from "sonner-native";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
@@ -30,7 +31,7 @@ export default function PaycheckAmountScreen() {
   const handleSave = useCallback(() => {
     const parsed = parseFloat(amount);
     if (isNaN(parsed) || parsed < 0) {
-      Alert.alert(t("common.error"), t("payAmountSheet.invalidAmount"));
+      toast.error(t("payAmountSheet.invalidAmount"));
       return;
     }
     setPaycheckAmount(sourceId, payDate, parsed === source?.payAmount ? undefined : parsed);

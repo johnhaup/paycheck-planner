@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { StyleSheet } from "react-native";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
+import { useAnimatedNumber } from "@/hooks/useAnimatedNumber";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 
@@ -12,11 +13,13 @@ interface Props {
 export function AppHeroAmount({ amount }: Props) {
   const colors = useColors();
   const { split } = useMoneyFormat();
-  const { whole, cents } = split(amount);
+  const shown = useAnimatedNumber(amount);
+  const { whole, cents } = split(shown);
+  const isNegative = shown < 0;
 
   const wholeStyle = useMemo(
-    () => (amount < 0 ? { color: colors.destructive } : undefined),
-    [amount, colors]
+    () => (isNegative ? { color: colors.destructive } : undefined),
+    [isNegative, colors]
   );
 
   return (

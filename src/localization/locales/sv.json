@@ -2,12 +2,12 @@
   "common": {
     "cancel": "Avbryt",
     "delete": "Ta bort",
+    "undo": "Ångra",
     "done": "Klar",
     "save": "Spara",
     "add": "Lägg till",
     "update": "Uppdatera",
     "back": "Tillbaka",
-    "error": "Fel",
     "none": "Ingen",
     "unknown": "Okänd",
     "removed": "Borttagen",
@@ -65,8 +65,6 @@
     "swipeHint": "Svep åt vänster på en källa för att ta bort den.",
     "addSource": "Lägg till inkomstkälla",
     "perCheck": "per utbetalning",
-    "deleteTitle": "Ta bort inkomstkälla",
-    "deleteMessage": "Ta bort \"%{name}\" och alla dess utgiftstilldelningar?",
     "frequency": {
       "weekly": "Varje vecka",
       "biweekly": "Varannan vecka",
@@ -112,8 +110,6 @@
     },
     "addExpense": "Lägg till utgift",
     "openLink": "Öppna betalningslänk för %{payee}",
-    "deleteTitle": "Ta bort utgift",
-    "deleteMessage": "Ta bort \"%{payee}\" och alla dess tilldelningar?",
     "sections": {
       "notLinked": "Inte kopplad",
       "oneTime": "Engångs",
@@ -252,5 +248,11 @@
     "toPaycheck": "Till lön",
     "noBills": "Inga obetalda räkningar att flytta.",
     "noPaychecks": "Inga andra kommande löner."
+  },
+  "toasts": {
+    "expenseDeleted": "Tog bort \"%{payee}\"",
+    "incomeDeleted": "Tog bort \"%{name}\"",
+    "billMoved": "Flyttade \"%{payee}\" till %{date}",
+    "remindersOn": "Lönedagspåminnelser på"
   }
 }

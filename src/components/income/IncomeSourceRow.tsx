@@ -36,9 +36,7 @@ export function IncomeSourceRow({ source, tintIndex, isFirst, isLast, onEdit, on
 
   return (
     <AppSwipeToDelete
-      confirmTitle={t("income.deleteTitle")}
-      confirmMessage={t("income.deleteMessage", { name: source.name })}
-      onConfirm={handleDelete}
+      onDelete={handleDelete}
       style={groupedStyles.container}
     >
       <Pressable style={groupedStyles.row} onPress={handlePress}>
