@@ -166,11 +166,43 @@
       "setAsideHint": "Diners que guardes d'un sou, com ara diners per gastar o estalvis. Es resta del que queda, igual que una factura.",
       "addSetAside": "Afegeix la reserva",
       "updateSetAside": "Actualitza la reserva",
-      "nameRequired": "El nom és obligatori."
+      "nameRequired": "El nom és obligatori.",
+      "icon": "Icona",
+      "noIcon": "Sense icona"
     },
     "kind": {
       "bill": "Factura",
       "setAside": "Reserva"
+    },
+    "sort": {
+      "title": "Ordena",
+      "default": "Agrupat",
+      "amount": "Import, de més a menys",
+      "name": "Nom"
+    },
+    "searchPlaceholder": "Cerca factures",
+    "noMatches": "Res coincideix amb «%{query}».",
+    "icons": {
+      "home": "Casa",
+      "car": "Cotxe",
+      "flash": "Electricitat",
+      "water": "Aigua",
+      "flame": "Gas",
+      "wifi": "Internet",
+      "phone-portrait": "Telèfon",
+      "tv": "TV",
+      "cart": "Supermercat",
+      "restaurant": "Restaurants",
+      "medkit": "Salut",
+      "fitness": "Gimnàs",
+      "school": "Educació",
+      "card": "Targeta de crèdit",
+      "shield-checkmark": "Assegurança",
+      "paw": "Mascotes",
+      "airplane": "Viatges",
+      "gift": "Regals",
+      "musical-notes": "Música",
+      "game-controller": "Jocs"
     }
   },
   "payDate": {

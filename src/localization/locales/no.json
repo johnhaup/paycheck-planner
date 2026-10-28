@@ -163,11 +163,43 @@
       "setAsideHint": "Penger du holder av fra en lønn, som brukspenger eller sparing. Det trekkes fra det som er igjen, akkurat som en regning.",
       "addSetAside": "Legg til avsetning",
       "updateSetAside": "Oppdater avsetning",
-      "nameRequired": "Navn er påkrevd."
+      "nameRequired": "Navn er påkrevd.",
+      "icon": "Ikon",
+      "noIcon": "Ingen ikon"
     },
     "kind": {
       "bill": "Regning",
       "setAside": "Avsetning"
+    },
+    "sort": {
+      "title": "Sorter",
+      "default": "Gruppert",
+      "amount": "Beløp, høyeste først",
+      "name": "Navn"
+    },
+    "searchPlaceholder": "Søk i regninger",
+    "noMatches": "Ingen treff for «%{query}».",
+    "icons": {
+      "home": "Bolig",
+      "car": "Bil",
+      "flash": "Strøm",
+      "water": "Vann",
+      "flame": "Gass",
+      "wifi": "Internett",
+      "phone-portrait": "Telefon",
+      "tv": "TV",
+      "cart": "Dagligvarer",
+      "restaurant": "Restaurant",
+      "medkit": "Helse",
+      "fitness": "Trening",
+      "school": "Utdanning",
+      "card": "Kredittkort",
+      "shield-checkmark": "Forsikring",
+      "paw": "Kjæledyr",
+      "airplane": "Reise",
+      "gift": "Gaver",
+      "musical-notes": "Musikk",
+      "game-controller": "Spill"
     }
   },
   "payDate": {

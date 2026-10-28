@@ -163,11 +163,43 @@
       "setAsideHint": "Dinheiro que separa de um ordenado, como para gastos ou poupança. Sai do que sobra, tal como uma fatura.",
       "addSetAside": "Adicionar reserva",
       "updateSetAside": "Atualizar reserva",
-      "nameRequired": "O nome é obrigatório."
+      "nameRequired": "O nome é obrigatório.",
+      "icon": "Ícone",
+      "noIcon": "Sem ícone"
     },
     "kind": {
       "bill": "Fatura",
       "setAside": "Reserva"
+    },
+    "sort": {
+      "title": "Ordenar",
+      "default": "Agrupado",
+      "amount": "Valor, do maior",
+      "name": "Nome"
+    },
+    "searchPlaceholder": "Pesquisar faturas",
+    "noMatches": "Nada corresponde a \"%{query}\".",
+    "icons": {
+      "home": "Casa",
+      "car": "Carro",
+      "flash": "Eletricidade",
+      "water": "Água",
+      "flame": "Gás",
+      "wifi": "Internet",
+      "phone-portrait": "Telemóvel",
+      "tv": "TV",
+      "cart": "Supermercado",
+      "restaurant": "Restaurantes",
+      "medkit": "Saúde",
+      "fitness": "Ginásio",
+      "school": "Educação",
+      "card": "Cartão de crédito",
+      "shield-checkmark": "Seguro",
+      "paw": "Animais",
+      "airplane": "Viagens",
+      "gift": "Presentes",
+      "musical-notes": "Música",
+      "game-controller": "Jogos"
     }
   },
   "payDate": {

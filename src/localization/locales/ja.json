@@ -162,11 +162,43 @@
       "setAsideHint": "給料から手元に残しておくお金です（おこづかいや貯金など）。支払いと同じように残りから差し引かれます。",
       "addSetAside": "取り置きを追加",
       "updateSetAside": "取り置きを更新",
-      "nameRequired": "名前を入力してください。"
+      "nameRequired": "名前を入力してください。",
+      "icon": "アイコン",
+      "noIcon": "アイコンなし"
     },
     "kind": {
       "bill": "支払い",
       "setAside": "取り置き"
+    },
+    "sort": {
+      "title": "並べ替え",
+      "default": "グループ別",
+      "amount": "金額の高い順",
+      "name": "名前"
+    },
+    "searchPlaceholder": "支払いを検索",
+    "noMatches": "「%{query}」に一致する項目はありません。",
+    "icons": {
+      "home": "住まい",
+      "car": "車",
+      "flash": "電気",
+      "water": "水道",
+      "flame": "ガス",
+      "wifi": "インターネット",
+      "phone-portrait": "電話",
+      "tv": "テレビ",
+      "cart": "食料品",
+      "restaurant": "外食",
+      "medkit": "医療",
+      "fitness": "フィットネス",
+      "school": "教育",
+      "card": "クレジットカード",
+      "shield-checkmark": "保険",
+      "paw": "ペット",
+      "airplane": "旅行",
+      "gift": "ギフト",
+      "musical-notes": "音楽",
+      "game-controller": "ゲーム"
     }
   },
   "payDate": {

@@ -165,11 +165,43 @@
       "setAsideHint": "כסף שאתם שומרים מהמשכורת, כמו כסף לבזבוזים או חיסכון. הוא יורד ממה שנותר, בדיוק כמו חשבון.",
       "addSetAside": "הוספת הפרשה",
       "updateSetAside": "עדכון הפרשה",
-      "nameRequired": "יש להזין שם."
+      "nameRequired": "יש להזין שם.",
+      "icon": "סמל",
+      "noIcon": "ללא סמל"
     },
     "kind": {
       "bill": "חשבון",
       "setAside": "הפרשה"
+    },
+    "sort": {
+      "title": "מיון",
+      "default": "מקובץ",
+      "amount": "סכום, מהגבוה",
+      "name": "שם"
+    },
+    "searchPlaceholder": "חיפוש חשבונות",
+    "noMatches": "אין התאמות ל-\"%{query}\".",
+    "icons": {
+      "home": "בית",
+      "car": "רכב",
+      "flash": "חשמל",
+      "water": "מים",
+      "flame": "גז",
+      "wifi": "אינטרנט",
+      "phone-portrait": "טלפון",
+      "tv": "טלוויזיה",
+      "cart": "מכולת",
+      "restaurant": "מסעדות",
+      "medkit": "בריאות",
+      "fitness": "כושר",
+      "school": "לימודים",
+      "card": "כרטיס אשראי",
+      "shield-checkmark": "ביטוח",
+      "paw": "חיות מחמד",
+      "airplane": "נסיעות",
+      "gift": "מתנות",
+      "musical-notes": "מוזיקה",
+      "game-controller": "משחקים"
     }
   },
   "payDate": {

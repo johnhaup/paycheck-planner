@@ -167,11 +167,43 @@
       "setAsideHint": "सैलरी में से जो पैसा आप अपने पास रखते हैं, जैसे जेब खर्च या बचत। यह बिल की तरह ही बची रकम से घटता है।",
       "addSetAside": "अलग रखी रकम जोड़ें",
       "updateSetAside": "अलग रखी रकम अपडेट करें",
-      "nameRequired": "नाम ज़रूरी है।"
+      "nameRequired": "नाम ज़रूरी है।",
+      "icon": "आइकन",
+      "noIcon": "कोई आइकन नहीं"
     },
     "kind": {
       "bill": "बिल",
       "setAside": "अलग रखी रकम"
+    },
+    "sort": {
+      "title": "क्रम",
+      "default": "ग्रुप में",
+      "amount": "रकम, ज़्यादा पहले",
+      "name": "नाम"
+    },
+    "searchPlaceholder": "बिल खोजें",
+    "noMatches": "\"%{query}\" से कुछ नहीं मिला।",
+    "icons": {
+      "home": "घर",
+      "car": "कार",
+      "flash": "बिजली",
+      "water": "पानी",
+      "flame": "गैस",
+      "wifi": "इंटरनेट",
+      "phone-portrait": "फ़ोन",
+      "tv": "टीवी",
+      "cart": "राशन",
+      "restaurant": "खाना-पीना",
+      "medkit": "सेहत",
+      "fitness": "फ़िटनेस",
+      "school": "पढ़ाई",
+      "card": "क्रेडिट कार्ड",
+      "shield-checkmark": "बीमा",
+      "paw": "पालतू जानवर",
+      "airplane": "यात्रा",
+      "gift": "तोहफ़े",
+      "musical-notes": "संगीत",
+      "game-controller": "गेम"
     }
   },
   "payDate": {

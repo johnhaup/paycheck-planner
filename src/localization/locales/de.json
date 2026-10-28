@@ -163,11 +163,43 @@
       "setAsideHint": "Geld, das du von einem Gehalt behältst, etwa zum Ausgeben oder Sparen. Es wird wie eine Rechnung vom Rest abgezogen.",
       "addSetAside": "Rücklage hinzufügen",
       "updateSetAside": "Rücklage aktualisieren",
-      "nameRequired": "Name ist erforderlich."
+      "nameRequired": "Name ist erforderlich.",
+      "icon": "Symbol",
+      "noIcon": "Kein Symbol"
     },
     "kind": {
       "bill": "Rechnung",
       "setAside": "Rücklage"
+    },
+    "sort": {
+      "title": "Sortieren",
+      "default": "Gruppiert",
+      "amount": "Betrag, höchster zuerst",
+      "name": "Name"
+    },
+    "searchPlaceholder": "Rechnungen suchen",
+    "noMatches": "Keine Treffer für „%{query}“.",
+    "icons": {
+      "home": "Wohnen",
+      "car": "Auto",
+      "flash": "Strom",
+      "water": "Wasser",
+      "flame": "Gas",
+      "wifi": "Internet",
+      "phone-portrait": "Telefon",
+      "tv": "TV",
+      "cart": "Lebensmittel",
+      "restaurant": "Essen gehen",
+      "medkit": "Gesundheit",
+      "fitness": "Fitness",
+      "school": "Bildung",
+      "card": "Kreditkarte",
+      "shield-checkmark": "Versicherung",
+      "paw": "Haustiere",
+      "airplane": "Reisen",
+      "gift": "Geschenke",
+      "musical-notes": "Musik",
+      "game-controller": "Spiele"
     }
   },
   "payDate": {

@@ -163,11 +163,43 @@
       "setAsideHint": "ଦରମାରୁ ଆପଣ ଅଲଗା ରଖୁଥିବା ଟଙ୍କା, ଯେପରି ଖର୍ଚ୍ଚ ଟଙ୍କା କିମ୍ବା ସଞ୍ଚୟ। ଏହା ଏକ ବିଲ୍ ପରି ବାକି ରାଶିରୁ କଟିଯାଏ।",
       "addSetAside": "ଅଲଗା ରଖା ଯୋଡ଼ନ୍ତୁ",
       "updateSetAside": "ଅଲଗା ରଖା ଅପଡେଟ୍ କରନ୍ତୁ",
-      "nameRequired": "ନାମ ଆବଶ୍ୟକ।"
+      "nameRequired": "ନାମ ଆବଶ୍ୟକ।",
+      "icon": "ଆଇକନ୍",
+      "noIcon": "କୌଣସି ଆଇକନ୍ ନାହିଁ"
     },
     "kind": {
       "bill": "ବିଲ୍",
       "setAside": "ଅଲଗା ରଖା"
+    },
+    "sort": {
+      "title": "ସଜାନ୍ତୁ",
+      "default": "ଗୋଷ୍ଠୀବଦ୍ଧ",
+      "amount": "ରାଶି, ଅଧିକ ପ୍ରଥମେ",
+      "name": "ନାମ"
+    },
+    "searchPlaceholder": "ବିଲ୍ ଖୋଜନ୍ତୁ",
+    "noMatches": "\"%{query}\" ସହ କିଛି ମେଳ ଖାଉନାହିଁ।",
+    "icons": {
+      "home": "ଘର",
+      "car": "କାର୍",
+      "flash": "ବିଦ୍ୟୁତ୍",
+      "water": "ପାଣି",
+      "flame": "ଗ୍ୟାସ୍",
+      "wifi": "ଇଣ୍ଟରନେଟ୍",
+      "phone-portrait": "ଫୋନ୍",
+      "tv": "ଟିଭି",
+      "cart": "କିରାଣା",
+      "restaurant": "ଖାଇବା",
+      "medkit": "ସ୍ୱାସ୍ଥ୍ୟ",
+      "fitness": "ଫିଟନେସ୍",
+      "school": "ଶିକ୍ଷା",
+      "card": "କ୍ରେଡିଟ୍ କାର୍ଡ",
+      "shield-checkmark": "ବୀମା",
+      "paw": "ପୋଷା ପ୍ରାଣୀ",
+      "airplane": "ଭ୍ରମଣ",
+      "gift": "ଉପହାର",
+      "musical-notes": "ସଙ୍ଗୀତ",
+      "game-controller": "ଖେଳ"
     }
   },
   "payDate": {

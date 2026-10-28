@@ -163,11 +163,43 @@
       "setAsideHint": "Penge, du beholder af en lønudbetaling, f.eks. til forbrug eller opsparing. De trækkes fra det, der er tilbage, ligesom en regning.",
       "addSetAside": "Tilføj afsat beløb",
       "updateSetAside": "Opdater afsat beløb",
-      "nameRequired": "Navn er påkrævet."
+      "nameRequired": "Navn er påkrævet.",
+      "icon": "Ikon",
+      "noIcon": "Intet ikon"
     },
     "kind": {
       "bill": "Regning",
       "setAside": "Afsat beløb"
+    },
+    "sort": {
+      "title": "Sortér",
+      "default": "Grupperet",
+      "amount": "Beløb, højeste først",
+      "name": "Navn"
+    },
+    "searchPlaceholder": "Søg i regninger",
+    "noMatches": "Intet matcher \"%{query}\".",
+    "icons": {
+      "home": "Bolig",
+      "car": "Bil",
+      "flash": "El",
+      "water": "Vand",
+      "flame": "Gas",
+      "wifi": "Internet",
+      "phone-portrait": "Telefon",
+      "tv": "TV",
+      "cart": "Dagligvarer",
+      "restaurant": "Restaurant",
+      "medkit": "Sundhed",
+      "fitness": "Fitness",
+      "school": "Uddannelse",
+      "card": "Kreditkort",
+      "shield-checkmark": "Forsikring",
+      "paw": "Kæledyr",
+      "airplane": "Rejser",
+      "gift": "Gaver",
+      "musical-notes": "Musik",
+      "game-controller": "Spil"
     }
   },
   "payDate": {

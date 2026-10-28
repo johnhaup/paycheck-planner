@@ -164,11 +164,43 @@
       "setAsideHint": "Pengar du behåller från en lön, som fickpengar eller sparande. De dras från det som blir kvar, precis som en räkning.",
       "addSetAside": "Lägg till avsättning",
       "updateSetAside": "Uppdatera avsättning",
-      "nameRequired": "Namn krävs."
+      "nameRequired": "Namn krävs.",
+      "icon": "Ikon",
+      "noIcon": "Ingen ikon"
     },
     "kind": {
       "bill": "Räkning",
       "setAside": "Avsättning"
+    },
+    "sort": {
+      "title": "Sortera",
+      "default": "Grupperat",
+      "amount": "Belopp, högst först",
+      "name": "Namn"
+    },
+    "searchPlaceholder": "Sök räkningar",
+    "noMatches": "Inget matchar \"%{query}\".",
+    "icons": {
+      "home": "Boende",
+      "car": "Bil",
+      "flash": "El",
+      "water": "Vatten",
+      "flame": "Gas",
+      "wifi": "Internet",
+      "phone-portrait": "Telefon",
+      "tv": "TV",
+      "cart": "Matvaror",
+      "restaurant": "Restaurang",
+      "medkit": "Hälsa",
+      "fitness": "Träning",
+      "school": "Utbildning",
+      "card": "Kreditkort",
+      "shield-checkmark": "Försäkring",
+      "paw": "Husdjur",
+      "airplane": "Resor",
+      "gift": "Presenter",
+      "musical-notes": "Musik",
+      "game-controller": "Spel"
     }
   },
   "payDate": {

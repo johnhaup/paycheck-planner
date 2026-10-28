@@ -167,11 +167,43 @@
       "setAsideHint": "বেতন থেকে যে টাকা আপনি রেখে দেন, যেমন হাতখরচ বা সঞ্চয়। বিলের মতোই এটি বাকি টাকা থেকে কাটা হয়।",
       "addSetAside": "আলাদা রাখা অর্থ যোগ করুন",
       "updateSetAside": "আলাদা রাখা অর্থ আপডেট করুন",
-      "nameRequired": "নাম দেওয়া আবশ্যক।"
+      "nameRequired": "নাম দেওয়া আবশ্যক।",
+      "icon": "আইকন",
+      "noIcon": "কোনো আইকন নেই"
     },
     "kind": {
       "bill": "বিল",
       "setAside": "আলাদা রাখা"
+    },
+    "sort": {
+      "title": "সাজান",
+      "default": "গ্রুপ করা",
+      "amount": "পরিমাণ, বেশি আগে",
+      "name": "নাম"
+    },
+    "searchPlaceholder": "বিল খুঁজুন",
+    "noMatches": "\"%{query}\"-এর সাথে কিছু মেলেনি।",
+    "icons": {
+      "home": "বাড়ি",
+      "car": "গাড়ি",
+      "flash": "বিদ্যুৎ",
+      "water": "পানি",
+      "flame": "গ্যাস",
+      "wifi": "ইন্টারনেট",
+      "phone-portrait": "ফোন",
+      "tv": "টিভি",
+      "cart": "মুদি",
+      "restaurant": "খাওয়া-দাওয়া",
+      "medkit": "স্বাস্থ্য",
+      "fitness": "ফিটনেস",
+      "school": "শিক্ষা",
+      "card": "ক্রেডিট কার্ড",
+      "shield-checkmark": "বিমা",
+      "paw": "পোষা প্রাণী",
+      "airplane": "ভ্রমণ",
+      "gift": "উপহার",
+      "musical-notes": "সংগীত",
+      "game-controller": "গেম"
     }
   },
   "payDate": {

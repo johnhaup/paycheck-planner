@@ -166,11 +166,43 @@
       "setAsideHint": "पगारातून तुम्ही बाजूला ठेवता ते पैसे, जसे हातखर्च किंवा बचत. बिलाप्रमाणेच ही रक्कम शिल्लकीतून वजा होते.",
       "addSetAside": "राखीव रक्कम जोडा",
       "updateSetAside": "राखीव रक्कम अपडेट करा",
-      "nameRequired": "नाव आवश्यक आहे."
+      "nameRequired": "नाव आवश्यक आहे.",
+      "icon": "आयकॉन",
+      "noIcon": "आयकॉन नाही"
     },
     "kind": {
       "bill": "बिल",
       "setAside": "राखीव रक्कम"
+    },
+    "sort": {
+      "title": "क्रम लावा",
+      "default": "गटानुसार",
+      "amount": "रक्कम, जास्त आधी",
+      "name": "नाव"
+    },
+    "searchPlaceholder": "बिले शोधा",
+    "noMatches": "\"%{query}\" शी काहीही जुळत नाही.",
+    "icons": {
+      "home": "घर",
+      "car": "कार",
+      "flash": "वीज",
+      "water": "पाणी",
+      "flame": "गॅस",
+      "wifi": "इंटरनेट",
+      "phone-portrait": "फोन",
+      "tv": "टीव्ही",
+      "cart": "किराणा",
+      "restaurant": "खाणे-पिणे",
+      "medkit": "आरोग्य",
+      "fitness": "फिटनेस",
+      "school": "शिक्षण",
+      "card": "क्रेडिट कार्ड",
+      "shield-checkmark": "विमा",
+      "paw": "पाळीव प्राणी",
+      "airplane": "प्रवास",
+      "gift": "भेटवस्तू",
+      "musical-notes": "संगीत",
+      "game-controller": "गेम्स"
     }
   },
   "payDate": {

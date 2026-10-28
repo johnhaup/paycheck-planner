@@ -9,6 +9,7 @@ import { t } from "@/localization/i18n";
 import type { Expense, IncomeSource } from "@/types";
 
 export type ExpenseFilter = "all" | "recurring" | "one-time";
+export type ExpenseSort = "default" | "amount" | "name";
 
 export interface ExpenseListItem {
   expense: Expense;
@@ -68,11 +69,22 @@ function cadenceLabel(expense: Expense, source: IncomeSource) {
     : t("expenses.cadence.monthly");
 }
 
-/** Recurring set-asides, then recurring bills by linked income source, then unlinked, then one-time. */
+function compareItems(sort: ExpenseSort) {
+  return (a: ExpenseListItem, b: ExpenseListItem) =>
+    sort === "amount"
+      ? b.expense.amount - a.expense.amount
+      : a.expense.payee.localeCompare(b.expense.payee);
+}
+
+/**
+ * Recurring set-asides, then recurring bills by linked income source, then unlinked, then one-time.
+ * Sorting reorders rows within each section; the sections themselves stay put.
+ */
 export function buildExpenseSections(
   allExpenses: Expense[],
   incomeSources: IncomeSource[],
   filter: ExpenseFilter,
+  sort: ExpenseSort,
   formatMoney: (amount: number) => string
 ): ExpenseSection[] {
   const sections: ExpenseSection[] = [];
@@ -162,6 +174,12 @@ export function buildExpenseSections(
           cadence: t("expenses.cadence.oneTime"),
         })),
       });
+    }
+  }
+
+  if (sort !== "default") {
+    for (const section of sections) {
+      section.data.sort(compareItems(sort));
     }
   }
 

@@ -163,11 +163,43 @@
       "setAsideHint": "وہ رقم جو آپ تنخواہ سے الگ رکھتے ہیں، جیسے خرچ کے پیسے یا بچت۔ یہ بل کی طرح باقی رقم سے کٹ جاتی ہے۔",
       "addSetAside": "الگ رکھی رقم شامل کریں",
       "updateSetAside": "الگ رکھی رقم اپ ڈیٹ کریں",
-      "nameRequired": "نام درکار ہے۔"
+      "nameRequired": "نام درکار ہے۔",
+      "icon": "آئیکن",
+      "noIcon": "کوئی آئیکن نہیں"
     },
     "kind": {
       "bill": "بل",
       "setAside": "الگ رکھی رقم"
+    },
+    "sort": {
+      "title": "ترتیب",
+      "default": "گروپ میں",
+      "amount": "رقم، زیادہ پہلے",
+      "name": "نام"
+    },
+    "searchPlaceholder": "بل تلاش کریں",
+    "noMatches": "\"%{query}\" سے کچھ نہیں ملا۔",
+    "icons": {
+      "home": "گھر",
+      "car": "گاڑی",
+      "flash": "بجلی",
+      "water": "پانی",
+      "flame": "گیس",
+      "wifi": "انٹرنیٹ",
+      "phone-portrait": "فون",
+      "tv": "ٹی وی",
+      "cart": "راشن",
+      "restaurant": "کھانا",
+      "medkit": "صحت",
+      "fitness": "فٹنس",
+      "school": "تعلیم",
+      "card": "کریڈٹ کارڈ",
+      "shield-checkmark": "بیمہ",
+      "paw": "پالتو جانور",
+      "airplane": "سفر",
+      "gift": "تحائف",
+      "musical-notes": "موسیقی",
+      "game-controller": "گیمز"
     }
   },
   "payDate": {

@@ -162,11 +162,43 @@
       "setAsideHint": "从工资中留出的钱，例如零花钱或储蓄。它和账单一样会从剩余金额中扣除。",
       "addSetAside": "添加预留",
       "updateSetAside": "更新预留",
-      "nameRequired": "请输入名称。"
+      "nameRequired": "请输入名称。",
+      "icon": "图标",
+      "noIcon": "无图标"
     },
     "kind": {
       "bill": "账单",
       "setAside": "预留"
+    },
+    "sort": {
+      "title": "排序",
+      "default": "分组",
+      "amount": "金额从高到低",
+      "name": "名称"
+    },
+    "searchPlaceholder": "搜索账单",
+    "noMatches": "没有与“%{query}”匹配的结果。",
+    "icons": {
+      "home": "住房",
+      "car": "汽车",
+      "flash": "电费",
+      "water": "水费",
+      "flame": "燃气",
+      "wifi": "网络",
+      "phone-portrait": "手机",
+      "tv": "电视",
+      "cart": "买菜",
+      "restaurant": "餐饮",
+      "medkit": "医疗",
+      "fitness": "健身",
+      "school": "教育",
+      "card": "信用卡",
+      "shield-checkmark": "保险",
+      "paw": "宠物",
+      "airplane": "旅行",
+      "gift": "礼物",
+      "musical-notes": "音乐",
+      "game-controller": "游戏"
     }
   },
   "payDate": {

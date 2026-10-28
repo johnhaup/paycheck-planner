@@ -162,11 +162,43 @@
       "setAsideHint": "Uang yang kamu simpan dari gaji, seperti uang jajan atau tabungan. Dipotong dari sisa, sama seperti tagihan.",
       "addSetAside": "Tambah Sisihan",
       "updateSetAside": "Perbarui Sisihan",
-      "nameRequired": "Nama wajib diisi."
+      "nameRequired": "Nama wajib diisi.",
+      "icon": "Ikon",
+      "noIcon": "Tanpa ikon"
     },
     "kind": {
       "bill": "Tagihan",
       "setAside": "Sisihan"
+    },
+    "sort": {
+      "title": "Urutkan",
+      "default": "Dikelompokkan",
+      "amount": "Jumlah, terbesar dulu",
+      "name": "Nama"
+    },
+    "searchPlaceholder": "Cari tagihan",
+    "noMatches": "Tidak ada yang cocok dengan \"%{query}\".",
+    "icons": {
+      "home": "Rumah",
+      "car": "Mobil",
+      "flash": "Listrik",
+      "water": "Air",
+      "flame": "Gas",
+      "wifi": "Internet",
+      "phone-portrait": "Telepon",
+      "tv": "TV",
+      "cart": "Belanja dapur",
+      "restaurant": "Makan di luar",
+      "medkit": "Kesehatan",
+      "fitness": "Kebugaran",
+      "school": "Pendidikan",
+      "card": "Kartu kredit",
+      "shield-checkmark": "Asuransi",
+      "paw": "Hewan peliharaan",
+      "airplane": "Perjalanan",
+      "gift": "Hadiah",
+      "musical-notes": "Musik",
+      "game-controller": "Game"
     }
   },
   "payDate": {

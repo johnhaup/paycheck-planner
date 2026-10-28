@@ -167,11 +167,43 @@
       "setAsideHint": "પગારમાંથી તમે રાખી મૂકો તે પૈસા, જેમ કે હાથખર્ચ કે બચત. બિલની જેમ જ તે બાકી રકમમાંથી બાદ થાય છે.",
       "addSetAside": "અલગ રકમ ઉમેરો",
       "updateSetAside": "અલગ રકમ અપડેટ કરો",
-      "nameRequired": "નામ જરૂરી છે."
+      "nameRequired": "નામ જરૂરી છે.",
+      "icon": "આઇકન",
+      "noIcon": "કોઈ આઇકન નહીં"
     },
     "kind": {
       "bill": "બિલ",
       "setAside": "અલગ રકમ"
+    },
+    "sort": {
+      "title": "ગોઠવો",
+      "default": "જૂથમાં",
+      "amount": "રકમ, વધુ પહેલાં",
+      "name": "નામ"
+    },
+    "searchPlaceholder": "બિલ શોધો",
+    "noMatches": "\"%{query}\" સાથે કંઈ મેળ ખાતું નથી.",
+    "icons": {
+      "home": "ઘર",
+      "car": "કાર",
+      "flash": "વીજળી",
+      "water": "પાણી",
+      "flame": "ગેસ",
+      "wifi": "ઇન્ટરનેટ",
+      "phone-portrait": "ફોન",
+      "tv": "ટીવી",
+      "cart": "કરિયાણું",
+      "restaurant": "જમવાનું",
+      "medkit": "આરોગ્ય",
+      "fitness": "ફિટનેસ",
+      "school": "શિક્ષણ",
+      "card": "ક્રેડિટ કાર્ડ",
+      "shield-checkmark": "વીમો",
+      "paw": "પાલતુ પ્રાણી",
+      "airplane": "પ્રવાસ",
+      "gift": "ભેટ",
+      "musical-notes": "સંગીત",
+      "game-controller": "ગેમ્સ"
     }
   },
   "payDate": {

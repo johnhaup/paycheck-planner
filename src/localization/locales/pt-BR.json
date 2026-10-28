@@ -163,11 +163,43 @@
       "setAsideHint": "Dinheiro que você separa de um pagamento, como para gastos ou poupança. Sai do que sobra, assim como uma conta.",
       "addSetAside": "Adicionar reserva",
       "updateSetAside": "Atualizar reserva",
-      "nameRequired": "O nome é obrigatório."
+      "nameRequired": "O nome é obrigatório.",
+      "icon": "Ícone",
+      "noIcon": "Sem ícone"
     },
     "kind": {
       "bill": "Conta",
       "setAside": "Reserva"
+    },
+    "sort": {
+      "title": "Ordenar",
+      "default": "Agrupado",
+      "amount": "Valor, do maior",
+      "name": "Nome"
+    },
+    "searchPlaceholder": "Buscar contas",
+    "noMatches": "Nada corresponde a \"%{query}\".",
+    "icons": {
+      "home": "Casa",
+      "car": "Carro",
+      "flash": "Luz",
+      "water": "Água",
+      "flame": "Gás",
+      "wifi": "Internet",
+      "phone-portrait": "Celular",
+      "tv": "TV",
+      "cart": "Mercado",
+      "restaurant": "Restaurantes",
+      "medkit": "Saúde",
+      "fitness": "Academia",
+      "school": "Educação",
+      "card": "Cartão de crédito",
+      "shield-checkmark": "Seguro",
+      "paw": "Pets",
+      "airplane": "Viagens",
+      "gift": "Presentes",
+      "musical-notes": "Música",
+      "game-controller": "Jogos"
     }
   },
   "payDate": {

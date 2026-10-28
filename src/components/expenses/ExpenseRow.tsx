@@ -73,7 +73,7 @@ export function ExpenseRow({
       style={groupedStyles.container}
     >
       <Pressable style={groupedStyles.row} onPress={handlePress}>
-        <AppLetterTile label={expense.payee} tintIndex={tintIndex} />
+        <AppLetterTile label={expense.payee} tintIndex={tintIndex} icon={expense.icon} />
         <View style={styles.text}>
           <View style={styles.titleRow}>
             {expense.kind === "set-aside" ? <AppSetAsideIcon size={15} /> : null}

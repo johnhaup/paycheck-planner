@@ -162,11 +162,43 @@
       "setAsideHint": "Wang yang anda simpan daripada gaji, seperti wang belanja atau tabungan. Ia ditolak daripada baki, sama seperti bil.",
       "addSetAside": "Tambah Simpanan",
       "updateSetAside": "Kemas Kini Simpanan",
-      "nameRequired": "Nama diperlukan."
+      "nameRequired": "Nama diperlukan.",
+      "icon": "Ikon",
+      "noIcon": "Tiada ikon"
     },
     "kind": {
       "bill": "Bil",
       "setAside": "Simpanan"
+    },
+    "sort": {
+      "title": "Isih",
+      "default": "Dikumpulkan",
+      "amount": "Jumlah, tertinggi dahulu",
+      "name": "Nama"
+    },
+    "searchPlaceholder": "Cari bil",
+    "noMatches": "Tiada yang sepadan dengan \"%{query}\".",
+    "icons": {
+      "home": "Rumah",
+      "car": "Kereta",
+      "flash": "Elektrik",
+      "water": "Air",
+      "flame": "Gas",
+      "wifi": "Internet",
+      "phone-portrait": "Telefon",
+      "tv": "TV",
+      "cart": "Barangan dapur",
+      "restaurant": "Makan di luar",
+      "medkit": "Kesihatan",
+      "fitness": "Kecergasan",
+      "school": "Pendidikan",
+      "card": "Kad kredit",
+      "shield-checkmark": "Insurans",
+      "paw": "Haiwan peliharaan",
+      "airplane": "Perjalanan",
+      "gift": "Hadiah",
+      "musical-notes": "Muzik",
+      "game-controller": "Permainan"
     }
   },
   "payDate": {

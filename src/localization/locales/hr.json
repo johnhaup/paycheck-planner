@@ -164,11 +164,43 @@
       "setAsideHint": "Novac koji zadržavate od plaće, npr. za trošenje ili štednju. Oduzima se od ostatka, baš kao račun.",
       "addSetAside": "Dodaj odvojena sredstva",
       "updateSetAside": "Ažuriraj odvojena sredstva",
-      "nameRequired": "Naziv je obavezan."
+      "nameRequired": "Naziv je obavezan.",
+      "icon": "Ikona",
+      "noIcon": "Bez ikone"
     },
     "kind": {
       "bill": "Račun",
       "setAside": "Odvojeno"
+    },
+    "sort": {
+      "title": "Poredaj",
+      "default": "Grupirano",
+      "amount": "Iznos, od najvećeg",
+      "name": "Naziv"
+    },
+    "searchPlaceholder": "Pretraži račune",
+    "noMatches": "Ništa ne odgovara „%{query}”.",
+    "icons": {
+      "home": "Dom",
+      "car": "Automobil",
+      "flash": "Struja",
+      "water": "Voda",
+      "flame": "Plin",
+      "wifi": "Internet",
+      "phone-portrait": "Telefon",
+      "tv": "TV",
+      "cart": "Namirnice",
+      "restaurant": "Restorani",
+      "medkit": "Zdravlje",
+      "fitness": "Fitness",
+      "school": "Obrazovanje",
+      "card": "Kreditna kartica",
+      "shield-checkmark": "Osiguranje",
+      "paw": "Ljubimci",
+      "airplane": "Putovanja",
+      "gift": "Pokloni",
+      "musical-notes": "Glazba",
+      "game-controller": "Igre"
     }
   },
   "payDate": {

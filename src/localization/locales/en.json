@@ -166,12 +166,44 @@
       "setAsideHint": "Money you keep from a paycheck, like spending cash or savings. It comes out of what's left, just like a bill.",
       "addSetAside": "Add Set-Aside",
       "updateSetAside": "Update Set-Aside",
-      "nameRequired": "Name is required."
+      "nameRequired": "Name is required.",
+      "icon": "Icon",
+      "noIcon": "No icon"
     },
     "kind": {
       "bill": "Bill",
       "setAside": "Set-aside"
-    }
+    },
+    "icons": {
+      "home": "Home",
+      "car": "Car",
+      "flash": "Electricity",
+      "water": "Water",
+      "flame": "Gas",
+      "wifi": "Internet",
+      "phone-portrait": "Phone",
+      "tv": "TV",
+      "cart": "Groceries",
+      "restaurant": "Dining",
+      "medkit": "Health",
+      "fitness": "Fitness",
+      "school": "Education",
+      "card": "Credit card",
+      "shield-checkmark": "Insurance",
+      "paw": "Pets",
+      "airplane": "Travel",
+      "gift": "Gifts",
+      "musical-notes": "Music",
+      "game-controller": "Games"
+    },
+    "sort": {
+      "title": "Sort",
+      "default": "Grouped",
+      "amount": "Amount, highest first",
+      "name": "Name"
+    },
+    "searchPlaceholder": "Search bills",
+    "noMatches": "Nothing matches “%{query}”."
   },
   "payDate": {
     "thisPaycheck": "This paycheck",

@@ -165,11 +165,43 @@
       "setAsideHint": "Peníze, které si z výplaty necháváte, třeba na útratu nebo spoření. Odečítají se od zbytku stejně jako účet.",
       "addSetAside": "Přidat rezervu",
       "updateSetAside": "Aktualizovat rezervu",
-      "nameRequired": "Název je povinný."
+      "nameRequired": "Název je povinný.",
+      "icon": "Ikona",
+      "noIcon": "Bez ikony"
     },
     "kind": {
       "bill": "Účet",
       "setAside": "Rezerva"
+    },
+    "sort": {
+      "title": "Řadit",
+      "default": "Seskupeně",
+      "amount": "Částka, od nejvyšší",
+      "name": "Název"
+    },
+    "searchPlaceholder": "Hledat účty",
+    "noMatches": "Nic neodpovídá „%{query}“.",
+    "icons": {
+      "home": "Domov",
+      "car": "Auto",
+      "flash": "Elektřina",
+      "water": "Voda",
+      "flame": "Plyn",
+      "wifi": "Internet",
+      "phone-portrait": "Telefon",
+      "tv": "TV",
+      "cart": "Potraviny",
+      "restaurant": "Restaurace",
+      "medkit": "Zdraví",
+      "fitness": "Fitness",
+      "school": "Vzdělání",
+      "card": "Kreditní karta",
+      "shield-checkmark": "Pojištění",
+      "paw": "Zvířata",
+      "airplane": "Cestování",
+      "gift": "Dárky",
+      "musical-notes": "Hudba",
+      "game-controller": "Hry"
     }
   },
   "payDate": {

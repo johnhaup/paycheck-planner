@@ -16,6 +16,8 @@ import { AppButton } from "@/components/AppButton";
 import { AppChip } from "@/components/AppChip";
 import { AppSegmentedControl, type SegmentOption } from "@/components/AppSegmentedControl";
 import { PaycheckPicker, type PaycheckChoice } from "@/components/expenseForm/PaycheckPicker";
+import { IconPicker } from "@/components/expenseForm/IconPicker";
+import type { ExpenseIcon } from "@/constants/expenseIcons";
 import { getMonthlySlotCount, getPaycheckSlotLabel, hasExtraPaychecks } from "@/utils/payDates";
 import { normalizeLink } from "@/utils/links";
 import type { ExpenseKind, LinkSchedule, PaycheckSlot } from "@/types";
@@ -43,6 +45,7 @@ export default function ExpenseFormScreen() {
     existing ? String(existing.amount) : ""
   );
   const [link, setLink] = useState(existing?.link ?? "");
+  const [icon, setIcon] = useState<ExpenseIcon | undefined>(existing?.icon);
   const [selectedSourceId, setSelectedSourceId] = useState<string | undefined>(
     existing?.incomeSourceId
   );
@@ -93,6 +96,7 @@ export default function ExpenseFormScreen() {
       incomeSourceId: selectedSourceId,
       linkSchedule: isMonthly ? linkSchedule : undefined,
       paycheckOrdinal: isMonthly ? effectiveSlot : undefined,
+      icon,
     };
 
     if (existing) {
@@ -116,6 +120,7 @@ export default function ExpenseFormScreen() {
     linkSchedule,
     effectiveSlot,
     paycheck,
+    icon,
     existing,
     addExpense,
     updateExpense,
@@ -215,6 +220,9 @@ export default function ExpenseFormScreen() {
           />
         </>
       )}
+
+      <AppText variant="section" style={styles.label}>{t("expenses.form.icon")}</AppText>
+      <IconPicker letter={payee} value={icon} onChange={setIcon} />
 
       {isOneTime && incomeSources.length > 0 ? (
         <>

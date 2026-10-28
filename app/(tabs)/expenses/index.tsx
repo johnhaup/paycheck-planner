@@ -1,6 +1,16 @@
 import { useCallback, useMemo, useState } from "react";
-import { View, SectionList, StyleSheet, type SectionListData } from "react-native";
-import { useRouter } from "expo-router";
+import {
+  ActionSheetIOS,
+  View,
+  Pressable,
+  SectionList,
+  StyleSheet,
+  type NativeSyntheticEvent,
+  type SectionListData,
+  type TextInputFocusEventData,
+} from "react-native";
+import { Stack, useRouter } from "expo-router";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
@@ -18,6 +28,7 @@ import {
   buildExpenseSections,
   summarizeExpenses,
   type ExpenseFilter,
+  type ExpenseSort,
   type ExpenseListItem,
   type ExpenseSection,
 } from "@/utils/expenseSections";
@@ -43,6 +54,8 @@ export default function ExpensesScreen() {
   const incomeSources = useStore((s) => s.incomeSources);
   const deleteExpense = useStore((s) => s.deleteExpense);
   const [filter, setFilter] = useState<ExpenseFilter>("all");
+  const [sort, setSort] = useState<ExpenseSort>("default");
+  const [query, setQuery] = useState("");
 
   const handleAdd = useCallback(() => {
     router.push("/expense-form");
@@ -88,6 +101,62 @@ export default function ExpensesScreen() {
     [handleEdit, handleDelete]
   );
 
+  const handleSearch = useCallback((e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    setQuery(e.nativeEvent.text);
+  }, []);
+
+  const handleSortPress = useCallback(() => {
+    const sorts: ExpenseSort[] = ["default", "amount", "name"];
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        title: t("expenses.sort.title"),
+        options: [
+          t("expenses.sort.default"),
+          t("expenses.sort.amount"),
+          t("expenses.sort.name"),
+          t("common.cancel"),
+        ],
+        cancelButtonIndex: sorts.length,
+      },
+      (index) => {
+        const next = sorts[index];
+        if (next) {
+          setSort(next);
+        }
+      }
+    );
+  }, [t]);
+
+  const renderSortButton = useCallback(
+    () => (
+      <Pressable
+        onPress={handleSortPress}
+        hitSlop={MEASUREMENTS.hitSlop}
+        accessibilityRole="button"
+        accessibilityLabel={t("expenses.sort.title")}
+      >
+        <Ionicons name="swap-vertical" size={22} color={colors.textDefault} />
+      </Pressable>
+    ),
+    [handleSortPress, colors, t]
+  );
+
+  const screenOptions = useMemo(
+    () => ({
+      headerRight: expenses.length > 0 ? renderSortButton : undefined,
+      headerSearchBarOptions:
+        expenses.length > 0
+          ? { placeholder: t("expenses.searchPlaceholder"), onChangeText: handleSearch }
+          : undefined,
+    }),
+    [expenses.length, renderSortButton, handleSearch, t]
+  );
+
+  const visibleExpenses = useMemo(() => {
+    const needle = query.trim().toLocaleLowerCase();
+    return needle ? expenses.filter((e) => e.payee.toLocaleLowerCase().includes(needle)) : expenses;
+  }, [expenses, query]);
+
   const filterOptions = useMemo<SegmentOption<ExpenseFilter>[]>(
     () => [
       { value: "all", label: t("expenses.filters.all") },
@@ -98,10 +167,10 @@ export default function ExpensesScreen() {
   );
 
   const sections = useMemo(
-    () => buildExpenseSections(expenses, incomeSources, filter, formatMoney),
+    () => buildExpenseSections(visibleExpenses, incomeSources, filter, sort, formatMoney),
     // t changes with the language, which changes the section labels
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [expenses, incomeSources, filter, formatMoney, t]
+    [visibleExpenses, incomeSources, filter, sort, formatMoney, t]
   );
 
   const summary = useMemo(
@@ -127,10 +196,10 @@ export default function ExpensesScreen() {
   const listEmpty = useMemo(
     () => (
       <AppText variant="meta" center style={styles.filterEmpty}>
-        {t("expenses.nothingHere")}
+        {query.trim() ? t("expenses.noMatches", { query: query.trim() }) : t("expenses.nothingHere")}
       </AppText>
     ),
-    [t]
+    [query, t]
   );
 
   const containerStyle = useMemo(
@@ -140,6 +209,7 @@ export default function ExpensesScreen() {
 
   return (
     <View style={containerStyle}>
+      <Stack.Screen options={screenOptions} />
       {expenses.length === 0 ? (
         <AppEmptyState
           icon="receipt-outline"

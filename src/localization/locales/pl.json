@@ -165,11 +165,43 @@
       "setAsideHint": "Pieniądze, które zatrzymujesz z wypłaty, np. na bieżące wydatki lub oszczędności. Pomniejszają to, co zostaje, tak jak rachunek.",
       "addSetAside": "Dodaj rezerwę",
       "updateSetAside": "Aktualizuj rezerwę",
-      "nameRequired": "Nazwa jest wymagana."
+      "nameRequired": "Nazwa jest wymagana.",
+      "icon": "Ikona",
+      "noIcon": "Bez ikony"
     },
     "kind": {
       "bill": "Rachunek",
       "setAside": "Rezerwa"
+    },
+    "sort": {
+      "title": "Sortuj",
+      "default": "Grupami",
+      "amount": "Kwota, od najwyższej",
+      "name": "Nazwa"
+    },
+    "searchPlaceholder": "Szukaj rachunków",
+    "noMatches": "Brak wyników dla „%{query}”.",
+    "icons": {
+      "home": "Dom",
+      "car": "Samochód",
+      "flash": "Prąd",
+      "water": "Woda",
+      "flame": "Gaz",
+      "wifi": "Internet",
+      "phone-portrait": "Telefon",
+      "tv": "TV",
+      "cart": "Zakupy",
+      "restaurant": "Restauracje",
+      "medkit": "Zdrowie",
+      "fitness": "Fitness",
+      "school": "Edukacja",
+      "card": "Karta kredytowa",
+      "shield-checkmark": "Ubezpieczenie",
+      "paw": "Zwierzęta",
+      "airplane": "Podróże",
+      "gift": "Prezenty",
+      "musical-notes": "Muzyka",
+      "game-controller": "Gry"
     }
   },
   "payDate": {

@@ -163,11 +163,43 @@
       "setAsideHint": "Rahaa, jonka pidät palkasta itselläsi, kuten käyttörahaa tai säästöjä. Se vähennetään jäljellä olevasta laskun tavoin.",
       "addSetAside": "Lisää varaus",
       "updateSetAside": "Päivitä varaus",
-      "nameRequired": "Nimi on pakollinen."
+      "nameRequired": "Nimi on pakollinen.",
+      "icon": "Kuvake",
+      "noIcon": "Ei kuvaketta"
     },
     "kind": {
       "bill": "Lasku",
       "setAside": "Varaus"
+    },
+    "sort": {
+      "title": "Järjestä",
+      "default": "Ryhmitelty",
+      "amount": "Summa, suurin ensin",
+      "name": "Nimi"
+    },
+    "searchPlaceholder": "Hae laskuja",
+    "noMatches": "Mikään ei vastaa hakua ”%{query}”.",
+    "icons": {
+      "home": "Koti",
+      "car": "Auto",
+      "flash": "Sähkö",
+      "water": "Vesi",
+      "flame": "Kaasu",
+      "wifi": "Internet",
+      "phone-portrait": "Puhelin",
+      "tv": "TV",
+      "cart": "Ruokaostokset",
+      "restaurant": "Ravintolat",
+      "medkit": "Terveys",
+      "fitness": "Kuntoilu",
+      "school": "Koulutus",
+      "card": "Luottokortti",
+      "shield-checkmark": "Vakuutus",
+      "paw": "Lemmikit",
+      "airplane": "Matkat",
+      "gift": "Lahjat",
+      "musical-notes": "Musiikki",
+      "game-controller": "Pelit"
     }
   },
   "payDate": {

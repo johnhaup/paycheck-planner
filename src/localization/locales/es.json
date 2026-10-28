@@ -163,11 +163,43 @@
       "setAsideHint": "Dinero que te guardas de un sueldo, como dinero para gastos o ahorros. Se descuenta de lo que queda, igual que una factura.",
       "addSetAside": "Añadir apartado",
       "updateSetAside": "Actualizar apartado",
-      "nameRequired": "El nombre es obligatorio."
+      "nameRequired": "El nombre es obligatorio.",
+      "icon": "Icono",
+      "noIcon": "Sin icono"
     },
     "kind": {
       "bill": "Factura",
       "setAside": "Apartado"
+    },
+    "sort": {
+      "title": "Ordenar",
+      "default": "Agrupado",
+      "amount": "Importe, de mayor a menor",
+      "name": "Nombre"
+    },
+    "searchPlaceholder": "Buscar facturas",
+    "noMatches": "Nada coincide con «%{query}».",
+    "icons": {
+      "home": "Casa",
+      "car": "Coche",
+      "flash": "Luz",
+      "water": "Agua",
+      "flame": "Gas",
+      "wifi": "Internet",
+      "phone-portrait": "Teléfono",
+      "tv": "TV",
+      "cart": "Supermercado",
+      "restaurant": "Restaurantes",
+      "medkit": "Salud",
+      "fitness": "Gimnasio",
+      "school": "Educación",
+      "card": "Tarjeta de crédito",
+      "shield-checkmark": "Seguro",
+      "paw": "Mascotas",
+      "airplane": "Viajes",
+      "gift": "Regalos",
+      "musical-notes": "Música",
+      "game-controller": "Juegos"
     }
   },
   "payDate": {

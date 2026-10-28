@@ -164,11 +164,43 @@
       "setAsideHint": "Argent que vous gardez sur un salaire, comme de l'argent de poche ou de l'épargne. Il est déduit du reste, comme une facture.",
       "addSetAside": "Ajouter la mise de côté",
       "updateSetAside": "Mettre à jour la mise de côté",
-      "nameRequired": "Le nom est obligatoire."
+      "nameRequired": "Le nom est obligatoire.",
+      "icon": "Icône",
+      "noIcon": "Aucune icône"
     },
     "kind": {
       "bill": "Facture",
       "setAside": "Mise de côté"
+    },
+    "sort": {
+      "title": "Trier",
+      "default": "Groupé",
+      "amount": "Montant, du plus élevé",
+      "name": "Nom"
+    },
+    "searchPlaceholder": "Rechercher des factures",
+    "noMatches": "Aucun résultat pour « %{query} ».",
+    "icons": {
+      "home": "Logement",
+      "car": "Voiture",
+      "flash": "Électricité",
+      "water": "Eau",
+      "flame": "Gaz",
+      "wifi": "Internet",
+      "phone-portrait": "Téléphone",
+      "tv": "TV",
+      "cart": "Courses",
+      "restaurant": "Restaurants",
+      "medkit": "Santé",
+      "fitness": "Sport",
+      "school": "Études",
+      "card": "Carte de crédit",
+      "shield-checkmark": "Assurance",
+      "paw": "Animaux",
+      "airplane": "Voyages",
+      "gift": "Cadeaux",
+      "musical-notes": "Musique",
+      "game-controller": "Jeux"
     }
   },
   "payDate": {

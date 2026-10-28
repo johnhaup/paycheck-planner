@@ -163,11 +163,43 @@
       "setAsideHint": "ಸಂಬಳದಿಂದ ನೀವು ಇಟ್ಟುಕೊಳ್ಳುವ ಹಣ, ಉದಾಹರಣೆಗೆ ಕೈಖರ್ಚು ಅಥವಾ ಉಳಿತಾಯ. ಇದು ಬಿಲ್‌ನಂತೆಯೇ ಉಳಿದ ಮೊತ್ತದಿಂದ ಕಡಿತವಾಗುತ್ತದೆ.",
       "addSetAside": "ಮೀಸಲು ಸೇರಿಸಿ",
       "updateSetAside": "ಮೀಸಲು ಅಪ್‌ಡೇಟ್ ಮಾಡಿ",
-      "nameRequired": "ಹೆಸರು ಅಗತ್ಯ."
+      "nameRequired": "ಹೆಸರು ಅಗತ್ಯ.",
+      "icon": "ಐಕಾನ್",
+      "noIcon": "ಐಕಾನ್ ಇಲ್ಲ"
     },
     "kind": {
       "bill": "ಬಿಲ್",
       "setAside": "ಮೀಸಲು"
+    },
+    "sort": {
+      "title": "ವಿಂಗಡಿಸಿ",
+      "default": "ಗುಂಪು ಮಾಡಿದ",
+      "amount": "ಮೊತ್ತ, ಹೆಚ್ಚಿನದು ಮೊದಲು",
+      "name": "ಹೆಸರು"
+    },
+    "searchPlaceholder": "ಬಿಲ್‌ಗಳನ್ನು ಹುಡುಕಿ",
+    "noMatches": "\"%{query}\" ಗೆ ಯಾವುದೂ ಹೊಂದಿಕೆಯಾಗಿಲ್ಲ.",
+    "icons": {
+      "home": "ಮನೆ",
+      "car": "ಕಾರು",
+      "flash": "ವಿದ್ಯುತ್",
+      "water": "ನೀರು",
+      "flame": "ಗ್ಯಾಸ್",
+      "wifi": "ಇಂಟರ್ನೆಟ್",
+      "phone-portrait": "ಫೋನ್",
+      "tv": "ಟಿವಿ",
+      "cart": "ದಿನಸಿ",
+      "restaurant": "ಊಟ",
+      "medkit": "ಆರೋಗ್ಯ",
+      "fitness": "ಫಿಟ್‌ನೆಸ್",
+      "school": "ಶಿಕ್ಷಣ",
+      "card": "ಕ್ರೆಡಿಟ್ ಕಾರ್ಡ್",
+      "shield-checkmark": "ವಿಮೆ",
+      "paw": "ಸಾಕುಪ್ರಾಣಿಗಳು",
+      "airplane": "ಪ್ರಯಾಣ",
+      "gift": "ಉಡುಗೊರೆಗಳು",
+      "musical-notes": "ಸಂಗೀತ",
+      "game-controller": "ಆಟಗಳು"
     }
   },
   "payDate": {

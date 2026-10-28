@@ -165,11 +165,43 @@
       "setAsideHint": "Denar, ki ga zadržite od plače, na primer za sprotno porabo ali varčevanje. Odšteje se od tega, kar ostane, tako kot račun.",
       "addSetAside": "Dodaj rezervo",
       "updateSetAside": "Posodobi rezervo",
-      "nameRequired": "Ime je obvezno."
+      "nameRequired": "Ime je obvezno.",
+      "icon": "Ikona",
+      "noIcon": "Brez ikone"
     },
     "kind": {
       "bill": "Račun",
       "setAside": "Rezerva"
+    },
+    "sort": {
+      "title": "Razvrsti",
+      "default": "Združeno",
+      "amount": "Znesek, od najvišjega",
+      "name": "Ime"
+    },
+    "searchPlaceholder": "Išči račune",
+    "noMatches": "Nič se ne ujema z »%{query}«.",
+    "icons": {
+      "home": "Dom",
+      "car": "Avto",
+      "flash": "Elektrika",
+      "water": "Voda",
+      "flame": "Plin",
+      "wifi": "Internet",
+      "phone-portrait": "Telefon",
+      "tv": "TV",
+      "cart": "Živila",
+      "restaurant": "Restavracije",
+      "medkit": "Zdravje",
+      "fitness": "Fitnes",
+      "school": "Izobraževanje",
+      "card": "Kreditna kartica",
+      "shield-checkmark": "Zavarovanje",
+      "paw": "Ljubljenčki",
+      "airplane": "Potovanja",
+      "gift": "Darila",
+      "musical-notes": "Glasba",
+      "game-controller": "Igre"
     }
   },
   "payDate": {

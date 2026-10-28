@@ -162,11 +162,43 @@
       "setAsideHint": "從薪水中留出的錢，例如零用錢或儲蓄。它和帳單一樣會從剩餘金額中扣除。",
       "addSetAside": "新增預留",
       "updateSetAside": "更新預留",
-      "nameRequired": "請輸入名稱。"
+      "nameRequired": "請輸入名稱。",
+      "icon": "圖示",
+      "noIcon": "無圖示"
     },
     "kind": {
       "bill": "帳單",
       "setAside": "預留"
+    },
+    "sort": {
+      "title": "排序",
+      "default": "分組",
+      "amount": "金額由高至低",
+      "name": "名稱"
+    },
+    "searchPlaceholder": "搜尋帳單",
+    "noMatches": "沒有符合「%{query}」的結果。",
+    "icons": {
+      "home": "住房",
+      "car": "汽車",
+      "flash": "電費",
+      "water": "水費",
+      "flame": "瓦斯",
+      "wifi": "網路",
+      "phone-portrait": "手機",
+      "tv": "電視",
+      "cart": "買菜",
+      "restaurant": "餐飲",
+      "medkit": "醫療",
+      "fitness": "健身",
+      "school": "教育",
+      "card": "信用卡",
+      "shield-checkmark": "保險",
+      "paw": "寵物",
+      "airplane": "旅行",
+      "gift": "禮物",
+      "musical-notes": "音樂",
+      "game-controller": "遊戲"
     }
   },
   "payDate": {

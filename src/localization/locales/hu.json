@@ -164,11 +164,43 @@
       "setAsideHint": "Pénz, amelyet megtartasz egy fizetésből, például költőpénznek vagy megtakarításnak. A számlákhoz hasonlóan a maradékból vonódik le.",
       "addSetAside": "Félretett összeg hozzáadása",
       "updateSetAside": "Félretett összeg frissítése",
-      "nameRequired": "A név kötelező."
+      "nameRequired": "A név kötelező.",
+      "icon": "Ikon",
+      "noIcon": "Nincs ikon"
     },
     "kind": {
       "bill": "Számla",
       "setAside": "Félretett"
+    },
+    "sort": {
+      "title": "Rendezés",
+      "default": "Csoportosítva",
+      "amount": "Összeg, legnagyobb elöl",
+      "name": "Név"
+    },
+    "searchPlaceholder": "Számlák keresése",
+    "noMatches": "Nincs találat erre: „%{query}”.",
+    "icons": {
+      "home": "Otthon",
+      "car": "Autó",
+      "flash": "Áram",
+      "water": "Víz",
+      "flame": "Gáz",
+      "wifi": "Internet",
+      "phone-portrait": "Telefon",
+      "tv": "TV",
+      "cart": "Élelmiszer",
+      "restaurant": "Étterem",
+      "medkit": "Egészség",
+      "fitness": "Fitnesz",
+      "school": "Oktatás",
+      "card": "Hitelkártya",
+      "shield-checkmark": "Biztosítás",
+      "paw": "Háziállat",
+      "airplane": "Utazás",
+      "gift": "Ajándék",
+      "musical-notes": "Zene",
+      "game-controller": "Játék"
     }
   },
   "payDate": {

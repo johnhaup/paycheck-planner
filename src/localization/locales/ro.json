@@ -165,11 +165,43 @@
       "setAsideHint": "Bani pe care îi păstrezi dintr-un salariu, cum ar fi bani de cheltuială sau economii. Se scad din ce rămâne, la fel ca o factură.",
       "addSetAside": "Adaugă rezervă",
       "updateSetAside": "Actualizează rezerva",
-      "nameRequired": "Numele este obligatoriu."
+      "nameRequired": "Numele este obligatoriu.",
+      "icon": "Pictogramă",
+      "noIcon": "Fără pictogramă"
     },
     "kind": {
       "bill": "Factură",
       "setAside": "Rezervă"
+    },
+    "sort": {
+      "title": "Sortează",
+      "default": "Grupat",
+      "amount": "Sumă, cea mai mare întâi",
+      "name": "Nume"
+    },
+    "searchPlaceholder": "Caută facturi",
+    "noMatches": "Nimic nu corespunde cu „%{query}”.",
+    "icons": {
+      "home": "Locuință",
+      "car": "Mașină",
+      "flash": "Curent",
+      "water": "Apă",
+      "flame": "Gaz",
+      "wifi": "Internet",
+      "phone-portrait": "Telefon",
+      "tv": "TV",
+      "cart": "Cumpărături",
+      "restaurant": "Restaurante",
+      "medkit": "Sănătate",
+      "fitness": "Fitness",
+      "school": "Educație",
+      "card": "Card de credit",
+      "shield-checkmark": "Asigurare",
+      "paw": "Animale",
+      "airplane": "Călătorii",
+      "gift": "Cadouri",
+      "musical-notes": "Muzică",
+      "game-controller": "Jocuri"
     }
   },
   "payDate": {

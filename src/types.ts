@@ -1,3 +1,5 @@
+import type { ExpenseIcon } from "@/constants/expenseIcons";
+
 export type PayFrequency = "weekly" | "biweekly" | "semi-monthly" | "monthly";
 
 export interface IncomeSource {
@@ -32,6 +34,8 @@ export interface Expense {
   linkSchedule?: LinkSchedule;
   /** For monthly links: which paycheck within the month */
   paycheckOrdinal?: PaycheckSlot;
+  /** Shown on the tile in place of the payee's first letter */
+  icon?: ExpenseIcon;
 }
 
 export type LinkSchedule = "every-paycheck" | "monthly";

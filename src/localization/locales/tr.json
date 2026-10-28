@@ -163,11 +163,43 @@
       "setAsideHint": "Maaştan kenara ayırdığın para; harcama parası ya da birikim gibi. Tıpkı bir fatura gibi kalandan düşülür.",
       "addSetAside": "Rezerv Ekle",
       "updateSetAside": "Rezervi Güncelle",
-      "nameRequired": "Ad gerekli."
+      "nameRequired": "Ad gerekli.",
+      "icon": "Simge",
+      "noIcon": "Simge yok"
     },
     "kind": {
       "bill": "Fatura",
       "setAside": "Rezerv"
+    },
+    "sort": {
+      "title": "Sırala",
+      "default": "Gruplu",
+      "amount": "Tutar, yüksekten düşüğe",
+      "name": "Ad"
+    },
+    "searchPlaceholder": "Fatura ara",
+    "noMatches": "\"%{query}\" ile eşleşen bir şey yok.",
+    "icons": {
+      "home": "Ev",
+      "car": "Araba",
+      "flash": "Elektrik",
+      "water": "Su",
+      "flame": "Doğalgaz",
+      "wifi": "İnternet",
+      "phone-portrait": "Telefon",
+      "tv": "TV",
+      "cart": "Market",
+      "restaurant": "Yemek",
+      "medkit": "Sağlık",
+      "fitness": "Spor",
+      "school": "Eğitim",
+      "card": "Kredi kartı",
+      "shield-checkmark": "Sigorta",
+      "paw": "Evcil hayvan",
+      "airplane": "Seyahat",
+      "gift": "Hediye",
+      "musical-notes": "Müzik",
+      "game-controller": "Oyun"
     }
   },
   "payDate": {

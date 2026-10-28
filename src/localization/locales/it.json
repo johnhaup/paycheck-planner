@@ -164,11 +164,43 @@
       "setAsideHint": "Soldi che tieni da uno stipendio, come contanti da spendere o risparmi. Vengono sottratti da ciò che rimane, proprio come una bolletta.",
       "addSetAside": "Aggiungi accantonamento",
       "updateSetAside": "Aggiorna accantonamento",
-      "nameRequired": "Il nome è obbligatorio."
+      "nameRequired": "Il nome è obbligatorio.",
+      "icon": "Icona",
+      "noIcon": "Nessuna icona"
     },
     "kind": {
       "bill": "Bolletta",
       "setAside": "Accantonamento"
+    },
+    "sort": {
+      "title": "Ordina",
+      "default": "Raggruppato",
+      "amount": "Importo, dal più alto",
+      "name": "Nome"
+    },
+    "searchPlaceholder": "Cerca bollette",
+    "noMatches": "Nessun risultato per \"%{query}\".",
+    "icons": {
+      "home": "Casa",
+      "car": "Auto",
+      "flash": "Luce",
+      "water": "Acqua",
+      "flame": "Gas",
+      "wifi": "Internet",
+      "phone-portrait": "Telefono",
+      "tv": "TV",
+      "cart": "Spesa",
+      "restaurant": "Ristoranti",
+      "medkit": "Salute",
+      "fitness": "Palestra",
+      "school": "Istruzione",
+      "card": "Carta di credito",
+      "shield-checkmark": "Assicurazione",
+      "paw": "Animali",
+      "airplane": "Viaggi",
+      "gift": "Regali",
+      "musical-notes": "Musica",
+      "game-controller": "Giochi"
     }
   },
   "payDate": {

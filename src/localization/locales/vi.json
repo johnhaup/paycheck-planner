@@ -162,11 +162,43 @@
       "setAsideHint": "Tiền bạn giữ lại từ kỳ lương, như tiền tiêu vặt hoặc tiền tiết kiệm. Khoản này được trừ vào số còn lại, giống như hóa đơn.",
       "addSetAside": "Thêm khoản để dành",
       "updateSetAside": "Cập nhật khoản để dành",
-      "nameRequired": "Vui lòng nhập tên."
+      "nameRequired": "Vui lòng nhập tên.",
+      "icon": "Biểu tượng",
+      "noIcon": "Không có biểu tượng"
     },
     "kind": {
       "bill": "Hóa đơn",
       "setAside": "Khoản để dành"
+    },
+    "sort": {
+      "title": "Sắp xếp",
+      "default": "Theo nhóm",
+      "amount": "Số tiền, cao nhất trước",
+      "name": "Tên"
+    },
+    "searchPlaceholder": "Tìm hóa đơn",
+    "noMatches": "Không có kết quả cho \"%{query}\".",
+    "icons": {
+      "home": "Nhà",
+      "car": "Xe hơi",
+      "flash": "Điện",
+      "water": "Nước",
+      "flame": "Gas",
+      "wifi": "Internet",
+      "phone-portrait": "Điện thoại",
+      "tv": "TV",
+      "cart": "Đi chợ",
+      "restaurant": "Ăn uống",
+      "medkit": "Sức khỏe",
+      "fitness": "Thể hình",
+      "school": "Học tập",
+      "card": "Thẻ tín dụng",
+      "shield-checkmark": "Bảo hiểm",
+      "paw": "Thú cưng",
+      "airplane": "Du lịch",
+      "gift": "Quà tặng",
+      "musical-notes": "Âm nhạc",
+      "game-controller": "Trò chơi"
     }
   },
   "payDate": {

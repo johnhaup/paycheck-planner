@@ -162,11 +162,43 @@
       "setAsideHint": "급여에서 따로 떼어 두는 돈입니다(용돈, 저축 등). 청구서처럼 남은 금액에서 차감됩니다.",
       "addSetAside": "따로 모음 추가",
       "updateSetAside": "따로 모음 업데이트",
-      "nameRequired": "이름을 입력하세요."
+      "nameRequired": "이름을 입력하세요.",
+      "icon": "아이콘",
+      "noIcon": "아이콘 없음"
     },
     "kind": {
       "bill": "청구서",
       "setAside": "따로 모음"
+    },
+    "sort": {
+      "title": "정렬",
+      "default": "그룹별",
+      "amount": "금액 높은 순",
+      "name": "이름"
+    },
+    "searchPlaceholder": "청구서 검색",
+    "noMatches": "\"%{query}\"와(과) 일치하는 항목이 없습니다.",
+    "icons": {
+      "home": "주거",
+      "car": "자동차",
+      "flash": "전기",
+      "water": "수도",
+      "flame": "가스",
+      "wifi": "인터넷",
+      "phone-portrait": "휴대폰",
+      "tv": "TV",
+      "cart": "장보기",
+      "restaurant": "외식",
+      "medkit": "건강",
+      "fitness": "운동",
+      "school": "교육",
+      "card": "신용카드",
+      "shield-checkmark": "보험",
+      "paw": "반려동물",
+      "airplane": "여행",
+      "gift": "선물",
+      "musical-notes": "음악",
+      "game-controller": "게임"
     }
   },
   "payDate": {

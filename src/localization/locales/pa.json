@@ -163,11 +163,43 @@
       "setAsideHint": "ਉਹ ਪੈਸੇ ਜੋ ਤੁਸੀਂ ਤਨਖ਼ਾਹ ਵਿੱਚੋਂ ਵੱਖ ਰੱਖਦੇ ਹੋ, ਜਿਵੇਂ ਖਰਚਣ ਵਾਲੇ ਪੈਸੇ ਜਾਂ ਬੱਚਤ। ਇਹ ਬਿੱਲ ਵਾਂਗ ਹੀ ਬਾਕੀ ਰਕਮ ਵਿੱਚੋਂ ਘਟਦੇ ਹਨ।",
       "addSetAside": "ਰਾਖਵੀਂ ਰਕਮ ਸ਼ਾਮਲ ਕਰੋ",
       "updateSetAside": "ਰਾਖਵੀਂ ਰਕਮ ਅੱਪਡੇਟ ਕਰੋ",
-      "nameRequired": "ਨਾਮ ਜ਼ਰੂਰੀ ਹੈ।"
+      "nameRequired": "ਨਾਮ ਜ਼ਰੂਰੀ ਹੈ।",
+      "icon": "ਆਈਕਨ",
+      "noIcon": "ਕੋਈ ਆਈਕਨ ਨਹੀਂ"
     },
     "kind": {
       "bill": "ਬਿੱਲ",
       "setAside": "ਰਾਖਵੀਂ ਰਕਮ"
+    },
+    "sort": {
+      "title": "ਕ੍ਰਮ",
+      "default": "ਗਰੁੱਪ ਵਿੱਚ",
+      "amount": "ਰਕਮ, ਵੱਧ ਪਹਿਲਾਂ",
+      "name": "ਨਾਮ"
+    },
+    "searchPlaceholder": "ਬਿੱਲ ਖੋਜੋ",
+    "noMatches": "\"%{query}\" ਨਾਲ ਕੁਝ ਨਹੀਂ ਮਿਲਿਆ।",
+    "icons": {
+      "home": "ਘਰ",
+      "car": "ਕਾਰ",
+      "flash": "ਬਿਜਲੀ",
+      "water": "ਪਾਣੀ",
+      "flame": "ਗੈਸ",
+      "wifi": "ਇੰਟਰਨੈੱਟ",
+      "phone-portrait": "ਫ਼ੋਨ",
+      "tv": "ਟੀਵੀ",
+      "cart": "ਰਾਸ਼ਨ",
+      "restaurant": "ਖਾਣਾ-ਪੀਣਾ",
+      "medkit": "ਸਿਹਤ",
+      "fitness": "ਫ਼ਿਟਨੈੱਸ",
+      "school": "ਪੜ੍ਹਾਈ",
+      "card": "ਕ੍ਰੈਡਿਟ ਕਾਰਡ",
+      "shield-checkmark": "ਬੀਮਾ",
+      "paw": "ਪਾਲਤੂ ਜਾਨਵਰ",
+      "airplane": "ਸਫ਼ਰ",
+      "gift": "ਤੋਹਫ਼ੇ",
+      "musical-notes": "ਸੰਗੀਤ",
+      "game-controller": "ਗੇਮਾਂ"
     }
   },
   "payDate": {

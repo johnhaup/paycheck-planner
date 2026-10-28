@@ -163,11 +163,43 @@
       "setAsideHint": "Geld dat je van een salaris apart houdt, zoals zakgeld of spaargeld. Het gaat af van wat er over is, net als een rekening.",
       "addSetAside": "Reservering toevoegen",
       "updateSetAside": "Reservering bijwerken",
-      "nameRequired": "Naam is verplicht."
+      "nameRequired": "Naam is verplicht.",
+      "icon": "Pictogram",
+      "noIcon": "Geen pictogram"
     },
     "kind": {
       "bill": "Rekening",
       "setAside": "Reservering"
+    },
+    "sort": {
+      "title": "Sorteren",
+      "default": "Gegroepeerd",
+      "amount": "Bedrag, hoogste eerst",
+      "name": "Naam"
+    },
+    "searchPlaceholder": "Rekeningen zoeken",
+    "noMatches": "Niets komt overeen met '%{query}'.",
+    "icons": {
+      "home": "Wonen",
+      "car": "Auto",
+      "flash": "Stroom",
+      "water": "Water",
+      "flame": "Gas",
+      "wifi": "Internet",
+      "phone-portrait": "Telefoon",
+      "tv": "Tv",
+      "cart": "Boodschappen",
+      "restaurant": "Uit eten",
+      "medkit": "Gezondheid",
+      "fitness": "Sport",
+      "school": "Onderwijs",
+      "card": "Creditcard",
+      "shield-checkmark": "Verzekering",
+      "paw": "Huisdieren",
+      "airplane": "Reizen",
+      "gift": "Cadeaus",
+      "musical-notes": "Muziek",
+      "game-controller": "Games"
     }
   },
   "payDate": {

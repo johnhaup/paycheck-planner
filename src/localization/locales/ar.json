@@ -167,11 +167,43 @@
       "setAsideHint": "مال تحتفظ به من الراتب، مثل مصروف الجيب أو المدخرات. يُخصم مما يتبقى، تمامًا مثل الفاتورة.",
       "addSetAside": "إضافة مبلغ محجوز",
       "updateSetAside": "تحديث المبلغ المحجوز",
-      "nameRequired": "الاسم مطلوب."
+      "nameRequired": "الاسم مطلوب.",
+      "icon": "الأيقونة",
+      "noIcon": "بلا أيقونة"
     },
     "kind": {
       "bill": "فاتورة",
       "setAside": "مبلغ محجوز"
+    },
+    "sort": {
+      "title": "ترتيب",
+      "default": "مجمّعة",
+      "amount": "المبلغ، الأعلى أولاً",
+      "name": "الاسم"
+    },
+    "searchPlaceholder": "ابحث في الفواتير",
+    "noMatches": "لا شيء يطابق \"%{query}\".",
+    "icons": {
+      "home": "المنزل",
+      "car": "السيارة",
+      "flash": "الكهرباء",
+      "water": "الماء",
+      "flame": "الغاز",
+      "wifi": "الإنترنت",
+      "phone-portrait": "الهاتف",
+      "tv": "التلفزيون",
+      "cart": "البقالة",
+      "restaurant": "المطاعم",
+      "medkit": "الصحة",
+      "fitness": "اللياقة",
+      "school": "التعليم",
+      "card": "بطاقة ائتمان",
+      "shield-checkmark": "التأمين",
+      "paw": "الحيوانات الأليفة",
+      "airplane": "السفر",
+      "gift": "الهدايا",
+      "musical-notes": "الموسيقى",
+      "game-controller": "الألعاب"
     }
   },
   "payDate": {
