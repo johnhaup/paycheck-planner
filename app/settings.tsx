@@ -2,6 +2,7 @@ import { useCallback, useMemo } from "react";
 import { Alert, ScrollView, StyleSheet, View } from "react-native";
 import { useRouter } from "expo-router";
 import { toast } from "sonner-native";
+import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
 import { useLocale, useT } from "@/hooks/useLocale";
 import { useThemeStore, ThemeMode } from "@/stores/themeStore";
@@ -9,6 +10,8 @@ import { useLocaleStore, SYSTEM } from "@/stores/localeStore";
 import { REMINDER_OFFSETS, useNotificationStore, type ReminderOffset } from "@/stores/notificationStore";
 import { LANGUAGES } from "@/localization/languages";
 import { requestReminderPermission } from "@/utils/paydayReminders";
+import { pickBackup, shareBackup, shareExpensesCsv } from "@/utils/backup";
+import { withUndo } from "@/utils/undo";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppChip } from "@/components/AppChip";
@@ -33,6 +36,8 @@ export default function SettingsScreen() {
   const currencySetting = useLocaleStore((s) => s.currency);
   const remindersEnabled = useNotificationStore((s) => s.enabled);
   const setRemindersEnabled = useNotificationStore((s) => s.setEnabled);
+  const unpaidEnabled = useNotificationStore((s) => s.unpaidEnabled);
+  const setUnpaidEnabled = useNotificationStore((s) => s.setUnpaidEnabled);
   const daysBefore = useNotificationStore((s) => s.daysBefore);
   const setDaysBefore = useNotificationStore((s) => s.setDaysBefore);
   const hour = useNotificationStore((s) => s.hour);
@@ -63,6 +68,64 @@ export default function SettingsScreen() {
     },
     [setRemindersEnabled, t]
   );
+
+  const handleToggleUnpaid = useCallback(
+    async (value: boolean) => {
+      if (!value) {
+        setUnpaidEnabled(false);
+        return;
+      }
+      const granted = await requestReminderPermission();
+      if (granted) {
+        setUnpaidEnabled(true);
+        toast.success(t("toasts.unpaidOn"));
+      } else {
+        Alert.alert(t("settings.permissionDeniedTitle"), t("settings.permissionDeniedBody"));
+      }
+    },
+    [setUnpaidEnabled, t]
+  );
+
+  const handleBackup = useCallback(() => {
+    const { incomeSources, expenses, assignments, paycheckOverrides } = useStore.getState();
+    shareBackup({ incomeSources, expenses, assignments, paycheckOverrides }).catch(() => {});
+  }, []);
+
+  const handleExportCsv = useCallback(() => {
+    const { expenses, incomeSources } = useStore.getState();
+    shareExpensesCsv(expenses, incomeSources).catch(() => {});
+  }, []);
+
+  const handleRestore = useCallback(async () => {
+    const result = await pickBackup();
+    if (result.status === "canceled") return;
+    if (result.status === "invalid") {
+      toast.error(t("settings.data.invalidBackup"));
+      return;
+    }
+    Alert.alert(t("settings.data.restoreTitle"), t("settings.data.restoreBody"), [
+      { text: t("common.cancel"), style: "cancel" },
+      {
+        text: t("settings.data.restoreConfirm"),
+        style: "destructive",
+        onPress: () => withUndo(t("toasts.restored"), () => useStore.setState(result.data)),
+      },
+    ]);
+  }, [t]);
+
+  const handleErase = useCallback(() => {
+    Alert.alert(t("settings.data.eraseTitle"), t("settings.data.eraseBody"), [
+      { text: t("common.cancel"), style: "cancel" },
+      {
+        text: t("common.delete"),
+        style: "destructive",
+        onPress: () =>
+          withUndo(t("toasts.erased"), () =>
+            useStore.setState({ incomeSources: [], expenses: [], assignments: [], paycheckOverrides: [] })
+          ),
+      },
+    ]);
+  }, [t]);
 
   const handleTimeChange = useCallback(
     (date: Date) => {
@@ -150,6 +213,16 @@ export default function SettingsScreen() {
               />
             ))}
           </View>
+        </>
+      ) : null}
+      <SettingsToggleRow
+        label={t("settings.unpaidReminder")}
+        hint={t("settings.unpaidReminderHint")}
+        value={unpaidEnabled}
+        onValueChange={handleToggleUnpaid}
+      />
+      {remindersEnabled || unpaidEnabled ? (
+        <>
           <AppText variant="section" style={styles.label}>{t("settings.remindTime")}</AppText>
           <AppDatePicker mode="time" value={reminderTime} onChange={handleTimeChange} />
         </>
@@ -162,6 +235,15 @@ export default function SettingsScreen() {
         value={autoMarkPaid}
         onValueChange={setAutoMarkPaid}
       />
+
+      <AppSectionHeader title={t("settings.data.title")} />
+      <SettingsLinkRow label={t("settings.data.backup")} onPress={handleBackup} />
+      <SettingsLinkRow label={t("settings.data.restore")} onPress={handleRestore} />
+      <SettingsLinkRow label={t("settings.data.exportCsv")} onPress={handleExportCsv} />
+      <SettingsLinkRow label={t("settings.data.erase")} destructive onPress={handleErase} />
+      <AppText variant="caption" style={styles.hint}>
+        {t("settings.data.hint")}
+      </AppText>
     </ScrollView>
   );
 }
@@ -174,6 +256,10 @@ const styles = StyleSheet.create({
   label: {
     marginBottom: MEASUREMENTS.spacing.sm + 2,
     marginTop: MEASUREMENTS.spacing.lg,
+  },
+  hint: {
+    marginTop: MEASUREMENTS.spacing.md,
+    paddingHorizontal: MEASUREMENTS.spacing.xs,
   },
   chipRow: {
     flexDirection: "row",

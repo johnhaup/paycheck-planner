@@ -41,8 +41,6 @@
     "leftAfterBills": "%{month} · reste",
     "heroMeta": "%{income} reçus · %{assigned} affectés",
     "monthPaychecks": "Salaires de %{month}",
-    "emptyTitle": "Aucune source de revenus",
-    "emptyBody": "Ajoutez votre première source de revenus pour voir où va chaque salaire.",
     "noBillsYet": "Aucune facture · touchez pour affecter",
     "paidProgress": "%{paid} sur %{total} payées",
     "amountLeft": "Reste %{amount}",
@@ -51,7 +49,6 @@
     "markPaid": "Marquer %{payee} comme payée",
     "changeAmount": "Modifier le montant de %{payee} pour ce salaire",
     "changePayAmount": "Modifier le montant du salaire %{source} pour cette paie",
-    "emptyAction": "Ajouter une source de revenus",
     "chartBarCurrentLabel": "%{month} (ce mois-ci), reste %{amount}",
     "shortBy": "Il manque %{amount}",
     "moveBill": "Déplacer une facture",
@@ -259,7 +256,24 @@
       "weekBefore": "Une semaine avant"
     },
     "permissionDeniedTitle": "Les notifications sont désactivées",
-    "permissionDeniedBody": "Autorisez les notifications pour Paycheck Planner dans les réglages de votre appareil pour recevoir les rappels de paie."
+    "permissionDeniedBody": "Autorisez les notifications pour Paycheck Planner dans les réglages de votre appareil pour recevoir les rappels de paie.",
+    "data": {
+      "title": "Données",
+      "backup": "Sauvegarder les données",
+      "restore": "Restaurer une sauvegarde",
+      "exportCsv": "Exporter les factures en CSV",
+      "erase": "Effacer toutes les données",
+      "hint": "Une sauvegarde est un fichier que vous gardez dans Fichiers ou là où vous le partagez. La restaurer remplace tout le contenu de l'app.",
+      "csvType": "Type",
+      "restoreTitle": "Remplacer toutes vos données ?",
+      "restoreBody": "Tout le contenu de l'app sera remplacé par la sauvegarde.",
+      "restoreConfirm": "Remplacer",
+      "eraseTitle": "Effacer toutes les données ?",
+      "eraseBody": "Supprime toutes les sources de revenus, factures et modifications de paie.",
+      "invalidBackup": "Ce fichier n'est pas une sauvegarde Paycheck Planner."
+    },
+    "unpaidReminder": "Rappel des factures impayées",
+    "unpaidReminderHint": "Le lendemain de la paie, recevez un rappel si des factures de cette paie ne sont pas marquées comme payées."
   },
   "notifications": {
     "channelName": "Rappels de paie",
@@ -273,7 +287,9 @@
       "other": "%{count} factures (%{amount})"
     },
     "bodyWithSetAside": "%{income} reçus · %{bills} · %{setAside} mis de côté · reste %{left}",
-    "bodySetAsideOnly": "%{income} reçus · %{setAside} mis de côté · reste %{left}"
+    "bodySetAsideOnly": "%{income} reçus · %{setAside} mis de côté · reste %{left}",
+    "unpaidTitle": "Toujours impayé : %{source}",
+    "unpaidBody": "%{bills} de la paie du %{date} pas encore marquées comme payées"
   },
   "links": {
     "openFailed": "Impossible d'ouvrir le lien"
@@ -299,9 +315,36 @@
     "incomeDeleted": "« %{name} » supprimé",
     "billMoved": "« %{payee} » déplacé au %{date}",
     "remindersOn": "Rappels de paie activés",
-    "markedAllPaid": "Tout est marqué comme payé"
+    "markedAllPaid": "Tout est marqué comme payé",
+    "restored": "Sauvegarde restaurée",
+    "erased": "Toutes les données effacées",
+    "sampleLoaded": "Données d'exemple chargées. Effacez-les quand vous voulez dans Réglages.",
+    "unpaidOn": "Rappel des factures impayées activé"
   },
   "history": {
     "empty": "Aucune paie passée pour l'instant."
+  },
+  "demo": {
+    "rent": "Loyer",
+    "groceries": "Courses",
+    "carPayment": "Crédit auto",
+    "electric": "Électricité",
+    "internet": "Internet",
+    "phone": "Téléphone",
+    "savings": "Épargne",
+    "streaming": "Streaming",
+    "carRegistration": "Carte grise"
+  },
+  "welcome": {
+    "title": "Planifiez chaque paie",
+    "body": "Voyez ce que couvre chaque paie avant qu'elle n'arrive.",
+    "incomeTitle": "Ajoutez vos revenus",
+    "incomeBody": "Indiquez quand et combien vous êtes payé.",
+    "billsTitle": "Ajoutez vos factures",
+    "billsBody": "Associez-les à une paie ou mettez de l'argent de côté.",
+    "leftTitle": "Voyez ce qu'il reste",
+    "leftBody": "Chaque paie affiche ses factures et ce qu'il reste.",
+    "addIncome": "Ajouter une source de revenus",
+    "trySample": "Essayer avec des données d'exemple"
   }
 }

@@ -43,8 +43,6 @@
     "leftAfterBills": "%{month} · el que queda",
     "heroMeta": "%{income} d'ingressos · %{assigned} assignats",
     "monthPaychecks": "Sous de %{month}",
-    "emptyTitle": "Encara no hi ha fonts d'ingressos",
-    "emptyBody": "Afegeix la primera font d'ingressos per veure on va cada sou.",
     "noBillsYet": "Encara sense factures · toca per assignar",
     "paidProgress": "%{paid} de %{total} pagades",
     "amountLeft": "Queden %{amount}",
@@ -53,7 +51,6 @@
     "markPaid": "Marca %{payee} com a pagada",
     "changeAmount": "Canvia l'import de %{payee} per a aquest sou",
     "changePayAmount": "Canvia l'import del sou de %{source} per a aquest cobrament",
-    "emptyAction": "Afegeix una font d'ingressos",
     "chartBarCurrentLabel": "%{month} (aquest mes), queden %{amount}",
     "shortBy": "Falten %{amount}",
     "moveBill": "Mou una factura",
@@ -261,7 +258,24 @@
       "weekBefore": "Una setmana abans"
     },
     "permissionDeniedTitle": "Les notificacions estan desactivades",
-    "permissionDeniedBody": "Permet les notificacions de Paycheck Planner a la configuració del dispositiu per rebre recordatoris de cobrament."
+    "permissionDeniedBody": "Permet les notificacions de Paycheck Planner a la configuració del dispositiu per rebre recordatoris de cobrament.",
+    "data": {
+      "title": "Dades",
+      "backup": "Fes una còpia de seguretat",
+      "restore": "Restaura una còpia",
+      "exportCsv": "Exporta les factures en CSV",
+      "erase": "Esborra totes les dades",
+      "hint": "Les còpies són un fitxer que guardes a Fitxers o on el comparteixis. Restaurar-ne una substitueix tot el que hi ha a l'app.",
+      "csvType": "Tipus",
+      "restoreTitle": "Vols substituir totes les dades?",
+      "restoreBody": "Tot el que hi ha a l'app se substituirà per la còpia.",
+      "restoreConfirm": "Substitueix",
+      "eraseTitle": "Vols esborrar totes les dades?",
+      "eraseBody": "S'eliminen totes les fonts d'ingressos, factures i canvis als cobraments.",
+      "invalidBackup": "Aquest fitxer no és una còpia de Paycheck Planner."
+    },
+    "unpaidReminder": "Recordatori de factures pendents",
+    "unpaidReminderHint": "L'endemà del cobrament, rep un avís si alguna factura d'aquell cobrament no està marcada com a pagada."
   },
   "notifications": {
     "channelName": "Recordatoris de cobrament",
@@ -275,7 +289,9 @@
       "other": "%{count} factures (%{amount})"
     },
     "bodyWithSetAside": "%{income} d'ingressos · %{bills} · %{setAside} reservats · queden %{left}",
-    "bodySetAsideOnly": "%{income} d'ingressos · %{setAside} reservats · queden %{left}"
+    "bodySetAsideOnly": "%{income} d'ingressos · %{setAside} reservats · queden %{left}",
+    "unpaidTitle": "Encara pendent: %{source}",
+    "unpaidBody": "%{bills} del cobrament de %{date} encara sense marcar com a pagades"
   },
   "links": {
     "openFailed": "No s'ha pogut obrir l'enllaç"
@@ -301,9 +317,36 @@
     "incomeDeleted": "S'ha suprimit \"%{name}\"",
     "billMoved": "S'ha mogut \"%{payee}\" al %{date}",
     "remindersOn": "Recordatoris de cobrament activats",
-    "markedAllPaid": "Tot marcat com a pagat"
+    "markedAllPaid": "Tot marcat com a pagat",
+    "restored": "Còpia restaurada",
+    "erased": "Totes les dades esborrades",
+    "sampleLoaded": "S'han carregat dades de mostra. Pots esborrar-les a Configuració quan vulguis.",
+    "unpaidOn": "Recordatori de factures pendents activat"
   },
   "history": {
     "empty": "Encara no hi ha cobraments anteriors."
+  },
+  "demo": {
+    "rent": "Lloguer",
+    "groceries": "Supermercat",
+    "carPayment": "Quota del cotxe",
+    "electric": "Llum",
+    "internet": "Internet",
+    "phone": "Telèfon",
+    "savings": "Estalvis",
+    "streaming": "Streaming",
+    "carRegistration": "Impost del cotxe"
+  },
+  "welcome": {
+    "title": "Planifica cada cobrament",
+    "body": "Mira què cobreix cada cobrament abans que arribi.",
+    "incomeTitle": "Afegeix els ingressos",
+    "incomeBody": "Indica quan cobres i quant.",
+    "billsTitle": "Afegeix les factures",
+    "billsBody": "Vincula-les a un cobrament o reserva diners.",
+    "leftTitle": "Mira què et queda",
+    "leftBody": "Cada cobrament mostra les seves factures i el que sobra.",
+    "addIncome": "Afegeix una font d'ingressos",
+    "trySample": "Prova-ho amb dades de mostra"
   }
 }

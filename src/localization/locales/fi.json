@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · jäljellä",
     "heroMeta": "%{income} tuloja · %{assigned} kohdistettu",
     "monthPaychecks": "Palkat · %{month}",
-    "emptyTitle": "Ei vielä tulonlähteitä",
-    "emptyBody": "Lisää ensimmäinen tulonlähde nähdäksesi, mihin kukin palkka menee.",
     "noBillsYet": "Ei vielä laskuja · napauta kohdistaaksesi",
     "paidProgress": "%{paid}/%{total} maksettu",
     "amountLeft": "%{amount} jäljellä",
@@ -50,7 +48,6 @@
     "markPaid": "Merkitse %{payee} maksetuksi",
     "changeAmount": "Muuta laskun %{payee} summaa tälle palkalle",
     "changePayAmount": "Muuta lähteen %{source} palkkasummaa tälle palkalle",
-    "emptyAction": "Lisää tulonlähde",
     "chartBarCurrentLabel": "%{month} (tämä kuukausi), %{amount} jäljellä",
     "shortBy": "Vajaus %{amount}",
     "moveBill": "Siirrä lasku",
@@ -258,7 +255,24 @@
       "weekBefore": "Viikkoa ennen"
     },
     "permissionDeniedTitle": "Ilmoitukset ovat pois",
-    "permissionDeniedBody": "Salli ilmoitukset Paycheck Planner -sovellukselle laitteen asetuksissa saadaksesi palkkapäivämuistutuksia."
+    "permissionDeniedBody": "Salli ilmoitukset Paycheck Planner -sovellukselle laitteen asetuksissa saadaksesi palkkapäivämuistutuksia.",
+    "data": {
+      "title": "Tiedot",
+      "backup": "Varmuuskopioi tiedot",
+      "restore": "Palauta varmuuskopiosta",
+      "exportCsv": "Vie laskut CSV-tiedostona",
+      "erase": "Poista kaikki tiedot",
+      "hint": "Varmuuskopio on tiedosto, jonka säilytät Tiedostoissa tai missä sen jaat. Palautus korvaa kaiken sovelluksessa.",
+      "csvType": "Tyyppi",
+      "restoreTitle": "Korvataanko kaikki tiedot?",
+      "restoreBody": "Kaikki sovelluksessa korvataan varmuuskopiolla.",
+      "restoreConfirm": "Korvaa",
+      "eraseTitle": "Poistetaanko kaikki tiedot?",
+      "eraseBody": "Poistaa kaikki tulonlähteet, laskut ja palkkojen muutokset.",
+      "invalidBackup": "Tiedosto ei ole Paycheck Plannerin varmuuskopio."
+    },
+    "unpaidReminder": "Maksamattomien laskujen muistutus",
+    "unpaidReminderHint": "Palkkapäivää seuraavana päivänä saat muistutuksen, jos jokin palkan laskuista ei ole merkitty maksetuksi."
   },
   "notifications": {
     "channelName": "Palkkapäivämuistutukset",
@@ -272,7 +286,9 @@
       "other": "%{count} laskua (%{amount})"
     },
     "bodyWithSetAside": "%{income} tuloja · %{bills} · %{setAside} varattu · %{left} jäljellä",
-    "bodySetAsideOnly": "%{income} tuloja · %{setAside} varattu · %{left} jäljellä"
+    "bodySetAsideOnly": "%{income} tuloja · %{setAside} varattu · %{left} jäljellä",
+    "unpaidTitle": "Yhä maksamatta: %{source}",
+    "unpaidBody": "%{bills} palkasta %{date} ei vielä merkitty maksetuksi"
   },
   "links": {
     "openFailed": "Linkkiä ei voitu avata"
@@ -298,9 +314,36 @@
     "incomeDeleted": "”%{name}” poistettiin",
     "billMoved": "”%{payee}” siirrettiin päivälle %{date}",
     "remindersOn": "Palkkapäivämuistutukset käytössä",
-    "markedAllPaid": "Kaikki merkitty maksetuiksi"
+    "markedAllPaid": "Kaikki merkitty maksetuiksi",
+    "restored": "Varmuuskopio palautettu",
+    "erased": "Kaikki tiedot poistettu",
+    "sampleLoaded": "Esimerkkitiedot ladattu. Voit poistaa ne milloin tahansa asetuksista.",
+    "unpaidOn": "Maksamattomien laskujen muistutus päällä"
   },
   "history": {
     "empty": "Ei vielä aiempia palkkoja."
+  },
+  "demo": {
+    "rent": "Vuokra",
+    "groceries": "Ruokaostokset",
+    "carPayment": "Autolaina",
+    "electric": "Sähkö",
+    "internet": "Internet",
+    "phone": "Puhelin",
+    "savings": "Säästöt",
+    "streaming": "Suoratoisto",
+    "carRegistration": "Ajoneuvovero"
+  },
+  "welcome": {
+    "title": "Suunnittele jokainen palkka",
+    "body": "Näe etukäteen, mitä kukin palkka kattaa.",
+    "incomeTitle": "Lisää tulosi",
+    "incomeBody": "Kerro, milloin ja kuinka paljon saat palkkaa.",
+    "billsTitle": "Lisää laskusi",
+    "billsBody": "Liitä ne palkkaan tai varaa rahaa sivuun.",
+    "leftTitle": "Näe, mitä jää",
+    "leftBody": "Jokainen palkka näyttää laskunsa ja mitä jää yli.",
+    "addIncome": "Lisää tulonlähde",
+    "trySample": "Kokeile esimerkkitiedoilla"
   }
 }

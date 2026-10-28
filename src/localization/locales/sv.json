@@ -41,8 +41,6 @@
     "leftAfterBills": "%{month} · kvar",
     "heroMeta": "%{income} in · %{assigned} tilldelat",
     "monthPaychecks": "Löneutbetalningar i %{month}",
-    "emptyTitle": "Inga inkomstkällor än",
-    "emptyBody": "Lägg till din första inkomstkälla för att se vart varje lön går.",
     "noBillsYet": "Inga räkningar än · tryck för att tilldela",
     "paidProgress": "%{paid} av %{total} betalda",
     "amountLeft": "%{amount} kvar",
@@ -51,7 +49,6 @@
     "markPaid": "Markera %{payee} som betald",
     "changeAmount": "Ändra belopp för %{payee} för den här lönen",
     "changePayAmount": "Ändra lönebelopp för %{source} för den här utbetalningen",
-    "emptyAction": "Lägg till inkomstkälla",
     "chartBarCurrentLabel": "%{month} (den här månaden), %{amount} kvar",
     "shortBy": "Saknas %{amount}",
     "moveBill": "Flytta en räkning",
@@ -259,7 +256,24 @@
       "weekBefore": "Veckan innan"
     },
     "permissionDeniedTitle": "Notiser är avstängda",
-    "permissionDeniedBody": "Tillåt notiser för Paycheck Planner i enhetens inställningar för att få lönedagspåminnelser."
+    "permissionDeniedBody": "Tillåt notiser för Paycheck Planner i enhetens inställningar för att få lönedagspåminnelser.",
+    "data": {
+      "title": "Data",
+      "backup": "Säkerhetskopiera data",
+      "restore": "Återställ från säkerhetskopia",
+      "exportCsv": "Exportera räkningar som CSV",
+      "erase": "Radera all data",
+      "hint": "En säkerhetskopia är en fil som du sparar i Filer eller där du delar den. Återställning ersätter allt i appen.",
+      "csvType": "Typ",
+      "restoreTitle": "Ersätta all din data?",
+      "restoreBody": "Allt i appen ersätts med säkerhetskopian.",
+      "restoreConfirm": "Ersätt",
+      "eraseTitle": "Radera all data?",
+      "eraseBody": "Tar bort alla inkomstkällor, räkningar och ändringar av löner.",
+      "invalidBackup": "Filen är ingen säkerhetskopia från Paycheck Planner."
+    },
+    "unpaidReminder": "Påminnelse om obetalda räkningar",
+    "unpaidReminderHint": "Dagen efter lönedagen får du en påminnelse om någon av lönens räkningar inte är markerad som betald."
   },
   "notifications": {
     "channelName": "Lönedagspåminnelser",
@@ -273,7 +287,9 @@
       "other": "%{count} räkningar (%{amount})"
     },
     "bodyWithSetAside": "%{income} in · %{bills} · %{setAside} avsatt · %{left} kvar",
-    "bodySetAsideOnly": "%{income} in · %{setAside} avsatt · %{left} kvar"
+    "bodySetAsideOnly": "%{income} in · %{setAside} avsatt · %{left} kvar",
+    "unpaidTitle": "Fortfarande obetalt: %{source}",
+    "unpaidBody": "%{bills} från lönen %{date} har inte markerats som betalda"
   },
   "links": {
     "openFailed": "Kunde inte öppna länken"
@@ -299,9 +315,36 @@
     "incomeDeleted": "Tog bort \"%{name}\"",
     "billMoved": "Flyttade \"%{payee}\" till %{date}",
     "remindersOn": "Lönedagspåminnelser på",
-    "markedAllPaid": "Alla markerade som betalda"
+    "markedAllPaid": "Alla markerade som betalda",
+    "restored": "Säkerhetskopia återställd",
+    "erased": "All data raderad",
+    "sampleLoaded": "Exempeldata inläst. Radera den när du vill under Inställningar.",
+    "unpaidOn": "Påminnelse om obetalda räkningar på"
   },
   "history": {
     "empty": "Inga tidigare löner än."
+  },
+  "demo": {
+    "rent": "Hyra",
+    "groceries": "Matvaror",
+    "carPayment": "Billån",
+    "electric": "El",
+    "internet": "Internet",
+    "phone": "Telefon",
+    "savings": "Sparande",
+    "streaming": "Streaming",
+    "carRegistration": "Fordonsskatt"
+  },
+  "welcome": {
+    "title": "Planera varje lön",
+    "body": "Se vad varje lön täcker innan den kommer.",
+    "incomeTitle": "Lägg till din inkomst",
+    "incomeBody": "Berätta när och hur mycket du får betalt.",
+    "billsTitle": "Lägg till dina räkningar",
+    "billsBody": "Koppla dem till en lön eller sätt undan pengar.",
+    "leftTitle": "Se vad som blir kvar",
+    "leftBody": "Varje lön visar sina räkningar och vad som blir kvar.",
+    "addIncome": "Lägg till inkomstkälla",
+    "trySample": "Testa med exempeldata"
   }
 }

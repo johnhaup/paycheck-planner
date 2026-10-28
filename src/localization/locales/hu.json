@@ -41,8 +41,6 @@
     "leftAfterBills": "%{month} · marad",
     "heroMeta": "%{income} bevétel · %{assigned} beosztva",
     "monthPaychecks": "%{month} fizetései",
-    "emptyTitle": "Még nincs bevételi forrás",
-    "emptyBody": "Add hozzá az első bevételi forrásodat, hogy lásd, mire megy el minden fizetés.",
     "noBillsYet": "Még nincs számla · koppints a beosztáshoz",
     "paidProgress": "%{paid}/%{total} fizetve",
     "amountLeft": "%{amount} marad",
@@ -51,7 +49,6 @@
     "markPaid": "%{payee} megjelölése fizetettként",
     "changeAmount": "%{payee} összegének módosítása ennél a fizetésnél",
     "changePayAmount": "%{source} fizetési összegének módosítása ennél a fizetésnél",
-    "emptyAction": "Bevételi forrás hozzáadása",
     "chartBarCurrentLabel": "%{month} (ez a hónap), %{amount} marad",
     "shortBy": "%{amount} hiányzik",
     "moveBill": "Számla áthelyezése",
@@ -259,7 +256,24 @@
       "weekBefore": "Egy héttel előtte"
     },
     "permissionDeniedTitle": "Az értesítések ki vannak kapcsolva",
-    "permissionDeniedBody": "Engedélyezd a Paycheck Planner értesítéseit a készülék beállításaiban, hogy fizetésnapi emlékeztetőket kapj."
+    "permissionDeniedBody": "Engedélyezd a Paycheck Planner értesítéseit a készülék beállításaiban, hogy fizetésnapi emlékeztetőket kapj.",
+    "data": {
+      "title": "Adatok",
+      "backup": "Adatok mentése",
+      "restore": "Visszaállítás mentésből",
+      "exportCsv": "Számlák exportálása CSV-be",
+      "erase": "Minden adat törlése",
+      "hint": "A mentés egy fájl, amit a Fájlokban vagy bárhol tárolsz, ahová megosztod. A visszaállítás mindent lecserél az appban.",
+      "csvType": "Típus",
+      "restoreTitle": "Lecseréled az összes adatot?",
+      "restoreBody": "Az appban minden a mentés tartalmára cserélődik.",
+      "restoreConfirm": "Csere",
+      "eraseTitle": "Törlöd az összes adatot?",
+      "eraseBody": "Minden bevételi forrást, számlát és fizetésmódosítást eltávolít.",
+      "invalidBackup": "Ez a fájl nem Paycheck Planner-mentés."
+    },
+    "unpaidReminder": "Kifizetetlen számlák emlékeztetője",
+    "unpaidReminderHint": "A fizetésnap utáni napon emlékeztetőt kapsz, ha a fizetés valamelyik számlája nincs fizetettként jelölve."
   },
   "notifications": {
     "channelName": "Fizetésnapi emlékeztetők",
@@ -273,7 +287,9 @@
       "other": "%{count} számla (%{amount})"
     },
     "bodyWithSetAside": "%{income} bevétel · %{bills} · %{setAside} félretéve · %{left} marad",
-    "bodySetAsideOnly": "%{income} bevétel · %{setAside} félretéve · %{left} marad"
+    "bodySetAsideOnly": "%{income} bevétel · %{setAside} félretéve · %{left} marad",
+    "unpaidTitle": "Még kifizetetlen: %{source}",
+    "unpaidBody": "A(z) %{date}-i fizetésből %{bills} még nincs fizetettként jelölve"
   },
   "links": {
     "openFailed": "A link nem nyitható meg"
@@ -299,9 +315,36 @@
     "incomeDeleted": "„%{name}” törölve",
     "billMoved": "„%{payee}” áthelyezve: %{date}",
     "remindersOn": "Fizetésnapi emlékeztetők bekapcsolva",
-    "markedAllPaid": "Minden fizetettként megjelölve"
+    "markedAllPaid": "Minden fizetettként megjelölve",
+    "restored": "Mentés visszaállítva",
+    "erased": "Minden adat törölve",
+    "sampleLoaded": "Mintaadatok betöltve. A Beállításokban bármikor törölheted.",
+    "unpaidOn": "Kifizetetlen számlák emlékeztetője bekapcsolva"
   },
   "history": {
     "empty": "Még nincsenek korábbi fizetések."
+  },
+  "demo": {
+    "rent": "Lakbér",
+    "groceries": "Élelmiszer",
+    "carPayment": "Autórészlet",
+    "electric": "Áram",
+    "internet": "Internet",
+    "phone": "Telefon",
+    "savings": "Megtakarítás",
+    "streaming": "Streaming",
+    "carRegistration": "Gépjárműadó"
+  },
+  "welcome": {
+    "title": "Tervezd meg minden fizetésed",
+    "body": "Lásd előre, mit fedez az egyes fizetések.",
+    "incomeTitle": "Add meg a bevételed",
+    "incomeBody": "Add meg, mikor és mennyi fizetést kapsz.",
+    "billsTitle": "Add meg a számláidat",
+    "billsBody": "Rendeld őket egy fizetéshez, vagy tegyél félre pénzt.",
+    "leftTitle": "Lásd, mennyi marad",
+    "leftBody": "Minden fizetés mutatja a számláit és a maradékot.",
+    "addIncome": "Bevételi forrás hozzáadása",
+    "trySample": "Kipróbálás mintaadatokkal"
   }
 }

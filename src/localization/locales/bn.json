@@ -44,8 +44,6 @@
     "leftAfterBills": "%{month} · বাকি",
     "heroMeta": "%{income} এসেছে · %{assigned} বরাদ্দ",
     "monthPaychecks": "%{month}-এর বেতন",
-    "emptyTitle": "এখনও কোনো আয়ের উৎস নেই",
-    "emptyBody": "প্রতিটি বেতন কোথায় যায় তা দেখতে আপনার প্রথম আয়ের উৎস যোগ করুন।",
     "noBillsYet": "এখনও কোনো বিল নেই · বরাদ্দ করতে ট্যাপ করুন",
     "paidProgress": "%{total}-এর মধ্যে %{paid} পরিশোধিত",
     "amountLeft": "%{amount} বাকি",
@@ -54,7 +52,6 @@
     "markPaid": "%{payee} পরিশোধিত হিসেবে চিহ্নিত করুন",
     "changeAmount": "এই বেতনের জন্য %{payee}-এর পরিমাণ বদলান",
     "changePayAmount": "এই বারের জন্য %{source}-এর বেতনের পরিমাণ বদলান",
-    "emptyAction": "আয়ের উৎস যোগ করুন",
     "chartBarCurrentLabel": "%{month} (এই মাস), %{amount} বাকি",
     "shortBy": "%{amount} কম",
     "moveBill": "বিল সরান",
@@ -262,7 +259,24 @@
       "weekBefore": "এক সপ্তাহ আগে"
     },
     "permissionDeniedTitle": "নোটিফিকেশন বন্ধ",
-    "permissionDeniedBody": "বেতনের দিনের রিমাইন্ডার পেতে ডিভাইস সেটিংসে Paycheck Planner-এর নোটিফিকেশন চালু করুন।"
+    "permissionDeniedBody": "বেতনের দিনের রিমাইন্ডার পেতে ডিভাইস সেটিংসে Paycheck Planner-এর নোটিফিকেশন চালু করুন।",
+    "data": {
+      "title": "ডেটা",
+      "backup": "ডেটা ব্যাকআপ করুন",
+      "restore": "ব্যাকআপ থেকে ফেরান",
+      "exportCsv": "বিল CSV হিসেবে এক্সপোর্ট করুন",
+      "erase": "সব ডেটা মুছুন",
+      "hint": "ব্যাকআপ একটি ফাইল, যা আপনি Files-এ বা যেখানে শেয়ার করেন সেখানে রাখেন। ফেরালে অ্যাপের সবকিছু বদলে যায়।",
+      "csvType": "ধরন",
+      "restoreTitle": "আপনার সব ডেটা বদলাবেন?",
+      "restoreBody": "অ্যাপের সবকিছু ব্যাকআপ দিয়ে বদলে যাবে।",
+      "restoreConfirm": "বদলান",
+      "eraseTitle": "সব ডেটা মুছবেন?",
+      "eraseBody": "সব আয়ের উৎস, বিল ও বেতনের পরিবর্তন মুছে যাবে।",
+      "invalidBackup": "এই ফাইলটি Paycheck Planner-এর ব্যাকআপ নয়।"
+    },
+    "unpaidReminder": "অপরিশোধিত বিলের রিমাইন্ডার",
+    "unpaidReminderHint": "বেতনের পরদিন, সেই বেতনের কোনো বিল পরিশোধিত চিহ্নিত না থাকলে মনে করিয়ে দেওয়া হবে।"
   },
   "notifications": {
     "channelName": "বেতনের দিনের রিমাইন্ডার",
@@ -276,7 +290,9 @@
       "other": "%{count}টি বিল (%{amount})"
     },
     "bodyWithSetAside": "%{income} এসেছে · %{bills} · %{setAside} আলাদা রাখা · %{left} বাকি",
-    "bodySetAsideOnly": "%{income} এসেছে · %{setAside} আলাদা রাখা · %{left} বাকি"
+    "bodySetAsideOnly": "%{income} এসেছে · %{setAside} আলাদা রাখা · %{left} বাকি",
+    "unpaidTitle": "এখনো অপরিশোধিত: %{source}",
+    "unpaidBody": "%{date}-এর বেতনের %{bills} এখনো পরিশোধিত চিহ্নিত হয়নি"
   },
   "links": {
     "openFailed": "লিঙ্ক খোলা যায়নি"
@@ -302,9 +318,36 @@
     "incomeDeleted": "\"%{name}\" মুছে ফেলা হয়েছে",
     "billMoved": "\"%{payee}\" %{date}-এ সরানো হয়েছে",
     "remindersOn": "বেতনের দিনের রিমাইন্ডার চালু",
-    "markedAllPaid": "সব পরিশোধিত চিহ্নিত হয়েছে"
+    "markedAllPaid": "সব পরিশোধিত চিহ্নিত হয়েছে",
+    "restored": "ব্যাকআপ ফেরানো হয়েছে",
+    "erased": "সব ডেটা মুছে ফেলা হয়েছে",
+    "sampleLoaded": "নমুনা ডেটা লোড হয়েছে। সেটিংস থেকে যেকোনো সময় মুছতে পারবেন।",
+    "unpaidOn": "অপরিশোধিত বিলের রিমাইন্ডার চালু"
   },
   "history": {
     "empty": "এখনো আগের কোনো বেতন নেই।"
+  },
+  "demo": {
+    "rent": "বাড়িভাড়া",
+    "groceries": "মুদি",
+    "carPayment": "গাড়ির কিস্তি",
+    "electric": "বিদ্যুৎ",
+    "internet": "ইন্টারনেট",
+    "phone": "ফোন",
+    "savings": "সঞ্চয়",
+    "streaming": "স্ট্রিমিং",
+    "carRegistration": "গাড়ির নিবন্ধন"
+  },
+  "welcome": {
+    "title": "প্রতিটি বেতন পরিকল্পনা করুন",
+    "body": "প্রতিটি বেতন আসার আগেই দেখুন তা কী কী মেটাবে।",
+    "incomeTitle": "আপনার আয় যোগ করুন",
+    "incomeBody": "কবে আর কত বেতন পান তা জানান।",
+    "billsTitle": "আপনার বিল যোগ করুন",
+    "billsBody": "বেতনের সাথে যুক্ত করুন, বা টাকা আলাদা রাখুন।",
+    "leftTitle": "কত থাকে দেখুন",
+    "leftBody": "প্রতিটি বেতনে তার বিল আর কত বাকি থাকে দেখা যায়।",
+    "addIncome": "আয়ের উৎস যোগ করুন",
+    "trySample": "নমুনা ডেটা দিয়ে চেষ্টা করুন"
   }
 }

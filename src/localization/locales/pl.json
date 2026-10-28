@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · zostaje",
     "heroMeta": "Wpływy %{income} · przypisano %{assigned}",
     "monthPaychecks": "Wypłaty: %{month}",
-    "emptyTitle": "Brak źródeł dochodu",
-    "emptyBody": "Dodaj pierwsze źródło dochodu, aby zobaczyć, na co idzie każda wypłata.",
     "noBillsYet": "Brak rachunków · dotknij, aby przypisać",
     "paidProgress": "Opłacono %{paid} z %{total}",
     "amountLeft": "Zostaje %{amount}",
@@ -50,7 +48,6 @@
     "markPaid": "Oznacz %{payee} jako opłacone",
     "changeAmount": "Zmień kwotę %{payee} dla tej wypłaty",
     "changePayAmount": "Zmień kwotę wypłaty %{source} tylko dla tej wypłaty",
-    "emptyAction": "Dodaj źródło dochodu",
     "chartBarCurrentLabel": "%{month} (bieżący miesiąc), zostaje %{amount}",
     "shortBy": "Brakuje %{amount}",
     "moveBill": "Przenieś rachunek",
@@ -260,7 +257,24 @@
       "weekBefore": "Tydzień wcześniej"
     },
     "permissionDeniedTitle": "Powiadomienia są wyłączone",
-    "permissionDeniedBody": "Zezwól na powiadomienia dla Paycheck Planner w ustawieniach urządzenia, aby otrzymywać przypomnienia o wypłacie."
+    "permissionDeniedBody": "Zezwól na powiadomienia dla Paycheck Planner w ustawieniach urządzenia, aby otrzymywać przypomnienia o wypłacie.",
+    "data": {
+      "title": "Dane",
+      "backup": "Utwórz kopię zapasową",
+      "restore": "Przywróć z kopii",
+      "exportCsv": "Eksportuj rachunki do CSV",
+      "erase": "Usuń wszystkie dane",
+      "hint": "Kopia zapasowa to plik, który trzymasz w Plikach lub tam, gdzie go udostępnisz. Przywrócenie zastępuje wszystko w aplikacji.",
+      "csvType": "Typ",
+      "restoreTitle": "Zastąpić wszystkie dane?",
+      "restoreBody": "Wszystko w aplikacji zostanie zastąpione kopią.",
+      "restoreConfirm": "Zastąp",
+      "eraseTitle": "Usunąć wszystkie dane?",
+      "eraseBody": "Usuwa wszystkie źródła dochodu, rachunki i zmiany wypłat.",
+      "invalidBackup": "Ten plik nie jest kopią zapasową Paycheck Planner."
+    },
+    "unpaidReminder": "Przypomnienie o nieopłaconych rachunkach",
+    "unpaidReminderHint": "Dzień po wypłacie dostaniesz przypomnienie, jeśli któryś rachunek z tej wypłaty nie jest oznaczony jako opłacony."
   },
   "notifications": {
     "channelName": "Przypomnienia o wypłacie",
@@ -276,7 +290,9 @@
       "other": "%{count} rachunku (%{amount})"
     },
     "bodyWithSetAside": "Wpływy %{income} · %{bills} · odłożone %{setAside} · zostaje %{left}",
-    "bodySetAsideOnly": "Wpływy %{income} · odłożone %{setAside} · zostaje %{left}"
+    "bodySetAsideOnly": "Wpływy %{income} · odłożone %{setAside} · zostaje %{left}",
+    "unpaidTitle": "Wciąż nieopłacone: %{source}",
+    "unpaidBody": "%{bills} z wypłaty z %{date} jeszcze nieoznaczone jako opłacone"
   },
   "links": {
     "openFailed": "Nie udało się otworzyć linku"
@@ -302,9 +318,36 @@
     "incomeDeleted": "Usunięto „%{name}”",
     "billMoved": "Przeniesiono „%{payee}” na %{date}",
     "remindersOn": "Przypomnienia o wypłacie włączone",
-    "markedAllPaid": "Wszystko oznaczono jako opłacone"
+    "markedAllPaid": "Wszystko oznaczono jako opłacone",
+    "restored": "Kopia przywrócona",
+    "erased": "Wszystkie dane usunięte",
+    "sampleLoaded": "Wczytano przykładowe dane. Usuń je w dowolnej chwili w Ustawieniach.",
+    "unpaidOn": "Przypomnienie o nieopłaconych rachunkach włączone"
   },
   "history": {
     "empty": "Nie ma jeszcze poprzednich wypłat."
+  },
+  "demo": {
+    "rent": "Czynsz",
+    "groceries": "Zakupy",
+    "carPayment": "Rata za auto",
+    "electric": "Prąd",
+    "internet": "Internet",
+    "phone": "Telefon",
+    "savings": "Oszczędności",
+    "streaming": "Streaming",
+    "carRegistration": "Rejestracja auta"
+  },
+  "welcome": {
+    "title": "Zaplanuj każdą wypłatę",
+    "body": "Zobacz, co pokryje każda wypłata, zanim wpłynie.",
+    "incomeTitle": "Dodaj dochód",
+    "incomeBody": "Podaj, kiedy i ile dostajesz.",
+    "billsTitle": "Dodaj rachunki",
+    "billsBody": "Przypisz je do wypłaty albo odłóż pieniądze.",
+    "leftTitle": "Zobacz, co zostaje",
+    "leftBody": "Każda wypłata pokazuje swoje rachunki i to, co zostaje.",
+    "addIncome": "Dodaj źródło dochodu",
+    "trySample": "Wypróbuj z przykładowymi danymi"
   }
 }

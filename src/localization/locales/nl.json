@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · over",
     "heroMeta": "%{income} binnen · %{assigned} toegewezen",
     "monthPaychecks": "Salarissen in %{month}",
-    "emptyTitle": "Nog geen inkomstenbronnen",
-    "emptyBody": "Voeg je eerste inkomstenbron toe om te zien waar elk salaris naartoe gaat.",
     "noBillsYet": "Nog geen rekeningen · tik om toe te wijzen",
     "paidProgress": "%{paid} van %{total} betaald",
     "amountLeft": "%{amount} over",
@@ -50,7 +48,6 @@
     "markPaid": "%{payee} markeren als betaald",
     "changeAmount": "Bedrag van %{payee} voor dit salaris wijzigen",
     "changePayAmount": "Salarisbedrag van %{source} voor deze uitbetaling wijzigen",
-    "emptyAction": "Inkomstenbron toevoegen",
     "chartBarCurrentLabel": "%{month} (deze maand), %{amount} over",
     "shortBy": "%{amount} tekort",
     "moveBill": "Rekening verplaatsen",
@@ -258,7 +255,24 @@
       "weekBefore": "Week ervoor"
     },
     "permissionDeniedTitle": "Meldingen staan uit",
-    "permissionDeniedBody": "Sta meldingen toe voor Paycheck Planner in de instellingen van je apparaat om betaaldagherinneringen te ontvangen."
+    "permissionDeniedBody": "Sta meldingen toe voor Paycheck Planner in de instellingen van je apparaat om betaaldagherinneringen te ontvangen.",
+    "data": {
+      "title": "Gegevens",
+      "backup": "Gegevens back-uppen",
+      "restore": "Herstellen uit back-up",
+      "exportCsv": "Rekeningen exporteren als CSV",
+      "erase": "Alle gegevens wissen",
+      "hint": "Een back-up is een bestand dat je bewaart in Bestanden of waar je het naartoe deelt. Herstellen vervangt alles in de app.",
+      "csvType": "Soort",
+      "restoreTitle": "Al je gegevens vervangen?",
+      "restoreBody": "Alles in de app wordt vervangen door de back-up.",
+      "restoreConfirm": "Vervang",
+      "eraseTitle": "Alle gegevens wissen?",
+      "eraseBody": "Verwijdert alle inkomstenbronnen, rekeningen en salariswijzigingen.",
+      "invalidBackup": "Dit bestand is geen back-up van Paycheck Planner."
+    },
+    "unpaidReminder": "Herinnering voor onbetaalde rekeningen",
+    "unpaidReminderHint": "De dag na betaaldag krijg je een seintje als rekeningen van dat salaris nog niet als betaald zijn gemarkeerd."
   },
   "notifications": {
     "channelName": "Betaaldagherinneringen",
@@ -272,7 +286,9 @@
       "other": "%{count} rekeningen (%{amount})"
     },
     "bodyWithSetAside": "%{income} binnen · %{bills} · %{setAside} apart gezet · %{left} over",
-    "bodySetAsideOnly": "%{income} binnen · %{setAside} apart gezet · %{left} over"
+    "bodySetAsideOnly": "%{income} binnen · %{setAside} apart gezet · %{left} over",
+    "unpaidTitle": "Nog onbetaald: %{source}",
+    "unpaidBody": "%{bills} van het salaris van %{date} nog niet als betaald gemarkeerd"
   },
   "links": {
     "openFailed": "Kon link niet openen"
@@ -298,9 +314,36 @@
     "incomeDeleted": "'%{name}' verwijderd",
     "billMoved": "'%{payee}' verplaatst naar %{date}",
     "remindersOn": "Betaaldagherinneringen aan",
-    "markedAllPaid": "Alles gemarkeerd als betaald"
+    "markedAllPaid": "Alles gemarkeerd als betaald",
+    "restored": "Back-up hersteld",
+    "erased": "Alle gegevens gewist",
+    "sampleLoaded": "Voorbeeldgegevens geladen. Wis ze wanneer je wilt in Instellingen.",
+    "unpaidOn": "Herinnering voor onbetaalde rekeningen aan"
   },
   "history": {
     "empty": "Nog geen eerdere salarissen."
+  },
+  "demo": {
+    "rent": "Huur",
+    "groceries": "Boodschappen",
+    "carPayment": "Autolening",
+    "electric": "Stroom",
+    "internet": "Internet",
+    "phone": "Telefoon",
+    "savings": "Sparen",
+    "streaming": "Streaming",
+    "carRegistration": "Motorrijtuigenbelasting"
+  },
+  "welcome": {
+    "title": "Plan elk salaris",
+    "body": "Zie vooraf wat elk salaris dekt.",
+    "incomeTitle": "Voeg je inkomen toe",
+    "incomeBody": "Vertel de app wanneer en hoeveel je krijgt.",
+    "billsTitle": "Voeg je rekeningen toe",
+    "billsBody": "Koppel ze aan een salaris of zet geld apart.",
+    "leftTitle": "Zie wat er overblijft",
+    "leftBody": "Elk salaris toont zijn rekeningen en wat er overblijft.",
+    "addIncome": "Inkomstenbron toevoegen",
+    "trySample": "Probeer met voorbeeldgegevens"
   }
 }

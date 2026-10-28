@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · المتبقي",
     "heroMeta": "%{income} دخل · %{assigned} مخصص",
     "monthPaychecks": "رواتب %{month}",
-    "emptyTitle": "لا توجد مصادر دخل بعد",
-    "emptyBody": "أضف أول مصدر دخل لترى أين يذهب كل راتب.",
     "noBillsYet": "لا فواتير بعد · اضغط للتخصيص",
     "paidProgress": "تم دفع %{paid} من %{total}",
     "amountLeft": "%{amount} متبقي",
@@ -50,7 +48,6 @@
     "markPaid": "تحديد %{payee} كمدفوع",
     "changeAmount": "تغيير مبلغ %{payee} لهذا الراتب",
     "changePayAmount": "تغيير مبلغ راتب %{source} لهذا الراتب",
-    "emptyAction": "إضافة مصدر دخل",
     "chartBarCurrentLabel": "%{month} (هذا الشهر)، المتبقي %{amount}",
     "shortBy": "عجز بمقدار %{amount}",
     "moveBill": "نقل فاتورة",
@@ -262,7 +259,24 @@
       "weekBefore": "قبل أسبوع"
     },
     "permissionDeniedTitle": "الإشعارات متوقفة",
-    "permissionDeniedBody": "اسمح بالإشعارات لتطبيق Paycheck Planner في إعدادات جهازك لتلقي تذكيرات يوم الراتب."
+    "permissionDeniedBody": "اسمح بالإشعارات لتطبيق Paycheck Planner في إعدادات جهازك لتلقي تذكيرات يوم الراتب.",
+    "data": {
+      "title": "البيانات",
+      "backup": "نسخ البيانات احتياطياً",
+      "restore": "الاستعادة من نسخة احتياطية",
+      "exportCsv": "تصدير الفواتير بصيغة CSV",
+      "erase": "مسح كل البيانات",
+      "hint": "النسخة الاحتياطية ملف تحتفظ به في الملفات أو أينما تشاركه. الاستعادة تستبدل كل ما في التطبيق.",
+      "csvType": "النوع",
+      "restoreTitle": "هل تريد استبدال كل بياناتك؟",
+      "restoreBody": "سيُستبدل كل ما في التطبيق بالنسخة الاحتياطية.",
+      "restoreConfirm": "استبدال",
+      "eraseTitle": "هل تريد مسح كل البيانات؟",
+      "eraseBody": "يحذف كل مصادر الدخل والفواتير وتعديلات الرواتب.",
+      "invalidBackup": "هذا الملف ليس نسخة احتياطية من Paycheck Planner."
+    },
+    "unpaidReminder": "تذكير الفواتير غير المدفوعة",
+    "unpaidReminderHint": "في اليوم التالي للراتب، تصلك تذكرة إن لم تُحدد كل فواتيره كمدفوعة."
   },
   "notifications": {
     "channelName": "تذكيرات يوم الراتب",
@@ -280,7 +294,9 @@
       "other": "%{count} فاتورة (%{amount})"
     },
     "bodyWithSetAside": "%{income} دخل · %{bills} · %{setAside} محجوز · %{left} متبقي",
-    "bodySetAsideOnly": "%{income} دخل · %{setAside} محجوز · %{left} متبقي"
+    "bodySetAsideOnly": "%{income} دخل · %{setAside} محجوز · %{left} متبقي",
+    "unpaidTitle": "لم تُدفع بعد: %{source}",
+    "unpaidBody": "%{bills} من راتب %{date} لم تُحدد كمدفوعة بعد"
   },
   "links": {
     "openFailed": "تعذر فتح الرابط"
@@ -306,9 +322,36 @@
     "incomeDeleted": "تم حذف \"%{name}\"",
     "billMoved": "تم نقل \"%{payee}\" إلى %{date}",
     "remindersOn": "تم تشغيل تذكيرات يوم الراتب",
-    "markedAllPaid": "تم تحديد الكل كمدفوع"
+    "markedAllPaid": "تم تحديد الكل كمدفوع",
+    "restored": "تمت استعادة النسخة الاحتياطية",
+    "erased": "تم مسح كل البيانات",
+    "sampleLoaded": "تم تحميل بيانات تجريبية. يمكنك مسحها في أي وقت من الإعدادات.",
+    "unpaidOn": "تم تشغيل تذكير الفواتير غير المدفوعة"
   },
   "history": {
     "empty": "لا توجد رواتب سابقة بعد."
+  },
+  "demo": {
+    "rent": "الإيجار",
+    "groceries": "البقالة",
+    "carPayment": "قسط السيارة",
+    "electric": "الكهرباء",
+    "internet": "الإنترنت",
+    "phone": "الهاتف",
+    "savings": "الادخار",
+    "streaming": "البث",
+    "carRegistration": "ترخيص السيارة"
+  },
+  "welcome": {
+    "title": "خطط لكل راتب",
+    "body": "اعرف ما يغطيه كل راتب قبل وصوله.",
+    "incomeTitle": "أضف دخلك",
+    "incomeBody": "أخبر التطبيق متى تتقاضى راتبك وكم.",
+    "billsTitle": "أضف فواتيرك",
+    "billsBody": "اربطها براتب، أو احجز مبلغاً جانباً.",
+    "leftTitle": "اعرف ما يتبقى",
+    "leftBody": "كل راتب يعرض فواتيره وما يتبقى منه.",
+    "addIncome": "إضافة مصدر دخل",
+    "trySample": "جرّب ببيانات تجريبية"
   }
 }

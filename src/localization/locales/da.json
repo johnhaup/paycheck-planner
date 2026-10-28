@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · tilbage",
     "heroMeta": "%{income} ind · %{assigned} tildelt",
     "monthPaychecks": "Lønudbetalinger i %{month}",
-    "emptyTitle": "Ingen indkomstkilder endnu",
-    "emptyBody": "Tilføj din første indkomstkilde for at se, hvor hver lønudbetaling går hen.",
     "noBillsYet": "Ingen regninger endnu · tryk for at tildele",
     "paidProgress": "%{paid} af %{total} betalt",
     "amountLeft": "%{amount} tilbage",
@@ -50,7 +48,6 @@
     "markPaid": "Markér %{payee} som betalt",
     "changeAmount": "Ændr beløb for %{payee} for denne lønudbetaling",
     "changePayAmount": "Ændr lønbeløb for %{source} for denne lønudbetaling",
-    "emptyAction": "Tilføj indkomstkilde",
     "chartBarCurrentLabel": "%{month} (denne måned), %{amount} tilbage",
     "shortBy": "Mangler %{amount}",
     "moveBill": "Flyt en regning",
@@ -258,7 +255,24 @@
       "weekBefore": "Ugen før"
     },
     "permissionDeniedTitle": "Notifikationer er slået fra",
-    "permissionDeniedBody": "Tillad notifikationer for Paycheck Planner i enhedens indstillinger for at få lønningsdagspåmindelser."
+    "permissionDeniedBody": "Tillad notifikationer for Paycheck Planner i enhedens indstillinger for at få lønningsdagspåmindelser.",
+    "data": {
+      "title": "Data",
+      "backup": "Sikkerhedskopiér data",
+      "restore": "Gendan fra sikkerhedskopi",
+      "exportCsv": "Eksportér regninger som CSV",
+      "erase": "Slet alle data",
+      "hint": "En sikkerhedskopi er en fil, du gemmer i Filer eller hvor du deler den. Gendannelse erstatter alt i appen.",
+      "csvType": "Type",
+      "restoreTitle": "Erstat alle dine data?",
+      "restoreBody": "Alt i appen erstattes med sikkerhedskopien.",
+      "restoreConfirm": "Erstat",
+      "eraseTitle": "Slet alle data?",
+      "eraseBody": "Fjerner alle indtægtskilder, regninger og ændringer af lønninger.",
+      "invalidBackup": "Filen er ikke en sikkerhedskopi fra Paycheck Planner."
+    },
+    "unpaidReminder": "Påmindelse om ubetalte regninger",
+    "unpaidReminderHint": "Dagen efter lønningsdag får du en påmindelse, hvis nogen af lønnens regninger ikke er markeret som betalt."
   },
   "notifications": {
     "channelName": "Lønningsdagspåmindelser",
@@ -272,7 +286,9 @@
       "other": "%{count} regninger (%{amount})"
     },
     "bodyWithSetAside": "%{income} ind · %{bills} · %{setAside} afsat · %{left} tilbage",
-    "bodySetAsideOnly": "%{income} ind · %{setAside} afsat · %{left} tilbage"
+    "bodySetAsideOnly": "%{income} ind · %{setAside} afsat · %{left} tilbage",
+    "unpaidTitle": "Stadig ubetalt: %{source}",
+    "unpaidBody": "%{bills} fra lønnen %{date} er endnu ikke markeret som betalt"
   },
   "links": {
     "openFailed": "Kunne ikke åbne linket"
@@ -298,9 +314,36 @@
     "incomeDeleted": "Slettede \"%{name}\"",
     "billMoved": "Flyttede \"%{payee}\" til %{date}",
     "remindersOn": "Lønningsdagspåmindelser er slået til",
-    "markedAllPaid": "Alle markeret som betalt"
+    "markedAllPaid": "Alle markeret som betalt",
+    "restored": "Sikkerhedskopi gendannet",
+    "erased": "Alle data slettet",
+    "sampleLoaded": "Eksempeldata indlæst. Slet dem når som helst under Indstillinger.",
+    "unpaidOn": "Påmindelse om ubetalte regninger slået til"
   },
   "history": {
     "empty": "Ingen tidligere lønninger endnu."
+  },
+  "demo": {
+    "rent": "Husleje",
+    "groceries": "Dagligvarer",
+    "carPayment": "Billån",
+    "electric": "El",
+    "internet": "Internet",
+    "phone": "Telefon",
+    "savings": "Opsparing",
+    "streaming": "Streaming",
+    "carRegistration": "Bilafgift"
+  },
+  "welcome": {
+    "title": "Planlæg hver løn",
+    "body": "Se, hvad hver løn dækker, før den kommer.",
+    "incomeTitle": "Tilføj din indtægt",
+    "incomeBody": "Fortæl appen, hvornår og hvor meget du får udbetalt.",
+    "billsTitle": "Tilføj dine regninger",
+    "billsBody": "Knyt dem til en løn, eller sæt penge til side.",
+    "leftTitle": "Se, hvad der er tilbage",
+    "leftBody": "Hver løn viser sine regninger og hvad der er tilbage.",
+    "addIncome": "Tilføj indtægtskilde",
+    "trySample": "Prøv med eksempeldata"
   }
 }

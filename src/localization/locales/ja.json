@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · 残り",
     "heroMeta": "収入 %{income} · 割り当て %{assigned}",
     "monthPaychecks": "%{month}の給料",
-    "emptyTitle": "収入源がまだありません",
-    "emptyBody": "最初の収入源を追加して、給料の使い道を確認しましょう。",
     "noBillsYet": "支払いはまだありません · タップして割り当て",
     "paidProgress": "%{total}件中%{paid}件支払い済み",
     "amountLeft": "残り %{amount}",
@@ -50,7 +48,6 @@
     "markPaid": "%{payee}を支払い済みにする",
     "changeAmount": "この給料の%{payee}の金額を変更",
     "changePayAmount": "この給料の%{source}の支給額を変更",
-    "emptyAction": "収入源を追加",
     "chartBarCurrentLabel": "%{month}（今月）、残り %{amount}",
     "shortBy": "%{amount}不足",
     "moveBill": "支払いを移動",
@@ -257,7 +254,24 @@
       "weekBefore": "1週間前"
     },
     "permissionDeniedTitle": "通知がオフです",
-    "permissionDeniedBody": "給料日のリマインダーを受け取るには、端末の設定でPaycheck Plannerの通知を許可してください。"
+    "permissionDeniedBody": "給料日のリマインダーを受け取るには、端末の設定でPaycheck Plannerの通知を許可してください。",
+    "data": {
+      "title": "データ",
+      "backup": "データをバックアップ",
+      "restore": "バックアップから復元",
+      "exportCsv": "支払いをCSVで書き出す",
+      "erase": "すべてのデータを消去",
+      "hint": "バックアップは「ファイル」や共有先に保存するファイルです。復元するとアプリ内のすべてが置き換わります。",
+      "csvType": "種類",
+      "restoreTitle": "すべてのデータを置き換えますか？",
+      "restoreBody": "アプリ内のすべてがバックアップの内容に置き換わります。",
+      "restoreConfirm": "置き換える",
+      "eraseTitle": "すべてのデータを消去しますか？",
+      "eraseBody": "すべての収入源、支払い、給料の変更が削除されます。",
+      "invalidBackup": "このファイルはPaycheck Plannerのバックアップではありません。"
+    },
+    "unpaidReminder": "未払いの支払いリマインダー",
+    "unpaidReminderHint": "給料日の翌日、その給料の支払いに未払いがあればお知らせします。"
   },
   "notifications": {
     "channelName": "給料日のリマインダー",
@@ -270,7 +284,9 @@
       "other": "支払い%{count}件（%{amount}）"
     },
     "bodyWithSetAside": "収入 %{income} · %{bills} · 取り置き %{setAside} · 残り %{left}",
-    "bodySetAsideOnly": "収入 %{income} · 取り置き %{setAside} · 残り %{left}"
+    "bodySetAsideOnly": "収入 %{income} · 取り置き %{setAside} · 残り %{left}",
+    "unpaidTitle": "未払いあり: %{source}",
+    "unpaidBody": "%{date}の給料の%{bills}がまだ支払い済みになっていません"
   },
   "links": {
     "openFailed": "リンクを開けませんでした"
@@ -296,9 +312,36 @@
     "incomeDeleted": "「%{name}」を削除しました",
     "billMoved": "「%{payee}」を%{date}に移動しました",
     "remindersOn": "給料日のリマインダーをオンにしました",
-    "markedAllPaid": "すべて支払い済みにしました"
+    "markedAllPaid": "すべて支払い済みにしました",
+    "restored": "バックアップを復元しました",
+    "erased": "すべてのデータを消去しました",
+    "sampleLoaded": "サンプルデータを読み込みました。設定からいつでも消去できます。",
+    "unpaidOn": "未払いの支払いリマインダーをオンにしました"
   },
   "history": {
     "empty": "過去の給料はまだありません。"
+  },
+  "demo": {
+    "rent": "家賃",
+    "groceries": "食料品",
+    "carPayment": "車のローン",
+    "electric": "電気代",
+    "internet": "インターネット",
+    "phone": "携帯電話",
+    "savings": "貯金",
+    "streaming": "動画配信",
+    "carRegistration": "自動車税"
+  },
+  "welcome": {
+    "title": "給料日ごとに計画しよう",
+    "body": "給料が入る前に、何を支払えるかがわかります。",
+    "incomeTitle": "収入を追加",
+    "incomeBody": "給料日と金額を入力します。",
+    "billsTitle": "支払いを追加",
+    "billsBody": "給料に紐づけたり、お金を取り置いたりできます。",
+    "leftTitle": "残りを確認",
+    "leftBody": "給料ごとに支払いと残りの金額が表示されます。",
+    "addIncome": "収入源を追加",
+    "trySample": "サンプルデータで試す"
   }
 }

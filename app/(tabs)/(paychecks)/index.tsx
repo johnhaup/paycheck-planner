@@ -3,6 +3,7 @@ import { View, FlatList, Pressable, StyleSheet } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { format } from "date-fns";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { toast } from "sonner-native";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
@@ -10,12 +11,13 @@ import { useT } from "@/hooks/useLocale";
 import { usePaycheckCardRenderer } from "@/hooks/usePaycheckCardRenderer";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
-import { AppEmptyState } from "@/components/AppEmptyState";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { MonthBarChart } from "@/components/paychecks/MonthBarChart";
+import { Welcome } from "@/components/paychecks/Welcome";
 import { buildMonthGroups } from "@/utils/paycheckMonths";
 import { formatShortDate } from "@/utils/dates";
+import { buildDemoData } from "@/utils/demoData";
 import type { MonthGroup, PaycheckItem } from "@/components/paychecks/types";
 
 function keyExtractor(item: PaycheckItem) {
@@ -51,6 +53,11 @@ export default function PaychecksScreen() {
   const handleAddIncome = useCallback(() => {
     router.push("/income-form");
   }, [router]);
+
+  const handleTrySample = useCallback(() => {
+    useStore.setState({ ...buildDemoData(new Date()), paycheckOverrides: [] });
+    toast(t("toasts.sampleLoaded"));
+  }, [t]);
 
   const handleOpenHistory = useCallback(() => {
     router.push("/history");
@@ -178,13 +185,7 @@ export default function PaychecksScreen() {
     <View style={containerStyle}>
       <Stack.Screen options={screenOptions} />
       {incomeSources.length === 0 ? (
-        <AppEmptyState
-          icon="wallet-outline"
-          title={t("paychecks.emptyTitle")}
-          body={t("paychecks.emptyBody")}
-          actionLabel={t("paychecks.emptyAction")}
-          onAction={handleAddIncome}
-        />
+        <Welcome onAddIncome={handleAddIncome} onTrySample={handleTrySample} />
       ) : (
         <FlatList
           data={paychecks}

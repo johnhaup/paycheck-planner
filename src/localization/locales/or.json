@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · ବାକି",
     "heroMeta": "%{income} ଆସିଲା · %{assigned} ଆସାଇନ୍",
     "monthPaychecks": "%{month}ର ଦରମା",
-    "emptyTitle": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଆୟ ଉତ୍ସ ନାହିଁ",
-    "emptyBody": "ପ୍ରତ୍ୟେକ ଦରମା କୁଆଡ଼େ ଯାଏ ଦେଖିବାକୁ ଆପଣଙ୍କର ପ୍ରଥମ ଆୟ ଉତ୍ସ ଯୋଡ଼ନ୍ତୁ।",
     "noBillsYet": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ବିଲ୍ ନାହିଁ · ଆସାଇନ୍ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ",
     "paidProgress": "%{total} ମଧ୍ୟରୁ %{paid} ପଇଠ ହୋଇଛି",
     "amountLeft": "%{amount} ବାକି",
@@ -50,7 +48,6 @@
     "markPaid": "%{payee} ପଇଠ ହୋଇଛି ବୋଲି ମାର୍କ କରନ୍ତୁ",
     "changeAmount": "ଏହି ଦରମା ପାଇଁ %{payee}ର ରାଶି ବଦଳାନ୍ତୁ",
     "changePayAmount": "ଏହି ଥର ପାଇଁ %{source}ର ଦରମା ରାଶି ବଦଳାନ୍ତୁ",
-    "emptyAction": "ଆୟ ଉତ୍ସ ଯୋଡ଼ନ୍ତୁ",
     "chartBarCurrentLabel": "%{month} (ଏହି ମାସ), %{amount} ବାକି",
     "shortBy": "%{amount} କମ୍",
     "moveBill": "ବିଲ୍ ଘୁଞ୍ଚାନ୍ତୁ",
@@ -258,7 +255,24 @@
       "weekBefore": "ଏକ ସପ୍ତାହ ଆଗରୁ"
     },
     "permissionDeniedTitle": "ବିଜ୍ଞପ୍ତି ବନ୍ଦ ଅଛି",
-    "permissionDeniedBody": "ଦରମା ରିମାଇଣ୍ଡର ପାଇବାକୁ ଡିଭାଇସ୍ ସେଟିଂସ୍‌ରେ Paycheck Planner ପାଇଁ ବିଜ୍ଞପ୍ତି ଚାଲୁ କରନ୍ତୁ।"
+    "permissionDeniedBody": "ଦରମା ରିମାଇଣ୍ଡର ପାଇବାକୁ ଡିଭାଇସ୍ ସେଟିଂସ୍‌ରେ Paycheck Planner ପାଇଁ ବିଜ୍ଞପ୍ତି ଚାଲୁ କରନ୍ତୁ।",
+    "data": {
+      "title": "ଡାଟା",
+      "backup": "ଡାଟା ବ୍ୟାକଅପ୍ କରନ୍ତୁ",
+      "restore": "ବ୍ୟାକଅପ୍‌ରୁ ଫେରାନ୍ତୁ",
+      "exportCsv": "ବିଲ୍ CSV ଭାବେ ଏକ୍ସପୋର୍ଟ କରନ୍ତୁ",
+      "erase": "ସମସ୍ତ ଡାଟା ଡିଲିଟ୍ କରନ୍ତୁ",
+      "hint": "ବ୍ୟାକଅପ୍ ଏକ ଫାଇଲ୍, ଯାହା ଆପଣ Files ରେ କିମ୍ବା ଯେଉଁଠି ସେୟାର କରନ୍ତି ସେଠାରେ ରଖନ୍ତି। ଫେରାଇଲେ ଆପ୍‌ର ସବୁକିଛି ବଦଳିଯାଏ।",
+      "csvType": "ପ୍ରକାର",
+      "restoreTitle": "ଆପଣଙ୍କ ସମସ୍ତ ଡାଟା ବଦଳାଇବେ?",
+      "restoreBody": "ଆପ୍‌ର ସବୁକିଛି ବ୍ୟାକଅପ୍‌ରେ ବଦଳିଯିବ।",
+      "restoreConfirm": "ବଦଳାନ୍ତୁ",
+      "eraseTitle": "ସମସ୍ତ ଡାଟା ଡିଲିଟ୍ କରିବେ?",
+      "eraseBody": "ସମସ୍ତ ଆୟ ଉତ୍ସ, ବିଲ୍ ଓ ଦରମା ପରିବର୍ତ୍ତନ ହଟିଯିବ।",
+      "invalidBackup": "ଏହି ଫାଇଲ୍ Paycheck Planner ବ୍ୟାକଅପ୍ ନୁହେଁ।"
+    },
+    "unpaidReminder": "ପଇଠ ହୋଇନଥିବା ବିଲ୍ ରିମାଇଣ୍ଡର",
+    "unpaidReminderHint": "ଦରମାର ପରଦିନ, ସେହି ଦରମାର କୌଣସି ବିଲ୍ ପଇଠ ହୋଇଛି ବୋଲି ମାର୍କ ହୋଇନଥିଲେ ମନେ ପକାଇଦେବୁ।"
   },
   "notifications": {
     "channelName": "ଦରମା ରିମାଇଣ୍ଡର",
@@ -272,7 +286,9 @@
       "other": "%{count}ଟି ବିଲ୍ (%{amount})"
     },
     "bodyWithSetAside": "%{income} ଆସିଲା · %{bills} · %{setAside} ଅଲଗା ରଖାଗଲା · %{left} ବାକି",
-    "bodySetAsideOnly": "%{income} ଆସିଲା · %{setAside} ଅଲଗା ରଖାଗଲା · %{left} ବାକି"
+    "bodySetAsideOnly": "%{income} ଆସିଲା · %{setAside} ଅଲଗା ରଖାଗଲା · %{left} ବାକି",
+    "unpaidTitle": "ଏବେ ବି ପଇଠ ହୋଇନାହିଁ: %{source}",
+    "unpaidBody": "%{date} ଦରମାର %{bills} ଏପର୍ଯ୍ୟନ୍ତ ପଇଠ ହୋଇଛି ବୋଲି ମାର୍କ ହୋଇନାହିଁ"
   },
   "links": {
     "openFailed": "ଲିଙ୍କ୍ ଖୋଲି ହେଲା ନାହିଁ"
@@ -298,9 +314,36 @@
     "incomeDeleted": "\"%{name}\" ଡିଲିଟ୍ ହେଲା",
     "billMoved": "\"%{payee}\" କୁ %{date} କୁ ଘୁଞ୍ଚାଗଲା",
     "remindersOn": "ଦରମା ରିମାଇଣ୍ଡର ଚାଲୁ",
-    "markedAllPaid": "ସବୁ ପଇଠ ହୋଇଛି ବୋଲି ମାର୍କ ହେଲା"
+    "markedAllPaid": "ସବୁ ପଇଠ ହୋଇଛି ବୋଲି ମାର୍କ ହେଲା",
+    "restored": "ବ୍ୟାକଅପ୍ ଫେରାଗଲା",
+    "erased": "ସମସ୍ତ ଡାଟା ଡିଲିଟ୍ ହେଲା",
+    "sampleLoaded": "ନମୁନା ଡାଟା ଲୋଡ୍ ହେଲା। ସେଟିଂସ୍‌ରୁ ଯେକୌଣସି ସମୟରେ ଡିଲିଟ୍ କରନ୍ତୁ।",
+    "unpaidOn": "ପଇଠ ହୋଇନଥିବା ବିଲ୍ ରିମାଇଣ୍ଡର ଚାଲୁ"
   },
   "history": {
     "empty": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ପୂର୍ବ ଦରମା ନାହିଁ।"
+  },
+  "demo": {
+    "rent": "ଭଡ଼ା",
+    "groceries": "କିରାଣା",
+    "carPayment": "କାର୍ କିସ୍ତି",
+    "electric": "ବିଦ୍ୟୁତ୍",
+    "internet": "ଇଣ୍ଟରନେଟ୍",
+    "phone": "ଫୋନ୍",
+    "savings": "ସଞ୍ଚୟ",
+    "streaming": "ଷ୍ଟ୍ରିମିଂ",
+    "carRegistration": "କାର୍ ପଞ୍ଜୀକରଣ"
+  },
+  "welcome": {
+    "title": "ପ୍ରତି ଦରମାର ଯୋଜନା କରନ୍ତୁ",
+    "body": "ପ୍ରତି ଦରମା ଆସିବା ପୂର୍ବରୁ ତାହା କ'ଣ କ'ଣ ଭରଣା କରିବ ଦେଖନ୍ତୁ।",
+    "incomeTitle": "ଆପଣଙ୍କ ଆୟ ଯୋଡ଼ନ୍ତୁ",
+    "incomeBody": "କେବେ ଓ କେତେ ଦରମା ମିଳେ ଜଣାନ୍ତୁ।",
+    "billsTitle": "ଆପଣଙ୍କ ବିଲ୍ ଯୋଡ଼ନ୍ତୁ",
+    "billsBody": "ସେଗୁଡ଼ିକୁ ଦରମା ସହ ଯୋଡ଼ନ୍ତୁ, କିମ୍ବା ଟଙ୍କା ଅଲଗା ରଖନ୍ତୁ।",
+    "leftTitle": "କେତେ ବଳେ ଦେଖନ୍ତୁ",
+    "leftBody": "ପ୍ରତି ଦରମା ତାହାର ବିଲ୍ ଓ ବଳକା ରାଶି ଦେଖାଏ।",
+    "addIncome": "ଆୟ ଉତ୍ସ ଯୋଡ଼ନ୍ତୁ",
+    "trySample": "ନମୁନା ଡାଟା ସହ ଚେଷ୍ଟା କରନ୍ତୁ"
   }
 }

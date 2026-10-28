@@ -41,8 +41,6 @@
     "leftAfterBills": "%{month} · rimanente",
     "heroMeta": "%{income} in entrata · %{assigned} assegnati",
     "monthPaychecks": "Stipendi di %{month}",
-    "emptyTitle": "Nessuna fonte di reddito",
-    "emptyBody": "Aggiungi la tua prima fonte di reddito per vedere dove va ogni stipendio.",
     "noBillsYet": "Nessuna bolletta · tocca per assegnare",
     "paidProgress": "%{paid} di %{total} pagate",
     "amountLeft": "Rimangono %{amount}",
@@ -51,7 +49,6 @@
     "markPaid": "Segna %{payee} come pagata",
     "changeAmount": "Modifica l'importo di %{payee} per questo stipendio",
     "changePayAmount": "Modifica l'importo dello stipendio di %{source} per questa data",
-    "emptyAction": "Aggiungi fonte di reddito",
     "chartBarCurrentLabel": "%{month} (questo mese), rimangono %{amount}",
     "shortBy": "Mancano %{amount}",
     "moveBill": "Sposta una bolletta",
@@ -259,7 +256,24 @@
       "weekBefore": "Una settimana prima"
     },
     "permissionDeniedTitle": "Le notifiche sono disattivate",
-    "permissionDeniedBody": "Consenti le notifiche di Paycheck Planner nelle impostazioni del dispositivo per ricevere i promemoria del giorno di paga."
+    "permissionDeniedBody": "Consenti le notifiche di Paycheck Planner nelle impostazioni del dispositivo per ricevere i promemoria del giorno di paga.",
+    "data": {
+      "title": "Dati",
+      "backup": "Esegui backup dei dati",
+      "restore": "Ripristina da backup",
+      "exportCsv": "Esporta bollette in CSV",
+      "erase": "Cancella tutti i dati",
+      "hint": "Il backup è un file che conservi in File o ovunque lo condividi. Il ripristino sostituisce tutto nell'app.",
+      "csvType": "Tipo",
+      "restoreTitle": "Sostituire tutti i dati?",
+      "restoreBody": "Tutto nell'app verrà sostituito dal backup.",
+      "restoreConfirm": "Sostituisci",
+      "eraseTitle": "Cancellare tutti i dati?",
+      "eraseBody": "Rimuove tutte le fonti di reddito, le bollette e le modifiche agli stipendi.",
+      "invalidBackup": "Questo file non è un backup di Paycheck Planner."
+    },
+    "unpaidReminder": "Promemoria bollette non pagate",
+    "unpaidReminderHint": "Il giorno dopo la paga ricevi un promemoria se alcune bollette di quello stipendio non sono segnate come pagate."
   },
   "notifications": {
     "channelName": "Promemoria giorno di paga",
@@ -273,7 +287,9 @@
       "other": "%{count} bollette (%{amount})"
     },
     "bodyWithSetAside": "%{income} in entrata · %{bills} · %{setAside} accantonati · rimangono %{left}",
-    "bodySetAsideOnly": "%{income} in entrata · %{setAside} accantonati · rimangono %{left}"
+    "bodySetAsideOnly": "%{income} in entrata · %{setAside} accantonati · rimangono %{left}",
+    "unpaidTitle": "Ancora da pagare: %{source}",
+    "unpaidBody": "%{bills} dello stipendio del %{date} non ancora segnate come pagate"
   },
   "links": {
     "openFailed": "Impossibile aprire il link"
@@ -299,9 +315,36 @@
     "incomeDeleted": "\"%{name}\" eliminato",
     "billMoved": "\"%{payee}\" spostato al %{date}",
     "remindersOn": "Promemoria giorno di paga attivi",
-    "markedAllPaid": "Tutto segnato come pagato"
+    "markedAllPaid": "Tutto segnato come pagato",
+    "restored": "Backup ripristinato",
+    "erased": "Tutti i dati cancellati",
+    "sampleLoaded": "Dati di esempio caricati. Puoi cancellarli quando vuoi da Impostazioni.",
+    "unpaidOn": "Promemoria bollette non pagate attivo"
   },
   "history": {
     "empty": "Ancora nessuno stipendio passato."
+  },
+  "demo": {
+    "rent": "Affitto",
+    "groceries": "Spesa",
+    "carPayment": "Rata dell'auto",
+    "electric": "Luce",
+    "internet": "Internet",
+    "phone": "Telefono",
+    "savings": "Risparmi",
+    "streaming": "Streaming",
+    "carRegistration": "Bollo auto"
+  },
+  "welcome": {
+    "title": "Pianifica ogni stipendio",
+    "body": "Scopri cosa copre ogni stipendio prima che arrivi.",
+    "incomeTitle": "Aggiungi le entrate",
+    "incomeBody": "Indica quando e quanto vieni pagato.",
+    "billsTitle": "Aggiungi le bollette",
+    "billsBody": "Collegale a uno stipendio o accantona denaro.",
+    "leftTitle": "Guarda cosa resta",
+    "leftBody": "Ogni stipendio mostra le sue bollette e cosa avanza.",
+    "addIncome": "Aggiungi fonte di reddito",
+    "trySample": "Prova con dati di esempio"
   }
 }

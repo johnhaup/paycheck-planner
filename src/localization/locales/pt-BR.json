@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · sobra",
     "heroMeta": "%{income} recebidos · %{assigned} atribuídos",
     "monthPaychecks": "Pagamentos de %{month}",
-    "emptyTitle": "Nenhuma fonte de renda ainda",
-    "emptyBody": "Adicione sua primeira fonte de renda para ver para onde vai cada pagamento.",
     "noBillsYet": "Nenhuma conta ainda · toque para atribuir",
     "paidProgress": "%{paid} de %{total} pagas",
     "amountLeft": "Sobram %{amount}",
@@ -50,7 +48,6 @@
     "markPaid": "Marcar %{payee} como paga",
     "changeAmount": "Alterar o valor de %{payee} neste pagamento",
     "changePayAmount": "Alterar o valor recebido de %{source} neste pagamento",
-    "emptyAction": "Adicionar fonte de renda",
     "chartBarCurrentLabel": "%{month} (este mês), sobram %{amount}",
     "shortBy": "Faltam %{amount}",
     "moveBill": "Mover uma conta",
@@ -258,7 +255,24 @@
       "weekBefore": "Uma semana antes"
     },
     "permissionDeniedTitle": "As notificações estão desativadas",
-    "permissionDeniedBody": "Permita as notificações do Paycheck Planner nas configurações do dispositivo para receber lembretes de pagamento."
+    "permissionDeniedBody": "Permita as notificações do Paycheck Planner nas configurações do dispositivo para receber lembretes de pagamento.",
+    "data": {
+      "title": "Dados",
+      "backup": "Fazer backup dos dados",
+      "restore": "Restaurar backup",
+      "exportCsv": "Exportar contas em CSV",
+      "erase": "Apagar todos os dados",
+      "hint": "O backup é um arquivo que você guarda no app Arquivos ou onde compartilhar. Restaurar substitui tudo no app.",
+      "csvType": "Tipo",
+      "restoreTitle": "Substituir todos os seus dados?",
+      "restoreBody": "Tudo no app será substituído pelo backup.",
+      "restoreConfirm": "Substituir",
+      "eraseTitle": "Apagar todos os dados?",
+      "eraseBody": "Remove todas as fontes de renda, contas e alterações de pagamento.",
+      "invalidBackup": "Este arquivo não é um backup do Paycheck Planner."
+    },
+    "unpaidReminder": "Lembrete de contas não pagas",
+    "unpaidReminderHint": "No dia seguinte ao pagamento, receba um aviso se alguma conta daquele pagamento não estiver marcada como paga."
   },
   "notifications": {
     "channelName": "Lembretes de pagamento",
@@ -272,7 +286,9 @@
       "other": "%{count} contas (%{amount})"
     },
     "bodyWithSetAside": "%{income} recebidos · %{bills} · %{setAside} reservados · sobram %{left}",
-    "bodySetAsideOnly": "%{income} recebidos · %{setAside} reservados · sobram %{left}"
+    "bodySetAsideOnly": "%{income} recebidos · %{setAside} reservados · sobram %{left}",
+    "unpaidTitle": "Ainda não paga: %{source}",
+    "unpaidBody": "%{bills} do pagamento de %{date} ainda não marcadas como pagas"
   },
   "links": {
     "openFailed": "Não foi possível abrir o link"
@@ -298,9 +314,36 @@
     "incomeDeleted": "\"%{name}\" excluído",
     "billMoved": "\"%{payee}\" movido para %{date}",
     "remindersOn": "Lembretes de pagamento ativados",
-    "markedAllPaid": "Tudo marcado como pago"
+    "markedAllPaid": "Tudo marcado como pago",
+    "restored": "Backup restaurado",
+    "erased": "Todos os dados apagados",
+    "sampleLoaded": "Dados de exemplo carregados. Apague quando quiser em Ajustes.",
+    "unpaidOn": "Lembrete de contas não pagas ativado"
   },
   "history": {
     "empty": "Ainda não há pagamentos anteriores."
+  },
+  "demo": {
+    "rent": "Aluguel",
+    "groceries": "Mercado",
+    "carPayment": "Parcela do carro",
+    "electric": "Luz",
+    "internet": "Internet",
+    "phone": "Celular",
+    "savings": "Poupança",
+    "streaming": "Streaming",
+    "carRegistration": "IPVA"
+  },
+  "welcome": {
+    "title": "Planeje cada pagamento",
+    "body": "Veja o que cada pagamento cobre antes de cair.",
+    "incomeTitle": "Adicione sua renda",
+    "incomeBody": "Diga quando e quanto você recebe.",
+    "billsTitle": "Adicione suas contas",
+    "billsBody": "Vincule a um pagamento ou reserve dinheiro.",
+    "leftTitle": "Veja o que sobra",
+    "leftBody": "Cada pagamento mostra suas contas e o que sobra.",
+    "addIncome": "Adicionar fonte de renda",
+    "trySample": "Testar com dados de exemplo"
   }
 }

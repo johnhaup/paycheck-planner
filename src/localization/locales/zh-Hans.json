@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · 剩余",
     "heroMeta": "收入 %{income} · 已分配 %{assigned}",
     "monthPaychecks": "%{month}工资",
-    "emptyTitle": "还没有收入来源",
-    "emptyBody": "添加第一个收入来源，看看每笔工资花在哪里。",
     "noBillsYet": "还没有账单 · 点击分配",
     "paidProgress": "已付 %{paid}/%{total}",
     "amountLeft": "剩余 %{amount}",
@@ -50,7 +48,6 @@
     "markPaid": "将%{payee}标记为已付",
     "changeAmount": "修改这笔工资中%{payee}的金额",
     "changePayAmount": "修改这笔工资中%{source}的发薪金额",
-    "emptyAction": "添加收入来源",
     "chartBarCurrentLabel": "%{month}（本月），剩余 %{amount}",
     "shortBy": "差 %{amount}",
     "moveBill": "移动账单",
@@ -257,7 +254,24 @@
       "weekBefore": "提前一周"
     },
     "permissionDeniedTitle": "通知已关闭",
-    "permissionDeniedBody": "请在设备设置中允许 Paycheck Planner 发送通知，以接收发薪日提醒。"
+    "permissionDeniedBody": "请在设备设置中允许 Paycheck Planner 发送通知，以接收发薪日提醒。",
+    "data": {
+      "title": "数据",
+      "backup": "备份数据",
+      "restore": "从备份恢复",
+      "exportCsv": "将账单导出为 CSV",
+      "erase": "清除所有数据",
+      "hint": "备份是一个文件，保存在“文件”App 或你分享到的任何地方。恢复会替换 App 中的所有内容。",
+      "csvType": "类型",
+      "restoreTitle": "替换所有数据？",
+      "restoreBody": "App 中的所有内容都将被备份替换。",
+      "restoreConfirm": "替换",
+      "eraseTitle": "清除所有数据？",
+      "eraseBody": "将移除所有收入来源、账单和工资改动。",
+      "invalidBackup": "此文件不是 Paycheck Planner 备份。"
+    },
+    "unpaidReminder": "未付账单提醒",
+    "unpaidReminderHint": "发薪次日，如果该次工资中有账单未标记为已付，会提醒你。"
   },
   "notifications": {
     "channelName": "发薪日提醒",
@@ -270,7 +284,9 @@
       "other": "%{count}笔账单（%{amount}）"
     },
     "bodyWithSetAside": "收入 %{income} · %{bills} · 预留 %{setAside} · 剩余 %{left}",
-    "bodySetAsideOnly": "收入 %{income} · 预留 %{setAside} · 剩余 %{left}"
+    "bodySetAsideOnly": "收入 %{income} · 预留 %{setAside} · 剩余 %{left}",
+    "unpaidTitle": "仍未支付：%{source}",
+    "unpaidBody": "%{date}工资中有 %{bills} 尚未标记为已付"
   },
   "links": {
     "openFailed": "无法打开链接"
@@ -296,9 +312,36 @@
     "incomeDeleted": "已删除“%{name}”",
     "billMoved": "已将“%{payee}”移至%{date}",
     "remindersOn": "发薪日提醒已开启",
-    "markedAllPaid": "已全部标记为已付"
+    "markedAllPaid": "已全部标记为已付",
+    "restored": "已恢复备份",
+    "erased": "已清除所有数据",
+    "sampleLoaded": "已载入示例数据。可随时在设置中清除。",
+    "unpaidOn": "已开启未付账单提醒"
   },
   "history": {
     "empty": "暂无过往工资。"
+  },
+  "demo": {
+    "rent": "房租",
+    "groceries": "买菜",
+    "carPayment": "车贷",
+    "electric": "电费",
+    "internet": "网费",
+    "phone": "手机费",
+    "savings": "储蓄",
+    "streaming": "视频会员",
+    "carRegistration": "车辆登记"
+  },
+  "welcome": {
+    "title": "规划每一笔工资",
+    "body": "在工资到账前，看清每笔工资能支付哪些账单。",
+    "incomeTitle": "添加收入",
+    "incomeBody": "告诉 App 你何时发薪、发多少。",
+    "billsTitle": "添加账单",
+    "billsBody": "将账单关联到某笔工资，或预留资金。",
+    "leftTitle": "查看结余",
+    "leftBody": "每笔工资都会显示其账单和剩余金额。",
+    "addIncome": "添加收入来源",
+    "trySample": "用示例数据试试"
   }
 }

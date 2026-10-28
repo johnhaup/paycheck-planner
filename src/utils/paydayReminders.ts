@@ -1,6 +1,6 @@
 import * as Notifications from "expo-notifications";
 import { Platform } from "react-native";
-import { setHours, setMinutes, startOfDay, subDays } from "date-fns";
+import { addDays, setHours, setMinutes, startOfDay, subDays } from "date-fns";
 import { t } from "@/localization/i18n";
 import { formatMoney } from "@/utils/money";
 import { formatWeekday } from "@/utils/dates";
@@ -26,6 +26,7 @@ interface ReminderPrefs {
   daysBefore: number;
   hour: number;
   minute: number;
+  unpaidEnabled: boolean;
 }
 
 interface SyncInput {
@@ -95,7 +96,24 @@ function buildContent(paycheck: PaycheckItem, daysBefore: number, hideCents: boo
   return { title, body };
 }
 
-/** Replace every pending reminder with one per upcoming paycheck, per the current prefs. */
+function buildUnpaidContent(paycheck: PaycheckItem, hideCents: boolean) {
+  const unpaid = paycheck.expenses.filter((e) => !e.paid);
+  if (unpaid.length === 0) return undefined;
+  const bills = t("notifications.bills", {
+    count: unpaid.length,
+    amount: formatMoney(unpaid.reduce((sum, e) => sum + e.amount, 0), hideCents),
+  });
+  return {
+    title: t("notifications.unpaidTitle", { source: paycheck.sourceName }),
+    body: t("notifications.unpaidBody", { bills, date: formatWeekday(paycheck.date) }),
+  };
+}
+
+function atReminderTime(day: Date, prefs: ReminderPrefs): Date {
+  return setMinutes(setHours(startOfDay(day), prefs.hour), prefs.minute);
+}
+
+/** Replace every pending reminder with ones for upcoming paychecks, per the current prefs. */
 export async function syncPaydayReminders({
   incomeSources,
   expenses,
@@ -105,31 +123,40 @@ export async function syncPaydayReminders({
   hideCents,
 }: SyncInput): Promise<void> {
   await Notifications.cancelAllScheduledNotificationsAsync();
-  if (!prefs.enabled || incomeSources.length === 0) return;
+  if ((!prefs.enabled && !prefs.unpaidEnabled) || incomeSources.length === 0) return;
   if (!isGranted(await Notifications.getPermissionsAsync())) return;
   await ensureChannel();
 
   const now = new Date();
-  const paychecks = buildMonthGroups(incomeSources, expenses, assignments, overrides, now).flatMap(
+  // Start a day back so yesterday's paycheck can still get its unpaid-bills nudge today
+  const paychecks = buildMonthGroups(incomeSources, expenses, assignments, overrides, subDays(now, 1)).flatMap(
     (month) => month.paychecks
   );
 
   let scheduled = 0;
-  for (const paycheck of paychecks) {
-    const fireAt = setMinutes(
-      setHours(startOfDay(subDays(paycheck.date, prefs.daysBefore)), prefs.hour),
-      prefs.minute
-    );
-    if (fireAt <= now) continue;
+  const schedule = async (identifier: string, fireAt: Date, content: { title: string; body: string }) => {
     await Notifications.scheduleNotificationAsync({
-      identifier: `payday-${paycheck.key}`,
-      content: buildContent(paycheck, prefs.daysBefore, hideCents),
+      identifier,
+      content,
       trigger: {
         type: Notifications.SchedulableTriggerInputTypes.DATE,
         date: fireAt,
         channelId: CHANNEL_ID,
       },
     });
-    if (++scheduled >= MAX_SCHEDULED) break;
+    scheduled++;
+  };
+
+  for (const paycheck of paychecks) {
+    const paydayAt = atReminderTime(subDays(paycheck.date, prefs.daysBefore), prefs);
+    if (prefs.enabled && paydayAt > now) {
+      await schedule(`payday-${paycheck.key}`, paydayAt, buildContent(paycheck, prefs.daysBefore, hideCents));
+    }
+    const unpaidAt = atReminderTime(addDays(paycheck.date, 1), prefs);
+    const unpaidContent = prefs.unpaidEnabled ? buildUnpaidContent(paycheck, hideCents) : undefined;
+    if (unpaidContent && unpaidAt > now) {
+      await schedule(`unpaid-${paycheck.key}`, unpaidAt, unpaidContent);
+    }
+    if (scheduled >= MAX_SCHEDULED) break;
   }
 }

@@ -44,8 +44,6 @@
     "leftAfterBills": "%{month} · બાકી",
     "heroMeta": "%{income} આવ્યા · %{assigned} ફાળવેલ",
     "monthPaychecks": "%{month}ના પગાર",
-    "emptyTitle": "હજી કોઈ આવકનો સ્રોત નથી",
-    "emptyBody": "દરેક પગાર ક્યાં જાય છે તે જોવા તમારો પહેલો આવકનો સ્રોત ઉમેરો.",
     "noBillsYet": "હજી કોઈ બિલ નથી · ફાળવવા ટૅપ કરો",
     "paidProgress": "%{total}માંથી %{paid} ચૂકવાયા",
     "amountLeft": "%{amount} બાકી",
@@ -54,7 +52,6 @@
     "markPaid": "%{payee} ચૂકવેલ માર્ક કરો",
     "changeAmount": "આ પગાર માટે %{payee}ની રકમ બદલો",
     "changePayAmount": "આ વખત માટે %{source}ની પગાર રકમ બદલો",
-    "emptyAction": "આવકનો સ્રોત ઉમેરો",
     "chartBarCurrentLabel": "%{month} (આ મહિનો), %{amount} બાકી",
     "shortBy": "%{amount} ઘટે છે",
     "moveBill": "બિલ ખસેડો",
@@ -262,7 +259,24 @@
       "weekBefore": "એક અઠવાડિયા પહેલાં"
     },
     "permissionDeniedTitle": "નોટિફિકેશન બંધ છે",
-    "permissionDeniedBody": "પગાર રિમાઇન્ડર મેળવવા ડિવાઇસ સેટિંગ્સમાં Paycheck Planner માટે નોટિફિકેશન ચાલુ કરો."
+    "permissionDeniedBody": "પગાર રિમાઇન્ડર મેળવવા ડિવાઇસ સેટિંગ્સમાં Paycheck Planner માટે નોટિફિકેશન ચાલુ કરો.",
+    "data": {
+      "title": "ડેટા",
+      "backup": "ડેટાનો બેકઅપ લો",
+      "restore": "બેકઅપમાંથી પાછું લાવો",
+      "exportCsv": "બિલ CSV તરીકે એક્સપોર્ટ કરો",
+      "erase": "બધો ડેટા ડિલીટ કરો",
+      "hint": "બેકઅપ એક ફાઇલ છે, જે તમે Files માં કે જ્યાં શેર કરો ત્યાં રાખો છો. પાછું લાવવાથી ઍપમાંનું બધું બદલાઈ જાય છે.",
+      "csvType": "પ્રકાર",
+      "restoreTitle": "તમારો બધો ડેટા બદલવો છે?",
+      "restoreBody": "ઍપમાંનું બધું બેકઅપથી બદલાઈ જશે.",
+      "restoreConfirm": "બદલો",
+      "eraseTitle": "બધો ડેટા ડિલીટ કરવો છે?",
+      "eraseBody": "બધા આવકના સ્ત્રોત, બિલ અને પગારના ફેરફારો દૂર થશે.",
+      "invalidBackup": "આ ફાઇલ Paycheck Planner નો બેકઅપ નથી."
+    },
+    "unpaidReminder": "ન ચૂકવેલ બિલ રિમાઇન્ડર",
+    "unpaidReminderHint": "પગારના બીજા દિવસે, તે પગારનું કોઈ બિલ ચૂકવેલ માર્ક ન હોય તો યાદ અપાવીશું."
   },
   "notifications": {
     "channelName": "પગાર રિમાઇન્ડર",
@@ -276,7 +290,9 @@
       "other": "%{count} બિલ (%{amount})"
     },
     "bodyWithSetAside": "%{income} આવ્યા · %{bills} · %{setAside} અલગ રાખ્યા · %{left} બાકી",
-    "bodySetAsideOnly": "%{income} આવ્યા · %{setAside} અલગ રાખ્યા · %{left} બાકי"
+    "bodySetAsideOnly": "%{income} આવ્યા · %{setAside} અલગ રાખ્યા · %{left} બાકי",
+    "unpaidTitle": "હજી ન ચૂકવેલ: %{source}",
+    "unpaidBody": "%{date} ના પગારના %{bills} હજી ચૂકવેલ માર્ક થયા નથી"
   },
   "links": {
     "openFailed": "લિંક ખોલી શકાઈ નહીં"
@@ -302,9 +318,36 @@
     "incomeDeleted": "\"%{name}\" ડિલીટ કર્યું",
     "billMoved": "\"%{payee}\" ને %{date} પર ખસેડ્યું",
     "remindersOn": "પગાર રિમાઇન્ડર ચાલુ",
-    "markedAllPaid": "બધું ચૂકવેલ માર્ક થયું"
+    "markedAllPaid": "બધું ચૂકવેલ માર્ક થયું",
+    "restored": "બેકઅપ પાછું લાવ્યું",
+    "erased": "બધો ડેટા ડિલીટ થયો",
+    "sampleLoaded": "નમૂના ડેટા લોડ થયો. સેટિંગ્સમાંથી ગમે ત્યારે ડિલીટ કરો.",
+    "unpaidOn": "ન ચૂકવેલ બિલ રિમાઇન્ડર ચાલુ"
   },
   "history": {
     "empty": "હજી કોઈ પાછલો પગાર નથી."
+  },
+  "demo": {
+    "rent": "ભાડું",
+    "groceries": "કરિયાણું",
+    "carPayment": "કારનો હપ્તો",
+    "electric": "વીજળી",
+    "internet": "ઇન્ટરનેટ",
+    "phone": "ફોન",
+    "savings": "બચત",
+    "streaming": "સ્ટ્રીમિંગ",
+    "carRegistration": "કાર રજિસ્ટ્રેશન"
+  },
+  "welcome": {
+    "title": "દરેક પગારનું આયોજન કરો",
+    "body": "દરેક પગાર આવે તે પહેલાં જુઓ કે તે શું આવરે છે.",
+    "incomeTitle": "તમારી આવક ઉમેરો",
+    "incomeBody": "ક્યારે અને કેટલો પગાર મળે છે તે જણાવો.",
+    "billsTitle": "તમારા બિલ ઉમેરો",
+    "billsBody": "તેમને પગાર સાથે જોડો, અથવા પૈસા અલગ રાખો.",
+    "leftTitle": "કેટલું બચે છે તે જુઓ",
+    "leftBody": "દરેક પગારમાં તેના બિલ અને બાકી રકમ દેખાય છે.",
+    "addIncome": "આવકનો સ્ત્રોત ઉમેરો",
+    "trySample": "નમૂના ડેટા સાથે અજમાવો"
   }
 }

@@ -44,8 +44,6 @@
     "leftAfterBills": "%{month} · बचा",
     "heroMeta": "%{income} आया · %{assigned} असाइन",
     "monthPaychecks": "%{month} की सैलरी",
-    "emptyTitle": "अभी कोई आय स्रोत नहीं",
-    "emptyBody": "अपना पहला आय स्रोत जोड़ें और देखें कि हर सैलरी कहां जाती है।",
     "noBillsYet": "अभी कोई बिल नहीं · असाइन करने के लिए टैप करें",
     "paidProgress": "%{total} में से %{paid} भरे गए",
     "amountLeft": "%{amount} बचा",
@@ -54,7 +52,6 @@
     "markPaid": "%{payee} को भरा हुआ मार्क करें",
     "changeAmount": "इस सैलरी के लिए %{payee} की राशि बदलें",
     "changePayAmount": "इस बार के लिए %{source} की सैलरी राशि बदलें",
-    "emptyAction": "आय स्रोत जोड़ें",
     "chartBarCurrentLabel": "%{month} (इस महीने), %{amount} बचा",
     "shortBy": "%{amount} की कमी",
     "moveBill": "बिल मूव करें",
@@ -262,7 +259,24 @@
       "weekBefore": "एक हफ़्ता पहले"
     },
     "permissionDeniedTitle": "नोटिफ़िकेशन बंद हैं",
-    "permissionDeniedBody": "सैलरी रिमाइंडर पाने के लिए डिवाइस सेटिंग में Paycheck Planner के नोटिफ़िकेशन चालू करें।"
+    "permissionDeniedBody": "सैलरी रिमाइंडर पाने के लिए डिवाइस सेटिंग में Paycheck Planner के नोटिफ़िकेशन चालू करें।",
+    "data": {
+      "title": "डेटा",
+      "backup": "डेटा का बैकअप लें",
+      "restore": "बैकअप से वापस लाएं",
+      "exportCsv": "बिल CSV में एक्सपोर्ट करें",
+      "erase": "सारा डेटा हटाएं",
+      "hint": "बैकअप एक फ़ाइल है, जिसे आप Files में या जहां शेयर करें वहां रखते हैं। वापस लाने पर ऐप का सब कुछ बदल जाता है।",
+      "csvType": "प्रकार",
+      "restoreTitle": "अपना सारा डेटा बदलें?",
+      "restoreBody": "ऐप का सब कुछ बैकअप से बदल जाएगा।",
+      "restoreConfirm": "बदलें",
+      "eraseTitle": "सारा डेटा हटाएं?",
+      "eraseBody": "सभी आय स्रोत, बिल और सैलरी के बदलाव हट जाएंगे।",
+      "invalidBackup": "यह फ़ाइल Paycheck Planner का बैकअप नहीं है।"
+    },
+    "unpaidReminder": "बकाया बिल रिमाइंडर",
+    "unpaidReminderHint": "सैलरी के अगले दिन, अगर उस सैलरी का कोई बिल भरा हुआ मार्क नहीं है तो याद दिलाएंगे।"
   },
   "notifications": {
     "channelName": "सैलरी रिमाइंडर",
@@ -276,7 +290,9 @@
       "other": "%{count} बिल (%{amount})"
     },
     "bodyWithSetAside": "%{income} आया · %{bills} · %{setAside} अलग रखा · %{left} बचा",
-    "bodySetAsideOnly": "%{income} आया · %{setAside} अलग रखा · %{left} बचा"
+    "bodySetAsideOnly": "%{income} आया · %{setAside} अलग रखा · %{left} बचा",
+    "unpaidTitle": "अभी बकाया: %{source}",
+    "unpaidBody": "%{date} की सैलरी के %{bills} अभी भरे हुए मार्क नहीं हैं"
   },
   "links": {
     "openFailed": "लिंक नहीं खुल सका"
@@ -302,9 +318,36 @@
     "incomeDeleted": "\"%{name}\" हटाया गया",
     "billMoved": "\"%{payee}\" को %{date} पर मूव किया गया",
     "remindersOn": "सैलरी रिमाइंडर चालू",
-    "markedAllPaid": "सब भरा हुआ मार्क किया गया"
+    "markedAllPaid": "सब भरा हुआ मार्क किया गया",
+    "restored": "बैकअप वापस लाया गया",
+    "erased": "सारा डेटा हटा दिया गया",
+    "sampleLoaded": "सैंपल डेटा लोड हुआ। सेटिंग्स से कभी भी हटा सकते हैं।",
+    "unpaidOn": "बकाया बिल रिमाइंडर चालू"
   },
   "history": {
     "empty": "अभी कोई पिछली सैलरी नहीं।"
+  },
+  "demo": {
+    "rent": "किराया",
+    "groceries": "राशन",
+    "carPayment": "कार की किस्त",
+    "electric": "बिजली",
+    "internet": "इंटरनेट",
+    "phone": "फ़ोन",
+    "savings": "बचत",
+    "streaming": "स्ट्रीमिंग",
+    "carRegistration": "कार रजिस्ट्रेशन"
+  },
+  "welcome": {
+    "title": "हर सैलरी की योजना बनाएं",
+    "body": "हर सैलरी आने से पहले देखें कि वह क्या-क्या कवर करेगी।",
+    "incomeTitle": "अपनी आय जोड़ें",
+    "incomeBody": "बताएं कि सैलरी कब और कितनी मिलती है।",
+    "billsTitle": "अपने बिल जोड़ें",
+    "billsBody": "उन्हें किसी सैलरी से जोड़ें, या पैसे अलग रखें।",
+    "leftTitle": "देखें कितना बचता है",
+    "leftBody": "हर सैलरी उसके बिल और बची रकम दिखाती है।",
+    "addIncome": "आय स्रोत जोड़ें",
+    "trySample": "सैंपल डेटा के साथ आज़माएं"
   }
 }

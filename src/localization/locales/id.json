@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · sisa",
     "heroMeta": "%{income} masuk · %{assigned} dialokasikan",
     "monthPaychecks": "Gaji %{month}",
-    "emptyTitle": "Belum ada sumber pemasukan",
-    "emptyBody": "Tambahkan sumber pemasukan pertamamu untuk melihat ke mana setiap gaji dipakai.",
     "noBillsYet": "Belum ada tagihan · ketuk untuk mengalokasikan",
     "paidProgress": "%{paid} dari %{total} dibayar",
     "amountLeft": "Sisa %{amount}",
@@ -50,7 +48,6 @@
     "markPaid": "Tandai %{payee} sudah dibayar",
     "changeAmount": "Ubah jumlah %{payee} untuk gaji ini",
     "changePayAmount": "Ubah jumlah gaji %{source} untuk gaji ini",
-    "emptyAction": "Tambah sumber pemasukan",
     "chartBarCurrentLabel": "%{month} (bulan ini), sisa %{amount}",
     "shortBy": "Kurang %{amount}",
     "moveBill": "Pindahkan tagihan",
@@ -257,7 +254,24 @@
       "weekBefore": "Seminggu sebelumnya"
     },
     "permissionDeniedTitle": "Notifikasi nonaktif",
-    "permissionDeniedBody": "Izinkan notifikasi untuk Paycheck Planner di pengaturan perangkat untuk menerima pengingat gajian."
+    "permissionDeniedBody": "Izinkan notifikasi untuk Paycheck Planner di pengaturan perangkat untuk menerima pengingat gajian.",
+    "data": {
+      "title": "Data",
+      "backup": "Cadangkan data",
+      "restore": "Pulihkan dari cadangan",
+      "exportCsv": "Ekspor tagihan sebagai CSV",
+      "erase": "Hapus semua data",
+      "hint": "Cadangan adalah file yang Anda simpan di File atau di mana pun Anda membagikannya. Memulihkan akan mengganti semua isi aplikasi.",
+      "csvType": "Jenis",
+      "restoreTitle": "Ganti semua data Anda?",
+      "restoreBody": "Semua isi aplikasi akan diganti dengan cadangan.",
+      "restoreConfirm": "Ganti",
+      "eraseTitle": "Hapus semua data?",
+      "eraseBody": "Menghapus semua sumber pendapatan, tagihan, dan perubahan gaji.",
+      "invalidBackup": "File ini bukan cadangan Paycheck Planner."
+    },
+    "unpaidReminder": "Pengingat tagihan belum dibayar",
+    "unpaidReminderHint": "Sehari setelah gajian, dapatkan pengingat jika ada tagihan dari gaji itu yang belum ditandai dibayar."
   },
   "notifications": {
     "channelName": "Pengingat gajian",
@@ -270,7 +284,9 @@
       "other": "%{count} tagihan (%{amount})"
     },
     "bodyWithSetAside": "%{income} masuk · %{bills} · %{setAside} disisihkan · sisa %{left}",
-    "bodySetAsideOnly": "%{income} masuk · %{setAside} disisihkan · sisa %{left}"
+    "bodySetAsideOnly": "%{income} masuk · %{setAside} disisihkan · sisa %{left}",
+    "unpaidTitle": "Belum dibayar: %{source}",
+    "unpaidBody": "%{bills} dari gaji %{date} belum ditandai dibayar"
   },
   "links": {
     "openFailed": "Tautan tidak bisa dibuka"
@@ -296,9 +312,36 @@
     "incomeDeleted": "\"%{name}\" dihapus",
     "billMoved": "\"%{payee}\" dipindahkan ke %{date}",
     "remindersOn": "Pengingat gajian aktif",
-    "markedAllPaid": "Semua ditandai sudah dibayar"
+    "markedAllPaid": "Semua ditandai sudah dibayar",
+    "restored": "Cadangan dipulihkan",
+    "erased": "Semua data dihapus",
+    "sampleLoaded": "Data contoh dimuat. Hapus kapan saja di Pengaturan.",
+    "unpaidOn": "Pengingat tagihan belum dibayar aktif"
   },
   "history": {
     "empty": "Belum ada gaji sebelumnya."
+  },
+  "demo": {
+    "rent": "Sewa",
+    "groceries": "Belanja dapur",
+    "carPayment": "Cicilan mobil",
+    "electric": "Listrik",
+    "internet": "Internet",
+    "phone": "Telepon",
+    "savings": "Tabungan",
+    "streaming": "Streaming",
+    "carRegistration": "Pajak kendaraan"
+  },
+  "welcome": {
+    "title": "Rencanakan setiap gaji",
+    "body": "Lihat apa yang ditanggung setiap gaji sebelum diterima.",
+    "incomeTitle": "Tambahkan pendapatan",
+    "incomeBody": "Beri tahu kapan dan berapa gaji Anda.",
+    "billsTitle": "Tambahkan tagihan",
+    "billsBody": "Hubungkan ke gaji, atau sisihkan uang.",
+    "leftTitle": "Lihat sisanya",
+    "leftBody": "Setiap gaji menampilkan tagihan dan sisanya.",
+    "addIncome": "Tambah sumber pendapatan",
+    "trySample": "Coba dengan data contoh"
   }
 }

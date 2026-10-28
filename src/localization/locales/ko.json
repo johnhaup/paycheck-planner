@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · 남은 금액",
     "heroMeta": "수입 %{income} · 배정 %{assigned}",
     "monthPaychecks": "%{month} 급여",
-    "emptyTitle": "아직 수입원이 없습니다",
-    "emptyBody": "첫 수입원을 추가하고 급여가 어디에 쓰이는지 확인해 보세요.",
     "noBillsYet": "청구서 없음 · 탭하여 배정",
     "paidProgress": "%{total}건 중 %{paid}건 납부 완료",
     "amountLeft": "%{amount} 남음",
@@ -50,7 +48,6 @@
     "markPaid": "%{payee} 납부 완료로 표시",
     "changeAmount": "이 급여의 %{payee} 금액 변경",
     "changePayAmount": "이 급여의 %{source} 급여액 변경",
-    "emptyAction": "수입원 추가",
     "chartBarCurrentLabel": "%{month} (이번 달), %{amount} 남음",
     "shortBy": "%{amount} 부족",
     "moveBill": "청구서 이동",
@@ -257,7 +254,24 @@
       "weekBefore": "일주일 전"
     },
     "permissionDeniedTitle": "알림이 꺼져 있습니다",
-    "permissionDeniedBody": "급여일 알림을 받으려면 기기 설정에서 Paycheck Planner의 알림을 허용하세요."
+    "permissionDeniedBody": "급여일 알림을 받으려면 기기 설정에서 Paycheck Planner의 알림을 허용하세요.",
+    "data": {
+      "title": "데이터",
+      "backup": "데이터 백업",
+      "restore": "백업에서 복원",
+      "exportCsv": "청구서를 CSV로 내보내기",
+      "erase": "모든 데이터 지우기",
+      "hint": "백업은 파일 앱이나 공유한 곳에 보관하는 파일입니다. 복원하면 앱의 모든 내용이 바뀝니다.",
+      "csvType": "유형",
+      "restoreTitle": "모든 데이터를 바꿀까요?",
+      "restoreBody": "앱의 모든 내용이 백업으로 바뀝니다.",
+      "restoreConfirm": "바꾸기",
+      "eraseTitle": "모든 데이터를 지울까요?",
+      "eraseBody": "모든 수입원, 청구서, 급여 변경 내용이 삭제됩니다.",
+      "invalidBackup": "이 파일은 Paycheck Planner 백업이 아닙니다."
+    },
+    "unpaidReminder": "미납 청구서 알림",
+    "unpaidReminderHint": "급여일 다음 날, 그 급여의 청구서 중 납부 완료로 표시되지 않은 것이 있으면 알려드립니다."
   },
   "notifications": {
     "channelName": "급여일 알림",
@@ -270,7 +284,9 @@
       "other": "청구서 %{count}건 (%{amount})"
     },
     "bodyWithSetAside": "수입 %{income} · %{bills} · 따로 모음 %{setAside} · %{left} 남음",
-    "bodySetAsideOnly": "수입 %{income} · 따로 모음 %{setAside} · %{left} 남음"
+    "bodySetAsideOnly": "수입 %{income} · 따로 모음 %{setAside} · %{left} 남음",
+    "unpaidTitle": "아직 미납: %{source}",
+    "unpaidBody": "%{date} 급여의 %{bills}이(가) 아직 납부 완료로 표시되지 않음"
   },
   "links": {
     "openFailed": "링크를 열 수 없습니다"
@@ -296,9 +312,36 @@
     "incomeDeleted": "\"%{name}\" 삭제됨",
     "billMoved": "\"%{payee}\"을(를) %{date}(으)로 이동함",
     "remindersOn": "급여일 알림 켜짐",
-    "markedAllPaid": "모두 납부 완료로 표시함"
+    "markedAllPaid": "모두 납부 완료로 표시함",
+    "restored": "백업을 복원함",
+    "erased": "모든 데이터를 지움",
+    "sampleLoaded": "샘플 데이터를 불러왔습니다. 설정에서 언제든 지울 수 있습니다.",
+    "unpaidOn": "미납 청구서 알림 켜짐"
   },
   "history": {
     "empty": "아직 지난 급여가 없습니다."
+  },
+  "demo": {
+    "rent": "월세",
+    "groceries": "장보기",
+    "carPayment": "자동차 할부",
+    "electric": "전기 요금",
+    "internet": "인터넷",
+    "phone": "휴대폰",
+    "savings": "저축",
+    "streaming": "스트리밍",
+    "carRegistration": "자동차세"
+  },
+  "welcome": {
+    "title": "급여마다 계획하세요",
+    "body": "급여가 들어오기 전에 무엇을 낼 수 있는지 확인하세요.",
+    "incomeTitle": "수입 추가",
+    "incomeBody": "언제 얼마를 받는지 알려주세요.",
+    "billsTitle": "청구서 추가",
+    "billsBody": "급여에 연결하거나 돈을 따로 모아두세요.",
+    "leftTitle": "남는 돈 확인",
+    "leftBody": "급여마다 청구서와 남는 금액이 표시됩니다.",
+    "addIncome": "수입원 추가",
+    "trySample": "샘플 데이터로 사용해 보기"
   }
 }

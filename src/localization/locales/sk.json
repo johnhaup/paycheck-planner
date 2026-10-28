@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · zostáva",
     "heroMeta": "Príjem %{income} · priradené %{assigned}",
     "monthPaychecks": "Výplaty: %{month}",
-    "emptyTitle": "Zatiaľ žiadne zdroje príjmu",
-    "emptyBody": "Pridajte prvý zdroj príjmu a uvidíte, kam ide každá výplata.",
     "noBillsYet": "Zatiaľ žiadne účty · ťuknutím priradíte",
     "paidProgress": "Zaplatené %{paid} z %{total}",
     "amountLeft": "Zostáva %{amount}",
@@ -50,7 +48,6 @@
     "markPaid": "Označiť %{payee} ako zaplatené",
     "changeAmount": "Zmeniť sumu %{payee} pre túto výplatu",
     "changePayAmount": "Zmeniť sumu výplaty %{source} len pre túto výplatu",
-    "emptyAction": "Pridať zdroj príjmu",
     "chartBarCurrentLabel": "%{month} (tento mesiac), zostáva %{amount}",
     "shortBy": "Chýba %{amount}",
     "moveBill": "Presunúť účet",
@@ -260,7 +257,24 @@
       "weekBefore": "Týždeň vopred"
     },
     "permissionDeniedTitle": "Upozornenia sú vypnuté",
-    "permissionDeniedBody": "Povoľte aplikácii Paycheck Planner upozornenia v nastaveniach zariadenia, aby ste dostávali pripomenutia výplaty."
+    "permissionDeniedBody": "Povoľte aplikácii Paycheck Planner upozornenia v nastaveniach zariadenia, aby ste dostávali pripomenutia výplaty.",
+    "data": {
+      "title": "Dáta",
+      "backup": "Zálohovať dáta",
+      "restore": "Obnoviť zo zálohy",
+      "exportCsv": "Exportovať účty do CSV",
+      "erase": "Vymazať všetky dáta",
+      "hint": "Záloha je súbor, ktorý si uložíte do Súborov alebo kamkoľvek ho zdieľate. Obnovenie nahradí všetko v aplikácii.",
+      "csvType": "Typ",
+      "restoreTitle": "Nahradiť všetky dáta?",
+      "restoreBody": "Všetko v aplikácii sa nahradí zálohou.",
+      "restoreConfirm": "Nahradiť",
+      "eraseTitle": "Vymazať všetky dáta?",
+      "eraseBody": "Odstráni všetky zdroje príjmov, účty aj úpravy výplat.",
+      "invalidBackup": "Tento súbor nie je záloha Paycheck Plannera."
+    },
+    "unpaidReminder": "Pripomenutie nezaplatených účtov",
+    "unpaidReminderHint": "Deň po výplate vás upozorníme, ak niektorý účet z tejto výplaty nie je označený ako zaplatený."
   },
   "notifications": {
     "channelName": "Pripomenutia výplaty",
@@ -276,7 +290,9 @@
       "other": "%{count} účtov (%{amount})"
     },
     "bodyWithSetAside": "Príjem %{income} · %{bills} · odložené %{setAside} · zostáva %{left}",
-    "bodySetAsideOnly": "Príjem %{income} · odložené %{setAside} · zostáva %{left}"
+    "bodySetAsideOnly": "Príjem %{income} · odložené %{setAside} · zostáva %{left}",
+    "unpaidTitle": "Stále nezaplatené: %{source}",
+    "unpaidBody": "%{bills} z výplaty %{date} ešte nie je označených ako zaplatené"
   },
   "links": {
     "openFailed": "Odkaz sa nepodarilo otvoriť"
@@ -302,9 +318,36 @@
     "incomeDeleted": "Odstránené „%{name}“",
     "billMoved": "„%{payee}“ presunuté na %{date}",
     "remindersOn": "Pripomenutia výplaty zapnuté",
-    "markedAllPaid": "Všetko označené ako zaplatené"
+    "markedAllPaid": "Všetko označené ako zaplatené",
+    "restored": "Záloha obnovená",
+    "erased": "Všetky dáta vymazané",
+    "sampleLoaded": "Ukážkové dáta načítané. Vymazať ich môžete kedykoľvek v Nastaveniach.",
+    "unpaidOn": "Pripomenutie nezaplatených účtov zapnuté"
   },
   "history": {
     "empty": "Zatiaľ žiadne minulé výplaty."
+  },
+  "demo": {
+    "rent": "Nájom",
+    "groceries": "Potraviny",
+    "carPayment": "Splátka auta",
+    "electric": "Elektrina",
+    "internet": "Internet",
+    "phone": "Telefón",
+    "savings": "Sporenie",
+    "streaming": "Streaming",
+    "carRegistration": "Registrácia auta"
+  },
+  "welcome": {
+    "title": "Naplánujte každú výplatu",
+    "body": "Uvidíte, čo každá výplata pokryje, ešte kým príde.",
+    "incomeTitle": "Pridajte príjem",
+    "incomeBody": "Zadajte, kedy a koľko dostávate.",
+    "billsTitle": "Pridajte účty",
+    "billsBody": "Priraďte ich k výplate alebo si odložte peniaze.",
+    "leftTitle": "Pozrite, čo zostane",
+    "leftBody": "Každá výplata ukazuje svoje účty a koľko zostáva.",
+    "addIncome": "Pridať zdroj príjmu",
+    "trySample": "Vyskúšať s ukážkovými dátami"
   }
 }

@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · kalan",
     "heroMeta": "%{income} gelir · %{assigned} atanmış",
     "monthPaychecks": "%{month} maaşları",
-    "emptyTitle": "Henüz gelir kaynağı yok",
-    "emptyBody": "Her maaşın nereye gittiğini görmek için ilk gelir kaynağını ekle.",
     "noBillsYet": "Henüz fatura yok · atamak için dokun",
     "paidProgress": "%{paid}/%{total} ödendi",
     "amountLeft": "%{amount} kaldı",
@@ -50,7 +48,6 @@
     "markPaid": "%{payee} ödendi olarak işaretle",
     "changeAmount": "Bu maaş için %{payee} tutarını değiştir",
     "changePayAmount": "Bu maaş için %{source} maaş tutarını değiştir",
-    "emptyAction": "Gelir kaynağı ekle",
     "chartBarCurrentLabel": "%{month} (bu ay), %{amount} kaldı",
     "shortBy": "%{amount} eksik",
     "moveBill": "Fatura taşı",
@@ -258,7 +255,24 @@
       "weekBefore": "Bir hafta önce"
     },
     "permissionDeniedTitle": "Bildirimler kapalı",
-    "permissionDeniedBody": "Maaş günü hatırlatıcıları almak için cihaz ayarlarından Paycheck Planner bildirimlerine izin ver."
+    "permissionDeniedBody": "Maaş günü hatırlatıcıları almak için cihaz ayarlarından Paycheck Planner bildirimlerine izin ver.",
+    "data": {
+      "title": "Veriler",
+      "backup": "Verileri yedekle",
+      "restore": "Yedekten geri yükle",
+      "exportCsv": "Faturaları CSV olarak dışa aktar",
+      "erase": "Tüm verileri sil",
+      "hint": "Yedek, Dosyalar'da veya paylaştığın yerde sakladığın bir dosyadır. Geri yükleme uygulamadaki her şeyi değiştirir.",
+      "csvType": "Tür",
+      "restoreTitle": "Tüm verilerin değiştirilsin mi?",
+      "restoreBody": "Uygulamadaki her şey yedekle değiştirilecek.",
+      "restoreConfirm": "Değiştir",
+      "eraseTitle": "Tüm veriler silinsin mi?",
+      "eraseBody": "Tüm gelir kaynaklarını, faturaları ve maaş değişikliklerini kaldırır.",
+      "invalidBackup": "Bu dosya bir Paycheck Planner yedeği değil."
+    },
+    "unpaidReminder": "Ödenmemiş fatura hatırlatıcısı",
+    "unpaidReminderHint": "Maaş gününün ertesi günü, o maaşın faturalarından ödendi olarak işaretlenmeyen varsa hatırlatılır."
   },
   "notifications": {
     "channelName": "Maaş günü hatırlatıcıları",
@@ -272,7 +286,9 @@
       "other": "%{count} fatura (%{amount})"
     },
     "bodyWithSetAside": "%{income} gelir · %{bills} · %{setAside} ayrıldı · %{left} kaldı",
-    "bodySetAsideOnly": "%{income} gelir · %{setAside} ayrıldı · %{left} kaldı"
+    "bodySetAsideOnly": "%{income} gelir · %{setAside} ayrıldı · %{left} kaldı",
+    "unpaidTitle": "Hâlâ ödenmedi: %{source}",
+    "unpaidBody": "%{date} maaşından %{bills} henüz ödendi olarak işaretlenmedi"
   },
   "links": {
     "openFailed": "Bağlantı açılamadı"
@@ -298,9 +314,36 @@
     "incomeDeleted": "\"%{name}\" silindi",
     "billMoved": "\"%{payee}\" %{date} tarihine taşındı",
     "remindersOn": "Maaş günü hatırlatıcıları açık",
-    "markedAllPaid": "Tümü ödendi olarak işaretlendi"
+    "markedAllPaid": "Tümü ödendi olarak işaretlendi",
+    "restored": "Yedek geri yüklendi",
+    "erased": "Tüm veriler silindi",
+    "sampleLoaded": "Örnek veriler yüklendi. İstediğin zaman Ayarlar'dan silebilirsin.",
+    "unpaidOn": "Ödenmemiş fatura hatırlatıcısı açık"
   },
   "history": {
     "empty": "Henüz geçmiş maaş yok."
+  },
+  "demo": {
+    "rent": "Kira",
+    "groceries": "Market",
+    "carPayment": "Araba taksiti",
+    "electric": "Elektrik",
+    "internet": "İnternet",
+    "phone": "Telefon",
+    "savings": "Birikim",
+    "streaming": "Dijital yayın",
+    "carRegistration": "Araç vergisi"
+  },
+  "welcome": {
+    "title": "Her maaşı planla",
+    "body": "Her maaşın neleri karşılayacağını önceden gör.",
+    "incomeTitle": "Gelirini ekle",
+    "incomeBody": "Ne zaman ve ne kadar maaş aldığını gir.",
+    "billsTitle": "Faturalarını ekle",
+    "billsBody": "Onları bir maaşa bağla veya para ayır.",
+    "leftTitle": "Ne kaldığını gör",
+    "leftBody": "Her maaş kendi faturalarını ve kalanı gösterir.",
+    "addIncome": "Gelir kaynağı ekle",
+    "trySample": "Örnek verilerle dene"
   }
 }

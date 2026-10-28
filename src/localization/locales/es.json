@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · lo que queda",
     "heroMeta": "%{income} de ingresos · %{assigned} asignados",
     "monthPaychecks": "Sueldos de %{month}",
-    "emptyTitle": "Aún no hay fuentes de ingresos",
-    "emptyBody": "Añade tu primera fuente de ingresos para ver a dónde va cada sueldo.",
     "noBillsYet": "Sin facturas · toca para asignar",
     "paidProgress": "%{paid} de %{total} pagadas",
     "amountLeft": "Quedan %{amount}",
@@ -50,7 +48,6 @@
     "markPaid": "Marcar %{payee} como pagada",
     "changeAmount": "Cambiar el importe de %{payee} para este sueldo",
     "changePayAmount": "Cambiar el sueldo de %{source} para este cobro",
-    "emptyAction": "Añadir fuente de ingresos",
     "chartBarCurrentLabel": "%{month} (este mes), quedan %{amount}",
     "shortBy": "Faltan %{amount}",
     "moveBill": "Mover una factura",
@@ -258,7 +255,24 @@
       "weekBefore": "Una semana antes"
     },
     "permissionDeniedTitle": "Las notificaciones están desactivadas",
-    "permissionDeniedBody": "Permite las notificaciones de Paycheck Planner en los ajustes del dispositivo para recibir recordatorios de cobro."
+    "permissionDeniedBody": "Permite las notificaciones de Paycheck Planner en los ajustes del dispositivo para recibir recordatorios de cobro.",
+    "data": {
+      "title": "Datos",
+      "backup": "Hacer copia de seguridad",
+      "restore": "Restaurar copia",
+      "exportCsv": "Exportar facturas en CSV",
+      "erase": "Borrar todos los datos",
+      "hint": "La copia es un archivo que guardas en Archivos o donde la compartas. Al restaurarla se reemplaza todo lo que hay en la app.",
+      "csvType": "Tipo",
+      "restoreTitle": "¿Reemplazar todos tus datos?",
+      "restoreBody": "Todo lo que hay en la app se reemplazará por la copia.",
+      "restoreConfirm": "Reemplazar",
+      "eraseTitle": "¿Borrar todos los datos?",
+      "eraseBody": "Elimina todas las fuentes de ingresos, facturas y cambios en los cobros.",
+      "invalidBackup": "Este archivo no es una copia de Paycheck Planner."
+    },
+    "unpaidReminder": "Recordatorio de facturas pendientes",
+    "unpaidReminderHint": "El día después del cobro, recibe un aviso si alguna factura de ese cobro no está marcada como pagada."
   },
   "notifications": {
     "channelName": "Recordatorios de cobro",
@@ -272,7 +286,9 @@
       "other": "%{count} facturas (%{amount})"
     },
     "bodyWithSetAside": "%{income} de ingresos · %{bills} · %{setAside} apartados · quedan %{left}",
-    "bodySetAsideOnly": "%{income} de ingresos · %{setAside} apartados · quedan %{left}"
+    "bodySetAsideOnly": "%{income} de ingresos · %{setAside} apartados · quedan %{left}",
+    "unpaidTitle": "Aún pendiente: %{source}",
+    "unpaidBody": "%{bills} del cobro del %{date} aún sin marcar como pagadas"
   },
   "links": {
     "openFailed": "No se pudo abrir el enlace"
@@ -298,9 +314,36 @@
     "incomeDeleted": "Se eliminó \"%{name}\"",
     "billMoved": "Se movió \"%{payee}\" al %{date}",
     "remindersOn": "Recordatorios de cobro activados",
-    "markedAllPaid": "Todo marcado como pagado"
+    "markedAllPaid": "Todo marcado como pagado",
+    "restored": "Copia restaurada",
+    "erased": "Todos los datos borrados",
+    "sampleLoaded": "Datos de ejemplo cargados. Bórralos cuando quieras en Ajustes.",
+    "unpaidOn": "Recordatorio de facturas pendientes activado"
   },
   "history": {
     "empty": "Aún no hay cobros anteriores."
+  },
+  "demo": {
+    "rent": "Alquiler",
+    "groceries": "Supermercado",
+    "carPayment": "Letra del coche",
+    "electric": "Luz",
+    "internet": "Internet",
+    "phone": "Teléfono",
+    "savings": "Ahorro",
+    "streaming": "Streaming",
+    "carRegistration": "Impuesto del coche"
+  },
+  "welcome": {
+    "title": "Planifica cada cobro",
+    "body": "Mira qué cubre cada cobro antes de que llegue.",
+    "incomeTitle": "Añade tus ingresos",
+    "incomeBody": "Indica cuándo cobras y cuánto.",
+    "billsTitle": "Añade tus facturas",
+    "billsBody": "Vincúlalas a un cobro o aparta dinero.",
+    "leftTitle": "Mira lo que te queda",
+    "leftBody": "Cada cobro muestra sus facturas y lo que sobra.",
+    "addIncome": "Añadir fuente de ingresos",
+    "trySample": "Probar con datos de ejemplo"
   }
 }

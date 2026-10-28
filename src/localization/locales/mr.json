@@ -43,8 +43,6 @@
     "leftAfterBills": "%{month} · शिल्लक",
     "heroMeta": "%{income} आले · %{assigned} नेमून दिले",
     "monthPaychecks": "%{month}चे पगार",
-    "emptyTitle": "अजून उत्पन्नाचा स्रोत नाही",
-    "emptyBody": "प्रत्येक पगार कुठे जातो हे पाहण्यासाठी पहिला उत्पन्नाचा स्रोत जोडा.",
     "noBillsYet": "अजून बिल नाहीत · नेमण्यासाठी टॅप करा",
     "paidProgress": "%{total} पैकी %{paid} भरले",
     "amountLeft": "%{amount} शिल्लक",
@@ -53,7 +51,6 @@
     "markPaid": "%{payee} भरले म्हणून मार्क करा",
     "changeAmount": "या पगारासाठी %{payee}ची रक्कम बदला",
     "changePayAmount": "या वेळेसाठी %{source}ची पगार रक्कम बदला",
-    "emptyAction": "उत्पन्नाचा स्रोत जोडा",
     "chartBarCurrentLabel": "%{month} (हा महिना), %{amount} शिल्लक",
     "shortBy": "%{amount} कमी",
     "moveBill": "बिल हलवा",
@@ -261,7 +258,24 @@
       "weekBefore": "एक आठवडा आधी"
     },
     "permissionDeniedTitle": "सूचना बंद आहेत",
-    "permissionDeniedBody": "पगार रिमाइंडर मिळवण्यासाठी डिव्हाइस सेटिंग्जमध्ये Paycheck Planner च्या सूचना सुरू करा."
+    "permissionDeniedBody": "पगार रिमाइंडर मिळवण्यासाठी डिव्हाइस सेटिंग्जमध्ये Paycheck Planner च्या सूचना सुरू करा.",
+    "data": {
+      "title": "डेटा",
+      "backup": "डेटाचा बॅकअप घ्या",
+      "restore": "बॅकअपमधून परत आणा",
+      "exportCsv": "बिले CSV म्हणून एक्सपोर्ट करा",
+      "erase": "सर्व डेटा हटवा",
+      "hint": "बॅकअप ही एक फाइल आहे, जी तुम्ही Files मध्ये किंवा शेअर कराल तिथे ठेवता. परत आणल्यास अ‍ॅपमधील सर्व काही बदलते.",
+      "csvType": "प्रकार",
+      "restoreTitle": "तुमचा सर्व डेटा बदलायचा?",
+      "restoreBody": "अ‍ॅपमधील सर्व काही बॅकअपने बदलले जाईल.",
+      "restoreConfirm": "बदला",
+      "eraseTitle": "सर्व डेटा हटवायचा?",
+      "eraseBody": "सर्व उत्पन्न स्रोत, बिले आणि पगारातील बदल काढले जातील.",
+      "invalidBackup": "ही फाइल Paycheck Planner चा बॅकअप नाही."
+    },
+    "unpaidReminder": "न भरलेल्या बिलांचा रिमाइंडर",
+    "unpaidReminderHint": "पगाराच्या दुसऱ्या दिवशी, त्या पगारातील एखादे बिल भरले म्हणून मार्क नसेल तर आठवण करून देऊ."
   },
   "notifications": {
     "channelName": "पगार रिमाइंडर",
@@ -275,7 +289,9 @@
       "other": "%{count} बिले (%{amount})"
     },
     "bodyWithSetAside": "%{income} आले · %{bills} · %{setAside} बाजूला · %{left} शिल्लक",
-    "bodySetAsideOnly": "%{income} आले · %{setAside} बाजूला · %{left} शिल्लक"
+    "bodySetAsideOnly": "%{income} आले · %{setAside} बाजूला · %{left} शिल्लक",
+    "unpaidTitle": "अजून न भरलेले: %{source}",
+    "unpaidBody": "%{date} च्या पगारातील %{bills} अजून भरले म्हणून मार्क नाहीत"
   },
   "links": {
     "openFailed": "लिंक उघडता आली नाही"
@@ -301,9 +317,36 @@
     "incomeDeleted": "\"%{name}\" हटवले",
     "billMoved": "\"%{payee}\" %{date} वर हलवले",
     "remindersOn": "पगार रिमाइंडर सुरू",
-    "markedAllPaid": "सर्व भरले म्हणून मार्क केले"
+    "markedAllPaid": "सर्व भरले म्हणून मार्क केले",
+    "restored": "बॅकअप परत आणला",
+    "erased": "सर्व डेटा हटवला",
+    "sampleLoaded": "नमुना डेटा लोड झाला. सेटिंग्जमधून कधीही हटवा.",
+    "unpaidOn": "न भरलेल्या बिलांचा रिमाइंडर सुरू"
   },
   "history": {
     "empty": "अजून मागील पगार नाहीत."
+  },
+  "demo": {
+    "rent": "भाडे",
+    "groceries": "किराणा",
+    "carPayment": "कारचा हप्ता",
+    "electric": "वीज",
+    "internet": "इंटरनेट",
+    "phone": "फोन",
+    "savings": "बचत",
+    "streaming": "स्ट्रीमिंग",
+    "carRegistration": "कार नोंदणी"
+  },
+  "welcome": {
+    "title": "प्रत्येक पगाराचे नियोजन करा",
+    "body": "प्रत्येक पगार येण्याआधी तो काय काय भागवेल ते पाहा.",
+    "incomeTitle": "तुमचे उत्पन्न जोडा",
+    "incomeBody": "पगार कधी आणि किती मिळतो ते सांगा.",
+    "billsTitle": "तुमची बिले जोडा",
+    "billsBody": "त्यांना पगाराशी जोडा, किंवा पैसे बाजूला ठेवा.",
+    "leftTitle": "किती उरते ते पाहा",
+    "leftBody": "प्रत्येक पगार त्याची बिले आणि उरलेली रक्कम दाखवतो.",
+    "addIncome": "उत्पन्न स्रोत जोडा",
+    "trySample": "नमुना डेटासह वापरून पाहा"
   }
 }

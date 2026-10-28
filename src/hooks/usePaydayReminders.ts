@@ -17,6 +17,7 @@ export function usePaydayReminders() {
   const daysBefore = useNotificationStore((s) => s.daysBefore);
   const hour = useNotificationStore((s) => s.hour);
   const minute = useNotificationStore((s) => s.minute);
+  const unpaidEnabled = useNotificationStore((s) => s.unpaidEnabled);
   const hideCents = useThemeStore((s) => s.hideCents);
   const { language, currency } = useLocale();
 
@@ -27,11 +28,11 @@ export function usePaydayReminders() {
         expenses,
         assignments,
         overrides,
-        prefs: { enabled, daysBefore, hour, minute },
+        prefs: { enabled, daysBefore, hour, minute, unpaidEnabled },
         hideCents,
       }).catch(() => {});
     }, SYNC_DELAY_MS);
     return () => clearTimeout(timer);
     // language and currency change the notification text
-  }, [incomeSources, expenses, assignments, overrides, enabled, daysBefore, hour, minute, hideCents, language, currency]);
+  }, [incomeSources, expenses, assignments, overrides, enabled, daysBefore, hour, minute, unpaidEnabled, hideCents, language, currency]);
 }

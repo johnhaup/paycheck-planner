@@ -7,11 +7,13 @@ import { AppText } from "@/components/AppText";
 
 interface Props {
   label: string;
-  value: string;
+  value?: string;
+  /** Red label for actions that remove data */
+  destructive?: boolean;
   onPress: () => void;
 }
 
-export function SettingsLinkRow({ label, value, onPress }: Props) {
+export function SettingsLinkRow({ label, value, destructive, onPress }: Props) {
   const colors = useColors();
 
   const rowStyle = useMemo(
@@ -21,10 +23,14 @@ export function SettingsLinkRow({ label, value, onPress }: Props) {
 
   return (
     <Pressable style={rowStyle} onPress={onPress} accessibilityRole="button">
-      <AppText variant="body" style={styles.label}>{label}</AppText>
-      <AppText variant="body" color="textSecondary" numberOfLines={1} style={styles.value}>
-        {value}
+      <AppText variant="body" color={destructive ? "destructive" : undefined} style={styles.label}>
+        {label}
       </AppText>
+      {value ? (
+        <AppText variant="body" color="textSecondary" numberOfLines={1} style={styles.value}>
+          {value}
+        </AppText>
+      ) : null}
       <Ionicons name="chevron-forward" size={18} color={colors.textMuted} />
     </Pressable>
   );

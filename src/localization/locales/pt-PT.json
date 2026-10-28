@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · sobra",
     "heroMeta": "%{income} recebidos · %{assigned} atribuídos",
     "monthPaychecks": "Ordenados de %{month}",
-    "emptyTitle": "Ainda não há fontes de rendimento",
-    "emptyBody": "Adicione a sua primeira fonte de rendimento para ver para onde vai cada ordenado.",
     "noBillsYet": "Ainda sem faturas · toque para atribuir",
     "paidProgress": "%{paid} de %{total} pagas",
     "amountLeft": "Sobram %{amount}",
@@ -50,7 +48,6 @@
     "markPaid": "Marcar %{payee} como paga",
     "changeAmount": "Alterar o valor de %{payee} neste ordenado",
     "changePayAmount": "Alterar o valor do ordenado de %{source} nesta data",
-    "emptyAction": "Adicionar fonte de rendimento",
     "chartBarCurrentLabel": "%{month} (este mês), sobram %{amount}",
     "shortBy": "Faltam %{amount}",
     "moveBill": "Mover uma fatura",
@@ -258,7 +255,24 @@
       "weekBefore": "Uma semana antes"
     },
     "permissionDeniedTitle": "As notificações estão desativadas",
-    "permissionDeniedBody": "Permita as notificações do Paycheck Planner nas definições do dispositivo para receber lembretes do dia de pagamento."
+    "permissionDeniedBody": "Permita as notificações do Paycheck Planner nas definições do dispositivo para receber lembretes do dia de pagamento.",
+    "data": {
+      "title": "Dados",
+      "backup": "Fazer cópia de segurança",
+      "restore": "Restaurar cópia de segurança",
+      "exportCsv": "Exportar faturas em CSV",
+      "erase": "Apagar todos os dados",
+      "hint": "A cópia de segurança é um ficheiro que guarda na app Ficheiros ou onde a partilhar. Restaurar substitui tudo na app.",
+      "csvType": "Tipo",
+      "restoreTitle": "Substituir todos os seus dados?",
+      "restoreBody": "Tudo na app será substituído pela cópia de segurança.",
+      "restoreConfirm": "Substituir",
+      "eraseTitle": "Apagar todos os dados?",
+      "eraseBody": "Remove todas as fontes de rendimento, faturas e alterações aos ordenados.",
+      "invalidBackup": "Este ficheiro não é uma cópia de segurança do Paycheck Planner."
+    },
+    "unpaidReminder": "Lembrete de faturas por pagar",
+    "unpaidReminderHint": "No dia a seguir ao ordenado, receba um aviso se alguma fatura desse ordenado não estiver marcada como paga."
   },
   "notifications": {
     "channelName": "Lembretes do dia de pagamento",
@@ -272,7 +286,9 @@
       "other": "%{count} faturas (%{amount})"
     },
     "bodyWithSetAside": "%{income} recebidos · %{bills} · %{setAside} reservados · sobram %{left}",
-    "bodySetAsideOnly": "%{income} recebidos · %{setAside} reservados · sobram %{left}"
+    "bodySetAsideOnly": "%{income} recebidos · %{setAside} reservados · sobram %{left}",
+    "unpaidTitle": "Ainda por pagar: %{source}",
+    "unpaidBody": "%{bills} do ordenado de %{date} ainda não marcadas como pagas"
   },
   "links": {
     "openFailed": "Não foi possível abrir a ligação"
@@ -298,9 +314,36 @@
     "incomeDeleted": "\"%{name}\" eliminado",
     "billMoved": "\"%{payee}\" movido para %{date}",
     "remindersOn": "Lembretes do dia de pagamento ativados",
-    "markedAllPaid": "Tudo marcado como pago"
+    "markedAllPaid": "Tudo marcado como pago",
+    "restored": "Cópia de segurança restaurada",
+    "erased": "Todos os dados apagados",
+    "sampleLoaded": "Dados de exemplo carregados. Apague-os quando quiser nas Definições.",
+    "unpaidOn": "Lembrete de faturas por pagar ativado"
   },
   "history": {
     "empty": "Ainda não há ordenados anteriores."
+  },
+  "demo": {
+    "rent": "Renda",
+    "groceries": "Supermercado",
+    "carPayment": "Prestação do carro",
+    "electric": "Eletricidade",
+    "internet": "Internet",
+    "phone": "Telemóvel",
+    "savings": "Poupança",
+    "streaming": "Streaming",
+    "carRegistration": "IUC"
+  },
+  "welcome": {
+    "title": "Planeie cada ordenado",
+    "body": "Veja o que cada ordenado cobre antes de o receber.",
+    "incomeTitle": "Adicione o seu rendimento",
+    "incomeBody": "Indique quando e quanto recebe.",
+    "billsTitle": "Adicione as suas faturas",
+    "billsBody": "Associe-as a um ordenado ou ponha dinheiro de parte.",
+    "leftTitle": "Veja o que sobra",
+    "leftBody": "Cada ordenado mostra as faturas e o que sobra.",
+    "addIncome": "Adicionar fonte de rendimento",
+    "trySample": "Experimentar com dados de exemplo"
   }
 }

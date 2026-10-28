@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · ostane",
     "heroMeta": "Prihodek %{income} · dodeljeno %{assigned}",
     "monthPaychecks": "Plače: %{month}",
-    "emptyTitle": "Ni še virov prihodka",
-    "emptyBody": "Dodajte prvi vir prihodka in poglejte, kam gre vsaka plača.",
     "noBillsYet": "Ni še računov · tapnite za dodelitev",
     "paidProgress": "Plačano %{paid} od %{total}",
     "amountLeft": "Ostane %{amount}",
@@ -50,7 +48,6 @@
     "markPaid": "Označi %{payee} kot plačano",
     "changeAmount": "Spremeni znesek %{payee} za to plačo",
     "changePayAmount": "Spremeni znesek plače %{source} samo za to plačo",
-    "emptyAction": "Dodaj vir prihodka",
     "chartBarCurrentLabel": "%{month} (ta mesec), ostane %{amount}",
     "shortBy": "Manjka %{amount}",
     "moveBill": "Premakni račun",
@@ -260,7 +257,24 @@
       "weekBefore": "Teden prej"
     },
     "permissionDeniedTitle": "Obvestila so izklopljena",
-    "permissionDeniedBody": "V nastavitvah naprave dovolite obvestila za Paycheck Planner, da boste prejemali opomnike za plačo."
+    "permissionDeniedBody": "V nastavitvah naprave dovolite obvestila za Paycheck Planner, da boste prejemali opomnike za plačo.",
+    "data": {
+      "title": "Podatki",
+      "backup": "Varnostno kopiraj podatke",
+      "restore": "Obnovi iz varnostne kopije",
+      "exportCsv": "Izvozi račune v CSV",
+      "erase": "Izbriši vse podatke",
+      "hint": "Varnostna kopija je datoteka, ki jo hranite v Datotekah ali kjer jo delite. Obnovitev zamenja vse v aplikaciji.",
+      "csvType": "Vrsta",
+      "restoreTitle": "Želite zamenjati vse podatke?",
+      "restoreBody": "Vse v aplikaciji bo zamenjano z varnostno kopijo.",
+      "restoreConfirm": "Zamenjaj",
+      "eraseTitle": "Želite izbrisati vse podatke?",
+      "eraseBody": "Odstrani vse vire dohodka, račune in spremembe plač.",
+      "invalidBackup": "Ta datoteka ni varnostna kopija aplikacije Paycheck Planner."
+    },
+    "unpaidReminder": "Opomnik za neplačane račune",
+    "unpaidReminderHint": "Dan po plači prejmete opomnik, če kateri od računov te plače ni označen kot plačan."
   },
   "notifications": {
     "channelName": "Opomniki za plačo",
@@ -276,7 +290,9 @@
       "other": "%{count} računov (%{amount})"
     },
     "bodyWithSetAside": "Prihodek %{income} · %{bills} · odloženo %{setAside} · ostane %{left}",
-    "bodySetAsideOnly": "Prihodek %{income} · odloženo %{setAside} · ostane %{left}"
+    "bodySetAsideOnly": "Prihodek %{income} · odloženo %{setAside} · ostane %{left}",
+    "unpaidTitle": "Še neplačano: %{source}",
+    "unpaidBody": "%{bills} s plače %{date} še ni označenih kot plačano"
   },
   "links": {
     "openFailed": "Povezave ni bilo mogoče odpreti"
@@ -302,9 +318,36 @@
     "incomeDeleted": "Izbrisano »%{name}«",
     "billMoved": "»%{payee}« premaknjeno na %{date}",
     "remindersOn": "Opomniki za plačo so vklopljeni",
-    "markedAllPaid": "Vse označeno kot plačano"
+    "markedAllPaid": "Vse označeno kot plačano",
+    "restored": "Varnostna kopija obnovljena",
+    "erased": "Vsi podatki izbrisani",
+    "sampleLoaded": "Naloženi so vzorčni podatki. Izbrišete jih lahko kadar koli v Nastavitvah.",
+    "unpaidOn": "Opomnik za neplačane račune vklopljen"
   },
   "history": {
     "empty": "Preteklih plač še ni."
+  },
+  "demo": {
+    "rent": "Najemnina",
+    "groceries": "Živila",
+    "carPayment": "Obrok za avto",
+    "electric": "Elektrika",
+    "internet": "Internet",
+    "phone": "Telefon",
+    "savings": "Varčevanje",
+    "streaming": "Pretakanje",
+    "carRegistration": "Registracija avta"
+  },
+  "welcome": {
+    "title": "Načrtujte vsako plačo",
+    "body": "Vnaprej vidite, kaj pokrije vsaka plača.",
+    "incomeTitle": "Dodajte dohodek",
+    "incomeBody": "Povejte aplikaciji, kdaj in koliko prejmete.",
+    "billsTitle": "Dodajte račune",
+    "billsBody": "Povežite jih s plačo ali odložite denar.",
+    "leftTitle": "Poglejte, kaj ostane",
+    "leftBody": "Vsaka plača prikaže svoje račune in kaj ostane.",
+    "addIncome": "Dodaj vir dohodka",
+    "trySample": "Preizkusi z vzorčnimi podatki"
   }
 }

@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · còn lại",
     "heroMeta": "Thu %{income} · đã phân bổ %{assigned}",
     "monthPaychecks": "Kỳ lương %{month}",
-    "emptyTitle": "Chưa có nguồn thu nhập",
-    "emptyBody": "Thêm nguồn thu nhập đầu tiên để xem mỗi kỳ lương được chi vào đâu.",
     "noBillsYet": "Chưa có hóa đơn · chạm để phân bổ",
     "paidProgress": "Đã trả %{paid}/%{total}",
     "amountLeft": "Còn %{amount}",
@@ -50,7 +48,6 @@
     "markPaid": "Đánh dấu %{payee} đã trả",
     "changeAmount": "Đổi số tiền %{payee} cho kỳ lương này",
     "changePayAmount": "Đổi số tiền lương %{source} cho kỳ lương này",
-    "emptyAction": "Thêm nguồn thu nhập",
     "chartBarCurrentLabel": "%{month} (tháng này), còn %{amount}",
     "shortBy": "Thiếu %{amount}",
     "moveBill": "Chuyển hóa đơn",
@@ -257,7 +254,24 @@
       "weekBefore": "Trước 1 tuần"
     },
     "permissionDeniedTitle": "Thông báo đang tắt",
-    "permissionDeniedBody": "Cho phép thông báo cho Paycheck Planner trong cài đặt thiết bị để nhận nhắc ngày nhận lương."
+    "permissionDeniedBody": "Cho phép thông báo cho Paycheck Planner trong cài đặt thiết bị để nhận nhắc ngày nhận lương.",
+    "data": {
+      "title": "Dữ liệu",
+      "backup": "Sao lưu dữ liệu",
+      "restore": "Khôi phục từ bản sao lưu",
+      "exportCsv": "Xuất hóa đơn ra CSV",
+      "erase": "Xóa toàn bộ dữ liệu",
+      "hint": "Bản sao lưu là tệp bạn giữ trong Tệp hoặc nơi bạn chia sẻ. Khôi phục sẽ thay thế mọi thứ trong ứng dụng.",
+      "csvType": "Loại",
+      "restoreTitle": "Thay thế toàn bộ dữ liệu?",
+      "restoreBody": "Mọi thứ trong ứng dụng sẽ được thay bằng bản sao lưu.",
+      "restoreConfirm": "Thay thế",
+      "eraseTitle": "Xóa toàn bộ dữ liệu?",
+      "eraseBody": "Xóa mọi nguồn thu nhập, hóa đơn và thay đổi kỳ lương.",
+      "invalidBackup": "Tệp này không phải bản sao lưu của Paycheck Planner."
+    },
+    "unpaidReminder": "Nhắc hóa đơn chưa trả",
+    "unpaidReminderHint": "Ngày sau khi nhận lương, bạn sẽ được nhắc nếu còn hóa đơn của kỳ lương đó chưa đánh dấu đã trả."
   },
   "notifications": {
     "channelName": "Nhắc ngày nhận lương",
@@ -270,7 +284,9 @@
       "other": "%{count} hóa đơn (%{amount})"
     },
     "bodyWithSetAside": "Thu %{income} · %{bills} · để dành %{setAside} · còn %{left}",
-    "bodySetAsideOnly": "Thu %{income} · để dành %{setAside} · còn %{left}"
+    "bodySetAsideOnly": "Thu %{income} · để dành %{setAside} · còn %{left}",
+    "unpaidTitle": "Vẫn chưa trả: %{source}",
+    "unpaidBody": "%{bills} từ kỳ lương %{date} chưa được đánh dấu đã trả"
   },
   "links": {
     "openFailed": "Không mở được liên kết"
@@ -296,9 +312,36 @@
     "incomeDeleted": "Đã xóa \"%{name}\"",
     "billMoved": "Đã chuyển \"%{payee}\" sang %{date}",
     "remindersOn": "Đã bật nhắc ngày nhận lương",
-    "markedAllPaid": "Đã đánh dấu tất cả đã trả"
+    "markedAllPaid": "Đã đánh dấu tất cả đã trả",
+    "restored": "Đã khôi phục bản sao lưu",
+    "erased": "Đã xóa toàn bộ dữ liệu",
+    "sampleLoaded": "Đã tải dữ liệu mẫu. Bạn có thể xóa bất cứ lúc nào trong Cài đặt.",
+    "unpaidOn": "Đã bật nhắc hóa đơn chưa trả"
   },
   "history": {
     "empty": "Chưa có kỳ lương nào trước đây."
+  },
+  "demo": {
+    "rent": "Tiền nhà",
+    "groceries": "Đi chợ",
+    "carPayment": "Trả góp xe",
+    "electric": "Tiền điện",
+    "internet": "Internet",
+    "phone": "Điện thoại",
+    "savings": "Tiết kiệm",
+    "streaming": "Xem phim trực tuyến",
+    "carRegistration": "Phí đăng ký xe"
+  },
+  "welcome": {
+    "title": "Lên kế hoạch cho từng kỳ lương",
+    "body": "Xem mỗi kỳ lương chi trả được gì trước khi nhận.",
+    "incomeTitle": "Thêm thu nhập",
+    "incomeBody": "Cho ứng dụng biết khi nào và bao nhiêu bạn được trả.",
+    "billsTitle": "Thêm hóa đơn",
+    "billsBody": "Liên kết với một kỳ lương, hoặc để dành tiền.",
+    "leftTitle": "Xem còn lại bao nhiêu",
+    "leftBody": "Mỗi kỳ lương hiển thị hóa đơn và số tiền còn lại.",
+    "addIncome": "Thêm nguồn thu nhập",
+    "trySample": "Dùng thử với dữ liệu mẫu"
   }
 }

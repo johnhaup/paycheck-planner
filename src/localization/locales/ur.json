@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · باقی",
     "heroMeta": "%{income} آمدنی · %{assigned} مختص",
     "monthPaychecks": "%{month} کی تنخواہیں",
-    "emptyTitle": "ابھی کوئی آمدنی کا ذریعہ نہیں",
-    "emptyBody": "اپنا پہلا آمدنی کا ذریعہ شامل کریں تاکہ دیکھ سکیں کہ ہر تنخواہ کہاں جاتی ہے۔",
     "noBillsYet": "ابھی کوئی بل نہیں · مختص کرنے کے لیے ٹیپ کریں",
     "paidProgress": "%{total} میں سے %{paid} ادا شدہ",
     "amountLeft": "%{amount} باقی",
@@ -50,7 +48,6 @@
     "markPaid": "%{payee} کو ادا شدہ نشان زد کریں",
     "changeAmount": "اس تنخواہ کے لیے %{payee} کی رقم تبدیل کریں",
     "changePayAmount": "اس تنخواہ کے لیے %{source} کی تنخواہ کی رقم تبدیل کریں",
-    "emptyAction": "آمدنی کا ذریعہ شامل کریں",
     "chartBarCurrentLabel": "%{month} (یہ مہینہ)، %{amount} باقی",
     "shortBy": "%{amount} کم",
     "moveBill": "بل منتقل کریں",
@@ -258,7 +255,24 @@
       "weekBefore": "ایک ہفتہ پہلے"
     },
     "permissionDeniedTitle": "اطلاعات بند ہیں",
-    "permissionDeniedBody": "تنخواہ کے دن کی یاددہانیاں پانے کے لیے اپنے آلے کی ترتیبات میں Paycheck Planner کے لیے اطلاعات کی اجازت دیں۔"
+    "permissionDeniedBody": "تنخواہ کے دن کی یاددہانیاں پانے کے لیے اپنے آلے کی ترتیبات میں Paycheck Planner کے لیے اطلاعات کی اجازت دیں۔",
+    "data": {
+      "title": "ڈیٹا",
+      "backup": "ڈیٹا کا بیک اپ لیں",
+      "restore": "بیک اپ سے بحال کریں",
+      "exportCsv": "بلز CSV میں ایکسپورٹ کریں",
+      "erase": "تمام ڈیٹا حذف کریں",
+      "hint": "بیک اپ ایک فائل ہے جو آپ Files میں یا جہاں شیئر کریں وہاں رکھتے ہیں۔ بحال کرنے سے ایپ میں سب کچھ بدل جاتا ہے۔",
+      "csvType": "قسم",
+      "restoreTitle": "اپنا تمام ڈیٹا بدلیں؟",
+      "restoreBody": "ایپ میں سب کچھ بیک اپ سے بدل جائے گا۔",
+      "restoreConfirm": "بدلیں",
+      "eraseTitle": "تمام ڈیٹا حذف کریں؟",
+      "eraseBody": "تمام آمدنی کے ذرائع، بلز اور تنخواہ کی تبدیلیاں ہٹ جائیں گی۔",
+      "invalidBackup": "یہ فائل Paycheck Planner کا بیک اپ نہیں ہے۔"
+    },
+    "unpaidReminder": "غیر ادا شدہ بل کی یاددہانی",
+    "unpaidReminderHint": "تنخواہ کے اگلے دن، اگر اس تنخواہ کا کوئی بل ادا شدہ نشان زد نہیں تو یاد دلائیں گے۔"
   },
   "notifications": {
     "channelName": "تنخواہ کے دن کی یاددہانیاں",
@@ -272,7 +286,9 @@
       "other": "%{count} بل (%{amount})"
     },
     "bodyWithSetAside": "%{income} آمدنی · %{bills} · %{setAside} الگ رکھے · %{left} باقی",
-    "bodySetAsideOnly": "%{income} آمدنی · %{setAside} الگ رکھے · %{left} باقی"
+    "bodySetAsideOnly": "%{income} آمدنی · %{setAside} الگ رکھے · %{left} باقی",
+    "unpaidTitle": "ابھی غیر ادا شدہ: %{source}",
+    "unpaidBody": "%{date} کی تنخواہ کے %{bills} ابھی ادا شدہ نشان زد نہیں"
   },
   "links": {
     "openFailed": "لنک نہیں کھل سکا"
@@ -298,9 +314,36 @@
     "incomeDeleted": "\"%{name}\" حذف کر دیا گیا",
     "billMoved": "\"%{payee}\" کو %{date} پر منتقل کر دیا گیا",
     "remindersOn": "تنخواہ کے دن کی یاددہانیاں آن ہیں",
-    "markedAllPaid": "سب کو ادا شدہ نشان زد کر دیا گیا"
+    "markedAllPaid": "سب کو ادا شدہ نشان زد کر دیا گیا",
+    "restored": "بیک اپ بحال ہو گیا",
+    "erased": "تمام ڈیٹا حذف ہو گیا",
+    "sampleLoaded": "نمونہ ڈیٹا لوڈ ہو گیا۔ ترتیبات سے کبھی بھی حذف کریں۔",
+    "unpaidOn": "غیر ادا شدہ بل کی یاددہانی آن ہے"
   },
   "history": {
     "empty": "ابھی کوئی پچھلی تنخواہ نہیں۔"
+  },
+  "demo": {
+    "rent": "کرایہ",
+    "groceries": "راشن",
+    "carPayment": "گاڑی کی قسط",
+    "electric": "بجلی",
+    "internet": "انٹرنیٹ",
+    "phone": "فون",
+    "savings": "بچت",
+    "streaming": "اسٹریمنگ",
+    "carRegistration": "گاڑی کی رجسٹریشن"
+  },
+  "welcome": {
+    "title": "ہر تنخواہ کی منصوبہ بندی کریں",
+    "body": "ہر تنخواہ آنے سے پہلے دیکھیں کہ وہ کیا کیا پورا کرے گی۔",
+    "incomeTitle": "اپنی آمدنی شامل کریں",
+    "incomeBody": "بتائیں کہ تنخواہ کب اور کتنی ملتی ہے۔",
+    "billsTitle": "اپنے بلز شامل کریں",
+    "billsBody": "انہیں تنخواہ سے جوڑیں، یا پیسے الگ رکھیں۔",
+    "leftTitle": "دیکھیں کتنا بچتا ہے",
+    "leftBody": "ہر تنخواہ اپنے بلز اور بچی رقم دکھاتی ہے۔",
+    "addIncome": "آمدنی کا ذریعہ شامل کریں",
+    "trySample": "نمونہ ڈیٹا کے ساتھ آزمائیں"
   }
 }

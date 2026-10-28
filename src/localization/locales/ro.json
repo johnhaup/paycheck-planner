@@ -41,8 +41,6 @@
     "leftAfterBills": "%{month} · rămas",
     "heroMeta": "%{income} venit · %{assigned} alocat",
     "monthPaychecks": "Salarii %{month}",
-    "emptyTitle": "Nicio sursă de venit încă",
-    "emptyBody": "Adaugă prima sursă de venit ca să vezi unde se duce fiecare salariu.",
     "noBillsYet": "Nicio factură încă · atinge pentru a aloca",
     "paidProgress": "%{paid} din %{total} plătite",
     "amountLeft": "%{amount} rămas",
@@ -51,7 +49,6 @@
     "markPaid": "Marchează %{payee} ca plătit",
     "changeAmount": "Schimbă suma pentru %{payee} la acest salariu",
     "changePayAmount": "Schimbă suma salariului %{source} pentru acest salariu",
-    "emptyAction": "Adaugă sursă de venit",
     "chartBarCurrentLabel": "%{month} (luna curentă), %{amount} rămas",
     "shortBy": "Lipsesc %{amount}",
     "moveBill": "Mută o factură",
@@ -260,7 +257,24 @@
       "weekBefore": "Cu o săptămână înainte"
     },
     "permissionDeniedTitle": "Notificările sunt oprite",
-    "permissionDeniedBody": "Permite notificările pentru Paycheck Planner în setările dispozitivului pentru a primi mementouri de salariu."
+    "permissionDeniedBody": "Permite notificările pentru Paycheck Planner în setările dispozitivului pentru a primi mementouri de salariu.",
+    "data": {
+      "title": "Date",
+      "backup": "Fă backup datelor",
+      "restore": "Restaurează din backup",
+      "exportCsv": "Exportă facturile ca CSV",
+      "erase": "Șterge toate datele",
+      "hint": "Backupul e un fișier pe care îl păstrezi în Fișiere sau oriunde îl partajezi. Restaurarea înlocuiește tot din aplicație.",
+      "csvType": "Tip",
+      "restoreTitle": "Înlocuiești toate datele?",
+      "restoreBody": "Tot din aplicație va fi înlocuit cu backupul.",
+      "restoreConfirm": "Înlocuiește",
+      "eraseTitle": "Ștergi toate datele?",
+      "eraseBody": "Elimină toate sursele de venit, facturile și modificările de salariu.",
+      "invalidBackup": "Acest fișier nu e un backup Paycheck Planner."
+    },
+    "unpaidReminder": "Memento pentru facturi neplătite",
+    "unpaidReminderHint": "A doua zi după salariu primești un memento dacă vreo factură din acel salariu nu e marcată ca plătită."
   },
   "notifications": {
     "channelName": "Mementouri zi de salariu",
@@ -275,7 +289,9 @@
       "other": "%{count} de facturi (%{amount})"
     },
     "bodyWithSetAside": "%{income} venit · %{bills} · %{setAside} puși deoparte · %{left} rămas",
-    "bodySetAsideOnly": "%{income} venit · %{setAside} puși deoparte · %{left} rămas"
+    "bodySetAsideOnly": "%{income} venit · %{setAside} puși deoparte · %{left} rămas",
+    "unpaidTitle": "Încă neplătit: %{source}",
+    "unpaidBody": "%{bills} din salariul din %{date} încă nemarcate ca plătite"
   },
   "links": {
     "openFailed": "Linkul nu a putut fi deschis"
@@ -301,9 +317,36 @@
     "incomeDeleted": "„%{name}” a fost șters",
     "billMoved": "„%{payee}” a fost mutat pe %{date}",
     "remindersOn": "Mementourile de zi de salariu sunt activate",
-    "markedAllPaid": "Totul a fost marcat ca plătit"
+    "markedAllPaid": "Totul a fost marcat ca plătit",
+    "restored": "Backup restaurat",
+    "erased": "Toate datele au fost șterse",
+    "sampleLoaded": "Date exemplu încărcate. Le poți șterge oricând din Setări.",
+    "unpaidOn": "Mementoul pentru facturi neplătite e activat"
   },
   "history": {
     "empty": "Încă nu există salarii anterioare."
+  },
+  "demo": {
+    "rent": "Chirie",
+    "groceries": "Cumpărături",
+    "carPayment": "Rată mașină",
+    "electric": "Curent",
+    "internet": "Internet",
+    "phone": "Telefon",
+    "savings": "Economii",
+    "streaming": "Streaming",
+    "carRegistration": "Taxă auto"
+  },
+  "welcome": {
+    "title": "Planifică fiecare salariu",
+    "body": "Vezi ce acoperă fiecare salariu înainte să vină.",
+    "incomeTitle": "Adaugă venitul",
+    "incomeBody": "Spune când și cât încasezi.",
+    "billsTitle": "Adaugă facturile",
+    "billsBody": "Leagă-le de un salariu sau pune bani deoparte.",
+    "leftTitle": "Vezi ce rămâne",
+    "leftBody": "Fiecare salariu arată facturile și ce rămâne.",
+    "addIncome": "Adaugă sursă de venit",
+    "trySample": "Încearcă cu date exemplu"
   }
 }

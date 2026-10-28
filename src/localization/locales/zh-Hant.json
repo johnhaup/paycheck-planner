@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · 剩餘",
     "heroMeta": "收入 %{income} · 已分配 %{assigned}",
     "monthPaychecks": "%{month}薪水",
-    "emptyTitle": "還沒有收入來源",
-    "emptyBody": "新增第一個收入來源，看看每筆薪水花到哪裡去。",
     "noBillsYet": "還沒有帳單 · 點一下分配",
     "paidProgress": "已付 %{paid}/%{total}",
     "amountLeft": "剩餘 %{amount}",
@@ -50,7 +48,6 @@
     "markPaid": "將%{payee}標示為已付",
     "changeAmount": "修改這筆薪水中%{payee}的金額",
     "changePayAmount": "修改這筆薪水中%{source}的薪資金額",
-    "emptyAction": "新增收入來源",
     "chartBarCurrentLabel": "%{month}（本月），剩餘 %{amount}",
     "shortBy": "短少 %{amount}",
     "moveBill": "移動帳單",
@@ -257,7 +254,24 @@
       "weekBefore": "提前一週"
     },
     "permissionDeniedTitle": "通知已關閉",
-    "permissionDeniedBody": "請在裝置設定中允許 Paycheck Planner 傳送通知，才能收到發薪日提醒。"
+    "permissionDeniedBody": "請在裝置設定中允許 Paycheck Planner 傳送通知，才能收到發薪日提醒。",
+    "data": {
+      "title": "資料",
+      "backup": "備份資料",
+      "restore": "從備份回復",
+      "exportCsv": "將帳單匯出為 CSV",
+      "erase": "清除所有資料",
+      "hint": "備份是一個檔案，保存在「檔案」App 或你分享到的任何地方。回復會取代 App 中的所有內容。",
+      "csvType": "類型",
+      "restoreTitle": "要取代所有資料嗎？",
+      "restoreBody": "App 中的所有內容都會被備份取代。",
+      "restoreConfirm": "取代",
+      "eraseTitle": "要清除所有資料嗎？",
+      "eraseBody": "將移除所有收入來源、帳單和薪資變更。",
+      "invalidBackup": "此檔案不是 Paycheck Planner 備份。"
+    },
+    "unpaidReminder": "未付帳單提醒",
+    "unpaidReminderHint": "發薪隔天，如果該次薪資中有帳單未標示為已付，會提醒你。"
   },
   "notifications": {
     "channelName": "發薪日提醒",
@@ -270,7 +284,9 @@
       "other": "%{count}筆帳單（%{amount}）"
     },
     "bodyWithSetAside": "收入 %{income} · %{bills} · 預留 %{setAside} · 剩餘 %{left}",
-    "bodySetAsideOnly": "收入 %{income} · 預留 %{setAside} · 剩餘 %{left}"
+    "bodySetAsideOnly": "收入 %{income} · 預留 %{setAside} · 剩餘 %{left}",
+    "unpaidTitle": "仍未支付：%{source}",
+    "unpaidBody": "%{date}薪資中有 %{bills} 尚未標示為已付"
   },
   "links": {
     "openFailed": "無法開啟連結"
@@ -296,9 +312,36 @@
     "incomeDeleted": "已刪除「%{name}」",
     "billMoved": "已將「%{payee}」移至%{date}",
     "remindersOn": "發薪日提醒已開啟",
-    "markedAllPaid": "已全部標示為已付"
+    "markedAllPaid": "已全部標示為已付",
+    "restored": "已回復備份",
+    "erased": "已清除所有資料",
+    "sampleLoaded": "已載入範例資料。可隨時在設定中清除。",
+    "unpaidOn": "已開啟未付帳單提醒"
   },
   "history": {
     "empty": "尚無過往薪資。"
+  },
+  "demo": {
+    "rent": "房租",
+    "groceries": "買菜",
+    "carPayment": "車貸",
+    "electric": "電費",
+    "internet": "網路費",
+    "phone": "手機費",
+    "savings": "儲蓄",
+    "streaming": "影音訂閱",
+    "carRegistration": "牌照稅"
+  },
+  "welcome": {
+    "title": "規劃每一筆薪資",
+    "body": "在薪資入帳前，看清每筆薪資能支付哪些帳單。",
+    "incomeTitle": "新增收入",
+    "incomeBody": "告訴 App 你何時發薪、發多少。",
+    "billsTitle": "新增帳單",
+    "billsBody": "將帳單連結到某筆薪資，或預留資金。",
+    "leftTitle": "查看結餘",
+    "leftBody": "每筆薪資都會顯示其帳單和剩餘金額。",
+    "addIncome": "新增收入來源",
+    "trySample": "用範例資料試試"
   }
 }

@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · baki",
     "heroMeta": "%{income} masuk · %{assigned} diperuntukkan",
     "monthPaychecks": "Gaji %{month}",
-    "emptyTitle": "Belum ada sumber pendapatan",
-    "emptyBody": "Tambah sumber pendapatan pertama anda untuk melihat ke mana setiap gaji digunakan.",
     "noBillsYet": "Belum ada bil · ketik untuk peruntukkan",
     "paidProgress": "%{paid} daripada %{total} dibayar",
     "amountLeft": "Baki %{amount}",
@@ -50,7 +48,6 @@
     "markPaid": "Tandakan %{payee} telah dibayar",
     "changeAmount": "Tukar jumlah %{payee} untuk gaji ini",
     "changePayAmount": "Tukar jumlah gaji %{source} untuk gaji ini",
-    "emptyAction": "Tambah sumber pendapatan",
     "chartBarCurrentLabel": "%{month} (bulan ini), baki %{amount}",
     "shortBy": "Kurang %{amount}",
     "moveBill": "Alihkan bil",
@@ -257,7 +254,24 @@
       "weekBefore": "Seminggu sebelum"
     },
     "permissionDeniedTitle": "Pemberitahuan dimatikan",
-    "permissionDeniedBody": "Benarkan pemberitahuan untuk Paycheck Planner dalam tetapan peranti anda untuk menerima peringatan hari gaji."
+    "permissionDeniedBody": "Benarkan pemberitahuan untuk Paycheck Planner dalam tetapan peranti anda untuk menerima peringatan hari gaji.",
+    "data": {
+      "title": "Data",
+      "backup": "Sandarkan data",
+      "restore": "Pulihkan daripada sandaran",
+      "exportCsv": "Eksport bil sebagai CSV",
+      "erase": "Padam semua data",
+      "hint": "Sandaran ialah fail yang anda simpan dalam Fail atau di mana sahaja anda kongsikannya. Memulihkan akan menggantikan semua kandungan apl.",
+      "csvType": "Jenis",
+      "restoreTitle": "Gantikan semua data anda?",
+      "restoreBody": "Semua kandungan apl akan digantikan dengan sandaran.",
+      "restoreConfirm": "Gantikan",
+      "eraseTitle": "Padam semua data?",
+      "eraseBody": "Membuang semua sumber pendapatan, bil dan perubahan gaji.",
+      "invalidBackup": "Fail ini bukan sandaran Paycheck Planner."
+    },
+    "unpaidReminder": "Peringatan bil belum dibayar",
+    "unpaidReminderHint": "Sehari selepas hari gaji, dapatkan peringatan jika ada bil daripada gaji itu yang belum ditandakan dibayar."
   },
   "notifications": {
     "channelName": "Peringatan hari gaji",
@@ -270,7 +284,9 @@
       "other": "%{count} bil (%{amount})"
     },
     "bodyWithSetAside": "%{income} masuk · %{bills} · %{setAside} disimpan · baki %{left}",
-    "bodySetAsideOnly": "%{income} masuk · %{setAside} disimpan · baki %{left}"
+    "bodySetAsideOnly": "%{income} masuk · %{setAside} disimpan · baki %{left}",
+    "unpaidTitle": "Belum dibayar: %{source}",
+    "unpaidBody": "%{bills} daripada gaji %{date} belum ditandakan dibayar"
   },
   "links": {
     "openFailed": "Tidak dapat membuka pautan"
@@ -296,9 +312,36 @@
     "incomeDeleted": "\"%{name}\" dipadam",
     "billMoved": "\"%{payee}\" dialihkan ke %{date}",
     "remindersOn": "Peringatan hari gaji dihidupkan",
-    "markedAllPaid": "Semua ditandakan telah dibayar"
+    "markedAllPaid": "Semua ditandakan telah dibayar",
+    "restored": "Sandaran dipulihkan",
+    "erased": "Semua data dipadam",
+    "sampleLoaded": "Data contoh dimuatkan. Padamkannya bila-bila masa dalam Tetapan.",
+    "unpaidOn": "Peringatan bil belum dibayar dihidupkan"
   },
   "history": {
     "empty": "Belum ada gaji lepas."
+  },
+  "demo": {
+    "rent": "Sewa",
+    "groceries": "Barangan dapur",
+    "carPayment": "Ansuran kereta",
+    "electric": "Elektrik",
+    "internet": "Internet",
+    "phone": "Telefon",
+    "savings": "Simpanan",
+    "streaming": "Penstriman",
+    "carRegistration": "Cukai jalan"
+  },
+  "welcome": {
+    "title": "Rancang setiap gaji",
+    "body": "Lihat apa yang ditanggung setiap gaji sebelum ia tiba.",
+    "incomeTitle": "Tambah pendapatan anda",
+    "incomeBody": "Beritahu bila dan berapa gaji anda.",
+    "billsTitle": "Tambah bil anda",
+    "billsBody": "Pautkan kepada gaji, atau ketepikan wang.",
+    "leftTitle": "Lihat bakinya",
+    "leftBody": "Setiap gaji menunjukkan bilnya dan bakinya.",
+    "addIncome": "Tambah sumber pendapatan",
+    "trySample": "Cuba dengan data contoh"
   }
 }

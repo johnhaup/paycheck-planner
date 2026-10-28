@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · נותר",
     "heroMeta": "%{income} הכנסה · %{assigned} שובצו",
     "monthPaychecks": "משכורות %{month}",
-    "emptyTitle": "אין עדיין מקורות הכנסה",
-    "emptyBody": "הוסיפו מקור הכנסה ראשון כדי לראות לאן הולכת כל משכורת.",
     "noBillsYet": "אין עדיין חשבונות · הקישו לשיבוץ",
     "paidProgress": "%{paid} מתוך %{total} שולמו",
     "amountLeft": "נותרו %{amount}",
@@ -50,7 +48,6 @@
     "markPaid": "סימון %{payee} כשולם",
     "changeAmount": "שינוי הסכום של %{payee} למשכורת זו",
     "changePayAmount": "שינוי סכום המשכורת מ%{source} למשכורת זו",
-    "emptyAction": "הוספת מקור הכנסה",
     "chartBarCurrentLabel": "%{month} (החודש), נותרו %{amount}",
     "shortBy": "חסרים %{amount}",
     "moveBill": "העברת חשבון",
@@ -260,7 +257,24 @@
       "weekBefore": "שבוע לפני"
     },
     "permissionDeniedTitle": "ההתראות כבויות",
-    "permissionDeniedBody": "אפשרו התראות ל-Paycheck Planner בהגדרות המכשיר כדי לקבל תזכורות ליום המשכורת."
+    "permissionDeniedBody": "אפשרו התראות ל-Paycheck Planner בהגדרות המכשיר כדי לקבל תזכורות ליום המשכורת.",
+    "data": {
+      "title": "נתונים",
+      "backup": "גיבוי נתונים",
+      "restore": "שחזור מגיבוי",
+      "exportCsv": "ייצוא חשבונות כ-CSV",
+      "erase": "מחיקת כל הנתונים",
+      "hint": "גיבוי הוא קובץ שנשמר אצלכם ב'קבצים' או בכל מקום שאליו תשתפו אותו. שחזור מחליף את כל מה שיש באפליקציה.",
+      "csvType": "סוג",
+      "restoreTitle": "להחליף את כל הנתונים?",
+      "restoreBody": "כל מה שיש באפליקציה יוחלף בגיבוי.",
+      "restoreConfirm": "החלפה",
+      "eraseTitle": "למחוק את כל הנתונים?",
+      "eraseBody": "מוחק את כל מקורות ההכנסה, החשבונות והשינויים במשכורות.",
+      "invalidBackup": "הקובץ הזה אינו גיבוי של Paycheck Planner."
+    },
+    "unpaidReminder": "תזכורת לחשבונות שלא שולמו",
+    "unpaidReminderHint": "יום אחרי המשכורת תקבלו תזכורת אם יש חשבונות מאותה משכורת שלא סומנו כשולמו."
   },
   "notifications": {
     "channelName": "תזכורות ליום המשכורת",
@@ -276,7 +290,9 @@
       "other": "%{count} חשבונות (%{amount})"
     },
     "bodyWithSetAside": "%{income} הכנסה · %{bills} · %{setAside} הופרשו · נותרו %{left}",
-    "bodySetAsideOnly": "%{income} הכנסה · %{setAside} הופרשו · נותרו %{left}"
+    "bodySetAsideOnly": "%{income} הכנסה · %{setAside} הופרשו · נותרו %{left}",
+    "unpaidTitle": "עדיין לא שולם: %{source}",
+    "unpaidBody": "%{bills} מהמשכורת של %{date} עדיין לא סומנו כשולמו"
   },
   "links": {
     "openFailed": "לא ניתן לפתוח את הקישור"
@@ -302,9 +318,36 @@
     "incomeDeleted": "\"%{name}\" נמחק",
     "billMoved": "\"%{payee}\" הועבר ל-%{date}",
     "remindersOn": "תזכורות ליום המשכורת הופעלו",
-    "markedAllPaid": "הכול סומן כשולם"
+    "markedAllPaid": "הכול סומן כשולם",
+    "restored": "הגיבוי שוחזר",
+    "erased": "כל הנתונים נמחקו",
+    "sampleLoaded": "נטענו נתוני דוגמה. אפשר למחוק אותם בכל עת בהגדרות.",
+    "unpaidOn": "תזכורת לחשבונות שלא שולמו הופעלה"
   },
   "history": {
     "empty": "אין עדיין משכורות קודמות."
+  },
+  "demo": {
+    "rent": "שכירות",
+    "groceries": "מכולת",
+    "carPayment": "הלוואת רכב",
+    "electric": "חשמל",
+    "internet": "אינטרנט",
+    "phone": "טלפון",
+    "savings": "חיסכון",
+    "streaming": "סטרימינג",
+    "carRegistration": "רישוי רכב"
+  },
+  "welcome": {
+    "title": "תכננו כל משכורת",
+    "body": "ראו מה כל משכורת מכסה לפני שהיא מגיעה.",
+    "incomeTitle": "הוסיפו הכנסה",
+    "incomeBody": "ספרו לאפליקציה מתי ובכמה אתם מקבלים משכורת.",
+    "billsTitle": "הוסיפו חשבונות",
+    "billsBody": "קשרו אותם למשכורת, או הפרישו כסף בצד.",
+    "leftTitle": "ראו מה נשאר",
+    "leftBody": "כל משכורת מציגה את החשבונות שלה ומה נשאר.",
+    "addIncome": "הוספת מקור הכנסה",
+    "trySample": "לנסות עם נתוני דוגמה"
   }
 }

@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · zbývá",
     "heroMeta": "Příjem %{income} · přiřazeno %{assigned}",
     "monthPaychecks": "Výplaty: %{month}",
-    "emptyTitle": "Zatím žádné zdroje příjmu",
-    "emptyBody": "Přidejte první zdroj příjmu a uvidíte, kam každá výplata jde.",
     "noBillsYet": "Zatím žádné účty · klepnutím přiřadíte",
     "paidProgress": "Zaplaceno %{paid} z %{total}",
     "amountLeft": "Zbývá %{amount}",
@@ -50,7 +48,6 @@
     "markPaid": "Označit %{payee} jako zaplacené",
     "changeAmount": "Změnit částku %{payee} pro tuto výplatu",
     "changePayAmount": "Změnit částku výplaty %{source} jen pro tuto výplatu",
-    "emptyAction": "Přidat zdroj příjmu",
     "chartBarCurrentLabel": "%{month} (tento měsíc), zbývá %{amount}",
     "shortBy": "Chybí %{amount}",
     "moveBill": "Přesunout účet",
@@ -260,7 +257,24 @@
       "weekBefore": "Týden předem"
     },
     "permissionDeniedTitle": "Oznámení jsou vypnutá",
-    "permissionDeniedBody": "Povolte aplikaci Paycheck Planner oznámení v nastavení zařízení, abyste dostávali připomenutí výplaty."
+    "permissionDeniedBody": "Povolte aplikaci Paycheck Planner oznámení v nastavení zařízení, abyste dostávali připomenutí výplaty.",
+    "data": {
+      "title": "Data",
+      "backup": "Zálohovat data",
+      "restore": "Obnovit ze zálohy",
+      "exportCsv": "Exportovat účty do CSV",
+      "erase": "Smazat všechna data",
+      "hint": "Záloha je soubor, který si uložíte do Souborů nebo kamkoli ho sdílíte. Obnovení nahradí vše v aplikaci.",
+      "csvType": "Typ",
+      "restoreTitle": "Nahradit všechna data?",
+      "restoreBody": "Vše v aplikaci se nahradí zálohou.",
+      "restoreConfirm": "Nahradit",
+      "eraseTitle": "Smazat všechna data?",
+      "eraseBody": "Odstraní všechny zdroje příjmů, účty i úpravy výplat.",
+      "invalidBackup": "Tento soubor není záloha Paycheck Planneru."
+    },
+    "unpaidReminder": "Připomenutí nezaplacených účtů",
+    "unpaidReminderHint": "Den po výplatě vás upozorníme, pokud některý účet z této výplaty není označený jako zaplacený."
   },
   "notifications": {
     "channelName": "Připomenutí výplaty",
@@ -276,7 +290,9 @@
       "other": "%{count} účtů (%{amount})"
     },
     "bodyWithSetAside": "Příjem %{income} · %{bills} · odloženo %{setAside} · zbývá %{left}",
-    "bodySetAsideOnly": "Příjem %{income} · odloženo %{setAside} · zbývá %{left}"
+    "bodySetAsideOnly": "Příjem %{income} · odloženo %{setAside} · zbývá %{left}",
+    "unpaidTitle": "Stále nezaplaceno: %{source}",
+    "unpaidBody": "%{bills} z výplaty %{date} zatím není označeno jako zaplacené"
   },
   "links": {
     "openFailed": "Odkaz se nepodařilo otevřít"
@@ -302,9 +318,36 @@
     "incomeDeleted": "Smazáno „%{name}“",
     "billMoved": "„%{payee}“ přesunuto na %{date}",
     "remindersOn": "Připomenutí výplaty zapnuta",
-    "markedAllPaid": "Vše označeno jako zaplacené"
+    "markedAllPaid": "Vše označeno jako zaplacené",
+    "restored": "Záloha obnovena",
+    "erased": "Všechna data smazána",
+    "sampleLoaded": "Ukázková data načtena. Smazat je můžete kdykoli v Nastavení.",
+    "unpaidOn": "Připomenutí nezaplacených účtů zapnuto"
   },
   "history": {
     "empty": "Zatím žádné minulé výplaty."
+  },
+  "demo": {
+    "rent": "Nájem",
+    "groceries": "Potraviny",
+    "carPayment": "Splátka auta",
+    "electric": "Elektřina",
+    "internet": "Internet",
+    "phone": "Telefon",
+    "savings": "Spoření",
+    "streaming": "Streaming",
+    "carRegistration": "Registrace auta"
+  },
+  "welcome": {
+    "title": "Naplánujte každou výplatu",
+    "body": "Uvidíte, co každá výplata pokryje, ještě než přijde.",
+    "incomeTitle": "Přidejte příjem",
+    "incomeBody": "Zadejte, kdy a kolik dostáváte.",
+    "billsTitle": "Přidejte účty",
+    "billsBody": "Přiřaďte je k výplatě, nebo si odložte peníze.",
+    "leftTitle": "Uvidíte, co zbude",
+    "leftBody": "Každá výplata ukazuje své účty a kolik zbývá.",
+    "addIncome": "Přidat zdroj příjmu",
+    "trySample": "Vyzkoušet s ukázkovými daty"
   }
 }

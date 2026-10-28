@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · ਬਾਕੀ",
     "heroMeta": "%{income} ਆਏ · %{assigned} ਅਸਾਈਨ",
     "monthPaychecks": "%{month} ਦੀਆਂ ਤਨਖ਼ਾਹਾਂ",
-    "emptyTitle": "ਹਾਲੇ ਕੋਈ ਆਮਦਨ ਸਰੋਤ ਨਹੀਂ",
-    "emptyBody": "ਹਰ ਤਨਖ਼ਾਹ ਕਿੱਥੇ ਜਾਂਦੀ ਹੈ, ਇਹ ਦੇਖਣ ਲਈ ਆਪਣਾ ਪਹਿਲਾ ਆਮਦਨ ਸਰੋਤ ਸ਼ਾਮਲ ਕਰੋ।",
     "noBillsYet": "ਹਾਲੇ ਕੋਈ ਬਿੱਲ ਨਹੀਂ · ਅਸਾਈਨ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ",
     "paidProgress": "%{total} ਵਿੱਚੋਂ %{paid} ਭਰੇ",
     "amountLeft": "%{amount} ਬਾਕੀ",
@@ -50,7 +48,6 @@
     "markPaid": "%{payee} ਨੂੰ ਭਰਿਆ ਮਾਰਕ ਕਰੋ",
     "changeAmount": "ਇਸ ਤਨਖ਼ਾਹ ਲਈ %{payee} ਦੀ ਰਕਮ ਬਦਲੋ",
     "changePayAmount": "ਇਸ ਵਾਰ ਲਈ %{source} ਦੀ ਤਨਖ਼ਾਹ ਰਕਮ ਬਦਲੋ",
-    "emptyAction": "ਆਮਦਨ ਸਰੋਤ ਸ਼ਾਮਲ ਕਰੋ",
     "chartBarCurrentLabel": "%{month} (ਇਹ ਮਹੀਨਾ), %{amount} ਬਾਕੀ",
     "shortBy": "%{amount} ਘੱਟ",
     "moveBill": "ਬਿੱਲ ਮੂਵ ਕਰੋ",
@@ -258,7 +255,24 @@
       "weekBefore": "ਇੱਕ ਹਫ਼ਤਾ ਪਹਿਲਾਂ"
     },
     "permissionDeniedTitle": "ਸੂਚਨਾਵਾਂ ਬੰਦ ਹਨ",
-    "permissionDeniedBody": "ਤਨਖ਼ਾਹ ਰਿਮਾਈਂਡਰ ਪਾਉਣ ਲਈ ਡਿਵਾਈਸ ਸੈਟਿੰਗਾਂ ਵਿੱਚ Paycheck Planner ਲਈ ਸੂਚਨਾਵਾਂ ਚਾਲੂ ਕਰੋ।"
+    "permissionDeniedBody": "ਤਨਖ਼ਾਹ ਰਿਮਾਈਂਡਰ ਪਾਉਣ ਲਈ ਡਿਵਾਈਸ ਸੈਟਿੰਗਾਂ ਵਿੱਚ Paycheck Planner ਲਈ ਸੂਚਨਾਵਾਂ ਚਾਲੂ ਕਰੋ।",
+    "data": {
+      "title": "ਡਾਟਾ",
+      "backup": "ਡਾਟਾ ਦਾ ਬੈਕਅੱਪ ਲਓ",
+      "restore": "ਬੈਕਅੱਪ ਤੋਂ ਵਾਪਸ ਲਿਆਓ",
+      "exportCsv": "ਬਿੱਲ CSV ਵਜੋਂ ਐਕਸਪੋਰਟ ਕਰੋ",
+      "erase": "ਸਾਰਾ ਡਾਟਾ ਮਿਟਾਓ",
+      "hint": "ਬੈਕਅੱਪ ਇੱਕ ਫ਼ਾਈਲ ਹੈ, ਜੋ ਤੁਸੀਂ Files ਵਿੱਚ ਜਾਂ ਜਿੱਥੇ ਸਾਂਝੀ ਕਰੋ ਉੱਥੇ ਰੱਖਦੇ ਹੋ। ਵਾਪਸ ਲਿਆਉਣ 'ਤੇ ਐਪ ਦਾ ਸਭ ਕੁਝ ਬਦਲ ਜਾਂਦਾ ਹੈ।",
+      "csvType": "ਕਿਸਮ",
+      "restoreTitle": "ਆਪਣਾ ਸਾਰਾ ਡਾਟਾ ਬਦਲਣਾ ਹੈ?",
+      "restoreBody": "ਐਪ ਦਾ ਸਭ ਕੁਝ ਬੈਕਅੱਪ ਨਾਲ ਬਦਲ ਜਾਵੇਗਾ।",
+      "restoreConfirm": "ਬਦਲੋ",
+      "eraseTitle": "ਸਾਰਾ ਡਾਟਾ ਮਿਟਾਉਣਾ ਹੈ?",
+      "eraseBody": "ਸਾਰੇ ਆਮਦਨ ਸਰੋਤ, ਬਿੱਲ ਅਤੇ ਤਨਖ਼ਾਹ ਦੇ ਬਦਲਾਅ ਹਟ ਜਾਣਗੇ।",
+      "invalidBackup": "ਇਹ ਫ਼ਾਈਲ Paycheck Planner ਦਾ ਬੈਕਅੱਪ ਨਹੀਂ ਹੈ।"
+    },
+    "unpaidReminder": "ਬਕਾਇਆ ਬਿੱਲ ਰਿਮਾਈਂਡਰ",
+    "unpaidReminderHint": "ਤਨਖ਼ਾਹ ਤੋਂ ਅਗਲੇ ਦਿਨ, ਜੇ ਉਸ ਤਨਖ਼ਾਹ ਦਾ ਕੋਈ ਬਿੱਲ ਭਰਿਆ ਮਾਰਕ ਨਹੀਂ ਹੈ ਤਾਂ ਯਾਦ ਕਰਵਾਵਾਂਗੇ।"
   },
   "notifications": {
     "channelName": "ਤਨਖ਼ਾਹ ਰਿਮਾਈਂਡਰ",
@@ -272,7 +286,9 @@
       "other": "%{count} ਬਿੱਲ (%{amount})"
     },
     "bodyWithSetAside": "%{income} ਆਏ · %{bills} · %{setAside} ਵੱਖ ਰੱਖੇ · %{left} ਬਾਕੀ",
-    "bodySetAsideOnly": "%{income} ਆਏ · %{setAside} ਵੱਖ ਰੱਖੇ · %{left} ਬਾਕੀ"
+    "bodySetAsideOnly": "%{income} ਆਏ · %{setAside} ਵੱਖ ਰੱਖੇ · %{left} ਬਾਕੀ",
+    "unpaidTitle": "ਅਜੇ ਬਕਾਇਆ: %{source}",
+    "unpaidBody": "%{date} ਦੀ ਤਨਖ਼ਾਹ ਦੇ %{bills} ਅਜੇ ਭਰੇ ਮਾਰਕ ਨਹੀਂ ਹੋਏ"
   },
   "links": {
     "openFailed": "ਲਿੰਕ ਨਹੀਂ ਖੁੱਲ੍ਹ ਸਕਿਆ"
@@ -298,9 +314,36 @@
     "incomeDeleted": "\"%{name}\" ਮਿਟਾਇਆ ਗਿਆ",
     "billMoved": "\"%{payee}\" ਨੂੰ %{date} 'ਤੇ ਮੂਵ ਕੀਤਾ",
     "remindersOn": "ਤਨਖ਼ਾਹ ਰਿਮਾਈਂਡਰ ਚਾਲੂ",
-    "markedAllPaid": "ਸਭ ਭਰਿਆ ਮਾਰਕ ਕੀਤਾ"
+    "markedAllPaid": "ਸਭ ਭਰਿਆ ਮਾਰਕ ਕੀਤਾ",
+    "restored": "ਬੈਕਅੱਪ ਵਾਪਸ ਲਿਆਂਦਾ",
+    "erased": "ਸਾਰਾ ਡਾਟਾ ਮਿਟਾਇਆ ਗਿਆ",
+    "sampleLoaded": "ਨਮੂਨਾ ਡਾਟਾ ਲੋਡ ਹੋਇਆ। ਸੈਟਿੰਗਾਂ ਤੋਂ ਕਦੇ ਵੀ ਮਿਟਾਓ।",
+    "unpaidOn": "ਬਕਾਇਆ ਬਿੱਲ ਰਿਮਾਈਂਡਰ ਚਾਲੂ"
   },
   "history": {
     "empty": "ਅਜੇ ਕੋਈ ਪਿਛਲੀ ਤਨਖ਼ਾਹ ਨਹੀਂ।"
+  },
+  "demo": {
+    "rent": "ਕਿਰਾਇਆ",
+    "groceries": "ਰਾਸ਼ਨ",
+    "carPayment": "ਕਾਰ ਦੀ ਕਿਸ਼ਤ",
+    "electric": "ਬਿਜਲੀ",
+    "internet": "ਇੰਟਰਨੈੱਟ",
+    "phone": "ਫ਼ੋਨ",
+    "savings": "ਬੱਚਤ",
+    "streaming": "ਸਟ੍ਰੀਮਿੰਗ",
+    "carRegistration": "ਕਾਰ ਰਜਿਸਟ੍ਰੇਸ਼ਨ"
+  },
+  "welcome": {
+    "title": "ਹਰ ਤਨਖ਼ਾਹ ਦੀ ਯੋਜਨਾ ਬਣਾਓ",
+    "body": "ਹਰ ਤਨਖ਼ਾਹ ਆਉਣ ਤੋਂ ਪਹਿਲਾਂ ਦੇਖੋ ਕਿ ਉਹ ਕੀ ਕੁਝ ਕਵਰ ਕਰੇਗੀ।",
+    "incomeTitle": "ਆਪਣੀ ਆਮਦਨ ਜੋੜੋ",
+    "incomeBody": "ਦੱਸੋ ਕਿ ਤਨਖ਼ਾਹ ਕਦੋਂ ਅਤੇ ਕਿੰਨੀ ਮਿਲਦੀ ਹੈ।",
+    "billsTitle": "ਆਪਣੇ ਬਿੱਲ ਜੋੜੋ",
+    "billsBody": "ਉਨ੍ਹਾਂ ਨੂੰ ਤਨਖ਼ਾਹ ਨਾਲ ਜੋੜੋ, ਜਾਂ ਪੈਸੇ ਵੱਖ ਰੱਖੋ।",
+    "leftTitle": "ਦੇਖੋ ਕਿੰਨਾ ਬਚਦਾ ਹੈ",
+    "leftBody": "ਹਰ ਤਨਖ਼ਾਹ ਉਸਦੇ ਬਿੱਲ ਅਤੇ ਬਚੀ ਰਕਮ ਦਿਖਾਉਂਦੀ ਹੈ।",
+    "addIncome": "ਆਮਦਨ ਸਰੋਤ ਜੋੜੋ",
+    "trySample": "ਨਮੂਨਾ ਡਾਟਾ ਨਾਲ ਅਜ਼ਮਾਓ"
   }
 }

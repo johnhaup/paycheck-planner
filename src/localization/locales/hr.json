@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · ostaje",
     "heroMeta": "Prihod %{income} · dodijeljeno %{assigned}",
     "monthPaychecks": "Plaće: %{month}",
-    "emptyTitle": "Još nema izvora prihoda",
-    "emptyBody": "Dodajte prvi izvor prihoda i vidite kamo ide svaka plaća.",
     "noBillsYet": "Još nema računa · dodirnite za dodjelu",
     "paidProgress": "Plaćeno %{paid} od %{total}",
     "amountLeft": "Ostaje %{amount}",
@@ -50,7 +48,6 @@
     "markPaid": "Označi %{payee} kao plaćeno",
     "changeAmount": "Promijeni iznos %{payee} za ovu plaću",
     "changePayAmount": "Promijeni iznos plaće %{source} samo za ovu plaću",
-    "emptyAction": "Dodaj izvor prihoda",
     "chartBarCurrentLabel": "%{month} (ovaj mjesec), ostaje %{amount}",
     "shortBy": "Nedostaje %{amount}",
     "moveBill": "Premjesti račun",
@@ -259,7 +256,24 @@
       "weekBefore": "Tjedan prije"
     },
     "permissionDeniedTitle": "Obavijesti su isključene",
-    "permissionDeniedBody": "Dopustite obavijesti za Paycheck Planner u postavkama uređaja da biste primali podsjetnike za plaću."
+    "permissionDeniedBody": "Dopustite obavijesti za Paycheck Planner u postavkama uređaja da biste primali podsjetnike za plaću.",
+    "data": {
+      "title": "Podaci",
+      "backup": "Sigurnosno kopiraj podatke",
+      "restore": "Vrati iz sigurnosne kopije",
+      "exportCsv": "Izvezi račune kao CSV",
+      "erase": "Izbriši sve podatke",
+      "hint": "Sigurnosna kopija je datoteka koju čuvate u Datotekama ili gdje je podijelite. Vraćanje zamjenjuje sve u aplikaciji.",
+      "csvType": "Vrsta",
+      "restoreTitle": "Zamijeniti sve podatke?",
+      "restoreBody": "Sve u aplikaciji bit će zamijenjeno sigurnosnom kopijom.",
+      "restoreConfirm": "Zamijeni",
+      "eraseTitle": "Izbrisati sve podatke?",
+      "eraseBody": "Uklanja sve izvore prihoda, račune i promjene plaća.",
+      "invalidBackup": "Ova datoteka nije sigurnosna kopija aplikacije Paycheck Planner."
+    },
+    "unpaidReminder": "Podsjetnik za neplaćene račune",
+    "unpaidReminderHint": "Dan nakon plaće dobit ćete podsjetnik ako neki račun s te plaće nije označen kao plaćen."
   },
   "notifications": {
     "channelName": "Podsjetnici za plaću",
@@ -274,7 +288,9 @@
       "other": "%{count} računa (%{amount})"
     },
     "bodyWithSetAside": "Prihod %{income} · %{bills} · odvojeno %{setAside} · ostaje %{left}",
-    "bodySetAsideOnly": "Prihod %{income} · odvojeno %{setAside} · ostaje %{left}"
+    "bodySetAsideOnly": "Prihod %{income} · odvojeno %{setAside} · ostaje %{left}",
+    "unpaidTitle": "Još neplaćeno: %{source}",
+    "unpaidBody": "%{bills} s plaće od %{date} još nije označeno kao plaćeno"
   },
   "links": {
     "openFailed": "Poveznicu nije moguće otvoriti"
@@ -300,9 +316,36 @@
     "incomeDeleted": "Izbrisano „%{name}”",
     "billMoved": "„%{payee}” premješteno na %{date}",
     "remindersOn": "Podsjetnici za plaću uključeni",
-    "markedAllPaid": "Sve označeno kao plaćeno"
+    "markedAllPaid": "Sve označeno kao plaćeno",
+    "restored": "Sigurnosna kopija vraćena",
+    "erased": "Svi podaci izbrisani",
+    "sampleLoaded": "Učitani su primjeri podataka. Izbrišite ih bilo kad u Postavkama.",
+    "unpaidOn": "Podsjetnik za neplaćene račune uključen"
   },
   "history": {
     "empty": "Još nema prošlih plaća."
+  },
+  "demo": {
+    "rent": "Najam",
+    "groceries": "Namirnice",
+    "carPayment": "Rata za auto",
+    "electric": "Struja",
+    "internet": "Internet",
+    "phone": "Telefon",
+    "savings": "Štednja",
+    "streaming": "Streaming",
+    "carRegistration": "Registracija auta"
+  },
+  "welcome": {
+    "title": "Planirajte svaku plaću",
+    "body": "Unaprijed vidite što pokriva svaka plaća.",
+    "incomeTitle": "Dodajte prihod",
+    "incomeBody": "Recite aplikaciji kada i koliko primate.",
+    "billsTitle": "Dodajte račune",
+    "billsBody": "Povežite ih s plaćom ili odvojite novac.",
+    "leftTitle": "Pogledajte što ostaje",
+    "leftBody": "Svaka plaća prikazuje svoje račune i što ostaje.",
+    "addIncome": "Dodaj izvor prihoda",
+    "trySample": "Isprobaj s primjerima podataka"
   }
 }

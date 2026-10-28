@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · igjen",
     "heroMeta": "%{income} inn · %{assigned} tildelt",
     "monthPaychecks": "Lønnsutbetalinger i %{month}",
-    "emptyTitle": "Ingen inntektskilder enda",
-    "emptyBody": "Legg til din første inntektskilde for å se hvor hver lønn går.",
     "noBillsYet": "Ingen regninger enda · trykk for å tildele",
     "paidProgress": "%{paid} av %{total} betalt",
     "amountLeft": "%{amount} igjen",
@@ -50,7 +48,6 @@
     "markPaid": "Merk %{payee} som betalt",
     "changeAmount": "Endre beløp for %{payee} for denne lønnen",
     "changePayAmount": "Endre lønnsbeløp for %{source} for denne utbetalingen",
-    "emptyAction": "Legg til inntektskilde",
     "chartBarCurrentLabel": "%{month} (denne måneden), %{amount} igjen",
     "shortBy": "Mangler %{amount}",
     "moveBill": "Flytt en regning",
@@ -258,7 +255,24 @@
       "weekBefore": "Uken før"
     },
     "permissionDeniedTitle": "Varslinger er av",
-    "permissionDeniedBody": "Tillat varslinger for Paycheck Planner i enhetsinnstillingene for å få lønningsdagsvarsler."
+    "permissionDeniedBody": "Tillat varslinger for Paycheck Planner i enhetsinnstillingene for å få lønningsdagsvarsler.",
+    "data": {
+      "title": "Data",
+      "backup": "Sikkerhetskopier data",
+      "restore": "Gjenopprett fra sikkerhetskopi",
+      "exportCsv": "Eksporter regninger som CSV",
+      "erase": "Slett alle data",
+      "hint": "En sikkerhetskopi er en fil du lagrer i Filer eller der du deler den. Gjenoppretting erstatter alt i appen.",
+      "csvType": "Type",
+      "restoreTitle": "Erstatte alle dataene dine?",
+      "restoreBody": "Alt i appen erstattes med sikkerhetskopien.",
+      "restoreConfirm": "Erstatt",
+      "eraseTitle": "Slette alle data?",
+      "eraseBody": "Fjerner alle inntektskilder, regninger og lønnsendringer.",
+      "invalidBackup": "Denne filen er ikke en sikkerhetskopi fra Paycheck Planner."
+    },
+    "unpaidReminder": "Påminnelse om ubetalte regninger",
+    "unpaidReminderHint": "Dagen etter lønningsdag får du en påminnelse hvis noen av lønnens regninger ikke er merket som betalt."
   },
   "notifications": {
     "channelName": "Lønningsdagsvarsler",
@@ -272,7 +286,9 @@
       "other": "%{count} regninger (%{amount})"
     },
     "bodyWithSetAside": "%{income} inn · %{bills} · %{setAside} satt av · %{left} igjen",
-    "bodySetAsideOnly": "%{income} inn · %{setAside} satt av · %{left} igjen"
+    "bodySetAsideOnly": "%{income} inn · %{setAside} satt av · %{left} igjen",
+    "unpaidTitle": "Fortsatt ubetalt: %{source}",
+    "unpaidBody": "%{bills} fra lønnen %{date} er ikke merket som betalt ennå"
   },
   "links": {
     "openFailed": "Kunne ikke åpne lenken"
@@ -298,9 +314,36 @@
     "incomeDeleted": "Slettet «%{name}»",
     "billMoved": "Flyttet «%{payee}» til %{date}",
     "remindersOn": "Lønningsdagsvarsler er på",
-    "markedAllPaid": "Alle merket som betalt"
+    "markedAllPaid": "Alle merket som betalt",
+    "restored": "Sikkerhetskopi gjenopprettet",
+    "erased": "Alle data slettet",
+    "sampleLoaded": "Eksempeldata lastet inn. Slett dem når som helst i Innstillinger.",
+    "unpaidOn": "Påminnelse om ubetalte regninger er på"
   },
   "history": {
     "empty": "Ingen tidligere lønninger ennå."
+  },
+  "demo": {
+    "rent": "Husleie",
+    "groceries": "Dagligvarer",
+    "carPayment": "Billån",
+    "electric": "Strøm",
+    "internet": "Internett",
+    "phone": "Telefon",
+    "savings": "Sparing",
+    "streaming": "Strømming",
+    "carRegistration": "Årsavgift bil"
+  },
+  "welcome": {
+    "title": "Planlegg hver lønning",
+    "body": "Se hva hver lønning dekker før den kommer.",
+    "incomeTitle": "Legg til inntekten din",
+    "incomeBody": "Fortell appen når og hvor mye du får betalt.",
+    "billsTitle": "Legg til regningene dine",
+    "billsBody": "Knytt dem til en lønning, eller sett av penger.",
+    "leftTitle": "Se hva som blir igjen",
+    "leftBody": "Hver lønning viser regningene og hva som blir igjen.",
+    "addIncome": "Legg til inntektskilde",
+    "trySample": "Prøv med eksempeldata"
   }
 }

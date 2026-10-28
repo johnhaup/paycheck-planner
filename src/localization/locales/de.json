@@ -40,8 +40,6 @@
     "leftAfterBills": "%{month} · übrig",
     "heroMeta": "%{income} Einkommen · %{assigned} zugewiesen",
     "monthPaychecks": "Gehaltszahlungen im %{month}",
-    "emptyTitle": "Noch keine Einkommensquellen",
-    "emptyBody": "Füge deine erste Einkommensquelle hinzu, um zu sehen, wohin jedes Gehalt fließt.",
     "noBillsYet": "Noch keine Rechnungen · tippen zum Zuweisen",
     "paidProgress": "%{paid} von %{total} bezahlt",
     "amountLeft": "%{amount} übrig",
@@ -50,7 +48,6 @@
     "markPaid": "%{payee} als bezahlt markieren",
     "changeAmount": "Betrag für %{payee} bei diesem Gehalt ändern",
     "changePayAmount": "Gehaltsbetrag von %{source} für diese Zahlung ändern",
-    "emptyAction": "Einkommensquelle hinzufügen",
     "chartBarCurrentLabel": "%{month} (dieser Monat), %{amount} übrig",
     "shortBy": "%{amount} fehlen",
     "moveBill": "Rechnung verschieben",
@@ -258,7 +255,24 @@
       "weekBefore": "Woche davor"
     },
     "permissionDeniedTitle": "Mitteilungen sind aus",
-    "permissionDeniedBody": "Erlaube Mitteilungen für Paycheck Planner in den Geräteeinstellungen, um Zahltag-Erinnerungen zu erhalten."
+    "permissionDeniedBody": "Erlaube Mitteilungen für Paycheck Planner in den Geräteeinstellungen, um Zahltag-Erinnerungen zu erhalten.",
+    "data": {
+      "title": "Daten",
+      "backup": "Daten sichern",
+      "restore": "Aus Sicherung wiederherstellen",
+      "exportCsv": "Rechnungen als CSV exportieren",
+      "erase": "Alle Daten löschen",
+      "hint": "Eine Sicherung ist eine Datei, die du in „Dateien“ oder überall dort aufbewahrst, wohin du sie teilst. Beim Wiederherstellen wird alles in der App ersetzt.",
+      "csvType": "Art",
+      "restoreTitle": "Alle Daten ersetzen?",
+      "restoreBody": "Alles in der App wird durch die Sicherung ersetzt.",
+      "restoreConfirm": "Ersetzen",
+      "eraseTitle": "Alle Daten löschen?",
+      "eraseBody": "Entfernt alle Einkommensquellen, Rechnungen und Gehaltsänderungen.",
+      "invalidBackup": "Diese Datei ist keine Paycheck-Planner-Sicherung."
+    },
+    "unpaidReminder": "Erinnerung an offene Rechnungen",
+    "unpaidReminderHint": "Am Tag nach dem Zahltag wirst du erinnert, falls Rechnungen dieses Gehalts noch nicht als bezahlt markiert sind."
   },
   "notifications": {
     "channelName": "Zahltag-Erinnerungen",
@@ -272,7 +286,9 @@
       "other": "%{count} Rechnungen (%{amount})"
     },
     "bodyWithSetAside": "%{income} Einkommen · %{bills} · %{setAside} zurückgelegt · %{left} übrig",
-    "bodySetAsideOnly": "%{income} Einkommen · %{setAside} zurückgelegt · %{left} übrig"
+    "bodySetAsideOnly": "%{income} Einkommen · %{setAside} zurückgelegt · %{left} übrig",
+    "unpaidTitle": "Noch offen: %{source}",
+    "unpaidBody": "%{bills} vom Gehalt am %{date} noch nicht als bezahlt markiert"
   },
   "links": {
     "openFailed": "Link konnte nicht geöffnet werden"
@@ -298,9 +314,36 @@
     "incomeDeleted": "„%{name}“ gelöscht",
     "billMoved": "„%{payee}“ auf %{date} verschoben",
     "remindersOn": "Zahltag-Erinnerungen aktiviert",
-    "markedAllPaid": "Alle als bezahlt markiert"
+    "markedAllPaid": "Alle als bezahlt markiert",
+    "restored": "Sicherung wiederhergestellt",
+    "erased": "Alle Daten gelöscht",
+    "sampleLoaded": "Beispieldaten geladen. Du kannst sie jederzeit in den Einstellungen löschen.",
+    "unpaidOn": "Erinnerung an offene Rechnungen aktiviert"
   },
   "history": {
     "empty": "Noch keine vergangenen Gehälter."
+  },
+  "demo": {
+    "rent": "Miete",
+    "groceries": "Lebensmittel",
+    "carPayment": "Autokredit",
+    "electric": "Strom",
+    "internet": "Internet",
+    "phone": "Handy",
+    "savings": "Sparen",
+    "streaming": "Streaming",
+    "carRegistration": "Kfz-Steuer"
+  },
+  "welcome": {
+    "title": "Plane jedes Gehalt",
+    "body": "Sieh vorab, was jedes Gehalt abdeckt.",
+    "incomeTitle": "Einkommen hinzufügen",
+    "incomeBody": "Gib an, wann und wie viel du verdienst.",
+    "billsTitle": "Rechnungen hinzufügen",
+    "billsBody": "Ordne sie einem Gehalt zu oder lege Geld zurück.",
+    "leftTitle": "Sieh, was übrig bleibt",
+    "leftBody": "Jedes Gehalt zeigt seine Rechnungen und was übrig bleibt.",
+    "addIncome": "Einkommensquelle hinzufügen",
+    "trySample": "Mit Beispieldaten ausprobieren"
   }
 }
