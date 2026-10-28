@@ -31,7 +31,8 @@
     "expense": "Udgift",
     "payDate": "Lønningsdag",
     "language": "Sprog",
-    "currency": "Valuta"
+    "currency": "Valuta",
+    "history": "Tidligere lønninger"
   },
   "paychecks": {
     "today": "I dag",
@@ -55,7 +56,9 @@
     "moveBill": "Flyt en regning",
     "markSetAside": "Markér %{payee} som afsat",
     "markUnpaid": "Markér %{payee} som ikke betalt",
-    "moveThis": "Flyt %{payee}"
+    "moveThis": "Flyt %{payee}",
+    "pastPaychecks": "Tidligere lønninger",
+    "shortAhead": "Lønnen %{date} · %{source} mangler %{amount}"
   },
   "income": {
     "emptyTitle": "Ingen indkomst endnu",
@@ -165,7 +168,11 @@
       "updateSetAside": "Opdater afsat beløb",
       "nameRequired": "Navn er påkrævet.",
       "icon": "Ikon",
-      "noIcon": "Intet ikon"
+      "noIcon": "Intet ikon",
+      "goal": "Opsparingsmål (valgfrit)",
+      "goalPlaceholder": "f.eks. 1000",
+      "goalHint": "Hver løn, hvor du markerer beløbet som afsat, tæller med i målet.",
+      "invalidGoal": "Indtast et gyldigt målbeløb."
     },
     "kind": {
       "bill": "Regning",
@@ -200,7 +207,9 @@
       "gift": "Gaver",
       "musical-notes": "Musik",
       "game-controller": "Spil"
-    }
+    },
+    "goalProgress": "%{saved} af %{goal} sparet op",
+    "goalReached": "Mål nået · %{saved} sparet op"
   },
   "payDate": {
     "thisPaycheck": "Denne lønudbetaling",
@@ -290,5 +299,8 @@
     "billMoved": "Flyttede \"%{payee}\" til %{date}",
     "remindersOn": "Lønningsdagspåmindelser er slået til",
     "markedAllPaid": "Alle markeret som betalt"
+  },
+  "history": {
+    "empty": "Ingen tidligere lønninger endnu."
   }
 }

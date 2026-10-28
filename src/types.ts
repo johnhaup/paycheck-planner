@@ -36,6 +36,8 @@ export interface Expense {
   paycheckOrdinal?: PaycheckSlot;
   /** Shown on the tile in place of the payee's first letter */
   icon?: ExpenseIcon;
+  /** Set-asides only: the total to save, tracked by paychecks marked set aside */
+  goal?: number;
 }
 
 export type LinkSchedule = "every-paycheck" | "monthly";

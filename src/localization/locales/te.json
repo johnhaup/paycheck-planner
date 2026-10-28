@@ -31,7 +31,8 @@
     "expense": "ఖర్చు",
     "payDate": "జీతం తేదీ",
     "language": "భాష",
-    "currency": "కరెన్సీ"
+    "currency": "కరెన్సీ",
+    "history": "గత జీతాలు"
   },
   "paychecks": {
     "today": "ఈరోజు",
@@ -55,7 +56,9 @@
     "moveBill": "బిల్లును తరలించు",
     "markSetAside": "%{payee} పక్కన పెట్టినట్లు గుర్తించు",
     "markUnpaid": "%{payee} చెల్లించలేదని గుర్తించు",
-    "moveThis": "%{payee} తరలించు"
+    "moveThis": "%{payee} తరలించు",
+    "pastPaychecks": "గత జీతాలు",
+    "shortAhead": "%{date} · %{source}లో %{amount} తక్కువ"
   },
   "income": {
     "emptyTitle": "ఇంకా ఆదాయం లేదు",
@@ -165,7 +168,11 @@
       "updateSetAside": "నిల్వను అప్‌డేట్ చేయి",
       "nameRequired": "పేరు అవసరం.",
       "icon": "ఐకాన్",
-      "noIcon": "ఐకాన్ లేదు"
+      "noIcon": "ఐకాన్ లేదు",
+      "goal": "పొదుపు లక్ష్యం (ఐచ్ఛికం)",
+      "goalPlaceholder": "ఉదా. 1000",
+      "goalHint": "మీరు పక్కన పెట్టినట్లు గుర్తించే ప్రతి జీతం లక్ష్యంలో లెక్కించబడుతుంది.",
+      "invalidGoal": "చెల్లుబాటు అయ్యే లక్ష్య మొత్తాన్ని నమోదు చేయండి."
     },
     "kind": {
       "bill": "బిల్లు",
@@ -200,7 +207,9 @@
       "gift": "బహుమతులు",
       "musical-notes": "సంగీతం",
       "game-controller": "ఆటలు"
-    }
+    },
+    "goalProgress": "%{goal}లో %{saved} పొదుపు",
+    "goalReached": "లక్ష్యం చేరింది · %{saved} పొదుపు"
   },
   "payDate": {
     "thisPaycheck": "ఈ జీతం",
@@ -290,5 +299,8 @@
     "billMoved": "\"%{payee}\" %{date}కి తరలించబడింది",
     "remindersOn": "జీతం రోజు రిమైండర్‌లు ఆన్",
     "markedAllPaid": "అన్నీ చెల్లించినట్లు గుర్తించబడ్డాయి"
+  },
+  "history": {
+    "empty": "ఇంకా గత జీతాలు లేవు."
   }
 }

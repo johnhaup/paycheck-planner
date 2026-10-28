@@ -31,7 +31,8 @@
     "expense": "Расход",
     "payDate": "День зарплаты",
     "language": "Язык",
-    "currency": "Валюта"
+    "currency": "Валюта",
+    "history": "Прошлые зарплаты"
   },
   "paychecks": {
     "today": "Сегодня",
@@ -55,7 +56,9 @@
     "moveBill": "Перенести счёт",
     "markSetAside": "Отметить %{payee} как отложенный",
     "markUnpaid": "Отметить %{payee} как неоплаченный",
-    "moveThis": "Перенести %{payee}"
+    "moveThis": "Перенести %{payee}",
+    "pastPaychecks": "Прошлые зарплаты",
+    "shortAhead": "Зарплате %{date} · %{source} не хватает %{amount}"
   },
   "income": {
     "emptyTitle": "Пока нет доходов",
@@ -167,7 +170,11 @@
       "updateSetAside": "Обновить резерв",
       "nameRequired": "Укажите название.",
       "icon": "Значок",
-      "noIcon": "Без значка"
+      "noIcon": "Без значка",
+      "goal": "Цель накоплений (необязательно)",
+      "goalPlaceholder": "напр. 1000",
+      "goalHint": "Каждая зарплата, где вы отметите резерв как отложенный, идёт в счёт цели.",
+      "invalidGoal": "Введите корректную сумму цели."
     },
     "kind": {
       "bill": "Счёт",
@@ -202,7 +209,9 @@
       "gift": "Подарки",
       "musical-notes": "Музыка",
       "game-controller": "Игры"
-    }
+    },
+    "goalProgress": "Накоплено %{saved} из %{goal}",
+    "goalReached": "Цель достигнута · накоплено %{saved}"
   },
   "payDate": {
     "thisPaycheck": "Эта зарплата",
@@ -294,5 +303,8 @@
     "billMoved": "«%{payee}» перенесено на %{date}",
     "remindersOn": "Напоминания о зарплате включены",
     "markedAllPaid": "Всё отмечено как оплаченное"
+  },
+  "history": {
+    "empty": "Прошлых зарплат пока нет."
   }
 }

@@ -32,7 +32,8 @@
     "expense": "Utgift",
     "payDate": "Lönedag",
     "language": "Språk",
-    "currency": "Valuta"
+    "currency": "Valuta",
+    "history": "Tidigare löner"
   },
   "paychecks": {
     "today": "I dag",
@@ -56,7 +57,9 @@
     "moveBill": "Flytta en räkning",
     "markSetAside": "Markera %{payee} som avsatt",
     "markUnpaid": "Markera %{payee} som obetald",
-    "moveThis": "Flytta %{payee}"
+    "moveThis": "Flytta %{payee}",
+    "pastPaychecks": "Tidigare löner",
+    "shortAhead": "Lönen %{date} · %{source} saknar %{amount}"
   },
   "income": {
     "emptyTitle": "Ingen inkomst än",
@@ -166,7 +169,11 @@
       "updateSetAside": "Uppdatera avsättning",
       "nameRequired": "Namn krävs.",
       "icon": "Ikon",
-      "noIcon": "Ingen ikon"
+      "noIcon": "Ingen ikon",
+      "goal": "Sparmål (valfritt)",
+      "goalPlaceholder": "t.ex. 1000",
+      "goalHint": "Varje lön där du markerar avsättningen som avsatt räknas mot målet.",
+      "invalidGoal": "Ange ett giltigt målbelopp."
     },
     "kind": {
       "bill": "Räkning",
@@ -201,7 +208,9 @@
       "gift": "Presenter",
       "musical-notes": "Musik",
       "game-controller": "Spel"
-    }
+    },
+    "goalProgress": "%{saved} av %{goal} sparat",
+    "goalReached": "Målet nått · %{saved} sparat"
   },
   "payDate": {
     "thisPaycheck": "Den här lönen",
@@ -291,5 +300,8 @@
     "billMoved": "Flyttade \"%{payee}\" till %{date}",
     "remindersOn": "Lönedagspåminnelser på",
     "markedAllPaid": "Alla markerade som betalda"
+  },
+  "history": {
+    "empty": "Inga tidigare löner än."
   }
 }

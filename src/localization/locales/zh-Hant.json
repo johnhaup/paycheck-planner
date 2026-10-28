@@ -31,7 +31,8 @@
     "expense": "支出",
     "payDate": "發薪日",
     "language": "語言",
-    "currency": "幣別"
+    "currency": "幣別",
+    "history": "過往薪資"
   },
   "paychecks": {
     "today": "今天",
@@ -55,7 +56,9 @@
     "moveBill": "移動帳單",
     "markSetAside": "將%{payee}標示為已預留",
     "markUnpaid": "將%{payee}標示為未付",
-    "moveThis": "移動%{payee}"
+    "moveThis": "移動%{payee}",
+    "pastPaychecks": "過往薪資",
+    "shortAhead": "%{date} · %{source}的薪資短少 %{amount}"
   },
   "income": {
     "emptyTitle": "還沒有收入",
@@ -164,7 +167,11 @@
       "updateSetAside": "更新預留",
       "nameRequired": "請輸入名稱。",
       "icon": "圖示",
-      "noIcon": "無圖示"
+      "noIcon": "無圖示",
+      "goal": "儲蓄目標（選填）",
+      "goalPlaceholder": "例如：1000",
+      "goalHint": "每次將其標示為已預留的薪資都會計入目標。",
+      "invalidGoal": "請輸入有效的目標金額。"
     },
     "kind": {
       "bill": "帳單",
@@ -199,7 +206,9 @@
       "gift": "禮物",
       "musical-notes": "音樂",
       "game-controller": "遊戲"
-    }
+    },
+    "goalProgress": "已存 %{saved}，目標 %{goal}",
+    "goalReached": "已達成目標 · 已存 %{saved}"
   },
   "payDate": {
     "thisPaycheck": "這筆薪水",
@@ -288,5 +297,8 @@
     "billMoved": "已將「%{payee}」移至%{date}",
     "remindersOn": "發薪日提醒已開啟",
     "markedAllPaid": "已全部標示為已付"
+  },
+  "history": {
+    "empty": "尚無過往薪資。"
   }
 }

@@ -31,7 +31,8 @@
     "expense": "Meno",
     "payDate": "Palkkapäivä",
     "language": "Kieli",
-    "currency": "Valuutta"
+    "currency": "Valuutta",
+    "history": "Aiemmat palkat"
   },
   "paychecks": {
     "today": "Tänään",
@@ -55,7 +56,9 @@
     "moveBill": "Siirrä lasku",
     "markSetAside": "Merkitse %{payee} varatuksi",
     "markUnpaid": "Merkitse %{payee} maksamattomaksi",
-    "moveThis": "Siirrä %{payee}"
+    "moveThis": "Siirrä %{payee}",
+    "pastPaychecks": "Aiemmat palkat",
+    "shortAhead": "Palkasta %{date} · %{source} puuttuu %{amount}"
   },
   "income": {
     "emptyTitle": "Ei vielä tuloja",
@@ -165,7 +168,11 @@
       "updateSetAside": "Päivitä varaus",
       "nameRequired": "Nimi on pakollinen.",
       "icon": "Kuvake",
-      "noIcon": "Ei kuvaketta"
+      "noIcon": "Ei kuvaketta",
+      "goal": "Säästötavoite (valinnainen)",
+      "goalPlaceholder": "esim. 1000",
+      "goalHint": "Jokainen palkka, jolla merkitset varauksen tehdyksi, kasvattaa säästöä.",
+      "invalidGoal": "Anna kelvollinen tavoitesumma."
     },
     "kind": {
       "bill": "Lasku",
@@ -200,7 +207,9 @@
       "gift": "Lahjat",
       "musical-notes": "Musiikki",
       "game-controller": "Pelit"
-    }
+    },
+    "goalProgress": "%{saved} / %{goal} säästetty",
+    "goalReached": "Tavoite saavutettu · %{saved} säästetty"
   },
   "payDate": {
     "thisPaycheck": "Tämä palkka",
@@ -290,5 +299,8 @@
     "billMoved": "”%{payee}” siirrettiin päivälle %{date}",
     "remindersOn": "Palkkapäivämuistutukset käytössä",
     "markedAllPaid": "Kaikki merkitty maksetuiksi"
+  },
+  "history": {
+    "empty": "Ei vielä aiempia palkkoja."
   }
 }

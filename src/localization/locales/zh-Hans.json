@@ -31,7 +31,8 @@
     "expense": "支出",
     "payDate": "发薪日",
     "language": "语言",
-    "currency": "货币"
+    "currency": "货币",
+    "history": "过往工资"
   },
   "paychecks": {
     "today": "今天",
@@ -55,7 +56,9 @@
     "moveBill": "移动账单",
     "markSetAside": "将%{payee}标记为已预留",
     "markUnpaid": "将%{payee}标记为未付",
-    "moveThis": "移动%{payee}"
+    "moveThis": "移动%{payee}",
+    "pastPaychecks": "过往工资",
+    "shortAhead": "%{date} · %{source}的工资差 %{amount}"
   },
   "income": {
     "emptyTitle": "还没有收入",
@@ -164,7 +167,11 @@
       "updateSetAside": "更新预留",
       "nameRequired": "请输入名称。",
       "icon": "图标",
-      "noIcon": "无图标"
+      "noIcon": "无图标",
+      "goal": "储蓄目标（可选）",
+      "goalPlaceholder": "例如：1000",
+      "goalHint": "每次将其标记为已预留的工资都会计入目标。",
+      "invalidGoal": "请输入有效的目标金额。"
     },
     "kind": {
       "bill": "账单",
@@ -199,7 +206,9 @@
       "gift": "礼物",
       "musical-notes": "音乐",
       "game-controller": "游戏"
-    }
+    },
+    "goalProgress": "已存 %{saved}，目标 %{goal}",
+    "goalReached": "已达成目标 · 已存 %{saved}"
   },
   "payDate": {
     "thisPaycheck": "这笔工资",
@@ -288,5 +297,8 @@
     "billMoved": "已将“%{payee}”移至%{date}",
     "remindersOn": "发薪日提醒已开启",
     "markedAllPaid": "已全部标记为已付"
+  },
+  "history": {
+    "empty": "暂无过往工资。"
   }
 }

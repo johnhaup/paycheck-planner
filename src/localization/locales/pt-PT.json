@@ -31,7 +31,8 @@
     "expense": "Despesa",
     "payDate": "Data de pagamento",
     "language": "Idioma",
-    "currency": "Moeda"
+    "currency": "Moeda",
+    "history": "Ordenados anteriores"
   },
   "paychecks": {
     "today": "Hoje",
@@ -55,7 +56,9 @@
     "moveBill": "Mover uma fatura",
     "markSetAside": "Marcar %{payee} como reservada",
     "markUnpaid": "Marcar %{payee} como não paga",
-    "moveThis": "Mover %{payee}"
+    "moveThis": "Mover %{payee}",
+    "pastPaychecks": "Ordenados anteriores",
+    "shortAhead": "Ao ordenado de %{date} · %{source} faltam %{amount}"
   },
   "income": {
     "emptyTitle": "Ainda não há rendimentos",
@@ -165,7 +168,11 @@
       "updateSetAside": "Atualizar reserva",
       "nameRequired": "O nome é obrigatório.",
       "icon": "Ícone",
-      "noIcon": "Sem ícone"
+      "noIcon": "Sem ícone",
+      "goal": "Objetivo de poupança (opcional)",
+      "goalPlaceholder": "p. ex. 1000",
+      "goalHint": "Cada ordenado em que a marcar como reservada conta para o objetivo.",
+      "invalidGoal": "Introduza um objetivo válido."
     },
     "kind": {
       "bill": "Fatura",
@@ -200,7 +207,9 @@
       "gift": "Presentes",
       "musical-notes": "Música",
       "game-controller": "Jogos"
-    }
+    },
+    "goalProgress": "%{saved} de %{goal} poupados",
+    "goalReached": "Objetivo atingido · %{saved} poupados"
   },
   "payDate": {
     "thisPaycheck": "Este ordenado",
@@ -290,5 +299,8 @@
     "billMoved": "\"%{payee}\" movido para %{date}",
     "remindersOn": "Lembretes do dia de pagamento ativados",
     "markedAllPaid": "Tudo marcado como pago"
+  },
+  "history": {
+    "empty": "Ainda não há ordenados anteriores."
   }
 }

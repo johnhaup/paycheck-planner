@@ -46,6 +46,7 @@ export default function ExpenseFormScreen() {
   );
   const [link, setLink] = useState(existing?.link ?? "");
   const [icon, setIcon] = useState<ExpenseIcon | undefined>(existing?.icon);
+  const [goal, setGoal] = useState(existing?.goal ? String(existing.goal) : "");
   const [selectedSourceId, setSelectedSourceId] = useState<string | undefined>(
     existing?.incomeSourceId
   );
@@ -86,6 +87,11 @@ export default function ExpenseFormScreen() {
       toast.error(t("expenses.form.invalidAmount"));
       return;
     }
+    const parsedGoal = goal.trim() ? parseFloat(goal) : undefined;
+    if (isSetAside && parsedGoal !== undefined && (isNaN(parsedGoal) || parsedGoal <= 0)) {
+      toast.error(t("expenses.form.invalidGoal"));
+      return;
+    }
 
     const data = {
       kind: isSetAside ? kind : undefined,
@@ -97,6 +103,7 @@ export default function ExpenseFormScreen() {
       linkSchedule: isMonthly ? linkSchedule : undefined,
       paycheckOrdinal: isMonthly ? effectiveSlot : undefined,
       icon,
+      goal: isSetAside ? parsedGoal : undefined,
     };
 
     if (existing) {
@@ -121,6 +128,7 @@ export default function ExpenseFormScreen() {
     effectiveSlot,
     paycheck,
     icon,
+    goal,
     existing,
     addExpense,
     updateExpense,
@@ -208,7 +216,20 @@ export default function ExpenseFormScreen() {
         keyboardType="decimal-pad"
       />
 
-      {isSetAside ? null : (
+      {isSetAside ? (
+        <>
+          <AppText variant="section" style={styles.label}>{t("expenses.form.goal")}</AppText>
+          <AppInput
+            value={goal}
+            onChangeText={setGoal}
+            placeholder={t("expenses.form.goalPlaceholder")}
+            keyboardType="decimal-pad"
+          />
+          <AppText variant="caption" style={styles.hint}>
+            {t("expenses.form.goalHint")}
+          </AppText>
+        </>
+      ) : (
         <>
           <AppText variant="section" style={styles.label}>{t("expenses.form.link")}</AppText>
           <AppInput

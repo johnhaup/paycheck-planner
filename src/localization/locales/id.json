@@ -31,7 +31,8 @@
     "expense": "Pengeluaran",
     "payDate": "Tanggal Gajian",
     "language": "Bahasa",
-    "currency": "Mata Uang"
+    "currency": "Mata Uang",
+    "history": "Gaji sebelumnya"
   },
   "paychecks": {
     "today": "Hari ini",
@@ -55,7 +56,9 @@
     "moveBill": "Pindahkan tagihan",
     "markSetAside": "Tandai %{payee} sudah disisihkan",
     "markUnpaid": "Tandai %{payee} belum dibayar",
-    "moveThis": "Pindahkan %{payee}"
+    "moveThis": "Pindahkan %{payee}",
+    "pastPaychecks": "Gaji sebelumnya",
+    "shortAhead": "Gaji %{date} · %{source} kurang %{amount}"
   },
   "income": {
     "emptyTitle": "Belum ada pemasukan",
@@ -164,7 +167,11 @@
       "updateSetAside": "Perbarui Sisihan",
       "nameRequired": "Nama wajib diisi.",
       "icon": "Ikon",
-      "noIcon": "Tanpa ikon"
+      "noIcon": "Tanpa ikon",
+      "goal": "Target tabungan (opsional)",
+      "goalPlaceholder": "mis. 1000",
+      "goalHint": "Setiap gaji yang Anda tandai sudah disisihkan dihitung ke target.",
+      "invalidGoal": "Masukkan jumlah target yang valid."
     },
     "kind": {
       "bill": "Tagihan",
@@ -199,7 +206,9 @@
       "gift": "Hadiah",
       "musical-notes": "Musik",
       "game-controller": "Game"
-    }
+    },
+    "goalProgress": "%{saved} dari %{goal} terkumpul",
+    "goalReached": "Target tercapai · %{saved} terkumpul"
   },
   "payDate": {
     "thisPaycheck": "Gaji ini",
@@ -288,5 +297,8 @@
     "billMoved": "\"%{payee}\" dipindahkan ke %{date}",
     "remindersOn": "Pengingat gajian aktif",
     "markedAllPaid": "Semua ditandai sudah dibayar"
+  },
+  "history": {
+    "empty": "Belum ada gaji sebelumnya."
   }
 }

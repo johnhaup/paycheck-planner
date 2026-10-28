@@ -31,7 +31,8 @@
     "expense": "ਖਰਚਾ",
     "payDate": "ਤਨਖ਼ਾਹ ਦੀ ਤਾਰੀਖ਼",
     "language": "ਭਾਸ਼ਾ",
-    "currency": "ਮੁਦਰਾ"
+    "currency": "ਮੁਦਰਾ",
+    "history": "ਪਿਛਲੀਆਂ ਤਨਖ਼ਾਹਾਂ"
   },
   "paychecks": {
     "today": "ਅੱਜ",
@@ -55,7 +56,9 @@
     "moveBill": "ਬਿੱਲ ਮੂਵ ਕਰੋ",
     "markSetAside": "%{payee} ਨੂੰ ਵੱਖ ਰੱਖਿਆ ਮਾਰਕ ਕਰੋ",
     "markUnpaid": "%{payee} ਨੂੰ ਬਕਾਇਆ ਮਾਰਕ ਕਰੋ",
-    "moveThis": "%{payee} ਮੂਵ ਕਰੋ"
+    "moveThis": "%{payee} ਮੂਵ ਕਰੋ",
+    "pastPaychecks": "ਪਿਛਲੀਆਂ ਤਨਖ਼ਾਹਾਂ",
+    "shortAhead": "%{date} · %{source} ਵਿੱਚ %{amount} ਘੱਟ"
   },
   "income": {
     "emptyTitle": "ਹਾਲੇ ਕੋਈ ਆਮਦਨ ਨਹੀਂ",
@@ -165,7 +168,11 @@
       "updateSetAside": "ਰਾਖਵੀਂ ਰਕਮ ਅੱਪਡੇਟ ਕਰੋ",
       "nameRequired": "ਨਾਮ ਜ਼ਰੂਰੀ ਹੈ।",
       "icon": "ਆਈਕਨ",
-      "noIcon": "ਕੋਈ ਆਈਕਨ ਨਹੀਂ"
+      "noIcon": "ਕੋਈ ਆਈਕਨ ਨਹੀਂ",
+      "goal": "ਬੱਚਤ ਟੀਚਾ (ਵਿਕਲਪਿਕ)",
+      "goalPlaceholder": "ਜਿਵੇਂ 1000",
+      "goalHint": "ਜਿਸ ਤਨਖ਼ਾਹ ਵਿੱਚ ਤੁਸੀਂ ਇਸਨੂੰ ਵੱਖ ਰੱਖਿਆ ਮਾਰਕ ਕਰੋਗੇ, ਉਹ ਟੀਚੇ ਵਿੱਚ ਜੁੜੇਗੀ।",
+      "invalidGoal": "ਸਹੀ ਟੀਚਾ ਰਕਮ ਦਰਜ ਕਰੋ।"
     },
     "kind": {
       "bill": "ਬਿੱਲ",
@@ -200,7 +207,9 @@
       "gift": "ਤੋਹਫ਼ੇ",
       "musical-notes": "ਸੰਗੀਤ",
       "game-controller": "ਗੇਮਾਂ"
-    }
+    },
+    "goalProgress": "%{goal} ਵਿੱਚੋਂ %{saved} ਬਚਾਏ",
+    "goalReached": "ਟੀਚਾ ਪੂਰਾ · %{saved} ਬਚਾਏ"
   },
   "payDate": {
     "thisPaycheck": "ਇਹ ਤਨਖ਼ਾਹ",
@@ -290,5 +299,8 @@
     "billMoved": "\"%{payee}\" ਨੂੰ %{date} 'ਤੇ ਮੂਵ ਕੀਤਾ",
     "remindersOn": "ਤਨਖ਼ਾਹ ਰਿਮਾਈਂਡਰ ਚਾਲੂ",
     "markedAllPaid": "ਸਭ ਭਰਿਆ ਮਾਰਕ ਕੀਤਾ"
+  },
+  "history": {
+    "empty": "ਅਜੇ ਕੋਈ ਪਿਛਲੀ ਤਨਖ਼ਾਹ ਨਹੀਂ।"
   }
 }

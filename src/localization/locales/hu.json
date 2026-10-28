@@ -32,7 +32,8 @@
     "expense": "Kiadás",
     "payDate": "Fizetésnap",
     "language": "Nyelv",
-    "currency": "Pénznem"
+    "currency": "Pénznem",
+    "history": "Korábbi fizetések"
   },
   "paychecks": {
     "today": "Ma",
@@ -56,7 +57,9 @@
     "moveBill": "Számla áthelyezése",
     "markSetAside": "%{payee} megjelölése félretettként",
     "markUnpaid": "%{payee} megjelölése fizetetlenként",
-    "moveThis": "%{payee} áthelyezése"
+    "moveThis": "%{payee} áthelyezése",
+    "pastPaychecks": "Korábbi fizetések",
+    "shortAhead": "%{date} · %{source}: %{amount} hiányzik"
   },
   "income": {
     "emptyTitle": "Még nincs bevétel",
@@ -166,7 +169,11 @@
       "updateSetAside": "Félretett összeg frissítése",
       "nameRequired": "A név kötelező.",
       "icon": "Ikon",
-      "noIcon": "Nincs ikon"
+      "noIcon": "Nincs ikon",
+      "goal": "Megtakarítási cél (nem kötelező)",
+      "goalPlaceholder": "pl. 1000",
+      "goalHint": "Minden fizetés, amelynél félretettként jelölöd, beleszámít a célba.",
+      "invalidGoal": "Adj meg érvényes célösszeget."
     },
     "kind": {
       "bill": "Számla",
@@ -201,7 +208,9 @@
       "gift": "Ajándék",
       "musical-notes": "Zene",
       "game-controller": "Játék"
-    }
+    },
+    "goalProgress": "%{goal}-ból %{saved} megtakarítva",
+    "goalReached": "Cél elérve · %{saved} megtakarítva"
   },
   "payDate": {
     "thisPaycheck": "Ez a fizetés",
@@ -291,5 +300,8 @@
     "billMoved": "„%{payee}” áthelyezve: %{date}",
     "remindersOn": "Fizetésnapi emlékeztetők bekapcsolva",
     "markedAllPaid": "Minden fizetettként megjelölve"
+  },
+  "history": {
+    "empty": "Még nincsenek korábbi fizetések."
   }
 }

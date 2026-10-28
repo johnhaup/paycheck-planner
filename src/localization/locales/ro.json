@@ -32,7 +32,8 @@
     "expense": "Cheltuială",
     "payDate": "Data plății",
     "language": "Limbă",
-    "currency": "Monedă"
+    "currency": "Monedă",
+    "history": "Salarii anterioare"
   },
   "paychecks": {
     "today": "Azi",
@@ -56,7 +57,9 @@
     "moveBill": "Mută o factură",
     "markSetAside": "Marchează %{payee} ca pus deoparte",
     "markUnpaid": "Marchează %{payee} ca neplătit",
-    "moveThis": "Mută %{payee}"
+    "moveThis": "Mută %{payee}",
+    "pastPaychecks": "Salarii anterioare",
+    "shortAhead": "Salariului din %{date} · %{source} îi lipsesc %{amount}"
   },
   "income": {
     "emptyTitle": "Niciun venit încă",
@@ -167,7 +170,11 @@
       "updateSetAside": "Actualizează rezerva",
       "nameRequired": "Numele este obligatoriu.",
       "icon": "Pictogramă",
-      "noIcon": "Fără pictogramă"
+      "noIcon": "Fără pictogramă",
+      "goal": "Obiectiv de economisire (opțional)",
+      "goalPlaceholder": "ex. 1000",
+      "goalHint": "Fiecare salariu la care o marchezi ca pusă deoparte contează pentru obiectiv.",
+      "invalidGoal": "Introdu o sumă validă pentru obiectiv."
     },
     "kind": {
       "bill": "Factură",
@@ -202,7 +209,9 @@
       "gift": "Cadouri",
       "musical-notes": "Muzică",
       "game-controller": "Jocuri"
-    }
+    },
+    "goalProgress": "%{saved} din %{goal} economisiți",
+    "goalReached": "Obiectiv atins · %{saved} economisiți"
   },
   "payDate": {
     "thisPaycheck": "Acest salariu",
@@ -293,5 +302,8 @@
     "billMoved": "„%{payee}” a fost mutat pe %{date}",
     "remindersOn": "Mementourile de zi de salariu sunt activate",
     "markedAllPaid": "Totul a fost marcat ca plătit"
+  },
+  "history": {
+    "empty": "Încă nu există salarii anterioare."
   }
 }

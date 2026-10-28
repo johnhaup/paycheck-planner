@@ -31,7 +31,8 @@
     "expense": "ଖର୍ଚ୍ଚ",
     "payDate": "ଦରମା ତାରିଖ",
     "language": "ଭାଷା",
-    "currency": "ମୁଦ୍ରା"
+    "currency": "ମୁଦ୍ରା",
+    "history": "ପୂର୍ବ ଦରମା"
   },
   "paychecks": {
     "today": "ଆଜି",
@@ -55,7 +56,9 @@
     "moveBill": "ବିଲ୍ ଘୁଞ୍ଚାନ୍ତୁ",
     "markSetAside": "%{payee} ଅଲଗା ରଖାଗଲା ବୋଲି ମାର୍କ କରନ୍ତୁ",
     "markUnpaid": "%{payee} ପଇଠ ହୋଇନାହିଁ ବୋଲି ମାର୍କ କରନ୍ତୁ",
-    "moveThis": "%{payee} ଘୁଞ୍ଚାନ୍ତୁ"
+    "moveThis": "%{payee} ଘୁଞ୍ଚାନ୍ତୁ",
+    "pastPaychecks": "ପୂର୍ବ ଦରମା",
+    "shortAhead": "%{date} · %{source}ରେ %{amount} କମ୍"
   },
   "income": {
     "emptyTitle": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଆୟ ନାହିଁ",
@@ -165,7 +168,11 @@
       "updateSetAside": "ଅଲଗା ରଖା ଅପଡେଟ୍ କରନ୍ତୁ",
       "nameRequired": "ନାମ ଆବଶ୍ୟକ।",
       "icon": "ଆଇକନ୍",
-      "noIcon": "କୌଣସି ଆଇକନ୍ ନାହିଁ"
+      "noIcon": "କୌଣସି ଆଇକନ୍ ନାହିଁ",
+      "goal": "ସଞ୍ଚୟ ଲକ୍ଷ୍ୟ (ଇଚ୍ଛାଧୀନ)",
+      "goalPlaceholder": "ଯେପରି 1000",
+      "goalHint": "ଆପଣ ଅଲଗା ରଖାଗଲା ବୋଲି ମାର୍କ କରୁଥିବା ପ୍ରତି ଦରମା ଲକ୍ଷ୍ୟରେ ଗଣାଯିବ।",
+      "invalidGoal": "ବୈଧ ଲକ୍ଷ୍ୟ ରାଶି ଦିଅନ୍ତୁ।"
     },
     "kind": {
       "bill": "ବିଲ୍",
@@ -200,7 +207,9 @@
       "gift": "ଉପହାର",
       "musical-notes": "ସଙ୍ଗୀତ",
       "game-controller": "ଖେଳ"
-    }
+    },
+    "goalProgress": "%{goal}ରୁ %{saved} ସଞ୍ଚିତ",
+    "goalReached": "ଲକ୍ଷ୍ୟ ପୂରଣ · %{saved} ସଞ୍ଚିତ"
   },
   "payDate": {
     "thisPaycheck": "ଏହି ଦରମା",
@@ -290,5 +299,8 @@
     "billMoved": "\"%{payee}\" କୁ %{date} କୁ ଘୁଞ୍ଚାଗଲା",
     "remindersOn": "ଦରମା ରିମାଇଣ୍ଡର ଚାଲୁ",
     "markedAllPaid": "ସବୁ ପଇଠ ହୋଇଛି ବୋଲି ମାର୍କ ହେଲା"
+  },
+  "history": {
+    "empty": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ପୂର୍ବ ଦରମା ନାହିଁ।"
   }
 }

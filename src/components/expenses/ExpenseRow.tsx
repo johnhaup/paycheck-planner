@@ -19,6 +19,7 @@ interface Props {
   cadence: string;
   /** Tint of the linked income source; omit for the neutral tile */
   tintIndex?: number;
+  goalProgress?: { saved: number; goal: number };
   isFirst: boolean;
   isLast: boolean;
   onEdit: (id: string) => void;
@@ -31,6 +32,7 @@ export function ExpenseRow({
   meta,
   cadence,
   tintIndex,
+  goalProgress,
   isFirst,
   isLast,
   onEdit,
@@ -39,7 +41,7 @@ export function ExpenseRow({
 }: Props) {
   const colors = useColors();
   const groupedStyles = useGroupedRowStyles(isFirst, isLast);
-  const { split } = useMoneyFormat();
+  const { split, format: formatMoney } = useMoneyFormat();
   const t = useT();
   const { whole, cents } = split(expense.amount);
 
@@ -67,6 +69,24 @@ export function ExpenseRow({
     }
   }, [onOpenLink, expense.link]);
 
+  const goalReached = !!goalProgress && goalProgress.saved >= goalProgress.goal;
+
+  const goalTrackStyle = useMemo(() => [styles.goalTrack, { backgroundColor: colors.border }], [colors]);
+
+  const goalFillStyle = useMemo(
+    () =>
+      goalProgress
+        ? [
+            styles.goalFill,
+            {
+              width: `${Math.min(100, (goalProgress.saved / goalProgress.goal) * 100)}%` as const,
+              backgroundColor: colors.primary,
+            },
+          ]
+        : undefined,
+    [goalProgress, colors]
+  );
+
   return (
     <AppSwipeActions
       rightAction={deleteAction}
@@ -92,6 +112,19 @@ export function ExpenseRow({
             ) : null}
           </View>
           <AppText variant="meta" numberOfLines={1}>{meta}</AppText>
+          {goalProgress ? (
+            <>
+              <AppText variant="caption" color={goalReached ? "primaryText" : "textSecondary"} numberOfLines={1}>
+                {t(goalReached ? "expenses.goalReached" : "expenses.goalProgress", {
+                  saved: formatMoney(goalProgress.saved),
+                  goal: formatMoney(goalProgress.goal),
+                })}
+              </AppText>
+              <View style={goalTrackStyle}>
+                <View style={goalFillStyle} />
+              </View>
+            </>
+          ) : null}
         </View>
         <View style={styles.amount}>
           <AppText variant="rowTitle">
@@ -117,6 +150,16 @@ const styles = StyleSheet.create({
   },
   title: {
     flexShrink: 1,
+  },
+  goalTrack: {
+    height: 4,
+    borderRadius: 2,
+    overflow: "hidden",
+    marginTop: MEASUREMENTS.spacing.xs,
+  },
+  goalFill: {
+    height: 4,
+    borderRadius: 2,
   },
   amount: {
     alignItems: "flex-end",

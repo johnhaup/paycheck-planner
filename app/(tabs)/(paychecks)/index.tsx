@@ -2,24 +2,34 @@ import { useCallback, useMemo, useState } from "react";
 import { View, FlatList, Pressable, StyleSheet } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { format } from "date-fns";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useStore } from "@/store";
-import { useThemeStore } from "@/stores/themeStore";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
+import { usePaycheckCardRenderer } from "@/hooks/usePaycheckCardRenderer";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppEmptyState } from "@/components/AppEmptyState";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { MonthBarChart } from "@/components/paychecks/MonthBarChart";
-import { PaycheckCard } from "@/components/paychecks/PaycheckCard";
-import { openPaymentLink } from "@/utils/links";
 import { buildMonthGroups } from "@/utils/paycheckMonths";
-import type { PaycheckItem } from "@/components/paychecks/types";
+import { formatShortDate } from "@/utils/dates";
+import type { MonthGroup, PaycheckItem } from "@/components/paychecks/types";
 
 function keyExtractor(item: PaycheckItem) {
   return item.key;
+}
+
+/** The first short paycheck outside the month on screen; the chart's red bar is easy to miss. */
+function findShortElsewhere(months: MonthGroup[], selectedKey: string | undefined) {
+  for (const month of months) {
+    if (month.key === selectedKey) continue;
+    const paycheck = month.paychecks.find((p) => p.remaining < 0);
+    if (paycheck) return { monthKey: month.key, paycheck };
+  }
+  return undefined;
 }
 
 function getCurrentMonthKey() {
@@ -35,85 +45,15 @@ export default function PaychecksScreen() {
   const expenses = useStore((s) => s.expenses);
   const assignments = useStore((s) => s.assignments);
   const paycheckOverrides = useStore((s) => s.paycheckOverrides);
-  const assignExpense = useStore((s) => s.assignExpense);
-  const togglePaid = useStore((s) => s.togglePaid);
-  const autoMarkPaid = useThemeStore((s) => s.autoMarkPaidOnLinkTap);
   const [selectedMonthKey, setSelectedMonthKey] = useState(getCurrentMonthKey);
-
-  const handleTogglePaid = useCallback(
-    (assignmentId: string, expenseId: string, payDate: string, sourceId: string) => {
-      const id = assignmentId || assignExpense(expenseId, payDate, sourceId);
-      togglePaid(id);
-    },
-    [assignExpense, togglePaid]
-  );
-
-  const handleLinkTap = useCallback(
-    (link: string, assignmentId: string, expenseId: string, payDate: string, sourceId: string) => {
-      openPaymentLink(link);
-      if (autoMarkPaid) {
-        const id = assignmentId || assignExpense(expenseId, payDate, sourceId);
-        const assignment = assignments.find((a) => a.id === id);
-        if (!assignment?.paid) {
-          togglePaid(id);
-        }
-      }
-    },
-    [autoMarkPaid, assignExpense, assignments, togglePaid]
-  );
-
-  const handlePressPaycheck = useCallback(
-    (payDate: string, sourceId: string) => {
-      router.push({
-        pathname: "/pay-date-detail",
-        params: { payDate, sourceId },
-      });
-    },
-    [router]
-  );
-
-  const handleEditAmount = useCallback(
-    (expenseId: string, payDate: string, sourceId: string) => {
-      router.push({
-        pathname: "/expense-amount",
-        params: { expenseId, payDate, sourceId },
-      });
-    },
-    [router]
-  );
-
-  const handleEditPayAmount = useCallback(
-    (payDate: string, sourceId: string) => {
-      router.push({
-        pathname: "/paycheck-amount",
-        params: { payDate, sourceId },
-      });
-    },
-    [router]
-  );
-
-  const handleMoveBill = useCallback(
-    (payDate: string, sourceId: string) => {
-      router.push({
-        pathname: "/move-bill",
-        params: { payDate, sourceId },
-      });
-    },
-    [router]
-  );
-
-  const handleMoveExpense = useCallback(
-    (expenseId: string, payDate: string, sourceId: string) => {
-      router.push({
-        pathname: "/move-bill",
-        params: { payDate, sourceId, expenseId },
-      });
-    },
-    [router]
-  );
+  const renderPaycheck = usePaycheckCardRenderer();
 
   const handleAddIncome = useCallback(() => {
     router.push("/income-form");
+  }, [router]);
+
+  const handleOpenHistory = useCallback(() => {
+    router.push("/history");
   }, [router]);
 
   const handleGoToToday = useCallback(() => {
@@ -132,30 +72,6 @@ export default function PaychecksScreen() {
       </Pressable>
     ),
     [handleGoToToday, t]
-  );
-
-  const renderPaycheck = useCallback(
-    ({ item }: { item: PaycheckItem }) => (
-      <PaycheckCard
-        item={item}
-        onPress={handlePressPaycheck}
-        onTogglePaid={handleTogglePaid}
-        onLinkTap={handleLinkTap}
-        onEditAmount={handleEditAmount}
-        onEditPayAmount={handleEditPayAmount}
-        onMoveBill={handleMoveBill}
-        onMoveExpense={handleMoveExpense}
-      />
-    ),
-    [
-      handlePressPaycheck,
-      handleTogglePaid,
-      handleLinkTap,
-      handleEditAmount,
-      handleEditPayAmount,
-      handleMoveBill,
-      handleMoveExpense,
-    ]
   );
 
   const months = useMemo(
@@ -183,6 +99,17 @@ export default function PaychecksScreen() {
 
   const currentMonthKey = getCurrentMonthKey();
 
+  const shortElsewhere = useMemo(
+    () => findShortElsewhere(months, selectedMonth?.key),
+    [months, selectedMonth]
+  );
+
+  const handleShowShort = useCallback(() => {
+    if (shortElsewhere) {
+      setSelectedMonthKey(shortElsewhere.monthKey);
+    }
+  }, [shortElsewhere]);
+
   const listHeader = useMemo(
     () =>
       selectedMonth ? (
@@ -195,6 +122,19 @@ export default function PaychecksScreen() {
               assigned: formatMoney(selectedMonth.assigned),
             })}
           </AppText>
+          {shortElsewhere ? (
+            <Pressable style={styles.shortRow} onPress={handleShowShort} accessibilityRole="button">
+              <Ionicons name="alert-circle" size={16} color={colors.destructive} />
+              <AppText variant="meta" color="destructive" style={styles.shortText} numberOfLines={2}>
+                {t("paychecks.shortAhead", {
+                  date: formatShortDate(shortElsewhere.paycheck.date),
+                  source: shortElsewhere.paycheck.sourceName,
+                  amount: formatMoney(-shortElsewhere.paycheck.remaining),
+                })}
+              </AppText>
+              <Ionicons name="chevron-forward" size={16} color={colors.destructive} />
+            </Pressable>
+          ) : null}
           <View style={styles.chart}>
             <MonthBarChart
               months={months}
@@ -209,7 +149,22 @@ export default function PaychecksScreen() {
           />
         </View>
       ) : null,
-    [selectedMonth, months, currentMonthKey, formatMoney, t]
+    [selectedMonth, months, currentMonthKey, shortElsewhere, handleShowShort, colors, formatMoney, t]
+  );
+
+  const listFooter = useMemo(
+    () => (
+      <Pressable
+        style={styles.historyLink}
+        onPress={handleOpenHistory}
+        accessibilityRole="button"
+        accessibilityLabel={t("paychecks.pastPaychecks")}
+      >
+        <AppText variant="bodyStrong" color="primaryText">{t("paychecks.pastPaychecks")}</AppText>
+        <Ionicons name="chevron-forward" size={16} color={colors.primaryText} />
+      </Pressable>
+    ),
+    [handleOpenHistory, colors, t]
   );
 
   const containerStyle = useMemo(
@@ -236,6 +191,7 @@ export default function PaychecksScreen() {
           keyExtractor={keyExtractor}
           renderItem={renderPaycheck}
           ListHeaderComponent={listHeader}
+          ListFooterComponent={listFooter}
           contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={styles.listContent}
           showsVerticalScrollIndicator={false}
@@ -256,6 +212,22 @@ const styles = StyleSheet.create({
   },
   heroMeta: {
     marginTop: MEASUREMENTS.spacing.xs,
+  },
+  shortRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: MEASUREMENTS.spacing.sm + 2,
+    marginTop: MEASUREMENTS.spacing.base,
+  },
+  shortText: {
+    flexShrink: 1,
+  },
+  historyLink: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: MEASUREMENTS.spacing.xs,
+    paddingVertical: MEASUREMENTS.spacing.base,
   },
   chart: {
     marginTop: MEASUREMENTS.spacing.xl,

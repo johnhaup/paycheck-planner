@@ -31,7 +31,8 @@
     "expense": "Uitgave",
     "payDate": "Betaaldatum",
     "language": "Taal",
-    "currency": "Valuta"
+    "currency": "Valuta",
+    "history": "Eerdere salarissen"
   },
   "paychecks": {
     "today": "Vandaag",
@@ -55,7 +56,9 @@
     "moveBill": "Rekening verplaatsen",
     "markSetAside": "%{payee} markeren als apart gezet",
     "markUnpaid": "%{payee} markeren als onbetaald",
-    "moveThis": "%{payee} verplaatsen"
+    "moveThis": "%{payee} verplaatsen",
+    "pastPaychecks": "Eerdere salarissen",
+    "shortAhead": "Salaris %{date} · %{source} komt %{amount} tekort"
   },
   "income": {
     "emptyTitle": "Nog geen inkomen",
@@ -165,7 +168,11 @@
       "updateSetAside": "Reservering bijwerken",
       "nameRequired": "Naam is verplicht.",
       "icon": "Pictogram",
-      "noIcon": "Geen pictogram"
+      "noIcon": "Geen pictogram",
+      "goal": "Spaardoel (optioneel)",
+      "goalPlaceholder": "bijv. 1000",
+      "goalHint": "Elk salaris waarop je de reservering als apart gezet markeert, telt mee voor het doel.",
+      "invalidGoal": "Voer een geldig doelbedrag in."
     },
     "kind": {
       "bill": "Rekening",
@@ -200,7 +207,9 @@
       "gift": "Cadeaus",
       "musical-notes": "Muziek",
       "game-controller": "Games"
-    }
+    },
+    "goalProgress": "%{saved} van %{goal} gespaard",
+    "goalReached": "Doel bereikt · %{saved} gespaard"
   },
   "payDate": {
     "thisPaycheck": "Dit salaris",
@@ -290,5 +299,8 @@
     "billMoved": "'%{payee}' verplaatst naar %{date}",
     "remindersOn": "Betaaldagherinneringen aan",
     "markedAllPaid": "Alles gemarkeerd als betaald"
+  },
+  "history": {
+    "empty": "Nog geen eerdere salarissen."
   }
 }

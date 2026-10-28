@@ -1,8 +1,9 @@
-import { addMonths, endOfMonth, format, isSameYear } from "date-fns";
+import { addMonths, endOfMonth, format, isAfter, isSameYear, startOfDay, startOfMonth, subDays, subMonths } from "date-fns";
 import { formatMonthLong, formatMonthShort } from "@/utils/dates";
 import {
   getPaychecksThrough,
   formatPayDate,
+  parseLocalDate,
   isExpenseLinkedToPaycheck,
   type Paycheck,
 } from "@/utils/payDates";
@@ -11,6 +12,8 @@ import type { MonthGroup, PaycheckExpense, PaycheckItem } from "@/components/pay
 
 /** The current month plus this many full months after it. */
 const FULL_MONTHS_AHEAD = 5;
+/** How far back past paychecks go, in whole months before the current one. */
+const PAST_MONTHS = 6;
 
 /** This paycheck's pay amount: its override if one was set, else the source's usual amount. */
 export function getPayAmount(
@@ -99,11 +102,36 @@ export function buildMonthGroups(
       buildPaycheckItem(source, paycheck, expenses, assignments, overrides)
     )
   );
-
   allPaychecks.sort((a, b) => a.date.getTime() - b.date.getTime());
+  return groupByMonth(allPaychecks, now);
+}
 
+/** Paychecks before today, newest first, back to the start of PAST_MONTHS months ago. */
+export function buildPastMonthGroups(
+  incomeSources: IncomeSource[],
+  expenses: Expense[],
+  assignments: ExpenseAssignment[],
+  overrides: PaycheckOverride[],
+  now: Date
+): MonthGroup[] {
+  const from = startOfMonth(subMonths(now, PAST_MONTHS));
+  const until = subDays(startOfDay(now), 1);
+  const allPaychecks = incomeSources.flatMap((source) => {
+    // Monthly and semi-monthly schedules would otherwise invent paychecks before the first one
+    const firstPayDate = parseLocalDate(source.firstPayDate);
+    const start = isAfter(firstPayDate, from) ? firstPayDate : from;
+    return getPaychecksThrough(source, start, until).map((paycheck) =>
+      buildPaycheckItem(source, paycheck, expenses, assignments, overrides)
+    );
+  });
+  allPaychecks.sort((a, b) => b.date.getTime() - a.date.getTime());
+  return groupByMonth(allPaychecks, now);
+}
+
+/** Groups already-sorted paychecks by calendar month, keeping their order. */
+function groupByMonth(paychecks: PaycheckItem[], now: Date): MonthGroup[] {
   const grouped = new Map<string, MonthGroup>();
-  for (const paycheck of allPaychecks) {
+  for (const paycheck of paychecks) {
     const key = format(paycheck.date, "yyyy-MM");
     let group = grouped.get(key);
     if (!group) {

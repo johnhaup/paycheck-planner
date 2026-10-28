@@ -31,7 +31,8 @@
     "expense": "Ausgabe",
     "payDate": "Zahltag",
     "language": "Sprache",
-    "currency": "Währung"
+    "currency": "Währung",
+    "history": "Vergangene Gehälter"
   },
   "paychecks": {
     "today": "Heute",
@@ -55,7 +56,9 @@
     "moveBill": "Rechnung verschieben",
     "markSetAside": "%{payee} als zurückgelegt markieren",
     "markUnpaid": "%{payee} als unbezahlt markieren",
-    "moveThis": "%{payee} verschieben"
+    "moveThis": "%{payee} verschieben",
+    "pastPaychecks": "Vergangene Gehälter",
+    "shortAhead": "Am %{date} · %{source} fehlen %{amount}"
   },
   "income": {
     "emptyTitle": "Noch kein Einkommen",
@@ -165,7 +168,11 @@
       "updateSetAside": "Rücklage aktualisieren",
       "nameRequired": "Name ist erforderlich.",
       "icon": "Symbol",
-      "noIcon": "Kein Symbol"
+      "noIcon": "Kein Symbol",
+      "goal": "Sparziel (optional)",
+      "goalPlaceholder": "z. B. 1000",
+      "goalHint": "Jedes Gehalt, bei dem du die Rücklage als zurückgelegt markierst, zählt zum Ziel.",
+      "invalidGoal": "Gib einen gültigen Zielbetrag ein."
     },
     "kind": {
       "bill": "Rechnung",
@@ -200,7 +207,9 @@
       "gift": "Geschenke",
       "musical-notes": "Musik",
       "game-controller": "Spiele"
-    }
+    },
+    "goalProgress": "%{saved} von %{goal} gespart",
+    "goalReached": "Ziel erreicht · %{saved} gespart"
   },
   "payDate": {
     "thisPaycheck": "Dieses Gehalt",
@@ -290,5 +299,8 @@
     "billMoved": "„%{payee}“ auf %{date} verschoben",
     "remindersOn": "Zahltag-Erinnerungen aktiviert",
     "markedAllPaid": "Alle als bezahlt markiert"
+  },
+  "history": {
+    "empty": "Noch keine vergangenen Gehälter."
   }
 }

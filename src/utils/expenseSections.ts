@@ -6,7 +6,7 @@ import {
 } from "@/utils/payDates";
 import { formatMonthDay } from "@/utils/dates";
 import { t } from "@/localization/i18n";
-import type { Expense, IncomeSource } from "@/types";
+import type { Expense, ExpenseAssignment, IncomeSource } from "@/types";
 
 export type ExpenseFilter = "all" | "recurring" | "one-time";
 export type ExpenseSort = "default" | "amount" | "name";
@@ -16,6 +16,8 @@ export interface ExpenseListItem {
   meta: string;
   cadence: string;
   tintIndex?: number;
+  /** Set-asides with a goal: what's been set aside so far */
+  goalProgress?: { saved: number; goal: number };
 }
 
 export interface ExpenseSection {
@@ -37,6 +39,13 @@ function monthlyCost(expense: Expense, source: IncomeSource | undefined): number
   return getLinkedSlot(expense, source) === undefined
     ? expense.amount * getPaychecksPerMonth(source)
     : expense.amount;
+}
+
+/** Every paycheck this set-aside was marked set aside on. */
+function savedSoFar(expense: Expense, assignments: ExpenseAssignment[]): number {
+  return assignments
+    .filter((a) => a.expenseId === expense.id && a.paid && !a.skipped)
+    .reduce((sum, a) => sum + (a.amount ?? expense.amount), 0);
 }
 
 function isSetAside(expense: Expense) {
@@ -83,6 +92,7 @@ function compareItems(sort: ExpenseSort) {
 export function buildExpenseSections(
   allExpenses: Expense[],
   incomeSources: IncomeSource[],
+  assignments: ExpenseAssignment[],
   filter: ExpenseFilter,
   sort: ExpenseSort,
   formatMoney: (amount: number) => string
@@ -112,6 +122,9 @@ export function buildExpenseSections(
           const source = expense.incomeSourceId ? sourcesById.get(expense.incomeSourceId) : undefined;
           return {
             expense,
+            goalProgress: expense.goal
+              ? { saved: savedSoFar(expense, assignments), goal: expense.goal }
+              : undefined,
             tintIndex: source ? sourceIndex.get(source.id) : undefined,
             meta: source
               ? t("expenses.meta.withSource", { source: source.name, meta: scheduleMeta(expense, source) })

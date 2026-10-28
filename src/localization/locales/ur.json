@@ -31,7 +31,8 @@
     "expense": "خرچ",
     "payDate": "تنخواہ کی تاریخ",
     "language": "زبان",
-    "currency": "کرنسی"
+    "currency": "کرنسی",
+    "history": "پچھلی تنخواہیں"
   },
   "paychecks": {
     "today": "آج",
@@ -55,7 +56,9 @@
     "moveBill": "بل منتقل کریں",
     "markSetAside": "%{payee} کو الگ رکھا نشان زد کریں",
     "markUnpaid": "%{payee} کو غیر ادا شدہ نشان زد کریں",
-    "moveThis": "%{payee} منتقل کریں"
+    "moveThis": "%{payee} منتقل کریں",
+    "pastPaychecks": "پچھلی تنخواہیں",
+    "shortAhead": "%{date} · %{source} میں %{amount} کم"
   },
   "income": {
     "emptyTitle": "ابھی کوئی آمدنی نہیں",
@@ -165,7 +168,11 @@
       "updateSetAside": "الگ رکھی رقم اپ ڈیٹ کریں",
       "nameRequired": "نام درکار ہے۔",
       "icon": "آئیکن",
-      "noIcon": "کوئی آئیکن نہیں"
+      "noIcon": "کوئی آئیکن نہیں",
+      "goal": "بچت کا ہدف (اختیاری)",
+      "goalPlaceholder": "مثلاً 1000",
+      "goalHint": "جس تنخواہ میں آپ اسے الگ رکھا نشان زد کریں گے، وہ ہدف میں شمار ہوگی۔",
+      "invalidGoal": "درست ہدف کی رقم درج کریں۔"
     },
     "kind": {
       "bill": "بل",
@@ -200,7 +207,9 @@
       "gift": "تحائف",
       "musical-notes": "موسیقی",
       "game-controller": "گیمز"
-    }
+    },
+    "goalProgress": "%{goal} میں سے %{saved} بچت",
+    "goalReached": "ہدف پورا · %{saved} بچت"
   },
   "payDate": {
     "thisPaycheck": "یہ تنخواہ",
@@ -290,5 +299,8 @@
     "billMoved": "\"%{payee}\" کو %{date} پر منتقل کر دیا گیا",
     "remindersOn": "تنخواہ کے دن کی یاددہانیاں آن ہیں",
     "markedAllPaid": "سب کو ادا شدہ نشان زد کر دیا گیا"
+  },
+  "history": {
+    "empty": "ابھی کوئی پچھلی تنخواہ نہیں۔"
   }
 }

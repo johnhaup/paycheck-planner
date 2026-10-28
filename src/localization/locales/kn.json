@@ -31,7 +31,8 @@
     "expense": "ಖರ್ಚು",
     "payDate": "ಸಂಬಳದ ದಿನಾಂಕ",
     "language": "ಭಾಷೆ",
-    "currency": "ಕರೆನ್ಸಿ"
+    "currency": "ಕರೆನ್ಸಿ",
+    "history": "ಹಿಂದಿನ ಸಂಬಳಗಳು"
   },
   "paychecks": {
     "today": "ಇಂದು",
@@ -55,7 +56,9 @@
     "moveBill": "ಬಿಲ್ ಸರಿಸಿ",
     "markSetAside": "%{payee} ಮೀಸಲಿಟ್ಟಿದೆ ಎಂದು ಗುರುತಿಸಿ",
     "markUnpaid": "%{payee} ಪಾವತಿಸಿಲ್ಲ ಎಂದು ಗುರುತಿಸಿ",
-    "moveThis": "%{payee} ಸರಿಸಿ"
+    "moveThis": "%{payee} ಸರಿಸಿ",
+    "pastPaychecks": "ಹಿಂದಿನ ಸಂಬಳಗಳು",
+    "shortAhead": "%{date} · %{source} ನಲ್ಲಿ %{amount} ಕೊರತೆ"
   },
   "income": {
     "emptyTitle": "ಇನ್ನೂ ಆದಾಯವಿಲ್ಲ",
@@ -165,7 +168,11 @@
       "updateSetAside": "ಮೀಸಲು ಅಪ್‌ಡೇಟ್ ಮಾಡಿ",
       "nameRequired": "ಹೆಸರು ಅಗತ್ಯ.",
       "icon": "ಐಕಾನ್",
-      "noIcon": "ಐಕಾನ್ ಇಲ್ಲ"
+      "noIcon": "ಐಕಾನ್ ಇಲ್ಲ",
+      "goal": "ಉಳಿತಾಯ ಗುರಿ (ಐಚ್ಛಿಕ)",
+      "goalPlaceholder": "ಉದಾ. 1000",
+      "goalHint": "ನೀವು ಮೀಸಲಿಟ್ಟಿದೆ ಎಂದು ಗುರುತಿಸುವ ಪ್ರತಿ ಸಂಬಳ ಗುರಿಗೆ ಸೇರುತ್ತದೆ.",
+      "invalidGoal": "ಮಾನ್ಯ ಗುರಿ ಮೊತ್ತ ನಮೂದಿಸಿ."
     },
     "kind": {
       "bill": "ಬಿಲ್",
@@ -200,7 +207,9 @@
       "gift": "ಉಡುಗೊರೆಗಳು",
       "musical-notes": "ಸಂಗೀತ",
       "game-controller": "ಆಟಗಳು"
-    }
+    },
+    "goalProgress": "%{goal} ರಲ್ಲಿ %{saved} ಉಳಿತಾಯ",
+    "goalReached": "ಗುರಿ ತಲುಪಿದೆ · %{saved} ಉಳಿತಾಯ"
   },
   "payDate": {
     "thisPaycheck": "ಈ ಸಂಬಳ",
@@ -290,5 +299,8 @@
     "billMoved": "\"%{payee}\" ಅನ್ನು %{date} ಗೆ ಸರಿಸಲಾಗಿದೆ",
     "remindersOn": "ಸಂಬಳದ ದಿನದ ಜ್ಞಾಪನೆಗಳು ಆನ್",
     "markedAllPaid": "ಎಲ್ಲವನ್ನೂ ಪಾವತಿಸಿದೆ ಎಂದು ಗುರುತಿಸಲಾಗಿದೆ"
+  },
+  "history": {
+    "empty": "ಇನ್ನೂ ಹಿಂದಿನ ಸಂಬಳಗಳಿಲ್ಲ."
   }
 }

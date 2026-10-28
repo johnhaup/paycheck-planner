@@ -31,7 +31,8 @@
     "expense": "Trošak",
     "payDate": "Dan plaće",
     "language": "Jezik",
-    "currency": "Valuta"
+    "currency": "Valuta",
+    "history": "Prošle plaće"
   },
   "paychecks": {
     "today": "Danas",
@@ -55,7 +56,9 @@
     "moveBill": "Premjesti račun",
     "markSetAside": "Označi %{payee} kao odvojeno",
     "markUnpaid": "Označi %{payee} kao neplaćeno",
-    "moveThis": "Premjesti %{payee}"
+    "moveThis": "Premjesti %{payee}",
+    "pastPaychecks": "Prošle plaće",
+    "shortAhead": "Plaći %{date} · %{source} nedostaje %{amount}"
   },
   "income": {
     "emptyTitle": "Još nema prihoda",
@@ -166,7 +169,11 @@
       "updateSetAside": "Ažuriraj odvojena sredstva",
       "nameRequired": "Naziv je obavezan.",
       "icon": "Ikona",
-      "noIcon": "Bez ikone"
+      "noIcon": "Bez ikone",
+      "goal": "Cilj štednje (neobavezno)",
+      "goalPlaceholder": "npr. 1000",
+      "goalHint": "Svaka plaća na kojoj ga označite kao odvojeno računa se u cilj.",
+      "invalidGoal": "Unesite valjan iznos cilja."
     },
     "kind": {
       "bill": "Račun",
@@ -201,7 +208,9 @@
       "gift": "Pokloni",
       "musical-notes": "Glazba",
       "game-controller": "Igre"
-    }
+    },
+    "goalProgress": "Uštedjeli ste %{saved} od %{goal}",
+    "goalReached": "Cilj ostvaren · ušteđeno %{saved}"
   },
   "payDate": {
     "thisPaycheck": "Ova plaća",
@@ -292,5 +301,8 @@
     "billMoved": "„%{payee}” premješteno na %{date}",
     "remindersOn": "Podsjetnici za plaću uključeni",
     "markedAllPaid": "Sve označeno kao plaćeno"
+  },
+  "history": {
+    "empty": "Još nema prošlih plaća."
   }
 }

@@ -32,7 +32,8 @@
     "expense": "Spesa",
     "payDate": "Data di paga",
     "language": "Lingua",
-    "currency": "Valuta"
+    "currency": "Valuta",
+    "history": "Stipendi passati"
   },
   "paychecks": {
     "today": "Oggi",
@@ -56,7 +57,9 @@
     "moveBill": "Sposta una bolletta",
     "markSetAside": "Segna %{payee} come accantonato",
     "markUnpaid": "Segna %{payee} come non pagata",
-    "moveThis": "Sposta %{payee}"
+    "moveThis": "Sposta %{payee}",
+    "pastPaychecks": "Stipendi passati",
+    "shortAhead": "Allo stipendio del %{date} · %{source} mancano %{amount}"
   },
   "income": {
     "emptyTitle": "Nessuna entrata",
@@ -166,7 +169,11 @@
       "updateSetAside": "Aggiorna accantonamento",
       "nameRequired": "Il nome è obbligatorio.",
       "icon": "Icona",
-      "noIcon": "Nessuna icona"
+      "noIcon": "Nessuna icona",
+      "goal": "Obiettivo di risparmio (facoltativo)",
+      "goalPlaceholder": "es. 1000",
+      "goalHint": "Ogni stipendio in cui lo segni come accantonato conta per l'obiettivo.",
+      "invalidGoal": "Inserisci un obiettivo valido."
     },
     "kind": {
       "bill": "Bolletta",
@@ -201,7 +208,9 @@
       "gift": "Regali",
       "musical-notes": "Musica",
       "game-controller": "Giochi"
-    }
+    },
+    "goalProgress": "%{saved} di %{goal} risparmiati",
+    "goalReached": "Obiettivo raggiunto · %{saved} risparmiati"
   },
   "payDate": {
     "thisPaycheck": "Questo stipendio",
@@ -291,5 +300,8 @@
     "billMoved": "\"%{payee}\" spostato al %{date}",
     "remindersOn": "Promemoria giorno di paga attivi",
     "markedAllPaid": "Tutto segnato come pagato"
+  },
+  "history": {
+    "empty": "Ancora nessuno stipendio passato."
   }
 }

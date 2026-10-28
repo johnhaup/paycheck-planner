@@ -31,7 +31,8 @@
     "expense": "Gasto",
     "payDate": "Fecha de cobro",
     "language": "Idioma",
-    "currency": "Moneda"
+    "currency": "Moneda",
+    "history": "Cobros anteriores"
   },
   "paychecks": {
     "today": "Hoy",
@@ -55,7 +56,9 @@
     "moveBill": "Mover una factura",
     "markSetAside": "Marcar %{payee} como apartado",
     "markUnpaid": "Marcar %{payee} como no pagada",
-    "moveThis": "Mover %{payee}"
+    "moveThis": "Mover %{payee}",
+    "pastPaychecks": "Cobros anteriores",
+    "shortAhead": "Al cobro del %{date} · %{source} le faltan %{amount}"
   },
   "income": {
     "emptyTitle": "Aún no hay ingresos",
@@ -165,7 +168,11 @@
       "updateSetAside": "Actualizar apartado",
       "nameRequired": "El nombre es obligatorio.",
       "icon": "Icono",
-      "noIcon": "Sin icono"
+      "noIcon": "Sin icono",
+      "goal": "Meta de ahorro (opcional)",
+      "goalPlaceholder": "p. ej. 1000",
+      "goalHint": "Cada cobro en el que lo marques como apartado suma a la meta.",
+      "invalidGoal": "Introduce una meta válida."
     },
     "kind": {
       "bill": "Factura",
@@ -200,7 +207,9 @@
       "gift": "Regalos",
       "musical-notes": "Música",
       "game-controller": "Juegos"
-    }
+    },
+    "goalProgress": "%{saved} de %{goal} ahorrados",
+    "goalReached": "Meta cumplida · %{saved} ahorrados"
   },
   "payDate": {
     "thisPaycheck": "Este sueldo",
@@ -290,5 +299,8 @@
     "billMoved": "Se movió \"%{payee}\" al %{date}",
     "remindersOn": "Recordatorios de cobro activados",
     "markedAllPaid": "Todo marcado como pagado"
+  },
+  "history": {
+    "empty": "Aún no hay cobros anteriores."
   }
 }

@@ -31,7 +31,8 @@
     "expense": "Витрата",
     "payDate": "День зарплати",
     "language": "Мова",
-    "currency": "Валюта"
+    "currency": "Валюта",
+    "history": "Минулі зарплати"
   },
   "paychecks": {
     "today": "Сьогодні",
@@ -55,7 +56,9 @@
     "moveBill": "Перенести рахунок",
     "markSetAside": "Позначити %{payee} як відкладений",
     "markUnpaid": "Позначити %{payee} як несплачений",
-    "moveThis": "Перенести %{payee}"
+    "moveThis": "Перенести %{payee}",
+    "pastPaychecks": "Минулі зарплати",
+    "shortAhead": "Зарплаті %{date} · %{source} не вистачає %{amount}"
   },
   "income": {
     "emptyTitle": "Поки немає доходів",
@@ -167,7 +170,11 @@
       "updateSetAside": "Оновити резерв",
       "nameRequired": "Вкажіть назву.",
       "icon": "Значок",
-      "noIcon": "Без значка"
+      "noIcon": "Без значка",
+      "goal": "Мета заощаджень (необов’язково)",
+      "goalPlaceholder": "напр. 1000",
+      "goalHint": "Кожна зарплата, де ви позначите резерв як відкладений, зараховується до мети.",
+      "invalidGoal": "Введіть коректну суму мети."
     },
     "kind": {
       "bill": "Рахунок",
@@ -202,7 +209,9 @@
       "gift": "Подарунки",
       "musical-notes": "Музика",
       "game-controller": "Ігри"
-    }
+    },
+    "goalProgress": "Заощаджено %{saved} з %{goal}",
+    "goalReached": "Мету досягнуто · заощаджено %{saved}"
   },
   "payDate": {
     "thisPaycheck": "Ця зарплата",
@@ -294,5 +303,8 @@
     "billMoved": "«%{payee}» перенесено на %{date}",
     "remindersOn": "Нагадування про зарплату ввімкнено",
     "markedAllPaid": "Усе позначено як сплачене"
+  },
+  "history": {
+    "empty": "Минулих зарплат ще немає."
   }
 }

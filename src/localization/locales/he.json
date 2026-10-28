@@ -31,7 +31,8 @@
     "expense": "הוצאה",
     "payDate": "תאריך משכורת",
     "language": "שפה",
-    "currency": "מטבע"
+    "currency": "מטבע",
+    "history": "משכורות קודמות"
   },
   "paychecks": {
     "today": "היום",
@@ -55,7 +56,9 @@
     "moveBill": "העברת חשבון",
     "markSetAside": "סימון %{payee} כהפרשה",
     "markUnpaid": "סימון %{payee} כלא שולם",
-    "moveThis": "העברת %{payee}"
+    "moveThis": "העברת %{payee}",
+    "pastPaychecks": "משכורות קודמות",
+    "shortAhead": "במשכורת %{date} · %{source} חסרים %{amount}"
   },
   "income": {
     "emptyTitle": "אין עדיין הכנסות",
@@ -167,7 +170,11 @@
       "updateSetAside": "עדכון הפרשה",
       "nameRequired": "יש להזין שם.",
       "icon": "סמל",
-      "noIcon": "ללא סמל"
+      "noIcon": "ללא סמל",
+      "goal": "יעד חיסכון (אופציונלי)",
+      "goalPlaceholder": "לדוגמה: 1000",
+      "goalHint": "כל משכורת שבה תסמנו את ההפרשה נספרת ליעד.",
+      "invalidGoal": "יש להזין סכום יעד תקין."
     },
     "kind": {
       "bill": "חשבון",
@@ -202,7 +209,9 @@
       "gift": "מתנות",
       "musical-notes": "מוזיקה",
       "game-controller": "משחקים"
-    }
+    },
+    "goalProgress": "נחסכו %{saved} מתוך %{goal}",
+    "goalReached": "היעד הושג · נחסכו %{saved}"
   },
   "payDate": {
     "thisPaycheck": "המשכורת הזו",
@@ -294,5 +303,8 @@
     "billMoved": "\"%{payee}\" הועבר ל-%{date}",
     "remindersOn": "תזכורות ליום המשכורת הופעלו",
     "markedAllPaid": "הכול סומן כשולם"
+  },
+  "history": {
+    "empty": "אין עדיין משכורות קודמות."
   }
 }

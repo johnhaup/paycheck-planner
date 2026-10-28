@@ -31,7 +31,8 @@
     "expense": "Wydatek",
     "payDate": "Dzień wypłaty",
     "language": "Język",
-    "currency": "Waluta"
+    "currency": "Waluta",
+    "history": "Poprzednie wypłaty"
   },
   "paychecks": {
     "today": "Dziś",
@@ -55,7 +56,9 @@
     "moveBill": "Przenieś rachunek",
     "markSetAside": "Oznacz %{payee} jako odłożone",
     "markUnpaid": "Oznacz %{payee} jako nieopłacone",
-    "moveThis": "Przenieś %{payee}"
+    "moveThis": "Przenieś %{payee}",
+    "pastPaychecks": "Poprzednie wypłaty",
+    "shortAhead": "Wypłacie %{date} · %{source} brakuje %{amount}"
   },
   "income": {
     "emptyTitle": "Brak dochodów",
@@ -167,7 +170,11 @@
       "updateSetAside": "Aktualizuj rezerwę",
       "nameRequired": "Nazwa jest wymagana.",
       "icon": "Ikona",
-      "noIcon": "Bez ikony"
+      "noIcon": "Bez ikony",
+      "goal": "Cel oszczędności (opcjonalnie)",
+      "goalPlaceholder": "np. 1000",
+      "goalHint": "Każda wypłata, przy której oznaczysz ją jako odłożoną, liczy się do celu.",
+      "invalidGoal": "Wpisz prawidłową kwotę celu."
     },
     "kind": {
       "bill": "Rachunek",
@@ -202,7 +209,9 @@
       "gift": "Prezenty",
       "musical-notes": "Muzyka",
       "game-controller": "Gry"
-    }
+    },
+    "goalProgress": "Odłożono %{saved} z %{goal}",
+    "goalReached": "Cel osiągnięty · odłożono %{saved}"
   },
   "payDate": {
     "thisPaycheck": "Ta wypłata",
@@ -294,5 +303,8 @@
     "billMoved": "Przeniesiono „%{payee}” na %{date}",
     "remindersOn": "Przypomnienia o wypłacie włączone",
     "markedAllPaid": "Wszystko oznaczono jako opłacone"
+  },
+  "history": {
+    "empty": "Nie ma jeszcze poprzednich wypłat."
   }
 }

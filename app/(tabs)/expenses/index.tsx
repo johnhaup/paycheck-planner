@@ -52,6 +52,7 @@ export default function ExpensesScreen() {
   const t = useT();
   const expenses = useStore((s) => s.expenses);
   const incomeSources = useStore((s) => s.incomeSources);
+  const assignments = useStore((s) => s.assignments);
   const deleteExpense = useStore((s) => s.deleteExpense);
   const [filter, setFilter] = useState<ExpenseFilter>("all");
   const [sort, setSort] = useState<ExpenseSort>("default");
@@ -91,6 +92,7 @@ export default function ExpensesScreen() {
         meta={item.meta}
         cadence={item.cadence}
         tintIndex={item.tintIndex}
+        goalProgress={item.goalProgress}
         isFirst={index === 0}
         isLast={index === section.data.length - 1}
         onEdit={handleEdit}
@@ -167,10 +169,10 @@ export default function ExpensesScreen() {
   );
 
   const sections = useMemo(
-    () => buildExpenseSections(visibleExpenses, incomeSources, filter, sort, formatMoney),
+    () => buildExpenseSections(visibleExpenses, incomeSources, assignments, filter, sort, formatMoney),
     // t changes with the language, which changes the section labels
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [visibleExpenses, incomeSources, filter, sort, formatMoney, t]
+    [visibleExpenses, incomeSources, assignments, filter, sort, formatMoney, t]
   );
 
   const summary = useMemo(

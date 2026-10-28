@@ -31,7 +31,8 @@
     "expense": "Gider",
     "payDate": "Maaş Tarihi",
     "language": "Dil",
-    "currency": "Para Birimi"
+    "currency": "Para Birimi",
+    "history": "Geçmiş maaşlar"
   },
   "paychecks": {
     "today": "Bugün",
@@ -55,7 +56,9 @@
     "moveBill": "Fatura taşı",
     "markSetAside": "%{payee} ayrıldı olarak işaretle",
     "markUnpaid": "%{payee} ödenmedi olarak işaretle",
-    "moveThis": "%{payee} taşı"
+    "moveThis": "%{payee} taşı",
+    "pastPaychecks": "Geçmiş maaşlar",
+    "shortAhead": "%{date} · %{source} maaşında %{amount} eksik"
   },
   "income": {
     "emptyTitle": "Henüz gelir yok",
@@ -165,7 +168,11 @@
       "updateSetAside": "Rezervi Güncelle",
       "nameRequired": "Ad gerekli.",
       "icon": "Simge",
-      "noIcon": "Simge yok"
+      "noIcon": "Simge yok",
+      "goal": "Birikim hedefi (isteğe bağlı)",
+      "goalPlaceholder": "örn. 1000",
+      "goalHint": "Ayrıldı olarak işaretlediğin her maaş hedefe sayılır.",
+      "invalidGoal": "Geçerli bir hedef tutarı gir."
     },
     "kind": {
       "bill": "Fatura",
@@ -200,7 +207,9 @@
       "gift": "Hediye",
       "musical-notes": "Müzik",
       "game-controller": "Oyun"
-    }
+    },
+    "goalProgress": "%{goal} hedefin %{saved} kadarı biriktirildi",
+    "goalReached": "Hedefe ulaşıldı · %{saved} biriktirildi"
   },
   "payDate": {
     "thisPaycheck": "Bu maaş",
@@ -290,5 +299,8 @@
     "billMoved": "\"%{payee}\" %{date} tarihine taşındı",
     "remindersOn": "Maaş günü hatırlatıcıları açık",
     "markedAllPaid": "Tümü ödendi olarak işaretlendi"
+  },
+  "history": {
+    "empty": "Henüz geçmiş maaş yok."
   }
 }

@@ -31,7 +31,8 @@
     "expense": "Výdavok",
     "payDate": "Deň výplaty",
     "language": "Jazyk",
-    "currency": "Mena"
+    "currency": "Mena",
+    "history": "Minulé výplaty"
   },
   "paychecks": {
     "today": "Dnes",
@@ -55,7 +56,9 @@
     "moveBill": "Presunúť účet",
     "markSetAside": "Označiť %{payee} ako odložené",
     "markUnpaid": "Označiť %{payee} ako nezaplatené",
-    "moveThis": "Presunúť %{payee}"
+    "moveThis": "Presunúť %{payee}",
+    "pastPaychecks": "Minulé výplaty",
+    "shortAhead": "Výplate %{date} · %{source} chýba %{amount}"
   },
   "income": {
     "emptyTitle": "Zatiaľ žiadne príjmy",
@@ -167,7 +170,11 @@
       "updateSetAside": "Aktualizovať rezervu",
       "nameRequired": "Názov je povinný.",
       "icon": "Ikona",
-      "noIcon": "Bez ikony"
+      "noIcon": "Bez ikony",
+      "goal": "Cieľ sporenia (voliteľné)",
+      "goalPlaceholder": "napr. 1000",
+      "goalHint": "Každá výplata, kde ju označíte ako odloženú, sa započíta do cieľa.",
+      "invalidGoal": "Zadajte platnú cieľovú sumu."
     },
     "kind": {
       "bill": "Účet",
@@ -202,7 +209,9 @@
       "gift": "Darčeky",
       "musical-notes": "Hudba",
       "game-controller": "Hry"
-    }
+    },
+    "goalProgress": "Ušetrené %{saved} z %{goal}",
+    "goalReached": "Cieľ splnený · ušetrené %{saved}"
   },
   "payDate": {
     "thisPaycheck": "Táto výplata",
@@ -294,5 +303,8 @@
     "billMoved": "„%{payee}“ presunuté na %{date}",
     "remindersOn": "Pripomenutia výplaty zapnuté",
     "markedAllPaid": "Všetko označené ako zaplatené"
+  },
+  "history": {
+    "empty": "Zatiaľ žiadne minulé výplaty."
   }
 }

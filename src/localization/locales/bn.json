@@ -35,7 +35,8 @@
     "expense": "খরচ",
     "payDate": "বেতনের তারিখ",
     "language": "ভাষা",
-    "currency": "মুদ্রা"
+    "currency": "মুদ্রা",
+    "history": "আগের বেতন"
   },
   "paychecks": {
     "today": "আজ",
@@ -59,7 +60,9 @@
     "moveBill": "বিল সরান",
     "markSetAside": "%{payee} আলাদা রাখা হয়েছে হিসেবে চিহ্নিত করুন",
     "markUnpaid": "%{payee} অপরিশোধিত হিসেবে চিহ্নিত করুন",
-    "moveThis": "%{payee} সরান"
+    "moveThis": "%{payee} সরান",
+    "pastPaychecks": "আগের বেতন",
+    "shortAhead": "%{date} · %{source}-এ %{amount} কম"
   },
   "income": {
     "emptyTitle": "এখনও কোনো আয় নেই",
@@ -169,7 +172,11 @@
       "updateSetAside": "আলাদা রাখা অর্থ আপডেট করুন",
       "nameRequired": "নাম দেওয়া আবশ্যক।",
       "icon": "আইকন",
-      "noIcon": "কোনো আইকন নেই"
+      "noIcon": "কোনো আইকন নেই",
+      "goal": "সঞ্চয়ের লক্ষ্য (ঐচ্ছিক)",
+      "goalPlaceholder": "যেমন 1000",
+      "goalHint": "যে বেতনে আলাদা রাখা হয়েছে চিহ্নিত করবেন, তা লক্ষ্যে যোগ হবে।",
+      "invalidGoal": "সঠিক লক্ষ্যের পরিমাণ লিখুন।"
     },
     "kind": {
       "bill": "বিল",
@@ -204,7 +211,9 @@
       "gift": "উপহার",
       "musical-notes": "সংগীত",
       "game-controller": "গেম"
-    }
+    },
+    "goalProgress": "%{goal}-এর মধ্যে %{saved} জমেছে",
+    "goalReached": "লক্ষ্য পূরণ · %{saved} জমেছে"
   },
   "payDate": {
     "thisPaycheck": "এই বেতন",
@@ -294,5 +303,8 @@
     "billMoved": "\"%{payee}\" %{date}-এ সরানো হয়েছে",
     "remindersOn": "বেতনের দিনের রিমাইন্ডার চালু",
     "markedAllPaid": "সব পরিশোধিত চিহ্নিত হয়েছে"
+  },
+  "history": {
+    "empty": "এখনো আগের কোনো বেতন নেই।"
   }
 }

@@ -31,7 +31,8 @@
     "expense": "مصروف",
     "payDate": "تاريخ الراتب",
     "language": "اللغة",
-    "currency": "العملة"
+    "currency": "العملة",
+    "history": "الرواتب السابقة"
   },
   "paychecks": {
     "today": "اليوم",
@@ -55,7 +56,9 @@
     "moveBill": "نقل فاتورة",
     "markSetAside": "تحديد %{payee} كمبلغ محجوز",
     "markUnpaid": "تحديد %{payee} كغير مدفوع",
-    "moveThis": "نقل %{payee}"
+    "moveThis": "نقل %{payee}",
+    "pastPaychecks": "الرواتب السابقة",
+    "shortAhead": "%{date} · %{source} به عجز بمقدار %{amount}"
   },
   "income": {
     "emptyTitle": "لا يوجد دخل بعد",
@@ -169,7 +172,11 @@
       "updateSetAside": "تحديث المبلغ المحجوز",
       "nameRequired": "الاسم مطلوب.",
       "icon": "الأيقونة",
-      "noIcon": "بلا أيقونة"
+      "noIcon": "بلا أيقونة",
+      "goal": "هدف الادخار (اختياري)",
+      "goalPlaceholder": "مثلاً 1000",
+      "goalHint": "كل راتب تحدده كمبلغ محجوز يُحتسب ضمن الهدف.",
+      "invalidGoal": "أدخل مبلغ هدف صحيحاً."
     },
     "kind": {
       "bill": "فاتورة",
@@ -204,7 +211,9 @@
       "gift": "الهدايا",
       "musical-notes": "الموسيقى",
       "game-controller": "الألعاب"
-    }
+    },
+    "goalProgress": "تم ادخار %{saved} من %{goal}",
+    "goalReached": "تم بلوغ الهدف · تم ادخار %{saved}"
   },
   "payDate": {
     "thisPaycheck": "هذا الراتب",
@@ -298,5 +307,8 @@
     "billMoved": "تم نقل \"%{payee}\" إلى %{date}",
     "remindersOn": "تم تشغيل تذكيرات يوم الراتب",
     "markedAllPaid": "تم تحديد الكل كمدفوع"
+  },
+  "history": {
+    "empty": "لا توجد رواتب سابقة بعد."
   }
 }

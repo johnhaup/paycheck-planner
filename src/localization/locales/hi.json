@@ -35,7 +35,8 @@
     "expense": "खर्च",
     "payDate": "सैलरी की तारीख़",
     "language": "भाषा",
-    "currency": "मुद्रा"
+    "currency": "मुद्रा",
+    "history": "पिछली सैलरी"
   },
   "paychecks": {
     "today": "आज",
@@ -59,7 +60,9 @@
     "moveBill": "बिल मूव करें",
     "markSetAside": "%{payee} को अलग रखा मार्क करें",
     "markUnpaid": "%{payee} को बकाया मार्क करें",
-    "moveThis": "%{payee} मूव करें"
+    "moveThis": "%{payee} मूव करें",
+    "pastPaychecks": "पिछली सैलरी",
+    "shortAhead": "%{date} · %{source} में %{amount} की कमी"
   },
   "income": {
     "emptyTitle": "अभी कोई आय नहीं",
@@ -169,7 +172,11 @@
       "updateSetAside": "अलग रखी रकम अपडेट करें",
       "nameRequired": "नाम ज़रूरी है।",
       "icon": "आइकन",
-      "noIcon": "कोई आइकन नहीं"
+      "noIcon": "कोई आइकन नहीं",
+      "goal": "बचत लक्ष्य (वैकल्पिक)",
+      "goalPlaceholder": "जैसे 1000",
+      "goalHint": "जिस सैलरी में आप इसे अलग रखा मार्क करेंगे, वह लक्ष्य में जुड़ेगी।",
+      "invalidGoal": "सही लक्ष्य रकम डालें।"
     },
     "kind": {
       "bill": "बिल",
@@ -204,7 +211,9 @@
       "gift": "तोहफ़े",
       "musical-notes": "संगीत",
       "game-controller": "गेम"
-    }
+    },
+    "goalProgress": "%{goal} में से %{saved} बचाए",
+    "goalReached": "लक्ष्य पूरा · %{saved} बचाए"
   },
   "payDate": {
     "thisPaycheck": "यह सैलरी",
@@ -294,5 +303,8 @@
     "billMoved": "\"%{payee}\" को %{date} पर मूव किया गया",
     "remindersOn": "सैलरी रिमाइंडर चालू",
     "markedAllPaid": "सब भरा हुआ मार्क किया गया"
+  },
+  "history": {
+    "empty": "अभी कोई पिछली सैलरी नहीं।"
   }
 }

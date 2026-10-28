@@ -31,7 +31,8 @@
     "expense": "செலவு",
     "payDate": "சம்பள தேதி",
     "language": "மொழி",
-    "currency": "நாணயம்"
+    "currency": "நாணயம்",
+    "history": "முந்தைய சம்பளங்கள்"
   },
   "paychecks": {
     "today": "இன்று",
@@ -55,7 +56,9 @@
     "moveBill": "பில்லை நகர்த்து",
     "markSetAside": "%{payee} ஒதுக்கி வைத்ததாகக் குறி",
     "markUnpaid": "%{payee} செலுத்தவில்லை எனக் குறி",
-    "moveThis": "%{payee} நகர்த்து"
+    "moveThis": "%{payee} நகர்த்து",
+    "pastPaychecks": "முந்தைய சம்பளங்கள்",
+    "shortAhead": "%{date} · %{source} இல் %{amount} பற்றாக்குறை"
   },
   "income": {
     "emptyTitle": "இன்னும் வருமானம் இல்லை",
@@ -165,7 +168,11 @@
       "updateSetAside": "ஒதுக்கி வைப்பைப் புதுப்பி",
       "nameRequired": "பெயர் தேவை.",
       "icon": "ஐகான்",
-      "noIcon": "ஐகான் இல்லை"
+      "noIcon": "ஐகான் இல்லை",
+      "goal": "சேமிப்பு இலக்கு (விருப்பம்)",
+      "goalPlaceholder": "எ.கா. 1000",
+      "goalHint": "ஒதுக்கி வைத்ததாகக் குறிக்கும் ஒவ்வொரு சம்பளமும் இலக்கில் சேரும்.",
+      "invalidGoal": "சரியான இலக்குத் தொகையை உள்ளிடவும்."
     },
     "kind": {
       "bill": "பில்",
@@ -200,7 +207,9 @@
       "gift": "பரிசுகள்",
       "musical-notes": "இசை",
       "game-controller": "விளையாட்டுகள்"
-    }
+    },
+    "goalProgress": "%{goal} இல் %{saved} சேமிப்பு",
+    "goalReached": "இலக்கை அடைந்தது · %{saved} சேமிப்பு"
   },
   "payDate": {
     "thisPaycheck": "இந்தச் சம்பளம்",
@@ -290,5 +299,8 @@
     "billMoved": "\"%{payee}\" %{date}-க்கு நகர்த்தப்பட்டது",
     "remindersOn": "சம்பள நாள் நினைவூட்டல்கள் இயக்கத்தில்",
     "markedAllPaid": "அனைத்தும் செலுத்தியதாகக் குறிக்கப்பட்டது"
+  },
+  "history": {
+    "empty": "இன்னும் முந்தைய சம்பளங்கள் இல்லை."
   }
 }

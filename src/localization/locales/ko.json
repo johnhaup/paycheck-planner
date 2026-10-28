@@ -31,7 +31,8 @@
     "expense": "지출",
     "payDate": "급여일",
     "language": "언어",
-    "currency": "통화"
+    "currency": "통화",
+    "history": "지난 급여"
   },
   "paychecks": {
     "today": "오늘",
@@ -55,7 +56,9 @@
     "moveBill": "청구서 이동",
     "markSetAside": "%{payee} 따로 모음으로 표시",
     "markUnpaid": "%{payee} 미납으로 표시",
-    "moveThis": "%{payee} 이동"
+    "moveThis": "%{payee} 이동",
+    "pastPaychecks": "지난 급여",
+    "shortAhead": "%{date} · %{source} 급여가 %{amount} 부족"
   },
   "income": {
     "emptyTitle": "아직 수입이 없습니다",
@@ -164,7 +167,11 @@
       "updateSetAside": "따로 모음 업데이트",
       "nameRequired": "이름을 입력하세요.",
       "icon": "아이콘",
-      "noIcon": "아이콘 없음"
+      "noIcon": "아이콘 없음",
+      "goal": "저축 목표(선택)",
+      "goalPlaceholder": "예: 1000",
+      "goalHint": "따로 모음으로 표시한 급여마다 목표에 반영됩니다.",
+      "invalidGoal": "올바른 목표 금액을 입력하세요."
     },
     "kind": {
       "bill": "청구서",
@@ -199,7 +206,9 @@
       "gift": "선물",
       "musical-notes": "음악",
       "game-controller": "게임"
-    }
+    },
+    "goalProgress": "%{goal} 중 %{saved} 저축",
+    "goalReached": "목표 달성 · %{saved} 저축"
   },
   "payDate": {
     "thisPaycheck": "이 급여",
@@ -288,5 +297,8 @@
     "billMoved": "\"%{payee}\"을(를) %{date}(으)로 이동함",
     "remindersOn": "급여일 알림 켜짐",
     "markedAllPaid": "모두 납부 완료로 표시함"
+  },
+  "history": {
+    "empty": "아직 지난 급여가 없습니다."
   }
 }

@@ -31,7 +31,8 @@
     "expense": "Khoản chi",
     "payDate": "Ngày nhận lương",
     "language": "Ngôn ngữ",
-    "currency": "Tiền tệ"
+    "currency": "Tiền tệ",
+    "history": "Kỳ lương trước"
   },
   "paychecks": {
     "today": "Hôm nay",
@@ -55,7 +56,9 @@
     "moveBill": "Chuyển hóa đơn",
     "markSetAside": "Đánh dấu %{payee} đã để dành",
     "markUnpaid": "Đánh dấu %{payee} chưa trả",
-    "moveThis": "Chuyển %{payee}"
+    "moveThis": "Chuyển %{payee}",
+    "pastPaychecks": "Kỳ lương trước",
+    "shortAhead": "Kỳ lương %{date} · %{source} thiếu %{amount}"
   },
   "income": {
     "emptyTitle": "Chưa có thu nhập",
@@ -164,7 +167,11 @@
       "updateSetAside": "Cập nhật khoản để dành",
       "nameRequired": "Vui lòng nhập tên.",
       "icon": "Biểu tượng",
-      "noIcon": "Không có biểu tượng"
+      "noIcon": "Không có biểu tượng",
+      "goal": "Mục tiêu tiết kiệm (tùy chọn)",
+      "goalPlaceholder": "VD: 1000",
+      "goalHint": "Mỗi kỳ lương bạn đánh dấu đã để dành sẽ được tính vào mục tiêu.",
+      "invalidGoal": "Nhập số tiền mục tiêu hợp lệ."
     },
     "kind": {
       "bill": "Hóa đơn",
@@ -199,7 +206,9 @@
       "gift": "Quà tặng",
       "musical-notes": "Âm nhạc",
       "game-controller": "Trò chơi"
-    }
+    },
+    "goalProgress": "Đã để dành %{saved} / %{goal}",
+    "goalReached": "Đạt mục tiêu · đã để dành %{saved}"
   },
   "payDate": {
     "thisPaycheck": "Kỳ lương này",
@@ -288,5 +297,8 @@
     "billMoved": "Đã chuyển \"%{payee}\" sang %{date}",
     "remindersOn": "Đã bật nhắc ngày nhận lương",
     "markedAllPaid": "Đã đánh dấu tất cả đã trả"
+  },
+  "history": {
+    "empty": "Chưa có kỳ lương nào trước đây."
   }
 }

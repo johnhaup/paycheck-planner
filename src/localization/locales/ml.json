@@ -31,7 +31,8 @@
     "expense": "ചെലവ്",
     "payDate": "ശമ്പള തീയതി",
     "language": "ഭാഷ",
-    "currency": "കറൻസി"
+    "currency": "കറൻസി",
+    "history": "മുൻ ശമ്പളങ്ങൾ"
   },
   "paychecks": {
     "today": "ഇന്ന്",
@@ -55,7 +56,9 @@
     "moveBill": "ഒരു ബിൽ മാറ്റുക",
     "markSetAside": "%{payee} മാറ്റിവെച്ചതായി അടയാളപ്പെടുത്തുക",
     "markUnpaid": "%{payee} അടച്ചിട്ടില്ലെന്ന് അടയാളപ്പെടുത്തുക",
-    "moveThis": "%{payee} മാറ്റുക"
+    "moveThis": "%{payee} മാറ്റുക",
+    "pastPaychecks": "മുൻ ശമ്പളങ്ങൾ",
+    "shortAhead": "%{date} · %{source}-ൽ %{amount} കുറവ്"
   },
   "income": {
     "emptyTitle": "ഇതുവരെ വരുമാനമില്ല",
@@ -165,7 +168,11 @@
       "updateSetAside": "മാറ്റിവെപ്പ് അപ്‌ഡേറ്റ് ചെയ്യുക",
       "nameRequired": "പേര് ആവശ്യമാണ്.",
       "icon": "ഐക്കൺ",
-      "noIcon": "ഐക്കൺ ഇല്ല"
+      "noIcon": "ഐക്കൺ ഇല്ല",
+      "goal": "സമ്പാദ്യ ലക്ഷ്യം (ഐച്ഛികം)",
+      "goalPlaceholder": "ഉദാ. 1000",
+      "goalHint": "മാറ്റിവെച്ചതായി അടയാളപ്പെടുത്തുന്ന ഓരോ ശമ്പളവും ലക്ഷ്യത്തിലേക്ക് കണക്കാക്കും.",
+      "invalidGoal": "സാധുവായ ലക്ഷ്യത്തുക നൽകുക."
     },
     "kind": {
       "bill": "ബിൽ",
@@ -200,7 +207,9 @@
       "gift": "സമ്മാനങ്ങൾ",
       "musical-notes": "സംഗീതം",
       "game-controller": "ഗെയിമുകൾ"
-    }
+    },
+    "goalProgress": "%{goal}-ൽ %{saved} സമ്പാദിച്ചു",
+    "goalReached": "ലക്ഷ്യം നേടി · %{saved} സമ്പാദിച്ചു"
   },
   "payDate": {
     "thisPaycheck": "ഈ ശമ്പളം",
@@ -290,5 +299,8 @@
     "billMoved": "\"%{payee}\" %{date}-ലേക്ക് മാറ്റി",
     "remindersOn": "ശമ്പള ദിന റിമൈൻഡറുകൾ ഓണാണ്",
     "markedAllPaid": "എല്ലാം അടച്ചതായി അടയാളപ്പെടുത്തി"
+  },
+  "history": {
+    "empty": "ഇതുവരെ മുൻ ശമ്പളങ്ങളില്ല."
   }
 }

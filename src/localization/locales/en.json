@@ -34,7 +34,8 @@
     "expense": "Expense",
     "payDate": "Pay Date",
     "language": "Language",
-    "currency": "Currency"
+    "currency": "Currency",
+    "history": "Past paychecks"
   },
   "paychecks": {
     "today": "Today",
@@ -58,7 +59,9 @@
     "moveBill": "Move a bill",
     "markSetAside": "Mark %{payee} set aside",
     "markUnpaid": "Mark %{payee} unpaid",
-    "moveThis": "Move %{payee}"
+    "moveThis": "Move %{payee}",
+    "pastPaychecks": "Past paychecks",
+    "shortAhead": "%{date} · %{source} is short by %{amount}"
   },
   "income": {
     "emptyTitle": "No income yet",
@@ -168,7 +171,11 @@
       "updateSetAside": "Update Set-Aside",
       "nameRequired": "Name is required.",
       "icon": "Icon",
-      "noIcon": "No icon"
+      "noIcon": "No icon",
+      "goal": "Savings goal (optional)",
+      "goalPlaceholder": "e.g. 1000",
+      "goalHint": "Each paycheck you mark as set aside counts toward the goal.",
+      "invalidGoal": "Enter a valid goal amount."
     },
     "kind": {
       "bill": "Bill",
@@ -203,7 +210,9 @@
       "name": "Name"
     },
     "searchPlaceholder": "Search bills",
-    "noMatches": "Nothing matches “%{query}”."
+    "noMatches": "Nothing matches “%{query}”.",
+    "goalProgress": "%{saved} of %{goal} saved",
+    "goalReached": "Goal reached · %{saved} saved"
   },
   "payDate": {
     "thisPaycheck": "This paycheck",
@@ -293,5 +302,8 @@
     "billMoved": "Moved \"%{payee}\" to %{date}",
     "remindersOn": "Payday reminders on",
     "markedAllPaid": "Marked all paid"
+  },
+  "history": {
+    "empty": "No past paychecks yet."
   }
 }

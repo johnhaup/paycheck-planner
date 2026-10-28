@@ -31,7 +31,8 @@
     "expense": "รายจ่าย",
     "payDate": "วันจ่ายเงิน",
     "language": "ภาษา",
-    "currency": "สกุลเงิน"
+    "currency": "สกุลเงิน",
+    "history": "เงินเดือนที่ผ่านมา"
   },
   "paychecks": {
     "today": "วันนี้",
@@ -55,7 +56,9 @@
     "moveBill": "ย้ายบิล",
     "markSetAside": "ทำเครื่องหมายว่ากันเงิน %{payee} แล้ว",
     "markUnpaid": "ทำเครื่องหมายว่ายังไม่จ่าย %{payee}",
-    "moveThis": "ย้าย %{payee}"
+    "moveThis": "ย้าย %{payee}",
+    "pastPaychecks": "เงินเดือนที่ผ่านมา",
+    "shortAhead": "งวด %{date} · %{source} ขาดอีก %{amount}"
   },
   "income": {
     "emptyTitle": "ยังไม่มีรายรับ",
@@ -164,7 +167,11 @@
       "updateSetAside": "อัปเดตเงินกันไว้",
       "nameRequired": "กรุณาใส่ชื่อ",
       "icon": "ไอคอน",
-      "noIcon": "ไม่มีไอคอน"
+      "noIcon": "ไม่มีไอคอน",
+      "goal": "เป้าหมายการออม (ไม่บังคับ)",
+      "goalPlaceholder": "เช่น 1000",
+      "goalHint": "ทุกงวดที่คุณทำเครื่องหมายว่ากันเงินแล้วจะนับรวมในเป้าหมาย",
+      "invalidGoal": "ใส่จำนวนเป้าหมายที่ถูกต้อง"
     },
     "kind": {
       "bill": "บิล",
@@ -199,7 +206,9 @@
       "gift": "ของขวัญ",
       "musical-notes": "เพลง",
       "game-controller": "เกม"
-    }
+    },
+    "goalProgress": "ออมแล้ว %{saved} จาก %{goal}",
+    "goalReached": "ถึงเป้าหมายแล้ว · ออมแล้ว %{saved}"
   },
   "payDate": {
     "thisPaycheck": "เงินเดือนงวดนี้",
@@ -288,5 +297,8 @@
     "billMoved": "ย้าย \"%{payee}\" ไปที่ %{date} แล้ว",
     "remindersOn": "เปิดการแจ้งเตือนวันจ่ายเงินแล้ว",
     "markedAllPaid": "ทำเครื่องหมายว่าจ่ายแล้วทั้งหมด"
+  },
+  "history": {
+    "empty": "ยังไม่มีเงินเดือนที่ผ่านมา"
   }
 }

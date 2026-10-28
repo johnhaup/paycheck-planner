@@ -31,7 +31,8 @@
     "expense": "Despesa",
     "payDate": "Data de pagamento",
     "language": "Idioma",
-    "currency": "Moeda"
+    "currency": "Moeda",
+    "history": "Pagamentos anteriores"
   },
   "paychecks": {
     "today": "Hoje",
@@ -55,7 +56,9 @@
     "moveBill": "Mover uma conta",
     "markSetAside": "Marcar %{payee} como reservada",
     "markUnpaid": "Marcar %{payee} como não paga",
-    "moveThis": "Mover %{payee}"
+    "moveThis": "Mover %{payee}",
+    "pastPaychecks": "Pagamentos anteriores",
+    "shortAhead": "O pagamento de %{date} · %{source} está faltando %{amount}"
   },
   "income": {
     "emptyTitle": "Nenhuma renda ainda",
@@ -165,7 +168,11 @@
       "updateSetAside": "Atualizar reserva",
       "nameRequired": "O nome é obrigatório.",
       "icon": "Ícone",
-      "noIcon": "Sem ícone"
+      "noIcon": "Sem ícone",
+      "goal": "Meta de economia (opcional)",
+      "goalPlaceholder": "ex.: 1000",
+      "goalHint": "Cada pagamento em que você marcar como reservada conta para a meta.",
+      "invalidGoal": "Digite uma meta válida."
     },
     "kind": {
       "bill": "Conta",
@@ -200,7 +207,9 @@
       "gift": "Presentes",
       "musical-notes": "Música",
       "game-controller": "Jogos"
-    }
+    },
+    "goalProgress": "%{saved} de %{goal} guardados",
+    "goalReached": "Meta atingida · %{saved} guardados"
   },
   "payDate": {
     "thisPaycheck": "Este pagamento",
@@ -290,5 +299,8 @@
     "billMoved": "\"%{payee}\" movido para %{date}",
     "remindersOn": "Lembretes de pagamento ativados",
     "markedAllPaid": "Tudo marcado como pago"
+  },
+  "history": {
+    "empty": "Ainda não há pagamentos anteriores."
   }
 }

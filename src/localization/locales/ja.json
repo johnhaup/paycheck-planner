@@ -31,7 +31,8 @@
     "expense": "支出",
     "payDate": "給料日",
     "language": "言語",
-    "currency": "通貨"
+    "currency": "通貨",
+    "history": "過去の給料"
   },
   "paychecks": {
     "today": "今日",
@@ -55,7 +56,9 @@
     "moveBill": "支払いを移動",
     "markSetAside": "%{payee}を取り置き済みにする",
     "markUnpaid": "%{payee}を未払いにする",
-    "moveThis": "%{payee}を移動"
+    "moveThis": "%{payee}を移動",
+    "pastPaychecks": "過去の給料",
+    "shortAhead": "%{date} · %{source}の給料が%{amount}不足"
   },
   "income": {
     "emptyTitle": "収入がまだありません",
@@ -164,7 +167,11 @@
       "updateSetAside": "取り置きを更新",
       "nameRequired": "名前を入力してください。",
       "icon": "アイコン",
-      "noIcon": "アイコンなし"
+      "noIcon": "アイコンなし",
+      "goal": "貯金目標（任意）",
+      "goalPlaceholder": "例：1000",
+      "goalHint": "取り置き済みにした給料日ごとに目標へ加算されます。",
+      "invalidGoal": "有効な目標金額を入力してください。"
     },
     "kind": {
       "bill": "支払い",
@@ -199,7 +206,9 @@
       "gift": "ギフト",
       "musical-notes": "音楽",
       "game-controller": "ゲーム"
-    }
+    },
+    "goalProgress": "%{goal}のうち%{saved}を貯金",
+    "goalReached": "目標達成 · %{saved}を貯金"
   },
   "payDate": {
     "thisPaycheck": "この給料",
@@ -288,5 +297,8 @@
     "billMoved": "「%{payee}」を%{date}に移動しました",
     "remindersOn": "給料日のリマインダーをオンにしました",
     "markedAllPaid": "すべて支払い済みにしました"
+  },
+  "history": {
+    "empty": "過去の給料はまだありません。"
   }
 }

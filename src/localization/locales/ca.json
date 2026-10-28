@@ -34,7 +34,8 @@
     "expense": "Despesa",
     "payDate": "Data de cobrament",
     "language": "Idioma",
-    "currency": "Moneda"
+    "currency": "Moneda",
+    "history": "Cobraments anteriors"
   },
   "paychecks": {
     "today": "Avui",
@@ -58,7 +59,9 @@
     "moveBill": "Mou una factura",
     "markSetAside": "Marca %{payee} com a reservada",
     "markUnpaid": "Marca %{payee} com a no pagada",
-    "moveThis": "Mou %{payee}"
+    "moveThis": "Mou %{payee}",
+    "pastPaychecks": "Cobraments anteriors",
+    "shortAhead": "Al cobrament del %{date} · %{source} hi falten %{amount}"
   },
   "income": {
     "emptyTitle": "Encara no hi ha ingressos",
@@ -168,7 +171,11 @@
       "updateSetAside": "Actualitza la reserva",
       "nameRequired": "El nom és obligatori.",
       "icon": "Icona",
-      "noIcon": "Sense icona"
+      "noIcon": "Sense icona",
+      "goal": "Objectiu d'estalvi (opcional)",
+      "goalPlaceholder": "p. ex. 1000",
+      "goalHint": "Cada cobrament on la marquis com a reservada compta per a l'objectiu.",
+      "invalidGoal": "Introdueix un objectiu vàlid."
     },
     "kind": {
       "bill": "Factura",
@@ -203,7 +210,9 @@
       "gift": "Regals",
       "musical-notes": "Música",
       "game-controller": "Jocs"
-    }
+    },
+    "goalProgress": "%{saved} de %{goal} estalviats",
+    "goalReached": "Objectiu assolit · %{saved} estalviats"
   },
   "payDate": {
     "thisPaycheck": "Aquest sou",
@@ -293,5 +302,8 @@
     "billMoved": "S'ha mogut \"%{payee}\" al %{date}",
     "remindersOn": "Recordatoris de cobrament activats",
     "markedAllPaid": "Tot marcat com a pagat"
+  },
+  "history": {
+    "empty": "Encara no hi ha cobraments anteriors."
   }
 }

@@ -35,7 +35,8 @@
     "expense": "ખર્ચ",
     "payDate": "પગારની તારીખ",
     "language": "ભાષા",
-    "currency": "ચલણ"
+    "currency": "ચલણ",
+    "history": "પાછલા પગાર"
   },
   "paychecks": {
     "today": "આજે",
@@ -59,7 +60,9 @@
     "moveBill": "બિલ ખસેડો",
     "markSetAside": "%{payee} અલગ રાખેલ માર્ક કરો",
     "markUnpaid": "%{payee} ન ચૂકવેલ માર્ક કરો",
-    "moveThis": "%{payee} ખસેડો"
+    "moveThis": "%{payee} ખસેડો",
+    "pastPaychecks": "પાછલા પગાર",
+    "shortAhead": "%{date} · %{source}માં %{amount} ઘટે છે"
   },
   "income": {
     "emptyTitle": "હજી કોઈ આવક નથી",
@@ -169,7 +172,11 @@
       "updateSetAside": "અલગ રકમ અપડેટ કરો",
       "nameRequired": "નામ જરૂરી છે.",
       "icon": "આઇકન",
-      "noIcon": "કોઈ આઇકન નહીં"
+      "noIcon": "કોઈ આઇકન નહીં",
+      "goal": "બચત લક્ષ્ય (વૈકલ્પિક)",
+      "goalPlaceholder": "દા.ત. 1000",
+      "goalHint": "જે પગારમાં તમે તેને અલગ રાખેલ માર્ક કરો તે લક્ષ્યમાં ગણાશે.",
+      "invalidGoal": "માન્ય લક્ષ્ય રકમ દાખલ કરો."
     },
     "kind": {
       "bill": "બિલ",
@@ -204,7 +211,9 @@
       "gift": "ભેટ",
       "musical-notes": "સંગીત",
       "game-controller": "ગેમ્સ"
-    }
+    },
+    "goalProgress": "%{goal}માંથી %{saved} બચ્યા",
+    "goalReached": "લક્ષ્ય પૂર્ણ · %{saved} બચ્યા"
   },
   "payDate": {
     "thisPaycheck": "આ પગાર",
@@ -294,5 +303,8 @@
     "billMoved": "\"%{payee}\" ને %{date} પર ખસેડ્યું",
     "remindersOn": "પગાર રિમાઇન્ડર ચાલુ",
     "markedAllPaid": "બધું ચૂકવેલ માર્ક થયું"
+  },
+  "history": {
+    "empty": "હજી કોઈ પાછલો પગાર નથી."
   }
 }
