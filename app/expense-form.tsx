@@ -1,9 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-} from "react-native";
+import { View, StyleSheet } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { toast } from "sonner-native";
 import { useStore } from "@/store";
@@ -187,10 +184,11 @@ export default function ExpenseFormScreen() {
   );
 
   return (
-    <ScrollView
+    <KeyboardAwareScrollView
       style={scrollStyle}
       contentContainerStyle={styles.content}
       keyboardShouldPersistTaps="handled"
+      bottomOffset={MEASUREMENTS.keyboardOffset}
     >
       <AppSegmentedControl options={kindOptions} value={kind} onChange={setKind} />
       {isSetAside ? (
@@ -321,7 +319,7 @@ export default function ExpenseFormScreen() {
         onPress={handleSave}
         style={styles.saveButton}
       />
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 }
 

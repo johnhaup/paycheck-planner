@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo } from "react";
 import { Appearance, Pressable, StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { KeyboardProvider } from "react-native-keyboard-controller";
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Toaster } from "sonner-native";
@@ -122,6 +123,7 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView style={styles.root}>
+      <KeyboardProvider>
       <ThemeProvider value={navigationTheme}>
         <StatusBar style={isDark ? "light" : "dark"} />
         <Stack screenOptions={screenOptions}>
@@ -140,6 +142,7 @@ export default function RootLayout() {
         </Stack>
         <Toaster theme={isDark ? "dark" : "light"} toastOptions={toastOptions} />
       </ThemeProvider>
+      </KeyboardProvider>
     </GestureHandlerRootView>
   );
 }
