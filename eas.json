@@ -9,12 +9,24 @@
     },
     "production": {
       "autoIncrement": true
+    },
+    "production-local": {
+      "credentialsSource": "local",
+      "distribution": "store",
+      "developmentClient": false,
+      "environment": "production",
+      "autoIncrement": true,
+      "ios": {
+        "image": "latest"
+      }
     }
   },
   "submit": {
     "production": {
       "ios": {
-        "ascAppId": "6825905363"
+        "ascAppId": "6825905363",
+        "appleId": "johnhaup@gmail.com",
+        "appleTeamId": "EKHA8NK939"
       }
     }
   }
