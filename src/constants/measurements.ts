@@ -33,6 +33,8 @@ export const MEASUREMENTS = {
     hero: 40,
   },
   hitSlop: 12,
+  /** Gap kept between the keyboard and the focused input */
+  keyboardOffset: 24,
   fabSize: 52,
   paddingHorizontal: 16,
 } as const;

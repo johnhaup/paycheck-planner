@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from "react";
-import { FlatList, Pressable, StyleSheet } from "react-native";
+import { FlatList, Pressable, StyleSheet, type ScrollViewProps } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useStore } from "@/store";
 import { openPaymentLink } from "@/utils/links";
@@ -31,6 +32,12 @@ type ListItem =
 
 function keyExtractor(item: ListItem) {
   return item.key;
+}
+
+// The inline one-time expense form sits at the bottom of the list, so the
+// list itself has to scroll its inputs clear of the keyboard.
+function renderScrollComponent(props: ScrollViewProps) {
+  return <KeyboardAwareScrollView {...props} bottomOffset={MEASUREMENTS.keyboardOffset} />;
 }
 
 function billsFirst(a: Expense, b: Expense) {
@@ -369,6 +376,8 @@ export default function PayDateDetailScreen() {
         renderItem={renderItem}
         style={listStyle}
         contentContainerStyle={styles.listContent}
+        renderScrollComponent={renderScrollComponent}
+        keyboardShouldPersistTaps="handled"
       />
     </>
   );
