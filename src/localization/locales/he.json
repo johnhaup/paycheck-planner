@@ -35,7 +35,6 @@
     "history": "משכורות קודמות"
   },
   "paychecks": {
-    "today": "היום",
     "goToThisMonth": "מעבר לחודש הנוכחי",
     "leftAfterBills": "%{month} · נותר",
     "heroMeta": "%{income} הכנסה · %{assigned} שובצו",

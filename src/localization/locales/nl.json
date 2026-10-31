@@ -35,7 +35,6 @@
     "history": "Eerdere salarissen"
   },
   "paychecks": {
-    "today": "Vandaag",
     "goToThisMonth": "Naar deze maand",
     "leftAfterBills": "%{month} · over",
     "heroMeta": "%{income} binnen · %{assigned} toegewezen",

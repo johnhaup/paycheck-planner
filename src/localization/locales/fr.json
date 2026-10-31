@@ -36,7 +36,6 @@
     "history": "Paies passées"
   },
   "paychecks": {
-    "today": "Aujourd'hui",
     "goToThisMonth": "Aller à ce mois",
     "leftAfterBills": "%{month} · reste",
     "heroMeta": "%{income} reçus · %{assigned} affectés",

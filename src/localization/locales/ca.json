@@ -38,7 +38,6 @@
     "history": "Cobraments anteriors"
   },
   "paychecks": {
-    "today": "Avui",
     "goToThisMonth": "Ves a aquest mes",
     "leftAfterBills": "%{month} · el que queda",
     "heroMeta": "%{income} d'ingressos · %{assigned} assignats",

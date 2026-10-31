@@ -35,7 +35,6 @@
     "history": "Прошлые зарплаты"
   },
   "paychecks": {
-    "today": "Сегодня",
     "goToThisMonth": "Перейти к текущему месяцу",
     "leftAfterBills": "%{month} · остаётся",
     "heroMeta": "Доход %{income} · назначено %{assigned}",

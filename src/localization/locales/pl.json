@@ -35,7 +35,6 @@
     "history": "Poprzednie wypłaty"
   },
   "paychecks": {
-    "today": "Dziś",
     "goToThisMonth": "Przejdź do bieżącego miesiąca",
     "leftAfterBills": "%{month} · zostaje",
     "heroMeta": "Wpływy %{income} · przypisano %{assigned}",

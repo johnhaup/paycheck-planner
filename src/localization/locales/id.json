@@ -35,7 +35,6 @@
     "history": "Gaji sebelumnya"
   },
   "paychecks": {
-    "today": "Hari ini",
     "goToThisMonth": "Ke bulan ini",
     "leftAfterBills": "%{month} · sisa",
     "heroMeta": "%{income} masuk · %{assigned} dialokasikan",

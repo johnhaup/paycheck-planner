@@ -35,7 +35,6 @@
     "history": "Vergangene Gehälter"
   },
   "paychecks": {
-    "today": "Heute",
     "goToThisMonth": "Zu diesem Monat",
     "leftAfterBills": "%{month} · übrig",
     "heroMeta": "%{income} Einkommen · %{assigned} zugewiesen",

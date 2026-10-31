@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import { View, FlatList, Pressable, StyleSheet } from "react-native";
-import { Stack, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { format } from "date-fns";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { toast } from "sonner-native";
@@ -19,6 +19,8 @@ import { buildMonthGroups } from "@/utils/paycheckMonths";
 import { formatShortDate } from "@/utils/dates";
 import { buildDemoData } from "@/utils/demoData";
 import type { MonthGroup, PaycheckItem } from "@/components/paychecks/types";
+
+const TODAY_ICON_SIZE = 22;
 
 function keyExtractor(item: PaycheckItem) {
   return item.key;
@@ -67,20 +69,6 @@ export default function PaychecksScreen() {
     setSelectedMonthKey(getCurrentMonthKey());
   }, []);
 
-  const renderTodayButton = useCallback(
-    () => (
-      <Pressable
-        onPress={handleGoToToday}
-        hitSlop={MEASUREMENTS.hitSlop}
-        accessibilityRole="button"
-        accessibilityLabel={t("paychecks.goToThisMonth")}
-      >
-        <AppText variant="bodyStrong" color="primaryText">{t("paychecks.today")}</AppText>
-      </Pressable>
-    ),
-    [handleGoToToday, t]
-  );
-
   const months = useMemo(
     () => buildMonthGroups(incomeSources, expenses, assignments, paycheckOverrides, new Date()),
     // t changes with the language, which changes the month labels
@@ -96,11 +84,6 @@ export default function PaychecksScreen() {
   // The current month can drop out of the list once its last paycheck passes,
   // so "today" is whichever month comes first.
   const isAwayFromToday = !!selectedMonth && selectedMonth.key !== months[0]?.key;
-
-  const screenOptions = useMemo(
-    () => ({ headerLeft: isAwayFromToday ? renderTodayButton : undefined }),
-    [isAwayFromToday, renderTodayButton]
-  );
 
   const paychecks = useMemo(() => selectedMonth?.paychecks ?? [], [selectedMonth]);
 
@@ -121,7 +104,21 @@ export default function PaychecksScreen() {
     () =>
       selectedMonth ? (
         <View>
-          <AppText variant="meta">{t("paychecks.leftAfterBills", { month: selectedMonth.longLabel })}</AppText>
+          <View style={styles.heroLabelRow}>
+            <AppText variant="meta" style={styles.heroLabel}>
+              {t("paychecks.leftAfterBills", { month: selectedMonth.longLabel })}
+            </AppText>
+            {isAwayFromToday ? (
+              <Pressable
+                onPress={handleGoToToday}
+                hitSlop={MEASUREMENTS.hitSlop}
+                accessibilityRole="button"
+                accessibilityLabel={t("paychecks.goToThisMonth")}
+              >
+                <Ionicons name="today-outline" size={TODAY_ICON_SIZE} color={colors.primaryText} />
+              </Pressable>
+            ) : null}
+          </View>
           <AppHeroAmount amount={selectedMonth.remaining} />
           <AppText variant="meta" style={styles.heroMeta}>
             {t("paychecks.heroMeta", {
@@ -156,7 +153,18 @@ export default function PaychecksScreen() {
           />
         </View>
       ) : null,
-    [selectedMonth, months, currentMonthKey, shortElsewhere, handleShowShort, colors, formatMoney, t]
+    [
+      selectedMonth,
+      months,
+      currentMonthKey,
+      isAwayFromToday,
+      handleGoToToday,
+      shortElsewhere,
+      handleShowShort,
+      colors,
+      formatMoney,
+      t,
+    ]
   );
 
   const listFooter = useMemo(
@@ -183,7 +191,6 @@ export default function PaychecksScreen() {
   // element after the store rehydrates drops the native large title.
   return (
     <View style={containerStyle}>
-      <Stack.Screen options={screenOptions} />
       {incomeSources.length === 0 ? (
         <Welcome onAddIncome={handleAddIncome} onTrySample={handleTrySample} />
       ) : (
@@ -210,6 +217,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: MEASUREMENTS.spacing.gutter,
     paddingTop: MEASUREMENTS.spacing.md,
     paddingBottom: MEASUREMENTS.spacing.bottom,
+  },
+  heroLabelRow: {
+    // Reserve the icon's height so the hero does not jump when it appears
+    minHeight: TODAY_ICON_SIZE,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: MEASUREMENTS.spacing.md,
+  },
+  heroLabel: {
+    flexShrink: 1,
   },
   heroMeta: {
     marginTop: MEASUREMENTS.spacing.xs,

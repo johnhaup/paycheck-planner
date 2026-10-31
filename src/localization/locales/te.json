@@ -35,7 +35,6 @@
     "history": "గత జీతాలు"
   },
   "paychecks": {
-    "today": "ఈరోజు",
     "goToThisMonth": "ఈ నెలకు వెళ్లు",
     "leftAfterBills": "%{month} · మిగిలింది",
     "heroMeta": "%{income} ఆదాయం · %{assigned} కేటాయించారు",

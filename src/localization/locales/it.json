@@ -36,7 +36,6 @@
     "history": "Stipendi passati"
   },
   "paychecks": {
-    "today": "Oggi",
     "goToThisMonth": "Vai a questo mese",
     "leftAfterBills": "%{month} · rimanente",
     "heroMeta": "%{income} in entrata · %{assigned} assegnati",

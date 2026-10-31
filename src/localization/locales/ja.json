@@ -35,7 +35,6 @@
     "history": "過去の給料"
   },
   "paychecks": {
-    "today": "今日",
     "goToThisMonth": "今月へ移動",
     "leftAfterBills": "%{month} · 残り",
     "heroMeta": "収入 %{income} · 割り当て %{assigned}",

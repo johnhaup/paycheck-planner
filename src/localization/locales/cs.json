@@ -35,7 +35,6 @@
     "history": "Minulé výplaty"
   },
   "paychecks": {
-    "today": "Dnes",
     "goToThisMonth": "Přejít na tento měsíc",
     "leftAfterBills": "%{month} · zbývá",
     "heroMeta": "Příjem %{income} · přiřazeno %{assigned}",

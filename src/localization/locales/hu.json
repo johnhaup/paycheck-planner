@@ -36,7 +36,6 @@
     "history": "Korábbi fizetések"
   },
   "paychecks": {
-    "today": "Ma",
     "goToThisMonth": "Ugrás erre a hónapra",
     "leftAfterBills": "%{month} · marad",
     "heroMeta": "%{income} bevétel · %{assigned} beosztva",

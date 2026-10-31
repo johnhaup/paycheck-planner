@@ -39,7 +39,6 @@
     "history": "আগের বেতন"
   },
   "paychecks": {
-    "today": "আজ",
     "goToThisMonth": "এই মাসে যান",
     "leftAfterBills": "%{month} · বাকি",
     "heroMeta": "%{income} এসেছে · %{assigned} বরাদ্দ",

@@ -39,7 +39,6 @@
     "history": "पिछली सैलरी"
   },
   "paychecks": {
-    "today": "आज",
     "goToThisMonth": "इस महीने पर जाएं",
     "leftAfterBills": "%{month} · बचा",
     "heroMeta": "%{income} आया · %{assigned} असाइन",

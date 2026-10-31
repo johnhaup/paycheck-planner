@@ -35,7 +35,6 @@
     "history": "Aiemmat palkat"
   },
   "paychecks": {
-    "today": "Tänään",
     "goToThisMonth": "Siirry tähän kuukauteen",
     "leftAfterBills": "%{month} · jäljellä",
     "heroMeta": "%{income} tuloja · %{assigned} kohdistettu",
