@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Platform } from "react-native";
-import { NativeTabs } from "expo-router/unstable-native-tabs";
+import { NativeTabs } from "expo-router/native-tabs";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
 

@@ -1,4 +1,5 @@
 import * as Notifications from "expo-notifications";
+import { AndroidImportance, IosAuthorizationStatus } from "expo-notifications";
 import { Platform } from "react-native";
 import { addDays, setHours, setMinutes, startOfDay, subDays } from "date-fns";
 import { t } from "@/localization/i18n";
@@ -41,7 +42,7 @@ interface SyncInput {
 function isGranted(permissions: Notifications.NotificationPermissionsStatus): boolean {
   return (
     permissions.granted ||
-    permissions.ios?.status === Notifications.IosAuthorizationStatus.PROVISIONAL
+    permissions.ios?.status === IosAuthorizationStatus.PROVISIONAL
   );
 }
 
@@ -49,7 +50,7 @@ async function ensureChannel() {
   if (Platform.OS !== "android") return;
   await Notifications.setNotificationChannelAsync(CHANNEL_ID, {
     name: t("notifications.channelName"),
-    importance: Notifications.AndroidImportance.DEFAULT,
+    importance: AndroidImportance.DEFAULT,
   });
 }
 

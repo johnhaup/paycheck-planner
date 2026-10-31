@@ -180,7 +180,7 @@ function PaycheckMonths() {
             trailing={String(selectedMonth.paychecks.length)}
           />
         </View>
-      ) : null,
+      ) : undefined,
     [
       selectedMonth,
       months,
