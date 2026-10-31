@@ -43,14 +43,8 @@ function getCurrentMonthKey() {
 export default function PaychecksScreen() {
   const router = useRouter();
   const colors = useColors();
-  const { format: formatMoney } = useMoneyFormat();
   const t = useT();
-  const incomeSources = useStore((s) => s.incomeSources);
-  const expenses = useStore((s) => s.expenses);
-  const assignments = useStore((s) => s.assignments);
-  const paycheckOverrides = useStore((s) => s.paycheckOverrides);
-  const [selectedMonthKey, setSelectedMonthKey] = useState(getCurrentMonthKey);
-  const renderPaycheck = usePaycheckCardRenderer();
+  const hasIncome = useStore((s) => s.incomeSources.length > 0);
 
   const handleAddIncome = useCallback(() => {
     router.push("/income-form");
@@ -60,6 +54,40 @@ export default function PaychecksScreen() {
     useStore.setState({ ...buildDemoData(new Date()), paycheckOverrides: [] });
     toast(t("toasts.sampleLoaded"));
   }, [t]);
+
+  const containerStyle = useMemo(
+    () => [styles.container, { backgroundColor: colors.screenBackground }],
+    [colors]
+  );
+
+  // Keep one root View across the empty and list states; swapping the root
+  // element after the store rehydrates drops the native large title.
+  return (
+    <View style={containerStyle}>
+      {hasIncome ? (
+        <PaycheckMonths />
+      ) : (
+        <Welcome onAddIncome={handleAddIncome} onTrySample={handleTrySample} />
+      )}
+    </View>
+  );
+}
+
+/**
+ * The month chart and the selected month's paychecks. Mounted only while there is
+ * income, so the selected month starts over at this month after Erase all data.
+ */
+function PaycheckMonths() {
+  const router = useRouter();
+  const colors = useColors();
+  const { format: formatMoney } = useMoneyFormat();
+  const t = useT();
+  const incomeSources = useStore((s) => s.incomeSources);
+  const expenses = useStore((s) => s.expenses);
+  const assignments = useStore((s) => s.assignments);
+  const paycheckOverrides = useStore((s) => s.paycheckOverrides);
+  const [selectedMonthKey, setSelectedMonthKey] = useState(getCurrentMonthKey);
+  const renderPaycheck = usePaycheckCardRenderer();
 
   const handleOpenHistory = useCallback(() => {
     router.push("/history");
@@ -182,30 +210,17 @@ export default function PaychecksScreen() {
     [handleOpenHistory, colors, t]
   );
 
-  const containerStyle = useMemo(
-    () => [styles.container, { backgroundColor: colors.screenBackground }],
-    [colors]
-  );
-
-  // Keep one root View across the empty and list states; swapping the root
-  // element after the store rehydrates drops the native large title.
   return (
-    <View style={containerStyle}>
-      {incomeSources.length === 0 ? (
-        <Welcome onAddIncome={handleAddIncome} onTrySample={handleTrySample} />
-      ) : (
-        <FlatList
-          data={paychecks}
-          keyExtractor={keyExtractor}
-          renderItem={renderPaycheck}
-          ListHeaderComponent={listHeader}
-          ListFooterComponent={listFooter}
-          contentInsetAdjustmentBehavior="automatic"
-          contentContainerStyle={styles.listContent}
-          showsVerticalScrollIndicator={false}
-        />
-      )}
-    </View>
+    <FlatList
+      data={paychecks}
+      keyExtractor={keyExtractor}
+      renderItem={renderPaycheck}
+      ListHeaderComponent={listHeader}
+      ListFooterComponent={listFooter}
+      contentInsetAdjustmentBehavior="automatic"
+      contentContainerStyle={styles.listContent}
+      showsVerticalScrollIndicator={false}
+    />
   );
 }
 
