@@ -47,3 +47,7 @@ ship/screenshots/framed/*
 
 # Local EAS build output
 build/
+
+# Local signing credentials (never commit)
+credentials.json
+credentials/
