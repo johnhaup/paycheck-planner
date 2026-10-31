@@ -5,9 +5,8 @@ import {
   Pressable,
   SectionList,
   StyleSheet,
-  type NativeSyntheticEvent,
   type SectionListData,
-  type TextInputFocusEventData,
+  type NativeSyntheticEvent,
 } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -103,7 +102,7 @@ export default function ExpensesScreen() {
     [handleEdit, handleDelete]
   );
 
-  const handleSearch = useCallback((e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+  const handleSearch = useCallback((e: NativeSyntheticEvent<{ text: string }>) => {
     setQuery(e.nativeEvent.text);
   }, []);
 

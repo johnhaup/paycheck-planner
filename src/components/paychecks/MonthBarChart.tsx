@@ -7,6 +7,7 @@ import {
   useWindowDimensions,
   type NativeScrollEvent,
   type NativeSyntheticEvent,
+  type ScrollViewInstance,
 } from "react-native";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
@@ -30,7 +31,7 @@ interface Props {
 
 /** Each bar is a month's money left after bills; tapping one selects that month. */
 export function MonthBarChart({ months, selectedKey, currentKey, onSelect }: Props) {
-  const scrollRef = useRef<ScrollView>(null);
+  const scrollRef = useRef<ScrollViewInstance>(null);
   const scrollOffset = useRef(0);
   // The chart runs edge to edge, so the window is its viewport
   const { width: viewportWidth } = useWindowDimensions();

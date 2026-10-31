@@ -45,7 +45,9 @@
             "ccacheEnabled": true
           }
         }
-      ]
+      ],
+      "expo-sharing",
+      "expo-status-bar"
     ],
     "extra": {
       "router": {},
