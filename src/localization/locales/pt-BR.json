@@ -35,7 +35,6 @@
     "history": "Pagamentos anteriores"
   },
   "paychecks": {
-    "today": "Hoje",
     "goToThisMonth": "Ir para este mês",
     "leftAfterBills": "%{month} · sobra",
     "heroMeta": "%{income} recebidos · %{assigned} atribuídos",

@@ -35,7 +35,6 @@
     "history": "الرواتب السابقة"
   },
   "paychecks": {
-    "today": "اليوم",
     "goToThisMonth": "الانتقال إلى هذا الشهر",
     "leftAfterBills": "%{month} · المتبقي",
     "heroMeta": "%{income} دخل · %{assigned} مخصص",

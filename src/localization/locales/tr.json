@@ -35,7 +35,6 @@
     "history": "Geçmiş maaşlar"
   },
   "paychecks": {
-    "today": "Bugün",
     "goToThisMonth": "Bu aya git",
     "leftAfterBills": "%{month} · kalan",
     "heroMeta": "%{income} gelir · %{assigned} atanmış",

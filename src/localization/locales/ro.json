@@ -36,7 +36,6 @@
     "history": "Salarii anterioare"
   },
   "paychecks": {
-    "today": "Azi",
     "goToThisMonth": "Mergi la luna curentă",
     "leftAfterBills": "%{month} · rămas",
     "heroMeta": "%{income} venit · %{assigned} alocat",

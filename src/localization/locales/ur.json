@@ -35,7 +35,6 @@
     "history": "پچھلی تنخواہیں"
   },
   "paychecks": {
-    "today": "آج",
     "goToThisMonth": "اس مہینے پر جائیں",
     "leftAfterBills": "%{month} · باقی",
     "heroMeta": "%{income} آمدنی · %{assigned} مختص",

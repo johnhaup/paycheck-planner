@@ -35,7 +35,6 @@
     "history": "Cobros anteriores"
   },
   "paychecks": {
-    "today": "Hoy",
     "goToThisMonth": "Ir a este mes",
     "leftAfterBills": "%{month} · lo que queda",
     "heroMeta": "%{income} de ingresos · %{assigned} asignados",

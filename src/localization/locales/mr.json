@@ -38,7 +38,6 @@
     "history": "मागील पगार"
   },
   "paychecks": {
-    "today": "आज",
     "goToThisMonth": "या महिन्यावर जा",
     "leftAfterBills": "%{month} · शिल्लक",
     "heroMeta": "%{income} आले · %{assigned} नेमून दिले",

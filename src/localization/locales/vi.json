@@ -35,7 +35,6 @@
     "history": "Kỳ lương trước"
   },
   "paychecks": {
-    "today": "Hôm nay",
     "goToThisMonth": "Về tháng này",
     "leftAfterBills": "%{month} · còn lại",
     "heroMeta": "Thu %{income} · đã phân bổ %{assigned}",

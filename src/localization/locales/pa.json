@@ -35,7 +35,6 @@
     "history": "ਪਿਛਲੀਆਂ ਤਨਖ਼ਾਹਾਂ"
   },
   "paychecks": {
-    "today": "ਅੱਜ",
     "goToThisMonth": "ਇਸ ਮਹੀਨੇ 'ਤੇ ਜਾਓ",
     "leftAfterBills": "%{month} · ਬਾਕੀ",
     "heroMeta": "%{income} ਆਏ · %{assigned} ਅਸਾਈਨ",

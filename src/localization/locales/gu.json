@@ -39,7 +39,6 @@
     "history": "પાછલા પગાર"
   },
   "paychecks": {
-    "today": "આજે",
     "goToThisMonth": "આ મહિના પર જાઓ",
     "leftAfterBills": "%{month} · બાકી",
     "heroMeta": "%{income} આવ્યા · %{assigned} ફાળવેલ",

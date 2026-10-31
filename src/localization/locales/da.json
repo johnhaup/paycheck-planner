@@ -35,7 +35,6 @@
     "history": "Tidligere lønninger"
   },
   "paychecks": {
-    "today": "I dag",
     "goToThisMonth": "Gå til denne måned",
     "leftAfterBills": "%{month} · tilbage",
     "heroMeta": "%{income} ind · %{assigned} tildelt",

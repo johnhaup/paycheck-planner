@@ -35,7 +35,6 @@
     "history": "เงินเดือนที่ผ่านมา"
   },
   "paychecks": {
-    "today": "วันนี้",
     "goToThisMonth": "ไปที่เดือนนี้",
     "leftAfterBills": "%{month} · เหลือ",
     "heroMeta": "รายรับ %{income} · จัดสรรแล้ว %{assigned}",

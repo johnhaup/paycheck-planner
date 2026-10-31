@@ -35,7 +35,6 @@
     "history": "过往工资"
   },
   "paychecks": {
-    "today": "今天",
     "goToThisMonth": "回到本月",
     "leftAfterBills": "%{month} · 剩余",
     "heroMeta": "收入 %{income} · 已分配 %{assigned}",

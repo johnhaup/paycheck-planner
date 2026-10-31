@@ -35,7 +35,6 @@
     "history": "지난 급여"
   },
   "paychecks": {
-    "today": "오늘",
     "goToThisMonth": "이번 달로 이동",
     "leftAfterBills": "%{month} · 남은 금액",
     "heroMeta": "수입 %{income} · 배정 %{assigned}",

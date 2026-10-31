@@ -38,7 +38,6 @@
     "history": "Past paychecks"
   },
   "paychecks": {
-    "today": "Today",
     "goToThisMonth": "Go to this month",
     "leftAfterBills": "%{month} · left over",
     "heroMeta": "%{income} in · %{assigned} assigned",

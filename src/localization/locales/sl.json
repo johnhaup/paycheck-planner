@@ -35,7 +35,6 @@
     "history": "Pretekle plače"
   },
   "paychecks": {
-    "today": "Danes",
     "goToThisMonth": "Pojdi na ta mesec",
     "leftAfterBills": "%{month} · ostane",
     "heroMeta": "Prihodek %{income} · dodeljeno %{assigned}",

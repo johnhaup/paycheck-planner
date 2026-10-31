@@ -35,7 +35,6 @@
     "history": "ପୂର୍ବ ଦରମା"
   },
   "paychecks": {
-    "today": "ଆଜି",
     "goToThisMonth": "ଏହି ମାସକୁ ଯାଆନ୍ତୁ",
     "leftAfterBills": "%{month} · ବାକି",
     "heroMeta": "%{income} ଆସିଲା · %{assigned} ଆସାଇନ୍",

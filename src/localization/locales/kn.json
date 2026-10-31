@@ -35,7 +35,6 @@
     "history": "ಹಿಂದಿನ ಸಂಬಳಗಳು"
   },
   "paychecks": {
-    "today": "ಇಂದು",
     "goToThisMonth": "ಈ ತಿಂಗಳಿಗೆ ಹೋಗಿ",
     "leftAfterBills": "%{month} · ಉಳಿದಿದೆ",
     "heroMeta": "%{income} ಆದಾಯ · %{assigned} ನಿಗದಿ",

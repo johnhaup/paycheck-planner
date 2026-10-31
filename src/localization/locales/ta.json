@@ -35,7 +35,6 @@
     "history": "முந்தைய சம்பளங்கள்"
   },
   "paychecks": {
-    "today": "இன்று",
     "goToThisMonth": "இந்த மாதத்திற்குச் செல்",
     "leftAfterBills": "%{month} · மீதம்",
     "heroMeta": "%{income} வரவு · %{assigned} ஒதுக்கீடு",

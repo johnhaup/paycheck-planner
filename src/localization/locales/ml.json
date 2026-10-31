@@ -35,7 +35,6 @@
     "history": "മുൻ ശമ്പളങ്ങൾ"
   },
   "paychecks": {
-    "today": "ഇന്ന്",
     "goToThisMonth": "ഈ മാസത്തിലേക്ക് പോകുക",
     "leftAfterBills": "%{month} · ബാക്കി",
     "heroMeta": "%{income} വരവ് · %{assigned} നീക്കിവെച്ചു",
