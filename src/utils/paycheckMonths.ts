@@ -11,7 +11,7 @@ import type { Expense, ExpenseAssignment, IncomeSource, PaycheckOverride } from 
 import type { MonthGroup, PaycheckExpense, PaycheckItem } from "@/components/paychecks/types";
 
 /** The current month plus this many full months after it. */
-const FULL_MONTHS_AHEAD = 5;
+const FULL_MONTHS_AHEAD = 11;
 /** How far back past paychecks go, in whole months before the current one. */
 const PAST_MONTHS = 6;
 

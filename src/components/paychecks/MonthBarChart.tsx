@@ -1,5 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef } from "react";
-import { Pressable, ScrollView, StyleSheet, View } from "react-native";
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  View,
+  useWindowDimensions,
+  type NativeScrollEvent,
+  type NativeSyntheticEvent,
+} from "react-native";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
@@ -11,6 +19,7 @@ import type { MonthGroup } from "@/components/paychecks/types";
 const BAR_MAX_HEIGHT = 86;
 const BAR_MIN_HEIGHT = 6;
 const COLUMN_WIDTH = 46;
+const COLUMN_GAP = MEASUREMENTS.spacing.md + 2;
 
 interface Props {
   months: MonthGroup[];
@@ -22,18 +31,33 @@ interface Props {
 /** Each bar is a month's money left after bills; tapping one selects that month. */
 export function MonthBarChart({ months, selectedKey, currentKey, onSelect }: Props) {
   const scrollRef = useRef<ScrollView>(null);
-  const firstKey = months[0]?.key;
+  const scrollOffset = useRef(0);
+  // The chart runs edge to edge, so the window is its viewport
+  const { width: viewportWidth } = useWindowDimensions();
+  const selectedIndex = months.findIndex((m) => m.key === selectedKey);
 
   const maxMagnitude = useMemo(
     () => Math.max(1, ...months.map((m) => Math.abs(m.remaining))),
     [months]
   );
 
+  const handleScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    scrollOffset.current = event.nativeEvent.contentOffset.x;
+  }, []);
+
+  // A month selected from elsewhere (Today, the shortfall line) can sit off
+  // screen in a year of columns; scroll just enough to show it.
   useEffect(() => {
-    if (selectedKey === firstKey) {
-      scrollRef.current?.scrollTo({ x: 0, animated: true });
+    if (selectedIndex < 0) return;
+    const left = MEASUREMENTS.spacing.gutter + selectedIndex * (COLUMN_WIDTH + COLUMN_GAP);
+    const right = left + COLUMN_WIDTH;
+    const offset = scrollOffset.current;
+    if (left < offset + MEASUREMENTS.spacing.gutter) {
+      scrollRef.current?.scrollTo({ x: left - MEASUREMENTS.spacing.gutter, animated: true });
+    } else if (right > offset + viewportWidth - MEASUREMENTS.spacing.gutter) {
+      scrollRef.current?.scrollTo({ x: right + MEASUREMENTS.spacing.gutter - viewportWidth, animated: true });
     }
-  }, [selectedKey, firstKey]);
+  }, [selectedIndex, viewportWidth]);
 
   return (
     <ScrollView
@@ -42,6 +66,8 @@ export function MonthBarChart({ months, selectedKey, currentKey, onSelect }: Pro
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={styles.content}
       style={styles.scroll}
+      onScroll={handleScroll}
+      scrollEventThrottle={16}
     >
       {months.map((month) => (
         <MonthBar
@@ -136,7 +162,7 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: MEASUREMENTS.spacing.gutter,
-    gap: MEASUREMENTS.spacing.md + 2,
+    gap: COLUMN_GAP,
     alignItems: "flex-end",
   },
   column: {
