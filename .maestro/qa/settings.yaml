@@ -1,5 +1,6 @@
 # Protects Settings: appearance switching, the Language picker, and
-# Erase all data returning the app to the Welcome screen.
+# Erase all data with Undo from its toast, and the erase returning the app to
+# the Welcome screen.
 appId: com.johnhaup.paycheckplanner
 name: settings
 ---
@@ -55,7 +56,32 @@ name: settings
     visible: "Language, English.*"
     timeout: 10000
 
-# Erase all data
+# Erase all data, then Undo from the toast. The "All data erased" toast renders
+# over the Settings modal; before HAU-60 the LogBox banner hid every toast from
+# Maestro, so this Undo tap also protects HAU-60.
+- scrollUntilVisible:
+    element: ".*Erase all data.*"
+- tapOn: ".*Erase all data.*"
+- extendedWaitUntil:
+    visible: "Delete"
+    timeout: 5000
+- tapOn: "Delete"
+- extendedWaitUntil:
+    visible: "Undo"
+    timeout: 5000
+- takeScreenshot: erased-undo-toast
+- tapOn: "Undo"
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- assertVisible: "[A-Z]{3}, [0-9]+, Brightline Co\\..*"
+
+# Erase again and let it stand: Welcome comes back
+- tapOn: "Settings"
+- extendedWaitUntil:
+    visible: "Appearance"
+    timeout: 10000
 - scrollUntilVisible:
     element: ".*Erase all data.*"
 - tapOn: ".*Erase all data.*"
