@@ -4,9 +4,12 @@
 # Conventions for every flow in this folder (dev build + Metro on the QA sim):
 # - The Settings gear and its close button are icon-only, so they are matched by
 #   their Ionicons glyphs ("" settings-outline, "" close).
-# - After the first toast, React Native's LogBox warning banner covers the native
-#   tab bar and is invisible to Maestro, so later tab switches use the app's deep
-#   links (paycheck-planner://income, //expenses, // for Paychecks).
+# - Tabs are switched on the real tab bar. Before HAU-60 the Reanimated
+#   dependencies warning (from sonner-native's toast hooks) raised the LogBox
+#   banner over the tab bar after the first toast, invisible to Maestro, and the
+#   flows had to use deep links (paycheck-planner://income, //expenses, // for
+#   Paychecks); the deep links still work and other flows keep them for jumps.
+#   The tab taps after "Try with sample data" below are what protect HAU-60.
 appId: com.johnhaup.paycheckplanner
 name: smoke
 ---
@@ -41,19 +44,21 @@ name: smoke
 - assertVisible: "[A-Z]{3}, [0-9]+, Brightline Co\\..*"
 - takeScreenshot: paychecks
 
-- openLink: paycheck-planner://income
+# The sample-data toast is the first toast; the tab bar must stay reachable (HAU-60)
+- assertNotVisible: "Open debugger to view warnings."
+- tapOn: "Income"
 - extendedWaitUntil:
     visible: "Per month"
     timeout: 10000
 - assertVisible: ".*Brightline Co\\..*"
 - takeScreenshot: income
-- openLink: paycheck-planner://expenses
+- tapOn: "Expenses"
 - extendedWaitUntil:
     visible: ".* a month across .*"
     timeout: 10000
 - assertVisible: ".*Groceries.*"
 - takeScreenshot: expenses
-- openLink: paycheck-planner://
+- tapOn: "Paychecks"
 - extendedWaitUntil:
     visible: ".* · left over"
     timeout: 10000
