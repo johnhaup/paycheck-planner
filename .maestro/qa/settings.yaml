@@ -17,12 +17,32 @@ name: settings
     visible: "Hide cents"
     timeout: 10000
 
-# Appearance
-- tapOn: "Dark"
-- takeScreenshot: settings-dark
+# Appearance. A fresh install defaults to Dark. The segments expose
+# accessibilityState.selected, so wait for it before each screenshot: under
+# load the re-render can land after the tap reports done.
+- assertVisible:
+    text: "Dark"
+    selected: true
 - tapOn: "Light"
+- extendedWaitUntil:
+    visible:
+      text: "Light"
+      selected: true
+    timeout: 5000
 - takeScreenshot: settings-light
+- tapOn: "Dark"
+- extendedWaitUntil:
+    visible:
+      text: "Dark"
+      selected: true
+    timeout: 5000
+- takeScreenshot: settings-dark
 - tapOn: "System"
+- extendedWaitUntil:
+    visible:
+      text: "System"
+      selected: true
+    timeout: 5000
 
 # Language picker round trip
 - tapOn: "Language, .*"
