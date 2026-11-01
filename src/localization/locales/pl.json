@@ -32,7 +32,8 @@
     "payDate": "Dzień wypłaty",
     "language": "Język",
     "currency": "Waluta",
-    "history": "Poprzednie wypłaty"
+    "history": "Poprzednie wypłaty",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Przejdź do bieżącego miesiąca",
@@ -348,5 +349,33 @@
     "leftBody": "Każda wypłata pokazuje swoje rachunki i to, co zostaje.",
     "addIncome": "Dodaj źródło dochodu",
     "trySample": "Wypróbuj z przykładowymi danymi"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "Jednorazowy zakup. Bez subskrypcji.",
+    "features": {
+      "incomes": "Dodaj więcej niż jedno źródło dochodu",
+      "projection": "Zobacz wypłaty na cały rok",
+      "reminders": "Przypomnienia o dniu wypłaty i nieopłaconych rachunkach",
+      "setAsides": "Odłożone kwoty i cele oszczędnościowe",
+      "overrides": "Zmień rachunek lub kwotę wypłaty tylko dla jednej wypłaty",
+      "history": "Wcześniejsze wypłaty z poprzednich miesięcy",
+      "csv": "Eksportuj rachunki do CSV"
+    },
+    "buy": "Kup za %{price}",
+    "restore": "Przywróć zakupy",
+    "priceUnavailable": "Nie można połączyć się ze sklepem. Sprawdź połączenie i spróbuj ponownie.",
+    "retry": "Spróbuj ponownie",
+    "unlockedTitle": "Pro jest odblokowane",
+    "unlockedBody": "Dziękujemy za wsparcie Paycheck Planner. Wszystko w Pro jest już dostępne.",
+    "footnote": "Zapłać raz i zachowaj. Udostępnianie rodzinne jest w zestawie. Zainstalowałeś aplikację ponownie lub masz nowy telefon? Użyj opcji Przywróć zakupy.",
+    "unlocked": "Odblokowano",
+    "oneTime": "Jednorazowy zakup",
+    "moreMonths": "Zobacz rok do przodu",
+    "earlierMonths": "Zobacz wcześniejsze miesiące",
+    "restored": "Przywrócono Pro",
+    "nothingToRestore": "Nie znaleziono zakupu Pro dla tego konta",
+    "purchaseFailed": "Zakup się nie powiódł"
   }
 }

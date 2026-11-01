@@ -11,6 +11,7 @@ import { useStackScreenOptions } from "@/hooks/useStackScreenOptions";
 import { useT } from "@/hooks/useLocale";
 import { usePaydayReminders } from "@/hooks/usePaydayReminders";
 import { useThemeStore } from "@/stores/themeStore";
+import { useProEntitlement } from "@/services/pro";
 import { MEASUREMENTS } from "@/constants/measurements";
 
 // sonner-native 0.27.0 passes dependency arrays to useDerivedValue/useAnimatedStyle,
@@ -29,15 +30,16 @@ export default function RootLayout() {
   const t = useT();
   const themeMode = useThemeStore((s) => s.themeMode);
   usePaydayReminders();
+  useProEntitlement();
 
-  const handleCloseSettings = useCallback(() => {
+  const handleCloseModal = useCallback(() => {
     router.back();
   }, [router]);
 
-  const renderSettingsCloseButton = useCallback(
+  const renderCloseButton = useCallback(
     () => (
       <Pressable
-        onPress={handleCloseSettings}
+        onPress={handleCloseModal}
         hitSlop={MEASUREMENTS.hitSlop}
         accessibilityRole="button"
         accessibilityLabel={t("common.close")}
@@ -45,7 +47,7 @@ export default function RootLayout() {
         <Ionicons name="close" size={24} color={colors.textDefault} />
       </Pressable>
     ),
-    [handleCloseSettings, colors, t]
+    [handleCloseModal, colors, t]
   );
 
   const navigationTheme = useMemo(() => {
@@ -111,8 +113,13 @@ export default function RootLayout() {
   );
 
   const settingsOptions = useMemo(
-    () => ({ ...modalOptions, title: t("screens.settings"), headerRight: renderSettingsCloseButton }),
-    [modalOptions, renderSettingsCloseButton, t]
+    () => ({ ...modalOptions, title: t("screens.settings"), headerRight: renderCloseButton }),
+    [modalOptions, renderCloseButton, t]
+  );
+
+  const paywallOptions = useMemo(
+    () => ({ ...modalOptions, title: t("screens.pro"), headerRight: renderCloseButton }),
+    [modalOptions, renderCloseButton, t]
   );
 
   const toastOptions = useMemo(
@@ -144,6 +151,7 @@ export default function RootLayout() {
           <Stack.Screen name="pay-date-detail" options={payDateDetailOptions} />
           <Stack.Screen name="history" options={historyOptions} />
           <Stack.Screen name="settings" options={settingsOptions} />
+          <Stack.Screen name="paywall" options={paywallOptions} />
           <Stack.Screen name="language" options={languageOptions} />
           <Stack.Screen name="currency" options={currencyOptions} />
           <Stack.Screen name="expense-amount" options={sheetOptions} />

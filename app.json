@@ -47,7 +47,9 @@
         }
       ],
       "expo-sharing",
-      "expo-status-bar"
+      "expo-status-bar",
+      "expo-iap",
+      "./plugins/withStoreKitConfiguration.js"
     ],
     "extra": {
       "router": {},

@@ -1,0 +1,41 @@
+{
+  "identifier" : "9F2C1D3E-7A4B-4C5D-8E6F-0A1B2C3D4E5F",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : true,
+      "internalID" : "6825905364",
+      "localizations" : [
+        {
+          "description" : "More income sources, a year ahead, reminders, set-asides and more.",
+          "displayName" : "Paycheck Planner Pro",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.johnhaup.paycheckplanner.pro",
+      "referenceName" : "Pro",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6825905363",
+    "_developerTeamID" : "EKHA8NK939",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 783648000,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

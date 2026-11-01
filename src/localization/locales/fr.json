@@ -33,7 +33,8 @@
     "payDate": "Date de paie",
     "language": "Langue",
     "currency": "Devise",
-    "history": "Paies passées"
+    "history": "Paies passées",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Aller à ce mois",
@@ -345,5 +346,33 @@
     "leftBody": "Chaque paie affiche ses factures et ce qu'il reste.",
     "addIncome": "Ajouter une source de revenus",
     "trySample": "Essayer avec des données d'exemple"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "Achat unique. Sans abonnement.",
+    "features": {
+      "incomes": "Ajoutez plus d'une source de revenus",
+      "projection": "Voyez une année entière de paies",
+      "reminders": "Rappels du jour de paie et des factures impayées",
+      "setAsides": "Sommes mises de côté et objectifs d'épargne",
+      "overrides": "Modifiez une facture ou un montant de paie pour une seule paie",
+      "history": "Paies des mois précédents",
+      "csv": "Exportez les factures en CSV"
+    },
+    "buy": "Acheter pour %{price}",
+    "restore": "Restaurer les achats",
+    "priceUnavailable": "Impossible de joindre la boutique. Vérifiez votre connexion et réessayez.",
+    "retry": "Réessayer",
+    "unlockedTitle": "Pro est débloqué",
+    "unlockedBody": "Merci de soutenir Paycheck Planner. Tout ce que contient Pro est désormais disponible.",
+    "footnote": "Payez une fois, c'est à vous. Le Partage familial est inclus. Application réinstallée ou nouveau téléphone ? Utilisez Restaurer les achats.",
+    "unlocked": "Débloqué",
+    "oneTime": "Achat unique",
+    "moreMonths": "Voyez un an à l'avance",
+    "earlierMonths": "Voyez les mois précédents",
+    "restored": "Pro restauré",
+    "nothingToRestore": "Aucun achat Pro trouvé pour ce compte",
+    "purchaseFailed": "L'achat n'a pas abouti"
   }
 }

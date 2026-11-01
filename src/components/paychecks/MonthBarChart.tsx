@@ -9,12 +9,14 @@ import {
   type NativeSyntheticEvent,
   type ScrollViewInstance,
 } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { hapticSelection } from "@/utils/haptics";
+import { ProBadge } from "@/components/ProBadge";
 import type { MonthGroup } from "@/components/paychecks/types";
 
 const BAR_MAX_HEIGHT = 86;
@@ -27,10 +29,12 @@ interface Props {
   selectedKey: string;
   currentKey: string;
   onSelect: (key: string) => void;
+  /** Free tier: a locked column after the last month opens the paywall for the rest of the year */
+  onUnlockMore?: () => void;
 }
 
 /** Each bar is a month's money left after bills; tapping one selects that month. */
-export function MonthBarChart({ months, selectedKey, currentKey, onSelect }: Props) {
+export function MonthBarChart({ months, selectedKey, currentKey, onSelect, onUnlockMore }: Props) {
   const scrollRef = useRef<ScrollViewInstance>(null);
   const scrollOffset = useRef(0);
   // The chart runs edge to edge, so the window is its viewport
@@ -80,6 +84,7 @@ export function MonthBarChart({ months, selectedKey, currentKey, onSelect }: Pro
           onSelect={onSelect}
         />
       ))}
+      {onUnlockMore ? <LockedMonths onPress={onUnlockMore} /> : null}
     </ScrollView>
   );
 }
@@ -157,6 +162,35 @@ function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect }: MonthB
   );
 }
 
+interface LockedMonthsProps {
+  onPress: () => void;
+}
+
+function LockedMonths({ onPress }: LockedMonthsProps) {
+  const colors = useColors();
+  const t = useT();
+
+  const barStyle = useMemo(() => [styles.bar, styles.lockedBar, { borderColor: colors.border }], [colors]);
+
+  return (
+    <Pressable
+      style={styles.column}
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={t("pro.moreMonths")}
+    >
+      <ProBadge />
+      <View style={barStyle}>
+        <Ionicons name="lock-closed-outline" size={16} color={colors.textMuted} />
+      </View>
+      <AppText variant="meta" color="textMuted">
+        …
+      </AppText>
+      <View style={styles.dot} />
+    </Pressable>
+  );
+}
+
 const styles = StyleSheet.create({
   scroll: {
     flexGrow: 0,
@@ -185,5 +219,12 @@ const styles = StyleSheet.create({
   bar: {
     alignSelf: "stretch",
     borderRadius: MEASUREMENTS.radius.md,
+  },
+  lockedBar: {
+    height: BAR_MAX_HEIGHT / 2,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderStyle: "dashed",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

@@ -35,7 +35,8 @@
     "payDate": "Data de cobrament",
     "language": "Idioma",
     "currency": "Moneda",
-    "history": "Cobraments anteriors"
+    "history": "Cobraments anteriors",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Ves a aquest mes",
@@ -347,5 +348,33 @@
     "leftBody": "Cada cobrament mostra les seves factures i el que sobra.",
     "addIncome": "Afegeix una font d'ingressos",
     "trySample": "Prova-ho amb dades de mostra"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "Compra única. Sense subscripció.",
+    "features": {
+      "incomes": "Afegeix més d'una font d'ingressos",
+      "projection": "Mira un any sencer de cobraments",
+      "reminders": "Recordatoris del dia de cobrament i de factures pendents",
+      "setAsides": "Reserves i objectius d'estalvi",
+      "overrides": "Canvia l'import d'una factura o d'un cobrament només per a un cobrament",
+      "history": "Cobraments de mesos anteriors",
+      "csv": "Exporta les factures en CSV"
+    },
+    "buy": "Compra per %{price}",
+    "restore": "Restaura les compres",
+    "priceUnavailable": "No s'ha pogut connectar amb la botiga. Comprova la connexió i torna-ho a provar.",
+    "retry": "Torna-ho a provar",
+    "unlockedTitle": "Pro desbloquejat",
+    "unlockedBody": "Gràcies per donar suport a Paycheck Planner. Tot el que inclou Pro ja està disponible.",
+    "footnote": "Paga una vegada i és teu. Inclou Compartir en família. Has reinstal·lat l'app o tens un telèfon nou? Fes servir Restaura les compres.",
+    "unlocked": "Desbloquejat",
+    "oneTime": "Compra única",
+    "moreMonths": "Mira un any endavant",
+    "earlierMonths": "Mira mesos anteriors",
+    "restored": "Pro restaurat",
+    "nothingToRestore": "No s'ha trobat cap compra de Pro per a aquest compte",
+    "purchaseFailed": "La compra no s'ha completat"
   }
 }

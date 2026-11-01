@@ -32,7 +32,8 @@
     "payDate": "Ngày nhận lương",
     "language": "Ngôn ngữ",
     "currency": "Tiền tệ",
-    "history": "Kỳ lương trước"
+    "history": "Kỳ lương trước",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Về tháng này",
@@ -342,5 +343,33 @@
     "leftBody": "Mỗi kỳ lương hiển thị hóa đơn và số tiền còn lại.",
     "addIncome": "Thêm nguồn thu nhập",
     "trySample": "Dùng thử với dữ liệu mẫu"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "Mua một lần. Không đăng ký định kỳ.",
+    "features": {
+      "incomes": "Thêm nhiều hơn một nguồn thu nhập",
+      "projection": "Xem lương của cả một năm",
+      "reminders": "Nhắc ngày nhận lương và hóa đơn chưa thanh toán",
+      "setAsides": "Khoản để dành và mục tiêu tiết kiệm",
+      "overrides": "Đổi một hóa đơn hoặc số tiền lương chỉ cho một kỳ lương",
+      "history": "Các kỳ lương của những tháng trước",
+      "csv": "Xuất hóa đơn ra CSV"
+    },
+    "buy": "Mua với giá %{price}",
+    "restore": "Khôi phục giao dịch mua",
+    "priceUnavailable": "Không thể kết nối với cửa hàng. Hãy kiểm tra kết nối và thử lại.",
+    "retry": "Thử lại",
+    "unlockedTitle": "Đã mở khóa Pro",
+    "unlockedBody": "Cảm ơn bạn đã ủng hộ Paycheck Planner. Mọi thứ trong Pro giờ đã sẵn sàng.",
+    "footnote": "Trả một lần là dùng luôn. Đã bao gồm Chia sẻ trong gia đình. Cài lại ứng dụng hoặc đổi điện thoại mới? Hãy dùng Khôi phục giao dịch mua.",
+    "unlocked": "Đã mở khóa",
+    "oneTime": "Mua một lần",
+    "moreMonths": "Xem trước một năm",
+    "earlierMonths": "Xem các tháng trước",
+    "restored": "Đã khôi phục Pro",
+    "nothingToRestore": "Không tìm thấy giao dịch mua Pro cho tài khoản này",
+    "purchaseFailed": "Giao dịch mua không thành công"
   }
 }

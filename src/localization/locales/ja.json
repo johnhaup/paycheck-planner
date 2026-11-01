@@ -32,7 +32,8 @@
     "payDate": "給料日",
     "language": "言語",
     "currency": "通貨",
-    "history": "過去の給料"
+    "history": "過去の給料",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "今月へ移動",
@@ -342,5 +343,33 @@
     "leftBody": "給料ごとに支払いと残りの金額が表示されます。",
     "addIncome": "収入源を追加",
     "trySample": "サンプルデータで試す"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "1回限りの購入。サブスクリプションはありません。",
+    "features": {
+      "incomes": "複数の収入源を追加",
+      "projection": "1年分の給料を表示",
+      "reminders": "給料日と未払いの支払いのリマインダー",
+      "setAsides": "取り置きと貯金目標",
+      "overrides": "1回の給料だけ支払いや給料の金額を変更",
+      "history": "以前の月の給料",
+      "csv": "支払いをCSVで書き出し"
+    },
+    "buy": "%{price}で購入",
+    "restore": "購入を復元",
+    "priceUnavailable": "ストアに接続できませんでした。接続を確認してもう一度お試しください。",
+    "retry": "もう一度試す",
+    "unlockedTitle": "Proが解除されました",
+    "unlockedBody": "Paycheck Plannerをご利用いただきありがとうございます。Proのすべての機能が使えるようになりました。",
+    "footnote": "一度のお支払いでずっと使えます。ファミリー共有に対応。アプリを再インストールした場合や機種変更した場合は「購入を復元」をご利用ください。",
+    "unlocked": "解除済み",
+    "oneTime": "1回限りの購入",
+    "moreMonths": "1年先まで表示",
+    "earlierMonths": "以前の月を表示",
+    "restored": "Proを復元しました",
+    "nothingToRestore": "このアカウントのProの購入が見つかりません",
+    "purchaseFailed": "購入を完了できませんでした"
   }
 }

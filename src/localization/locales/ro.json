@@ -33,7 +33,8 @@
     "payDate": "Data plății",
     "language": "Limbă",
     "currency": "Monedă",
-    "history": "Salarii anterioare"
+    "history": "Salarii anterioare",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Mergi la luna curentă",
@@ -347,5 +348,33 @@
     "leftBody": "Fiecare salariu arată facturile și ce rămâne.",
     "addIncome": "Adaugă sursă de venit",
     "trySample": "Încearcă cu date exemplu"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "Achiziție unică. Fără abonament.",
+    "features": {
+      "incomes": "Adaugă mai multe surse de venit",
+      "projection": "Vezi salariile pe un an întreg",
+      "reminders": "Mementouri pentru ziua salariului și facturile neplătite",
+      "setAsides": "Sume puse deoparte și obiective de economii",
+      "overrides": "Schimbă o factură sau suma unui salariu doar pentru un salariu",
+      "history": "Salarii din lunile anterioare",
+      "csv": "Exportă facturile în CSV"
+    },
+    "buy": "Cumpără cu %{price}",
+    "restore": "Restabilește achizițiile",
+    "priceUnavailable": "Nu s-a putut contacta magazinul. Verifică conexiunea și încearcă din nou.",
+    "retry": "Încearcă din nou",
+    "unlockedTitle": "Pro este deblocat",
+    "unlockedBody": "Mulțumim că susții Paycheck Planner. Tot ce include Pro este acum disponibil.",
+    "footnote": "Plătești o dată și îl păstrezi. Distribuirea în familie este inclusă. Ai reinstalat aplicația sau ai un telefon nou? Folosește Restabilește achizițiile.",
+    "unlocked": "Deblocat",
+    "oneTime": "Achiziție unică",
+    "moreMonths": "Vezi un an înainte",
+    "earlierMonths": "Vezi lunile anterioare",
+    "restored": "Pro a fost restabilit",
+    "nothingToRestore": "Nu s-a găsit nicio achiziție Pro pentru acest cont",
+    "purchaseFailed": "Achiziția nu a reușit"
   }
 }

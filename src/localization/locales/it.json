@@ -33,7 +33,8 @@
     "payDate": "Data di paga",
     "language": "Lingua",
     "currency": "Valuta",
-    "history": "Stipendi passati"
+    "history": "Stipendi passati",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Vai a questo mese",
@@ -345,5 +346,33 @@
     "leftBody": "Ogni stipendio mostra le sue bollette e cosa avanza.",
     "addIncome": "Aggiungi fonte di reddito",
     "trySample": "Prova con dati di esempio"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "Acquisto una tantum. Nessun abbonamento.",
+    "features": {
+      "incomes": "Aggiungi più di una fonte di reddito",
+      "projection": "Vedi un intero anno di stipendi",
+      "reminders": "Promemoria per il giorno di paga e le bollette non pagate",
+      "setAsides": "Somme accantonate e obiettivi di risparmio",
+      "overrides": "Cambia una bolletta o l'importo di uno stipendio solo per uno stipendio",
+      "history": "Stipendi dei mesi precedenti",
+      "csv": "Esporta le bollette in CSV"
+    },
+    "buy": "Acquista a %{price}",
+    "restore": "Ripristina acquisti",
+    "priceUnavailable": "Impossibile contattare lo store. Controlla la connessione e riprova.",
+    "retry": "Riprova",
+    "unlockedTitle": "Pro sbloccato",
+    "unlockedBody": "Grazie per sostenere Paycheck Planner. Tutto ciò che c'è in Pro è ora disponibile.",
+    "footnote": "Paghi una volta e resta tuo. Condivisione in famiglia inclusa. Hai reinstallato l'app o hai un telefono nuovo? Usa Ripristina acquisti.",
+    "unlocked": "Sbloccato",
+    "oneTime": "Acquisto una tantum",
+    "moreMonths": "Guarda un anno avanti",
+    "earlierMonths": "Guarda i mesi precedenti",
+    "restored": "Pro ripristinato",
+    "nothingToRestore": "Nessun acquisto di Pro trovato per questo account",
+    "purchaseFailed": "L'acquisto non è andato a buon fine"
   }
 }

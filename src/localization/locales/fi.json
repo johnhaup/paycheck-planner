@@ -32,7 +32,8 @@
     "payDate": "Palkkapäivä",
     "language": "Kieli",
     "currency": "Valuutta",
-    "history": "Aiemmat palkat"
+    "history": "Aiemmat palkat",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Siirry tähän kuukauteen",
@@ -344,5 +345,33 @@
     "leftBody": "Jokainen palkka näyttää laskunsa ja mitä jää yli.",
     "addIncome": "Lisää tulonlähde",
     "trySample": "Kokeile esimerkkitiedoilla"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "Kertaostos. Ei tilausta.",
+    "features": {
+      "incomes": "Lisää useampi tulolähde",
+      "projection": "Näe koko vuoden palkat",
+      "reminders": "Muistutukset palkkapäivästä ja maksamattomista laskuista",
+      "setAsides": "Sivuun laitetut summat ja säästötavoitteet",
+      "overrides": "Muuta laskua tai palkan määrää yhden palkan osalta",
+      "history": "Aiempien kuukausien palkat",
+      "csv": "Vie laskut CSV-tiedostona"
+    },
+    "buy": "Osta hintaan %{price}",
+    "restore": "Palauta ostot",
+    "priceUnavailable": "Kauppaan ei saatu yhteyttä. Tarkista verkkoyhteys ja yritä uudelleen.",
+    "retry": "Yritä uudelleen",
+    "unlockedTitle": "Pro on avattu",
+    "unlockedBody": "Kiitos, että tuet Paycheck Planneria. Kaikki Prossa on nyt käytössäsi.",
+    "footnote": "Maksa kerran ja pidä se. Perhejako sisältyy. Asensitko sovelluksen uudelleen tai onko sinulla uusi puhelin? Käytä Palauta ostot -toimintoa.",
+    "unlocked": "Avattu",
+    "oneTime": "Kertaostos",
+    "moreMonths": "Katso vuosi eteenpäin",
+    "earlierMonths": "Katso aiempia kuukausia",
+    "restored": "Pro palautettu",
+    "nothingToRestore": "Tälle tilille ei löytynyt Pro-ostoa",
+    "purchaseFailed": "Osto ei mennyt läpi"
   }
 }

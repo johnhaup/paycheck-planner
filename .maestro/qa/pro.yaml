@@ -1,0 +1,163 @@
+# Protects the Pro unlock (HAU-69): the free tier gates the 12-month chart,
+# earlier history, per-paycheck amount changes, reminders, CSV export and the
+# second income source with a PRO badge, the paywall shows the store price,
+# Buy unlocks, the unlock survives a relaunch, and Restore Purchases works on
+# a fresh install.
+#
+# Needs the StoreKit configuration file (PaycheckPlanner.storekit, wired into
+# the Xcode scheme by plugins/withStoreKitConfiguration.js), which the
+# simulator only honours for an app launched from Xcode. The StoreKit test
+# purchase sheet is system UI; its confirm button reads "Purchase".
+#
+# QA 2026-11-01: from a plain simctl launch the Buy tap reaches the real App
+# Store sandbox and raises a "Sign in to Apple Account" alert that Maestro
+# cannot see and that survives clearState relaunches, so every later flow in
+# the suite then fails at Welcome. The onFlowComplete hook taps where that
+# alert's Cancel button sits (60% with no keyboard, 44% once its Apple Account
+# field has focus and the keyboard is up), so a failed Buy does not poison the
+# next flow.
+appId: com.johnhaup.paycheckplanner
+name: pro
+onFlowComplete:
+  - tapOn:
+      point: "33%,60%"
+  - tapOn:
+      point: "33%,44%"
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+
+# Free: this month and next, then a locked column that opens the paywall
+- assertVisible: "See a year ahead"
+- takeScreenshot: chart-locked
+- tapOn: "See a year ahead"
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 10000
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+
+# Free: history shows this month only, with a locked row
+- scrollUntilVisible:
+    element: "Past paychecks"
+    direction: DOWN
+- tapOn: "Past paychecks"
+- extendedWaitUntil:
+    visible: "See earlier months"
+    timeout: 10000
+- tapOn: "See earlier months"
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 10000
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: "See earlier months"
+    timeout: 10000
+- tapOn: "Back"
+
+# Free: Settings shows the Pro row and badges; CSV export opens the paywall
+- openLink: paycheck-planner://settings
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro, One-time purchase.*"
+    timeout: 10000
+- assertVisible: "PRO"
+- takeScreenshot: settings-pro-badges
+- swipe:
+    start: "50%,80%"
+    end: "50%,25%"
+- tapOn: ".*Export bills as CSV.*"
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 10000
+- assertVisible: "Restore Purchases"
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: ".*Export bills as CSV.*"
+    timeout: 10000
+- tapOn: "Close"
+
+# Free: two sample sources already exist and stay visible; adding a third is gated
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "Per month"
+    timeout: 10000
+- assertVisible: ".*Brightline Co\\..*"
+- assertVisible: ".*Mesa Health.*"
+# The FAB folds the badge into its label
+- assertVisible: "Add income source · PRO"
+- takeScreenshot: income-pro-badge
+- tapOn: "Add income source · PRO"
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 10000
+- extendedWaitUntil:
+    visible: "Buy for \\$4\\.99"
+    timeout: 20000
+- assertVisible: "Restore Purchases"
+- takeScreenshot: paywall
+
+# Buy through the StoreKit test environment
+- tapOn: "Buy for \\$4\\.99"
+- extendedWaitUntil:
+    visible: "Purchase"
+    timeout: 20000
+- tapOn: "Purchase"
+- extendedWaitUntil:
+    visible: "Pro is unlocked"
+    timeout: 30000
+- takeScreenshot: paywall-unlocked
+- tapOn: "Done"
+- extendedWaitUntil:
+    visible: "Add income source"
+    timeout: 10000
+- assertNotVisible: "Add income source · PRO"
+- tapOn: "Add income source"
+- extendedWaitUntil:
+    visible: "e.g. Acme Corp"
+    timeout: 10000
+- takeScreenshot: third-source-form
+
+# Still Pro after a kill and relaunch
+- stopApp
+- launchApp
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 60000
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "Per month"
+    timeout: 10000
+- assertNotVisible: "Add income source · PRO"
+
+# Fresh install: Restore Purchases brings Pro back
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- openLink: paycheck-planner://settings
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 10000
+- tapOn: "Paycheck Planner Pro.*"
+- extendedWaitUntil:
+    visible: "Restore Purchases"
+    timeout: 10000
+- tapOn: "Restore Purchases"
+- extendedWaitUntil:
+    visible: "Pro is unlocked"
+    timeout: 30000
+- takeScreenshot: restored

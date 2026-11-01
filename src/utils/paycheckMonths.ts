@@ -10,10 +10,10 @@ import {
 import type { Expense, ExpenseAssignment, IncomeSource, PaycheckOverride } from "@/types";
 import type { MonthGroup, PaycheckExpense, PaycheckItem } from "@/components/paychecks/types";
 
-/** The current month plus this many full months after it. */
-const FULL_MONTHS_AHEAD = 11;
-/** How far back past paychecks go, in whole months before the current one. */
-const PAST_MONTHS = 6;
+/** The current month plus this many full months after it: a year for Pro, this month and next for free. */
+export const FULL_MONTHS_AHEAD = { pro: 11, free: 1 } as const;
+/** How far back past paychecks go, in whole months before the current one; free stays within this month. */
+export const PAST_MONTHS = { pro: 6, free: 0 } as const;
 
 /** This paycheck's pay amount: its override if one was set, else the source's usual amount. */
 export function getPayAmount(
@@ -94,9 +94,10 @@ export function buildMonthGroups(
   expenses: Expense[],
   assignments: ExpenseAssignment[],
   overrides: PaycheckOverride[],
-  now: Date
+  now: Date,
+  monthsAhead: number = FULL_MONTHS_AHEAD.pro
 ): MonthGroup[] {
-  const until = endOfMonth(addMonths(now, FULL_MONTHS_AHEAD));
+  const until = endOfMonth(addMonths(now, monthsAhead));
   const allPaychecks = incomeSources.flatMap((source) =>
     getPaychecksThrough(source, now, until).map((paycheck) =>
       buildPaycheckItem(source, paycheck, expenses, assignments, overrides)
@@ -112,9 +113,10 @@ export function buildPastMonthGroups(
   expenses: Expense[],
   assignments: ExpenseAssignment[],
   overrides: PaycheckOverride[],
-  now: Date
+  now: Date,
+  pastMonths: number = PAST_MONTHS.pro
 ): MonthGroup[] {
-  const from = startOfMonth(subMonths(now, PAST_MONTHS));
+  const from = startOfMonth(subMonths(now, pastMonths));
   const until = subDays(startOfDay(now), 1);
   const allPaychecks = incomeSources.flatMap((source) => {
     // Monthly and semi-monthly schedules would otherwise invent paychecks before the first one

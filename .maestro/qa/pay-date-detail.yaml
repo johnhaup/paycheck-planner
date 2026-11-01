@@ -1,5 +1,5 @@
 # Protects the Pay date screen: assigned vs available bills, toggling paid,
-# Mark all paid with undo, and the change-pay-amount sheet.
+# Mark all paid with undo, and the Pro gate on the change-pay-amount sheet.
 appId: com.johnhaup.paycheckplanner
 name: pay-date-detail
 ---
@@ -42,17 +42,18 @@ name: pay-date-detail
     visible: "Mark all paid"
     timeout: 10000
 
-# Change this paycheck's pay amount (form sheet), keep the value
+# Changing this paycheck's pay amount is Pro (HAU-69): the tap opens the paywall
+# instead of the form sheet while free
 - tapOn:
     text: "Change .* pay amount for this paycheck"
     index: 0
 - extendedWaitUntil:
-    visible: "Save"
+    visible: "Paycheck Planner Pro"
     timeout: 10000
-- takeScreenshot: pay-amount-sheet
-- tapOn: "Save"
+- takeScreenshot: pay-amount-paywall
+- tapOn: "Close"
 - extendedWaitUntil:
-    notVisible: "Save"
+    visible: "Mark all paid"
     timeout: 10000
 
 - tapOn: "Back"

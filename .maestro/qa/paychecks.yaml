@@ -15,12 +15,14 @@ name: paychecks
 - assertVisible: ".* in · .* assigned"
 - assertVisible: ".* paychecks"
 
-# Remember this month's hero label, pick the second chart column, come back
+# Remember this month's hero label, pick next month's chart column, come back.
+# The free tier (HAU-69) shows only this month and next, so the only column
+# whose label lacks "(this month)" is next month's.
 - copyTextFrom: ".* · left over"
 - evalScript: ${output.thisMonth = maestro.copiedText}
 - tapOn:
     text: "[A-Za-z]+( [0-9]{4})?, \\$[^,]+ left"
-    index: 1
+    index: 0
 - extendedWaitUntil:
     visible: "Go to this month"
     timeout: 10000

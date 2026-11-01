@@ -32,7 +32,8 @@
     "payDate": "תאריך משכורת",
     "language": "שפה",
     "currency": "מטבע",
-    "history": "משכורות קודמות"
+    "history": "משכורות קודמות",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "מעבר לחודש הנוכחי",
@@ -348,5 +349,33 @@
     "leftBody": "כל משכורת מציגה את החשבונות שלה ומה נשאר.",
     "addIncome": "הוספת מקור הכנסה",
     "trySample": "לנסות עם נתוני דוגמה"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "רכישה חד-פעמית. ללא מנוי.",
+    "features": {
+      "incomes": "הוסיפו יותר ממקור הכנסה אחד",
+      "projection": "ראו שנה שלמה של משכורות",
+      "reminders": "תזכורות ליום המשכורת ולחשבונות שלא שולמו",
+      "setAsides": "סכומים שמורים ויעדי חיסכון",
+      "overrides": "שנו חשבון או סכום משכורת למשכורת אחת",
+      "history": "משכורות מחודשים קודמים",
+      "csv": "ייצוא חשבונות כ-CSV"
+    },
+    "buy": "קנו ב-%{price}",
+    "restore": "שחזור רכישות",
+    "priceUnavailable": "לא ניתן להגיע לחנות. בדקו את החיבור ונסו שוב.",
+    "retry": "נסו שוב",
+    "unlockedTitle": "Pro נפתח",
+    "unlockedBody": "תודה על התמיכה ב-Paycheck Planner. כל מה שב-Pro זמין עכשיו.",
+    "footnote": "משלמים פעם אחת וזה שלכם. שיתוף משפחתי כלול. התקנתם מחדש או החלפתם טלפון? השתמשו ב\"שחזור רכישות\".",
+    "unlocked": "נפתח",
+    "oneTime": "רכישה חד-פעמית",
+    "moreMonths": "ראו שנה קדימה",
+    "earlierMonths": "ראו חודשים קודמים",
+    "restored": "Pro שוחזר",
+    "nothingToRestore": "לא נמצאה רכישת Pro בחשבון הזה",
+    "purchaseFailed": "הרכישה לא הושלמה"
   }
 }

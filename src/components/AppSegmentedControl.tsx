@@ -4,10 +4,13 @@ import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { hapticSelection } from "@/utils/haptics";
+import { ProBadge } from "@/components/ProBadge";
 
 export interface SegmentOption<T> {
   value: T;
   label: string;
+  /** Pro-only choice: shows the badge; the caller routes the selection to the paywall */
+  pro?: boolean;
 }
 
 interface Props<T> {
@@ -75,6 +78,7 @@ function Segment<T>({ option, selected, onSelect }: SegmentProps<T>) {
       >
         {option.label}
       </AppText>
+      {option.pro ? <ProBadge /> : null}
     </Pressable>
   );
 }
@@ -90,6 +94,8 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 36,
     borderRadius: MEASUREMENTS.radius.lg,
+    flexDirection: "row",
+    gap: MEASUREMENTS.spacing.sm + 2,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: MEASUREMENTS.spacing.sm,

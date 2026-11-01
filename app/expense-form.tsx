@@ -18,6 +18,7 @@ import type { ExpenseIcon } from "@/constants/expenseIcons";
 import { getMonthlySlotCount, getPaycheckSlotLabel, hasExtraPaychecks } from "@/utils/payDates";
 import { normalizeLink } from "@/utils/links";
 import type { ExpenseKind, LinkSchedule, PaycheckSlot } from "@/types";
+import { useProGate } from "@/hooks/useProGate";
 
 export default function ExpenseFormScreen() {
   const router = useRouter();
@@ -58,6 +59,18 @@ export default function ExpenseFormScreen() {
 
   const isOneTime = existing ? !existing.isRecurring : false;
   const isSetAside = kind === "set-aside";
+  const { locked: setAsideLocked, openPaywall } = useProGate(existing?.kind !== "set-aside");
+
+  const handleChangeKind = useCallback(
+    (value: ExpenseKind) => {
+      if (value === "set-aside" && setAsideLocked) {
+        openPaywall();
+      } else {
+        setKind(value);
+      }
+    },
+    [setAsideLocked, openPaywall]
+  );
 
   const selectedSource = useMemo(
     () => incomeSources.find((s) => s.id === selectedSourceId),
@@ -141,9 +154,9 @@ export default function ExpenseFormScreen() {
   const kindOptions = useMemo<SegmentOption<ExpenseKind>[]>(
     () => [
       { value: "bill", label: t("expenses.kind.bill") },
-      { value: "set-aside", label: t("expenses.kind.setAside") },
+      { value: "set-aside", label: t("expenses.kind.setAside"), pro: setAsideLocked },
     ],
-    [t]
+    [setAsideLocked, t]
   );
 
   const scheduleOptions = useMemo<SegmentOption<LinkSchedule>[]>(
@@ -190,7 +203,7 @@ export default function ExpenseFormScreen() {
       keyboardShouldPersistTaps="handled"
       bottomOffset={MEASUREMENTS.keyboardOffset}
     >
-      <AppSegmentedControl options={kindOptions} value={kind} onChange={setKind} />
+      <AppSegmentedControl options={kindOptions} value={kind} onChange={handleChangeKind} />
       {isSetAside ? (
         <AppText variant="caption" style={styles.hint}>
           {t("expenses.form.setAsideHint")}

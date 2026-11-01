@@ -32,7 +32,8 @@
     "payDate": "Betaaldatum",
     "language": "Taal",
     "currency": "Valuta",
-    "history": "Eerdere salarissen"
+    "history": "Eerdere salarissen",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Naar deze maand",
@@ -344,5 +345,33 @@
     "leftBody": "Elk salaris toont zijn rekeningen en wat er overblijft.",
     "addIncome": "Inkomstenbron toevoegen",
     "trySample": "Probeer met voorbeeldgegevens"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "Eenmalige aankoop. Geen abonnement.",
+    "features": {
+      "incomes": "Voeg meer dan één inkomstenbron toe",
+      "projection": "Bekijk een heel jaar aan salarissen",
+      "reminders": "Herinneringen voor betaaldag en onbetaalde rekeningen",
+      "setAsides": "Opzijgezette bedragen en spaardoelen",
+      "overrides": "Wijzig een rekening of salarisbedrag voor één salaris",
+      "history": "Eerdere salarissen uit voorgaande maanden",
+      "csv": "Exporteer rekeningen als CSV"
+    },
+    "buy": "Koop voor %{price}",
+    "restore": "Herstel aankopen",
+    "priceUnavailable": "Kan de store niet bereiken. Controleer je verbinding en probeer het opnieuw.",
+    "retry": "Probeer opnieuw",
+    "unlockedTitle": "Pro is ontgrendeld",
+    "unlockedBody": "Bedankt voor je steun aan Paycheck Planner. Alles in Pro is nu beschikbaar.",
+    "footnote": "Eén keer betalen en het is van jou. Delen met gezin is inbegrepen. App opnieuw geïnstalleerd of een nieuwe telefoon? Gebruik Herstel aankopen.",
+    "unlocked": "Ontgrendeld",
+    "oneTime": "Eenmalige aankoop",
+    "moreMonths": "Kijk een jaar vooruit",
+    "earlierMonths": "Bekijk eerdere maanden",
+    "restored": "Pro hersteld",
+    "nothingToRestore": "Geen Pro-aankoop gevonden voor dit account",
+    "purchaseFailed": "De aankoop is niet gelukt"
   }
 }

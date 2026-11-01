@@ -1,5 +1,6 @@
-# Protects the Income tab: the summary tiles and source list, adding a source
-# through the form, and editing it.
+# Protects the Income tab: adding the first source through the form (free),
+# the summary tiles and source list, editing a source, and the Pro gate on a
+# second source (HAU-69): the FAB carries the PRO badge and opens the paywall.
 appId: com.johnhaup.paycheckplanner
 name: income
 ---
@@ -8,20 +9,8 @@ name: income
 - extendedWaitUntil:
     visible: "Try with sample data"
     timeout: 60000
-- tapOn: "Try with sample data"
-- extendedWaitUntil:
-    visible: ".* · left over"
-    timeout: 10000
-- openLink: paycheck-planner://income
-- extendedWaitUntil:
-    visible: "Per month"
-    timeout: 10000
-- assertVisible: "Next payday"
-- assertVisible: ".*Brightline Co\\..*"
-- assertVisible: ".*Mesa Health.*"
-- takeScreenshot: income
 
-# Add a weekly source
+# Add the first source (weekly) from the Welcome screen; free tier allows one
 - tapOn: "Add income source"
 - extendedWaitUntil:
     visible: "e.g. Acme Corp"
@@ -36,8 +25,14 @@ name: income
     element: "Add Income Source"
 - tapOn: "Add Income Source"
 - extendedWaitUntil:
-    visible: ".*QA Payroll.*"
+    visible: ".* · left over"
     timeout: 10000
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "Per month"
+    timeout: 10000
+- assertVisible: "Next payday"
+- assertVisible: ".*QA Payroll.*"
 - takeScreenshot: income-added
 
 # Edit it
@@ -55,7 +50,20 @@ name: income
     visible: ".*QA Payroll Co.*"
     timeout: 10000
 
-# The new source shows up as paychecks
+# A second source is Pro: the FAB folds the badge into its label and opens the paywall
+- assertVisible: "Add income source · PRO"
+- takeScreenshot: income-fab-pro
+- tapOn: "Add income source · PRO"
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 10000
+- assertVisible: "Restore Purchases"
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: ".*QA Payroll Co.*"
+    timeout: 10000
+
+# The source shows up as paychecks
 - openLink: paycheck-planner://
 - extendedWaitUntil:
     visible: "[A-Z]{3}, [0-9]+, QA Payroll Co.*"

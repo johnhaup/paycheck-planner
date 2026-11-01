@@ -32,7 +32,8 @@
     "payDate": "Maaş Tarihi",
     "language": "Dil",
     "currency": "Para Birimi",
-    "history": "Geçmiş maaşlar"
+    "history": "Geçmiş maaşlar",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Bu aya git",
@@ -344,5 +345,33 @@
     "leftBody": "Her maaş kendi faturalarını ve kalanı gösterir.",
     "addIncome": "Gelir kaynağı ekle",
     "trySample": "Örnek verilerle dene"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "Tek seferlik satın alma. Abonelik yok.",
+    "features": {
+      "incomes": "Birden fazla gelir kaynağı ekle",
+      "projection": "Bir yıllık maaşı gör",
+      "reminders": "Maaş günü ve ödenmemiş fatura hatırlatıcıları",
+      "setAsides": "Kenara ayrılan tutarlar ve tasarruf hedefleri",
+      "overrides": "Bir faturayı ya da maaş tutarını yalnızca tek maaş için değiştir",
+      "history": "Önceki aylardan maaşlar",
+      "csv": "Faturaları CSV olarak dışa aktar"
+    },
+    "buy": "%{price} karşılığında satın al",
+    "restore": "Satın Alımları Geri Yükle",
+    "priceUnavailable": "Mağazaya ulaşılamadı. Bağlantını kontrol edip tekrar dene.",
+    "retry": "Tekrar dene",
+    "unlockedTitle": "Pro açıldı",
+    "unlockedBody": "Paycheck Planner'ı desteklediğin için teşekkürler. Pro'daki her şey artık kullanımda.",
+    "footnote": "Bir kez öde, senin olsun. Aile Paylaşımı dahildir. Uygulamayı yeniden mi yükledin ya da yeni telefon mu aldın? Satın Alımları Geri Yükle'yi kullan.",
+    "unlocked": "Açıldı",
+    "oneTime": "Tek seferlik satın alma",
+    "moreMonths": "Bir yıl ilerisini gör",
+    "earlierMonths": "Önceki ayları gör",
+    "restored": "Pro geri yüklendi",
+    "nothingToRestore": "Bu hesapta Pro satın alımı bulunamadı",
+    "purchaseFailed": "Satın alma tamamlanamadı"
   }
 }

@@ -3,17 +3,22 @@ import { Pressable, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
+import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { hapticTap } from "@/utils/haptics";
+import { ProBadge } from "@/components/ProBadge";
 
 interface Props {
   accessibilityLabel: string;
   onPress: () => void;
+  /** Marks the action as Pro-only; the caller routes the press to the paywall */
+  pro?: boolean;
 }
 
-export function AppFab({ accessibilityLabel, onPress }: Props) {
+export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
   const colors = useColors();
   const insets = useSafeAreaInsets();
+  const t = useT();
 
   const handlePress = useCallback(() => {
     hapticTap();
@@ -38,9 +43,11 @@ export function AppFab({ accessibilityLabel, onPress }: Props) {
       onPress={handlePress}
       hitSlop={MEASUREMENTS.hitSlop}
       accessibilityRole="button"
-      accessibilityLabel={accessibilityLabel}
+      // The badge is inside the button, so VoiceOver and Maestro read it from the label
+      accessibilityLabel={pro ? `${accessibilityLabel} · ${t("pro.badge")}` : accessibilityLabel}
     >
       <Ionicons name="add" size={28} color={colors.onPrimary} />
+      {pro ? <ProBadge style={styles.badge} /> : null}
     </Pressable>
   );
 }
@@ -58,5 +65,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 6,
+  },
+  badge: {
+    position: "absolute",
+    top: -MEASUREMENTS.spacing.sm,
+    left: -MEASUREMENTS.spacing.md,
+    borderWidth: 2,
+    borderColor: "transparent",
   },
 });

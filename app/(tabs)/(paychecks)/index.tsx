@@ -21,7 +21,8 @@ import { AppHeroAmount } from "@/components/AppHeroAmount";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { MonthBarChart } from "@/components/paychecks/MonthBarChart";
 import { Welcome } from "@/components/paychecks/Welcome";
-import { buildMonthGroups } from "@/utils/paycheckMonths";
+import { buildMonthGroups, FULL_MONTHS_AHEAD } from "@/utils/paycheckMonths";
+import { useProGate } from "@/hooks/useProGate";
 import { formatShortDate } from "@/utils/dates";
 import { buildDemoData } from "@/utils/demoData";
 import type { MonthGroup, PaycheckItem } from "@/components/paychecks/types";
@@ -63,6 +64,7 @@ export default function PaychecksScreen() {
   const renderPaycheck = usePaycheckCardRenderer();
   const insets = useSafeAreaInsets();
   const hasIncome = incomeSources.length > 0;
+  const { isPro, openPaywall } = useProGate();
 
   // The selected month belongs to one dataset: when income comes back after
   // Erase all data (sample data or a new source) the screen opens on this month.
@@ -131,10 +133,18 @@ export default function PaychecksScreen() {
   }, [setSelectedMonthKey]);
 
   const months = useMemo(
-    () => buildMonthGroups(incomeSources, expenses, assignments, paycheckOverrides, new Date()),
+    () =>
+      buildMonthGroups(
+        incomeSources,
+        expenses,
+        assignments,
+        paycheckOverrides,
+        new Date(),
+        isPro ? FULL_MONTHS_AHEAD.pro : FULL_MONTHS_AHEAD.free
+      ),
     // t changes with the language, which changes the month labels
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [incomeSources, expenses, assignments, paycheckOverrides, t]
+    [incomeSources, expenses, assignments, paycheckOverrides, isPro, t]
   );
 
   const selectedMonth = useMemo(
@@ -211,6 +221,7 @@ export default function PaychecksScreen() {
               selectedKey={selectedMonth.key}
               currentKey={currentMonthKey}
               onSelect={setSelectedMonthKey}
+              onUnlockMore={isPro ? undefined : openPaywall}
             />
           </View>
         </Animated.View>
@@ -225,6 +236,8 @@ export default function PaychecksScreen() {
       shortElsewhere,
       handleShowShort,
       setSelectedMonthKey,
+      isPro,
+      openPaywall,
       stickyHeaderStyle,
       colors,
       formatMoney,

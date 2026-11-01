@@ -32,7 +32,8 @@
     "payDate": "Tarikh Gaji",
     "language": "Bahasa",
     "currency": "Mata Wang",
-    "history": "Gaji lepas"
+    "history": "Gaji lepas",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Pergi ke bulan ini",
@@ -342,5 +343,33 @@
     "leftBody": "Setiap gaji menunjukkan bilnya dan bakinya.",
     "addIncome": "Tambah sumber pendapatan",
     "trySample": "Cuba dengan data contoh"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "Pembelian sekali sahaja. Tiada langganan.",
+    "features": {
+      "incomes": "Tambah lebih daripada satu sumber pendapatan",
+      "projection": "Lihat gaji untuk setahun penuh",
+      "reminders": "Peringatan hari gaji dan bil yang belum dibayar",
+      "setAsides": "Wang diketepikan dan sasaran simpanan",
+      "overrides": "Tukar bil atau jumlah gaji untuk satu gaji sahaja",
+      "history": "Gaji daripada bulan-bulan terdahulu",
+      "csv": "Eksport bil sebagai CSV"
+    },
+    "buy": "Beli dengan harga %{price}",
+    "restore": "Pulihkan Pembelian",
+    "priceUnavailable": "Tidak dapat menghubungi kedai. Semak sambungan anda dan cuba lagi.",
+    "retry": "Cuba lagi",
+    "unlockedTitle": "Pro telah dibuka",
+    "unlockedBody": "Terima kasih kerana menyokong Paycheck Planner. Semua dalam Pro kini tersedia.",
+    "footnote": "Bayar sekali dan simpan. Perkongsian Keluarga disertakan. Pasang semula atau guna telefon baharu? Gunakan Pulihkan Pembelian.",
+    "unlocked": "Dibuka",
+    "oneTime": "Pembelian sekali sahaja",
+    "moreMonths": "Lihat setahun ke hadapan",
+    "earlierMonths": "Lihat bulan terdahulu",
+    "restored": "Pro dipulihkan",
+    "nothingToRestore": "Tiada pembelian Pro ditemui untuk akaun ini",
+    "purchaseFailed": "Pembelian tidak berjaya"
   }
 }

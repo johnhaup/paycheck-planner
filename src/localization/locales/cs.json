@@ -32,7 +32,8 @@
     "payDate": "Den výplaty",
     "language": "Jazyk",
     "currency": "Měna",
-    "history": "Minulé výplaty"
+    "history": "Minulé výplaty",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Přejít na tento měsíc",
@@ -348,5 +349,33 @@
     "leftBody": "Každá výplata ukazuje své účty a kolik zbývá.",
     "addIncome": "Přidat zdroj příjmu",
     "trySample": "Vyzkoušet s ukázkovými daty"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "Jednorázový nákup. Žádné předplatné.",
+    "features": {
+      "incomes": "Přidejte více zdrojů příjmu",
+      "projection": "Zobrazte si výplaty na celý rok",
+      "reminders": "Připomínky výplat a nezaplacených účtů",
+      "setAsides": "Odložené částky a cíle spoření",
+      "overrides": "Změňte účet nebo částku výplaty jen pro jednu výplatu",
+      "history": "Výplaty z dřívějších měsíců",
+      "csv": "Export účtů do CSV"
+    },
+    "buy": "Koupit za %{price}",
+    "restore": "Obnovit nákupy",
+    "priceUnavailable": "Nepodařilo se spojit s obchodem. Zkontrolujte připojení a zkuste to znovu.",
+    "retry": "Zkusit znovu",
+    "unlockedTitle": "Pro je odemčeno",
+    "unlockedBody": "Děkujeme, že podporujete Paycheck Planner. Vše v Pro je teď k dispozici.",
+    "footnote": "Zaplaťte jednou a mějte natrvalo. Sdílení s rodinou je zahrnuto. Přeinstalovali jste aplikaci nebo máte nový telefon? Použijte Obnovit nákupy.",
+    "unlocked": "Odemčeno",
+    "oneTime": "Jednorázový nákup",
+    "moreMonths": "Podívejte se o rok dopředu",
+    "earlierMonths": "Zobrazit dřívější měsíce",
+    "restored": "Pro obnoveno",
+    "nothingToRestore": "Pro tento účet nebyl nalezen žádný nákup Pro",
+    "purchaseFailed": "Nákup se nepodařil"
   }
 }
