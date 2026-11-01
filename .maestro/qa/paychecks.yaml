@@ -1,0 +1,49 @@
+# Protects the Paychecks tab: the month hero, selecting another month in the
+# chart, the "Go to this month" icon, and the Past paychecks screen.
+appId: com.johnhaup.paycheckplanner
+name: paychecks
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- assertVisible: ".* in · .* assigned"
+- assertVisible: ".* paychecks"
+
+# Remember this month's hero label, pick the second chart column, come back
+- copyTextFrom: ".* · left over"
+- evalScript: ${output.thisMonth = maestro.copiedText}
+- tapOn:
+    text: "[A-Za-z]+( [0-9]{4})?, \\$[^,]+ left"
+    index: 1
+- extendedWaitUntil:
+    visible: "Go to this month"
+    timeout: 10000
+- copyTextFrom: ".* · left over"
+- assertTrue: ${maestro.copiedText != output.thisMonth}
+- takeScreenshot: paychecks-other-month
+- tapOn: "Go to this month"
+- extendedWaitUntil:
+    visible: ${output.thisMonth}
+    timeout: 10000
+
+# Past paychecks
+- scrollUntilVisible:
+    element: "Past paychecks"
+- tapOn: "Past paychecks"
+- extendedWaitUntil:
+    visible: "Back"
+    timeout: 10000
+- takeScreenshot: past-paychecks
+- tapOn: "Back"
+- extendedWaitUntil:
+    visible: "Past paychecks"
+    timeout: 10000
+- scrollUntilVisible:
+    element: ".* · left over"
+    direction: UP

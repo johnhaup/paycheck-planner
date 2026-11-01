@@ -1,0 +1,92 @@
+# Protects: cold launch, the first-run Welcome, every tab's empty state and sample
+# state, the Settings and Pay date round trips, and that data survives a relaunch.
+#
+# Conventions for every flow in this folder (dev build + Metro on the QA sim):
+# - The Settings gear and its close button are icon-only, so they are matched by
+#   their Ionicons glyphs ("" settings-outline, "" close).
+# - After the first toast, React Native's LogBox warning banner covers the native
+#   tab bar and is invisible to Maestro, so later tab switches use the app's deep
+#   links (paycheck-planner://income, //expenses, // for Paychecks).
+appId: com.johnhaup.paycheckplanner
+name: smoke
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- takeScreenshot: welcome
+
+# Empty states, reached through the real tab bar
+- tapOn: "Income"
+- extendedWaitUntil:
+    visible: "No income yet"
+    timeout: 10000
+- takeScreenshot: income-empty
+- tapOn: "Expenses"
+- extendedWaitUntil:
+    visible: "No expenses yet"
+    timeout: 10000
+- takeScreenshot: expenses-empty
+- tapOn: "Paychecks"
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 10000
+
+# Sample budget
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- assertVisible: "[A-Z]{3}, [0-9]+, Brightline Co\\..*"
+- takeScreenshot: paychecks
+
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "Per month"
+    timeout: 10000
+- assertVisible: ".*Brightline Co\\..*"
+- takeScreenshot: income
+- openLink: paycheck-planner://expenses
+- extendedWaitUntil:
+    visible: ".* a month across .*"
+    timeout: 10000
+- assertVisible: ".*Groceries.*"
+- takeScreenshot: expenses
+- openLink: paycheck-planner://
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+
+# Settings round trip
+- tapOn: ""
+- extendedWaitUntil:
+    visible: "Hide cents"
+    timeout: 10000
+- takeScreenshot: settings
+- tapOn: ""
+- extendedWaitUntil:
+    notVisible: "Hide cents"
+    timeout: 10000
+
+# Pay date round trip
+- tapOn:
+    text: "[A-Z]{3}, [0-9]+, .*"
+    index: 0
+- extendedWaitUntil:
+    visible: "This paycheck"
+    timeout: 10000
+- takeScreenshot: pay-date
+- tapOn: "Back"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+
+# Persisted state survives a kill and relaunch
+- stopApp
+- launchApp
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 60000
+- assertVisible: "[A-Z]{3}, [0-9]+, Brightline Co\\..*"
+- takeScreenshot: relaunched

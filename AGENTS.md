@@ -19,6 +19,7 @@ npx expo lint               # lint
 npx tsc --noEmit            # typecheck
 npx expo-doctor             # diagnose dependency and config issues
 npx expo install --fix      # fix incompatible package versions
+maestro --udid <QA sim UDID> test .maestro/qa/   # Maestro regression suite (smoke + one flow per feature area); dev build with Metro on 8081
 ```
 
 Run lint and typecheck before declaring any task done.

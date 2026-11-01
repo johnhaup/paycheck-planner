@@ -1,0 +1,53 @@
+# Protects Settings: appearance switching, the Language picker, and
+# Erase all data returning the app to the Welcome screen.
+appId: com.johnhaup.paycheckplanner
+name: settings
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- tapOn: ""
+- extendedWaitUntil:
+    visible: "Hide cents"
+    timeout: 10000
+
+# Appearance
+- tapOn: "Dark"
+- takeScreenshot: settings-dark
+- tapOn: "Light"
+- takeScreenshot: settings-light
+- tapOn: "System"
+
+# Language picker round trip
+- tapOn: "Language, .*"
+- extendedWaitUntil:
+    visible: "English"
+    timeout: 10000
+- takeScreenshot: language
+- tapOn: "English"
+- extendedWaitUntil:
+    visible: "Language, English.*"
+    timeout: 10000
+
+# Erase all data
+- scrollUntilVisible:
+    element: ".*Erase all data.*"
+- tapOn: ".*Erase all data.*"
+- extendedWaitUntil:
+    visible: "Delete"
+    timeout: 5000
+- tapOn: "Delete"
+- extendedWaitUntil:
+    notVisible: "Delete"
+    timeout: 5000
+- tapOn: ""
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 10000
+- takeScreenshot: erased
