@@ -26,9 +26,10 @@ name: pro
     timeout: 10000
 - assertVisible: ".*Brightline Co\\..*"
 - assertVisible: ".*Mesa Health.*"
-- assertVisible: "PRO"
+# The FAB folds the badge into its label
+- assertVisible: "Add income source · PRO"
 - takeScreenshot: income-pro-badge
-- tapOn: "Add income source"
+- tapOn: "Add income source · PRO"
 - extendedWaitUntil:
     visible: "Paycheck Planner Pro"
     timeout: 10000
@@ -50,8 +51,9 @@ name: pro
 - takeScreenshot: paywall-unlocked
 - tapOn: "Done"
 - extendedWaitUntil:
-    notVisible: "PRO"
+    visible: "Add income source"
     timeout: 10000
+- assertNotVisible: "Add income source · PRO"
 - tapOn: "Add income source"
 - extendedWaitUntil:
     visible: "e.g. Acme Corp"
@@ -68,7 +70,7 @@ name: pro
 - extendedWaitUntil:
     visible: "Per month"
     timeout: 10000
-- assertNotVisible: "PRO"
+- assertNotVisible: "Add income source · PRO"
 
 # Fresh install: Restore Purchases brings Pro back
 - launchApp:
