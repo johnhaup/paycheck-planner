@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo } from "react";
-import { Appearance, Pressable, StyleSheet } from "react-native";
+import { Appearance, LogBox, Pressable, StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider, useRouter } from "expo-router";
@@ -12,6 +12,12 @@ import { useT } from "@/hooks/useLocale";
 import { usePaydayReminders } from "@/hooks/usePaydayReminders";
 import { useThemeStore } from "@/stores/themeStore";
 import { MEASUREMENTS } from "@/constants/measurements";
+
+// sonner-native 0.27.0 passes dependency arrays to useDerivedValue/useAnimatedStyle,
+// which Reanimated 4 warns about on native. The warning fires with the first toast
+// and raises the LogBox banner over the tab bar in dev builds (HAU-60). LogBox is a
+// no-op in release builds, so this only affects dev.
+LogBox.ignoreLogs(["Dependencies should only be used on the web and are always ignored on native"]);
 
 const TABS_OPTIONS = { headerShown: false };
 
