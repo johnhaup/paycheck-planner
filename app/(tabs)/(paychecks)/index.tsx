@@ -1,5 +1,5 @@
-import { useCallback, useMemo, useState } from "react";
-import { View, Pressable, StyleSheet } from "react-native";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { View, Pressable, StyleSheet, type FlatList } from "react-native";
 import Animated, {
   useAnimatedScrollHandler,
   useAnimatedStyle,
@@ -86,9 +86,28 @@ export default function PaychecksScreen() {
   const pinTop = insets.top + NAV_BAR_HEIGHT;
   const scrollY = useSharedValue(-Infinity);
 
+  // iOS reports the resting offset under the expanded large title as the first
+  // scroll event, when it applies the navigation bar inset at mount. That is the
+  // offset to return to, since offset 0 is the collapsed-title position.
+  const topOffset = useSharedValue<number | undefined>(undefined);
+
   const handleScroll = useAnimatedScrollHandler((event) => {
     scrollY.value = event.contentOffset.y;
+    topOffset.value ??= event.contentOffset.y;
   });
+
+  // The list keeps its scroll offset across Erase all data because it stays
+  // mounted, so the welcome screen and the next dataset would open under a
+  // collapsed title. Scroll back to the top when income disappears or returns.
+  const listRef = useRef<FlatList<PaycheckItem>>(null);
+  useEffect(() => {
+    if (topOffset.value !== undefined) {
+      // From a collapsed title the first scroll expands the title, which grows the
+      // top inset and shifts the offset past the top; the second lands on it.
+      listRef.current?.scrollToOffset({ offset: topOffset.value, animated: false });
+      listRef.current?.scrollToOffset({ offset: topOffset.value, animated: false });
+    }
+  }, [hasIncome, topOffset]);
 
   const pinStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: Math.min(Math.max(scrollY.value + pinTop, 0), pinTop) }],
@@ -255,6 +274,7 @@ export default function PaychecksScreen() {
   // is the first view, and swapping roots after the store rehydrates drops it.
   return (
     <Animated.FlatList
+      ref={listRef}
       style={styles.list}
       data={paychecks}
       keyExtractor={keyExtractor}
@@ -264,6 +284,7 @@ export default function PaychecksScreen() {
       ListEmptyComponent={listEmpty}
       stickyHeaderIndices={STICKY_HEADER}
       contentInsetAdjustmentBehavior="automatic"
+      scrollToOverflowEnabled
       contentContainerStyle={styles.listContent}
       showsVerticalScrollIndicator={false}
       onScroll={handleScroll}
