@@ -52,17 +52,18 @@ name: large-title
 - assertNotVisible: "(?!Past ).* paychecks"
 - takeScreenshot: paychecks-scrolled
 
-# The pinned chart still switches months, and the calendar icon brings this month back
-- tapOn: "January 2027, .*"
+# The pinned chart still switches months, and the calendar icon brings this month back.
+# Free tier (HAU-69): the chart holds this month and next only, so pick December.
+- tapOn: "December, .*"
 - extendedWaitUntil:
-    visible: "January 2027 · left over"
+    visible: "December · left over"
     timeout: 5000
 - assertVisible:
     text: "Paychecks"
     rightOf: "\\d{1,2}:\\d{2}.*"
     leftOf: "Settings"
     above: ".* · left over"
-- takeScreenshot: paychecks-january-while-pinned
+- takeScreenshot: paychecks-december-while-pinned
 - tapOn: "Go to this month"
 - extendedWaitUntil:
     visible: "November · left over"
