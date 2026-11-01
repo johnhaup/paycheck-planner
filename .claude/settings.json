@@ -1,5 +1,19 @@
 {
   "enabledPlugins": {
     "expo@claude-plugins-official": true
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/check-agent-context.sh",
+            "timeout": 15,
+            "statusMessage": "Checking docs/AGENT_CONTEXT.md"
+          }
+        ]
+      }
+    ]
   }
 }
