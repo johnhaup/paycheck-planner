@@ -1,0 +1,73 @@
+# Protects Settings: appearance switching, the Language picker, and
+# Erase all data returning the app to the Welcome screen.
+appId: com.johnhaup.paycheckplanner
+name: settings
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- tapOn: ""
+- extendedWaitUntil:
+    visible: "Hide cents"
+    timeout: 10000
+
+# Appearance. A fresh install defaults to Dark. The segments expose
+# accessibilityState.selected, so wait for it before each screenshot: under
+# load the re-render can land after the tap reports done.
+- assertVisible:
+    text: "Dark"
+    selected: true
+- tapOn: "Light"
+- extendedWaitUntil:
+    visible:
+      text: "Light"
+      selected: true
+    timeout: 5000
+- takeScreenshot: settings-light
+- tapOn: "Dark"
+- extendedWaitUntil:
+    visible:
+      text: "Dark"
+      selected: true
+    timeout: 5000
+- takeScreenshot: settings-dark
+- tapOn: "System"
+- extendedWaitUntil:
+    visible:
+      text: "System"
+      selected: true
+    timeout: 5000
+
+# Language picker round trip
+- tapOn: "Language, .*"
+- extendedWaitUntil:
+    visible: "English"
+    timeout: 10000
+- takeScreenshot: language
+- tapOn: "English"
+- extendedWaitUntil:
+    visible: "Language, English.*"
+    timeout: 10000
+
+# Erase all data
+- scrollUntilVisible:
+    element: ".*Erase all data.*"
+- tapOn: ".*Erase all data.*"
+- extendedWaitUntil:
+    visible: "Delete"
+    timeout: 5000
+- tapOn: "Delete"
+- extendedWaitUntil:
+    notVisible: "Delete"
+    timeout: 5000
+- tapOn: ""
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 10000
+- takeScreenshot: erased

@@ -1,0 +1,61 @@
+# Protects the Pay date screen: assigned vs available bills, toggling paid,
+# Mark all paid with undo, and the change-pay-amount sheet.
+appId: com.johnhaup.paycheckplanner
+name: pay-date-detail
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- tapOn:
+    text: "[A-Z]{3}, [0-9]+, .*"
+    index: 0
+- extendedWaitUntil:
+    visible: "This paycheck"
+    timeout: 10000
+- assertVisible: "Left over"
+- assertVisible: "Available"
+- takeScreenshot: pay-date-detail
+
+# Toggle one bill paid and back
+- tapOn:
+    text: "Mark .* paid"
+    index: 0
+- assertVisible: "Mark .* unpaid"
+- tapOn:
+    text: "Mark .* unpaid"
+    index: 0
+
+# Mark all paid, then undo from the toast
+- tapOn: "Mark all paid"
+- extendedWaitUntil:
+    visible: "Marked all paid"
+    timeout: 5000
+- takeScreenshot: pay-date-marked-all-paid
+- tapOn: "Undo"
+- extendedWaitUntil:
+    visible: "Mark all paid"
+    timeout: 10000
+
+# Change this paycheck's pay amount (form sheet), keep the value
+- tapOn:
+    text: "Change .* pay amount for this paycheck"
+    index: 0
+- extendedWaitUntil:
+    visible: "Save"
+    timeout: 10000
+- takeScreenshot: pay-amount-sheet
+- tapOn: "Save"
+- extendedWaitUntil:
+    notVisible: "Save"
+    timeout: 10000
+
+- tapOn: "Back"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000

@@ -1,0 +1,62 @@
+# Protects the Income tab: the summary tiles and source list, adding a source
+# through the form, and editing it.
+appId: com.johnhaup.paycheckplanner
+name: income
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "Per month"
+    timeout: 10000
+- assertVisible: "Next payday"
+- assertVisible: ".*Brightline Co\\..*"
+- assertVisible: ".*Mesa Health.*"
+- takeScreenshot: income
+
+# Add a weekly source
+- tapOn: "Add income source"
+- extendedWaitUntil:
+    visible: "e.g. Acme Corp"
+    timeout: 10000
+- tapOn: "e.g. 2500.00"
+- inputText: "1500"
+- tapOn: "e.g. Acme Corp"
+- inputText: "QA Payroll"
+- pressKey: Enter
+- tapOn: "Weekly"
+- scrollUntilVisible:
+    element: "Add Income Source"
+- tapOn: "Add Income Source"
+- extendedWaitUntil:
+    visible: ".*QA Payroll.*"
+    timeout: 10000
+- takeScreenshot: income-added
+
+# Edit it
+- tapOn: ".*QA Payroll.*"
+- extendedWaitUntil:
+    visible: "Update Income Source"
+    timeout: 10000
+- tapOn: "QA Payroll"
+- inputText: " Co"
+- pressKey: Enter
+- scrollUntilVisible:
+    element: "Update Income Source"
+- tapOn: "Update Income Source"
+- extendedWaitUntil:
+    visible: ".*QA Payroll Co.*"
+    timeout: 10000
+
+# The new source shows up as paychecks
+- openLink: paycheck-planner://
+- extendedWaitUntil:
+    visible: "[A-Z]{3}, [0-9]+, QA Payroll Co.*"
+    timeout: 10000

@@ -1,0 +1,58 @@
+# Protects the Expenses tab: grouped bills with the monthly summary, the
+# All / Recurring / One-time filter, sort, and adding a bill through the form.
+appId: com.johnhaup.paycheckplanner
+name: expenses
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- openLink: paycheck-planner://expenses
+- extendedWaitUntil:
+    visible: ".* a month across .*"
+    timeout: 10000
+- assertVisible: ".*Groceries.*"
+- takeScreenshot: expenses
+
+# Filter (the segment comes before the "ONE-TIME" section header in the tree)
+- tapOn:
+    text: "One-time"
+    index: 0
+- assertVisible: ".*Car Registration.*"
+- assertNotVisible: ".*Groceries.*"
+- tapOn: "Recurring"
+- assertVisible: ".*Groceries.*"
+- assertNotVisible: ".*Car Registration.*"
+- tapOn: "All"
+- assertVisible: ".*Groceries.*"
+
+# Sort action sheet
+- tapOn: "Sort"
+- extendedWaitUntil:
+    visible: "Amount, highest first"
+    timeout: 5000
+- tapOn: "Amount, highest first"
+- assertVisible: ".*Groceries.*"
+
+# Add a bill
+- tapOn: "Add expense"
+- extendedWaitUntil:
+    visible: "e.g. Electric Company"
+    timeout: 10000
+- tapOn: "e.g. 150.00"
+- inputText: "45"
+- tapOn: "e.g. Electric Company"
+- inputText: "QA Water"
+- pressKey: Enter
+- scrollUntilVisible:
+    element: "Add Expense"
+- tapOn: "Add Expense"
+- extendedWaitUntil:
+    visible: ".*QA Water.*"
+    timeout: 10000
+- takeScreenshot: expenses-added
