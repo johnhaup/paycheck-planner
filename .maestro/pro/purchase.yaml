@@ -3,7 +3,7 @@
 # action, so this is NOT part of .maestro/qa/ and the release gate does not run it. From a plain simctl
 # launch, Buy reaches the real App Store sandbox and raises a "Sign in to Apple Account" alert that Maestro
 # cannot see; the onFlowComplete taps dismiss it so a failed run does not poison the next flow.
-# HAU-76 makes these steps runnable without Xcode (mock store behind a launch argument); fold them back
+# HAU-78 makes these steps runnable without Xcode (mock store behind a launch argument); fold them back
 # into .maestro/qa/pro.yaml then.
 appId: com.johnhaup.paycheckplanner
 name: pro-purchase
