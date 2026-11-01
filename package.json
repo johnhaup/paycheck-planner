@@ -58,7 +58,9 @@
     "store:screenshots:capture": "expo-local-ship screenshots capture",
     "store:screenshots:frame": "expo-local-ship screenshots frame",
     "store:screenshots:upload": "expo-local-ship screenshots upload",
-    "store:review": "expo-local-ship review"
+    "store:review": "expo-local-ship review",
+    "ship:ios": "expo-local-ship ios",
+    "ship:android": "expo-local-ship android"
   },
   "private": true
 }
