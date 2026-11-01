@@ -189,3 +189,67 @@ name: large-title
     rightOf: "\\d{1,2}:\\d{2}.*"
     leftOf: ""
     above: ".* · left over"
+
+# Income can also come back through the Income form while Paychecks is not on
+# screen; that path must open Paychecks at the top too (HAU-64)
+- openLink: paycheck-planner://
+- extendedWaitUntil:
+    visible: "November · left over"
+    timeout: 10000
+- swipe:
+    start: 50%, 65%
+    end: 50%, 15%
+    duration: 400
+- openLink: paycheck-planner://settings
+- extendedWaitUntil:
+    visible: "Hide cents"
+    timeout: 10000
+- scrollUntilVisible:
+    element: ".*Erase all data.*"
+- tapOn: ".*Erase all data.*"
+- extendedWaitUntil:
+    visible: "Delete"
+    timeout: 5000
+- tapOn: "Delete"
+- extendedWaitUntil:
+    notVisible: "Delete"
+    timeout: 5000
+- tapOn: ""
+- runFlow:
+    when:
+      visible: "Hide cents"
+    commands:
+      - tapOn: ""
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 10000
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "No income yet"
+    timeout: 10000
+- tapOn: "Add income source"
+- extendedWaitUntil:
+    visible: "e.g. Acme Corp"
+    timeout: 10000
+- tapOn: "e.g. 2500.00"
+- inputText: "1500"
+- tapOn: "e.g. Acme Corp"
+- inputText: "QA Payroll"
+- pressKey: Enter
+- scrollUntilVisible:
+    element: "Add Income Source"
+- tapOn: "Add Income Source"
+- extendedWaitUntil:
+    visible: ".*QA Payroll.*"
+    timeout: 10000
+- openLink: paycheck-planner://
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- assertVisible: "(?!Past ).* paychecks"
+- assertNotVisible:
+    text: "Paychecks"
+    rightOf: "\\d{1,2}:\\d{2}.*"
+    leftOf: ""
+    above: ".* · left over"
+- takeScreenshot: paychecks-after-income-form
