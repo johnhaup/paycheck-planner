@@ -12,7 +12,7 @@ name: settings
 - extendedWaitUntil:
     visible: ".* · left over"
     timeout: 10000
-- tapOn: ""
+- tapOn: "Settings"
 - extendedWaitUntil:
     visible: "Hide cents"
     timeout: 10000
@@ -66,7 +66,7 @@ name: settings
 - extendedWaitUntil:
     notVisible: "Delete"
     timeout: 5000
-- tapOn: ""
+- tapOn: "Close"
 - extendedWaitUntil:
     visible: "Try with sample data"
     timeout: 10000
