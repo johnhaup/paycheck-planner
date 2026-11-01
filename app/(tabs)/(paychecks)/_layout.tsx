@@ -19,11 +19,16 @@ export default function PaychecksLayout() {
 
   const renderSettingsButton = useCallback(
     () => (
-      <Pressable onPress={handleOpenSettings} hitSlop={MEASUREMENTS.hitSlop}>
+      <Pressable
+        onPress={handleOpenSettings}
+        hitSlop={MEASUREMENTS.hitSlop}
+        accessibilityRole="button"
+        accessibilityLabel={t("screens.settings")}
+      >
         <Ionicons name="settings-outline" size={22} color={colors.textDefault} />
       </Pressable>
     ),
-    [handleOpenSettings, colors]
+    [handleOpenSettings, colors, t]
   );
 
   const indexOptions = useMemo(

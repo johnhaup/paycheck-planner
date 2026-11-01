@@ -36,11 +36,16 @@ export default function RootLayout() {
 
   const renderSettingsCloseButton = useCallback(
     () => (
-      <Pressable onPress={handleCloseSettings} hitSlop={MEASUREMENTS.hitSlop}>
+      <Pressable
+        onPress={handleCloseSettings}
+        hitSlop={MEASUREMENTS.hitSlop}
+        accessibilityRole="button"
+        accessibilityLabel={t("common.close")}
+      >
         <Ionicons name="close" size={24} color={colors.textDefault} />
       </Pressable>
     ),
-    [handleCloseSettings, colors]
+    [handleCloseSettings, colors, t]
   );
 
   const navigationTheme = useMemo(() => {

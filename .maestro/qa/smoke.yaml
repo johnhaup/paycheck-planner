@@ -2,8 +2,8 @@
 # state, the Settings and Pay date round trips, and that data survives a relaunch.
 #
 # Conventions for every flow in this folder (dev build + Metro on the QA sim):
-# - The Settings gear and its close button are icon-only, so they are matched by
-#   their Ionicons glyphs ("" settings-outline, "" close).
+# - The Settings gear and its close button are icon-only Pressables with
+#   accessibility labels (HAU-61), matched by "Settings" and "Close".
 # - Tabs are switched on the real tab bar. Before HAU-60 the Reanimated
 #   dependencies warning (from sonner-native's toast hooks) raised the LogBox
 #   banner over the tab bar after the first toast, invisible to Maestro, and the
@@ -64,12 +64,12 @@ name: smoke
     timeout: 10000
 
 # Settings round trip
-- tapOn: ""
+- tapOn: "Settings"
 - extendedWaitUntil:
     visible: "Hide cents"
     timeout: 10000
 - takeScreenshot: settings
-- tapOn: ""
+- tapOn: "Close"
 - extendedWaitUntil:
     notVisible: "Hide cents"
     timeout: 10000
