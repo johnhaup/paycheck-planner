@@ -1,0 +1,89 @@
+# Protects the iOS collapsing large title on Paychecks, Income and Expenses and
+# the month overview that stays pinned under the bar on Paychecks (HAU-11,
+# HAU-12, regression HAU-58). Maestro cannot read font sizes, so the screenshots
+# are the evidence: at the top the large title sits below the bar, after the
+# scroll the small title sits in the bar (and on Paychecks the "<Month> · left
+# over" hero and the chart are still pinned under it), and after scrolling back
+# the large title is back. The assertions only prove that the list scrolled
+# and that the pinned overview stayed on screen.
+#
+# Sample data has two income sources, so the Income list is shorter than the
+# screen and its title cannot collapse; its scrolled screenshot shows the bounce
+# back. Tabs are switched through deep links (see smoke.yaml).
+appId: com.johnhaup.paycheckplanner
+name: large-title
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- takeScreenshot: welcome-top
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- assertVisible: "(?!Past ).* paychecks"
+- takeScreenshot: paychecks-top
+
+# Scroll about 400pt: the title collapses, the overview stays, the cards pass under it
+- swipe:
+    start: 50%, 65%
+    end: 50%, 15%
+    duration: 400
+- assertVisible: ".* · left over"
+- assertVisible: ".* in · .* assigned"
+# The section title scrolls away with the cards ("Past paychecks" stays in the footer)
+- assertNotVisible: "(?!Past ).* paychecks"
+- takeScreenshot: paychecks-scrolled
+- swipe:
+    start: 50%, 15%
+    end: 50%, 65%
+    duration: 400
+- swipe:
+    start: 50%, 15%
+    end: 50%, 65%
+    duration: 400
+- assertVisible: "(?!Past ).* paychecks"
+- takeScreenshot: paychecks-back-at-top
+
+# Income
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "Per month"
+    timeout: 10000
+- takeScreenshot: income-top
+- swipe:
+    start: 50%, 65%
+    end: 50%, 15%
+    duration: 400
+- takeScreenshot: income-scrolled
+- swipe:
+    start: 50%, 15%
+    end: 50%, 65%
+    duration: 400
+- assertVisible: "Per month"
+- takeScreenshot: income-back-at-top
+
+# Expenses
+- openLink: paycheck-planner://expenses
+- extendedWaitUntil:
+    visible: ".* a month across .*"
+    timeout: 10000
+- takeScreenshot: expenses-top
+- swipe:
+    start: 50%, 65%
+    end: 50%, 15%
+    duration: 400
+- assertNotVisible: ".* a month across .*"
+- takeScreenshot: expenses-scrolled
+- swipe:
+    start: 50%, 15%
+    end: 50%, 65%
+    duration: 400
+- swipe:
+    start: 50%, 15%
+    end: 50%, 65%
+    duration: 400
+- assertVisible: ".* a month across .*"
+- takeScreenshot: expenses-back-at-top

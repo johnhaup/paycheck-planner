@@ -2,7 +2,6 @@ import { useCallback, useMemo } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import { useStore } from "@/store";
-import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
@@ -23,11 +22,11 @@ function keyExtractor(item: IncomeSource) {
 
 export default function IncomeScreen() {
   const router = useRouter();
-  const colors = useColors();
   const { whole: formatWholeMoney } = useMoneyFormat();
   const t = useT();
   const incomeSources = useStore((s) => s.incomeSources);
   const deleteIncomeSource = useStore((s) => s.deleteIncomeSource);
+  const hasSources = incomeSources.length > 0;
 
   const handleAdd = useCallback(() => {
     router.push("/income-form");
@@ -106,44 +105,45 @@ export default function IncomeScreen() {
     [t]
   );
 
-  const containerStyle = useMemo(
-    () => [styles.container, { backgroundColor: colors.screenBackground }],
-    [colors]
+  const listEmpty = useMemo(
+    () => (
+      <AppEmptyState
+        icon="cash-outline"
+        title={t("income.emptyTitle")}
+        body={t("income.emptyBody")}
+        actionLabel={t("income.addSource")}
+        onAction={handleAdd}
+      />
+    ),
+    [handleAdd, t]
   );
 
+  // The list is the screen's root view so iOS collapses the large title on scroll
   return (
-    <View style={containerStyle}>
-      {incomeSources.length === 0 ? (
-        <AppEmptyState
-          icon="cash-outline"
-          title={t("income.emptyTitle")}
-          body={t("income.emptyBody")}
-          actionLabel={t("income.addSource")}
-          onAction={handleAdd}
-        />
-      ) : (
-        <FlatList
-          data={incomeSources}
-          keyExtractor={keyExtractor}
-          renderItem={renderItem}
-          ListHeaderComponent={listHeader}
-          ListFooterComponent={listFooter}
-          contentInsetAdjustmentBehavior="automatic"
-          contentContainerStyle={styles.listContent}
-        />
-      )}
+    <>
+      <FlatList
+        data={incomeSources}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+        ListHeaderComponent={hasSources ? listHeader : undefined}
+        ListFooterComponent={hasSources ? listFooter : undefined}
+        ListEmptyComponent={listEmpty}
+        contentInsetAdjustmentBehavior="automatic"
+        contentContainerStyle={hasSources ? styles.listContent : styles.emptyContent}
+      />
       <AppFab accessibilityLabel={t("income.addSource")} onPress={handleAdd} />
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   listContent: {
     paddingHorizontal: MEASUREMENTS.spacing.gutter,
     paddingTop: MEASUREMENTS.spacing.md,
+    paddingBottom: MEASUREMENTS.fabSize + MEASUREMENTS.spacing.bottom,
+  },
+  emptyContent: {
+    flexGrow: 1,
     paddingBottom: MEASUREMENTS.fabSize + MEASUREMENTS.spacing.bottom,
   },
   tiles: {
