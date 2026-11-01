@@ -1,5 +1,5 @@
 import { useMemo, type ComponentProps } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
@@ -14,12 +14,12 @@ interface Props {
   onTrySample: () => void;
 }
 
-/** First-run screen on the Paychecks tab, shown until there's an income source. */
+/** First-run content on the Paychecks tab, shown in the list until there's an income source. */
 export function Welcome({ onAddIncome, onTrySample }: Props) {
   const t = useT();
 
   return (
-    <ScrollView contentContainerStyle={styles.content} contentInsetAdjustmentBehavior="automatic">
+    <View style={styles.content}>
       <AppText variant="title">{t("welcome.title")}</AppText>
       <AppText variant="meta">{t("welcome.body")}</AppText>
       <View style={styles.steps}>
@@ -29,7 +29,7 @@ export function Welcome({ onAddIncome, onTrySample }: Props) {
       </View>
       <AppButton title={t("welcome.addIncome")} onPress={onAddIncome} />
       <AppButton title={t("welcome.trySample")} variant="outline" onPress={onTrySample} />
-    </ScrollView>
+    </View>
   );
 }
 
@@ -62,7 +62,7 @@ function Step({ icon, title, body }: StepProps) {
 
 const styles = StyleSheet.create({
   content: {
-    padding: MEASUREMENTS.spacing.gutter,
+    paddingVertical: MEASUREMENTS.spacing.gutter,
     gap: MEASUREMENTS.spacing.base,
   },
   steps: {

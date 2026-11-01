@@ -1,0 +1,255 @@
+# Protects the iOS collapsing large title on Paychecks, Income and Expenses and
+# the month overview that stays pinned under the bar on Paychecks (HAU-11,
+# HAU-12, regression HAU-58), plus the month switch from the pinned chart and
+# the reset after Erase all data (HAU-64).
+#
+# Maestro cannot read font sizes, but it can place elements relative to each
+# other: the collapsed title is centred in the bar, so it is right of the
+# status-bar clock and left of the header button, above the first content row.
+# The expanded large title is left-aligned under the clock and never matches
+# that selector. `assertVisible` with it after a scroll proves the collapse;
+# `assertNotVisible` with it at the top proves the large title is back (the
+# anchors are all on screen there, so the negative is meaningful). Screenshots
+# stay as the human-readable evidence.
+#
+# Sample data has two income sources, so the Income list is shorter than the
+# screen and its title cannot collapse; its scrolled screenshot shows the bounce
+# back. Tabs are switched through deep links (see smoke.yaml).
+appId: com.johnhaup.paycheckplanner
+name: large-title
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- takeScreenshot: welcome-top
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- assertVisible: "(?!Past ).* paychecks"
+- assertNotVisible:
+    text: "Paychecks"
+    rightOf: "\\d{1,2}:\\d{2}.*"
+    leftOf: ""
+    above: ".* · left over"
+- takeScreenshot: paychecks-top
+
+# Scroll about 400pt: the title collapses, the overview stays, the cards pass under it
+- swipe:
+    start: 50%, 65%
+    end: 50%, 15%
+    duration: 400
+- assertVisible: ".* · left over"
+- assertVisible: ".* in · .* assigned"
+- assertVisible:
+    text: "Paychecks"
+    rightOf: "\\d{1,2}:\\d{2}.*"
+    leftOf: ""
+    above: ".* · left over"
+# The section title scrolls away with the cards ("Past paychecks" stays in the footer)
+- assertNotVisible: "(?!Past ).* paychecks"
+- takeScreenshot: paychecks-scrolled
+
+# The pinned chart still switches months, and the calendar icon brings this month back
+- tapOn: "January 2027, .*"
+- extendedWaitUntil:
+    visible: "January 2027 · left over"
+    timeout: 5000
+- assertVisible:
+    text: "Paychecks"
+    rightOf: "\\d{1,2}:\\d{2}.*"
+    leftOf: ""
+    above: ".* · left over"
+- takeScreenshot: paychecks-january-while-pinned
+- tapOn: "Go to this month"
+- extendedWaitUntil:
+    visible: "November · left over"
+    timeout: 5000
+
+- swipe:
+    start: 50%, 15%
+    end: 50%, 65%
+    duration: 400
+- swipe:
+    start: 50%, 15%
+    end: 50%, 65%
+    duration: 400
+- assertVisible: "(?!Past ).* paychecks"
+- assertNotVisible:
+    text: "Paychecks"
+    rightOf: "\\d{1,2}:\\d{2}.*"
+    leftOf: ""
+    above: ".* · left over"
+- takeScreenshot: paychecks-back-at-top
+
+# Income
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "Per month"
+    timeout: 10000
+- takeScreenshot: income-top
+- swipe:
+    start: 50%, 65%
+    end: 50%, 15%
+    duration: 400
+- takeScreenshot: income-scrolled
+- swipe:
+    start: 50%, 15%
+    end: 50%, 65%
+    duration: 400
+- assertVisible: "Per month"
+- takeScreenshot: income-back-at-top
+
+# Expenses ("Rent" is on screen both at the top and after the scroll)
+- openLink: paycheck-planner://expenses
+- extendedWaitUntil:
+    visible: ".* a month across .*"
+    timeout: 10000
+- assertNotVisible:
+    text: "Expenses"
+    rightOf: "\\d{1,2}:\\d{2}.*"
+    leftOf: "Sort"
+    above: ".*Rent.*"
+- takeScreenshot: expenses-top
+- swipe:
+    start: 50%, 65%
+    end: 50%, 15%
+    duration: 400
+- assertNotVisible: ".* a month across .*"
+- assertVisible:
+    text: "Expenses"
+    rightOf: "\\d{1,2}:\\d{2}.*"
+    leftOf: "Sort"
+    above: ".*Rent.*"
+- takeScreenshot: expenses-scrolled
+- swipe:
+    start: 50%, 15%
+    end: 50%, 65%
+    duration: 400
+- swipe:
+    start: 50%, 15%
+    end: 50%, 65%
+    duration: 400
+- assertVisible: ".* a month across .*"
+- assertNotVisible:
+    text: "Expenses"
+    rightOf: "\\d{1,2}:\\d{2}.*"
+    leftOf: "Sort"
+    above: ".*Rent.*"
+- takeScreenshot: expenses-back-at-top
+
+# Erase all data from a scrolled Paychecks list: Welcome and the reloaded sample
+# data must open under the large title again, not at the old scroll offset (HAU-64)
+- openLink: paycheck-planner://
+- extendedWaitUntil:
+    visible: "November · left over"
+    timeout: 10000
+- swipe:
+    start: 50%, 65%
+    end: 50%, 15%
+    duration: 400
+- openLink: paycheck-planner://settings
+- extendedWaitUntil:
+    visible: "Hide cents"
+    timeout: 10000
+- scrollUntilVisible:
+    element: ".*Erase all data.*"
+- tapOn: ".*Erase all data.*"
+- extendedWaitUntil:
+    visible: "Delete"
+    timeout: 5000
+- tapOn: "Delete"
+- extendedWaitUntil:
+    notVisible: "Delete"
+    timeout: 5000
+- tapOn: ""
+- runFlow:
+    when:
+      visible: "Hide cents"
+    commands:
+      - tapOn: ""
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 10000
+- takeScreenshot: welcome-after-erase
+- assertNotVisible:
+    text: "Paychecks"
+    rightOf: "\\d{1,2}:\\d{2}.*"
+    leftOf: ""
+    above: "Plan every paycheck"
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: "November · left over"
+    timeout: 10000
+- takeScreenshot: paychecks-after-erase-and-reload
+- assertNotVisible:
+    text: "Paychecks"
+    rightOf: "\\d{1,2}:\\d{2}.*"
+    leftOf: ""
+    above: ".* · left over"
+
+# Income can also come back through the Income form while Paychecks is not on
+# screen; that path must open Paychecks at the top too (HAU-64)
+- openLink: paycheck-planner://
+- extendedWaitUntil:
+    visible: "November · left over"
+    timeout: 10000
+- swipe:
+    start: 50%, 65%
+    end: 50%, 15%
+    duration: 400
+- openLink: paycheck-planner://settings
+- extendedWaitUntil:
+    visible: "Hide cents"
+    timeout: 10000
+- scrollUntilVisible:
+    element: ".*Erase all data.*"
+- tapOn: ".*Erase all data.*"
+- extendedWaitUntil:
+    visible: "Delete"
+    timeout: 5000
+- tapOn: "Delete"
+- extendedWaitUntil:
+    notVisible: "Delete"
+    timeout: 5000
+- tapOn: ""
+- runFlow:
+    when:
+      visible: "Hide cents"
+    commands:
+      - tapOn: ""
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 10000
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "No income yet"
+    timeout: 10000
+- tapOn: "Add income source"
+- extendedWaitUntil:
+    visible: "e.g. Acme Corp"
+    timeout: 10000
+- tapOn: "e.g. 2500.00"
+- inputText: "1500"
+- tapOn: "e.g. Acme Corp"
+- inputText: "QA Payroll"
+- pressKey: Enter
+- scrollUntilVisible:
+    element: "Add Income Source"
+- tapOn: "Add Income Source"
+- extendedWaitUntil:
+    visible: ".*QA Payroll.*"
+    timeout: 10000
+- openLink: paycheck-planner://
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- assertVisible: "(?!Past ).* paychecks"
+- assertNotVisible:
+    text: "Paychecks"
+    rightOf: "\\d{1,2}:\\d{2}.*"
+    leftOf: ""
+    above: ".* · left over"
+- takeScreenshot: paychecks-after-income-form

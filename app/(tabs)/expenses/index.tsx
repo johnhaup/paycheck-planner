@@ -53,6 +53,7 @@ export default function ExpensesScreen() {
   const incomeSources = useStore((s) => s.incomeSources);
   const assignments = useStore((s) => s.assignments);
   const deleteExpense = useStore((s) => s.deleteExpense);
+  const hasExpenses = expenses.length > 0;
   const [filter, setFilter] = useState<ExpenseFilter>("all");
   const [sort, setSort] = useState<ExpenseSort>("default");
   const [query, setQuery] = useState("");
@@ -144,13 +145,12 @@ export default function ExpensesScreen() {
 
   const screenOptions = useMemo(
     () => ({
-      headerRight: expenses.length > 0 ? renderSortButton : undefined,
-      headerSearchBarOptions:
-        expenses.length > 0
-          ? { placeholder: t("expenses.searchPlaceholder"), onChangeText: handleSearch }
-          : undefined,
+      headerRight: hasExpenses ? renderSortButton : undefined,
+      headerSearchBarOptions: hasExpenses
+        ? { placeholder: t("expenses.searchPlaceholder"), onChangeText: handleSearch }
+        : undefined,
     }),
-    [expenses.length, renderSortButton, handleSearch, t]
+    [hasExpenses, renderSortButton, handleSearch, t]
   );
 
   const visibleExpenses = useMemo(() => {
@@ -195,23 +195,12 @@ export default function ExpensesScreen() {
   );
 
   const listEmpty = useMemo(
-    () => (
-      <AppText variant="meta" center style={styles.filterEmpty}>
-        {query.trim() ? t("expenses.noMatches", { query: query.trim() }) : t("expenses.nothingHere")}
-      </AppText>
-    ),
-    [query, t]
-  );
-
-  const containerStyle = useMemo(
-    () => [styles.container, { backgroundColor: colors.screenBackground }],
-    [colors]
-  );
-
-  return (
-    <View style={containerStyle}>
-      <Stack.Screen options={screenOptions} />
-      {expenses.length === 0 ? (
+    () =>
+      hasExpenses ? (
+        <AppText variant="meta" center style={styles.filterEmpty}>
+          {query.trim() ? t("expenses.noMatches", { query: query.trim() }) : t("expenses.nothingHere")}
+        </AppText>
+      ) : (
         <AppEmptyState
           icon="receipt-outline"
           title={t("expenses.emptyTitle")}
@@ -219,31 +208,38 @@ export default function ExpensesScreen() {
           actionLabel={t("expenses.addExpense")}
           onAction={handleAdd}
         />
-      ) : (
-        <SectionList
-          sections={sections}
-          keyExtractor={keyExtractor}
-          renderItem={renderItem}
-          renderSectionHeader={renderSectionHeader}
-          ListHeaderComponent={listHeader}
-          ListEmptyComponent={listEmpty}
-          stickySectionHeadersEnabled={false}
-          contentInsetAdjustmentBehavior="automatic"
-          contentContainerStyle={styles.listContent}
-        />
-      )}
+      ),
+    [hasExpenses, query, handleAdd, t]
+  );
+
+  // The list is the screen's root view so iOS collapses the large title on scroll
+  return (
+    <>
+      <Stack.Screen options={screenOptions} />
+      <SectionList
+        sections={sections}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+        renderSectionHeader={renderSectionHeader}
+        ListHeaderComponent={hasExpenses ? listHeader : undefined}
+        ListEmptyComponent={listEmpty}
+        stickySectionHeadersEnabled={false}
+        contentInsetAdjustmentBehavior="automatic"
+        contentContainerStyle={hasExpenses ? styles.listContent : styles.emptyContent}
+      />
       <AppFab accessibilityLabel={t("expenses.addExpense")} onPress={handleAdd} />
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   listContent: {
     paddingHorizontal: MEASUREMENTS.spacing.gutter,
     paddingTop: MEASUREMENTS.spacing.md,
+    paddingBottom: MEASUREMENTS.fabSize + MEASUREMENTS.spacing.bottom,
+  },
+  emptyContent: {
+    flexGrow: 1,
     paddingBottom: MEASUREMENTS.fabSize + MEASUREMENTS.spacing.bottom,
   },
   header: {

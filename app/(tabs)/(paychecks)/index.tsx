@@ -1,5 +1,11 @@
-import { useCallback, useMemo, useState } from "react";
-import { View, FlatList, Pressable, StyleSheet } from "react-native";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { View, Pressable, StyleSheet, type FlatList } from "react-native";
+import Animated, {
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+} from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { format } from "date-fns";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -21,6 +27,11 @@ import { buildDemoData } from "@/utils/demoData";
 import type { MonthGroup, PaycheckItem } from "@/components/paychecks/types";
 
 const TODAY_ICON_SIZE = 22;
+const NO_PAYCHECKS: PaycheckItem[] = [];
+// The list header (month overview and chart) stays pinned while the cards scroll under it
+const STICKY_HEADER = [0];
+// Collapsed portrait iPhone navigation bar; the app is portrait-only and iPhone-only
+const NAV_BAR_HEIGHT = 44;
 
 function keyExtractor(item: PaycheckItem) {
   return item.key;
@@ -43,8 +54,64 @@ function getCurrentMonthKey() {
 export default function PaychecksScreen() {
   const router = useRouter();
   const colors = useColors();
+  const { format: formatMoney } = useMoneyFormat();
   const t = useT();
-  const hasIncome = useStore((s) => s.incomeSources.length > 0);
+  const incomeSources = useStore((s) => s.incomeSources);
+  const expenses = useStore((s) => s.expenses);
+  const assignments = useStore((s) => s.assignments);
+  const paycheckOverrides = useStore((s) => s.paycheckOverrides);
+  const renderPaycheck = usePaycheckCardRenderer();
+  const insets = useSafeAreaInsets();
+  const hasIncome = incomeSources.length > 0;
+
+  // The selected month belongs to one dataset: when income comes back after
+  // Erase all data (sample data or a new source) the screen opens on this month.
+  // The list stays mounted across both states, so the reset is derived here
+  // instead of by remounting.
+  const [selection, setSelection] = useState(() => ({ monthKey: getCurrentMonthKey(), hasIncome }));
+  if (selection.hasIncome !== hasIncome) {
+    setSelection({ monthKey: getCurrentMonthKey(), hasIncome });
+  }
+  const selectedMonthKey = selection.monthKey;
+
+  const setSelectedMonthKey = useCallback((monthKey: string) => {
+    setSelection((current) => ({ ...current, monthKey }));
+  }, []);
+
+  // The list runs under the navigation bar so iOS can collapse the large title,
+  // and React Native pins a sticky header to the list's top edge, which is under
+  // that bar. Shift the pinned header down to the collapsed bar's bottom edge
+  // once the scroll offset brings it there. Until the first scroll event the
+  // offset is unknown, which the math below treats as no shift.
+  const pinTop = insets.top + NAV_BAR_HEIGHT;
+  const scrollY = useSharedValue(-Infinity);
+
+  // iOS reports the resting offset under the expanded large title as the first
+  // scroll event, when it applies the navigation bar inset at mount. That is the
+  // offset to return to, since offset 0 is the collapsed-title position.
+  const topOffset = useSharedValue<number | undefined>(undefined);
+
+  const handleScroll = useAnimatedScrollHandler((event) => {
+    scrollY.value = event.contentOffset.y;
+    topOffset.value ??= event.contentOffset.y;
+  });
+
+  // The list keeps its scroll offset across Erase all data because it stays
+  // mounted, so the welcome screen and the next dataset would open under a
+  // collapsed title. Scroll back to the top when income disappears or returns.
+  const listRef = useRef<FlatList<PaycheckItem>>(null);
+  useEffect(() => {
+    if (topOffset.value !== undefined) {
+      // From a collapsed title the first scroll expands the title, which grows the
+      // top inset and shifts the offset past the top; the second lands on it.
+      listRef.current?.scrollToOffset({ offset: topOffset.value, animated: false });
+      listRef.current?.scrollToOffset({ offset: topOffset.value, animated: false });
+    }
+  }, [hasIncome, topOffset]);
+
+  const pinStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: Math.min(Math.max(scrollY.value + pinTop, 0), pinTop) }],
+  }));
 
   const handleAddIncome = useCallback(() => {
     router.push("/income-form");
@@ -55,47 +122,13 @@ export default function PaychecksScreen() {
     toast(t("toasts.sampleLoaded"));
   }, [t]);
 
-  const containerStyle = useMemo(
-    () => [styles.container, { backgroundColor: colors.screenBackground }],
-    [colors]
-  );
-
-  // Keep one root View across the empty and list states; swapping the root
-  // element after the store rehydrates drops the native large title.
-  return (
-    <View style={containerStyle}>
-      {hasIncome ? (
-        <PaycheckMonths />
-      ) : (
-        <Welcome onAddIncome={handleAddIncome} onTrySample={handleTrySample} />
-      )}
-    </View>
-  );
-}
-
-/**
- * The month chart and the selected month's paychecks. Mounted only while there is
- * income, so the selected month starts over at this month after Erase all data.
- */
-function PaycheckMonths() {
-  const router = useRouter();
-  const colors = useColors();
-  const { format: formatMoney } = useMoneyFormat();
-  const t = useT();
-  const incomeSources = useStore((s) => s.incomeSources);
-  const expenses = useStore((s) => s.expenses);
-  const assignments = useStore((s) => s.assignments);
-  const paycheckOverrides = useStore((s) => s.paycheckOverrides);
-  const [selectedMonthKey, setSelectedMonthKey] = useState(getCurrentMonthKey);
-  const renderPaycheck = usePaycheckCardRenderer();
-
   const handleOpenHistory = useCallback(() => {
     router.push("/history");
   }, [router]);
 
   const handleGoToToday = useCallback(() => {
     setSelectedMonthKey(getCurrentMonthKey());
-  }, []);
+  }, [setSelectedMonthKey]);
 
   const months = useMemo(
     () => buildMonthGroups(incomeSources, expenses, assignments, paycheckOverrides, new Date()),
@@ -113,7 +146,7 @@ function PaycheckMonths() {
   // so "today" is whichever month comes first.
   const isAwayFromToday = !!selectedMonth && selectedMonth.key !== months[0]?.key;
 
-  const paychecks = useMemo(() => selectedMonth?.paychecks ?? [], [selectedMonth]);
+  const paychecks = useMemo(() => selectedMonth?.paychecks ?? NO_PAYCHECKS, [selectedMonth]);
 
   const currentMonthKey = getCurrentMonthKey();
 
@@ -126,12 +159,17 @@ function PaycheckMonths() {
     if (shortElsewhere) {
       setSelectedMonthKey(shortElsewhere.monthKey);
     }
-  }, [shortElsewhere]);
+  }, [shortElsewhere, setSelectedMonthKey]);
+
+  const stickyHeaderStyle = useMemo(
+    () => [styles.stickyHeader, { backgroundColor: colors.screenBackground }, pinStyle],
+    [colors, pinStyle]
+  );
 
   const listHeader = useMemo(
     () =>
-      selectedMonth ? (
-        <View>
+      hasIncome && selectedMonth ? (
+        <Animated.View style={stickyHeaderStyle}>
           <View style={styles.heroLabelRow}>
             <AppText variant="meta" style={styles.heroLabel}>
               {t("paychecks.leftAfterBills", { month: selectedMonth.longLabel })}
@@ -175,13 +213,10 @@ function PaycheckMonths() {
               onSelect={setSelectedMonthKey}
             />
           </View>
-          <AppSectionHeader
-            title={t("paychecks.monthPaychecks", { month: selectedMonth.longLabel })}
-            trailing={String(selectedMonth.paychecks.length)}
-          />
-        </View>
+        </Animated.View>
       ) : undefined,
     [
+      hasIncome,
       selectedMonth,
       months,
       currentMonthKey,
@@ -189,49 +224,89 @@ function PaycheckMonths() {
       handleGoToToday,
       shortElsewhere,
       handleShowShort,
+      setSelectedMonthKey,
+      stickyHeaderStyle,
       colors,
       formatMoney,
       t,
     ]
   );
 
-  const listFooter = useMemo(
-    () => (
-      <Pressable
-        style={styles.historyLink}
-        onPress={handleOpenHistory}
-        accessibilityRole="button"
-        accessibilityLabel={t("paychecks.pastPaychecks")}
-      >
-        <AppText variant="bodyStrong" color="primaryText">{t("paychecks.pastPaychecks")}</AppText>
-        <Ionicons name="chevron-forward" size={16} color={colors.primaryText} />
-      </Pressable>
+  // The section title scrolls with the first card rather than pinning with the header above it
+  const renderItem = useCallback(
+    ({ item, index }: { item: PaycheckItem; index: number }) => (
+      <>
+        {index === 0 && selectedMonth ? (
+          <AppSectionHeader
+            title={t("paychecks.monthPaychecks", { month: selectedMonth.longLabel })}
+            trailing={String(selectedMonth.paychecks.length)}
+          />
+        ) : null}
+        {renderPaycheck({ item })}
+      </>
     ),
-    [handleOpenHistory, colors, t]
+    [renderPaycheck, selectedMonth, t]
   );
 
+  const listFooter = useMemo(
+    () =>
+      hasIncome ? (
+        <Pressable
+          style={styles.historyLink}
+          onPress={handleOpenHistory}
+          accessibilityRole="button"
+          accessibilityLabel={t("paychecks.pastPaychecks")}
+        >
+          <AppText variant="bodyStrong" color="primaryText">{t("paychecks.pastPaychecks")}</AppText>
+          <Ionicons name="chevron-forward" size={16} color={colors.primaryText} />
+        </Pressable>
+      ) : undefined,
+    [hasIncome, handleOpenHistory, colors, t]
+  );
+
+  const listEmpty = useMemo(
+    () => (hasIncome ? undefined : <Welcome onAddIncome={handleAddIncome} onTrySample={handleTrySample} />),
+    [hasIncome, handleAddIncome, handleTrySample]
+  );
+
+  // The list is the screen's root in both the welcome and the paychecks state:
+  // iOS only collapses the large title into the header when the scroll view
+  // is the first view, and swapping roots after the store rehydrates drops it.
   return (
-    <FlatList
+    <Animated.FlatList
+      ref={listRef}
+      style={styles.list}
       data={paychecks}
       keyExtractor={keyExtractor}
-      renderItem={renderPaycheck}
+      renderItem={renderItem}
       ListHeaderComponent={listHeader}
       ListFooterComponent={listFooter}
+      ListEmptyComponent={listEmpty}
+      stickyHeaderIndices={STICKY_HEADER}
       contentInsetAdjustmentBehavior="automatic"
+      scrollToOverflowEnabled
       contentContainerStyle={styles.listContent}
       showsVerticalScrollIndicator={false}
+      onScroll={handleScroll}
+      scrollEventThrottle={16}
     />
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  list: {
     flex: 1,
   },
   listContent: {
     paddingHorizontal: MEASUREMENTS.spacing.gutter,
-    paddingTop: MEASUREMENTS.spacing.md,
     paddingBottom: MEASUREMENTS.spacing.bottom,
+  },
+  stickyHeader: {
+    // Bleed past the list gutter so cards never peek out beside the pinned header
+    marginHorizontal: -MEASUREMENTS.spacing.gutter,
+    paddingHorizontal: MEASUREMENTS.spacing.gutter,
+    paddingTop: MEASUREMENTS.spacing.md,
+    paddingBottom: MEASUREMENTS.spacing.base,
   },
   heroLabelRow: {
     // Reserve the icon's height so the hero does not jump when it appears
