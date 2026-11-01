@@ -32,7 +32,7 @@ name: large-title
 - assertNotVisible:
     text: "Paychecks"
     rightOf: "\\d{1,2}:\\d{2}.*"
-    leftOf: ""
+    leftOf: "Settings"
     above: ".* · left over"
 - takeScreenshot: paychecks-top
 
@@ -46,7 +46,7 @@ name: large-title
 - assertVisible:
     text: "Paychecks"
     rightOf: "\\d{1,2}:\\d{2}.*"
-    leftOf: ""
+    leftOf: "Settings"
     above: ".* · left over"
 # The section title scrolls away with the cards ("Past paychecks" stays in the footer)
 - assertNotVisible: "(?!Past ).* paychecks"
@@ -60,7 +60,7 @@ name: large-title
 - assertVisible:
     text: "Paychecks"
     rightOf: "\\d{1,2}:\\d{2}.*"
-    leftOf: ""
+    leftOf: "Settings"
     above: ".* · left over"
 - takeScreenshot: paychecks-january-while-pinned
 - tapOn: "Go to this month"
@@ -80,7 +80,7 @@ name: large-title
 - assertNotVisible:
     text: "Paychecks"
     rightOf: "\\d{1,2}:\\d{2}.*"
-    leftOf: ""
+    leftOf: "Settings"
     above: ".* · left over"
 - takeScreenshot: paychecks-back-at-top
 
@@ -164,12 +164,12 @@ name: large-title
 - extendedWaitUntil:
     notVisible: "Delete"
     timeout: 5000
-- tapOn: ""
+- tapOn: "Close"
 - runFlow:
     when:
       visible: "Hide cents"
     commands:
-      - tapOn: ""
+      - tapOn: "Close"
 - extendedWaitUntil:
     visible: "Try with sample data"
     timeout: 10000
@@ -177,7 +177,7 @@ name: large-title
 - assertNotVisible:
     text: "Paychecks"
     rightOf: "\\d{1,2}:\\d{2}.*"
-    leftOf: ""
+    leftOf: "Settings"
     above: "Plan every paycheck"
 - tapOn: "Try with sample data"
 - extendedWaitUntil:
@@ -187,7 +187,7 @@ name: large-title
 - assertNotVisible:
     text: "Paychecks"
     rightOf: "\\d{1,2}:\\d{2}.*"
-    leftOf: ""
+    leftOf: "Settings"
     above: ".* · left over"
 
 # Income can also come back through the Income form while Paychecks is not on
@@ -214,12 +214,12 @@ name: large-title
 - extendedWaitUntil:
     notVisible: "Delete"
     timeout: 5000
-- tapOn: ""
+- tapOn: "Close"
 - runFlow:
     when:
       visible: "Hide cents"
     commands:
-      - tapOn: ""
+      - tapOn: "Close"
 - extendedWaitUntil:
     visible: "Try with sample data"
     timeout: 10000
@@ -250,6 +250,6 @@ name: large-title
 - assertNotVisible:
     text: "Paychecks"
     rightOf: "\\d{1,2}:\\d{2}.*"
-    leftOf: ""
+    leftOf: "Settings"
     above: ".* · left over"
 - takeScreenshot: paychecks-after-income-form

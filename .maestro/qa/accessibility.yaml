@@ -1,0 +1,90 @@
+# Protects the accessibility labels on the icon-only header buttons (HAU-61):
+# the Paychecks gear reads "Settings", the Settings modal X reads "Close" and
+# the Expenses sort button reads "Sort", so VoiceOver and Maestro reach them by
+# name instead of an Ionicons glyph character. The gear label follows the app
+# language; "Close" has English only and falls back to it in other languages.
+appId: com.johnhaup.paycheckplanner
+name: accessibility
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+
+# Gear and close button by label
+- assertVisible: "Settings"
+- tapOn: "Settings"
+- extendedWaitUntil:
+    visible: "Hide cents"
+    timeout: 10000
+- assertVisible: "Close"
+- takeScreenshot: settings-opened-by-label
+- tapOn: "Close"
+- extendedWaitUntil:
+    notVisible: "Hide cents"
+    timeout: 10000
+- assertVisible: "Settings"
+- takeScreenshot: settings-closed-by-label
+
+# Expenses sort button by label
+- openLink: paycheck-planner://expenses
+- extendedWaitUntil:
+    visible: ".* a month across .*"
+    timeout: 10000
+- tapOn: "Sort"
+- extendedWaitUntil:
+    visible: "Grouped"
+    timeout: 5000
+- takeScreenshot: sort-opened-by-label
+- tapOn: "Cancel"
+- extendedWaitUntil:
+    notVisible: "Grouped"
+    timeout: 5000
+
+# The gear label is localized: in Spanish it reads "Ajustes"; Close stays English.
+# Back to Paychecks first, since the gear lives only in that header.
+- openLink: paycheck-planner://
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- tapOn: "Settings"
+- extendedWaitUntil:
+    visible: "Hide cents"
+    timeout: 10000
+- tapOn: "Language, .*"
+- extendedWaitUntil:
+    visible: "Español"
+    timeout: 10000
+- tapOn: "Español"
+- extendedWaitUntil:
+    visible: "Idioma, Español.*"
+    timeout: 10000
+- assertVisible: "Close"
+- tapOn: "Close"
+- extendedWaitUntil:
+    notVisible: "Ocultar decimales"
+    timeout: 10000
+- assertVisible: "Ajustes"
+- takeScreenshot: gear-spanish
+- tapOn: "Ajustes"
+- extendedWaitUntil:
+    visible: "Ocultar decimales"
+    timeout: 10000
+- tapOn: "Idioma, .*"
+- extendedWaitUntil:
+    visible: "English"
+    timeout: 10000
+- tapOn: "English"
+- extendedWaitUntil:
+    visible: "Language, English.*"
+    timeout: 10000
+- tapOn: "Close"
+- extendedWaitUntil:
+    notVisible: "Hide cents"
+    timeout: 10000
+- assertVisible: "Settings"
