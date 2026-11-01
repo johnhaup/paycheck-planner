@@ -1,0 +1,88 @@
+# Pro purchase, persistence and restore (HAU-69). Needs the StoreKit test environment
+# (PaycheckPlanner.storekit), which the simulator only honours for an app launched from Xcode's run
+# action, so this is NOT part of .maestro/qa/ and the release gate does not run it. From a plain simctl
+# launch, Buy reaches the real App Store sandbox and raises a "Sign in to Apple Account" alert that Maestro
+# cannot see; the onFlowComplete taps dismiss it so a failed run does not poison the next flow.
+# HAU-76 makes these steps runnable without Xcode (mock store behind a launch argument); fold them back
+# into .maestro/qa/pro.yaml then.
+appId: com.johnhaup.paycheckplanner
+name: pro-purchase
+onFlowComplete:
+  - tapOn:
+      point: "33%,60%"
+  - tapOn:
+      point: "33%,44%"
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "Per month"
+    timeout: 10000
+- tapOn: "Add income source · PRO"
+- extendedWaitUntil:
+    visible: "Buy for \\$4\\.99"
+    timeout: 20000
+# Buy through the StoreKit test environment
+- tapOn: "Buy for \\$4\\.99"
+- extendedWaitUntil:
+    visible: "Purchase"
+    timeout: 20000
+- tapOn: "Purchase"
+- extendedWaitUntil:
+    visible: "Pro is unlocked"
+    timeout: 30000
+- takeScreenshot: paywall-unlocked
+- tapOn: "Done"
+- extendedWaitUntil:
+    visible: "Add income source"
+    timeout: 10000
+- assertNotVisible: "Add income source · PRO"
+- tapOn: "Add income source"
+- extendedWaitUntil:
+    visible: "e.g. Acme Corp"
+    timeout: 10000
+- takeScreenshot: third-source-form
+
+# Still Pro after a kill and relaunch
+- stopApp
+- launchApp
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 60000
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "Per month"
+    timeout: 10000
+- assertNotVisible: "Add income source · PRO"
+
+# Fresh install: Restore Purchases brings Pro back
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- openLink: paycheck-planner://settings
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 10000
+- tapOn: "Paycheck Planner Pro.*"
+- extendedWaitUntil:
+    visible: "Restore Purchases"
+    timeout: 10000
+- tapOn: "Restore Purchases"
+- extendedWaitUntil:
+    visible: "Pro is unlocked"
+    timeout: 30000
+- takeScreenshot: restored
