@@ -5,13 +5,16 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { hapticTap } from "@/utils/haptics";
+import { ProBadge } from "@/components/ProBadge";
 
 interface Props {
   accessibilityLabel: string;
   onPress: () => void;
+  /** Marks the action as Pro-only; the caller routes the press to the paywall */
+  pro?: boolean;
 }
 
-export function AppFab({ accessibilityLabel, onPress }: Props) {
+export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
   const colors = useColors();
   const insets = useSafeAreaInsets();
 
@@ -41,6 +44,7 @@ export function AppFab({ accessibilityLabel, onPress }: Props) {
       accessibilityLabel={accessibilityLabel}
     >
       <Ionicons name="add" size={28} color={colors.onPrimary} />
+      {pro ? <ProBadge style={styles.badge} /> : null}
     </Pressable>
   );
 }
@@ -58,5 +62,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 6,
+  },
+  badge: {
+    position: "absolute",
+    top: -MEASUREMENTS.spacing.sm,
+    left: -MEASUREMENTS.spacing.md,
+    borderWidth: 2,
+    borderColor: "transparent",
   },
 });

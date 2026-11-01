@@ -5,15 +5,18 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { AppCard } from "@/components/AppCard";
 import { AppText } from "@/components/AppText";
 import { AppToggle } from "@/components/AppToggle";
+import { ProBadge } from "@/components/ProBadge";
 
 interface Props {
   label: string;
   hint?: string;
   value: boolean;
   onValueChange: (value: boolean) => void;
+  /** Pro-only toggle: shows the badge; the caller routes the change to the paywall */
+  pro?: boolean;
 }
 
-export function SettingsToggleRow({ label, hint, value, onValueChange }: Props) {
+export function SettingsToggleRow({ label, hint, value, onValueChange, pro }: Props) {
   const colors = useColors();
 
   const cardStyle = useMemo(
@@ -25,6 +28,7 @@ export function SettingsToggleRow({ label, hint, value, onValueChange }: Props) 
     <>
       <AppCard style={cardStyle}>
         <AppText variant="body" style={styles.label}>{label}</AppText>
+        {pro ? <ProBadge /> : null}
         <AppToggle value={value} onValueChange={onValueChange} />
       </AppCard>
       {hint ? (

@@ -32,7 +32,8 @@
     "payDate": "Dan plaće",
     "language": "Jezik",
     "currency": "Valuta",
-    "history": "Prošle plaće"
+    "history": "Prošle plaće",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Idi na ovaj mjesec",
@@ -346,5 +347,33 @@
     "leftBody": "Svaka plaća prikazuje svoje račune i što ostaje.",
     "addIncome": "Dodaj izvor prihoda",
     "trySample": "Isprobaj s primjerima podataka"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "Jednokratna kupnja. Bez pretplate.",
+    "features": {
+      "incomes": "Dodajte više od jednog izvora prihoda",
+      "projection": "Pogledajte plaće za cijelu godinu",
+      "reminders": "Podsjetnici za dan plaće i neplaćene račune",
+      "setAsides": "Odvojeni iznosi i ciljevi štednje",
+      "overrides": "Promijenite račun ili iznos plaće samo za jednu plaću",
+      "history": "Plaće iz ranijih mjeseci",
+      "csv": "Izvezite račune kao CSV"
+    },
+    "buy": "Kupi za %{price}",
+    "restore": "Obnovi kupnje",
+    "priceUnavailable": "Nije moguće spojiti se na trgovinu. Provjerite vezu i pokušajte ponovno.",
+    "retry": "Pokušaj ponovno",
+    "unlockedTitle": "Pro je otključan",
+    "unlockedBody": "Hvala što podržavate Paycheck Planner. Sve u Pro verziji sada je dostupno.",
+    "footnote": "Platite jednom i zadržite. Obiteljsko dijeljenje je uključeno. Ponovno ste instalirali aplikaciju ili imate novi telefon? Upotrijebite Obnovi kupnje.",
+    "unlocked": "Otključano",
+    "oneTime": "Jednokratna kupnja",
+    "moreMonths": "Pogledajte godinu unaprijed",
+    "earlierMonths": "Pogledajte ranije mjesece",
+    "restored": "Pro je obnovljen",
+    "nothingToRestore": "Za ovaj račun nije pronađena Pro kupnja",
+    "purchaseFailed": "Kupnja nije uspjela"
   }
 }

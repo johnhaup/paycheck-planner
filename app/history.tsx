@@ -1,5 +1,6 @@
 import { useMemo } from "react";
-import { SectionList, StyleSheet, type SectionListData } from "react-native";
+import { Pressable, SectionList, StyleSheet, type SectionListData } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
@@ -8,7 +9,9 @@ import { usePaycheckCardRenderer } from "@/hooks/usePaycheckCardRenderer";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
-import { buildPastMonthGroups } from "@/utils/paycheckMonths";
+import { buildPastMonthGroups, PAST_MONTHS } from "@/utils/paycheckMonths";
+import { useProGate } from "@/hooks/useProGate";
+import { ProBadge } from "@/components/ProBadge";
 import type { PaycheckItem } from "@/components/paychecks/types";
 
 interface HistorySection {
@@ -35,10 +38,18 @@ export default function HistoryScreen() {
   const assignments = useStore((s) => s.assignments);
   const paycheckOverrides = useStore((s) => s.paycheckOverrides);
   const renderPaycheck = usePaycheckCardRenderer();
+  const { isPro, openPaywall } = useProGate();
 
   const sections = useMemo<HistorySection[]>(
     () =>
-      buildPastMonthGroups(incomeSources, expenses, assignments, paycheckOverrides, new Date()).map(
+      buildPastMonthGroups(
+        incomeSources,
+        expenses,
+        assignments,
+        paycheckOverrides,
+        new Date(),
+        isPro ? PAST_MONTHS.pro : PAST_MONTHS.free
+      ).map(
         (month) => ({
           key: month.key,
           title: month.longLabel,
@@ -46,7 +57,24 @@ export default function HistoryScreen() {
           data: month.paychecks,
         })
       ),
-    [incomeSources, expenses, assignments, paycheckOverrides, formatMoney, t]
+    [incomeSources, expenses, assignments, paycheckOverrides, isPro, formatMoney, t]
+  );
+
+  const listFooter = useMemo(
+    () =>
+      isPro ? undefined : (
+        <Pressable
+          style={styles.unlockRow}
+          onPress={openPaywall}
+          accessibilityRole="button"
+          accessibilityLabel={t("pro.earlierMonths")}
+        >
+          <AppText variant="bodyStrong" color="primaryText">{t("pro.earlierMonths")}</AppText>
+          <ProBadge />
+          <Ionicons name="chevron-forward" size={16} color={colors.primaryText} />
+        </Pressable>
+      ),
+    [isPro, openPaywall, colors, t]
   );
 
   const listEmpty = useMemo(
@@ -67,6 +95,7 @@ export default function HistoryScreen() {
       renderItem={renderPaycheck}
       renderSectionHeader={renderSectionHeader}
       ListEmptyComponent={listEmpty}
+      ListFooterComponent={listFooter}
       stickySectionHeadersEnabled={false}
       style={listStyle}
       contentContainerStyle={styles.listContent}
@@ -81,5 +110,12 @@ const styles = StyleSheet.create({
   },
   empty: {
     marginTop: MEASUREMENTS.spacing.section,
+  },
+  unlockRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: MEASUREMENTS.spacing.md,
+    paddingVertical: MEASUREMENTS.spacing.xl,
   },
 });

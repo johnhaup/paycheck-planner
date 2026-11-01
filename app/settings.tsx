@@ -20,6 +20,7 @@ import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { AppSegmentedControl, type SegmentOption } from "@/components/AppSegmentedControl";
 import { SettingsToggleRow } from "@/components/settings/SettingsToggleRow";
 import { SettingsLinkRow } from "@/components/settings/SettingsLinkRow";
+import { useProGate } from "@/hooks/useProGate";
 
 export default function SettingsScreen() {
   const router = useRouter();
@@ -43,6 +44,8 @@ export default function SettingsScreen() {
   const hour = useNotificationStore((s) => s.hour);
   const minute = useNotificationStore((s) => s.minute);
   const setTime = useNotificationStore((s) => s.setTime);
+  // Reminders and CSV export are Pro; a reminder already switched on keeps working and can be turned off
+  const { isPro, locked, gate, openPaywall } = useProGate();
 
   const handleOpenLanguage = useCallback(() => {
     router.push("/language");
@@ -54,6 +57,10 @@ export default function SettingsScreen() {
 
   const handleToggleReminders = useCallback(
     async (value: boolean) => {
+      if (value && locked) {
+        openPaywall();
+        return;
+      }
       if (!value) {
         setRemindersEnabled(false);
         return;
@@ -66,11 +73,15 @@ export default function SettingsScreen() {
         Alert.alert(t("settings.permissionDeniedTitle"), t("settings.permissionDeniedBody"));
       }
     },
-    [setRemindersEnabled, t]
+    [setRemindersEnabled, locked, openPaywall, t]
   );
 
   const handleToggleUnpaid = useCallback(
     async (value: boolean) => {
+      if (value && locked) {
+        openPaywall();
+        return;
+      }
       if (!value) {
         setUnpaidEnabled(false);
         return;
@@ -83,7 +94,7 @@ export default function SettingsScreen() {
         Alert.alert(t("settings.permissionDeniedTitle"), t("settings.permissionDeniedBody"));
       }
     },
-    [setUnpaidEnabled, t]
+    [setUnpaidEnabled, locked, openPaywall, t]
   );
 
   const handleBackup = useCallback(() => {
@@ -91,10 +102,14 @@ export default function SettingsScreen() {
     shareBackup({ incomeSources, expenses, assignments, paycheckOverrides }).catch(() => {});
   }, []);
 
-  const handleExportCsv = useCallback(() => {
-    const { expenses, incomeSources } = useStore.getState();
-    shareExpensesCsv(expenses, incomeSources).catch(() => {});
-  }, []);
+  const handleExportCsv = useMemo(
+    () =>
+      gate(() => {
+        const { expenses, incomeSources } = useStore.getState();
+        shareExpensesCsv(expenses, incomeSources).catch(() => {});
+      }),
+    [gate]
+  );
 
   const handleRestore = useCallback(async () => {
     const result = await pickBackup();
@@ -179,6 +194,12 @@ export default function SettingsScreen() {
       contentContainerStyle={styles.content}
       contentInsetAdjustmentBehavior="automatic"
     >
+      <SettingsLinkRow
+        label={t("pro.title")}
+        value={t(isPro ? "pro.unlocked" : "pro.oneTime")}
+        onPress={openPaywall}
+      />
+
       <AppSectionHeader title={t("settings.appearance")} />
       <AppSegmentedControl options={themeOptions} value={themeMode} onChange={setThemeMode} />
       <SettingsToggleRow
@@ -198,6 +219,7 @@ export default function SettingsScreen() {
         hint={t("settings.paydayReminderHint")}
         value={remindersEnabled}
         onValueChange={handleToggleReminders}
+        pro={locked && !remindersEnabled}
       />
       {remindersEnabled ? (
         <>
@@ -220,6 +242,7 @@ export default function SettingsScreen() {
         hint={t("settings.unpaidReminderHint")}
         value={unpaidEnabled}
         onValueChange={handleToggleUnpaid}
+        pro={locked && !unpaidEnabled}
       />
       {remindersEnabled || unpaidEnabled ? (
         <>
@@ -239,7 +262,7 @@ export default function SettingsScreen() {
       <AppSectionHeader title={t("settings.data.title")} />
       <SettingsLinkRow label={t("settings.data.backup")} onPress={handleBackup} />
       <SettingsLinkRow label={t("settings.data.restore")} onPress={handleRestore} />
-      <SettingsLinkRow label={t("settings.data.exportCsv")} onPress={handleExportCsv} />
+      <SettingsLinkRow label={t("settings.data.exportCsv")} onPress={handleExportCsv} pro={locked} />
       <SettingsLinkRow label={t("settings.data.erase")} destructive onPress={handleErase} />
       <AppText variant="caption" style={styles.hint}>
         {t("settings.data.hint")}

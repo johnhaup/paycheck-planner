@@ -32,7 +32,8 @@
     "payDate": "Data de pagamento",
     "language": "Idioma",
     "currency": "Moeda",
-    "history": "Pagamentos anteriores"
+    "history": "Pagamentos anteriores",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Ir para este mês",
@@ -344,5 +345,33 @@
     "leftBody": "Cada pagamento mostra suas contas e o que sobra.",
     "addIncome": "Adicionar fonte de renda",
     "trySample": "Testar com dados de exemplo"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "Compra única. Sem assinatura.",
+    "features": {
+      "incomes": "Adicione mais de uma fonte de renda",
+      "projection": "Veja um ano inteiro de pagamentos",
+      "reminders": "Lembretes do dia do pagamento e de contas em aberto",
+      "setAsides": "Reservas e metas de economia",
+      "overrides": "Mude uma conta ou o valor de um pagamento só para um pagamento",
+      "history": "Pagamentos de meses anteriores",
+      "csv": "Exporte as contas em CSV"
+    },
+    "buy": "Comprar por %{price}",
+    "restore": "Restaurar compras",
+    "priceUnavailable": "Não foi possível acessar a loja. Verifique sua conexão e tente novamente.",
+    "retry": "Tentar novamente",
+    "unlockedTitle": "Pro desbloqueado",
+    "unlockedBody": "Obrigado por apoiar o Paycheck Planner. Tudo do Pro já está disponível.",
+    "footnote": "Pague uma vez e o app é seu. O Compartilhamento Familiar está incluso. Reinstalou o app ou trocou de celular? Use Restaurar compras.",
+    "unlocked": "Desbloqueado",
+    "oneTime": "Compra única",
+    "moreMonths": "Veja um ano à frente",
+    "earlierMonths": "Veja meses anteriores",
+    "restored": "Pro restaurado",
+    "nothingToRestore": "Nenhuma compra do Pro encontrada para esta conta",
+    "purchaseFailed": "A compra não foi concluída"
   }
 }

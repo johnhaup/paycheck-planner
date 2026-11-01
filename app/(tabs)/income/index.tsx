@@ -14,6 +14,7 @@ import { IncomeSourceRow } from "@/components/income/IncomeSourceRow";
 import { getPaychecks, getPaychecksPerMonth } from "@/utils/payDates";
 import { formatMonthDay } from "@/utils/dates";
 import { withUndo } from "@/utils/undo";
+import { useProGate } from "@/hooks/useProGate";
 import type { IncomeSource } from "@/types";
 
 function keyExtractor(item: IncomeSource) {
@@ -27,10 +28,13 @@ export default function IncomeScreen() {
   const incomeSources = useStore((s) => s.incomeSources);
   const deleteIncomeSource = useStore((s) => s.deleteIncomeSource);
   const hasSources = incomeSources.length > 0;
+  // Free includes one income source; adding another is Pro
+  const { locked: addLocked, gate } = useProGate(hasSources);
 
   const handleAdd = useCallback(() => {
     router.push("/income-form");
   }, [router]);
+  const handleAddGated = useMemo(() => gate(handleAdd), [gate, handleAdd]);
 
   const handleEdit = useCallback(
     (id: string) => {
@@ -131,7 +135,7 @@ export default function IncomeScreen() {
         contentInsetAdjustmentBehavior="automatic"
         contentContainerStyle={hasSources ? styles.listContent : styles.emptyContent}
       />
-      <AppFab accessibilityLabel={t("income.addSource")} onPress={handleAdd} />
+      <AppFab accessibilityLabel={t("income.addSource")} onPress={handleAddGated} pro={addLocked} />
     </>
   );
 }

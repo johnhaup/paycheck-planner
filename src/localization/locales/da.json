@@ -32,7 +32,8 @@
     "payDate": "Lønningsdag",
     "language": "Sprog",
     "currency": "Valuta",
-    "history": "Tidligere lønninger"
+    "history": "Tidligere lønninger",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Gå til denne måned",
@@ -344,5 +345,33 @@
     "leftBody": "Hver løn viser sine regninger og hvad der er tilbage.",
     "addIncome": "Tilføj indtægtskilde",
     "trySample": "Prøv med eksempeldata"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "Engangskøb. Intet abonnement.",
+    "features": {
+      "incomes": "Tilføj mere end én indtægtskilde",
+      "projection": "Se et helt års lønninger",
+      "reminders": "Påmindelser om lønningsdag og ubetalte regninger",
+      "setAsides": "Beløb sat til side og sparemål",
+      "overrides": "Ændr en regning eller et lønbeløb for én løn",
+      "history": "Tidligere lønninger fra tidligere måneder",
+      "csv": "Eksportér regninger som CSV"
+    },
+    "buy": "Køb for %{price}",
+    "restore": "Gendan køb",
+    "priceUnavailable": "Kunne ikke få forbindelse til butikken. Tjek din forbindelse, og prøv igen.",
+    "retry": "Prøv igen",
+    "unlockedTitle": "Pro er låst op",
+    "unlockedBody": "Tak fordi du støtter Paycheck Planner. Alt i Pro er nu tilgængeligt.",
+    "footnote": "Betal én gang, og behold det. Familiedeling er inkluderet. Har du geninstalleret appen eller fået en ny telefon? Brug Gendan køb.",
+    "unlocked": "Låst op",
+    "oneTime": "Engangskøb",
+    "moreMonths": "Se et år frem",
+    "earlierMonths": "Se tidligere måneder",
+    "restored": "Pro gendannet",
+    "nothingToRestore": "Der blev ikke fundet noget Pro-køb på denne konto",
+    "purchaseFailed": "Købet gik ikke igennem"
   }
 }

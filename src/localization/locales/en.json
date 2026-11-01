@@ -36,7 +36,8 @@
     "payDate": "Pay Date",
     "language": "Language",
     "currency": "Currency",
-    "history": "Past paychecks"
+    "history": "Past paychecks",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Go to this month",
@@ -348,5 +349,33 @@
     "leftBody": "Each paycheck shows its bills and what's left over.",
     "addIncome": "Add income source",
     "trySample": "Try with sample data"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "One-time purchase. No subscription, ever.",
+    "features": {
+      "incomes": "Add more than one income source",
+      "projection": "See a full year of paychecks",
+      "reminders": "Payday and unpaid bill reminders",
+      "setAsides": "Set-asides and savings goals",
+      "overrides": "Change a bill or pay amount for one paycheck",
+      "history": "Past paychecks from earlier months",
+      "csv": "Export bills as CSV"
+    },
+    "buy": "Buy for %{price}",
+    "restore": "Restore Purchases",
+    "priceUnavailable": "Couldn't reach the store. Check your connection and try again.",
+    "retry": "Try again",
+    "unlockedTitle": "Pro is unlocked",
+    "unlockedBody": "Thanks for supporting Paycheck Planner. Everything in Pro is now available.",
+    "footnote": "Pay once and keep it. Family Sharing is included. Reinstalled or on a new phone? Use Restore Purchases.",
+    "unlocked": "Unlocked",
+    "oneTime": "One-time purchase",
+    "moreMonths": "See a year ahead",
+    "earlierMonths": "See earlier months",
+    "restored": "Pro restored",
+    "nothingToRestore": "No Pro purchase found for this account",
+    "purchaseFailed": "The purchase didn't go through"
   }
 }

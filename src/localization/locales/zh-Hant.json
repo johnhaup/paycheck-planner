@@ -32,7 +32,8 @@
     "payDate": "發薪日",
     "language": "語言",
     "currency": "幣別",
-    "history": "過往薪資"
+    "history": "過往薪資",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "回到本月",
@@ -342,5 +343,33 @@
     "leftBody": "每筆薪資都會顯示其帳單和剩餘金額。",
     "addIncome": "新增收入來源",
     "trySample": "用範例資料試試"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "一次性購買，無需訂閱。",
+    "features": {
+      "incomes": "新增多個收入來源",
+      "projection": "查看全年的薪資",
+      "reminders": "發薪日與未付帳單提醒",
+      "setAsides": "預留資金與儲蓄目標",
+      "overrides": "僅針對某一筆薪資修改帳單或薪資金額",
+      "history": "更早月份的薪資",
+      "csv": "將帳單匯出為 CSV"
+    },
+    "buy": "以 %{price} 購買",
+    "restore": "回復購買項目",
+    "priceUnavailable": "無法連線至商店。請檢查網路連線後重試。",
+    "retry": "重試",
+    "unlockedTitle": "Pro 已解鎖",
+    "unlockedBody": "感謝你支持 Paycheck Planner。Pro 的所有功能現已可用。",
+    "footnote": "一次付費即可使用。支援「家人共享」。重新安裝了 App 或換了新手機？請使用「回復購買項目」。",
+    "unlocked": "已解鎖",
+    "oneTime": "一次性購買",
+    "moreMonths": "查看未來一年",
+    "earlierMonths": "查看更早的月份",
+    "restored": "已回復 Pro",
+    "nothingToRestore": "找不到此帳號的 Pro 購買記錄",
+    "purchaseFailed": "購買未完成"
   }
 }

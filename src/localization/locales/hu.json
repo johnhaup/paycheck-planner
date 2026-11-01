@@ -33,7 +33,8 @@
     "payDate": "Fizetésnap",
     "language": "Nyelv",
     "currency": "Pénznem",
-    "history": "Korábbi fizetések"
+    "history": "Korábbi fizetések",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Ugrás erre a hónapra",
@@ -345,5 +346,33 @@
     "leftBody": "Minden fizetés mutatja a számláit és a maradékot.",
     "addIncome": "Bevételi forrás hozzáadása",
     "trySample": "Kipróbálás mintaadatokkal"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "Egyszeri vásárlás. Nincs előfizetés.",
+    "features": {
+      "incomes": "Adj hozzá több bevételi forrást",
+      "projection": "Nézd meg egy teljes év fizetéseit",
+      "reminders": "Emlékeztetők a fizetésnapra és a kifizetetlen számlákra",
+      "setAsides": "Félretett összegek és megtakarítási célok",
+      "overrides": "Módosíts egy számlát vagy fizetési összeget egyetlen fizetésnél",
+      "history": "Korábbi hónapok fizetései",
+      "csv": "Számlák exportálása CSV-ben"
+    },
+    "buy": "Vásárlás: %{price}",
+    "restore": "Vásárlások visszaállítása",
+    "priceUnavailable": "Nem sikerült elérni az üzletet. Ellenőrizd a kapcsolatot, és próbáld újra.",
+    "retry": "Próbáld újra",
+    "unlockedTitle": "A Pro feloldva",
+    "unlockedBody": "Köszönjük, hogy támogatod a Paycheck Plannert. A Pro minden funkciója elérhető.",
+    "footnote": "Egyszer fizetsz, és a tiéd marad. A Családi megosztás is benne van. Újratelepítetted az appot, vagy új telefonod van? Használd a Vásárlások visszaállítása lehetőséget.",
+    "unlocked": "Feloldva",
+    "oneTime": "Egyszeri vásárlás",
+    "moreMonths": "Nézz egy évvel előre",
+    "earlierMonths": "Nézd meg a korábbi hónapokat",
+    "restored": "Pro visszaállítva",
+    "nothingToRestore": "Ehhez a fiókhoz nem található Pro vásárlás",
+    "purchaseFailed": "A vásárlás nem sikerült"
   }
 }

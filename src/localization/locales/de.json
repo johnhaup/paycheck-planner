@@ -32,7 +32,8 @@
     "payDate": "Zahltag",
     "language": "Sprache",
     "currency": "Währung",
-    "history": "Vergangene Gehälter"
+    "history": "Vergangene Gehälter",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "Zu diesem Monat",
@@ -344,5 +345,33 @@
     "leftBody": "Jedes Gehalt zeigt seine Rechnungen und was übrig bleibt.",
     "addIncome": "Einkommensquelle hinzufügen",
     "trySample": "Mit Beispieldaten ausprobieren"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "Einmaliger Kauf. Kein Abo.",
+    "features": {
+      "incomes": "Mehr als eine Einkommensquelle hinzufügen",
+      "projection": "Ein ganzes Jahr an Gehältern ansehen",
+      "reminders": "Erinnerungen an Zahltag und unbezahlte Rechnungen",
+      "setAsides": "Rücklagen und Sparziele",
+      "overrides": "Rechnung oder Gehaltsbetrag für ein Gehalt ändern",
+      "history": "Frühere Gehälter aus vergangenen Monaten",
+      "csv": "Rechnungen als CSV exportieren"
+    },
+    "buy": "Für %{price} kaufen",
+    "restore": "Käufe wiederherstellen",
+    "priceUnavailable": "Der Store ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
+    "retry": "Erneut versuchen",
+    "unlockedTitle": "Pro ist freigeschaltet",
+    "unlockedBody": "Danke, dass du Paycheck Planner unterstützt. Alles in Pro ist jetzt verfügbar.",
+    "footnote": "Einmal bezahlen und behalten. Die Familienfreigabe ist inklusive. App neu installiert oder neues iPhone? Nutze „Käufe wiederherstellen“.",
+    "unlocked": "Freigeschaltet",
+    "oneTime": "Einmaliger Kauf",
+    "moreMonths": "Ein Jahr vorausschauen",
+    "earlierMonths": "Frühere Monate ansehen",
+    "restored": "Pro wiederhergestellt",
+    "nothingToRestore": "Für diesen Account wurde kein Pro-Kauf gefunden",
+    "purchaseFailed": "Der Kauf ist nicht durchgegangen"
   }
 }

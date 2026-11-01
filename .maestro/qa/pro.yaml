@@ -1,0 +1,95 @@
+# Protects the Pro unlock (HAU-69): the free tier gates the second income
+# source with a PRO badge, the paywall shows the store price, Buy unlocks,
+# the unlock survives a relaunch, and Restore Purchases works on a fresh install.
+#
+# Needs the StoreKit configuration file (PaycheckPlanner.storekit, wired into
+# the Xcode scheme by plugins/withStoreKitConfiguration.js), which the
+# simulator only honours for an app launched from Xcode. The StoreKit test
+# purchase sheet is system UI; its confirm button reads "Purchase".
+appId: com.johnhaup.paycheckplanner
+name: pro
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+
+# Free: two sample sources already exist and stay visible; adding a third is gated
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "Per month"
+    timeout: 10000
+- assertVisible: ".*Brightline Co\\..*"
+- assertVisible: ".*Mesa Health.*"
+- assertVisible: "PRO"
+- takeScreenshot: income-pro-badge
+- tapOn: "Add income source"
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 10000
+- extendedWaitUntil:
+    visible: "Buy for \\$4\\.99"
+    timeout: 20000
+- assertVisible: "Restore Purchases"
+- takeScreenshot: paywall
+
+# Buy through the StoreKit test environment
+- tapOn: "Buy for \\$4\\.99"
+- extendedWaitUntil:
+    visible: "Purchase"
+    timeout: 20000
+- tapOn: "Purchase"
+- extendedWaitUntil:
+    visible: "Pro is unlocked"
+    timeout: 30000
+- takeScreenshot: paywall-unlocked
+- tapOn: "Done"
+- extendedWaitUntil:
+    notVisible: "PRO"
+    timeout: 10000
+- tapOn: "Add income source"
+- extendedWaitUntil:
+    visible: "e.g. Acme Corp"
+    timeout: 10000
+- takeScreenshot: third-source-form
+
+# Still Pro after a kill and relaunch
+- stopApp
+- launchApp
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 60000
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "Per month"
+    timeout: 10000
+- assertNotVisible: "PRO"
+
+# Fresh install: Restore Purchases brings Pro back
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+- openLink: paycheck-planner://settings
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 10000
+- tapOn: "Paycheck Planner Pro.*"
+- extendedWaitUntil:
+    visible: "Restore Purchases"
+    timeout: 10000
+- tapOn: "Restore Purchases"
+- extendedWaitUntil:
+    visible: "Pro is unlocked"
+    timeout: 30000
+- takeScreenshot: restored

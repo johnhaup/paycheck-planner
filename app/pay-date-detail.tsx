@@ -17,6 +17,7 @@ import { getPaycheck, isExpenseLinkedToPaycheck } from "@/utils/payDates";
 import { getPayAmount } from "@/utils/paycheckMonths";
 import { hapticSuccess } from "@/utils/haptics";
 import { withUndo } from "@/utils/undo";
+import { useProGate } from "@/hooks/useProGate";
 import type { Expense } from "@/types";
 
 type ListItem =
@@ -62,6 +63,8 @@ export default function PayDateDetailScreen() {
   const togglePaid = useStore((s) => s.togglePaid);
   const markPaid = useStore((s) => s.markPaid);
   const autoMarkPaid = useThemeStore((s) => s.autoMarkPaidOnLinkTap);
+  // Changing one paycheck's bill or pay amount is Pro
+  const { gate } = useProGate();
 
   const incomeSource = useMemo(
     () => incomeSources.find((e) => e.id === sourceId),
@@ -119,22 +122,27 @@ export default function PayDateDetailScreen() {
     [assignedExpenseIds, togglePaid, assignExpense, payDate, sourceId]
   );
 
-  const handleEditAmount = useCallback(
-    (expenseId: string) => {
-      router.push({
-        pathname: "/expense-amount",
-        params: { expenseId, payDate, sourceId },
-      });
-    },
-    [router, payDate, sourceId]
+  const handleEditAmount = useMemo(
+    () =>
+      gate((expenseId: string) => {
+        router.push({
+          pathname: "/expense-amount",
+          params: { expenseId, payDate, sourceId },
+        });
+      }),
+    [gate, router, payDate, sourceId]
   );
 
-  const handleEditPayAmount = useCallback(() => {
-    router.push({
-      pathname: "/paycheck-amount",
-      params: { payDate, sourceId },
-    });
-  }, [router, payDate, sourceId]);
+  const handleEditPayAmount = useMemo(
+    () =>
+      gate(() => {
+        router.push({
+          pathname: "/paycheck-amount",
+          params: { payDate, sourceId },
+        });
+      }),
+    [gate, router, payDate, sourceId]
+  );
 
   const handleMoveBill = useCallback(() => {
     router.push({

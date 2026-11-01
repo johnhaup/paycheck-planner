@@ -1,9 +1,10 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useRouter } from "expo-router";
 import { useStore } from "@/store";
 import { useThemeStore } from "@/stores/themeStore";
 import { PaycheckCard } from "@/components/paychecks/PaycheckCard";
 import { openPaymentLink } from "@/utils/links";
+import { useProGate } from "@/hooks/useProGate";
 import type { PaycheckItem } from "@/components/paychecks/types";
 
 /** A FlatList `renderItem` for interactive paycheck cards, shared by the upcoming and past lists. */
@@ -13,6 +14,7 @@ export function usePaycheckCardRenderer() {
   const assignExpense = useStore((s) => s.assignExpense);
   const togglePaid = useStore((s) => s.togglePaid);
   const autoMarkPaid = useThemeStore((s) => s.autoMarkPaidOnLinkTap);
+  const { gate } = useProGate();
 
   const handleTogglePaid = useCallback(
     (assignmentId: string, expenseId: string, payDate: string, sourceId: string) => {
@@ -43,18 +45,21 @@ export function usePaycheckCardRenderer() {
     [router]
   );
 
-  const handleEditAmount = useCallback(
-    (expenseId: string, payDate: string, sourceId: string) => {
-      router.push({ pathname: "/expense-amount", params: { expenseId, payDate, sourceId } });
-    },
-    [router]
+  // Changing one paycheck's bill or pay amount is Pro; amounts already changed still show
+  const handleEditAmount = useMemo(
+    () =>
+      gate((expenseId: string, payDate: string, sourceId: string) => {
+        router.push({ pathname: "/expense-amount", params: { expenseId, payDate, sourceId } });
+      }),
+    [gate, router]
   );
 
-  const handleEditPayAmount = useCallback(
-    (payDate: string, sourceId: string) => {
-      router.push({ pathname: "/paycheck-amount", params: { payDate, sourceId } });
-    },
-    [router]
+  const handleEditPayAmount = useMemo(
+    () =>
+      gate((payDate: string, sourceId: string) => {
+        router.push({ pathname: "/paycheck-amount", params: { payDate, sourceId } });
+      }),
+    [gate, router]
   );
 
   const handleMoveBill = useCallback(

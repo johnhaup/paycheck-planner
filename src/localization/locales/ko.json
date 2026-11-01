@@ -32,7 +32,8 @@
     "payDate": "급여일",
     "language": "언어",
     "currency": "통화",
-    "history": "지난 급여"
+    "history": "지난 급여",
+    "pro": "Pro"
   },
   "paychecks": {
     "goToThisMonth": "이번 달로 이동",
@@ -342,5 +343,33 @@
     "leftBody": "급여마다 청구서와 남는 금액이 표시됩니다.",
     "addIncome": "수입원 추가",
     "trySample": "샘플 데이터로 사용해 보기"
+  },
+  "pro": {
+    "badge": "PRO",
+    "title": "Paycheck Planner Pro",
+    "subtitle": "한 번만 구입. 구독 없음.",
+    "features": {
+      "incomes": "수입원을 여러 개 추가",
+      "projection": "1년 치 급여 보기",
+      "reminders": "급여일 및 미납 청구서 알림",
+      "setAsides": "따로 모아둔 돈과 저축 목표",
+      "overrides": "급여 한 번에 대해서만 청구서나 급여 금액 변경",
+      "history": "이전 달의 급여",
+      "csv": "청구서를 CSV로 내보내기"
+    },
+    "buy": "%{price}에 구입",
+    "restore": "구입 복원",
+    "priceUnavailable": "스토어에 연결할 수 없습니다. 연결 상태를 확인하고 다시 시도하세요.",
+    "retry": "다시 시도",
+    "unlockedTitle": "Pro 잠금 해제됨",
+    "unlockedBody": "Paycheck Planner를 응원해 주셔서 감사합니다. 이제 Pro의 모든 기능을 사용할 수 있습니다.",
+    "footnote": "한 번 결제하면 계속 쓸 수 있어요. 가족 공유가 포함됩니다. 앱을 다시 설치했거나 새 휴대폰인가요? 구입 복원을 사용하세요.",
+    "unlocked": "잠금 해제됨",
+    "oneTime": "한 번만 구입",
+    "moreMonths": "1년 앞까지 보기",
+    "earlierMonths": "이전 달 보기",
+    "restored": "Pro 복원됨",
+    "nothingToRestore": "이 계정에서 Pro 구입 내역을 찾을 수 없습니다",
+    "purchaseFailed": "구입이 완료되지 않았습니다"
   }
 }
