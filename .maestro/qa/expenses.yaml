@@ -52,7 +52,13 @@ name: expenses
 - scrollUntilVisible:
     element: "Add Expense"
 - tapOn: "Add Expense"
+# The new bill has no linked source, so it lands in the "Not linked" section
+# under the two income sources, below the fold on an iPhone 17 Pro. Wait for
+# the summary to count it, then scroll to it (HAU-65, seen on the Release gate).
 - extendedWaitUntil:
-    visible: ".*QA Water.*"
+    visible: ".* a month across 9 bills"
     timeout: 10000
+- scrollUntilVisible:
+    element: ".*QA Water.*"
+    direction: DOWN
 - takeScreenshot: expenses-added
