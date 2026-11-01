@@ -3,7 +3,7 @@
 # the paywall shows the live store price and Restore Purchases. This flow runs in the release gate on a
 # plain Release build, so it must pass without the StoreKit test environment: it never taps Buy.
 # The purchase, relaunch and restore steps live in .maestro/pro/purchase.yaml (StoreKit configuration
-# required, Xcode run action only; see HAU-76 for making them runnable anywhere).
+# required, Xcode run action only; see HAU-78 for making them runnable anywhere).
 appId: com.johnhaup.paycheckplanner
 name: pro
 ---
