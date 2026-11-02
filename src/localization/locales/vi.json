@@ -366,7 +366,9 @@
     "footnote": "Trả một lần là dùng luôn. Đã bao gồm Chia sẻ trong gia đình. Cài lại ứng dụng hoặc đổi điện thoại mới? Hãy dùng Khôi phục giao dịch mua.",
     "unlocked": "Đã mở khóa",
     "oneTime": "Mua một lần",
-    "moreMonths": "Xem trước một năm",
+    "goProMonths": {
+      "other": "Nâng cấp Pro để xem thêm %{count} tháng"
+    },
     "earlierMonths": "Xem các tháng trước",
     "restored": "Đã khôi phục Pro",
     "nothingToRestore": "Không tìm thấy giao dịch mua Pro cho tài khoản này",

@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, Pressable, StyleSheet, type FlatList } from "react-native";
+import { View, Pressable, StyleSheet, type FlatList, type LayoutChangeEvent } from "react-native";
 import Animated, {
   useAnimatedScrollHandler,
+  useDerivedValue,
   useAnimatedStyle,
   useSharedValue,
 } from "react-native-reanimated";
@@ -19,7 +20,7 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
-import { MonthBarChart } from "@/components/paychecks/MonthBarChart";
+import { CHART_STRIP_HEIGHT, MonthBarChart } from "@/components/paychecks/MonthBarChart";
 import { Welcome } from "@/components/paychecks/Welcome";
 import { buildMonthGroups, FULL_MONTHS_AHEAD } from "@/utils/paycheckMonths";
 import { useProGate } from "@/hooks/useProGate";
@@ -33,6 +34,11 @@ const NO_PAYCHECKS: PaycheckItem[] = [];
 const STICKY_HEADER = [0];
 // Collapsed portrait iPhone navigation bar; the app is portrait-only and iPhone-only
 const NAV_BAR_HEIGHT = 44;
+// Once collapsed, the pinned header shows the month pills with room above them
+// (clear of the navigation bar's edge blur) and its own bottom padding
+const COLLAPSED_HEADER_HEIGHT = MEASUREMENTS.spacing.lg + CHART_STRIP_HEIGHT + MEASUREMENTS.spacing.base;
+// Free users see this many fewer months than Pro, counted on the locked card
+const LOCKED_MONTH_COUNT = FULL_MONTHS_AHEAD.pro - FULL_MONTHS_AHEAD.free;
 
 function keyExtractor(item: PaycheckItem) {
   return item.key;
@@ -111,9 +117,36 @@ export default function PaychecksScreen() {
     }
   }, [hasIncome, topOffset]);
 
-  const pinStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: Math.min(Math.max(scrollY.value + pinTop, 0), pinTop) }],
-  }));
+  // Past the collapsed title the header keeps scrolling until only the month
+  // pills are left below the navigation bar, then pins there. React Native's
+  // own pinning holds the header's top at the list's top edge (screen y 0) once
+  // the offset passes 0; the transform moves it to where it belongs instead.
+  const headerHeight = useSharedValue(0);
+  const collapseDistance = useDerivedValue(() => Math.max(0, headerHeight.value - COLLAPSED_HEADER_HEIGHT));
+
+  const pinStyle = useAnimatedStyle(() => {
+    const offset = scrollY.value;
+    if (offset === -Infinity) return { transform: [{ translateY: 0 }] };
+    const pinnedTop = Math.max(-offset, pinTop - collapseDistance.value);
+    return { transform: [{ translateY: pinnedTop - Math.max(-offset, 0) }] };
+  });
+
+  // 0 while the header sits below the title, 1 once only the pills are left
+  const collapse = useDerivedValue(() => {
+    const distance = collapseDistance.value;
+    if (distance === 0 || scrollY.value === -Infinity) return 0;
+    return Math.min(1, Math.max(0, (scrollY.value + pinTop) / distance));
+  });
+
+  // The summary slides under the navigation bar as the chart collapses
+  const summaryFade = useAnimatedStyle(() => ({ opacity: Math.max(0, 1 - collapse.value * 1.5) }));
+
+  const handleHeaderLayout = useCallback(
+    (event: LayoutChangeEvent) => {
+      headerHeight.set(event.nativeEvent.layout.height);
+    },
+    [headerHeight]
+  );
 
   const handleAddIncome = useCallback(() => {
     router.push("/income-form");
@@ -179,49 +212,52 @@ export default function PaychecksScreen() {
   const listHeader = useMemo(
     () =>
       hasIncome && selectedMonth ? (
-        <Animated.View style={stickyHeaderStyle}>
-          <View style={styles.heroLabelRow}>
-            <AppText variant="meta" style={styles.heroLabel}>
-              {t("paychecks.leftAfterBills", { month: selectedMonth.longLabel })}
+        <Animated.View style={stickyHeaderStyle} onLayout={handleHeaderLayout}>
+          <Animated.View style={summaryFade}>
+            <View style={styles.heroLabelRow}>
+              <AppText variant="meta" style={styles.heroLabel}>
+                {t("paychecks.leftAfterBills", { month: selectedMonth.longLabel })}
+              </AppText>
+              {isAwayFromToday ? (
+                <Pressable
+                  onPress={handleGoToToday}
+                  hitSlop={MEASUREMENTS.hitSlop}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("paychecks.goToThisMonth")}
+                >
+                  <Ionicons name="today-outline" size={TODAY_ICON_SIZE} color={colors.primaryText} />
+                </Pressable>
+              ) : null}
+            </View>
+            <AppHeroAmount amount={selectedMonth.remaining} />
+            <AppText variant="meta" style={styles.heroMeta}>
+              {t("paychecks.heroMeta", {
+                income: formatMoney(selectedMonth.income),
+                assigned: formatMoney(selectedMonth.assigned),
+              })}
             </AppText>
-            {isAwayFromToday ? (
-              <Pressable
-                onPress={handleGoToToday}
-                hitSlop={MEASUREMENTS.hitSlop}
-                accessibilityRole="button"
-                accessibilityLabel={t("paychecks.goToThisMonth")}
-              >
-                <Ionicons name="today-outline" size={TODAY_ICON_SIZE} color={colors.primaryText} />
+            {shortElsewhere ? (
+              <Pressable style={styles.shortRow} onPress={handleShowShort} accessibilityRole="button">
+                <Ionicons name="alert-circle" size={16} color={colors.destructive} />
+                <AppText variant="meta" color="destructive" style={styles.shortText} numberOfLines={2}>
+                  {t("paychecks.shortAhead", {
+                    date: formatShortDate(shortElsewhere.paycheck.date),
+                    source: shortElsewhere.paycheck.sourceName,
+                    amount: formatMoney(-shortElsewhere.paycheck.remaining),
+                  })}
+                </AppText>
+                <Ionicons name="chevron-forward" size={16} color={colors.destructive} />
               </Pressable>
             ) : null}
-          </View>
-          <AppHeroAmount amount={selectedMonth.remaining} />
-          <AppText variant="meta" style={styles.heroMeta}>
-            {t("paychecks.heroMeta", {
-              income: formatMoney(selectedMonth.income),
-              assigned: formatMoney(selectedMonth.assigned),
-            })}
-          </AppText>
-          {shortElsewhere ? (
-            <Pressable style={styles.shortRow} onPress={handleShowShort} accessibilityRole="button">
-              <Ionicons name="alert-circle" size={16} color={colors.destructive} />
-              <AppText variant="meta" color="destructive" style={styles.shortText} numberOfLines={2}>
-                {t("paychecks.shortAhead", {
-                  date: formatShortDate(shortElsewhere.paycheck.date),
-                  source: shortElsewhere.paycheck.sourceName,
-                  amount: formatMoney(-shortElsewhere.paycheck.remaining),
-                })}
-              </AppText>
-              <Ionicons name="chevron-forward" size={16} color={colors.destructive} />
-            </Pressable>
-          ) : null}
+          </Animated.View>
           <View style={styles.chart}>
             <MonthBarChart
               months={months}
               selectedKey={selectedMonth.key}
               currentKey={currentMonthKey}
               onSelect={setSelectedMonthKey}
-              onUnlockMore={isPro ? undefined : openPaywall}
+              lockedMonths={isPro ? undefined : { count: LOCKED_MONTH_COUNT, onPress: openPaywall }}
+              collapse={collapse}
             />
           </View>
         </Animated.View>
@@ -239,6 +275,9 @@ export default function PaychecksScreen() {
       isPro,
       openPaywall,
       stickyHeaderStyle,
+      handleHeaderLayout,
+      summaryFade,
+      collapse,
       colors,
       formatMoney,
       t,

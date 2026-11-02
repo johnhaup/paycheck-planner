@@ -372,7 +372,12 @@
     "footnote": "Zaplaťte jednou a mějte natrvalo. Sdílení s rodinou je zahrnuto. Přeinstalovali jste aplikaci nebo máte nový telefon? Použijte Obnovit nákupy.",
     "unlocked": "Odemčeno",
     "oneTime": "Jednorázový nákup",
-    "moreMonths": "Podívejte se o rok dopředu",
+    "goProMonths": {
+      "one": "Přejděte na Pro pro %{count} další měsíc",
+      "few": "Přejděte na Pro pro %{count} další měsíce",
+      "many": "Přejděte na Pro pro %{count} dalšího měsíce",
+      "other": "Přejděte na Pro pro %{count} dalších měsíců"
+    },
     "earlierMonths": "Zobrazit dřívější měsíce",
     "restored": "Pro obnoveno",
     "nothingToRestore": "Pro tento účet nebyl nalezen žádný nákup Pro",

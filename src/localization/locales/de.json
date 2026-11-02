@@ -368,7 +368,10 @@
     "footnote": "Einmal bezahlen und behalten. Die Familienfreigabe ist inklusive. App neu installiert oder neues iPhone? Nutze „Käufe wiederherstellen“.",
     "unlocked": "Freigeschaltet",
     "oneTime": "Einmaliger Kauf",
-    "moreMonths": "Ein Jahr vorausschauen",
+    "goProMonths": {
+      "one": "Mit Pro %{count} weiteren Monat sehen",
+      "other": "Mit Pro %{count} weitere Monate sehen"
+    },
     "earlierMonths": "Frühere Monate ansehen",
     "restored": "Pro wiederhergestellt",
     "nothingToRestore": "Für diesen Account wurde kein Pro-Kauf gefunden",

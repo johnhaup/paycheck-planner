@@ -9,6 +9,7 @@ import {
   type NativeSyntheticEvent,
   type ScrollViewInstance,
 } from "react-native";
+import Animated, { useAnimatedStyle, useDerivedValue, type SharedValue } from "react-native-reanimated";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
@@ -23,18 +24,30 @@ const BAR_MAX_HEIGHT = 86;
 const BAR_MIN_HEIGHT = 6;
 const COLUMN_WIDTH = 46;
 const COLUMN_GAP = MEASUREMENTS.spacing.md + 2;
+const PILL_HEIGHT = 26;
+const DOT_SIZE = 5;
+const DOT_GAP = 3;
+/** The month pills and the current-month dot under them: all of the chart that stays once it collapses */
+export const CHART_STRIP_HEIGHT = PILL_HEIGHT + DOT_GAP + DOT_SIZE;
+const COLUMN_HEIGHT = BAR_MAX_HEIGHT + 32 + CHART_STRIP_HEIGHT;
+/** The locked-months card never shrinks below this */
+const LOCKED_MIN_WIDTH = 168;
+/** Hex alpha for the tinted pill behind the selected or short month */
+const PILL_TINT_ALPHA = "38";
 
 interface Props {
   months: MonthGroup[];
   selectedKey: string;
   currentKey: string;
   onSelect: (key: string) => void;
-  /** Free tier: a locked column after the last month opens the paywall for the rest of the year */
-  onUnlockMore?: () => void;
+  /** Free tier: a card after the last month opens the paywall for the months Pro adds */
+  lockedMonths?: { count: number; onPress: () => void };
+  /** 0 shows the bars; 1 leaves only a row of month pills */
+  collapse: SharedValue<number>;
 }
 
 /** Each bar is a month's money left after bills; tapping one selects that month. */
-export function MonthBarChart({ months, selectedKey, currentKey, onSelect, onUnlockMore }: Props) {
+export function MonthBarChart({ months, selectedKey, currentKey, onSelect, lockedMonths, collapse }: Props) {
   const scrollRef = useRef<ScrollViewInstance>(null);
   const scrollOffset = useRef(0);
   // The chart runs edge to edge, so the window is its viewport
@@ -45,6 +58,16 @@ export function MonthBarChart({ months, selectedKey, currentKey, onSelect, onUnl
     () => Math.max(1, ...months.map((m) => Math.abs(m.remaining))),
     [months]
   );
+
+  // The locked card takes whatever width the free months leave on screen
+  const lockedWidth = Math.max(
+    LOCKED_MIN_WIDTH,
+    viewportWidth - 2 * MEASUREMENTS.spacing.gutter - months.length * (COLUMN_WIDTH + COLUMN_GAP)
+  );
+
+  // The bars fade out over the first half of the collapse and the pill fills fade in over the second
+  const barsOpacity = useDerivedValue(() => Math.max(0, 1 - collapse.value * 2));
+  const pillOpacity = useDerivedValue(() => Math.min(1, Math.max(0, collapse.value * 2 - 1)));
 
   const handleScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     scrollOffset.current = event.nativeEvent.contentOffset.x;
@@ -82,9 +105,19 @@ export function MonthBarChart({ months, selectedKey, currentKey, onSelect, onUnl
           selected={month.key === selectedKey}
           isCurrent={month.key === currentKey}
           onSelect={onSelect}
+          barsOpacity={barsOpacity}
+          pillOpacity={pillOpacity}
         />
       ))}
-      {onUnlockMore ? <LockedMonths onPress={onUnlockMore} /> : null}
+      {lockedMonths ? (
+        <LockedMonths
+          count={lockedMonths.count}
+          onPress={lockedMonths.onPress}
+          width={lockedWidth}
+          barsOpacity={barsOpacity}
+          pillOpacity={pillOpacity}
+        />
+      ) : null}
     </ScrollView>
   );
 }
@@ -95,9 +128,11 @@ interface MonthBarProps {
   selected: boolean;
   isCurrent: boolean;
   onSelect: (key: string) => void;
+  barsOpacity: SharedValue<number>;
+  pillOpacity: SharedValue<number>;
 }
 
-function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect }: MonthBarProps) {
+function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect, barsOpacity, pillOpacity }: MonthBarProps) {
   const colors = useColors();
   const { compact } = useMoneyFormat();
   const t = useT();
@@ -108,6 +143,9 @@ function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect }: MonthB
     }
     onSelect(month.key);
   }, [onSelect, month.key, selected]);
+
+  const barsStyle = useAnimatedStyle(() => ({ opacity: barsOpacity.value }));
+  const pillFillStyle = useAnimatedStyle(() => ({ opacity: pillOpacity.value }));
 
   const barStyle = useMemo(() => {
     const height = Math.max(
@@ -122,6 +160,18 @@ function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect }: MonthB
           : colors.chartBar;
     return [styles.bar, { height, backgroundColor: fill }];
   }, [month.remaining, maxMagnitude, selected, colors]);
+
+  // The collapsed pill keeps the bar's meaning: green tint when selected, red when the month runs short
+  const pillFill = useMemo(() => {
+    const backgroundColor = selected
+      ? colors.primary + PILL_TINT_ALPHA
+      : month.remaining < 0
+        ? colors.destructive + PILL_TINT_ALPHA
+        : colors.cardBackgroundElevated;
+    return [styles.pillFill, { backgroundColor }, pillFillStyle];
+  }, [selected, month.remaining, colors, pillFillStyle]);
+
+  const barsGroupStyle = useMemo(() => [styles.bars, barsStyle], [barsStyle]);
 
   // Always rendered so every column keeps the same height
   const dotStyle = useMemo(
@@ -145,47 +195,67 @@ function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect }: MonthB
         amount,
       })}
     >
-      <AppText
-        variant="caption"
-        color={selected ? "textDefault" : "textMuted"}
-        style={styles.value}
-        numberOfLines={1}
-      >
-        {amount}
-      </AppText>
-      <View style={barStyle} />
-      <AppText variant={selected ? "bodyStrong" : "meta"} color={labelColor}>
-        {month.shortLabel}
-      </AppText>
+      <Animated.View style={barsGroupStyle}>
+        <AppText
+          variant="caption"
+          color={selected ? "textDefault" : "textMuted"}
+          style={styles.value}
+          numberOfLines={1}
+        >
+          {amount}
+        </AppText>
+        <View style={barStyle} />
+      </Animated.View>
+      <View style={styles.pill}>
+        <Animated.View style={pillFill} />
+        <AppText variant={selected ? "bodyStrong" : "meta"} color={labelColor} numberOfLines={1}>
+          {month.shortLabel}
+        </AppText>
+      </View>
       <View style={dotStyle} />
     </Pressable>
   );
 }
 
 interface LockedMonthsProps {
+  count: number;
   onPress: () => void;
+  width: number;
+  barsOpacity: SharedValue<number>;
+  pillOpacity: SharedValue<number>;
 }
 
-function LockedMonths({ onPress }: LockedMonthsProps) {
+/** The free tier's way to the rest of the year: a card beside the bars, a PRO pill once collapsed. */
+function LockedMonths({ count, onPress, width, barsOpacity, pillOpacity }: LockedMonthsProps) {
   const colors = useColors();
   const t = useT();
+  const label = t("pro.goProMonths", { count });
 
-  const barStyle = useMemo(() => [styles.bar, styles.lockedBar, { borderColor: colors.border }], [colors]);
+  const cardOpacity = useAnimatedStyle(() => ({ opacity: barsOpacity.value }));
+  const badgeOpacity = useAnimatedStyle(() => ({ opacity: pillOpacity.value }));
+
+  const columnStyle = useMemo(() => [styles.column, { width }], [width]);
+  const cardStyle = useMemo(
+    () => [
+      styles.lockedCard,
+      { backgroundColor: colors.cardBackground, borderColor: colors.primary + PILL_TINT_ALPHA },
+      cardOpacity,
+    ],
+    [colors, cardOpacity]
+  );
+  const badgeStyle = useMemo(() => [styles.pill, badgeOpacity], [badgeOpacity]);
 
   return (
-    <Pressable
-      style={styles.column}
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityLabel={t("pro.moreMonths")}
-    >
-      <ProBadge />
-      <View style={barStyle}>
-        <Ionicons name="lock-closed-outline" size={16} color={colors.textMuted} />
-      </View>
-      <AppText variant="meta" color="textMuted">
-        …
-      </AppText>
+    <Pressable style={columnStyle} onPress={onPress} accessibilityRole="button" accessibilityLabel={label}>
+      <Animated.View style={cardStyle}>
+        <Ionicons name="sparkles" size={20} color={colors.primaryText} />
+        <AppText variant="bodyStrong" color="primaryText" center numberOfLines={2}>
+          {label}
+        </AppText>
+      </Animated.View>
+      <Animated.View style={badgeStyle}>
+        <ProBadge />
+      </Animated.View>
       <View style={styles.dot} />
     </Pressable>
   );
@@ -202,16 +272,15 @@ const styles = StyleSheet.create({
   },
   column: {
     width: COLUMN_WIDTH,
-    height: BAR_MAX_HEIGHT + 66,
+    height: COLUMN_HEIGHT,
     justifyContent: "flex-end",
     alignItems: "center",
-    gap: MEASUREMENTS.spacing.md,
   },
-  dot: {
-    width: 5,
-    height: 5,
-    borderRadius: 2.5,
-    marginTop: -MEASUREMENTS.spacing.sm,
+  bars: {
+    alignSelf: "stretch",
+    alignItems: "center",
+    gap: MEASUREMENTS.spacing.md,
+    marginBottom: MEASUREMENTS.spacing.md,
   },
   value: {
     fontWeight: "600",
@@ -220,11 +289,32 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
     borderRadius: MEASUREMENTS.radius.md,
   },
-  lockedBar: {
-    height: BAR_MAX_HEIGHT / 2,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderStyle: "dashed",
+  pill: {
+    height: PILL_HEIGHT,
+    minWidth: COLUMN_WIDTH,
+    paddingHorizontal: MEASUREMENTS.spacing.md,
     alignItems: "center",
     justifyContent: "center",
+  },
+  pillFill: {
+    ...StyleSheet.absoluteFill,
+    borderRadius: PILL_HEIGHT / 2,
+  },
+  dot: {
+    width: DOT_SIZE,
+    height: DOT_SIZE,
+    borderRadius: DOT_SIZE / 2,
+    marginTop: DOT_GAP,
+  },
+  lockedCard: {
+    flex: 1,
+    alignSelf: "stretch",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: MEASUREMENTS.spacing.md,
+    marginBottom: MEASUREMENTS.spacing.md,
+    paddingHorizontal: MEASUREMENTS.spacing.lg,
+    borderRadius: MEASUREMENTS.radius.card,
+    borderWidth: 1,
   },
 });

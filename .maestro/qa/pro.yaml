@@ -20,10 +20,10 @@ name: pro
     visible: ".* · left over"
     timeout: 10000
 
-# Free: this month and next, then a locked column that opens the paywall
-- assertVisible: "See a year ahead"
+# Free: this month and next, then a Go Pro card that opens the paywall
+- assertVisible: "Go Pro for .* more months"
 - takeScreenshot: chart-locked
-- tapOn: "See a year ahead"
+- tapOn: "Go Pro for .* more months"
 - extendedWaitUntil:
     visible: "Paycheck Planner Pro"
     timeout: 10000

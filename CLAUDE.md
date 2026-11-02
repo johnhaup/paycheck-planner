@@ -33,7 +33,7 @@ No unit tests exist. Type check and lint before calling anything done.
 - Spacing and radii: `MEASUREMENTS` from `@/constants/measurements`.
 - Reuse the `App*` building blocks in `src/components/` (`AppButton`, `AppCard`, `AppFab`, `AppInput`, `AppSegmentedControl`, `AppSwipeActions`, …) before writing a new one.
 - Haptics through `@/utils/haptics`; toasts through `sonner-native`.
-- Screens with a large title must keep it collapsing: the scroll view is the screen's root, with `contentInsetAdjustmentBehavior="automatic"`. Paychecks also keeps its month overview pinned. Both regressed once on an SDK upgrade; QA checks them every run.
+- Screens with a large title must keep it collapsing: the scroll view is the screen's root, with `contentInsetAdjustmentBehavior="automatic"`. On Paychecks the month chart collapses into pinned month pills as the title collapses. Both regressed once on an SDK upgrade; QA checks them every run.
 
 ## Localization
 

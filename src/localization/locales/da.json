@@ -368,7 +368,10 @@
     "footnote": "Betal én gang, og behold det. Familiedeling er inkluderet. Har du geninstalleret appen eller fået en ny telefon? Brug Gendan køb.",
     "unlocked": "Låst op",
     "oneTime": "Engangskøb",
-    "moreMonths": "Se et år frem",
+    "goProMonths": {
+      "one": "Skift til Pro for %{count} måned mere",
+      "other": "Skift til Pro for %{count} måneder mere"
+    },
     "earlierMonths": "Se tidligere måneder",
     "restored": "Pro gendannet",
     "nothingToRestore": "Der blev ikke fundet noget Pro-køb på denne konto",

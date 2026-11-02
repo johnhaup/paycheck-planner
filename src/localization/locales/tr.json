@@ -368,7 +368,10 @@
     "footnote": "Bir kez öde, senin olsun. Aile Paylaşımı dahildir. Uygulamayı yeniden mi yükledin ya da yeni telefon mu aldın? Satın Alımları Geri Yükle'yi kullan.",
     "unlocked": "Açıldı",
     "oneTime": "Tek seferlik satın alma",
-    "moreMonths": "Bir yıl ilerisini gör",
+    "goProMonths": {
+      "one": "%{count} ay daha için Pro'ya geçin",
+      "other": "%{count} ay daha için Pro'ya geçin"
+    },
     "earlierMonths": "Önceki ayları gör",
     "restored": "Pro geri yüklendi",
     "nothingToRestore": "Bu hesapta Pro satın alımı bulunamadı",
