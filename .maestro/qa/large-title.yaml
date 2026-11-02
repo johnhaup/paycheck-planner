@@ -1,6 +1,6 @@
 # Protects the iOS collapsing large title on Paychecks, Income and Expenses and
-# the month overview that stays pinned under the bar on Paychecks (HAU-11,
-# HAU-12, regression HAU-58), plus the month switch from the pinned chart and
+# the month chart that collapses into pills pinned under the bar on Paychecks
+# (HAU-11, HAU-12, HAU-113, regression HAU-58), plus the month switch from the pills and
 # the reset after Erase all data (HAU-64).
 #
 # Maestro cannot read font sizes, but it can place elements relative to each
@@ -36,38 +36,40 @@ name: large-title
     above: ".* · left over"
 - takeScreenshot: paychecks-top
 
-# Scroll about 400pt: the title collapses, the overview stays, the cards pass under it
+# Scroll about 400pt: the title collapses, the overview scrolls away and the
+# month chart collapses into a row of pills pinned under the bar (HAU-113); the
+# cards pass under it
 - swipe:
     start: 50%, 65%
     end: 50%, 15%
     duration: 400
-- assertVisible: ".* · left over"
-- assertVisible: ".* in · .* assigned"
+- waitForAnimationToEnd
+- assertNotVisible: ".* · left over"
+- assertVisible: "December, .*"
 - assertVisible:
     text: "Paychecks"
     rightOf: "\\d{1,2}:\\d{2}.*"
     leftOf: "Settings"
-    above: ".* · left over"
 # The section title scrolls away with the cards ("Past paychecks" stays in the footer)
 - assertNotVisible: "(?!Past ).* paychecks"
 - takeScreenshot: paychecks-scrolled
 
-# The pinned chart still switches months, and the calendar icon brings this month back.
+# The collapsed pills still switch months. Each month's button spans its faded bar
+# too, which now sits under the navigation bar, so tap the December pill itself:
+# second column, just under the bar on the iPhone 17 Pro.
 # Free tier (HAU-69): the chart holds this month and next only, so pick December.
-- tapOn: "December, .*"
+- tapOn:
+    point: 25%, 15%
 - extendedWaitUntil:
-    visible: "December · left over"
+    visible:
+      text: "December, .*"
+      selected: true
     timeout: 15000
 - assertVisible:
     text: "Paychecks"
     rightOf: "\\d{1,2}:\\d{2}.*"
     leftOf: "Settings"
-    above: ".* · left over"
 - takeScreenshot: paychecks-december-while-pinned
-- tapOn: "Go to this month"
-- extendedWaitUntil:
-    visible: "November · left over"
-    timeout: 15000
 
 - swipe:
     start: 50%, 15%
@@ -77,6 +79,14 @@ name: large-title
     start: 50%, 15%
     end: 50%, 65%
     duration: 400
+# Back at the top the overview shows December; the calendar icon brings this month back
+- extendedWaitUntil:
+    visible: "December · left over"
+    timeout: 15000
+- tapOn: "Go to this month"
+- extendedWaitUntil:
+    visible: "November · left over"
+    timeout: 15000
 - assertVisible: "(?!Past ).* paychecks"
 - assertNotVisible:
     text: "Paychecks"

@@ -368,7 +368,11 @@
     "footnote": "Pague uma vez e é seu. A Partilha Familiar está incluída. Reinstalou a app ou mudou de telemóvel? Utilize Restaurar compras.",
     "unlocked": "Desbloqueado",
     "oneTime": "Compra única",
-    "moreMonths": "Veja um ano à frente",
+    "goProMonths": {
+      "one": "Adira ao Pro para ver mais %{count} mês",
+      "many": "Adira ao Pro para ver mais %{count} meses",
+      "other": "Adira ao Pro para ver mais %{count} meses"
+    },
     "earlierMonths": "Veja meses anteriores",
     "restored": "Pro restaurado",
     "nothingToRestore": "Não foi encontrada nenhuma compra do Pro nesta conta",

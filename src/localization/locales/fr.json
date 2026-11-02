@@ -369,7 +369,11 @@
     "footnote": "Payez une fois, c'est à vous. Le Partage familial est inclus. Application réinstallée ou nouveau téléphone ? Utilisez Restaurer les achats.",
     "unlocked": "Débloqué",
     "oneTime": "Achat unique",
-    "moreMonths": "Voyez un an à l'avance",
+    "goProMonths": {
+      "one": "Passez à Pro pour %{count} mois de plus",
+      "many": "Passez à Pro pour %{count} mois de plus",
+      "other": "Passez à Pro pour %{count} mois de plus"
+    },
     "earlierMonths": "Voyez les mois précédents",
     "restored": "Pro restauré",
     "nothingToRestore": "Aucun achat Pro trouvé pour ce compte",

@@ -372,7 +372,12 @@
     "footnote": "Zaplaťte raz a ostane vám. Zdieľanie s rodinou je zahrnuté. Preinštalovali ste aplikáciu alebo máte nový telefón? Použite Obnoviť nákupy.",
     "unlocked": "Odomknuté",
     "oneTime": "Jednorazový nákup",
-    "moreMonths": "Pozrite sa o rok dopredu",
+    "goProMonths": {
+      "one": "Prejdite na Pro pre %{count} ďalší mesiac",
+      "few": "Prejdite na Pro pre %{count} ďalšie mesiace",
+      "many": "Prejdite na Pro pre %{count} ďalšieho mesiaca",
+      "other": "Prejdite na Pro pre %{count} ďalších mesiacov"
+    },
     "earlierMonths": "Zobraziť predchádzajúce mesiace",
     "restored": "Pro bolo obnovené",
     "nothingToRestore": "Pre tento účet sa nenašiel žiadny nákup Pro",

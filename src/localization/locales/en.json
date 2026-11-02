@@ -372,7 +372,10 @@
     "footnote": "Pay once and keep it. Family Sharing is included. Reinstalled or on a new phone? Use Restore Purchases.",
     "unlocked": "Unlocked",
     "oneTime": "One-time purchase",
-    "moreMonths": "See a year ahead",
+    "goProMonths": {
+      "one": "Go Pro for %{count} more month",
+      "other": "Go Pro for %{count} more months"
+    },
     "earlierMonths": "See earlier months",
     "restored": "Pro restored",
     "nothingToRestore": "No Pro purchase found for this account",
