@@ -31,16 +31,18 @@ name: pay-date-detail
     text: "Mark .* unpaid"
     index: 0
 
-# Mark all paid, then undo from the toast
+# Mark all paid, then undo from the toast. The toast dismisses itself after 4 s,
+# so nothing may sit between seeing Undo and tapping it: on a loaded Mac a
+# screenshot there let the toast expire (HAU-102).
 - tapOn: "Mark all paid"
 - extendedWaitUntil:
-    visible: "Marked all paid"
-    timeout: 5000
-- takeScreenshot: pay-date-marked-all-paid
+    visible: "Undo"
+    timeout: 15000
 - tapOn: "Undo"
 - extendedWaitUntil:
     visible: "Mark all paid"
     timeout: 10000
+- takeScreenshot: pay-date-undone
 
 # Changing this paycheck's pay amount is Pro (HAU-69): the tap opens the paywall
 # instead of the form sheet while free
