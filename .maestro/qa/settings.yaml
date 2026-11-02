@@ -59,8 +59,18 @@ name: settings
 # Erase all data, then Undo from the toast. The "All data erased" toast renders
 # over the Settings modal; before HAU-60 the LogBox banner hid every toast from
 # Maestro, so this Undo tap also protects HAU-60.
-- scrollUntilVisible:
-    element: ".*Erase all data.*"
+# Erase all data is the last row: swipe to the bottom, then wait for it.
+# Not scrollUntilVisible: under gate load its first lookup alone used up the
+# 20 s budget and it gave up one swipe short (HAU-106).
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- extendedWaitUntil:
+    visible: ".*Erase all data.*"
+    timeout: 15000
 - tapOn: ".*Erase all data.*"
 - extendedWaitUntil:
     visible: "Delete"
@@ -83,8 +93,15 @@ name: settings
 - extendedWaitUntil:
     visible: "Appearance"
     timeout: 10000
-- scrollUntilVisible:
-    element: ".*Erase all data.*"
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- extendedWaitUntil:
+    visible: ".*Erase all data.*"
+    timeout: 15000
 - tapOn: ".*Erase all data.*"
 - extendedWaitUntil:
     visible: "Delete"
