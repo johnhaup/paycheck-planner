@@ -372,7 +372,12 @@
     "footnote": "Zapłać raz i zachowaj. Udostępnianie rodzinne jest w zestawie. Zainstalowałeś aplikację ponownie lub masz nowy telefon? Użyj opcji Przywróć zakupy.",
     "unlocked": "Odblokowano",
     "oneTime": "Jednorazowy zakup",
-    "moreMonths": "Zobacz rok do przodu",
+    "goProMonths": {
+      "one": "Przejdź na Pro, by zobaczyć %{count} miesiąc więcej",
+      "few": "Przejdź na Pro, by zobaczyć %{count} miesiące więcej",
+      "many": "Przejdź na Pro, by zobaczyć %{count} miesięcy więcej",
+      "other": "Przejdź na Pro, by zobaczyć %{count} miesiąca więcej"
+    },
     "earlierMonths": "Zobacz wcześniejsze miesiące",
     "restored": "Przywrócono Pro",
     "nothingToRestore": "Nie znaleziono zakupu Pro dla tego konta",

@@ -368,7 +368,10 @@
     "footnote": "Eén keer betalen en het is van jou. Delen met gezin is inbegrepen. App opnieuw geïnstalleerd of een nieuwe telefoon? Gebruik Herstel aankopen.",
     "unlocked": "Ontgrendeld",
     "oneTime": "Eenmalige aankoop",
-    "moreMonths": "Kijk een jaar vooruit",
+    "goProMonths": {
+      "one": "Neem Pro voor nog %{count} maand",
+      "other": "Neem Pro voor nog %{count} maanden"
+    },
     "earlierMonths": "Bekijk eerdere maanden",
     "restored": "Pro hersteld",
     "nothingToRestore": "Geen Pro-aankoop gevonden voor dit account",

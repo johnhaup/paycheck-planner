@@ -371,7 +371,11 @@
     "footnote": "Paga una vegada i és teu. Inclou Compartir en família. Has reinstal·lat l'app o tens un telèfon nou? Fes servir Restaura les compres.",
     "unlocked": "Desbloquejat",
     "oneTime": "Compra única",
-    "moreMonths": "Mira un any endavant",
+    "goProMonths": {
+      "one": "Passa a Pro per a %{count} mes més",
+      "many": "Passa a Pro per a %{count} mesos més",
+      "other": "Passa a Pro per a %{count} mesos més"
+    },
     "earlierMonths": "Mira mesos anteriors",
     "restored": "Pro restaurat",
     "nothingToRestore": "No s'ha trobat cap compra de Pro per a aquest compte",

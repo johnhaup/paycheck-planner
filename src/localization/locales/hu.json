@@ -369,7 +369,10 @@
     "footnote": "Egyszer fizetsz, és a tiéd marad. A Családi megosztás is benne van. Újratelepítetted az appot, vagy új telefonod van? Használd a Vásárlások visszaállítása lehetőséget.",
     "unlocked": "Feloldva",
     "oneTime": "Egyszeri vásárlás",
-    "moreMonths": "Nézz egy évvel előre",
+    "goProMonths": {
+      "one": "Válts Pro-ra további %{count} hónapért",
+      "other": "Válts Pro-ra további %{count} hónapért"
+    },
     "earlierMonths": "Nézd meg a korábbi hónapokat",
     "restored": "Pro visszaállítva",
     "nothingToRestore": "Ehhez a fiókhoz nem található Pro vásárlás",

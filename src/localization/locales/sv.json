@@ -369,7 +369,10 @@
     "footnote": "Betala en gång och behåll det. Familjedelning ingår. Har du installerat om appen eller skaffat en ny telefon? Använd Återställ köp.",
     "unlocked": "Upplåst",
     "oneTime": "Engångsköp",
-    "moreMonths": "Se ett år framåt",
+    "goProMonths": {
+      "one": "Skaffa Pro för %{count} månad till",
+      "other": "Skaffa Pro för %{count} månader till"
+    },
     "earlierMonths": "Se tidigare månader",
     "restored": "Pro återställt",
     "nothingToRestore": "Inget Pro-köp hittades för det här kontot",
