@@ -22,14 +22,16 @@ name: pay-date-detail
 - assertVisible: "Available"
 - takeScreenshot: pay-date-detail
 
-# Toggle one bill paid and back
-- tapOn:
-    text: "Mark .* paid"
-    index: 0
-- assertVisible: "Mark .* unpaid"
-- tapOn:
-    text: "Mark .* unpaid"
-    index: 0
+# Toggle one bill paid and back. Name the bill: "Mark .* paid" also matches the
+# header's "Mark all paid" (HAU-112 QA).
+- tapOn: "Mark Internet paid"
+- extendedWaitUntil:
+    visible: "Mark Internet unpaid"
+    timeout: 15000
+- tapOn: "Mark Internet unpaid"
+- extendedWaitUntil:
+    visible: "Mark Internet paid"
+    timeout: 15000
 
 # Mark all paid, then undo from the toast. The toast dismisses itself after 4 s,
 # so nothing may sit between seeing Undo and tapping it (HAU-102). Even then,
