@@ -32,13 +32,32 @@ name: pay-date-detail
     index: 0
 
 # Mark all paid, then undo from the toast. The toast dismisses itself after 4 s,
-# so nothing may sit between seeing Undo and tapping it: on a loaded Mac a
-# screenshot there let the toast expire (HAU-102).
+# so nothing may sit between seeing Undo and tapping it (HAU-102). Even then,
+# under gate load Maestro's own tap and lookup can outlast the toast: in the
+# 09:45 gate the Undo tap landed 4.6 s after Mark all paid, on nothing (HAU-112).
+# When Undo missed, every bill is paid and "Mark all paid" is hidden: unpay one
+# bill and try the pair again, up to 3 times. A broken Undo still fails below.
 - tapOn: "Mark all paid"
 - extendedWaitUntil:
     visible: "Undo"
     timeout: 15000
 - tapOn: "Undo"
+- repeat:
+    times: 3
+    while:
+      notVisible: "Mark all paid"
+    commands:
+      - tapOn:
+          text: "Mark .* unpaid"
+          index: 0
+      - extendedWaitUntil:
+          visible: "Mark all paid"
+          timeout: 15000
+      - tapOn: "Mark all paid"
+      - extendedWaitUntil:
+          visible: "Undo"
+          timeout: 15000
+      - tapOn: "Undo"
 - extendedWaitUntil:
     visible: "Mark all paid"
     timeout: 10000
