@@ -4,7 +4,8 @@
 # there (a real Buy raises the sandbox sign-in alert on a simctl launch).
 # Then the purchase on the mock store (launch argument -proStoreMock, src/services/proStoreMock.ts):
 # Restore with nothing bought, Buy, unlocked, still Pro after a relaunch, refund (-proStoreMockRevoke)
-# locks it again and Restore after the refund finds nothing. Runs in the release gate
+# locks it again and Restore after the refund finds nothing. A launch without the argument in between
+# stays locked (the mock account never leaks into the real store path). Runs in the release gate
 # on a plain Release build: no Xcode, no StoreKit configuration, no account.
 appId: com.johnhaup.paycheckplanner
 name: pro
@@ -160,6 +161,33 @@ name: pro
     visible: "Close"
     timeout: 10000
 - tapOn: "Close"
+
+# No leak: a launch without the argument asks the real store, which owns nothing, so the mock purchase
+# must not unlock Pro there (HAU-78 QA). Never tap Buy here: the real sandbox alert would break later flows.
+- stopApp
+- launchApp
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 60000
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "Add income source · PRO"
+    timeout: 30000
+- takeScreenshot: no-arg-locked
+
+# Back on the mock store the account still owns Pro
+- stopApp
+- launchApp:
+    arguments:
+      "-proStoreMock": true
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 60000
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "Add income source"
+    timeout: 30000
+- assertNotVisible: "Add income source · PRO"
 
 # Refund: the launch check revokes Pro, the badge comes back, Restore finds nothing
 - stopApp
