@@ -36,12 +36,18 @@ name: pay-date-detail
 # under gate load Maestro's own tap and lookup can outlast the toast: in the
 # 09:45 gate the Undo tap landed 4.6 s after Mark all paid, on nothing (HAU-112).
 # When Undo missed, every bill is paid and "Mark all paid" is hidden: unpay one
-# bill and try the pair again, up to 3 times. A broken Undo still fails below.
+# bill and try the pair again, up to 3 times. The Undo wait and tap are optional
+# because the toast can also be gone before Maestro looks it up, and a required
+# tap would then fail before the retry runs (HAU-112 QA). A broken Undo still
+# fails at the "Mark all paid" wait below.
 - tapOn: "Mark all paid"
 - extendedWaitUntil:
     visible: "Undo"
     timeout: 15000
-- tapOn: "Undo"
+    optional: true
+- tapOn:
+    text: "Undo"
+    optional: true
 - repeat:
     times: 3
     while:
@@ -57,7 +63,10 @@ name: pay-date-detail
       - extendedWaitUntil:
           visible: "Undo"
           timeout: 15000
-      - tapOn: "Undo"
+          optional: true
+      - tapOn:
+          text: "Undo"
+          optional: true
 - extendedWaitUntil:
     visible: "Mark all paid"
     timeout: 10000
