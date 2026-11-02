@@ -12,9 +12,21 @@ import {
 } from "expo-iap";
 import { t } from "@/localization/i18n";
 import { hapticSuccess } from "@/utils/haptics";
+import {
+  isProStoreMock,
+  mockGetAvailablePurchases,
+  useMockIAP,
+  type ProStoreConnection,
+} from "@/services/proStoreMock";
 
 /** The one non-consumable: created in App Store Connect and Play Console under this id. */
 export const PRO_PRODUCT_ID = "com.johnhaup.paycheckplanner.pro";
+
+/**
+ * The store connection for the root hook and the paywall: expo-iap, or the mock
+ * store when the app was launched with `-proStoreMock` (QA only, see proStoreMock.ts).
+ */
+export const useProStoreConnection: ProStoreConnection = isProStoreMock ? useMockIAP : useIAP;
 
 interface ProState {
   isPro: boolean;
@@ -49,7 +61,9 @@ export function hasProEntitlement(purchases: Purchase[]): boolean {
 
 /** Reads the store's current entitlements and updates the cache. Throws when the store is unreachable. */
 export async function refreshProEntitlement(): Promise<boolean> {
-  const purchases = await getAvailablePurchases({ onlyIncludeActiveItemsIOS: true });
+  const purchases = isProStoreMock
+    ? await mockGetAvailablePurchases(PRO_PRODUCT_ID)
+    : await getAvailablePurchases({ onlyIncludeActiveItemsIOS: true });
   const isPro = hasProEntitlement(purchases);
   useProStore.getState().setIsPro(isPro);
   return isPro;
@@ -59,7 +73,9 @@ async function handlePurchase(purchase: Purchase) {
   if (purchase.productId !== PRO_PRODUCT_ID || purchase.purchaseState !== "purchased") return;
   useProStore.getState().setIsPro(true);
   hapticSuccess();
-  await finishTransaction({ purchase, isConsumable: false });
+  if (!isProStoreMock) {
+    await finishTransaction({ purchase, isConsumable: false });
+  }
 }
 
 function ignore() {}
@@ -71,7 +87,7 @@ function ignore() {}
  * every launch.
  */
 export function useProEntitlement() {
-  const { connected } = useIAP({
+  const { connected } = useProStoreConnection({
     onPurchaseSuccess: (purchase) => {
       handlePurchase(purchase).catch(ignore);
     },
