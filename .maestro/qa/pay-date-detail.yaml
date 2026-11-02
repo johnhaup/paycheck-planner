@@ -22,23 +22,54 @@ name: pay-date-detail
 - assertVisible: "Available"
 - takeScreenshot: pay-date-detail
 
-# Toggle one bill paid and back
-- tapOn:
-    text: "Mark .* paid"
-    index: 0
-- assertVisible: "Mark .* unpaid"
-- tapOn:
-    text: "Mark .* unpaid"
-    index: 0
+# Toggle one bill paid and back. Name the bill: "Mark .* paid" also matches the
+# header's "Mark all paid" (HAU-112 QA).
+- tapOn: "Mark Internet paid"
+- extendedWaitUntil:
+    visible: "Mark Internet unpaid"
+    timeout: 15000
+- tapOn: "Mark Internet unpaid"
+- extendedWaitUntil:
+    visible: "Mark Internet paid"
+    timeout: 15000
 
 # Mark all paid, then undo from the toast. The toast dismisses itself after 4 s,
-# so nothing may sit between seeing Undo and tapping it: on a loaded Mac a
-# screenshot there let the toast expire (HAU-102).
+# so nothing may sit between seeing Undo and tapping it (HAU-102). Even then,
+# under gate load Maestro's own tap and lookup can outlast the toast: in the
+# 09:45 gate the Undo tap landed 4.6 s after Mark all paid, on nothing (HAU-112).
+# When Undo missed, every bill is paid and "Mark all paid" is hidden: unpay one
+# bill and try the pair again, up to 5 times (QA round 2 at load ~190 needed 2
+# retries; 3 left too little headroom). The Undo wait and tap are optional
+# because the toast can also be gone before Maestro looks it up, and a required
+# tap would then fail before the retry runs (HAU-112 QA). A broken Undo still
+# fails at the "Mark all paid" wait below.
 - tapOn: "Mark all paid"
 - extendedWaitUntil:
     visible: "Undo"
     timeout: 15000
-- tapOn: "Undo"
+    optional: true
+- tapOn:
+    text: "Undo"
+    optional: true
+- repeat:
+    times: 5
+    while:
+      notVisible: "Mark all paid"
+    commands:
+      - tapOn:
+          text: "Mark .* unpaid"
+          index: 0
+      - extendedWaitUntil:
+          visible: "Mark all paid"
+          timeout: 15000
+      - tapOn: "Mark all paid"
+      - extendedWaitUntil:
+          visible: "Undo"
+          timeout: 15000
+          optional: true
+      - tapOn:
+          text: "Undo"
+          optional: true
 - extendedWaitUntil:
     visible: "Mark all paid"
     timeout: 10000
