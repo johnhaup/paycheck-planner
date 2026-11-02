@@ -3,13 +3,12 @@ import { ActivityIndicator, ScrollView, StyleSheet, View } from "react-native";
 import { useRouter } from "expo-router";
 import { toast } from "sonner-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useIAP } from "expo-iap";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppButton } from "@/components/AppButton";
-import { PRO_PRODUCT_ID, refreshProEntitlement, useIsPro } from "@/services/pro";
+import { PRO_PRODUCT_ID, refreshProEntitlement, useIsPro, useProStoreConnection } from "@/services/pro";
 import { hapticSuccess } from "@/utils/haptics";
 import type { TranslationKey } from "@/localization/i18n";
 
@@ -36,7 +35,7 @@ export default function PaywallScreen() {
   const [priceFailed, setPriceFailed] = useState(false);
   const [busy, setBusy] = useState<"buy" | "restore" | undefined>();
 
-  const { connected, products, fetchProducts, requestPurchase, restorePurchases } = useIAP();
+  const { connected, products, fetchProducts, requestPurchase, restorePurchases } = useProStoreConnection();
 
   const product = useMemo(() => products.find((p) => p.id === PRO_PRODUCT_ID), [products]);
 

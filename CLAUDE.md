@@ -51,7 +51,7 @@ No unit tests exist. Type check and lint before calling anything done.
 
 ## Shipping and QA
 
-Shipping is automated by `~/Projects/linear-runner` (Linear → engineer → QA → merge → release gate → TestFlight). The release gate runs every flow in `.maestro/qa/` on a plain Release build launched with `simctl`, so a flow there must pass with no Metro, no Xcode and no StoreKit test environment. Purchase steps that need the StoreKit configuration live in `.maestro/pro/`. Never open the Xcode app; build with `xcodebuild` or `expo run:ios`.
+Shipping is automated by `~/Projects/linear-runner` (Linear → engineer → QA → merge → release gate → TestFlight). The release gate runs every flow in `.maestro/qa/` on a plain Release build launched with `simctl`, so a flow there must pass with no Metro, no Xcode and no StoreKit test environment. Purchases in the gate run on the mock store (`src/services/proStoreMock.ts`), switched on by the launch argument `-proStoreMock` (`-proStoreMockRevoke` empties its account, the refund path); without the argument the app uses `expo-iap` unchanged. The StoreKit configuration file is only for manual Xcode sessions. Never open the Xcode app; build with `xcodebuild` or `expo run:ios`.
 
 Shared agent context (principles, decisions, features, QA notes) is in `~/Projects/brain/apps/paycheck-planner/`.
 
