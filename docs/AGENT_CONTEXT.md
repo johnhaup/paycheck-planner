@@ -6,7 +6,7 @@ Keep it under ~150 lines. When "Recent work" grows past the last few batches, mo
 
 ## Current state (2026-11-01)
 
-- Version 1.1.0, never released. Build 11 is in TestFlight (2026-11-01, `main` @ `321cafe`) and carries everything below. Build 8 (Expo 58) was the first one that launches on iOS 27.
+- Version 1.1.0, never released. Build 14 is in TestFlight (2026-11-01 20:04, `main` @ `411978b`, gate PASS 9/9) and carries everything below. Build 8 (Expo 58) was the first one that launches on iOS 27.
 - Expo SDK 58, React Native 0.88, React 19, TypeScript strict, bun. Expo Router with native tabs. iPhone only, portrait.
 - iOS bundle id `com.johnhaup.paycheckplanner`, App Store Connect app `6825905363`, Apple team `EKHA8NK939`. No Android package; Android has never been built.
 - Monetisation: free app with a one-time **Pro** unlock at $4.99 (HAU-69). Product `com.johnhaup.paycheckplanner.pro` is Ready to Submit in App Store Connect with a review screenshot, so purchases work in TestFlight through the sandbox. It goes to App Review with the first version submission. Decision and evidence: `~/Projects/brain/apps/paycheck-planner/decisions.md`, `~/Projects/brain/research/pricing-model-2026-11.md`.
@@ -17,6 +17,7 @@ Keep it under ~150 lines. When "Recent work" grows past the last few batches, mo
 
 ## Recent work
 
+- 2026-11-01 (HAU-99): "Release gate failed @ e772b97" was the host, not the app. Neither failed run reached a flow: 18:08 died in `IOSDriver.open` ("iOS driver not ready in time") while the Plate Weight gate and QA Maestro runs shared the Mac; 18:36 lost the simulator during `expo run:ios`'s install ("Device … is not connected"). The same commit had passed at 17:44. No app or flow change: the runner's own gate passed 9/9 on `main` @ 411978b (contains e772b97) at 19:45 and shipped build 14. An engineer run of the suite on the Release Gate simulator at 20:16 failed 9/9 with `DeviceUnreachableException` because the runner's next gate (20:10) was using the same simulator: never run the suite there while `gate.sh` is running (`ps aux | grep gate.sh`).
 - 2026-11-01 (HAU-78): mock store for QA. `src/services/proStoreMock.ts` answers the part of `useIAP` the app uses (one product, real id, "$4.99"; Buy resolves after 0.8 s; the mock account is an NSUserDefaults key) when the app is launched with `-proStoreMock`; `-proStoreMockRevoke` empties the account at launch (refund). Read through React Native's `Settings` (iOS NSUserDefaults argument domain), so no new native dependency and nothing on Android. `pro.ts` exports `useProStoreConnection` (expo-iap or the mock), the paywall uses it. `.maestro/pro/purchase.yaml` folded into `.maestro/qa/pro.yaml` and deleted.
 - 2026-11-01 (handoff docs): added this file, `CLAUDE.md` and the Stop hook, seeded from the brain and the Linear history of the last week.
 - 2026-11-01 (HAU-69, PR #20): Pro unlock through `expo-iap`. `src/services/pro.ts` caches the entitlement and re-checks it every launch; `useProGate` + `ProBadge` gate controls; `app/paywall.tsx` shows the live store price, Buy and Restore Purchases. `PaycheckPlanner.storekit` plus `plugins/withStoreKitConfiguration.js` wire a StoreKit configuration into the Xcode scheme for local testing. QA verified the free tier, badges and paywall; Buy, persistence and Restore were not verifiable outside Xcode (see lessons).
@@ -41,7 +42,11 @@ Keep it under ~150 lines. When "Recent work" grows past the last few batches, mo
 - Never open the Xcode app from an agent shell. A GUI Xcode holding a worktree's workspace leaves dialogs on John's screen when prebuild regenerates `ios/`.
 - Flows in `.maestro/qa/` run on a loaded Mac in the release gate: use `extendedWaitUntil` on the element the next step needs with 10-20 s timeouts, never fixed sleeps. A flow that only passes on an idle machine is a flake.
 
+- A gate ticket whose log has no `[Failed] <flow>` line and no `report.xml` never ran a flow. Read `~/Projects/linear-runner/.stamps/gate-<slug>-<date>/maestro.log`: `IOSDriverTimeoutException` / "iOS driver not ready" or "Device … is not connected" mean Mac load or a dropped simulator, not an app regression. Check `~/Library/Logs/linear-runner.log` for an earlier PASS at the same sha and for another gate starting the same minute (HAU-99).
+
 ## Open follow-ups
+
+- linear-runner (not this repo): `gate.sh` files a "Release gate failed" ticket even when Maestro never opened a session (no `[Failed]` line), and two apps' gates start together on one tick. Treating "no flow ran" as exit 2 (could not run, retry next tick) and serialising gates would stop tickets like HAU-99.
 
 - Restore's success path (cache says free, account owns Pro) cannot be reached in the gate: the launch check re-asks the store and grants Pro before anyone taps Restore. The gate covers Restore with nothing to restore; a positive Restore stays a manual Xcode/StoreKit check.
 - HAU-25, HAU-26: John's own work in the main checkout (Paychecks scroll on focus, Today button as a native bar button item).
