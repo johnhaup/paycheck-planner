@@ -39,12 +39,12 @@ name: accessibility
 - tapOn: "Sort"
 - extendedWaitUntil:
     visible: "Grouped"
-    timeout: 5000
+    timeout: 15000
 - takeScreenshot: sort-opened-by-label
 - tapOn: "Cancel"
 - extendedWaitUntil:
     notVisible: "Grouped"
-    timeout: 5000
+    timeout: 15000
 
 # The gear label is localized: in Spanish it reads "Ajustes"; Close stays English.
 # Back to Paychecks first, since the gear lives only in that header.

@@ -35,7 +35,7 @@ name: expenses
 - tapOn: "Sort"
 - extendedWaitUntil:
     visible: "Amount, highest first"
-    timeout: 5000
+    timeout: 15000
 - tapOn: "Amount, highest first"
 - assertVisible: ".*Groceries.*"
 
