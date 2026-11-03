@@ -28,6 +28,17 @@ export const PRO_PRODUCT_ID = "com.johnhaup.paycheckplanner.pro";
  */
 export const useProStoreConnection: ProStoreConnection = isProStoreMock ? useMockIAP : useIAP;
 
+/**
+ * Settles once the cached entitlement has been read back from AsyncStorage (or
+ * the read failed). Rehydration merges the stored state over the current one,
+ * so a store answer written before it finishes is overwritten by the old cache:
+ * a refund that revoked Pro would be undone until the next launch (HAU-115).
+ */
+let markHydrated: () => void = () => {};
+const proStoreHydrated = new Promise<void>((resolve) => {
+  markHydrated = resolve;
+});
+
 interface ProState {
   isPro: boolean;
   setIsPro: (isPro: boolean) => void;
@@ -47,6 +58,7 @@ export const useProStore = create<ProState>()(
     {
       name: "paycheck-planner-pro",
       storage: createJSONStorage(() => AsyncStorage),
+      onRehydrateStorage: () => () => markHydrated(),
     }
   )
 );
@@ -64,6 +76,7 @@ export async function refreshProEntitlement(): Promise<boolean> {
   const purchases = isProStoreMock
     ? await mockGetAvailablePurchases(PRO_PRODUCT_ID)
     : await getAvailablePurchases({ onlyIncludeActiveItemsIOS: true });
+  await proStoreHydrated;
   const isPro = hasProEntitlement(purchases);
   useProStore.getState().setIsPro(isPro);
   return isPro;
