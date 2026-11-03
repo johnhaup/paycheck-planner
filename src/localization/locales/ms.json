@@ -366,9 +366,7 @@
     "footnote": "Bayar sekali dan simpan. Perkongsian Keluarga disertakan. Pasang semula atau guna telefon baharu? Gunakan Pulihkan Pembelian.",
     "unlocked": "Dibuka",
     "oneTime": "Pembelian sekali sahaja",
-    "goProMonths": {
-      "other": "Tukar ke Pro untuk %{count} bulan lagi"
-    },
+    "goProYear": "Naik taraf ke Pro untuk merancang setahun penuh",
     "earlierMonths": "Lihat bulan terdahulu",
     "restored": "Pro dipulihkan",
     "nothingToRestore": "Tiada pembelian Pro ditemui untuk akaun ini",

@@ -368,11 +368,7 @@
     "footnote": "Paga una vez y es tuyo. Incluye Compartir en familia. ¿Has reinstalado la app o tienes un teléfono nuevo? Usa Restaurar compras.",
     "unlocked": "Desbloqueado",
     "oneTime": "Compra única",
-    "goProMonths": {
-      "one": "Hazte Pro y ve %{count} mes más",
-      "many": "Hazte Pro y ve %{count} meses más",
-      "other": "Hazte Pro y ve %{count} meses más"
-    },
+    "goProYear": "Hazte Pro para planificar todo un año",
     "earlierMonths": "Mira meses anteriores",
     "restored": "Pro restaurado",
     "nothingToRestore": "No se encontró ninguna compra de Pro en esta cuenta",

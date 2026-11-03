@@ -371,11 +371,7 @@
     "footnote": "Plătești o dată și îl păstrezi. Distribuirea în familie este inclusă. Ai reinstalat aplicația sau ai un telefon nou? Folosește Restabilește achizițiile.",
     "unlocked": "Deblocat",
     "oneTime": "Achiziție unică",
-    "goProMonths": {
-      "one": "Treci la Pro pentru încă %{count} lună",
-      "few": "Treci la Pro pentru încă %{count} luni",
-      "other": "Treci la Pro pentru încă %{count} de luni"
-    },
+    "goProYear": "Treci la Pro ca să planifici un an întreg",
     "earlierMonths": "Vezi lunile anterioare",
     "restored": "Pro a fost restabilit",
     "nothingToRestore": "Nu s-a găsit nicio achiziție Pro pentru acest cont",

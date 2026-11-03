@@ -366,9 +366,7 @@
     "footnote": "Bayar sekali dan milik Anda. Keluarga Berbagi sudah termasuk. Menginstal ulang atau memakai ponsel baru? Gunakan Pulihkan Pembelian.",
     "unlocked": "Terbuka",
     "oneTime": "Sekali beli",
-    "goProMonths": {
-      "other": "Beralih ke Pro untuk %{count} bulan lagi"
-    },
+    "goProYear": "Beralih ke Pro untuk merencanakan setahun penuh",
     "earlierMonths": "Lihat bulan-bulan sebelumnya",
     "restored": "Pro dipulihkan",
     "nothingToRestore": "Tidak ada pembelian Pro untuk akun ini",
