@@ -366,9 +366,7 @@
     "footnote": "一度のお支払いでずっと使えます。ファミリー共有に対応。アプリを再インストールした場合や機種変更した場合は「購入を復元」をご利用ください。",
     "unlocked": "解除済み",
     "oneTime": "1回限りの購入",
-    "goProMonths": {
-      "other": "Proでさらに%{count}か月分を表示"
-    },
+    "goProYear": "Proで1年先まで計画しましょう",
     "earlierMonths": "以前の月を表示",
     "restored": "Proを復元しました",
     "nothingToRestore": "このアカウントのProの購入が見つかりません",

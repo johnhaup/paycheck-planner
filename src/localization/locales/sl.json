@@ -372,12 +372,7 @@
     "footnote": "Plačate enkrat in imate. Deljenje z družino je vključeno. Ste znova namestili aplikacijo ali imate nov telefon? Uporabite Obnovi nakupe.",
     "unlocked": "Odklenjeno",
     "oneTime": "Enkratni nakup",
-    "goProMonths": {
-      "one": "Preklopite na Pro za še %{count} mesec",
-      "two": "Preklopite na Pro za še %{count} meseca",
-      "few": "Preklopite na Pro za še %{count} mesece",
-      "other": "Preklopite na Pro za še %{count} mesecev"
-    },
+    "goProYear": "S Pro načrtujte celo leto vnaprej",
     "earlierMonths": "Oglejte si prejšnje mesece",
     "restored": "Pro je obnovljen",
     "nothingToRestore": "Za ta račun ni najdenega nakupa Pro",

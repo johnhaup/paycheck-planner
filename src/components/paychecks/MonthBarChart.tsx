@@ -30,6 +30,8 @@ const DOT_GAP = 3;
 /** The month pills and the current-month dot under them: all of the chart that stays once it collapses */
 export const CHART_STRIP_HEIGHT = PILL_HEIGHT + DOT_GAP + DOT_SIZE;
 const COLUMN_HEIGHT = BAR_MAX_HEIGHT + 32 + CHART_STRIP_HEIGHT;
+/** Space under the month label's text: the dot row plus the pill's padding below the text */
+const LABEL_BOTTOM_INSET = DOT_GAP + DOT_SIZE + (PILL_HEIGHT - Math.ceil(MEASUREMENTS.font.sm * 1.2)) / 2;
 /** The locked-months card never shrinks below this */
 const LOCKED_MIN_WIDTH = 168;
 /** Hex alpha for the tinted pill behind the selected or short month */
@@ -41,13 +43,13 @@ interface Props {
   currentKey: string;
   onSelect: (key: string) => void;
   /** Free tier: a card after the last month opens the paywall for the months Pro adds */
-  lockedMonths?: { count: number; onPress: () => void };
+  onLockedPress?: () => void;
   /** 0 shows the bars; 1 leaves only a row of month pills */
   collapse: SharedValue<number>;
 }
 
 /** Each bar is a month's money left after bills; tapping one selects that month. */
-export function MonthBarChart({ months, selectedKey, currentKey, onSelect, lockedMonths, collapse }: Props) {
+export function MonthBarChart({ months, selectedKey, currentKey, onSelect, onLockedPress, collapse }: Props) {
   const scrollRef = useRef<ScrollViewInstance>(null);
   const scrollOffset = useRef(0);
   // The chart runs edge to edge, so the window is its viewport
@@ -109,10 +111,9 @@ export function MonthBarChart({ months, selectedKey, currentKey, onSelect, locke
           pillOpacity={pillOpacity}
         />
       ))}
-      {lockedMonths ? (
+      {onLockedPress ? (
         <LockedMonths
-          count={lockedMonths.count}
-          onPress={lockedMonths.onPress}
+          onPress={onLockedPress}
           width={lockedWidth}
           barsOpacity={barsOpacity}
           pillOpacity={pillOpacity}
@@ -218,7 +219,6 @@ function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect, barsOpac
 }
 
 interface LockedMonthsProps {
-  count: number;
   onPress: () => void;
   width: number;
   barsOpacity: SharedValue<number>;
@@ -226,10 +226,10 @@ interface LockedMonthsProps {
 }
 
 /** The free tier's way to the rest of the year: a card beside the bars, a PRO pill once collapsed. */
-function LockedMonths({ count, onPress, width, barsOpacity, pillOpacity }: LockedMonthsProps) {
+function LockedMonths({ onPress, width, barsOpacity, pillOpacity }: LockedMonthsProps) {
   const colors = useColors();
   const t = useT();
-  const label = t("pro.goProMonths", { count });
+  const label = t("pro.goProYear");
 
   const cardOpacity = useAnimatedStyle(() => ({ opacity: barsOpacity.value }));
   const badgeOpacity = useAnimatedStyle(() => ({ opacity: pillOpacity.value }));
@@ -249,7 +249,7 @@ function LockedMonths({ count, onPress, width, barsOpacity, pillOpacity }: Locke
     <Pressable style={columnStyle} onPress={onPress} accessibilityRole="button" accessibilityLabel={label}>
       <Animated.View style={cardStyle}>
         <Ionicons name="sparkles" size={20} color={colors.primaryText} />
-        <AppText variant="bodyStrong" color="primaryText" center numberOfLines={2}>
+        <AppText variant="bodyStrong" color="primaryText" center numberOfLines={3}>
           {label}
         </AppText>
       </Animated.View>
@@ -306,13 +306,16 @@ const styles = StyleSheet.create({
     borderRadius: DOT_SIZE / 2,
     marginTop: DOT_GAP,
   },
+  // Spans the column from the top of the tallest bar's value to the bottom of the month labels' text
   lockedCard: {
-    flex: 1,
-    alignSelf: "stretch",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: LABEL_BOTTOM_INSET,
     alignItems: "center",
     justifyContent: "center",
     gap: MEASUREMENTS.spacing.md,
-    marginBottom: MEASUREMENTS.spacing.md,
     paddingHorizontal: MEASUREMENTS.spacing.lg,
     borderRadius: MEASUREMENTS.radius.card,
     borderWidth: 1,

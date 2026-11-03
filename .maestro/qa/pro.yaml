@@ -1,4 +1,4 @@
-# Protects Pro (HAU-69, HAU-78). First the free tier on the real store: the 12-month chart, earlier
+# Protects Pro (HAU-69, HAU-78, HAU-116). First the free tier on the real store: the 12-month chart, earlier
 # history, per-paycheck amount changes, reminders, CSV export and the second income source carry a PRO
 # badge and open the paywall, which shows the live store price and Restore Purchases; it never taps Buy
 # there (a real Buy raises the sandbox sign-in alert on a simctl launch).
@@ -21,9 +21,9 @@ name: pro
     timeout: 10000
 
 # Free: this month and next, then a Go Pro card that opens the paywall
-- assertVisible: "Go Pro for .* more months"
+- assertVisible: "Go Pro to plan a full year ahead"
 - takeScreenshot: chart-locked
-- tapOn: "Go Pro for .* more months"
+- tapOn: "Go Pro to plan a full year ahead"
 - extendedWaitUntil:
     visible: "Paycheck Planner Pro"
     timeout: 10000
@@ -31,6 +31,31 @@ name: pro
 - extendedWaitUntil:
     visible: ".* · left over"
     timeout: 10000
+
+# Collapsed, the card becomes a PRO pill beside the month pills and still opens the paywall
+# (HAU-116). The column's button still spans the faded card under the navigation bar, so tap
+# the pill itself by point (third column, just under the bar on the iPhone 17 Pro), as
+# large-title.yaml does for the December pill.
+- swipe:
+    start: "50%,70%"
+    end: "50%,30%"
+    duration: 800
+- extendedWaitUntil:
+    visible:
+      text: "Paychecks"
+      rightOf: "\\d{1,2}:\\d{2}.*"
+      leftOf: "Settings"
+    timeout: 15000
+- takeScreenshot: chart-locked-collapsed
+- tapOn:
+    point: 65%, 15%
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 15000
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: "Paychecks"
+    timeout: 15000
 
 # Free: history shows this month only, with a locked row
 - scrollUntilVisible:

@@ -366,9 +366,7 @@
     "footnote": "一次付费即可使用。支持家人共享。重新安装了 App 或换了新手机？请使用“恢复购买”。",
     "unlocked": "已解锁",
     "oneTime": "一次性购买",
-    "goProMonths": {
-      "other": "升级 Pro，再看 %{count} 个月"
-    },
+    "goProYear": "升级 Pro，提前规划一整年",
     "earlierMonths": "查看更早的月份",
     "restored": "已恢复 Pro",
     "nothingToRestore": "未找到此账户的 Pro 购买记录",

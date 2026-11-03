@@ -37,8 +37,6 @@ const NAV_BAR_HEIGHT = 44;
 // Once collapsed, the pinned header shows the month pills with room above them
 // (clear of the navigation bar's edge blur) and its own bottom padding
 const COLLAPSED_HEADER_HEIGHT = MEASUREMENTS.spacing.lg + CHART_STRIP_HEIGHT + MEASUREMENTS.spacing.base;
-// Free users see this many fewer months than Pro, counted on the locked card
-const LOCKED_MONTH_COUNT = FULL_MONTHS_AHEAD.pro - FULL_MONTHS_AHEAD.free;
 
 function keyExtractor(item: PaycheckItem) {
   return item.key;
@@ -256,7 +254,7 @@ export default function PaychecksScreen() {
               selectedKey={selectedMonth.key}
               currentKey={currentMonthKey}
               onSelect={setSelectedMonthKey}
-              lockedMonths={isPro ? undefined : { count: LOCKED_MONTH_COUNT, onPress: openPaywall }}
+              onLockedPress={isPro ? undefined : openPaywall}
               collapse={collapse}
             />
           </View>

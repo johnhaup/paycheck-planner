@@ -369,11 +369,7 @@
     "footnote": "Paghi una volta e resta tuo. Condivisione in famiglia inclusa. Hai reinstallato l'app o hai un telefono nuovo? Usa Ripristina acquisti.",
     "unlocked": "Sbloccato",
     "oneTime": "Acquisto una tantum",
-    "goProMonths": {
-      "one": "Passa a Pro per %{count} altro mese",
-      "many": "Passa a Pro per altri %{count} mesi",
-      "other": "Passa a Pro per altri %{count} mesi"
-    },
+    "goProYear": "Passa a Pro per pianificare un anno intero",
     "earlierMonths": "Guarda i mesi precedenti",
     "restored": "Pro ripristinato",
     "nothingToRestore": "Nessun acquisto di Pro trovato per questo account",
