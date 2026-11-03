@@ -33,9 +33,18 @@ name: pro
     timeout: 10000
 
 # Free: history shows this month only, with a locked row
-- scrollUntilVisible:
-    element: "Past paychecks"
-    direction: DOWN
+# Past paychecks is the last row: swipe to the bottom, then wait for it.
+# Not scrollUntilVisible: under load it ran out of its 20 s budget with the
+# row already on screen (HAU-115, same as settings in HAU-106).
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- extendedWaitUntil:
+    visible: "Past paychecks"
+    timeout: 15000
 - tapOn: "Past paychecks"
 - extendedWaitUntil:
     visible: "See earlier months"
