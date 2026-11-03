@@ -36,6 +36,8 @@ const LABEL_BOTTOM_INSET = DOT_GAP + DOT_SIZE + (PILL_HEIGHT - Math.ceil(MEASURE
 const LOCKED_MIN_WIDTH = 168;
 /** Hex alpha for the tinted pill behind the selected or short month */
 const PILL_TINT_ALPHA = "38";
+/** Long month abbreviations (fr "janv.", vi "Tháng 10") and large Dynamic Type shrink this far before they would truncate */
+const PILL_MIN_FONT_SCALE = 0.5;
 
 interface Props {
   months: MonthGroup[];
@@ -209,7 +211,13 @@ function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect, barsOpac
       </Animated.View>
       <View style={styles.pill}>
         <Animated.View style={pillFill} />
-        <AppText variant={selected ? "bodyStrong" : "meta"} color={labelColor} numberOfLines={1}>
+        <AppText
+          variant={selected ? "bodyStrong" : "meta"}
+          color={labelColor}
+          numberOfLines={1}
+          adjustsFontSizeToFit
+          minimumFontScale={PILL_MIN_FONT_SCALE}
+        >
           {month.shortLabel}
         </AppText>
       </View>
@@ -292,7 +300,7 @@ const styles = StyleSheet.create({
   pill: {
     height: PILL_HEIGHT,
     minWidth: COLUMN_WIDTH,
-    paddingHorizontal: MEASUREMENTS.spacing.md,
+    paddingHorizontal: MEASUREMENTS.spacing.sm,
     alignItems: "center",
     justifyContent: "center",
   },
