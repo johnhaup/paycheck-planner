@@ -1,4 +1,4 @@
-# Protects Pro (HAU-69, HAU-78, HAU-116). First the free tier on the real store: the 12-month chart, earlier
+# Protects Pro (HAU-69, HAU-78, HAU-116, HAU-118). First the free tier on the real store: the 12-month chart, earlier
 # history, per-paycheck amount changes, reminders, CSV export and the second income source carry a PRO
 # badge and open the paywall, which shows the live store price and Restore Purchases; it never taps Buy
 # there (a real Buy raises the sandbox sign-in alert on a simctl launch).
@@ -168,6 +168,28 @@ name: pro
 - extendedWaitUntil:
     visible: ".* · left over"
     timeout: 60000
+# Pro's 12 months collapse into a row of 52pt pills pinned under the bar (HAU-118); the
+# third one switches month. Tapped by point like large-title.yaml's December pill (third
+# column, just under the bar on the iPhone 17 Pro). Like that flow, the month names assume
+# a November run date ("January 2027": months outside this year carry the year).
+- swipe:
+    start: 50%, 65%
+    end: 50%, 15%
+    duration: 400
+- extendedWaitUntil:
+    visible:
+      text: "Paychecks"
+      rightOf: "\\d{1,2}:\\d{2}.*"
+      leftOf: "Settings"
+    timeout: 15000
+- tapOn:
+    point: 39%, 15%
+- extendedWaitUntil:
+    visible:
+      text: "January.*"
+      selected: true
+    timeout: 15000
+- takeScreenshot: pro-pills-pinned
 - openLink: paycheck-planner://income
 - extendedWaitUntil:
     visible: "Add income source"
