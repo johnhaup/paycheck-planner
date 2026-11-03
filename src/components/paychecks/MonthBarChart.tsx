@@ -24,7 +24,10 @@ const BAR_MAX_HEIGHT = 86;
 const BAR_MIN_HEIGHT = 6;
 const COLUMN_WIDTH = 46;
 const COLUMN_GAP = MEASUREMENTS.spacing.md + 2;
-const PILL_HEIGHT = 26;
+/** Tall enough to read and tap as the only month picker once the chart collapses (HAU-118) */
+const PILL_HEIGHT = 52;
+/** Wider than the column, into the gap between columns, so the collapsed pills are not taller than wide */
+const PILL_WIDTH = COLUMN_WIDTH + COLUMN_GAP - MEASUREMENTS.spacing.sm;
 const DOT_SIZE = 5;
 const DOT_GAP = 3;
 /** The month pills and the current-month dot under them: all of the chart that stays once it collapses */
@@ -299,14 +302,14 @@ const styles = StyleSheet.create({
   },
   pill: {
     height: PILL_HEIGHT,
-    minWidth: COLUMN_WIDTH,
+    width: PILL_WIDTH,
     paddingHorizontal: MEASUREMENTS.spacing.sm,
     alignItems: "center",
     justifyContent: "center",
   },
   pillFill: {
     ...StyleSheet.absoluteFill,
-    borderRadius: PILL_HEIGHT / 2,
+    borderRadius: MEASUREMENTS.radius.card,
   },
   dot: {
     width: DOT_SIZE,
