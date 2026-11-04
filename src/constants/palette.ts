@@ -25,6 +25,10 @@ const palette = {
   greenInk: "#12804A",
   red: "#FF3B30",
   amber: "#FF9500",
+  // Pro badge: a gold gradient that no other control uses, so "PRO" never reads as an app action
+  proGold: "#FFD66B",
+  proAmber: "#F59E0B",
+  proInk: "#3A2400",
 } as const;
 
 export type ThemeColors = Record<
@@ -46,6 +50,9 @@ export type ThemeColors = Record<
   | "onPrimary"
   | "destructive"
   | "warning"
+  | "proGradientStart"
+  | "proGradientEnd"
+  | "onPro"
   | "border"
   | "overlay"
   | "shadow"
@@ -78,6 +85,9 @@ export const DarkPalette = {
   onPrimary: palette.white,
   destructive: palette.red,
   warning: palette.amber,
+  proGradientStart: palette.proGold,
+  proGradientEnd: palette.proAmber,
+  onPro: palette.proInk,
 
   border: palette.slate650,
   overlay: palette.scrim,
@@ -109,6 +119,9 @@ export const LightPalette = {
   onPrimary: palette.white,
   destructive: palette.red,
   warning: palette.amber,
+  proGradientStart: palette.proGold,
+  proGradientEnd: palette.proAmber,
+  onPro: palette.proInk,
 
   border: palette.lightGray,
   overlay: palette.scrim,
