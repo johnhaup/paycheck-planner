@@ -38,8 +38,8 @@ const LABEL_BOTTOM_INSET = DOT_GAP + DOT_SIZE + (PILL_HEIGHT - Math.ceil(MEASURE
 const LOCKED_MIN_WIDTH = 168;
 /** Hex alpha for the tinted pill behind the selected or short month */
 const PILL_TINT_ALPHA = "38";
-/** Long month abbreviations (fr "janv.", vi "Tháng 10") and large Dynamic Type shrink this far before they would truncate */
-const PILL_MIN_FONT_SCALE = 0.5;
+/** Text in a month column shrinks this far before it would truncate: long amounts (vi "4,8k US$"), month abbreviations (fr "janv.", vi "Tháng 10") and large Dynamic Type */
+const COLUMN_MIN_FONT_SCALE = 0.5;
 /** Long translations of the collapsed Go Pro banner's text shrink this far before they would truncate */
 const BANNER_MIN_FONT_SCALE = 0.7;
 
@@ -208,6 +208,8 @@ function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect, barsOpac
           color={selected ? "textDefault" : "textMuted"}
           style={styles.value}
           numberOfLines={1}
+          adjustsFontSizeToFit
+          minimumFontScale={COLUMN_MIN_FONT_SCALE}
         >
           {amount}
         </AppText>
@@ -220,7 +222,7 @@ function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect, barsOpac
           color={labelColor}
           numberOfLines={1}
           adjustsFontSizeToFit
-          minimumFontScale={PILL_MIN_FONT_SCALE}
+          minimumFontScale={COLUMN_MIN_FONT_SCALE}
         >
           {month.shortLabel}
         </AppText>
