@@ -1,4 +1,4 @@
-# Protects Pro (HAU-69, HAU-78, HAU-116, HAU-118). First the free tier on the real store: the 12-month chart, earlier
+# Protects Pro (HAU-69, HAU-78, HAU-116, HAU-118, HAU-146). First the free tier on the real store: the 12-month chart, earlier
 # history, per-paycheck amount changes, reminders, CSV export and the second income source carry a PRO
 # badge and open the paywall, which shows the live store price and Restore Purchases; it never taps Buy
 # there (a real Buy raises the sandbox sign-in alert on a simctl launch).
@@ -95,6 +95,31 @@ name: pro
     visible: ".*Export bills as CSV.*"
     timeout: 10000
 - tapOn: "Close"
+
+# Free: the expense form's Set-aside option carries a PRO badge and opens the paywall (HAU-146)
+- tapOn: "Expenses"
+- extendedWaitUntil:
+    visible: "Add expense.*"
+    timeout: 15000
+- tapOn: "Add expense.*"
+- extendedWaitUntil:
+    visible: "Set-aside.*"
+    timeout: 15000
+- takeScreenshot: expense-setaside-pro-badge
+- tapOn: "Set-aside.*"
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 15000
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: "Bill"
+    timeout: 15000
+- swipe:
+    start: "50%,20%"
+    end: "50%,90%"
+- extendedWaitUntil:
+    visible: "Add expense.*"
+    timeout: 15000
 
 # Free: two sample sources already exist and stay visible; adding a third is gated
 - openLink: paycheck-planner://income
