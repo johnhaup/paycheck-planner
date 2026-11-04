@@ -31,7 +31,8 @@ const DOT_SIZE = 5;
 const DOT_GAP = 3;
 /** The month pills and the current-month dot under them: all of the chart that stays once it collapses */
 export const CHART_STRIP_HEIGHT = PILL_HEIGHT + DOT_GAP + DOT_SIZE;
-const COLUMN_HEIGHT = BAR_MAX_HEIGHT + 32 + CHART_STRIP_HEIGHT;
+/** Columns grow past this when large text makes the amount above the tallest bar taller (HAU-156) */
+const COLUMN_MIN_HEIGHT = BAR_MAX_HEIGHT + 32 + CHART_STRIP_HEIGHT;
 /** Space under the month label's text: the dot row plus the pill's padding below the text */
 const LABEL_BOTTOM_INSET = DOT_GAP + DOT_SIZE + (PILL_HEIGHT - Math.ceil(MEASUREMENTS.font.sm * 1.2)) / 2;
 /** The locked-months card never shrinks below this */
@@ -301,11 +302,10 @@ const styles = StyleSheet.create({
   content: {
     paddingHorizontal: MEASUREMENTS.spacing.gutter,
     gap: COLUMN_GAP,
-    alignItems: "flex-end",
   },
   column: {
     width: COLUMN_WIDTH,
-    height: COLUMN_HEIGHT,
+    minHeight: COLUMN_MIN_HEIGHT,
     justifyContent: "flex-end",
     alignItems: "center",
   },
