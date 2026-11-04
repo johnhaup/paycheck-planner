@@ -22,7 +22,8 @@ export function ProBadge({ style }: Props) {
 
   return (
     <View style={badgeStyle} accessibilityLabel={t("pro.badge")}>
-      <Svg style={StyleSheet.absoluteFill} width="100%" height="100%" preserveAspectRatio="none">
+      {/* No width/height props: Yoga resolves an absolute child's percent size without the parent's padding, so the gold stops short */}
+      <Svg style={StyleSheet.absoluteFill}>
         <Defs>
           <LinearGradient id="proBadgeGradient" x1="0" y1="0" x2="1" y2="1">
             <Stop offset="0" stopColor={colors.proGradientStart} />
