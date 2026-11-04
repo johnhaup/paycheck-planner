@@ -6,6 +6,9 @@
 # flow needs nothing from the simulator. The Welcome button is below the fold at this size.
 # Taps on rows are left out on purpose: once collapsed, the sticky header's wrapper swallows taps
 # on the rows under it (HAU-155); add them here once that is fixed.
+# The month chart grows with the amount above the tallest bar, which the horizontal scroll view used
+# to cut in half (HAU-156). Read text-size-expanded, text-size-next-month-selected and
+# text-size-medium-expanded: "$5k" must be whole and the Go Pro card must reach its top.
 appId: com.johnhaup.paycheckplanner
 name: text-size
 ---
@@ -33,6 +36,24 @@ name: text-size
     timeout: 10000
 - takeScreenshot: text-size-expanded
 
+# The next month selected: its amount is the tallest and bold. Columns by position, not by month
+# name, so the flow does not depend on the run date.
+- tapOn:
+    text: ".*, \\$.* left"
+    index: 1
+- extendedWaitUntil:
+    visible:
+      text: ".*this month.*"
+      selected: false
+    timeout: 10000
+- takeScreenshot: text-size-next-month-selected
+- tapOn: ".*this month.*"
+- extendedWaitUntil:
+    visible:
+      text: ".*this month.*"
+      selected: true
+    timeout: 10000
+
 # Collapsed: the pills and the banner are pinned, and the section header's count stays on screen
 - swipe:
     start: 50%, 75%
@@ -59,3 +80,12 @@ name: text-size
       below: "Car Registration"
     timeout: 15000
 - takeScreenshot: text-size-stacked-row
+
+# The smallest accessibility size clipped the same amount (HAU-156)
+- launchApp:
+    arguments:
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityM"
+- extendedWaitUntil:
+    visible: "Go Pro to plan a full year ahead"
+    timeout: 60000
+- takeScreenshot: text-size-medium-expanded
