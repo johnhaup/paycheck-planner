@@ -37,6 +37,9 @@ export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
     [colors, insets.bottom]
   );
 
+  // A ring in the screen colour cuts the badge out of the button so it reads as a separate tag
+  const badgeStyle = useMemo(() => [styles.badge, { borderColor: colors.screenBackground }], [colors]);
+
   return (
     <Pressable
       style={fabStyle}
@@ -47,7 +50,7 @@ export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
       accessibilityLabel={pro ? `${accessibilityLabel} · ${t("pro.badge")}` : accessibilityLabel}
     >
       <Ionicons name="add" size={28} color={colors.onPrimary} />
-      {pro ? <ProBadge style={styles.badge} /> : null}
+      {pro ? <ProBadge style={badgeStyle} /> : null}
     </Pressable>
   );
 }
@@ -71,6 +74,5 @@ const styles = StyleSheet.create({
     top: -MEASUREMENTS.spacing.sm,
     left: -MEASUREMENTS.spacing.md,
     borderWidth: 2,
-    borderColor: "transparent",
   },
 });
