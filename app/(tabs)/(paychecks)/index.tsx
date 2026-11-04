@@ -237,7 +237,7 @@ export default function PaychecksScreen() {
             {shortElsewhere ? (
               <Pressable style={styles.shortRow} onPress={handleShowShort} accessibilityRole="button">
                 <Ionicons name="alert-circle" size={16} color={colors.destructive} />
-                <AppText variant="meta" color="destructive" style={styles.shortText} numberOfLines={2}>
+                <AppText variant="meta" color="destructive" style={styles.shortText}>
                   {t("paychecks.shortAhead", {
                     date: formatShortDate(shortElsewhere.paycheck.date),
                     source: shortElsewhere.paycheck.sourceName,

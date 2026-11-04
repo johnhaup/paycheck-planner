@@ -17,7 +17,6 @@ import { AppText } from "@/components/AppText";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { hapticSelection } from "@/utils/haptics";
-import { ProBadge } from "@/components/ProBadge";
 import type { MonthGroup } from "@/components/paychecks/types";
 
 const BAR_MAX_HEIGHT = 86;
@@ -32,15 +31,20 @@ const DOT_SIZE = 5;
 const DOT_GAP = 3;
 /** The month pills and the current-month dot under them: all of the chart that stays once it collapses */
 export const CHART_STRIP_HEIGHT = PILL_HEIGHT + DOT_GAP + DOT_SIZE;
-const COLUMN_HEIGHT = BAR_MAX_HEIGHT + 32 + CHART_STRIP_HEIGHT;
+/** Columns grow past this when large text makes the amount above the tallest bar taller (HAU-156) */
+const COLUMN_MIN_HEIGHT = BAR_MAX_HEIGHT + 32 + CHART_STRIP_HEIGHT;
 /** Space under the month label's text: the dot row plus the pill's padding below the text */
 const LABEL_BOTTOM_INSET = DOT_GAP + DOT_SIZE + (PILL_HEIGHT - Math.ceil(MEASUREMENTS.font.sm * 1.2)) / 2;
 /** The locked-months card never shrinks below this */
 const LOCKED_MIN_WIDTH = 168;
 /** Hex alpha for the tinted pill behind the selected or short month */
 const PILL_TINT_ALPHA = "38";
-/** Long month abbreviations (fr "janv.", vi "Tháng 10") and large Dynamic Type shrink this far before they would truncate */
-const PILL_MIN_FONT_SCALE = 0.5;
+/** Text in a month column shrinks this far before it would truncate: long amounts (vi "4,8k US$"), month abbreviations (fr "janv.", vi "Tháng 10") and large Dynamic Type */
+const COLUMN_MIN_FONT_SCALE = 0.5;
+/** Long translations of the Go Pro card's and banner's text shrink this far before they would truncate */
+const LOCKED_MIN_FONT_SCALE = 0.7;
+/** Their boxes have a fixed height, so accessibility text sizes stop here instead of overflowing them */
+const LOCKED_MAX_FONT_MULTIPLIER = 1.5;
 
 interface Props {
   months: MonthGroup[];
@@ -207,6 +211,8 @@ function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect, barsOpac
           color={selected ? "textDefault" : "textMuted"}
           style={styles.value}
           numberOfLines={1}
+          adjustsFontSizeToFit
+          minimumFontScale={COLUMN_MIN_FONT_SCALE}
         >
           {amount}
         </AppText>
@@ -219,7 +225,7 @@ function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect, barsOpac
           color={labelColor}
           numberOfLines={1}
           adjustsFontSizeToFit
-          minimumFontScale={PILL_MIN_FONT_SCALE}
+          minimumFontScale={COLUMN_MIN_FONT_SCALE}
         >
           {month.shortLabel}
         </AppText>
@@ -236,36 +242,53 @@ interface LockedMonthsProps {
   pillOpacity: SharedValue<number>;
 }
 
-/** The free tier's way to the rest of the year: a card beside the bars, a PRO pill once collapsed. */
+/** The free tier's way to the rest of the year: a card beside the bars, a pill-high copy of it once collapsed. */
 function LockedMonths({ onPress, width, barsOpacity, pillOpacity }: LockedMonthsProps) {
   const colors = useColors();
   const t = useT();
   const label = t("pro.goProYear");
 
   const cardOpacity = useAnimatedStyle(() => ({ opacity: barsOpacity.value }));
-  const badgeOpacity = useAnimatedStyle(() => ({ opacity: pillOpacity.value }));
+  const bannerOpacity = useAnimatedStyle(() => ({ opacity: pillOpacity.value }));
 
   const columnStyle = useMemo(() => [styles.column, { width }], [width]);
-  const cardStyle = useMemo(
-    () => [
-      styles.lockedCard,
-      { backgroundColor: colors.cardBackground, borderColor: colors.primary + PILL_TINT_ALPHA },
-      cardOpacity,
-    ],
-    [colors, cardOpacity]
+  const cardColors = useMemo(
+    () => ({ backgroundColor: colors.cardBackground, borderColor: colors.primary + PILL_TINT_ALPHA }),
+    [colors]
   );
-  const badgeStyle = useMemo(() => [styles.pill, badgeOpacity], [badgeOpacity]);
+  const cardStyle = useMemo(() => [styles.lockedCard, cardColors, cardOpacity], [cardColors, cardOpacity]);
+  const bannerStyle = useMemo(() => [styles.lockedBanner, cardColors, bannerOpacity], [cardColors, bannerOpacity]);
 
   return (
     <Pressable style={columnStyle} onPress={onPress} accessibilityRole="button" accessibilityLabel={label}>
       <Animated.View style={cardStyle}>
         <Ionicons name="sparkles" size={20} color={colors.primaryText} />
-        <AppText variant="bodyStrong" color="primaryText" center numberOfLines={3}>
+        <AppText
+          variant="bodyStrong"
+          color="primaryText"
+          center
+          numberOfLines={3}
+          adjustsFontSizeToFit
+          minimumFontScale={LOCKED_MIN_FONT_SCALE}
+          maxFontSizeMultiplier={LOCKED_MAX_FONT_MULTIPLIER}
+        >
           {label}
         </AppText>
       </Animated.View>
-      <Animated.View style={badgeStyle}>
-        <ProBadge />
+      {/* Collapsed: the same card, one pill high, so it reads as the banner and not a stray tag (HAU-145) */}
+      <Animated.View style={bannerStyle}>
+        <Ionicons name="sparkles" size={16} color={colors.primaryText} />
+        <AppText
+          variant="meta"
+          color="primaryText"
+          style={styles.lockedBannerText}
+          numberOfLines={2}
+          adjustsFontSizeToFit
+          minimumFontScale={LOCKED_MIN_FONT_SCALE}
+          maxFontSizeMultiplier={LOCKED_MAX_FONT_MULTIPLIER}
+        >
+          {label}
+        </AppText>
       </Animated.View>
       <View style={styles.dot} />
     </Pressable>
@@ -279,11 +302,10 @@ const styles = StyleSheet.create({
   content: {
     paddingHorizontal: MEASUREMENTS.spacing.gutter,
     gap: COLUMN_GAP,
-    alignItems: "flex-end",
   },
   column: {
     width: COLUMN_WIDTH,
-    height: COLUMN_HEIGHT,
+    minHeight: COLUMN_MIN_HEIGHT,
     justifyContent: "flex-end",
     alignItems: "center",
   },
@@ -330,5 +352,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: MEASUREMENTS.spacing.lg,
     borderRadius: MEASUREMENTS.radius.card,
     borderWidth: 1,
+  },
+  // The locked card collapsed into the pill row: the column's full width, a month pill's height
+  lockedBanner: {
+    height: PILL_HEIGHT,
+    alignSelf: "stretch",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: MEASUREMENTS.spacing.md,
+    paddingHorizontal: MEASUREMENTS.spacing.base,
+    borderRadius: MEASUREMENTS.radius.card,
+    borderWidth: 1,
+  },
+  lockedBannerText: {
+    flexShrink: 1,
+    fontWeight: "600",
   },
 });

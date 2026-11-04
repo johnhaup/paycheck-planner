@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
@@ -17,6 +18,9 @@ import type {
   PaycheckItem,
   TogglePaidHandler,
 } from "@/components/paychecks/types";
+
+/** A pay amount too long for the card's width shrinks this far instead of breaking mid-number */
+const AMOUNT_MIN_FONT_SCALE = 0.5;
 
 interface Props {
   item: PaycheckItem;
@@ -42,6 +46,7 @@ export function PaycheckCard({
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
   const t = useT();
+  const stacked = useAccessibilityTextSize();
 
   const handlePress = useCallback(() => {
     onPress(item.payDate, item.sourceId);
@@ -56,8 +61,8 @@ export function PaycheckCard({
   }, [onMoveBill, item.payDate, item.sourceId]);
 
   const shortRowStyle = useMemo(
-    () => [styles.shortRow, { borderTopColor: colors.divider }],
-    [colors]
+    () => [stacked ? styles.shortRowStacked : styles.shortRow, { borderTopColor: colors.divider }],
+    [stacked, colors]
   );
 
   const emptyRowStyle = useMemo(
@@ -76,24 +81,31 @@ export function PaycheckCard({
   return (
     <AppCard style={styles.card}>
       <Pressable
-        style={styles.header}
+        style={stacked ? styles.headerStacked : styles.header}
         onPress={handlePress}
         accessibilityRole="button"
         accessibilityHint={t("paychecks.opensPaycheck")}
       >
         <AppDateTile date={item.date} />
-        <View style={styles.headerText}>
-          <AppText variant="rowTitle" numberOfLines={1}>{item.sourceName}</AppText>
+        <View style={stacked ? styles.headerTextStacked : styles.headerText}>
+          <AppText variant="rowTitle" numberOfLines={stacked ? undefined : 1}>{item.sourceName}</AppText>
           <AppText variant="meta">{meta}</AppText>
         </View>
-        <View style={styles.amounts}>
+        <View style={stacked ? styles.amountsStacked : styles.amounts}>
           <Pressable
             onPress={handleEditPayAmount}
             hitSlop={MEASUREMENTS.hitSlop}
             accessibilityRole="button"
             accessibilityLabel={t("paychecks.changePayAmount", { source: item.sourceName })}
           >
-            <AppText variant="rowTitle">{formatMoney(item.payAmount)}</AppText>
+            <AppText
+              variant="rowTitle"
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={AMOUNT_MIN_FONT_SCALE}
+            >
+              {formatMoney(item.payAmount)}
+            </AppText>
           </Pressable>
           <AppText variant="meta" color={item.remaining < 0 ? "destructive" : "primaryText"}>
             {t("paychecks.amountLeft", { amount: formatMoney(item.remaining) })}
@@ -127,7 +139,7 @@ export function PaycheckCard({
           accessibilityLabel={t("paychecks.moveBill")}
         >
           <Ionicons name="alert-circle" size={16} color={colors.destructive} />
-          <AppText variant="meta" color="destructive" style={styles.shortText}>
+          <AppText variant="meta" color="destructive" style={stacked ? undefined : styles.shortText}>
             {t("paychecks.shortBy", { amount: formatMoney(-item.remaining) })}
           </AppText>
           <AppText variant="bodyStrong" color="primaryText">{t("paychecks.moveBill")}</AppText>
@@ -147,12 +159,23 @@ const styles = StyleSheet.create({
     gap: MEASUREMENTS.spacing.base,
     padding: MEASUREMENTS.spacing.lg,
   },
+  headerStacked: {
+    alignItems: "flex-start",
+    gap: MEASUREMENTS.spacing.base,
+    padding: MEASUREMENTS.spacing.lg,
+  },
   headerText: {
     flex: 1,
     gap: MEASUREMENTS.spacing.xs,
   },
+  headerTextStacked: {
+    gap: MEASUREMENTS.spacing.xs,
+  },
   amounts: {
     alignItems: "flex-end",
+    gap: MEASUREMENTS.spacing.xs,
+  },
+  amountsStacked: {
     gap: MEASUREMENTS.spacing.xs,
   },
   emptyRow: {
@@ -163,6 +186,13 @@ const styles = StyleSheet.create({
   shortRow: {
     flexDirection: "row",
     alignItems: "center",
+    gap: MEASUREMENTS.spacing.md,
+    paddingHorizontal: MEASUREMENTS.spacing.lg,
+    paddingVertical: MEASUREMENTS.spacing.base,
+    borderTopWidth: 1,
+  },
+  shortRowStacked: {
+    alignItems: "flex-start",
     gap: MEASUREMENTS.spacing.md,
     paddingHorizontal: MEASUREMENTS.spacing.lg,
     paddingVertical: MEASUREMENTS.spacing.base,

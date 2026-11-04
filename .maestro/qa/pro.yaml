@@ -32,9 +32,9 @@ name: pro
     visible: ".* · left over"
     timeout: 10000
 
-# Collapsed, the card becomes a PRO pill beside the month pills and still opens the paywall
-# (HAU-116). The column's button still spans the faded card under the navigation bar, so tap
-# the pill itself by point (third column, just under the bar on the iPhone 17 Pro), as
+# Collapsed, the card becomes a pill-high Go Pro banner beside the month pills and still opens the paywall
+# (HAU-116, HAU-145). The column's button still spans the faded card under the navigation bar, so tap
+# the banner itself by point (third column, just under the bar on the iPhone 17 Pro), as
 # large-title.yaml does for the December pill.
 - swipe:
     start: "50%,70%"
