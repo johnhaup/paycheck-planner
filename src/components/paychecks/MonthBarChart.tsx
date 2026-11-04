@@ -17,7 +17,6 @@ import { AppText } from "@/components/AppText";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { hapticSelection } from "@/utils/haptics";
-import { ProBadge } from "@/components/ProBadge";
 import type { MonthGroup } from "@/components/paychecks/types";
 
 const BAR_MAX_HEIGHT = 86;
@@ -41,6 +40,8 @@ const LOCKED_MIN_WIDTH = 168;
 const PILL_TINT_ALPHA = "38";
 /** Long month abbreviations (fr "janv.", vi "Tháng 10") and large Dynamic Type shrink this far before they would truncate */
 const PILL_MIN_FONT_SCALE = 0.5;
+/** Long translations of the collapsed Go Pro banner's text shrink this far before they would truncate */
+const BANNER_MIN_FONT_SCALE = 0.7;
 
 interface Props {
   months: MonthGroup[];
@@ -236,25 +237,22 @@ interface LockedMonthsProps {
   pillOpacity: SharedValue<number>;
 }
 
-/** The free tier's way to the rest of the year: a card beside the bars, a PRO pill once collapsed. */
+/** The free tier's way to the rest of the year: a card beside the bars, a pill-high copy of it once collapsed. */
 function LockedMonths({ onPress, width, barsOpacity, pillOpacity }: LockedMonthsProps) {
   const colors = useColors();
   const t = useT();
   const label = t("pro.goProYear");
 
   const cardOpacity = useAnimatedStyle(() => ({ opacity: barsOpacity.value }));
-  const badgeOpacity = useAnimatedStyle(() => ({ opacity: pillOpacity.value }));
+  const bannerOpacity = useAnimatedStyle(() => ({ opacity: pillOpacity.value }));
 
   const columnStyle = useMemo(() => [styles.column, { width }], [width]);
-  const cardStyle = useMemo(
-    () => [
-      styles.lockedCard,
-      { backgroundColor: colors.cardBackground, borderColor: colors.primary + PILL_TINT_ALPHA },
-      cardOpacity,
-    ],
-    [colors, cardOpacity]
+  const cardColors = useMemo(
+    () => ({ backgroundColor: colors.cardBackground, borderColor: colors.primary + PILL_TINT_ALPHA }),
+    [colors]
   );
-  const badgeStyle = useMemo(() => [styles.pill, badgeOpacity], [badgeOpacity]);
+  const cardStyle = useMemo(() => [styles.lockedCard, cardColors, cardOpacity], [cardColors, cardOpacity]);
+  const bannerStyle = useMemo(() => [styles.lockedBanner, cardColors, bannerOpacity], [cardColors, bannerOpacity]);
 
   return (
     <Pressable style={columnStyle} onPress={onPress} accessibilityRole="button" accessibilityLabel={label}>
@@ -264,8 +262,19 @@ function LockedMonths({ onPress, width, barsOpacity, pillOpacity }: LockedMonths
           {label}
         </AppText>
       </Animated.View>
-      <Animated.View style={badgeStyle}>
-        <ProBadge />
+      {/* Collapsed: the same card, one pill high, so it reads as the banner and not a stray tag (HAU-145) */}
+      <Animated.View style={bannerStyle}>
+        <Ionicons name="sparkles" size={16} color={colors.primaryText} />
+        <AppText
+          variant="meta"
+          color="primaryText"
+          style={styles.lockedBannerText}
+          numberOfLines={2}
+          adjustsFontSizeToFit
+          minimumFontScale={BANNER_MIN_FONT_SCALE}
+        >
+          {label}
+        </AppText>
       </Animated.View>
       <View style={styles.dot} />
     </Pressable>
@@ -330,5 +339,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: MEASUREMENTS.spacing.lg,
     borderRadius: MEASUREMENTS.radius.card,
     borderWidth: 1,
+  },
+  // The locked card collapsed into the pill row: the column's full width, a month pill's height
+  lockedBanner: {
+    height: PILL_HEIGHT,
+    alignSelf: "stretch",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: MEASUREMENTS.spacing.md,
+    paddingHorizontal: MEASUREMENTS.spacing.base,
+    borderRadius: MEASUREMENTS.radius.card,
+    borderWidth: 1,
+  },
+  lockedBannerText: {
+    flexShrink: 1,
+    fontWeight: "600",
   },
 });
