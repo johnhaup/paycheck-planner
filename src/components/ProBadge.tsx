@@ -6,15 +6,25 @@ import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 
+/** Same cap as the date tile: past this the text no longer fits inside a fixed-size control's corner tag */
+const FIXED_TEXT_PROPS = {
+  numberOfLines: 1,
+  adjustsFontSizeToFit: true,
+  minimumFontScale: 0.7,
+  maxFontSizeMultiplier: 1.3,
+} as const;
+
 interface Props {
   style?: StyleProp<ViewStyle>;
+  /** Sits on a fixed-size control (the FAB): stays one short line at every text size. Inline badges keep scaling. */
+  fixed?: boolean;
 }
 
 /**
  * Small "PRO" pill placed next to a control that opens the paywall for free users.
  * Gold gradient with dark text, deliberately unlike the app's green so it never reads as part of the control.
  */
-export function ProBadge({ style }: Props) {
+export function ProBadge({ style, fixed }: Props) {
   const colors = useColors();
   const t = useT();
 
@@ -32,7 +42,7 @@ export function ProBadge({ style }: Props) {
         </Defs>
         <Rect width="100%" height="100%" fill="url(#proBadgeGradient)" />
       </Svg>
-      <AppText variant="caption" color="onPro" style={styles.text}>
+      <AppText variant="caption" color="onPro" style={styles.text} {...(fixed ? FIXED_TEXT_PROPS : undefined)}>
         {t("pro.badge")}
       </AppText>
     </View>

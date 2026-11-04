@@ -89,3 +89,11 @@ name: text-size
     visible: "Go Pro to plan a full year ahead"
     timeout: 60000
 - takeScreenshot: text-size-medium-expanded
+
+# The Income FAB's PRO badge stays a one-line corner tag at the size that first wrapped it (HAU-160).
+# Read text-size-income-fab: "PRO" on one line, and the plus icon not covered.
+- tapOn: "Income"
+- extendedWaitUntil:
+    visible: "Add income source · PRO"
+    timeout: 15000
+- takeScreenshot: text-size-income-fab
