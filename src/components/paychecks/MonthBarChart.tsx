@@ -40,8 +40,10 @@ const LOCKED_MIN_WIDTH = 168;
 const PILL_TINT_ALPHA = "38";
 /** Text in a month column shrinks this far before it would truncate: long amounts (vi "4,8k US$"), month abbreviations (fr "janv.", vi "Tháng 10") and large Dynamic Type */
 const COLUMN_MIN_FONT_SCALE = 0.5;
-/** Long translations of the collapsed Go Pro banner's text shrink this far before they would truncate */
-const BANNER_MIN_FONT_SCALE = 0.7;
+/** Long translations of the Go Pro card's and banner's text shrink this far before they would truncate */
+const LOCKED_MIN_FONT_SCALE = 0.7;
+/** Their boxes have a fixed height, so accessibility text sizes stop here instead of overflowing them */
+const LOCKED_MAX_FONT_MULTIPLIER = 1.5;
 
 interface Props {
   months: MonthGroup[];
@@ -260,7 +262,15 @@ function LockedMonths({ onPress, width, barsOpacity, pillOpacity }: LockedMonths
     <Pressable style={columnStyle} onPress={onPress} accessibilityRole="button" accessibilityLabel={label}>
       <Animated.View style={cardStyle}>
         <Ionicons name="sparkles" size={20} color={colors.primaryText} />
-        <AppText variant="bodyStrong" color="primaryText" center numberOfLines={3}>
+        <AppText
+          variant="bodyStrong"
+          color="primaryText"
+          center
+          numberOfLines={3}
+          adjustsFontSizeToFit
+          minimumFontScale={LOCKED_MIN_FONT_SCALE}
+          maxFontSizeMultiplier={LOCKED_MAX_FONT_MULTIPLIER}
+        >
           {label}
         </AppText>
       </Animated.View>
@@ -273,7 +283,8 @@ function LockedMonths({ onPress, width, barsOpacity, pillOpacity }: LockedMonths
           style={styles.lockedBannerText}
           numberOfLines={2}
           adjustsFontSizeToFit
-          minimumFontScale={BANNER_MIN_FONT_SCALE}
+          minimumFontScale={LOCKED_MIN_FONT_SCALE}
+          maxFontSizeMultiplier={LOCKED_MAX_FONT_MULTIPLIER}
         >
           {label}
         </AppText>

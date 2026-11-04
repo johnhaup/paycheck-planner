@@ -6,6 +6,9 @@ import { useAnimatedNumber } from "@/hooks/useAnimatedNumber";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 
+/** Low enough that the largest accessibility text size (40pt × 3.57) still fits long amounts on one line */
+const MIN_FONT_SCALE = 0.25;
+
 interface Props {
   amount: number;
 }
@@ -23,7 +26,13 @@ export function AppHeroAmount({ amount }: Props) {
   );
 
   return (
-    <AppText variant="hero" style={wholeStyle}>
+    <AppText
+      variant="hero"
+      style={wholeStyle}
+      numberOfLines={1}
+      adjustsFontSizeToFit
+      minimumFontScale={MIN_FONT_SCALE}
+    >
       {whole}
       <AppText variant="hero" color="textSecondary" style={styles.cents}>
         {cents}
