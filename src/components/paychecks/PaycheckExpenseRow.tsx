@@ -2,6 +2,7 @@ import { useCallback, useMemo } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
 import Animated, { FadeIn, FadeOut, LinearTransition } from "react-native-reanimated";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
@@ -16,6 +17,9 @@ import type {
   PaycheckExpense,
   TogglePaidHandler,
 } from "@/components/paychecks/types";
+
+/** An amount too long for the row's width shrinks this far instead of breaking mid-number */
+const AMOUNT_MIN_FONT_SCALE = 0.5;
 
 interface Props {
   expense: PaycheckExpense;
@@ -39,6 +43,7 @@ export function PaycheckExpenseRow({
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
   const t = useT();
+  const stacked = useAccessibilityTextSize();
 
   const handleTogglePaid = useCallback(() => {
     onTogglePaid(expense.assignmentId, expense.expenseId, payDate, sourceId);
@@ -91,6 +96,11 @@ export function PaycheckExpenseRow({
     [expense.paid, expense.payee, colors, handleMove, t]
   );
 
+  const payeeStyle = useMemo(
+    () => [styles.payeeText, expense.paid ? styles.paid : undefined],
+    [expense.paid]
+  );
+
   const textColor = expense.paid ? "textMuted" : "textDefault";
 
   return (
@@ -102,7 +112,7 @@ export function PaycheckExpenseRow({
             onPress={handleTogglePaid}
             accessibilityLabel={markLabel}
           />
-          <View style={styles.content}>
+          <View style={stacked ? styles.contentStacked : styles.content}>
             <Pressable
               style={styles.payee}
               onPress={handleLinkTap}
@@ -114,8 +124,8 @@ export function PaycheckExpenseRow({
               <AppText
                 variant="body"
                 color={textColor}
-                numberOfLines={1}
-                style={expense.paid ? styles.paid : undefined}
+                numberOfLines={stacked ? undefined : 1}
+                style={payeeStyle}
               >
                 {expense.payee}
               </AppText>
@@ -129,7 +139,13 @@ export function PaycheckExpenseRow({
               accessibilityRole="button"
               accessibilityLabel={t("paychecks.changeAmount", { payee: expense.payee })}
             >
-              <AppText variant="body" color={textColor}>
+              <AppText
+                variant="body"
+                color={textColor}
+                numberOfLines={1}
+                adjustsFontSizeToFit
+                minimumFontScale={AMOUNT_MIN_FONT_SCALE}
+              >
                 {formatMoney(expense.amount)}
               </AppText>
             </Pressable>
@@ -156,11 +172,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: MEASUREMENTS.spacing.md,
   },
+  contentStacked: {
+    flex: 1,
+    alignItems: "flex-start",
+    gap: MEASUREMENTS.spacing.md,
+  },
   payee: {
     flexShrink: 1,
     flexDirection: "row",
     alignItems: "center",
     gap: MEASUREMENTS.spacing.sm + 2,
+  },
+  payeeText: {
+    flexShrink: 1,
   },
   paid: {
     textDecorationLine: "line-through",
