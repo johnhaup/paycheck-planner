@@ -254,7 +254,11 @@ function LockedMonths({ onPress, width, barsOpacity, pillOpacity }: LockedMonths
     ],
     [colors, cardOpacity]
   );
-  const badgeStyle = useMemo(() => [styles.pill, badgeOpacity], [badgeOpacity]);
+  // A tinted tile like the month pills beside it, so the collapsed PRO entry reads as one of them
+  const badgeStyle = useMemo(
+    () => [styles.pill, styles.lockedPill, { backgroundColor: colors.primary + PILL_TINT_ALPHA }, badgeOpacity],
+    [colors, badgeOpacity]
+  );
 
   return (
     <Pressable style={columnStyle} onPress={onPress} accessibilityRole="button" accessibilityLabel={label}>
@@ -309,6 +313,9 @@ const styles = StyleSheet.create({
   },
   pillFill: {
     ...StyleSheet.absoluteFill,
+    borderRadius: MEASUREMENTS.radius.card,
+  },
+  lockedPill: {
     borderRadius: MEASUREMENTS.radius.card,
   },
   dot: {
