@@ -1,0 +1,78 @@
+# Protects a device language and an in-app language of opposite direction (HAU-167):
+# Arabic device with English picked comes up in English, and Paychecks, the toast and
+# the Add expense form all work there. Maestro cannot see text alignment: read the
+# screenshots. Text and field contents must sit at the left edge of their
+# boxes, placeholders included.
+appId: com.johnhaup.paycheckplanner
+name: language-direction
+---
+- launchApp:
+    clearState: true
+    arguments:
+      "-AppleLanguages": "(ar)"
+      "-AppleLocale": "ar_AE"
+- extendedWaitUntil:
+    visible: "جرّب ببيانات تجريبية"
+    timeout: 60000
+- tapOn: "جرّب ببيانات تجريبية"
+- extendedWaitUntil:
+    visible: ".* · .*"
+    timeout: 20000
+- tapOn: "الإعدادات"
+- extendedWaitUntil:
+    visible: "اللغة, .*"
+    timeout: 15000
+- tapOn: "اللغة, .*"
+- extendedWaitUntil:
+    visible: "افتراضي النظام.*"
+    timeout: 15000
+- scrollUntilVisible:
+    element: "English"
+    centerElement: true
+    speed: 20
+    timeout: 40000
+- tapOn: "English"
+# With RTL on, the pick reloads the app straight to Paychecks. Without it, Settings
+# stays open and shows the new language.
+- extendedWaitUntil:
+    visible: ".* · left over|Language, English.*"
+    timeout: 30000
+- runFlow:
+    when:
+      visible: "Language, English.*"
+    commands:
+      - tapOn: "Close"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 20000
+- takeScreenshot: direction-paychecks
+
+- tapOn:
+    text: "[A-Z]{3}, [0-9]+, .*"
+    index: 0
+- extendedWaitUntil:
+    visible: "This paycheck"
+    timeout: 15000
+- tapOn: "Mark all paid"
+# The toast lasts 4 s, so under gate load this wait can miss it; the step is optional
+- extendedWaitUntil:
+    visible: "Marked all paid"
+    timeout: 5000
+    optional: true
+- takeScreenshot: direction-toast
+
+- openLink: paycheck-planner://expenses
+- extendedWaitUntil:
+    visible: ".* a month across .*"
+    timeout: 15000
+- tapOn: "Add expense"
+- extendedWaitUntil:
+    visible: "e.g. Electric Company"
+    timeout: 15000
+- takeScreenshot: direction-form-placeholders
+- tapOn: "e.g. Electric Company"
+- inputText: "QA Water"
+- extendedWaitUntil:
+    visible: "QA Water"
+    timeout: 15000
+- takeScreenshot: direction-form-typed
