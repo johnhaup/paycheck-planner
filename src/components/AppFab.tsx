@@ -50,7 +50,7 @@ export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
       accessibilityLabel={pro ? `${accessibilityLabel} · ${t("pro.badge")}` : accessibilityLabel}
     >
       <Ionicons name="add" size={28} color={colors.onPrimary} />
-      {pro ? <ProBadge style={badgeStyle} /> : null}
+      {pro ? <ProBadge style={badgeStyle} fixed /> : null}
     </Pressable>
   );
 }
