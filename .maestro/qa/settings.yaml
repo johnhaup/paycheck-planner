@@ -77,12 +77,60 @@ name: settings
     timeout: 15000
 - tapOn: "Delete"
 # The toast dismisses itself after 4 s: tap Undo the moment it shows, no
-# screenshot in between (HAU-102).
+# screenshot in between (HAU-102). Even then, under load the Delete tap alone
+# can outlast the toast: it took 7.3 s at load ~40, so the Undo wait found
+# nothing (HAU-153). The Undo wait and tap are optional so a missed toast
+# reaches the retry below instead of failing here (same as pay-date-detail,
+# HAU-112).
 - extendedWaitUntil:
     visible: "Undo"
     timeout: 15000
-- tapOn: "Undo"
+    optional: true
+- tapOn:
+    text: "Undo"
+    optional: true
 - tapOn: "Close"
+# When Undo missed, the data is gone and Welcome is behind the closed modal:
+# load the sample data again and repeat erase → Undo, up to 5 times. A broken
+# Undo still fails at the "left over" wait below.
+- repeat:
+    times: 5
+    while:
+      visible: "Try with sample data"
+    commands:
+      - extendedWaitUntil:
+          notVisible: "Close"
+          timeout: 15000
+      - tapOn: "Try with sample data"
+      - extendedWaitUntil:
+          visible: ".* · left over"
+          timeout: 15000
+      - tapOn: "Settings"
+      - extendedWaitUntil:
+          visible: "Appearance"
+          timeout: 15000
+      - swipe:
+          start: 50%, 80%
+          end: 50%, 20%
+      - swipe:
+          start: 50%, 80%
+          end: 50%, 20%
+      - extendedWaitUntil:
+          visible: ".*Erase all data.*"
+          timeout: 15000
+      - tapOn: ".*Erase all data.*"
+      - extendedWaitUntil:
+          visible: "Delete"
+          timeout: 15000
+      - tapOn: "Delete"
+      - extendedWaitUntil:
+          visible: "Undo"
+          timeout: 15000
+          optional: true
+      - tapOn:
+          text: "Undo"
+          optional: true
+      - tapOn: "Close"
 - extendedWaitUntil:
     visible: ".* · left over"
     timeout: 10000
