@@ -1,0 +1,80 @@
+# Protects RTL (HAU-152): an Arabic device language mirrors the layout with no
+# reload, the in-app language picker reloads into RTL on an English device, the
+# direction survives a cold launch, and picking System default reloads back to LTR.
+# Direction is checked by the tab bar's order: mirrored, Paychecks is to the right
+# of Income. The native large title and scroll offsets are screenshot checks.
+appId: com.johnhaup.paycheckplanner
+name: rtl
+---
+# Arabic as the device language
+- launchApp:
+    clearState: true
+    arguments:
+      "-AppleLanguages": "(ar)"
+      "-AppleLocale": "ar_AE"
+- extendedWaitUntil:
+    visible: "جرّب ببيانات تجريبية"
+    timeout: 60000
+- tapOn: "جرّب ببيانات تجريبية"
+- extendedWaitUntil:
+    visible: ".* · .*"
+    timeout: 20000
+- assertVisible:
+    text: "الرواتب"
+    rightOf: "الدخل"
+- takeScreenshot: rtl-device-arabic
+
+# English device: the picker reloads the app into RTL
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · .*"
+    timeout: 20000
+- assertVisible:
+    text: "Paychecks"
+    leftOf: "Income"
+- tapOn: "Settings"
+- extendedWaitUntil:
+    visible: "Language, .*"
+    timeout: 15000
+- tapOn: "Language, .*"
+- extendedWaitUntil:
+    visible: "العربية"
+    timeout: 15000
+- tapOn: "العربية"
+- extendedWaitUntil:
+    visible:
+      text: "الرواتب"
+      rightOf: "الدخل"
+    timeout: 30000
+- takeScreenshot: rtl-picker-arabic
+
+# Still RTL after a cold launch
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible:
+      text: "الرواتب"
+      rightOf: "الدخل"
+    timeout: 30000
+
+# System default on an English device: back to LTR
+- tapOn: "الإعدادات"
+- extendedWaitUntil:
+    visible: "اللغة, .*"
+    timeout: 15000
+- tapOn: "اللغة, .*"
+- extendedWaitUntil:
+    visible: "افتراضي النظام.*"
+    timeout: 15000
+- tapOn: "افتراضي النظام.*"
+- extendedWaitUntil:
+    visible:
+      text: "Paychecks"
+      leftOf: "Income"
+    timeout: 30000
+- takeScreenshot: rtl-back-to-ltr
