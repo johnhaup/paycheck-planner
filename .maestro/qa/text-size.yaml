@@ -100,6 +100,30 @@ name: text-size
     visible: "Change Car Registration amount for this paycheck"
     timeout: 15000
 
+# The same row's check circle and swipe. The circle shares its label with the row, so index 1 picks
+# the 22pt circle itself. Move's label is always in the hierarchy, so only the tap on it proves the
+# swipe opened the row: it lands on the action if the row moved.
+- tapOn:
+    text: "Mark Car Registration paid"
+    index: 1
+- extendedWaitUntil:
+    visible: "Mark Car Registration unpaid"
+    timeout: 15000
+- tapOn:
+    text: "Mark Car Registration unpaid"
+    index: 1
+- extendedWaitUntil:
+    visible: "Mark Car Registration paid"
+    timeout: 15000
+- swipe:
+    from: "Change Car Registration amount for this paycheck"
+    direction: LEFT
+- tapOn: "Move Car Registration"
+- extendedWaitUntil:
+    visible: "Move a bill"
+    timeout: 15000
+- takeScreenshot: text-size-row-move
+
 # The smallest accessibility size clipped the same amount (HAU-156)
 - launchApp:
     arguments:
