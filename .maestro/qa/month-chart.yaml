@@ -1,0 +1,99 @@
+# Protects "Go to this month" on the Pro 12-month chart (HAU-166): from the far end of the
+# chart it brings the current month back on screen. English, then Arabic, where the chart
+# runs from the right and React Native's offsets are measured from the other end.
+# Taps bars by point so the flow does not depend on the run date. Without the Arabic
+# mirroring the swipes stop at the chart's start and the steps still hold.
+appId: com.johnhaup.paycheckplanner
+name: month-chart
+---
+- launchApp:
+    clearState: true
+    arguments:
+      "-proStoreMock": true
+      "-proStoreMockRevoke": true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 15000
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "Add income source · PRO"
+    timeout: 15000
+- tapOn: "Add income source · PRO"
+- extendedWaitUntil:
+    visible: "Buy for \\$4\\.99"
+    timeout: 20000
+- tapOn: "Buy for \\$4\\.99"
+- extendedWaitUntil:
+    visible: "Pro is unlocked"
+    timeout: 20000
+- tapOn: "Done"
+
+# English: far end, pick a month there, back to this month
+- launchApp:
+    stopApp: true
+    arguments:
+      "-proStoreMock": true
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 60000
+- swipe:
+    start: 92%, 38%
+    end: 8%, 38%
+    duration: 400
+- swipe:
+    start: 92%, 38%
+    end: 8%, 38%
+    duration: 400
+- waitForAnimationToEnd
+- tapOn:
+    point: "75%,45%"
+- extendedWaitUntil:
+    visible: "Go to this month"
+    timeout: 15000
+- tapOn: "Go to this month"
+- extendedWaitUntil:
+    notVisible: "Go to this month"
+    timeout: 15000
+- waitForAnimationToEnd
+- extendedWaitUntil:
+    visible: ".*\\(this month\\).*"
+    timeout: 15000
+- takeScreenshot: month-chart-en
+
+# Arabic: same walk from the other side
+- launchApp:
+    stopApp: true
+    arguments:
+      "-proStoreMock": true
+      "-AppleLanguages": "(ar)"
+      "-AppleLocale": "ar_AE"
+- extendedWaitUntil:
+    visible: ".* · .*"
+    timeout: 60000
+- swipe:
+    start: 8%, 38%
+    end: 92%, 38%
+    duration: 400
+- swipe:
+    start: 8%, 38%
+    end: 92%, 38%
+    duration: 400
+- waitForAnimationToEnd
+- tapOn:
+    point: "25%,45%"
+- extendedWaitUntil:
+    visible: "الانتقال إلى هذا الشهر"
+    timeout: 15000
+- tapOn: "الانتقال إلى هذا الشهر"
+- extendedWaitUntil:
+    notVisible: "الانتقال إلى هذا الشهر"
+    timeout: 15000
+- waitForAnimationToEnd
+- extendedWaitUntil:
+    visible: ".*\\(هذا الشهر\\).*"
+    timeout: 15000
+- takeScreenshot: month-chart-ar
