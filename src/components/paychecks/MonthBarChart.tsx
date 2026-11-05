@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import {
+  I18nManager,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -80,8 +81,18 @@ export function MonthBarChart({ months, selectedKey, currentKey, onSelect, onLoc
   const barsOpacity = useDerivedValue(() => Math.max(0, 1 - collapse.value * 2));
   const pillOpacity = useDerivedValue(() => Math.min(1, Math.max(0, collapse.value * 2 - 1)));
 
+  const contentWidth =
+    2 * MEASUREMENTS.spacing.gutter +
+    months.length * (COLUMN_WIDTH + COLUMN_GAP) +
+    (onLockedPress ? lockedWidth : -COLUMN_GAP);
+
+  // React Native counts a horizontal offset from the content's left edge, in RTL
+  // too, where the first month sits at the right. Keep ours from the start edge.
   const handleScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    scrollOffset.current = event.nativeEvent.contentOffset.x;
+    const { contentOffset, contentSize, layoutMeasurement } = event.nativeEvent;
+    scrollOffset.current = I18nManager.isRTL
+      ? contentSize.width - layoutMeasurement.width - contentOffset.x
+      : contentOffset.x;
   }, []);
 
   // A month selected from elsewhere (Today, the shortfall line) can sit off
@@ -91,12 +102,19 @@ export function MonthBarChart({ months, selectedKey, currentKey, onSelect, onLoc
     const left = MEASUREMENTS.spacing.gutter + selectedIndex * (COLUMN_WIDTH + COLUMN_GAP);
     const right = left + COLUMN_WIDTH;
     const offset = scrollOffset.current;
+    let target: number;
     if (left < offset + MEASUREMENTS.spacing.gutter) {
-      scrollRef.current?.scrollTo({ x: left - MEASUREMENTS.spacing.gutter, animated: true });
+      target = left - MEASUREMENTS.spacing.gutter;
     } else if (right > offset + viewportWidth - MEASUREMENTS.spacing.gutter) {
-      scrollRef.current?.scrollTo({ x: right + MEASUREMENTS.spacing.gutter - viewportWidth, animated: true });
+      target = right + MEASUREMENTS.spacing.gutter - viewportWidth;
+    } else {
+      return;
     }
-  }, [selectedIndex, viewportWidth]);
+    scrollRef.current?.scrollTo({
+      x: I18nManager.isRTL ? contentWidth - viewportWidth - target : target,
+      animated: true,
+    });
+  }, [selectedIndex, viewportWidth, contentWidth]);
 
   return (
     <ScrollView
