@@ -4,8 +4,9 @@
 # cannot be read by Maestro, so read the screenshots too.
 # The launch argument sets the text size for this launch only, so no other flow is affected and the
 # flow needs nothing from the simulator. The Welcome button is below the fold at this size.
-# Taps on rows are left out on purpose: once collapsed, the sticky header's wrapper swallows taps
-# on the rows under it (HAU-155); add them here once that is fixed.
+# Rows under the collapsed header take taps (HAU-155): React Native's sticky wrapper used to stay
+# at the top of the list at the header's full height, about 600pt at this size, and swallowed
+# every touch from the pills down to about two thirds of the screen.
 # The month chart grows with the amount above the tallest bar, which the horizontal scroll view used
 # to cut in half (HAU-156). Read text-size-expanded, text-size-next-month-selected and
 # text-size-medium-expanded: "$5k" must be whole and the Go Pro card must reach its top.
@@ -80,6 +81,24 @@ name: text-size
       below: "Car Registration"
     timeout: 15000
 - takeScreenshot: text-size-stacked-row
+
+# A tap on a row in the middle of the screen, where they used to do nothing (HAU-155). centerElement
+# scrolls the row up from the bottom edge until it is above 70% of the screen height; read
+# text-size-row-under-header to see where it sat. On the free tier a bill's amount opens the paywall.
+- scrollUntilVisible:
+    element: "Change Car Registration amount for this paycheck"
+    direction: DOWN
+    centerElement: true
+    timeout: 45000
+- takeScreenshot: text-size-row-under-header
+- tapOn: "Change Car Registration amount for this paycheck"
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 15000
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: "Change Car Registration amount for this paycheck"
+    timeout: 15000
 
 # The smallest accessibility size clipped the same amount (HAU-156)
 - launchApp:
