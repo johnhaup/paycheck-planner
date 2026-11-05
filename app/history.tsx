@@ -6,6 +6,7 @@ import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { usePaycheckCardRenderer } from "@/hooks/usePaycheckCardRenderer";
+import { FORWARD_CHEVRON } from "@/constants/direction";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
@@ -71,7 +72,7 @@ export default function HistoryScreen() {
         >
           <AppText variant="bodyStrong" color="primaryText">{t("pro.earlierMonths")}</AppText>
           <ProBadge />
-          <Ionicons name="chevron-forward" size={16} color={colors.primaryText} />
+          <Ionicons name={FORWARD_CHEVRON} size={16} color={colors.primaryText} />
         </Pressable>
       ),
     [isPro, openPaywall, colors, t]

@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
+import { FORWARD_CHEVRON } from "@/constants/direction";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { ProBadge } from "@/components/ProBadge";
@@ -35,7 +36,7 @@ export function SettingsLinkRow({ label, value, destructive, pro, onPress }: Pro
           {value}
         </AppText>
       ) : null}
-      <Ionicons name="chevron-forward" size={18} color={colors.textMuted} />
+      <Ionicons name={FORWARD_CHEVRON} size={18} color={colors.textMuted} />
     </Pressable>
   );
 }

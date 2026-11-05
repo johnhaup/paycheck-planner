@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from "react";
-import { Pressable, View, StyleSheet } from "react-native";
+import { I18nManager, Pressable, View, StyleSheet } from "react-native";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { hapticTap } from "@/utils/haptics";
@@ -12,7 +12,8 @@ interface Props {
 const TRACK_WIDTH = 48;
 const TRACK_HEIGHT = 28;
 const THUMB_SIZE = 22;
-const THUMB_TRAVEL = TRACK_WIDTH - THUMB_SIZE - 6;
+/** Transforms do not mirror in RTL, so the thumb travels the other way there */
+const THUMB_TRAVEL = (TRACK_WIDTH - THUMB_SIZE - 6) * (I18nManager.isRTL ? -1 : 1);
 
 export function AppToggle({ value, onValueChange }: Props) {
   const colors = useColors();

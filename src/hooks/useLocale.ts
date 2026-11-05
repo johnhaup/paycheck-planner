@@ -2,7 +2,6 @@ import { useCallback, useMemo } from "react";
 import type { TranslateOptions } from "i18n-js";
 import { t as translate, type TranslationKey } from "@/localization/i18n";
 import {
-  isRTLLanguage,
   resolveCurrency,
   resolveLanguage,
   toLocaleTag,
@@ -20,7 +19,6 @@ export function useLocale() {
       language: resolved,
       localeTag: toLocaleTag(resolved),
       currency: resolveCurrency(currency),
-      isRTL: isRTLLanguage(resolved),
     };
   }, [language, currency]);
 }

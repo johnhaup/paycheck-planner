@@ -30,7 +30,18 @@
       "expo-router",
       "@react-native-community/datetimepicker",
       "expo-font",
-      "expo-localization",
+      [
+        "expo-localization",
+        {
+          "supportedLocales": [
+            "ar", "bn", "ca", "cs", "da", "de", "el", "en", "es", "fi",
+            "fr", "gu", "he", "hi", "hr", "hu", "id", "it", "ja", "kn",
+            "ko", "ml", "mr", "ms", "nl", "no", "or", "pa", "pl", "pt-BR",
+            "pt-PT", "ro", "ru", "sk", "sl", "sv", "ta", "te", "th", "tr",
+            "uk", "ur", "vi", "zh-Hans", "zh-Hant"
+          ]
+        }
+      ],
       "./plugins/withoutPushEntitlement.js",
       [
         "expo-notifications",
