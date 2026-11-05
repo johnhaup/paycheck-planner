@@ -34,9 +34,23 @@ name: paychecks
     visible: ${output.thisMonth}
     timeout: 10000
 
-# Past paychecks
-- scrollUntilVisible:
-    element: "Past paychecks"
+# Past paychecks is the list's footer: swipe to the bottom, then wait for it.
+# Not scrollUntilVisible: under gate load two lookups (5 s each) and two swipes
+# (8.5 s each) used up its 20 s budget, and it gave up with the link already on
+# screen (HAU-173, same as HAU-106). Three swipes, because the list is longest
+# early in a month (up to five paychecks); a swipe at the bottom only bounces.
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- extendedWaitUntil:
+    visible: "Past paychecks"
+    timeout: 15000
 - tapOn: "Past paychecks"
 - extendedWaitUntil:
     visible: "Back"
@@ -46,6 +60,16 @@ name: paychecks
 - extendedWaitUntil:
     visible: "Past paychecks"
     timeout: 10000
-- scrollUntilVisible:
-    element: ".* · left over"
-    direction: UP
+# Back to the top the same way: the month hero comes back under the large title
+- swipe:
+    start: 50%, 20%
+    end: 50%, 80%
+- swipe:
+    start: 50%, 20%
+    end: 50%, 80%
+- swipe:
+    start: 50%, 20%
+    end: 50%, 80%
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 15000
