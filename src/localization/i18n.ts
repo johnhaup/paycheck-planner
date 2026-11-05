@@ -50,7 +50,7 @@ import zhHans from "@/localization/locales/zh-Hans.json";
 import zhHant from "@/localization/locales/zh-Hant.json";
 import { LANGUAGES, type Language } from "@/localization/languages";
 
-/** One entry per translated language; add a line here when a new JSON lands in ./locales. */
+/** One entry per translated language; add a line here and to `supportedLocales` in app.json when a new JSON lands in ./locales. */
 const TRANSLATIONS = {
   en,
   ar,
