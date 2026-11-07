@@ -96,6 +96,27 @@ name: text-size
 - extendedWaitUntil:
     visible: "Paycheck Planner Pro"
     timeout: 15000
+
+# The paywall's list scrolls behind a pinned purchase footer (HAU-182): Buy, the caption and Restore stay
+# on screen with their text capped at 1.5x while the title and rows scroll past, and the last row (CSV)
+# scrolls clear of the fade above the footer. Maestro cannot assert a position, so read the screenshots:
+# text-size-paywall-top (title whole, "Paycheck" not broken mid-word, HAU-158) and text-size-paywall-end.
+- extendedWaitUntil:
+    visible: "Restore Purchases"
+    timeout: 15000
+- takeScreenshot: text-size-paywall-top
+- repeat:
+    times: 8
+    commands:
+      - swipe:
+          start: "50%,45%"
+          end: "50%,10%"
+          duration: 400
+- extendedWaitUntil:
+    visible: "Export bills as CSV"
+    timeout: 15000
+- assertVisible: "Restore Purchases"
+- takeScreenshot: text-size-paywall-end
 - tapOn: "Close"
 - extendedWaitUntil:
     visible: "Change Car Registration amount for this paycheck"
