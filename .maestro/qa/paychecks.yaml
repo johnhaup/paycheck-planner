@@ -14,6 +14,11 @@ name: paychecks
     timeout: 10000
 - assertVisible: ".* in · .* assigned"
 - assertVisible: ".* paychecks"
+# The cards themselves, not just the header: on Android the list once came up empty under the pinned
+# header with the data present (HAU-210)
+- extendedWaitUntil:
+    visible: ".*(Brightline Co\\.|Mesa Health).* of \\d+ paid.*"
+    timeout: 15000
 
 # Remember this month's hero label, pick next month's chart column, come back.
 # The free tier (HAU-69) shows only this month and next, so the only column
