@@ -333,6 +333,9 @@ export default function PaychecksScreen() {
         ListEmptyComponent={listEmpty}
         stickyHeaderIndices={STICKY_HEADER}
         StickyHeaderComponent={PinnedHeader}
+        // Android clips every row away once the list has a custom sticky header (the screen came up
+        // empty under the pinned header); a month holds a handful of cards, so clipping buys nothing
+        removeClippedSubviews={false}
         contentInsetAdjustmentBehavior="automatic"
         scrollToOverflowEnabled
         contentContainerStyle={styles.listContent}

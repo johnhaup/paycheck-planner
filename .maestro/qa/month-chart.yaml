@@ -4,6 +4,7 @@
 # Taps bars by point so the flow does not depend on the run date. Without the Arabic
 # mirroring the swipes stop at the chart's start and the steps still hold.
 appId: com.johnhaup.paycheckplanner
+tags: [ios]   # Pro via the mock store and Arabic, both iOS launch arguments
 name: month-chart
 ---
 - launchApp:

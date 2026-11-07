@@ -4,6 +4,7 @@
 # accessibility label carries the same string, marks included. Display order itself is
 # invisible to Maestro: read the screenshots.
 appId: com.johnhaup.paycheckplanner
+tags: [ios]   # the Arabic runs come from iOS launch arguments
 name: chart-amounts
 ---
 - launchApp:

@@ -8,7 +8,7 @@ Keep it under ~150 lines. When "Recent work" grows past the last few batches, mo
 
 - Version 1.1.0, never released. Build 29 is in TestFlight (2026-11-02 07:37, `main` @ `7cbd466`, gate PASS 9/9 at 07:22) and carries everything below. Build 8 (Expo 58) was the first one that launches on iOS 27.
 - Expo SDK 58, React Native 0.88, React 19, TypeScript strict, bun. Expo Router with native tabs. iPhone only, portrait.
-- iOS bundle id `com.johnhaup.paycheckplanner`, App Store Connect app `6825905363`, Apple team `EKHA8NK939`. No Android package; Android has never been built.
+- iOS bundle id `com.johnhaup.paycheckplanner`, App Store Connect app `6825905363`, Apple team `EKHA8NK939`. Android package `com.johnhaup.paycheckplanner` (same id, so the Maestro flows need no per-platform appId); no Play listing yet. The runner's Android gate (`linear-runner/remote/jobs/android-gate.sh`, on the Linux worker) builds a Release APK and runs `.maestro/qa/` on an API 35 emulator; flows tagged `tags: [ios]` (text size, device language, the mock store: all iOS launch arguments) are skipped there.
 - Monetisation: free app with a one-time **Pro** unlock at $4.99 (HAU-69). Product `com.johnhaup.paycheckplanner.pro` is Ready to Submit in App Store Connect with a review screenshot, so purchases work in TestFlight through the sandbox. It goes to App Review with the first version submission. Decision and evidence: `~/Projects/brain/apps/paycheck-planner/decisions.md`, `~/Projects/brain/research/pricing-model-2026-11.md`.
 - Shipping is automated by `~/Projects/linear-runner`: every merge to `main` is built locally (`production-local` EAS profile, credentials in `~/Projects/_keys/apps/paycheck-planner/`), gated by the Maestro suite and uploaded to TestFlight. Git tags `v1.1.0-build.<n>` and GitHub prereleases list the Linear issues in each build.
 - Maestro: `.maestro/qa/` has nine flows (smoke, paychecks, pay-date-detail, income, expenses, settings, large-title, accessibility, pro). Since HAU-78 `pro.yaml` also buys, relaunches, refunds and restores on the mock store (`launchApp: arguments: { "-proStoreMock": true }`); `.maestro/pro/` is gone.
@@ -53,6 +53,8 @@ Keep it under ~150 lines. When "Recent work" grows past the last few batches, mo
 - 2026-10-31 (PR #13): local TestFlight shipping (`production-local` profile, `ship:ios`, credentials gitignored). HAU-15/16/17/46: keyboard coverage in forms, wider month range, Today button moved to a calendar icon beside the month label.
 
 ## Lessons and pitfalls (do not repeat)
+
+- Android: a FlatList with a custom `StickyHeaderComponent` (`PinnedHeader`) rendered an empty content view (no header, no cards; hero and data were fine) until `removeClippedSubviews={false}` (2026-11-06, first Android build). Keep that prop on the Paychecks list.
 
 - iOS launch arguments `-key value` land in the NSUserDefaults argument domain, so React Native's `Settings.get(key)` reads them with no native module (HAU-78). Maestro passes `launchApp: arguments:` keys verbatim as `key value` (no dash), so the flow keys must carry the dash themselves: `"-proStoreMock": true` reaches the app as `-proStoreMock true` (checked in the process argv with `ps`); an undashed `proStoreMock: true` silently leaves the mock off and Buy hits the real sandbox.
 - An Expo SDK upgrade can silently break native-feeling behaviour that no type check sees. HAU-52 passed QA with the collapsing large title and pinned overview both broken; John found it in TestFlight. Those two are now a must-check on every QA run and a flow (`large-title.yaml`). Since HAU-113 the overview scrolls away and only the month pills stay pinned.
@@ -99,4 +101,4 @@ Keep it under ~150 lines. When "Recent work" grows past the last few batches, mo
 - HAU-25, HAU-26: John's own work in the main checkout (Paychecks scroll on focus, Today button as a native bar button item).
 - Release notes for 1.1.0 (`ship/release-notes/1.1.0.json`) do not exist yet; `linear-runner/notes.sh` drafts and translates them before submission.
 - Store descriptions should mention the one-time Pro purchase (App Review rule 2.3.2) before the first submission with Pro. No prices in metadata.
-- Android: no `android.package`, no Play listing, Play product not created.
+- Android: no Play listing, Play product not created. Launch flags (`-proStoreMock`, text size, language) have no Android equivalent, so `pro-mock-store.yaml` and the language/text-size flows run only on iOS; an intent-extras reader would let the mock store run on Android too.
