@@ -5,6 +5,7 @@ import { useStore } from "@/store";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { AppText } from "@/components/AppText";
 import { AppCard } from "@/components/AppCard";
 import { AppEmptyState } from "@/components/AppEmptyState";
@@ -126,6 +127,7 @@ export default function IncomeScreen() {
   return (
     <>
       <FlatList
+        style={LARGE_TITLE_LIST}
         data={incomeSources}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
@@ -133,7 +135,7 @@ export default function IncomeScreen() {
         ListFooterComponent={hasSources ? listFooter : undefined}
         ListEmptyComponent={listEmpty}
         contentInsetAdjustmentBehavior="automatic"
-        contentContainerStyle={hasSources ? styles.listContent : styles.emptyContent}
+        contentContainerStyle={[hasSources ? styles.listContent : styles.emptyContent, LARGE_TITLE_LIST_CONTENT]}
       />
       <AppFab accessibilityLabel={t("income.addSource")} onPress={handleAddGated} pro={addLocked} />
     </>
