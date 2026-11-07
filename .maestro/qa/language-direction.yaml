@@ -4,6 +4,7 @@
 # screenshots. Text and field contents must sit at the left edge of their
 # boxes, placeholders included.
 appId: com.johnhaup.paycheckplanner
+tags: [ios]   # the device language comes from iOS launch arguments
 name: language-direction
 ---
 - launchApp:
