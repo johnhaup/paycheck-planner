@@ -1,0 +1,60 @@
+appId: com.johnhaup.paycheckplanner
+tags: [ios]   # the mock store and the text size are iOS launch arguments
+name: paywall
+# Protects the pinned purchase footer (HAU-182) where it matters most: the largest text size, with
+# the footer at its tallest because Restore's "nothing found" message is showing in it. Buy, the
+# message and Restore stay on screen while the list scrolls behind them, and the last row (CSV) is
+# still reachable. Maestro cannot see the fade or positions: read paywall-restore-message and
+# paywall-restore-message-end ("Export bills as CSV" sits clear above the fade).
+# text-size.yaml covers the same screen with no message; pro-mock-store.yaml covers Buy.
+---
+- stopApp
+- launchApp:
+    clearState: true
+    arguments:
+      "-proStoreMock": true
+      "-proStoreMockRevoke": true
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+- extendedWaitUntil:
+    visible: "Plan every paycheck"
+    timeout: 60000
+# The Welcome button is below the fold at this size
+- scrollUntilVisible:
+    element: "Try with sample data"
+    direction: DOWN
+    timeout: 30000
+- swipe:
+    start: 50%, 70%
+    end: 50%, 50%
+    duration: 400
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 15000
+- openLink: paycheck-planner://paywall
+- extendedWaitUntil:
+    visible: "Buy for \\$4\\.99"
+    timeout: 25000
+- tapOn: "Restore Purchases"
+- extendedWaitUntil:
+    visible: "No Pro purchase found for this account"
+    timeout: 15000
+- takeScreenshot: paywall-restore-message
+- repeat:
+    times: 8
+    commands:
+      - swipe:
+          start: "50%,40%"
+          end: "50%,12%"
+          duration: 400
+- extendedWaitUntil:
+    visible: "Export bills as CSV"
+    timeout: 15000
+- assertVisible: "Buy for \\$4\\.99"
+- assertVisible: "No Pro purchase found for this account"
+- assertVisible: "Restore Purchases"
+- takeScreenshot: paywall-restore-message-end
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 15000
