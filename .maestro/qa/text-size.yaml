@@ -164,3 +164,36 @@ name: text-size
     visible: "Add income source · PRO"
     timeout: 15000
 - takeScreenshot: text-size-income-fab
+
+# The unlocked title caps at 2.0x too (HAU-158): "Pro is unlocked" is one long word in many locales
+# (ru "разблокирован", de "freigeschaltet") that iOS broke mid-word at 3.57x. Buy on the mock store
+# (empty account first), then reopen the paywall in Russian. Read text-size-paywall-unlocked-ru:
+# "разблокирован" whole on its own line.
+- stopApp
+- launchApp:
+    arguments:
+      "-proStoreMock": true
+      "-proStoreMockRevoke": true
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 60000
+- openLink: paycheck-planner://paywall
+- extendedWaitUntil:
+    visible: "Buy for \\$4\\.99"
+    timeout: 20000
+- tapOn: "Buy for \\$4\\.99"
+- extendedWaitUntil:
+    visible: "Pro is unlocked"
+    timeout: 20000
+- stopApp
+- launchApp:
+    arguments:
+      "-proStoreMock": true
+      "-AppleLanguages": "(ru)"
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+- openLink: paycheck-planner://paywall
+- extendedWaitUntil:
+    visible: "Pro разблокирован"
+    timeout: 60000
+- takeScreenshot: text-size-paywall-unlocked-ru
