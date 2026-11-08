@@ -29,9 +29,10 @@ const SKUS = [PRO_PRODUCT_ID];
 
 // The purchase footer is pinned like a toolbar, so its text stops growing here and the list keeps the room
 const FOOTER_MAX_SCALE = 1.5;
-// Past this the longest word of the tagline and rows (ml "ഓർമ്മപ്പെടുത്തലുകൾ", de "Einkommensquelle") is wider
-// than a 375pt phone's row and iOS breaks it mid-word (React Native cannot hyphenate). The title scales
-// freely: "Paycheck" at the largest size is 316pt, inside the 335pt row.
+// Past this the longest word of the title, tagline and rows is wider than a 375pt phone's 335pt row and
+// iOS breaks it mid-word (React Native cannot hyphenate). The title's widest unbreakable unit is the
+// unlocked title's ru "разблокирован" (152.9pt at 20pt bold by CoreText), which fits up to 2.19x; the rows'
+// is ml "ഓർമ്മപ്പെടുത്തലുകൾ" (140.6pt at 15pt), which fits up to 2.05x (HAU-158, HAU-182).
 const LIST_MAX_SCALE = 2;
 const FADE_HEIGHT = 32;
 
@@ -159,7 +160,9 @@ export default function PaywallScreen() {
         scrollIndicatorInsets={scrollIndicatorInsets}
         contentInsetAdjustmentBehavior="automatic"
       >
-        <AppText variant="title">{t(isPro ? "pro.unlockedTitle" : "pro.title")}</AppText>
+        <AppText variant="title" maxFontSizeMultiplier={LIST_MAX_SCALE}>
+          {t(isPro ? "pro.unlockedTitle" : "pro.title")}
+        </AppText>
         <AppText variant="meta" style={styles.tagline} maxFontSizeMultiplier={LIST_MAX_SCALE}>
           {t(isPro ? "pro.unlockedBody" : "pro.subtitle")}
         </AppText>

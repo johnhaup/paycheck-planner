@@ -99,8 +99,10 @@ name: text-size
 
 # The paywall's list scrolls behind a pinned purchase footer (HAU-182): Buy, the caption and Restore stay
 # on screen with their text capped at 1.5x while the title and rows scroll past, and the last row (CSV)
-# scrolls clear of the fade above the footer. Maestro cannot assert a position, so read the screenshots:
-# text-size-paywall-top (title whole, "Paycheck" not broken mid-word, HAU-158) and text-size-paywall-end.
+# scrolls clear of the fade above the footer. The title, tagline and rows cap at 2.0x (HAU-158: the title
+# used to scale to 3.57x and broke "Paycheck" and the unlocked title's longer words mid-word). Maestro
+# cannot assert a position, so read the screenshots: text-size-paywall-top (title whole, breaking only
+# between words, 40pt bold) and text-size-paywall-end.
 - extendedWaitUntil:
     visible: "Restore Purchases"
     timeout: 15000
@@ -162,3 +164,36 @@ name: text-size
     visible: "Add income source · PRO"
     timeout: 15000
 - takeScreenshot: text-size-income-fab
+
+# The unlocked title caps at 2.0x too (HAU-158): "Pro is unlocked" is one long word in many locales
+# (ru "разблокирован", de "freigeschaltet") that iOS broke mid-word at 3.57x. Buy on the mock store
+# (empty account first), then reopen the paywall in Russian. Read text-size-paywall-unlocked-ru:
+# "разблокирован" whole on its own line.
+- stopApp
+- launchApp:
+    arguments:
+      "-proStoreMock": true
+      "-proStoreMockRevoke": true
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 60000
+- openLink: paycheck-planner://paywall
+- extendedWaitUntil:
+    visible: "Buy for \\$4\\.99"
+    timeout: 20000
+- tapOn: "Buy for \\$4\\.99"
+- extendedWaitUntil:
+    visible: "Pro is unlocked"
+    timeout: 20000
+- stopApp
+- launchApp:
+    arguments:
+      "-proStoreMock": true
+      "-AppleLanguages": "(ru)"
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+- openLink: paycheck-planner://paywall
+- extendedWaitUntil:
+    visible: "Pro разблокирован"
+    timeout: 60000
+- takeScreenshot: text-size-paywall-unlocked-ru
