@@ -2,8 +2,9 @@
 
 Every lesson and pitfall learned in this repo, moved here verbatim from `docs/AGENT_CONTEXT.md`.
 This file is not loaded into sessions. Before you touch a screen, component, build step or tool,
-search it: `grep -n -i "<name>" docs/AGENT_LESSONS.md`. Add new lessons at the top, one bullet
-each, ending with the issue id. Remove a lesson only when it has stopped being true.
+search it and the notes: `grep -rn -i "<name>" docs/handoff docs/AGENT_LESSONS.md`. From a branch,
+write a new lesson in your own note under `docs/handoff/`, not here: every pull request adding at
+the top of this file would conflict. Notes are folded in here on `main`.
 
 - Android: a FlatList with a custom `StickyHeaderComponent` (`PinnedHeader`) rendered an empty content view (no header, no cards; hero and data were fine) until `removeClippedSubviews={false}` (2026-11-06, first Android build). Keep that prop on the Paychecks list.
 
