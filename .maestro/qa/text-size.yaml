@@ -1,0 +1,199 @@
+# Protects Paychecks at the largest accessibility text size (HAU-131): the hero amount stays one
+# element on screen, the chart collapses into the pills with the Go Pro banner, and a bill's amount
+# sits below its name instead of beside it (names used to truncate to "G…"). Clipping and wrapping
+# cannot be read by Maestro, so read the screenshots too.
+# The launch argument sets the text size for this launch only, so no other flow is affected and the
+# flow needs nothing from the simulator. The Welcome button is below the fold at this size.
+# Rows under the collapsed header take taps (HAU-155): React Native's sticky wrapper used to stay
+# at the top of the list at the header's full height, about 600pt at this size, and swallowed
+# every touch from the pills down to about two thirds of the screen.
+# The month chart grows with the amount above the tallest bar, which the horizontal scroll view used
+# to cut in half (HAU-156). Read text-size-expanded, text-size-next-month-selected and
+# text-size-medium-expanded: "$5k" must be whole and the Go Pro card must reach its top.
+appId: com.johnhaup.paycheckplanner
+tags: [ios]   # the text size comes from an iOS launch argument
+name: text-size
+---
+- launchApp:
+    clearState: true
+    arguments:
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+- extendedWaitUntil:
+    visible: "Plan every paycheck"
+    timeout: 60000
+- scrollUntilVisible:
+    element: "Try with sample data"
+    direction: DOWN
+    timeout: 30000
+- swipe:
+    start: 50%, 70%
+    end: 50%, 50%
+    duration: 400
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 15000
+- extendedWaitUntil:
+    visible: "Go Pro to plan a full year ahead"
+    timeout: 10000
+- takeScreenshot: text-size-expanded
+
+# The next month selected: its amount is the tallest and bold. Columns by position, not by month
+# name, so the flow does not depend on the run date.
+- tapOn:
+    text: ".*, \\$.* left"
+    index: 1
+- extendedWaitUntil:
+    visible:
+      text: ".*this month.*"
+      selected: false
+    timeout: 10000
+- takeScreenshot: text-size-next-month-selected
+- tapOn: ".*this month.*"
+- extendedWaitUntil:
+    visible:
+      text: ".*this month.*"
+      selected: true
+    timeout: 10000
+
+# Collapsed: the pills and the banner are pinned, and the section header's count stays on screen
+- swipe:
+    start: 50%, 75%
+    end: 50%, 35%
+    duration: 500
+- extendedWaitUntil:
+    visible:
+      text: "Paychecks"
+      index: 0
+    timeout: 10000
+- extendedWaitUntil:
+    visible: ".* PAYCHECKS"
+    timeout: 10000
+- takeScreenshot: text-size-collapsed
+
+# Stacked rows: the amount is under the name
+- scrollUntilVisible:
+    element: "Change Car Registration amount for this paycheck"
+    direction: DOWN
+    timeout: 45000
+- extendedWaitUntil:
+    visible:
+      text: "Change Car Registration amount for this paycheck"
+      below: "Car Registration"
+    timeout: 15000
+- takeScreenshot: text-size-stacked-row
+
+# A tap on a row in the middle of the screen, where they used to do nothing (HAU-155). centerElement
+# scrolls the row up from the bottom edge until it is above 70% of the screen height; read
+# text-size-row-under-header to see where it sat. On the free tier a bill's amount opens the paywall.
+- scrollUntilVisible:
+    element: "Change Car Registration amount for this paycheck"
+    direction: DOWN
+    centerElement: true
+    timeout: 45000
+- takeScreenshot: text-size-row-under-header
+- tapOn: "Change Car Registration amount for this paycheck"
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 15000
+
+# The paywall's list scrolls behind a pinned purchase footer (HAU-182): Buy, the caption and Restore stay
+# on screen with their text capped at 1.5x while the title and rows scroll past, and the last row (CSV)
+# scrolls clear of the fade above the footer. The title, tagline and rows cap at 2.0x (HAU-158: the title
+# used to scale to 3.57x and broke "Paycheck" and the unlocked title's longer words mid-word). Maestro
+# cannot assert a position, so read the screenshots: text-size-paywall-top (title whole, breaking only
+# between words, 40pt bold) and text-size-paywall-end.
+- extendedWaitUntil:
+    visible: "Restore Purchases"
+    timeout: 15000
+- takeScreenshot: text-size-paywall-top
+- repeat:
+    times: 8
+    commands:
+      - swipe:
+          start: "50%,45%"
+          end: "50%,10%"
+          duration: 400
+- extendedWaitUntil:
+    visible: "Export bills as CSV"
+    timeout: 15000
+- assertVisible: "Restore Purchases"
+- takeScreenshot: text-size-paywall-end
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: "Change Car Registration amount for this paycheck"
+    timeout: 15000
+
+# The same row's check circle and swipe. The circle shares its label with the row, so index 1 picks
+# the 22pt circle itself. Move's label is always in the hierarchy, so only the tap on it proves the
+# swipe opened the row: it lands on the action if the row moved.
+- tapOn:
+    text: "Mark Car Registration paid"
+    index: 1
+- extendedWaitUntil:
+    visible: "Mark Car Registration unpaid"
+    timeout: 15000
+- tapOn:
+    text: "Mark Car Registration unpaid"
+    index: 1
+- extendedWaitUntil:
+    visible: "Mark Car Registration paid"
+    timeout: 15000
+- swipe:
+    from: "Change Car Registration amount for this paycheck"
+    direction: LEFT
+- tapOn: "Move Car Registration"
+- extendedWaitUntil:
+    visible: "Move a bill"
+    timeout: 15000
+- takeScreenshot: text-size-row-move
+
+# The smallest accessibility size clipped the same amount (HAU-156)
+- launchApp:
+    arguments:
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityM"
+- extendedWaitUntil:
+    visible: "Go Pro to plan a full year ahead"
+    timeout: 60000
+- takeScreenshot: text-size-medium-expanded
+
+# The Income FAB's PRO badge stays a one-line corner tag at the size that first wrapped it (HAU-160).
+# Read text-size-income-fab: "PRO" on one line, and the plus icon not covered.
+- tapOn: "Income"
+- extendedWaitUntil:
+    visible: "Add income source · PRO"
+    timeout: 15000
+- takeScreenshot: text-size-income-fab
+
+# The unlocked title caps at 2.0x too (HAU-158): "Pro is unlocked" is one long word in many locales
+# (ru "разблокирован", de "freigeschaltet") that iOS broke mid-word at 3.57x. Buy on the mock store
+# (empty account first), then reopen the paywall in Russian. Read text-size-paywall-unlocked-ru:
+# "разблокирован" whole on its own line.
+- stopApp
+- launchApp:
+    arguments:
+      "-proStoreMock": true
+      "-proStoreMockRevoke": true
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 60000
+- openLink: paycheck-planner://paywall
+- extendedWaitUntil:
+    visible: "Buy for \\$4\\.99"
+    timeout: 20000
+- tapOn: "Buy for \\$4\\.99"
+- extendedWaitUntil:
+    visible: "Pro is unlocked"
+    timeout: 20000
+- stopApp
+- launchApp:
+    arguments:
+      "-proStoreMock": true
+      "-AppleLanguages": "(ru)"
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+- openLink: paycheck-planner://paywall
+- extendedWaitUntil:
+    visible: "Pro разблокирован"
+    timeout: 60000
+- takeScreenshot: text-size-paywall-unlocked-ru

@@ -368,10 +368,7 @@
     "footnote": "Maksa kerran ja pidä se. Perhejako sisältyy. Asensitko sovelluksen uudelleen tai onko sinulla uusi puhelin? Käytä Palauta ostot -toimintoa.",
     "unlocked": "Avattu",
     "oneTime": "Kertaostos",
-    "goProMonths": {
-      "one": "Hanki Pro ja näe %{count} kuukausi lisää",
-      "other": "Hanki Pro ja näe %{count} kuukautta lisää"
-    },
+    "goProYear": "Hanki Pro ja suunnittele koko vuosi eteenpäin",
     "earlierMonths": "Katso aiempia kuukausia",
     "restored": "Pro palautettu",
     "nothingToRestore": "Tälle tilille ei löytynyt Pro-ostoa",

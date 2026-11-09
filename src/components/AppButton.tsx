@@ -12,9 +12,18 @@ interface Props {
   onPress?: () => void;
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
+  /** Caps Dynamic Type on the label, for buttons pinned in a fixed footer. */
+  maxFontSizeMultiplier?: number;
 }
 
-export function AppButton({ title, variant = "primary", style, disabled, ...rest }: Props) {
+export function AppButton({
+  title,
+  variant = "primary",
+  style,
+  disabled,
+  maxFontSizeMultiplier,
+  ...rest
+}: Props) {
   const colors = useColors();
 
   const buttonStyle = useMemo(() => {
@@ -33,7 +42,11 @@ export function AppButton({ title, variant = "primary", style, disabled, ...rest
 
   return (
     <Pressable style={buttonStyle} disabled={disabled} {...rest}>
-      <AppText variant="bodyStrong" color={variant === "outline" ? "textDefault" : "onPrimary"}>
+      <AppText
+        variant="bodyStrong"
+        color={variant === "outline" ? "textDefault" : "onPrimary"}
+        maxFontSizeMultiplier={maxFontSizeMultiplier}
+      >
         {title}
       </AppText>
     </Pressable>

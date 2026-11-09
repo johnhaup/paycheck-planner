@@ -42,6 +42,7 @@ export function AppText({
 
   const textStyles = useMemo(
     () => [
+      styles.start,
       variantStyles[variant],
       { color: colors[color ?? VARIANT_COLORS[variant]] },
       center ? styles.center : undefined,
@@ -54,6 +55,11 @@ export function AppText({
 }
 
 const styles = StyleSheet.create({
+  // With no alignment set, iOS aligns text in an LTR layout by the device
+  // language, which the in-app language can contradict
+  start: {
+    textAlign: "start",
+  },
   center: {
     textAlign: "center",
   },

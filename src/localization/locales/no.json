@@ -368,10 +368,7 @@
     "footnote": "Betal én gang og behold det. Familiedeling er inkludert. Har du installert appen på nytt eller fått ny telefon? Bruk Gjenopprett kjøp.",
     "unlocked": "Låst opp",
     "oneTime": "Engangskjøp",
-    "goProMonths": {
-      "one": "Få Pro for %{count} måned til",
-      "other": "Få Pro for %{count} måneder til"
-    },
+    "goProYear": "Få Pro og planlegg et helt år frem",
     "earlierMonths": "Se tidligere måneder",
     "restored": "Pro gjenopprettet",
     "nothingToRestore": "Fant ikke noe Pro-kjøp for denne kontoen",
