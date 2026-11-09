@@ -10,7 +10,7 @@
             "type": "command",
             "command": "bash .claude/hooks/check-agent-context.sh",
             "timeout": 15,
-            "statusMessage": "Checking docs/AGENT_CONTEXT.md"
+            "statusMessage": "Checking the handoff note"
           }
         ]
       }

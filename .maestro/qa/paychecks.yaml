@@ -14,6 +14,11 @@ name: paychecks
     timeout: 10000
 - assertVisible: ".* in · .* assigned"
 - assertVisible: ".* paychecks"
+# The cards themselves, not just the header: on Android the list once came up empty under the pinned
+# header with the data present (HAU-210)
+- extendedWaitUntil:
+    visible: ".*(Brightline Co\\.|Mesa Health).* of \\d+ paid.*"
+    timeout: 15000
 
 # Remember this month's hero label, pick next month's chart column, come back.
 # The free tier (HAU-69) shows only this month and next, so the only column
@@ -34,9 +39,23 @@ name: paychecks
     visible: ${output.thisMonth}
     timeout: 10000
 
-# Past paychecks
-- scrollUntilVisible:
-    element: "Past paychecks"
+# Past paychecks is the list's footer: swipe to the bottom, then wait for it.
+# Not scrollUntilVisible: under gate load two lookups (5 s each) and two swipes
+# (8.5 s each) used up its 20 s budget, and it gave up with the link already on
+# screen (HAU-173, same as HAU-106). Three swipes, because the list is longest
+# early in a month (up to five paychecks); a swipe at the bottom only bounces.
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- extendedWaitUntil:
+    visible: "Past paychecks"
+    timeout: 15000
 - tapOn: "Past paychecks"
 - extendedWaitUntil:
     visible: "Back"
@@ -46,6 +65,16 @@ name: paychecks
 - extendedWaitUntil:
     visible: "Past paychecks"
     timeout: 10000
-- scrollUntilVisible:
-    element: ".* · left over"
-    direction: UP
+# Back to the top the same way: the month hero comes back under the large title
+- swipe:
+    start: 50%, 20%
+    end: 50%, 80%
+- swipe:
+    start: 50%, 20%
+    end: 50%, 80%
+- swipe:
+    start: 50%, 20%
+    end: 50%, 80%
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 15000

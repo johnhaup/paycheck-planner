@@ -52,19 +52,24 @@ export function splitMoney(amount: number, hideCents = false): { whole: string; 
   return { whole: full.slice(0, index), cents: full.slice(index) };
 }
 
-/** Short labels for chart axes: $940, $1.3k, -$120, with the currency's own placement. */
+// Marks the formatter puts into right-to-left amounts ("\u200F4.8\u00A0US$" in Arabic)
+const RTL_MARK = /[\u200F\u061C]/;
+
+/** Short labels for chart axes: $940, $1.3k, -$120, with the currency's own placement and sign. */
 export function formatCompactMoney(amount: number): string {
   const abs = Math.abs(amount);
-  const sign = amount < 0 ? "-" : "";
-  if (abs < 1000) {
-    return sign + formatter(true).format(abs);
-  }
-  const thousands = Math.round(abs / 100) / 10;
-  const formatted = new Intl.NumberFormat(getLocaleTag(), {
-    style: "currency",
-    currency: getCurrency(),
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 1,
-  }).format(thousands);
-  return sign + formatted.replace(LAST_DIGIT, "$1k");
+  const thousands = abs >= 1000;
+  const formatted = thousands
+    ? new Intl.NumberFormat(getLocaleTag(), {
+        style: "currency",
+        currency: getCurrency(),
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 1,
+      }).format((Math.sign(amount) * Math.round(abs / 100)) / 10)
+    : formatter(true).format(amount || 0); // -0 would print a minus sign
+  // "k" and the minus sign's mark are left-to-right, so in a right-to-left amount they turn the
+  // number into a left-to-right run that takes the letters of a Latin currency symbol with it
+  // ("$4.8k US"). A right-to-left mark after the number ends the run there.
+  const end = (thousands ? "k" : "") + (RTL_MARK.test(formatted) ? "\u200F" : "");
+  return end ? formatted.replace(LAST_DIGIT, `$1${end}`) : formatted;
 }

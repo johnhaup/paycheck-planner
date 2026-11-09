@@ -57,8 +57,18 @@ name: expenses
 # the summary to count it, then scroll to it (HAU-65, seen on the Release gate).
 - extendedWaitUntil:
     visible: ".* a month across 9 bills"
-    timeout: 10000
-- scrollUntilVisible:
-    element: ".*QA Water.*"
-    direction: DOWN
+    timeout: 15000
+# "Not linked" sits just above the last section (One-time): swipe to the bottom,
+# then wait for the row. Not scrollUntilVisible: under gate load its first
+# lookup took 5 s and its one swipe 48 s, so the 20 s budget ran out with the
+# row already on screen (HAU-132, same as HAU-106).
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- extendedWaitUntil:
+    visible: ".*QA Water.*"
+    timeout: 15000
 - takeScreenshot: expenses-added

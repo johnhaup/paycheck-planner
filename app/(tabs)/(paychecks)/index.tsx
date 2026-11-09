@@ -21,6 +21,7 @@ import { AppText } from "@/components/AppText";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { CHART_STRIP_HEIGHT, MonthBarChart } from "@/components/paychecks/MonthBarChart";
+import { PinnedHeader, PinnedHeaderShift } from "@/components/paychecks/PinnedHeader";
 import { Welcome } from "@/components/paychecks/Welcome";
 import { buildMonthGroups, FULL_MONTHS_AHEAD } from "@/utils/paycheckMonths";
 import { useProGate } from "@/hooks/useProGate";
@@ -30,7 +31,8 @@ import type { MonthGroup, PaycheckItem } from "@/components/paychecks/types";
 
 const TODAY_ICON_SIZE = 22;
 const NO_PAYCHECKS: PaycheckItem[] = [];
-// The list header (month overview and chart) stays pinned while the cards scroll under it
+// The list header (month overview and chart) stays pinned while the cards scroll under it.
+// The index only tells the list which child to wrap in PinnedHeader, which does the pinning.
 const STICKY_HEADER = [0];
 // Collapsed portrait iPhone navigation bar; the app is portrait-only and iPhone-only
 const NAV_BAR_HEIGHT = 44;
@@ -85,10 +87,9 @@ export default function PaychecksScreen() {
   }, []);
 
   // The list runs under the navigation bar so iOS can collapse the large title,
-  // and React Native pins a sticky header to the list's top edge, which is under
-  // that bar. Shift the pinned header down to the collapsed bar's bottom edge
-  // once the scroll offset brings it there. Until the first scroll event the
-  // offset is unknown, which the math below treats as no shift.
+  // so the header pins against the collapsed bar's bottom edge, not the list's
+  // top edge. Until the first scroll event the offset is unknown, which the
+  // math below treats as not pinned.
   const pinTop = insets.top + NAV_BAR_HEIGHT;
   const scrollY = useSharedValue(-Infinity);
 
@@ -116,17 +117,14 @@ export default function PaychecksScreen() {
   }, [hasIncome, topOffset]);
 
   // Past the collapsed title the header keeps scrolling until only the month
-  // pills are left below the navigation bar, then pins there. React Native's
-  // own pinning holds the header's top at the list's top edge (screen y 0) once
-  // the offset passes 0; the transform moves it to where it belongs instead.
+  // pills are left below the navigation bar, then pins there: from that offset
+  // on, PinnedHeader pushes it down the content as fast as the content scrolls up.
   const headerHeight = useSharedValue(0);
   const collapseDistance = useDerivedValue(() => Math.max(0, headerHeight.value - COLLAPSED_HEADER_HEIGHT));
 
-  const pinStyle = useAnimatedStyle(() => {
-    const offset = scrollY.value;
-    if (offset === -Infinity) return { transform: [{ translateY: 0 }] };
-    const pinnedTop = Math.max(-offset, pinTop - collapseDistance.value);
-    return { transform: [{ translateY: pinnedTop - Math.max(-offset, 0) }] };
+  const pinShift = useDerivedValue(() => {
+    if (scrollY.value === -Infinity) return 0;
+    return Math.max(0, scrollY.value + pinTop - collapseDistance.value);
   });
 
   // 0 while the header sits below the title, 1 once only the pills are left
@@ -203,14 +201,14 @@ export default function PaychecksScreen() {
   }, [shortElsewhere, setSelectedMonthKey]);
 
   const stickyHeaderStyle = useMemo(
-    () => [styles.stickyHeader, { backgroundColor: colors.screenBackground }, pinStyle],
-    [colors, pinStyle]
+    () => [styles.stickyHeader, { backgroundColor: colors.screenBackground }],
+    [colors]
   );
 
   const listHeader = useMemo(
     () =>
       hasIncome && selectedMonth ? (
-        <Animated.View style={stickyHeaderStyle} onLayout={handleHeaderLayout}>
+        <View style={stickyHeaderStyle} onLayout={handleHeaderLayout}>
           <Animated.View style={summaryFade}>
             <View style={styles.heroLabelRow}>
               <AppText variant="meta" style={styles.heroLabel}>
@@ -237,7 +235,7 @@ export default function PaychecksScreen() {
             {shortElsewhere ? (
               <Pressable style={styles.shortRow} onPress={handleShowShort} accessibilityRole="button">
                 <Ionicons name="alert-circle" size={16} color={colors.destructive} />
-                <AppText variant="meta" color="destructive" style={styles.shortText} numberOfLines={2}>
+                <AppText variant="meta" color="destructive" style={styles.shortText}>
                   {t("paychecks.shortAhead", {
                     date: formatShortDate(shortElsewhere.paycheck.date),
                     source: shortElsewhere.paycheck.sourceName,
@@ -258,7 +256,7 @@ export default function PaychecksScreen() {
               collapse={collapse}
             />
           </View>
-        </Animated.View>
+        </View>
       ) : undefined,
     [
       hasIncome,
@@ -323,23 +321,29 @@ export default function PaychecksScreen() {
   // iOS only collapses the large title into the header when the scroll view
   // is the first view, and swapping roots after the store rehydrates drops it.
   return (
-    <Animated.FlatList
-      ref={listRef}
-      style={styles.list}
-      data={paychecks}
-      keyExtractor={keyExtractor}
-      renderItem={renderItem}
-      ListHeaderComponent={listHeader}
-      ListFooterComponent={listFooter}
-      ListEmptyComponent={listEmpty}
-      stickyHeaderIndices={STICKY_HEADER}
-      contentInsetAdjustmentBehavior="automatic"
-      scrollToOverflowEnabled
-      contentContainerStyle={styles.listContent}
-      showsVerticalScrollIndicator={false}
-      onScroll={handleScroll}
-      scrollEventThrottle={16}
-    />
+    <PinnedHeaderShift value={pinShift}>
+      <Animated.FlatList
+        ref={listRef}
+        style={styles.list}
+        data={paychecks}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+        ListHeaderComponent={listHeader}
+        ListFooterComponent={listFooter}
+        ListEmptyComponent={listEmpty}
+        stickyHeaderIndices={STICKY_HEADER}
+        StickyHeaderComponent={PinnedHeader}
+        // Android clips every row away once the list has a custom sticky header (the screen came up
+        // empty under the pinned header); a month holds a handful of cards, so clipping buys nothing
+        removeClippedSubviews={false}
+        contentInsetAdjustmentBehavior="automatic"
+        scrollToOverflowEnabled
+        contentContainerStyle={styles.listContent}
+        showsVerticalScrollIndicator={false}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+      />
+    </PinnedHeaderShift>
   );
 }
 

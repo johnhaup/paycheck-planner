@@ -125,8 +125,8 @@ export default function RootLayout() {
   const toastOptions = useMemo(
     () => ({
       style: { backgroundColor: colors.cardBackgroundElevated, borderColor: colors.border },
-      titleStyle: { color: colors.textDefault },
-      descriptionStyle: { color: colors.textSecondary },
+      titleStyle: { ...styles.toastText, color: colors.textDefault },
+      descriptionStyle: { ...styles.toastText, color: colors.textSecondary },
       actionButtonStyle: { backgroundColor: colors.primary },
       actionButtonTextStyle: { color: colors.onPrimary },
     }),
@@ -169,5 +169,9 @@ export default function RootLayout() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+  },
+  // sonner-native draws its own Text, so it needs AppText's alignment too
+  toastText: {
+    textAlign: "start",
   },
 });
