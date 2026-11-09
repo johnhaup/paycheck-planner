@@ -60,4 +60,16 @@ Shared agent context (principles, decisions, features, QA notes) is in `~/Projec
 
 @docs/AGENT_CONTEXT.md
 
-`docs/AGENT_CONTEXT.md` is the running handoff for this repo. Read it before starting work (it is imported above). Before ending any turn that changed code, update it: current state, a dated entry under Recent work, any lesson or pitfall worth not repeating, and Open follow-ups. A Stop hook (`.claude/hooks/check-agent-context.sh`) blocks the turn until the file is touched. Keep it under ~150 lines: move old Recent work entries verbatim to `docs/AGENT_CONTEXT_ARCHIVE.md` (not loaded, grep on demand) and never prune lessons for length. Commit it together with the code it describes.
+`docs/AGENT_CONTEXT.md` is the running handoff for this repo. It is loaded into every request
+(imported above), so it is capped at 160 lines. Read it before starting work.
+
+Lessons and pitfalls live in `docs/AGENT_LESSONS.md`, which is not loaded. Before you touch a
+screen, component, build step or tool, search it:
+`grep -n -i "<name>" docs/AGENT_LESSONS.md`. Add new lessons there, at the top.
+
+Before ending any turn that changed code, update the handoff: Current state (only what is true
+today), a dated entry under Recent work, and Open follow-ups. A Stop hook
+(`.claude/hooks/check-agent-context.sh`) blocks the turn until the file is touched, and while it
+is over the cap: move the oldest Recent work entries verbatim to
+`docs/AGENT_CONTEXT_ARCHIVE.md` (newest first, not loaded, grep on demand). Nothing is deleted,
+only moved. Commit these files together with the code they describe.
