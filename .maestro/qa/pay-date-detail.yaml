@@ -89,7 +89,8 @@ name: pay-date-detail
     visible: "Mark all paid"
     timeout: 10000
 
-- tapOn: "Back"
+# The header back button reads Back on iOS and Navigate up on Android
+- tapOn: "Back|Navigate up"
 - extendedWaitUntil:
     visible: ".* · left over"
     timeout: 10000
