@@ -36,14 +36,16 @@ name: accessibility
 - extendedWaitUntil:
     visible: ".* a month across .*"
     timeout: 10000
+# "Name" is on both platforms' sort menus: iOS lists all three orders, Android
+# the two not in use (its alert holds three buttons, one of them Cancel).
 - tapOn: "Sort"
 - extendedWaitUntil:
-    visible: "Grouped"
+    visible: "Name"
     timeout: 15000
 - takeScreenshot: sort-opened-by-label
 - tapOn: "Cancel"
 - extendedWaitUntil:
-    notVisible: "Grouped"
+    notVisible: "Name"
     timeout: 15000
 
 # The gear label is localized: in Spanish it reads "Ajustes"; Close stays English.

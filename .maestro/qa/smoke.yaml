@@ -82,7 +82,8 @@ name: smoke
     visible: "This paycheck"
     timeout: 10000
 - takeScreenshot: pay-date
-- tapOn: "Back"
+# The header back button reads Back on iOS and Navigate up on Android
+- tapOn: "Back|Navigate up"
 - extendedWaitUntil:
     visible: ".* · left over"
     timeout: 10000

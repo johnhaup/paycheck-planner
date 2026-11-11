@@ -58,10 +58,11 @@ name: paychecks
     timeout: 15000
 - tapOn: "Past paychecks"
 - extendedWaitUntil:
-    visible: "Back"
+    visible: "Back|Navigate up"
     timeout: 10000
 - takeScreenshot: past-paychecks
-- tapOn: "Back"
+# The header back button reads Back on iOS and Navigate up on Android
+- tapOn: "Back|Navigate up"
 - extendedWaitUntil:
     visible: "Past paychecks"
     timeout: 10000

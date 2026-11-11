@@ -70,7 +70,8 @@ name: pro
 - extendedWaitUntil:
     visible: "See earlier months"
     timeout: 10000
-- tapOn: "Back"
+# The header back button reads Back on iOS and Navigate up on Android
+- tapOn: "Back|Navigate up"
 
 # Free: Settings shows the Pro row and badges; CSV export opens the paywall
 - openLink: paycheck-planner://settings
