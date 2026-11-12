@@ -16,6 +16,7 @@
 # screen and its title cannot collapse; its scrolled screenshot shows the bounce
 # back. Tabs are switched through deep links (see smoke.yaml).
 appId: com.johnhaup.paycheckplanner
+tags: [ios]   # collapsing large titles are iOS; the Android toolbar has one fixed title
 name: large-title
 ---
 - launchApp:

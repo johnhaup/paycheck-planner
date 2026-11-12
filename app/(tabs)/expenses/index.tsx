@@ -1,6 +1,8 @@
 import { useCallback, useMemo, useState } from "react";
 import {
   ActionSheetIOS,
+  Alert,
+  Platform,
   View,
   Pressable,
   SectionList,
@@ -110,6 +112,22 @@ export default function ExpensesScreen() {
 
   const handleSortPress = useCallback(() => {
     const sorts: ExpenseSort[] = ["default", "amount", "name"];
+    if (Platform.OS !== "ios") {
+      // ActionSheetIOS throws on Android. An Android alert holds three buttons:
+      // the two orders not in use, and Cancel.
+      Alert.alert(
+        t("expenses.sort.title"),
+        undefined,
+        [
+          ...sorts
+            .filter((s) => s !== sort)
+            .map((s) => ({ text: t(`expenses.sort.${s}`), onPress: () => setSort(s) })),
+          { text: t("common.cancel"), style: "cancel" as const },
+        ],
+        { cancelable: true }
+      );
+      return;
+    }
     ActionSheetIOS.showActionSheetWithOptions(
       {
         title: t("expenses.sort.title"),
@@ -128,7 +146,7 @@ export default function ExpensesScreen() {
         }
       }
     );
-  }, [t]);
+  }, [t, sort]);
 
   const renderSortButton = useCallback(
     () => (

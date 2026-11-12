@@ -61,4 +61,21 @@ Shared agent context (principles, decisions, features, QA notes) is in `~/Projec
 
 @docs/AGENT_CONTEXT.md
 
-`docs/AGENT_CONTEXT.md` is the running handoff for this repo. Read it before starting work (it is imported above). Before ending any turn that changed code, update it: current state, a dated entry under Recent work, any lesson or pitfall worth not repeating, and Open follow-ups. A Stop hook (`.claude/hooks/check-agent-context.sh`) blocks the turn until the file is touched. Keep it under ~150 lines: move old Recent work entries verbatim to `docs/AGENT_CONTEXT_ARCHIVE.md` (not loaded, grep on demand) and never prune lessons for length. Commit it together with the code it describes.
+`docs/AGENT_CONTEXT.md` holds the current state of this repo and its open follow-ups. It is loaded
+into every request (imported above), so it is capped at 160 lines.
+
+Recent work lives in `docs/handoff/`, one note per ticket, not loaded. Before starting, read the
+newest few (`ls docs/handoff | tail -5`), then search the notes and the lessons file for every
+screen, component, build step or tool you are about to touch:
+`grep -rn -i "<name>" docs/handoff docs/AGENT_LESSONS.md`.
+
+Before ending any turn that changed code, write or update your own note,
+`docs/handoff/<YYYY-MM-DD>-<ticket or branch slug>.md`. One note per ticket; a branch that already
+has one keeps updating it. Keep it under 40 lines: what changed and why, how it was verified,
+follow-ups, and any lesson or pitfall. A Stop hook (`.claude/hooks/check-agent-context.sh`) blocks
+the turn until a note is touched. Commit the note with the code it describes.
+
+From a branch, never add entries to `docs/AGENT_CONTEXT.md`, `docs/AGENT_LESSONS.md` or
+`docs/AGENT_CONTEXT_ARCHIVE.md`: every open pull request would add at the same place and they
+would all conflict. Change `docs/AGENT_CONTEXT.md` only to fix or delete a line that is no longer
+true. Notes are folded into those files on `main`, by one job at a time.

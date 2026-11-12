@@ -3,6 +3,8 @@ const palette = {
   ink: "#111418",
   slate950: "#14171C",
   slate900: "#1A1E24",
+  // The paywall footer's fade starts from the modal background at zero alpha
+  slate900Clear: "#1A1E2400",
   slate850: "#1F232A",
   slate800: "#262B33",
   slate750: "#2B3038",
@@ -18,6 +20,7 @@ const palette = {
   gray: "#9A9AA0",
   darkGray: "#6E6E73",
   white: "#FFFFFF",
+  whiteClear: "#FFFFFF00",
   scrim: "rgba(0,0,0,0.5)",
 
   green: "#26de81",
@@ -34,6 +37,7 @@ const palette = {
 export type ThemeColors = Record<
   | "screenBackground"
   | "modalBackground"
+  | "modalBackgroundClear"
   | "cardBackground"
   | "cardBackgroundElevated"
   | "inputBackground"
@@ -66,6 +70,7 @@ export const DarkPalette = {
   screenBackground: palette.slate950,
   // Modals sit a step above the screen so the sheet edge is visible
   modalBackground: palette.slate900,
+  modalBackgroundClear: palette.slate900Clear,
   cardBackground: palette.slate850,
   cardBackgroundElevated: palette.slate800,
   inputBackground: palette.slate750,
@@ -101,6 +106,7 @@ export const DarkPalette = {
 export const LightPalette = {
   screenBackground: palette.offWhite,
   modalBackground: palette.white,
+  modalBackgroundClear: palette.whiteClear,
   cardBackground: palette.white,
   cardBackgroundElevated: palette.lightGray,
   inputBackground: palette.offWhite,

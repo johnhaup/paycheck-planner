@@ -1,0 +1,89 @@
+# Protects the amount above each month bar in right-to-left languages (HAU-154): in Arabic
+# the number, its "k" and the sign stay together and a right-to-left mark closes the number,
+# so "US$" is not split ("$4.8k US", "$2,475k US-"). English is the control. The column's
+# accessibility label carries the same string, marks included. Display order itself is
+# invisible to Maestro: read the screenshots.
+appId: com.johnhaup.paycheckplanner
+tags: [ios]   # the Arabic runs come from iOS launch arguments
+name: chart-amounts
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 15000
+
+# Arabic, positive months
+- launchApp:
+    stopApp: true
+    arguments:
+      "-AppleLanguages": "(ar)"
+- extendedWaitUntil:
+    visible: ".* · .*"
+    timeout: 60000
+- extendedWaitUntil:
+    visible: ".*، المتبقي ‏[0-9.,]+k‏ US\\$"
+    timeout: 15000
+- takeScreenshot: chart-amounts-ar-positive
+
+# A bill larger than any paycheck turns every month negative
+- launchApp:
+    stopApp: true
+    arguments:
+      "-AppleLanguages": "(en)"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 60000
+- openLink: paycheck-planner://expenses
+- extendedWaitUntil:
+    visible: ".* a month across .*"
+    timeout: 15000
+- tapOn: "Add expense"
+- extendedWaitUntil:
+    visible: "e.g. Electric Company"
+    timeout: 15000
+- tapOn: "e.g. 150.00"
+- inputText: "1240000"
+- tapOn: "e.g. Electric Company"
+- inputText: "QA Big"
+- pressKey: Enter
+- extendedWaitUntil:
+    visible: "Brightline.*"
+    timeout: 15000
+- tapOn: "Brightline.*"
+- extendedWaitUntil:
+    visible: "Every paycheck"
+    timeout: 15000
+- tapOn: "Every paycheck"
+- swipe:
+    start: 50%, 45%
+    end: 50%, 20%
+- extendedWaitUntil:
+    visible: "Add Expense"
+    timeout: 15000
+- tapOn: "Add Expense"
+- extendedWaitUntil:
+    visible: ".* a month across .*"
+    timeout: 15000
+- openLink: paycheck-planner://
+- extendedWaitUntil:
+    visible: ".*, -\\$[0-9.,]+k left"
+    timeout: 15000
+- takeScreenshot: chart-amounts-en-negative
+
+# Arabic, negative months: the sign sits inside the mark that opens the amount
+- launchApp:
+    stopApp: true
+    arguments:
+      "-AppleLanguages": "(ar)"
+- extendedWaitUntil:
+    visible: ".* · .*"
+    timeout: 60000
+- extendedWaitUntil:
+    visible: ".*، المتبقي ‏‎-[0-9.,]+k‏ US\\$"
+    timeout: 15000
+- takeScreenshot: chart-amounts-ar-negative

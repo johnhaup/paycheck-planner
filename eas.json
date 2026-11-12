@@ -18,6 +18,10 @@
       "autoIncrement": true,
       "ios": {
         "image": "latest"
+      },
+      "android": {
+        "buildType": "app-bundle",
+        "credentialsSource": "local"
       }
     }
   },
@@ -27,6 +31,11 @@
         "ascAppId": "6825905363",
         "appleId": "johnhaup@gmail.com",
         "appleTeamId": "EKHA8NK939"
+      },
+      "android": {
+        "serviceAccountKeyPath": "credentials/android/service-account-key.json",
+        "track": "internal",
+        "releaseStatus": "draft"
       }
     }
   }
