@@ -1,5 +1,6 @@
-import { useCallback, useMemo } from "react";
-import { Pressable, View, StyleSheet } from "react-native";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Pressable, View, StyleSheet, type LayoutChangeEvent } from "react-native";
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
@@ -19,16 +20,53 @@ interface Props<T> {
   onChange: (value: T) => void;
 }
 
+const TRACK_PADDING = MEASUREMENTS.spacing.sm;
+const SEGMENT_GAP = MEASUREMENTS.spacing.sm;
+const SLIDE_TIMING = { duration: 250, easing: Easing.out(Easing.cubic) };
+
 export function AppSegmentedControl<T>({ options, value, onChange }: Props<T>) {
   const colors = useColors();
+  const [trackWidth, setTrackWidth] = useState(0);
+
+  const selectedIndex = options.findIndex((option) => option.value === value);
+  const segmentWidth =
+    trackWidth > 0
+      ? (trackWidth - TRACK_PADDING * 2 - SEGMENT_GAP * (options.length - 1)) / options.length
+      : 0;
+
+  // The selected pill is one view that slides between segments instead of each segment
+  // switching its own background (HAU-119). Reanimated honours Reduce Motion by default.
+  const position = useSharedValue(selectedIndex);
+  useEffect(() => {
+    position.value = withTiming(selectedIndex, SLIDE_TIMING);
+  }, [position, selectedIndex]);
+
+  const handleLayout = useCallback((event: LayoutChangeEvent) => {
+    setTrackWidth(event.nativeEvent.layout.width);
+  }, []);
 
   const trackStyle = useMemo(
     () => [styles.track, { backgroundColor: colors.segmentTrack }],
     [colors]
   );
 
+  const indicatorColorStyle = useMemo(
+    () => ({ backgroundColor: colors.segmentSelected }),
+    [colors]
+  );
+
+  const indicatorMotionStyle = useAnimatedStyle(() => ({
+    width: segmentWidth,
+    opacity: selectedIndex < 0 ? 0 : 1,
+    transform: [{ translateX: position.value * (segmentWidth + SEGMENT_GAP) }],
+  }));
+
   return (
-    <View style={trackStyle} accessibilityRole="tablist">
+    <View style={trackStyle} accessibilityRole="tablist" onLayout={handleLayout}>
+      <Animated.View
+        style={[styles.indicator, indicatorColorStyle, indicatorMotionStyle]}
+        pointerEvents="none"
+      />
       {options.map((option) => (
         <Segment
           key={String(option.value)}
@@ -48,8 +86,6 @@ interface SegmentProps<T> {
 }
 
 function Segment<T>({ option, selected, onSelect }: SegmentProps<T>) {
-  const colors = useColors();
-
   const handlePress = useCallback(() => {
     if (!selected) {
       hapticSelection();
@@ -57,16 +93,11 @@ function Segment<T>({ option, selected, onSelect }: SegmentProps<T>) {
     onSelect(option.value);
   }, [onSelect, option.value, selected]);
 
-  const segmentStyle = useMemo(
-    () => [styles.segment, selected ? { backgroundColor: colors.segmentSelected } : undefined],
-    [selected, colors]
-  );
-
   const accessibilityState = useMemo(() => ({ selected }), [selected]);
 
   return (
     <Pressable
-      style={segmentStyle}
+      style={styles.segment}
       onPress={handlePress}
       accessibilityRole="tab"
       accessibilityState={accessibilityState}
@@ -86,9 +117,16 @@ function Segment<T>({ option, selected, onSelect }: SegmentProps<T>) {
 const styles = StyleSheet.create({
   track: {
     flexDirection: "row",
-    padding: MEASUREMENTS.spacing.sm,
-    gap: MEASUREMENTS.spacing.sm,
+    padding: TRACK_PADDING,
+    gap: SEGMENT_GAP,
     borderRadius: MEASUREMENTS.radius.track,
+  },
+  indicator: {
+    position: "absolute",
+    top: TRACK_PADDING,
+    bottom: TRACK_PADDING,
+    left: TRACK_PADDING,
+    borderRadius: MEASUREMENTS.radius.lg,
   },
   segment: {
     flex: 1,
