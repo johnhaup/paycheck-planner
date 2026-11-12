@@ -1,0 +1,8 @@
+# Workspace config for `maestro test .maestro/qa/`.
+# deep-link-approval runs first: the gate erases its simulator before every run, and on a fresh simulator the first
+# openLink raises iOS's "Open in Paycheck Planner?" alert, which stays over the app and fails every flow after it (HAU-299).
+# The other flows follow in Maestro's own order.
+executionOrder:
+  continueOnFailure: true
+  flowsOrder:
+    - deep-link-approval

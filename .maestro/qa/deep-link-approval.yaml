@@ -1,0 +1,25 @@
+# Not a feature test: approves iOS's one-time "Open in Paycheck Planner?" alert so the other flows' openLink steps
+# go straight to the app. A simulator that never opened the paycheck-planner:// scheme (the gate erases its own
+# before every run) raises that SpringBoard alert on the first openLink; it survives relaunches and clearState, and
+# iOS remembers the answer once Open is tapped. config.yaml runs this flow first. Already approved, or Android
+# (no alert): the two optional steps find nothing and the flow passes after a 10 s wait.
+appId: com.johnhaup.paycheckplanner
+name: deep-link-approval
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- openLink: paycheck-planner://
+- extendedWaitUntil:
+    visible: "Open"
+    timeout: 10000
+    optional: true
+- tapOn:
+    text: "Open"
+    optional: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 10000
+- assertNotVisible: "Open"
