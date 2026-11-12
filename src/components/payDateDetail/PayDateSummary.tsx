@@ -1,5 +1,6 @@
 import { Pressable, View, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
@@ -35,13 +36,14 @@ export function PayDateSummary({
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
   const t = useT();
+  const stacked = useAccessibilityTextSize();
   const date = parseLocalDate(payDate);
 
   return (
     <View>
-      <View style={styles.source}>
+      <View style={stacked ? styles.sourceStacked : styles.source}>
         <AppDateTile date={date} />
-        <View style={styles.sourceText}>
+        <View style={stacked ? styles.sourceTextStacked : styles.sourceText}>
           <AppText variant="rowTitle">{sourceName}</AppText>
           <AppText variant="meta">{formatLongDate(date)}</AppText>
         </View>
@@ -55,21 +57,21 @@ export function PayDateSummary({
         accessibilityRole="button"
         accessibilityLabel={t("paychecks.changePayAmount", { source: sourceName })}
       >
-        <AppText variant="meta">
+        <AppText variant="meta" style={styles.shrink}>
           {t("payDate.summaryMeta", { pay: formatMoney(payAmount), assigned: formatMoney(totalAssigned) })}
         </AppText>
         <Ionicons name="create-outline" size={14} color={colors.textMuted} />
       </Pressable>
       {remaining < 0 && canMoveBill ? (
         <Pressable
-          style={styles.shortRow}
+          style={stacked ? styles.shortRowStacked : styles.shortRow}
           onPress={onMoveBill}
           hitSlop={MEASUREMENTS.hitSlop}
           accessibilityRole="button"
           accessibilityLabel={t("paychecks.moveBill")}
         >
           <Ionicons name="alert-circle" size={16} color={colors.destructive} />
-          <AppText variant="meta" color="destructive">
+          <AppText variant="meta" color="destructive" style={stacked ? undefined : styles.shrink}>
             {t("paychecks.shortBy", { amount: formatMoney(-remaining) })}
           </AppText>
           <AppText variant="bodyStrong" color="primaryText">{t("paychecks.moveBill")}</AppText>
@@ -85,8 +87,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: MEASUREMENTS.spacing.base,
   },
+  sourceStacked: {
+    alignItems: "flex-start",
+    gap: MEASUREMENTS.spacing.base,
+  },
   sourceText: {
+    flex: 1,
     gap: MEASUREMENTS.spacing.xs,
+  },
+  sourceTextStacked: {
+    gap: MEASUREMENTS.spacing.xs,
+  },
+  shrink: {
+    flexShrink: 1,
   },
   heroLabel: {
     marginTop: MEASUREMENTS.spacing.xl,
@@ -101,6 +114,11 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     flexDirection: "row",
     alignItems: "center",
+    gap: MEASUREMENTS.spacing.md,
+    marginTop: MEASUREMENTS.spacing.base,
+  },
+  shortRowStacked: {
+    alignItems: "flex-start",
     gap: MEASUREMENTS.spacing.md,
     marginTop: MEASUREMENTS.spacing.base,
   },

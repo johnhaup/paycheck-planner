@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
@@ -46,6 +47,7 @@ export function PayDateExpenseRow({
   const { format: formatMoney } = useMoneyFormat();
   const t = useT();
   const groupedStyles = useGroupedRowStyles(isFirst, isLast);
+  const stacked = useAccessibilityTextSize();
 
   const handleTogglePaid = useCallback(() => {
     onTogglePaid(expense.id);
@@ -96,7 +98,7 @@ export function PayDateExpenseRow({
             <AppText
               variant="body"
               color={textColor}
-              numberOfLines={1}
+              numberOfLines={stacked ? undefined : 1}
               style={isPaid ? styles.titlePaid : styles.title}
             >
               {expense.payee}
@@ -116,9 +118,12 @@ export function PayDateExpenseRow({
               {formatMoney(amount)}
             </AppText>
           </Pressable>
+          {isLinkedPreload && stacked ? (
+            <AppText variant="caption">{t("payDate.linked")}</AppText>
+          ) : null}
         </View>
         {isLinkedPreload ? (
-          <AppText variant="caption">{t("payDate.linked")}</AppText>
+          stacked ? null : <AppText variant="caption">{t("payDate.linked")}</AppText>
         ) : (
           <Pressable
             onPress={handleToggleAssigned}
