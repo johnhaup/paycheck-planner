@@ -8,6 +8,7 @@ import { useT } from "@/hooks/useLocale";
 import { useGroupedRowStyles } from "@/hooks/useGroupedRowStyles";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
+import { AppWordWrapText } from "@/components/AppWordWrapText";
 import { AppCheckCircle } from "@/components/AppCheckCircle";
 import { AppSetAsideIcon } from "@/components/AppSetAsideIcon";
 import type { Expense } from "@/types";
@@ -95,14 +96,20 @@ export function PayDateExpenseRow({
             accessibilityRole={expense.link ? "link" : undefined}
           >
             {isSetAside ? <AppSetAsideIcon /> : null}
-            <AppText
-              variant="body"
-              color={textColor}
-              numberOfLines={stacked ? undefined : 1}
-              style={isPaid ? styles.titlePaid : styles.title}
-            >
-              {expense.payee}
-            </AppText>
+            {stacked ? (
+              <AppWordWrapText variant="body" color={textColor} style={isPaid ? styles.titlePaid : undefined}>
+                {expense.payee}
+              </AppWordWrapText>
+            ) : (
+              <AppText
+                variant="body"
+                color={textColor}
+                numberOfLines={1}
+                style={isPaid ? styles.titlePaid : styles.title}
+              >
+                {expense.payee}
+              </AppText>
+            )}
             {expense.link ? (
               <Ionicons name="open-outline" size={14} color={colors.textMuted} />
             ) : null}
