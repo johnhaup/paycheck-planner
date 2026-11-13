@@ -2,6 +2,7 @@ import { useCallback, useMemo } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import { useStore } from "@/store";
+import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
@@ -17,6 +18,9 @@ import { withUndo } from "@/utils/undo";
 import { useProGate } from "@/hooks/useProGate";
 import type { IncomeSource } from "@/types";
 
+/** A total or date too long for its tile shrinks this far instead of breaking mid-number */
+const TILE_VALUE_MIN_FONT_SCALE = 0.5;
+
 function keyExtractor(item: IncomeSource) {
   return item.id;
 }
@@ -25,6 +29,7 @@ export default function IncomeScreen() {
   const router = useRouter();
   const { whole: formatWholeMoney } = useMoneyFormat();
   const t = useT();
+  const stacked = useAccessibilityTextSize();
   const incomeSources = useStore((s) => s.incomeSources);
   const deleteIncomeSource = useStore((s) => s.deleteIncomeSource);
   const hasSources = incomeSources.length > 0;
@@ -84,20 +89,34 @@ export default function IncomeScreen() {
   const listHeader = useMemo(
     () => (
       <View>
-        <View style={styles.tiles}>
-          <AppCard style={styles.tile}>
+        <View style={stacked ? styles.tilesStacked : styles.tiles}>
+          <AppCard style={stacked ? styles.tileStacked : styles.tile}>
             <AppText variant="meta">{t("income.perMonth")}</AppText>
-            <AppText variant="title">{summary.perMonth}</AppText>
+            <AppText
+              variant="title"
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={TILE_VALUE_MIN_FONT_SCALE}
+            >
+              {summary.perMonth}
+            </AppText>
           </AppCard>
-          <AppCard style={styles.tile}>
+          <AppCard style={stacked ? styles.tileStacked : styles.tile}>
             <AppText variant="meta">{t("income.nextPayday")}</AppText>
-            <AppText variant="title">{summary.nextPayday}</AppText>
+            <AppText
+              variant="title"
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={TILE_VALUE_MIN_FONT_SCALE}
+            >
+              {summary.nextPayday}
+            </AppText>
           </AppCard>
         </View>
         <AppSectionHeader title={t("income.sources")} />
       </View>
     ),
-    [summary, t]
+    [summary, t, stacked]
   );
 
   const listFooter = useMemo(
@@ -154,8 +173,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: MEASUREMENTS.spacing.base,
   },
+  // At accessibility text sizes each tile takes the full width, one above the other
+  tilesStacked: {
+    gap: MEASUREMENTS.spacing.base,
+  },
   tile: {
     flex: 1,
+    padding: MEASUREMENTS.spacing.lg,
+    gap: MEASUREMENTS.spacing.sm + 2,
+  },
+  tileStacked: {
     padding: MEASUREMENTS.spacing.lg,
     gap: MEASUREMENTS.spacing.sm + 2,
   },
