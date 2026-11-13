@@ -1,0 +1,80 @@
+# Protects the pay date screen's names at the largest accessibility text size (HAU-302): a bill name
+# and the source name in the header are laid out word by word, so a long word shrinks instead of
+# dropping its last letter to the next line ("Car / Registratio / n"). Each name must stay one
+# accessibility element labelled with the full name, a paid bill keeps working as a toggle, and the
+# row's remove button still works beside the wrapped name.
+# Maestro cannot see where a line breaks, so read the screenshots: in pay-date-names-header every
+# word of the source name is whole, in pay-date-names-registration "Registration" is whole on its
+# own line, and in pay-date-names-paid the paid name is struck through.
+# The launch argument sets the text size for this launch only. At this size a tap on the paycheck
+# card's own label lands on its Pro-gated pay amount (the label's centre), so the flow centres the
+# card's header and taps the "$… left" line under the pay amount, which opens the pay date.
+appId: com.johnhaup.paycheckplanner
+tags: [ios]   # the text size comes from an iOS launch argument
+name: pay-date-names
+---
+- launchApp:
+    clearState: true
+    arguments:
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+- extendedWaitUntil:
+    visible: "Plan every paycheck"
+    timeout: 60000
+- scrollUntilVisible:
+    element: "Try with sample data"
+    direction: DOWN
+    timeout: 30000
+- swipe:
+    start: 50%, 70%
+    end: 50%, 50%
+    duration: 400
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 15000
+- scrollUntilVisible:
+    element:
+      text: "[A-Z]{3}, [0-9]+, .*"
+      index: 0
+    direction: DOWN
+    centerElement: true
+    timeout: 45000
+- tapOn:
+    point: "50%,40%"
+- extendedWaitUntil:
+    visible: "Mark all paid"
+    timeout: 15000
+
+# The header's source name is one element with the whole name
+- assertVisible: "Brightline Co."
+- takeScreenshot: pay-date-names-header
+
+# The long bill name: one element with the whole name, above its own amount
+- scrollUntilVisible:
+    element: "Mark Car Registration paid"
+    direction: DOWN
+    centerElement: true
+    timeout: 45000
+- assertVisible:
+    text: "Car Registration"
+    above: "Change Car Registration amount for this paycheck"
+- takeScreenshot: pay-date-names-registration
+
+# Paid and back: the word-by-word name keeps the row a working toggle
+- tapOn: "Mark Car Registration paid"
+- extendedWaitUntil:
+    visible: "Mark Car Registration unpaid"
+    timeout: 15000
+- assertVisible: "Car Registration"
+- takeScreenshot: pay-date-names-paid
+- tapOn: "Mark Car Registration unpaid"
+- extendedWaitUntil:
+    visible: "Mark Car Registration paid"
+    timeout: 15000
+
+# The remove button beside the wrapped name still takes the bill off this paycheck
+- tapOn: "Remove Car Registration"
+- scrollUntilVisible:
+    element: "Add Car Registration"
+    direction: DOWN
+    timeout: 45000

@@ -6,6 +6,7 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { AppText } from "@/components/AppText";
+import { AppWordWrapText } from "@/components/AppWordWrapText";
 import { AppDateTile } from "@/components/AppDateTile";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
 import { parseLocalDate } from "@/utils/payDates";
@@ -44,7 +45,11 @@ export function PayDateSummary({
       <View style={stacked ? styles.sourceStacked : styles.source}>
         <AppDateTile date={date} />
         <View style={stacked ? styles.sourceTextStacked : styles.sourceText}>
-          <AppText variant="rowTitle">{sourceName}</AppText>
+          {stacked ? (
+            <AppWordWrapText variant="rowTitle">{sourceName}</AppWordWrapText>
+          ) : (
+            <AppText variant="rowTitle">{sourceName}</AppText>
+          )}
           <AppText variant="meta">{formatLongDate(date)}</AppText>
         </View>
       </View>
