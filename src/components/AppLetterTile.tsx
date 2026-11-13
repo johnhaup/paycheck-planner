@@ -7,6 +7,9 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import type { ExpenseIcon } from "@/constants/expenseIcons";
 
+/** The tile is a fixed-size badge: its letter stops growing at the size that still fits */
+const MAX_FONT_MULTIPLIER = 1.3;
+
 interface Props {
   label: string;
   /** Index into the tint palette; omit for the neutral grey tile */
@@ -39,7 +42,7 @@ export function AppLetterTile({ label, tintIndex, size = 40, icon }: Props) {
       {icon ? (
         <Ionicons name={icon} size={Math.round(size / 2)} color={tint.foreground} />
       ) : (
-        <AppText variant="rowTitle" style={textStyle}>
+        <AppText variant="rowTitle" style={textStyle} maxFontSizeMultiplier={MAX_FONT_MULTIPLIER}>
           {label.trim().charAt(0).toUpperCase() || "?"}
         </AppText>
       )}
