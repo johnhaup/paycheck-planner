@@ -178,6 +178,26 @@ name: text-size
 - extendedWaitUntil:
     visible: ".*left over.*"
     timeout: 60000
+
+# Income at the largest size (HAU-161): the two summary tiles stack, so "Next payday" sits under the
+# Per month amount instead of beside it (side by side the amount broke mid-number, "$8, / 590"), and
+# the source rows stack: letter tile, name and schedule, then the amount. A row is one accessibility
+# element, so read text-size-income-rows: names and schedules whole, each amount on one line under
+# them, the letter inside its tile.
+- tapOn: "Income"
+- extendedWaitUntil:
+    visible: "Per month"
+    timeout: 15000
+- assertVisible:
+    text: "Next payday"
+    below: "\\$[0-9,]+"
+- takeScreenshot: text-size-income-tiles
+- scrollUntilVisible:
+    element: "Swipe left on a source to delete it."
+    direction: DOWN
+    timeout: 45000
+- takeScreenshot: text-size-income-rows
+
 - openLink: paycheck-planner://paywall
 - extendedWaitUntil:
     visible: "Buy for \\$4\\.99"
