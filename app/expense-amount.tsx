@@ -1,21 +1,15 @@
-import { useCallback, useMemo, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { useCallback, useState } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { toast } from "sonner-native";
 import { useStore } from "@/store";
-import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
-import { MEASUREMENTS } from "@/constants/measurements";
-import { AppText } from "@/components/AppText";
-import { AppInput } from "@/components/AppInput";
-import { AppButton } from "@/components/AppButton";
+import { AmountSheet } from "@/components/AmountSheet";
 import { parseLocalDate } from "@/utils/payDates";
 import { formatShortDate } from "@/utils/dates";
 
 export default function ExpenseAmountScreen() {
   const router = useRouter();
-  const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
   const t = useT();
   const { expenseId, payDate, sourceId } = useLocalSearchParams<{
@@ -54,56 +48,21 @@ export default function ExpenseAmountScreen() {
     router.back();
   }, [assignment, setAssignmentAmount, router]);
 
-  const containerStyle = useMemo(
-    () => [styles.container, { backgroundColor: colors.modalBackground }],
-    [colors]
-  );
-
   const subtitle = payDate
     ? t("amountSheet.subtitle", { date: formatShortDate(parseLocalDate(payDate)) })
     : "";
   const isCustom = assignment?.amount !== undefined;
 
   return (
-    <View style={containerStyle}>
-      <View style={styles.heading}>
-        <AppText variant="title">{expense?.payee ?? t("screens.expense")}</AppText>
-        <AppText variant="meta">{subtitle}</AppText>
-      </View>
-      <AppInput
-        value={amount}
-        onChangeText={setAmount}
-        keyboardType="decimal-pad"
-        autoFocus
-        selectTextOnFocus
-      />
-      <AppText variant="caption" style={styles.hint}>
-        {t("amountSheet.hint", { amount: formatMoney(expense?.amount ?? 0) })}
-      </AppText>
-      <View style={styles.actions}>
-        <AppButton title={t("common.save")} onPress={handleSave} />
-        {isCustom ? (
-          <AppButton title={t("amountSheet.useDefault")} variant="outline" onPress={handleReset} />
-        ) : null}
-      </View>
-    </View>
+    <AmountSheet
+      title={expense?.payee ?? t("screens.expense")}
+      subtitle={subtitle}
+      hint={t("amountSheet.hint", { amount: formatMoney(expense?.amount ?? 0) })}
+      amount={amount}
+      onChangeAmount={setAmount}
+      onSave={handleSave}
+      resetTitle={isCustom ? t("amountSheet.useDefault") : undefined}
+      onReset={handleReset}
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: MEASUREMENTS.spacing.gutter,
-    paddingTop: MEASUREMENTS.spacing.xxl,
-  },
-  heading: {
-    gap: MEASUREMENTS.spacing.xs,
-    marginBottom: MEASUREMENTS.spacing.lg,
-  },
-  hint: {
-    marginTop: MEASUREMENTS.spacing.sm + 2,
-  },
-  actions: {
-    gap: MEASUREMENTS.spacing.md,
-    marginTop: MEASUREMENTS.spacing.xl,
-  },
-});
