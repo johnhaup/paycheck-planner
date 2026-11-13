@@ -1,0 +1,124 @@
+# Protects the pay amount and bill amount sheets at the largest accessibility text size (HAU-159):
+# the sheet's content used to be taller than the space above the number pad, so Save sat behind the
+# keys and a tap on it typed a digit instead ("1008" from "100"). Save and the use-default button
+# are now pinned above the keyboard and the text scrolls. The flow types an amount and taps Save on
+# both sheets: on the old layout that tap lands on a key, the sheet stays open and the wait fails.
+# Then it reopens each sheet and resets it with the second button.
+# Read the screenshots too (Maestro counts a button under the keyboard as visible):
+# amount-sheets-pay and amount-sheets-bill-custom must show the amount field and every button whole
+# above the number pad. With two buttons the hint under the field runs behind them at this size;
+# that is a known cosmetic defect, filed from HAU-159's QA.
+# Both sheets are Pro, so the flow buys on the mock store first (empty account, default text size),
+# then relaunches at the largest size. The launch arguments last for one launch only.
+appId: com.johnhaup.paycheckplanner
+tags: [ios]   # the mock store and the text size come from iOS launch arguments
+name: amount-sheets
+---
+- launchApp:
+    clearState: true
+    arguments:
+      "-proStoreMock": true
+      "-proStoreMockRevoke": true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 15000
+- openLink: paycheck-planner://paywall
+- extendedWaitUntil:
+    visible: "Buy for \\$4\\.99"
+    timeout: 20000
+- tapOn: "Buy for \\$4\\.99"
+- extendedWaitUntil:
+    visible: "Pro is unlocked"
+    timeout: 20000
+- stopApp
+- launchApp:
+    arguments:
+      "-proStoreMock": true
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 60000
+
+# Open the first paycheck. At this size a tap on the card's own label lands on its pay amount, so
+# centre the card's header and tap the "$… left" line under it.
+- scrollUntilVisible:
+    element:
+      text: "[A-Z]{3}, [0-9]+, .*"
+      index: 0
+    direction: DOWN
+    centerElement: true
+    timeout: 45000
+- tapOn:
+    point: "50%,40%"
+- extendedWaitUntil:
+    visible: "Mark all paid"
+    timeout: 15000
+
+# Pay amount: type, Save on the first tap
+- tapOn:
+    text: "Change .* pay amount for this paycheck"
+    index: 0
+- extendedWaitUntil:
+    visible: "Save"
+    timeout: 15000
+- takeScreenshot: amount-sheets-pay
+- eraseText: 10
+- inputText: "2100"
+- tapOn: "Save"
+- extendedWaitUntil:
+    notVisible: "Save"
+    timeout: 15000
+# Left over follows the new pay: $883.00 + $120.00
+- extendedWaitUntil:
+    visible: "\\$1,003\\.00"
+    timeout: 15000
+
+# Reopen: this paycheck has its own amount now, so the second button is there; it resets
+- tapOn:
+    text: "Change .* pay amount for this paycheck"
+    index: 0
+- extendedWaitUntil:
+    visible: "Use usual amount"
+    timeout: 15000
+- assertVisible: "Save"
+- takeScreenshot: amount-sheets-pay-custom
+- tapOn: "Use usual amount"
+- extendedWaitUntil:
+    notVisible: "Save"
+    timeout: 15000
+- extendedWaitUntil:
+    visible: "\\$883\\.00"
+    timeout: 15000
+
+# Bill amount: the same sheet
+- scrollUntilVisible:
+    element: "Change Car Registration amount for this paycheck"
+    direction: DOWN
+    centerElement: true
+    timeout: 45000
+- tapOn: "Change Car Registration amount for this paycheck"
+- extendedWaitUntil:
+    visible: "Save"
+    timeout: 15000
+- takeScreenshot: amount-sheets-bill
+- eraseText: 10
+- inputText: "175"
+- tapOn: "Save"
+- extendedWaitUntil:
+    notVisible: "Save"
+    timeout: 15000
+# The second button only shows when the custom amount was saved
+- tapOn: "Change Car Registration amount for this paycheck"
+- extendedWaitUntil:
+    visible: "Use default amount"
+    timeout: 15000
+- assertVisible: "Save"
+- takeScreenshot: amount-sheets-bill-custom
+- tapOn: "Use default amount"
+- extendedWaitUntil:
+    notVisible: "Save"
+    timeout: 15000
