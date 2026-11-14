@@ -62,10 +62,13 @@ env:
       - assertVisible:
           text: ${MONTH}
           selected: true
+      # The tab bar's own "Paychecks" label also passes rightOf/leftOf, with the title
+      # collapsed or not; it is the selected tab, the bar title never is (HAU-337 QA).
       - assertVisible:
           text: "Paychecks"
           rightOf: "\\d{1,2}:\\d{2}.*"
           leftOf: "Settings"
+          selected: false
       - takeScreenshot: paychecks-collapsed
 
 # One list runs through every month (HAU-316): scrolling on reaches next month's
