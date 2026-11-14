@@ -88,6 +88,17 @@ name: smoke
     visible: ".* · left over"
     timeout: 10000
 
+# Past paychecks, free tier: this month only, with the locked "See earlier months" row (HAU-163)
+- openLink: paycheck-planner://history
+- extendedWaitUntil:
+    visible: "See earlier months"
+    timeout: 10000
+- takeScreenshot: past-paychecks
+- tapOn: "Back|Navigate up"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+
 # Persisted state survives a kill and relaunch
 - stopApp
 - launchApp

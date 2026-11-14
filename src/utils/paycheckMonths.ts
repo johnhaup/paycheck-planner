@@ -1,6 +1,7 @@
 import { addMonths, endOfMonth, format, isAfter, isSameYear, startOfDay, startOfMonth, subDays, subMonths } from "date-fns";
 import { formatMonthLong, formatMonthShort } from "@/utils/dates";
 import {
+  getPaychecks,
   getPaychecksThrough,
   formatPayDate,
   parseLocalDate,
@@ -10,7 +11,10 @@ import {
 import type { Expense, ExpenseAssignment, IncomeSource, PaycheckOverride } from "@/types";
 import type { MonthGroup, PaycheckExpense, PaycheckItem } from "@/components/paychecks/types";
 
-/** The current month plus this many full months after it: a year for Pro, this month and next for free. */
+/**
+ * The month of the next paycheck plus this many full months after it: a year for Pro, two months
+ * for free (this month and next, until this month's last paycheck has passed).
+ */
 export const FULL_MONTHS_AHEAD = { pro: 11, free: 1 } as const;
 /** How far back past paychecks go, in whole months before the current one; free stays within this month. */
 export const PAST_MONTHS = { pro: 6, free: 0 } as const;
@@ -88,7 +92,10 @@ export function buildPaycheckItem(
   };
 }
 
-/** Upcoming paychecks for every source, with their bills, grouped by calendar month. */
+/**
+ * Upcoming paychecks for every source, with their bills, grouped by calendar month, through the
+ * end of the month `monthsAhead` after the first one that has a paycheck left.
+ */
 export function buildMonthGroups(
   incomeSources: IncomeSource[],
   expenses: Expense[],
@@ -97,7 +104,10 @@ export function buildMonthGroups(
   now: Date,
   monthsAhead: number = FULL_MONTHS_AHEAD.pro
 ): MonthGroup[] {
-  const until = endOfMonth(addMonths(now, monthsAhead));
+  // Counted from the next paycheck, not from today: after this month's last paycheck the month
+  // has nothing left to show, and the window would be a month short
+  const nextPayDates = incomeSources.flatMap((source) => getPaychecks(source, now, 1).map((p) => p.date.getTime()));
+  const until = endOfMonth(addMonths(nextPayDates.length > 0 ? Math.min(...nextPayDates) : now, monthsAhead));
   const allPaychecks = incomeSources.flatMap((source) =>
     getPaychecksThrough(source, now, until).map((paycheck) =>
       buildPaycheckItem(source, paycheck, expenses, assignments, overrides)

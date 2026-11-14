@@ -10,6 +10,7 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { AppCard } from "@/components/AppCard";
 import { AppDateTile } from "@/components/AppDateTile";
 import { AppText } from "@/components/AppText";
+import { AppWordWrapText } from "@/components/AppWordWrapText";
 import { PaidProgress } from "@/components/paychecks/PaidProgress";
 import { PaycheckExpenseRow } from "@/components/paychecks/PaycheckExpenseRow";
 import type {
@@ -88,7 +89,11 @@ export function PaycheckCard({
       >
         <AppDateTile date={item.date} />
         <View style={stacked ? styles.headerTextStacked : styles.headerText}>
-          <AppText variant="rowTitle" numberOfLines={stacked ? undefined : 1}>{item.sourceName}</AppText>
+          {stacked ? (
+            <AppWordWrapText variant="rowTitle">{item.sourceName}</AppWordWrapText>
+          ) : (
+            <AppText variant="rowTitle" numberOfLines={1}>{item.sourceName}</AppText>
+          )}
           <AppText variant="meta">{meta}</AppText>
         </View>
         <View style={stacked ? styles.amountsStacked : styles.amounts}>
