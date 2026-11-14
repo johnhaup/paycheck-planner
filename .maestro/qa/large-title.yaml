@@ -1,7 +1,8 @@
 # Protects the iOS collapsing large title on Paychecks, Income and Expenses and
 # the month chart that collapses into pills pinned under the bar on Paychecks
 # (HAU-11, HAU-12, HAU-113, regression HAU-58), plus the month switch from the pills and
-# the reset after Erase all data (HAU-64).
+# the reset after Erase all data (HAU-64). No step names a month or depends on how many
+# paychecks the current month has left, so the flow passes on any date (HAU-323).
 #
 # Maestro cannot read font sizes, but it can place elements relative to each
 # other: the collapsed title is centred in the bar, so it is right of the
@@ -18,6 +19,9 @@
 appId: com.johnhaup.paycheckplanner
 tags: [ios]   # collapsing large titles are iOS; the Android toolbar has one fixed title
 name: large-title
+env:
+  # A month's bar in the chart, or its pill once collapsed: "November (this month), $1.3k left", "January 2027, $5k left"
+  MONTH: "[A-Za-z]+( [0-9]{4})?( \\(this month\\))?, \\$[^,]+ left"
 ---
 - launchApp:
     clearState: true
@@ -37,6 +41,24 @@ name: large-title
     above: ".* · left over"
 - takeScreenshot: paychecks-top
 
+# The scroll checks run on the second month of the chart, picked by position so no month name is
+# needed. It is always a whole month of paychecks; the first month holds only what is left of it, and
+# late in the month that is too short to scroll its section title out from under the pinned pills,
+# or to collapse the title at all (HAU-323). On the days after the month's last paycheck the free
+# chart has one month only, the next one, which is whole: the two month-switch blocks are skipped.
+- runFlow:
+    when:
+      visible:
+        text: ${MONTH}
+        rightOf: ${MONTH}
+    commands:
+      - tapOn:
+          text: ${MONTH}
+          rightOf: ${MONTH}
+      - extendedWaitUntil:
+          visible: "Go to this month"
+          timeout: 15000
+
 # Scroll about 400pt: the title collapses, the overview scrolls away and the
 # month chart collapses into a row of pills pinned under the bar (HAU-113); the
 # cards pass under it
@@ -46,7 +68,9 @@ name: large-title
     duration: 400
 - waitForAnimationToEnd
 - assertNotVisible: ".* · left over"
-- assertVisible: "December, .*"
+- assertVisible:
+    text: ${MONTH}
+    selected: true
 - assertVisible:
     text: "Paychecks"
     rightOf: "\\d{1,2}:\\d{2}.*"
@@ -56,21 +80,24 @@ name: large-title
 - takeScreenshot: paychecks-scrolled
 
 # The collapsed pills still switch months. Each month's button spans its faded bar
-# too, which now sits under the navigation bar, so tap the December pill itself:
-# second column, just under the bar on the iPhone 17 Pro.
-# Free tier (HAU-69): the chart holds this month and next only, so pick December.
-- tapOn:
-    point: 25%, 15%
-- extendedWaitUntil:
-    visible:
-      text: "December, .*"
-      selected: true
-    timeout: 15000
-- assertVisible:
-    text: "Paychecks"
-    rightOf: "\\d{1,2}:\\d{2}.*"
-    leftOf: "Settings"
-- takeScreenshot: paychecks-december-while-pinned
+# too, which now sits under the navigation bar, so tap the first pill itself:
+# first column, just under the bar on the iPhone 17 Pro. A short first month cannot
+# hold the scroll offset, so the title may expand again here; only the switch is asserted.
+- runFlow:
+    when:
+      visible:
+        text: ${MONTH}
+        leftOf: ${MONTH}
+    commands:
+      - tapOn:
+          point: 11%, 15%
+      - extendedWaitUntil:
+          visible:
+            text: ${MONTH}
+            leftOf: ${MONTH}
+            selected: true
+          timeout: 15000
+      - takeScreenshot: paychecks-first-month-from-pinned-pills
 
 - swipe:
     start: 50%, 15%
@@ -80,14 +107,11 @@ name: large-title
     start: 50%, 15%
     end: 50%, 65%
     duration: 400
-# Back at the top the overview shows December; the calendar icon brings this month back
+# Back at the top on the first month: the overview is back and its "Go to this month" icon is gone
 - extendedWaitUntil:
-    visible: "December · left over"
+    visible: ".* · left over"
     timeout: 15000
-- tapOn: "Go to this month"
-- extendedWaitUntil:
-    visible: "November · left over"
-    timeout: 15000
+- assertNotVisible: "Go to this month"
 - assertVisible: "(?!Past ).* paychecks"
 - assertNotVisible:
     text: "Paychecks"
@@ -156,7 +180,7 @@ name: large-title
 # data must open under the large title again, not at the old scroll offset (HAU-64)
 - openLink: paycheck-planner://
 - extendedWaitUntil:
-    visible: "November · left over"
+    visible: ".* · left over"
     timeout: 10000
 - swipe:
     start: 50%, 65%
@@ -193,7 +217,7 @@ name: large-title
     above: "Plan every paycheck"
 - tapOn: "Try with sample data"
 - extendedWaitUntil:
-    visible: "November · left over"
+    visible: ".* · left over"
     timeout: 10000
 - takeScreenshot: paychecks-after-erase-and-reload
 - assertNotVisible:
@@ -206,7 +230,7 @@ name: large-title
 # screen; that path must open Paychecks at the top too (HAU-64)
 - openLink: paycheck-planner://
 - extendedWaitUntil:
-    visible: "November · left over"
+    visible: ".* · left over"
     timeout: 10000
 - swipe:
     start: 50%, 65%

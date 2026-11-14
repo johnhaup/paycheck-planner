@@ -46,6 +46,9 @@ function renderScrollComponent(props: ScrollViewProps) {
 // share of the bar; a longer translation shrinks to fit, then truncates.
 const HEADER_BUTTON_MAX_WIDTH_RATIO = 0.4;
 const HEADER_BUTTON_MIN_FONT_SCALE = 0.7;
+// The navigation bar's button pill has a fixed height and shares the bar with
+// Back and the title, neither of which scales, so its text does not either
+const HEADER_MAX_FONT_MULTIPLIER = 1;
 
 function billsFirst(a: Expense, b: Expense) {
   return Number(a.kind === "set-aside") - Number(b.kind === "set-aside");
@@ -266,6 +269,7 @@ export default function PayDateDetailScreen() {
           numberOfLines={1}
           adjustsFontSizeToFit
           minimumFontScale={HEADER_BUTTON_MIN_FONT_SCALE}
+          maxFontSizeMultiplier={HEADER_MAX_FONT_MULTIPLIER}
           style={headerButtonTextStyle}
         >
           {t("payDate.markAllPaid")}

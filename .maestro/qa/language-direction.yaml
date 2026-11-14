@@ -104,3 +104,32 @@ name: language-direction
     text: "Close"
     rightOf: "Pro"
 - takeScreenshot: direction-paywall-header
+
+# Cold relaunch in the same mismatch (HAU-325). On an Arabic device iOS mirrors the back
+# chevron after a cold launch, so the stack passes its own icon there: read
+# direction-pay-date-header-cold, it must show "‹ Back" at the left (not "› Back", not a bare
+# "Back"). Maestro cannot see the chevron; it can see that Back sits left of the title and
+# that tapping the custom icon still goes back.
+- launchApp:
+    stopApp: true
+    arguments:
+      "-AppleLanguages": "(ar)"
+      "-AppleLocale": "ar_AE"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 60000
+- tapOn:
+    text: "[A-Z]{3}, [0-9]+, .*"
+    index: 0
+- extendedWaitUntil:
+    visible: "This paycheck"
+    timeout: 15000
+- assertVisible:
+    text: "Back"
+    leftOf: "Pay Date"
+- takeScreenshot: direction-pay-date-header-cold
+- tapOn: "Back"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 15000
+- assertNotVisible: "This paycheck"

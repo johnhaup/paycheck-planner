@@ -133,8 +133,14 @@ name: pro
 - extendedWaitUntil:
     visible: "Paycheck Planner Pro"
     timeout: 10000
-- extendedWaitUntil:
-    visible: "Buy for \\$4\\.99"
-    timeout: 20000
+# The live price needs the store's product. Google Play has none yet (no Play Console app), so on
+# Android the paywall stays in its price-unavailable state and only Restore Purchases is checked.
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - extendedWaitUntil:
+          visible: "Buy for \\$4\\.99"
+          timeout: 20000
 - assertVisible: "Restore Purchases"
 - takeScreenshot: paywall
