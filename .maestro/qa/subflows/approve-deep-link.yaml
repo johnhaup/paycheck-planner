@@ -11,9 +11,16 @@ appId: com.johnhaup.paycheckplanner
 ---
 - launchApp:
     clearState: true
+# An alert raised after an earlier flow's wait gave up is still up and hides the app from Maestro (HAU-334 QA):
+# tap it here, or this flow and every later one on the simulator fail on the welcome screen.
 - extendedWaitUntil:
-    visible: "Try with sample data"
+    visible: "Try with sample data|Open"
     timeout: 60000
+- runFlow:
+    when:
+      visible: "Open"
+    commands:
+      - tapOn: "Open"
 - openLink: paycheck-planner://income
 - extendedWaitUntil:
     visible: "Open|No income yet"
