@@ -72,20 +72,24 @@ onFlowStart:
     direction: DOWN
     timeout: 30000
 - takeScreenshot: settings-xxxl-region
+# The picks are rows the picker shows without scrolling. English is screens down the list at this size, and under load
+# the list was still moving when it was tapped: it ended up under the header and the tap missed (HAU-335).
 - tapOn: "Language, .*"
 - extendedWaitUntil:
     visible: "Català"
-    timeout: 10000
-- scrollUntilVisible:
-    element: "English"
-    direction: DOWN
-    centerElement: true
-    speed: 20
-    timeout: 45000
-- tapOn: "English"
+    timeout: 15000
+- tapOn: "Català"
 - extendedWaitUntil:
-    visible: "Language, English.*"
-    timeout: 10000
+    visible: "Idioma, Català.*"
+    timeout: 15000
+- tapOn: "Idioma, Català.*"
+- extendedWaitUntil:
+    visible: "Per defecte del sistema.*"
+    timeout: 15000
+- tapOn: "Per defecte del sistema.*"
+- extendedWaitUntil:
+    visible: "Language, System default.*"
+    timeout: 15000
 
 # Toggle rows (HAU-322): beside the switch and the PRO badge, "reminder" broke mid-word ("Payday remind / er").
 # Now the label takes the whole row and the badge and switch sit on a line under it. Maestro cannot assert that:
