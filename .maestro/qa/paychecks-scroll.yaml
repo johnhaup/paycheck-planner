@@ -1,0 +1,94 @@
+appId: com.johnhaup.paycheckplanner
+tags: [ios]   # Pro via the mock store, an iOS launch argument
+name: paychecks-scroll
+# Protects the one Paychecks list on Pro (HAU-316): a chart tap months ahead jumps the
+# list to that month, scrolling up from there moves the hero back a month with no tap,
+# "Go to this month" returns to the current paycheck, and so does leaving the tab.
+# Sample data starts today, so the earlier month is reached from a jump ahead; no step
+# names a month, so the flow passes on any date. The free tier is paychecks.yaml.
+---
+- launchApp:
+    clearState: true
+    arguments:
+      "-proStoreMock": true
+      "-proStoreMockRevoke": true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 15000
+- openLink: paycheck-planner://paywall
+- extendedWaitUntil:
+    visible: "Buy for \\$4\\.99"
+    timeout: 20000
+- tapOn: "Buy for \\$4\\.99"
+- extendedWaitUntil:
+    visible: "Pro is unlocked"
+    timeout: 20000
+- tapOn: "Done"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 15000
+- copyTextFrom: ".* · left over"
+- evalScript: ${output.thisMonth = maestro.copiedText}
+
+# Jump three months ahead in the chart (index 2 among the columns that are not "this month")
+- tapOn:
+    text: "[A-Za-z]+( [0-9]{4})?, \\$[^,]+ left"
+    index: 2
+- extendedWaitUntil:
+    visible: "Go to this month"
+    timeout: 15000
+- waitForAnimationToEnd
+- copyTextFrom: ".* · left over"
+- evalScript: ${output.jumped = maestro.copiedText; output.jumpedMonth = maestro.copiedText.split(' · ')[0]}
+- assertTrue: ${output.jumped != output.thisMonth}
+# The list went there too: that month's section title is on screen
+- assertVisible: "(?i)${output.jumpedMonth} paychecks"
+- takeScreenshot: paychecks-scroll-jumped
+
+# Scrolling up from the top of that month reaches the month before, and the hero follows
+- swipe:
+    start: 50%, 40%
+    end: 50%, 85%
+    duration: 800
+- swipe:
+    start: 50%, 40%
+    end: 50%, 85%
+    duration: 800
+- waitForAnimationToEnd
+- copyTextFrom: ".* · left over"
+- assertTrue: ${maestro.copiedText != output.jumped}
+- assertTrue: ${maestro.copiedText != output.thisMonth}
+- takeScreenshot: paychecks-scroll-back
+
+# Back to the current paycheck
+- tapOn: "Go to this month"
+- extendedWaitUntil:
+    visible: ${output.thisMonth}
+    timeout: 15000
+- extendedWaitUntil:
+    notVisible: "Go to this month"
+    timeout: 10000
+
+# Away and back from another month returns there as well (HAU-25)
+- tapOn:
+    text: "[A-Za-z]+( [0-9]{4})?, \\$[^,]+ left"
+    index: 2
+- extendedWaitUntil:
+    visible: "Go to this month"
+    timeout: 15000
+- tapOn: "Income"
+- extendedWaitUntil:
+    visible: "Per month"
+    timeout: 10000
+- tapOn: "Paychecks"
+- extendedWaitUntil:
+    visible: ${output.thisMonth}
+    timeout: 15000
+- extendedWaitUntil:
+    notVisible: "Go to this month"
+    timeout: 10000
+- takeScreenshot: paychecks-scroll-tab-return
