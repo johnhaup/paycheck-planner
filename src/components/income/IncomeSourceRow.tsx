@@ -10,6 +10,7 @@ import { useT } from "@/hooks/useLocale";
 import { AppText } from "@/components/AppText";
 import { AppLetterTile } from "@/components/AppLetterTile";
 import { AppSwipeActions, type SwipeAction } from "@/components/AppSwipeActions";
+import { AppWordWrapText } from "@/components/AppWordWrapText";
 import { describePaySchedule } from "@/utils/payDates";
 import type { IncomeSource } from "@/types";
 
@@ -64,7 +65,11 @@ export function IncomeSourceRow({ source, tintIndex, isFirst, isLast, onEdit, on
       <Pressable style={rowStyle} onPress={handlePress}>
         <AppLetterTile label={source.name} tintIndex={tintIndex} size={44} />
         <View style={stacked ? styles.textStacked : styles.text}>
-          <AppText variant="rowTitle" numberOfLines={stacked ? undefined : 1}>{source.name}</AppText>
+          {stacked ? (
+            <AppWordWrapText variant="rowTitle">{source.name}</AppWordWrapText>
+          ) : (
+            <AppText variant="rowTitle" numberOfLines={1}>{source.name}</AppText>
+          )}
           <AppText variant="meta" numberOfLines={stacked ? undefined : 1}>{describePaySchedule(source)}</AppText>
         </View>
         <View style={stacked ? styles.amountStacked : styles.amount}>
