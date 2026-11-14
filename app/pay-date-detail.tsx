@@ -41,6 +41,10 @@ function renderScrollComponent(props: ScrollViewProps) {
   return <KeyboardAwareScrollView {...props} bottomOffset={MEASUREMENTS.keyboardOffset} />;
 }
 
+// The navigation bar's button pill has a fixed height and shares the bar with
+// Back and the title, neither of which scales, so its text does not either
+const HEADER_MAX_FONT_MULTIPLIER = 1;
+
 function billsFirst(a: Expense, b: Expense) {
   return Number(a.kind === "set-aside") - Number(b.kind === "set-aside");
 }
@@ -248,7 +252,9 @@ export default function PayDateDetailScreen() {
   const renderMarkAllPaidButton = useCallback(
     () => (
       <Pressable onPress={handleMarkAllPaid} hitSlop={MEASUREMENTS.hitSlop} accessibilityRole="button">
-        <AppText variant="bodyStrong" color="primaryText">{t("payDate.markAllPaid")}</AppText>
+        <AppText variant="bodyStrong" color="primaryText" maxFontSizeMultiplier={HEADER_MAX_FONT_MULTIPLIER}>
+          {t("payDate.markAllPaid")}
+        </AppText>
       </Pressable>
     ),
     [handleMarkAllPaid, t]
