@@ -51,9 +51,24 @@ name: settings
     visible: "English"
     timeout: 10000
 - takeScreenshot: language
+# A picker row's label and detail are one element (HAU-304): on Android the System
+# default row's detail "English" used to be its own node, and `tapOn: "English"` hit it.
+# [\s\S] because Android joins the two lines with a newline.
+- assertVisible: "System default[\\s\\S]*English[\\s\\S]*"
 - tapOn: "English"
 - extendedWaitUntil:
     visible: "Language, English.*"
+    timeout: 10000
+
+# Currency picker round trip (same list component as Language)
+- tapOn: "Currency, .*"
+- extendedWaitUntil:
+    visible: "EUR[\\s\\S]*"
+    timeout: 10000
+- takeScreenshot: currency
+- tapOn: "EUR[\\s\\S]*"
+- extendedWaitUntil:
+    visible: "Currency, EUR.*"
     timeout: 10000
 
 # Erase all data, then Undo from the toast. The "All data erased" toast renders

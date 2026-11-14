@@ -17,8 +17,23 @@ function formatter(hideCents: boolean, currency = getCurrency()): Intl.NumberFor
   return cached;
 }
 
+// Marks the formatter puts into right-to-left amounts ("\u200F4.8\u00A0US$" in Arabic)
+const RTL_MARK = /[\u200F\u061C]/;
+const LAST_DIGIT = /(\p{Nd})(?!.*\p{Nd})/u;
+
+/**
+ * Ends the number of a right-to-left amount with a right-to-left mark. Anything left-to-right
+ * on the number (the mark Arabic puts on a minus sign, a "k") makes it a left-to-right run that
+ * takes the letters of a Latin currency symbol with it ("$-292.84 US", "$4.8k US"); the mark
+ * ends the run at the number. Other amounts come back unchanged.
+ */
+function closeNumber(formatted: string, suffix = ""): string {
+  const end = suffix + (RTL_MARK.test(formatted) ? "\u200F" : "");
+  return end ? formatted.replace(LAST_DIGIT, `$1${end}`) : formatted;
+}
+
 export function formatMoney(amount: number, hideCents = false): string {
-  return formatter(hideCents).format(amount);
+  return closeNumber(formatter(hideCents).format(amount));
 }
 
 /** Preview of how `currency` renders in the current language, for the currency picker. */
@@ -28,7 +43,6 @@ export function formatMoneyIn(amount: number, currency: string): string {
 
 // Hermes on iOS lacks formatToParts, so the decimal separator is sniffed from a sample
 const DIGITS = /\p{Nd}/gu;
-const LAST_DIGIT = /(\p{Nd})(?!.*\p{Nd})/u;
 
 function decimalSeparator(): string {
   const sample = new Intl.NumberFormat(getLocaleTag(), {
@@ -40,10 +54,10 @@ function decimalSeparator(): string {
 
 /** "$1,284.50" → { whole: "$1,284", cents: ".50" } for the large-dollars, small-cents treatment. */
 export function splitMoney(amount: number, hideCents = false): { whole: string; cents: string } {
+  const full = formatMoney(amount, hideCents);
   if (hideCents) {
-    return { whole: formatter(true).format(amount), cents: "" };
+    return { whole: full, cents: "" };
   }
-  const full = formatter(false).format(amount);
   const index = full.lastIndexOf(decimalSeparator());
   if (index === -1) {
     return { whole: full, cents: "" };
@@ -51,9 +65,6 @@ export function splitMoney(amount: number, hideCents = false): { whole: string; 
   // A trailing symbol ("1.284,50 €") stays with the cents so the big number reads cleanly
   return { whole: full.slice(0, index), cents: full.slice(index) };
 }
-
-// Marks the formatter puts into right-to-left amounts ("\u200F4.8\u00A0US$" in Arabic)
-const RTL_MARK = /[\u200F\u061C]/;
 
 /** Short labels for chart axes: $940, $1.3k, -$120, with the currency's own placement and sign. */
 export function formatCompactMoney(amount: number): string {
@@ -67,9 +78,5 @@ export function formatCompactMoney(amount: number): string {
         maximumFractionDigits: 1,
       }).format((Math.sign(amount) * Math.round(abs / 100)) / 10)
     : formatter(true).format(amount || 0); // -0 would print a minus sign
-  // "k" and the minus sign's mark are left-to-right, so in a right-to-left amount they turn the
-  // number into a left-to-right run that takes the letters of a Latin currency symbol with it
-  // ("$4.8k US"). A right-to-left mark after the number ends the run there.
-  const end = (thousands ? "k" : "") + (RTL_MARK.test(formatted) ? "\u200F" : "");
-  return end ? formatted.replace(LAST_DIGIT, `$1${end}`) : formatted;
+  return closeNumber(formatted, thousands ? "k" : "");
 }
