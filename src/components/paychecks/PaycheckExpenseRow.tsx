@@ -105,7 +105,7 @@ export function PaycheckExpenseRow({
 
   return (
     <Animated.View entering={FadeIn} exiting={FadeOut} layout={LinearTransition}>
-      <AppSwipeActions leftAction={paidAction} rightAction={moveAction}>
+      <AppSwipeActions startAction={paidAction} endAction={moveAction}>
         <View style={rowStyle}>
           <AppCheckCircle
             checked={!!expense.paid}

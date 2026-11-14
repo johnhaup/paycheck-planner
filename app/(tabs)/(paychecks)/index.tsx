@@ -16,6 +16,7 @@ import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { usePaycheckCardRenderer } from "@/hooks/usePaycheckCardRenderer";
+import { FORWARD_CHEVRON, LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
@@ -242,7 +243,7 @@ export default function PaychecksScreen() {
                     amount: formatMoney(-shortElsewhere.paycheck.remaining),
                   })}
                 </AppText>
-                <Ionicons name="chevron-forward" size={16} color={colors.destructive} />
+                <Ionicons name={FORWARD_CHEVRON} size={16} color={colors.destructive} />
               </Pressable>
             ) : null}
           </Animated.View>
@@ -306,7 +307,7 @@ export default function PaychecksScreen() {
           accessibilityLabel={t("paychecks.pastPaychecks")}
         >
           <AppText variant="bodyStrong" color="primaryText">{t("paychecks.pastPaychecks")}</AppText>
-          <Ionicons name="chevron-forward" size={16} color={colors.primaryText} />
+          <Ionicons name={FORWARD_CHEVRON} size={16} color={colors.primaryText} />
         </Pressable>
       ) : undefined,
     [hasIncome, handleOpenHistory, colors, t]
@@ -324,7 +325,7 @@ export default function PaychecksScreen() {
     <PinnedHeaderShift value={pinShift}>
       <Animated.FlatList
         ref={listRef}
-        style={styles.list}
+        style={[styles.list, LARGE_TITLE_LIST]}
         data={paychecks}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
@@ -338,7 +339,7 @@ export default function PaychecksScreen() {
         removeClippedSubviews={false}
         contentInsetAdjustmentBehavior="automatic"
         scrollToOverflowEnabled
-        contentContainerStyle={styles.listContent}
+        contentContainerStyle={[styles.listContent, LARGE_TITLE_LIST_CONTENT]}
         showsVerticalScrollIndicator={false}
         onScroll={handleScroll}
         scrollEventThrottle={16}

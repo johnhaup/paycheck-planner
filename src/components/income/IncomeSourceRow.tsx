@@ -58,7 +58,7 @@ export function IncomeSourceRow({ source, tintIndex, isFirst, isLast, onEdit, on
 
   return (
     <AppSwipeActions
-      rightAction={deleteAction}
+      endAction={deleteAction}
       style={groupedStyles.container}
     >
       <Pressable style={rowStyle} onPress={handlePress}>

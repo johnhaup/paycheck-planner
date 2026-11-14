@@ -39,7 +39,8 @@ No unit tests exist. Type check and lint before calling anything done.
 ## Localization
 
 - i18n-js with make-plural. `t(key)` from `@/localization/i18n`; keys are typed against `en.json`.
-- 45 in-app locales in `src/localization/locales/`, RTL for ar, he, ur. Every new string goes into every locale file in the same change.
+- 45 in-app locales in `src/localization/locales/`, RTL for ar, he, ur. Every new string goes into every locale file in the same change. A new locale also goes into `supportedLocales` in `app.json`: iOS only mirrors the layout for languages listed there.
+- RTL: use start/end styles or plain flex and let the layout mirror. Transforms, icons and native views do not mirror on their own; read `I18nManager.isRTL`, never the language. It is fixed per launch: `localeStore` reloads the app when the language changes direction.
 - Store listing text (49 locales) lives in `ship/listing/`; release notes per version in `ship/release-notes/<version>.json`.
 
 ## Pro (one-time unlock, no subscriptions)

@@ -17,6 +17,7 @@ import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { AppText } from "@/components/AppText";
 import { AppEmptyState } from "@/components/AppEmptyState";
 import { AppFab } from "@/components/AppFab";
@@ -235,6 +236,7 @@ export default function ExpensesScreen() {
     <>
       <Stack.Screen options={screenOptions} />
       <SectionList
+        style={LARGE_TITLE_LIST}
         sections={sections}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
@@ -243,7 +245,7 @@ export default function ExpensesScreen() {
         ListEmptyComponent={listEmpty}
         stickySectionHeadersEnabled={false}
         contentInsetAdjustmentBehavior="automatic"
-        contentContainerStyle={hasExpenses ? styles.listContent : styles.emptyContent}
+        contentContainerStyle={[hasExpenses ? styles.listContent : styles.emptyContent, LARGE_TITLE_LIST_CONTENT]}
       />
       <AppFab accessibilityLabel={t("expenses.addExpense")} onPress={handleAdd} />
     </>
