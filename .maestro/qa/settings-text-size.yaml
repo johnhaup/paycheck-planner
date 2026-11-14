@@ -7,7 +7,7 @@
 # row are not visible to it, so read the screenshots: settings-xxxl-top (Pro row "One-time purchase" whole,
 # Light / Dark / System whole), settings-xxxl-region (Language and Currency with the value under the label,
 # wrapped between words), settings-xxxl-data (Export CSV with the PRO badge under its label) and
-# expenses-xxxl-filter (All / Recurring / One-time stacked).
+# expenses-xxxl-filter (All / Recurring / One-time stacked). Toggle rows: see the HAU-322 block below.
 # The text size comes from a launch argument, so no other flow is affected.
 appId: com.johnhaup.paycheckplanner
 tags: [ios]   # the text size comes from an iOS launch argument
@@ -84,6 +84,43 @@ name: settings-text-size
 - extendedWaitUntil:
     visible: "Language, English.*"
     timeout: 10000
+
+# Toggle rows (HAU-322): beside the switch and the PRO badge, "reminder" broke mid-word ("Payday remind / er").
+# Now the label takes the whole row and the badge and switch sit on a line under it. Maestro cannot assert that:
+# its below/rightOf compare only top and left edges, so a badge beside the label already counts as "below" it and a
+# badge under it still counts as "right of" it. Read settings-xxxl-reminders ("Payday / reminder", "Unpaid bill / reminder",
+# whole words, PRO bottom left, switch bottom right) and settings-xxxl-behavior ("Auto-mark / paid on link / tap").
+# The switch has no label: it is the only element under the label and right of the badge.
+- scrollUntilVisible:
+    element: "Payday reminder"
+    direction: DOWN
+    centerElement: true
+    timeout: 30000
+- takeScreenshot: settings-xxxl-reminders
+- scrollUntilVisible:
+    element: "Unpaid bill reminder"
+    direction: DOWN
+    centerElement: true
+    timeout: 30000
+- tapOn:
+    below: "Unpaid bill reminder"
+    above: "The day after.*"
+    rightOf:
+      text: "PRO"
+      below: "Unpaid bill reminder"
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 15000
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: "Unpaid bill reminder"
+    timeout: 15000
+- scrollUntilVisible:
+    element: "Auto-mark paid on link tap"
+    direction: DOWN
+    centerElement: true
+    timeout: 30000
+- takeScreenshot: settings-xxxl-behavior
 
 # Data rows: Export CSV keeps its PRO badge and, on the free tier, opens the paywall
 - scrollUntilVisible:
