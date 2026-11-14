@@ -5,6 +5,8 @@
 # language; "Close" has English only and falls back to it in other languages.
 appId: com.johnhaup.paycheckplanner
 name: accessibility
+onFlowStart:
+  - runFlow: subflows/approve-deep-link.yaml   # iOS asks once per simulator before a deep link opens the app
 ---
 - launchApp:
     clearState: true

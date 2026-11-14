@@ -13,6 +13,8 @@
 appId: com.johnhaup.paycheckplanner
 tags: [ios]   # the text size comes from an iOS launch argument
 name: text-size
+onFlowStart:
+  - runFlow: subflows/approve-deep-link.yaml   # iOS asks once per simulator before a deep link opens the app
 ---
 - launchApp:
     clearState: true

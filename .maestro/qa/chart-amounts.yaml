@@ -7,6 +7,8 @@
 appId: com.johnhaup.paycheckplanner
 tags: [ios]   # the Arabic runs come from iOS launch arguments
 name: chart-amounts
+onFlowStart:
+  - runFlow: subflows/approve-deep-link.yaml   # iOS asks once per simulator before a deep link opens the app
 ---
 - launchApp:
     clearState: true

@@ -1,0 +1,26 @@
+# Not a flow of its own (Maestro runs only the top-level files of this folder): every flow that uses openLink runs
+# this from onFlowStart. A simulator that never opened the paycheck-planner:// scheme raises SpringBoard's
+# "Open in Paycheck Planner?" alert on the first openLink; it survives relaunches and clearState, Maestro never taps
+# it, and iOS remembers the answer once Open is tapped. The release gate erases its simulators before every run and
+# splits the suite over several of them (--shard-split), so any flow can be the first on a fresh one, and Maestro
+# refuses a workspace executionOrder in a sharded run (HAU-334).
+# The link goes to Income so its arrival can be seen: the wait ends on the alert's Open button or on the empty Income
+# tab, whichever comes. Do not wait a fixed time for the alert instead: on a loaded Mac it came up more than 10 s
+# after the openLink, over the next launch. Already approved, or Android (no alert): Income shows straight away.
+appId: com.johnhaup.paycheckplanner
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 60000
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: "Open|No income yet"
+    timeout: 60000
+- tapOn:
+    text: "Open"
+    optional: true
+- extendedWaitUntil:
+    visible: "No income yet"
+    timeout: 30000

@@ -5,6 +5,8 @@ name: pro-mock-store
 # Restore with nothing bought, Buy, unlocked, still Pro after a relaunch, refund (-proStoreMockRevoke)
 # locks it again and Restore after the refund finds nothing. A launch without the argument in between
 # stays locked (the mock account never leaks into the real store path). The free tier is pro.yaml.
+onFlowStart:
+  - runFlow: subflows/approve-deep-link.yaml   # iOS asks once per simulator before a deep link opens the app
 ---
 # Mock store: start from an empty mock account (revoke) whatever an earlier run left behind
 - stopApp

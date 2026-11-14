@@ -22,6 +22,8 @@ name: large-title
 env:
   # A month's bar in the chart, or its pill once collapsed: "November (this month), $1.3k left", "January 2027, $5k left"
   MONTH: "[A-Za-z]+( [0-9]{4})?( \\(this month\\))?, \\$[^,]+ left"
+onFlowStart:
+  - runFlow: subflows/approve-deep-link.yaml   # iOS asks once per simulator before a deep link opens the app
 ---
 - launchApp:
     clearState: true

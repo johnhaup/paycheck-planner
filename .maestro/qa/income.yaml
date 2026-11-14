@@ -3,6 +3,8 @@
 # second source (HAU-69): the FAB carries the PRO badge and opens the paywall.
 appId: com.johnhaup.paycheckplanner
 name: income
+onFlowStart:
+  - runFlow: subflows/approve-deep-link.yaml   # iOS asks once per simulator before a deep link opens the app
 ---
 - launchApp:
     clearState: true

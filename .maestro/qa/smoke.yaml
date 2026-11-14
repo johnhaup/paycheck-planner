@@ -12,6 +12,8 @@
 #   The tab taps after "Try with sample data" below are what protect HAU-60.
 appId: com.johnhaup.paycheckplanner
 name: smoke
+onFlowStart:
+  - runFlow: subflows/approve-deep-link.yaml   # iOS asks once per simulator before a deep link opens the app
 ---
 - launchApp:
     clearState: true
