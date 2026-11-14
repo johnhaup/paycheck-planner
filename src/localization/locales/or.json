@@ -223,7 +223,7 @@
       "payee": "ପ୍ରାପ୍ତକର୍ତ୍ତା",
       "amount": "ରାଶି"
     },
-    "markAllPaid": "ସବୁ ପଇଠ ହୋଇଛି ବୋଲି ମାର୍କ କରନ୍ତୁ"
+    "markAllPaid": "ସବୁ ପଇଠ ମାର୍କ କରନ୍ତୁ"
   },
   "amountSheet": {
     "subtitle": "କେବଳ %{date}ର ଦରମା",
