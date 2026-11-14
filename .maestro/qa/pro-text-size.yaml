@@ -1,0 +1,78 @@
+# Inline PRO controls at accessibility text sizes (HAU-163), free tier.
+# Past paychecks: "See earlier months" used to stay on one line wider than the screen, so the centred row lost its
+# first letter at the left edge and its badge at the right. It now wraps between words, with the badge and chevron
+# on a line of their own. The row is one accessibility element, so Maestro cannot see the wrap: read
+# pro-text-size-history-xl and -xxxl ("See earlier months" whole, PRO and the chevron on screen under it).
+# Add expense: the type control stacks, "Set-aside" stays whole with its PRO badge inside the second row (it used to
+# truncate to "Set-asi…" with the badge past the control's edge). Read pro-text-size-expense-form-xxxl.
+# Both controls still open the paywall at that size. The launch argument sets the text size for that launch only.
+appId: com.johnhaup.paycheckplanner
+tags: [ios]   # the text size comes from an iOS launch argument
+name: pro-text-size
+---
+- launchApp:
+    clearState: true
+    arguments:
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXL"
+- extendedWaitUntil:
+    visible: "Plan every paycheck"
+    timeout: 60000
+- scrollUntilVisible:
+    element: "Try with sample data"
+    direction: DOWN
+    timeout: 30000
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 15000
+- openLink: paycheck-planner://history
+- extendedWaitUntil:
+    visible: "See earlier months"
+    timeout: 15000
+- takeScreenshot: pro-text-size-history-xl
+
+- stopApp
+- launchApp:
+    arguments:
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 60000
+- openLink: paycheck-planner://history
+- extendedWaitUntil:
+    visible: "See earlier months"
+    timeout: 15000
+- takeScreenshot: pro-text-size-history-xxxl
+- tapOn: "See earlier months"
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 15000
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: "See earlier months"
+    timeout: 15000
+
+- openLink: paycheck-planner://expenses
+- extendedWaitUntil:
+    visible: "Add expense.*"
+    timeout: 15000
+- tapOn: "Add expense.*"
+- extendedWaitUntil:
+    visible: "Set-aside.*"
+    timeout: 15000
+# Stacked: Set-aside sits under Bill, not beside it
+- assertVisible:
+    text: "Set-aside.*"
+    below: "Bill"
+- assertNotVisible:
+    text: "Set-aside.*"
+    rightOf: "Bill"
+- takeScreenshot: pro-text-size-expense-form-xxxl
+- tapOn: "Set-aside.*"
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 15000
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: "Bill"
+    timeout: 15000
