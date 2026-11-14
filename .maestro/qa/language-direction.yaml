@@ -2,7 +2,9 @@
 # Arabic device with English picked comes up in English, and Paychecks, the toast and
 # the Add expense form all work there. Maestro cannot see text alignment: read the
 # screenshots. Text and field contents must sit at the left edge of their
-# boxes, placeholders included.
+# boxes, placeholders included. The native headers follow the in-app language too
+# (HAU-171): Back left of the title and Mark all paid right of it on Pay Date, Close
+# right of the title on Settings and the paywall. Maestro can see those positions.
 appId: com.johnhaup.paycheckplanner
 tags: [ios]   # the device language comes from iOS launch arguments
 name: language-direction
@@ -54,6 +56,13 @@ name: language-direction
 - extendedWaitUntil:
     visible: "This paycheck"
     timeout: 15000
+- assertVisible:
+    text: "Back"
+    leftOf: "Pay Date"
+- assertVisible:
+    text: "Mark all paid"
+    rightOf: "Pay Date"
+- takeScreenshot: direction-pay-date-header
 - tapOn: "Mark all paid"
 # The toast lasts 4 s, so under gate load this wait can miss it; the step is optional
 - extendedWaitUntil:
@@ -77,3 +86,21 @@ name: language-direction
     visible: "QA Water"
     timeout: 15000
 - takeScreenshot: direction-form-typed
+
+- openLink: paycheck-planner://settings
+- extendedWaitUntil:
+    visible: "Language, English.*"
+    timeout: 15000
+- assertVisible:
+    text: "Close"
+    rightOf: "Settings"
+- takeScreenshot: direction-settings-header
+- tapOn: "Close"
+- openLink: paycheck-planner://paywall
+- extendedWaitUntil:
+    visible: "One-time purchase.*"
+    timeout: 15000
+- assertVisible:
+    text: "Close"
+    rightOf: "Pro"
+- takeScreenshot: direction-paywall-header

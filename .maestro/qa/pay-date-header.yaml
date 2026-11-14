@@ -1,0 +1,64 @@
+# Protects the pay date screen's navigation bar at the largest accessibility text size (HAU-303):
+# "Mark all paid" keeps a fixed text size, so it stays inside its glass pill and leaves room for
+# Back and the centred "Pay Date" title. Before the fix it grew with the text size, pushed the
+# title down to "Pa" or off the bar and took Back's label.
+# The position checks below fail when the button crowds the bar; whether the letters sit inside
+# the pill is a screenshot check (pay-date-header-xxxl).
+# The launch argument sets the text size for this launch only. At this size a tap on the paycheck
+# card's own label lands on its Pro-gated pay amount, so the flow centres the card's header and
+# taps the "$… left" line under it (same route as pay-date-names.yaml).
+appId: com.johnhaup.paycheckplanner
+tags: [ios]   # the text size comes from an iOS launch argument
+name: pay-date-header
+---
+- launchApp:
+    clearState: true
+    arguments:
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+- extendedWaitUntil:
+    visible: "Plan every paycheck"
+    timeout: 60000
+- scrollUntilVisible:
+    element: "Try with sample data"
+    direction: DOWN
+    timeout: 30000
+- swipe:
+    start: 50%, 70%
+    end: 50%, 50%
+    duration: 400
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 15000
+- scrollUntilVisible:
+    element:
+      text: "[A-Z]{3}, [0-9]+, .*"
+      index: 0
+    direction: DOWN
+    centerElement: true
+    timeout: 45000
+- tapOn:
+    point: "50%,40%"
+- extendedWaitUntil:
+    visible: "Mark all paid"
+    timeout: 15000
+
+# Back, the whole title and the button side by side in that order
+- assertVisible:
+    text: "Back"
+    leftOf: "Pay Date"
+- assertVisible:
+    text: "Mark all paid"
+    rightOf: "Pay Date"
+- takeScreenshot: pay-date-header-xxxl
+
+# The button still works at this size: every bill is paid, the button leaves the bar and the
+# title stays whole. Undo is covered by pay-date-detail.yaml (its toast lasts 4 s, see HAU-112).
+- tapOn: "Mark all paid"
+- extendedWaitUntil:
+    notVisible: "Mark all paid"
+    timeout: 15000
+- assertVisible:
+    text: "Back"
+    leftOf: "Pay Date"
+- takeScreenshot: pay-date-header-all-paid
