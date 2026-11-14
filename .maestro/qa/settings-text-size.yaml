@@ -1,0 +1,127 @@
+# Protects Settings and the shared segmented control at the largest accessibility text size (HAU-162).
+# Side by side, the Language row's value squeezed its label to a few letters per line ("La / n / g / ua"),
+# the Pro row's "One-time purchase" ended in "…", and the Appearance segments were a fixed 36pt tall, so
+# their labels were clipped top and bottom and System read "Syst…".
+# Now link rows put the value under the label and the segments stack, one full-width row each. Maestro can
+# assert the stack (each segment below the one before, never to its right); wrapping and clipping inside a
+# row are not visible to it, so read the screenshots: settings-xxxl-top (Pro row "One-time purchase" whole,
+# Light / Dark / System whole), settings-xxxl-region (Language and Currency with the value under the label,
+# wrapped between words), settings-xxxl-data (Export CSV with the PRO badge under its label) and
+# expenses-xxxl-filter (All / Recurring / One-time stacked).
+# The text size comes from a launch argument, so no other flow is affected.
+appId: com.johnhaup.paycheckplanner
+tags: [ios]   # the text size comes from an iOS launch argument
+name: settings-text-size
+---
+- launchApp:
+    clearState: true
+    arguments:
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+- extendedWaitUntil:
+    visible: "Plan every paycheck"
+    timeout: 60000
+- scrollUntilVisible:
+    element: "Try with sample data"
+    direction: DOWN
+    timeout: 30000
+- swipe:
+    start: 50%, 70%
+    end: 50%, 50%
+    duration: 400
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 15000
+
+# Appearance: three stacked segments, the selected one exposed as selected
+- openLink: paycheck-planner://settings
+- extendedWaitUntil:
+    visible:
+      text: "Dark"
+      selected: true
+    timeout: 15000
+- assertVisible:
+    text: "Dark"
+    below: "Light"
+- assertVisible:
+    text: "System"
+    below: "Dark"
+- assertNotVisible:
+    text: "Dark"
+    rightOf: "Light"
+- takeScreenshot: settings-xxxl-top
+- tapOn: "Light"
+- extendedWaitUntil:
+    visible:
+      text: "Light"
+      selected: true
+    timeout: 15000
+- takeScreenshot: settings-xxxl-light
+- tapOn: "Dark"
+- extendedWaitUntil:
+    visible:
+      text: "Dark"
+      selected: true
+    timeout: 15000
+
+# Language and Currency: the stacked row still opens the picker, and a pick comes back to the row
+- scrollUntilVisible:
+    element: "Currency, .*"
+    direction: DOWN
+    timeout: 30000
+- takeScreenshot: settings-xxxl-region
+- tapOn: "Language, .*"
+- extendedWaitUntil:
+    visible: "Català"
+    timeout: 10000
+- scrollUntilVisible:
+    element: "English"
+    direction: DOWN
+    centerElement: true
+    speed: 20
+    timeout: 45000
+- tapOn: "English"
+- extendedWaitUntil:
+    visible: "Language, English.*"
+    timeout: 10000
+
+# Data rows: Export CSV keeps its PRO badge and, on the free tier, opens the paywall
+- scrollUntilVisible:
+    element: ".*Export bills as CSV.*"
+    direction: DOWN
+    centerElement: true
+    timeout: 30000
+- takeScreenshot: settings-xxxl-data
+- tapOn: ".*Export bills as CSV.*"
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 15000
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: ".*Export bills as CSV.*"
+    timeout: 15000
+
+# The same control on Expenses: the filter stacks and still filters
+- openLink: paycheck-planner://expenses
+- extendedWaitUntil:
+    visible: "Recurring"
+    timeout: 15000
+- assertVisible:
+    text: "Recurring"
+    below: "All"
+- assertNotVisible:
+    text: "Recurring"
+    rightOf: "All"
+- tapOn: "Recurring"
+- extendedWaitUntil:
+    visible:
+      text: "Recurring"
+      selected: true
+    timeout: 15000
+- takeScreenshot: expenses-xxxl-filter
+- tapOn: "All"
+- extendedWaitUntil:
+    visible:
+      text: "All"
+      selected: true
+    timeout: 15000

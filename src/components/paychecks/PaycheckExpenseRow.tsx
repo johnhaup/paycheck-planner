@@ -11,6 +11,7 @@ import { AppText } from "@/components/AppText";
 import { AppCheckCircle } from "@/components/AppCheckCircle";
 import { AppSetAsideIcon } from "@/components/AppSetAsideIcon";
 import { AppSwipeActions, type SwipeAction } from "@/components/AppSwipeActions";
+import { AppWordWrapText } from "@/components/AppWordWrapText";
 import type {
   EditAmountHandler,
   LinkTapHandler,
@@ -121,14 +122,15 @@ export function PaycheckExpenseRow({
               accessibilityRole={expense.link ? "link" : undefined}
             >
               {expense.isSetAside ? <AppSetAsideIcon /> : null}
-              <AppText
-                variant="body"
-                color={textColor}
-                numberOfLines={stacked ? undefined : 1}
-                style={payeeStyle}
-              >
-                {expense.payee}
-              </AppText>
+              {stacked ? (
+                <AppWordWrapText variant="body" color={textColor} style={expense.paid ? styles.paid : undefined}>
+                  {expense.payee}
+                </AppWordWrapText>
+              ) : (
+                <AppText variant="body" color={textColor} numberOfLines={1} style={payeeStyle}>
+                  {expense.payee}
+                </AppText>
+              )}
               {expense.link ? (
                 <Ionicons name="open-outline" size={14} color={colors.textMuted} />
               ) : null}

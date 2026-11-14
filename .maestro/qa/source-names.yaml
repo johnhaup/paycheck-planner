@@ -1,0 +1,111 @@
+# Protects names on Income and the Paychecks cards at the largest accessibility text size (HAU-313):
+# the source name in an Income row, the source name in a paycheck card's header and a bill name in a
+# card are laid out word by word, so a word wider than the row shrinks instead of breaking at a
+# letter ("Manufacturi / ng", "Registratio / n"). Each name stays one accessibility element with the
+# full name, and a paid bill is still a working toggle.
+# Maestro cannot see where a line breaks, so read the screenshots: in source-names-income every word
+# of "Brightline Manufacturing and Logistics Holdings Co." is whole, in source-names-card the same in
+# the card header, and in source-names-bills "Registration" is whole and "Car Payment" (paid, with a
+# payment link) is struck through with its open icon. On main before HAU-313 source-names-income
+# read "Manufacturi / ng".
+# Renaming: a tap on the name field puts the cursor before " Co." (seen every run), so erasing and
+# typing "Brightline Manufacturing and Logistics Holdings" gives "... Holdings Co."; the assertions
+# use patterns that hold either way.
+appId: com.johnhaup.paycheckplanner
+tags: [ios]   # the text size comes from an iOS launch argument
+name: source-names
+---
+- launchApp:
+    clearState: true
+    arguments:
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+- extendedWaitUntil:
+    visible: "Plan every paycheck"
+    timeout: 60000
+- scrollUntilVisible:
+    element: "Try with sample data"
+    direction: DOWN
+    timeout: 30000
+- swipe:
+    start: 50%, 70%
+    end: 50%, 50%
+    duration: 400
+- tapOn: "Try with sample data"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 15000
+
+# Rename Brightline Co. to a name with a word wider than the row
+- openLink: paycheck-planner://income
+- extendedWaitUntil:
+    visible: ".*Brightline Co\\..*"
+    timeout: 15000
+- tapOn: ".*Brightline Co\\..*"
+- extendedWaitUntil:
+    visible: "Income Source"
+    timeout: 10000
+- tapOn: "Brightline Co."
+- eraseText: 30
+- inputText: "Brightline Manufacturing and Logistics Holdings"
+- pressKey: Enter
+- scrollUntilVisible:
+    element: "Update Income Source"
+    timeout: 30000
+- tapOn: "Update Income Source"
+
+# Income row: the whole name is in the row's label
+- scrollUntilVisible:
+    element: ".*Brightline Manufacturing and Logistics Holdings.*"
+    direction: DOWN
+    centerElement: true
+    timeout: 30000
+- assertVisible: ".*Bi-weekly.*"
+- takeScreenshot: source-names-income
+
+# Paychecks card header: the label starts with the date and the whole new name
+- tapOn: "Paychecks"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 15000
+- scrollUntilVisible:
+    element:
+      text: "[A-Z]{3}, [0-9]+, Brightline Manufacturing and Logistics Holdings.*"
+      index: 0
+    direction: DOWN
+    centerElement: true
+    timeout: 45000
+- swipe:
+    start: 50%, 40%
+    end: 50%, 65%
+    duration: 600
+- takeScreenshot: source-names-card
+
+# Bill names in the card: one element each, a paid one still a working toggle
+- scrollUntilVisible:
+    element: "Mark Car Registration paid"
+    direction: DOWN
+    centerElement: true
+    timeout: 45000
+- assertVisible:
+    text: "Car Registration"
+    above: "Change Car Registration amount for this paycheck"
+- scrollUntilVisible:
+    element: "Mark Car Payment unpaid"
+    direction: UP
+    centerElement: true
+    timeout: 45000
+- assertVisible: "Car Payment.*"
+- takeScreenshot: source-names-bills
+- scrollUntilVisible:
+    element: "Mark Car Registration paid"
+    direction: DOWN
+    timeout: 45000
+- tapOn: "Mark Car Registration paid"
+- extendedWaitUntil:
+    visible: "Mark Car Registration unpaid"
+    timeout: 15000
+- assertVisible: "Car Registration"
+- tapOn: "Mark Car Registration unpaid"
+- extendedWaitUntil:
+    visible: "Mark Car Registration paid"
+    timeout: 15000

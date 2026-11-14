@@ -1,10 +1,10 @@
 import { useCallback, useMemo } from "react";
 import { Pressable, View, StyleSheet } from "react-native";
 import { useColors } from "@/hooks/useColors";
+import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { hapticSelection } from "@/utils/haptics";
-import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { ProBadge } from "@/components/ProBadge";
 
 export interface SegmentOption<T> {
@@ -22,12 +22,12 @@ interface Props<T> {
 
 export function AppSegmentedControl<T>({ options, value, onChange }: Props<T>) {
   const colors = useColors();
-  // Side by side, a label at an accessibility size is cut to "Set-asi…" and a PRO badge is pushed out of its segment
+  // At accessibility text sizes the labels no longer fit side by side, so the segments stack
   const stacked = useAccessibilityTextSize();
 
   const trackStyle = useMemo(
     () => [styles.track, stacked ? styles.trackStacked : undefined, { backgroundColor: colors.segmentTrack }],
-    [stacked, colors]
+    [colors, stacked]
   );
 
   return (
@@ -65,7 +65,7 @@ function Segment<T>({ option, selected, stacked, onSelect }: SegmentProps<T>) {
   const segmentStyle = useMemo(
     () => [
       styles.segment,
-      stacked ? styles.segmentStacked : styles.segmentInline,
+      stacked ? undefined : styles.segmentInRow,
       selected ? { backgroundColor: colors.segmentSelected } : undefined,
     ],
     [selected, stacked, colors]
@@ -83,8 +83,10 @@ function Segment<T>({ option, selected, stacked, onSelect }: SegmentProps<T>) {
       <AppText
         variant="bodyStrong"
         color={selected ? "textDefault" : "textMuted"}
-        numberOfLines={stacked ? undefined : 1}
-        center={stacked}
+        numberOfLines={1}
+        // Stacked, a label has the whole row; a word still wider than that shrinks instead of ending in "…"
+        adjustsFontSizeToFit={stacked}
+        minimumFontScale={0.5}
         style={stacked ? styles.labelStacked : undefined}
       >
         {option.label}
@@ -104,25 +106,21 @@ const styles = StyleSheet.create({
   trackStacked: {
     flexDirection: "column",
   },
+  segmentInRow: {
+    flex: 1,
+  },
+  labelStacked: {
+    flexShrink: 1,
+  },
   segment: {
+    // Grows with the text: a fixed height clipped the labels at large text sizes
+    minHeight: 36,
+    paddingVertical: MEASUREMENTS.spacing.sm,
     borderRadius: MEASUREMENTS.radius.lg,
     flexDirection: "row",
     gap: MEASUREMENTS.spacing.sm + 2,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: MEASUREMENTS.spacing.sm,
-  },
-  segmentInline: {
-    flex: 1,
-    height: 36,
-  },
-  // One option per line; a badge that does not fit beside its label drops under it
-  segmentStacked: {
-    minHeight: 36,
-    flexWrap: "wrap",
-    paddingVertical: MEASUREMENTS.spacing.sm,
-  },
-  labelStacked: {
-    flexShrink: 1,
   },
 });
