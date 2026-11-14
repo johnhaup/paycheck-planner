@@ -25,9 +25,18 @@ appId: com.johnhaup.paycheckplanner
 - extendedWaitUntil:
     visible: "Open|No income yet"
     timeout: 60000
-- tapOn:
-    text: "Open"
-    optional: true
+# Open approves the scheme, but the link that raised the alert can be dropped: in the gate @ 5c9c0d5 the alert closed
+# onto the welcome screen and Income never came (HAU-335). So the approval is all the tap is trusted for: once the
+# alert is gone the link is sent again, and an approved simulator opens it with no alert.
+- runFlow:
+    when:
+      visible: "Open"
+    commands:
+      - tapOn: "Open"
+      - extendedWaitUntil:
+          notVisible: "Open"
+          timeout: 20000
+      - openLink: paycheck-planner://income
 - extendedWaitUntil:
     visible: "No income yet"
     timeout: 30000
