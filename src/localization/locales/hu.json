@@ -224,7 +224,7 @@
       "payee": "Kedvezményezett",
       "amount": "Összeg"
     },
-    "markAllPaid": "Összes megjelölése fizetettként"
+    "markAllPaid": "Mind megjelölése"
   },
   "amountSheet": {
     "subtitle": "Csak a %{date} fizetésre",
