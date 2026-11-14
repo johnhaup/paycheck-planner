@@ -1,10 +1,12 @@
 import { useMemo } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useColors } from "@/hooks/useColors";
+import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppCard } from "@/components/AppCard";
 import { AppText } from "@/components/AppText";
 import { AppToggle } from "@/components/AppToggle";
+import { AppWordWrapText } from "@/components/AppWordWrapText";
 import { ProBadge } from "@/components/ProBadge";
 
 interface Props {
@@ -18,19 +20,35 @@ interface Props {
 
 export function SettingsToggleRow({ label, hint, value, onValueChange, pro }: Props) {
   const colors = useColors();
+  const stacked = useAccessibilityTextSize();
 
   const cardStyle = useMemo(
-    () => [styles.row, { backgroundColor: colors.cardBackgroundElevated }],
-    [colors]
+    () => [
+      stacked ? styles.stack : styles.row,
+      { backgroundColor: colors.cardBackgroundElevated },
+    ],
+    [colors, stacked]
   );
 
   return (
     <>
-      <AppCard style={cardStyle}>
-        <AppText variant="body" style={styles.label}>{label}</AppText>
-        {pro ? <ProBadge /> : null}
-        <AppToggle value={value} onValueChange={onValueChange} />
-      </AppCard>
+      {stacked ? (
+        // At accessibility text sizes the label gets the whole row and wraps between words:
+        // beside the switch and the badge it broke inside words ("remind / er")
+        <AppCard style={cardStyle}>
+          <AppWordWrapText variant="body">{label}</AppWordWrapText>
+          <View style={styles.controls}>
+            {pro ? <ProBadge /> : <View />}
+            <AppToggle value={value} onValueChange={onValueChange} />
+          </View>
+        </AppCard>
+      ) : (
+        <AppCard style={cardStyle}>
+          <AppText variant="body" style={styles.label}>{label}</AppText>
+          {pro ? <ProBadge /> : null}
+          <AppToggle value={value} onValueChange={onValueChange} />
+        </AppCard>
+      )}
       {hint ? (
         <AppText variant="caption" style={styles.hint}>{hint}</AppText>
       ) : null}
@@ -46,6 +64,16 @@ const styles = StyleSheet.create({
     gap: MEASUREMENTS.spacing.base,
     padding: MEASUREMENTS.spacing.lg,
     marginTop: MEASUREMENTS.spacing.base,
+  },
+  stack: {
+    gap: MEASUREMENTS.spacing.base,
+    padding: MEASUREMENTS.spacing.lg,
+    marginTop: MEASUREMENTS.spacing.base,
+  },
+  controls: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   label: {
     flex: 1,

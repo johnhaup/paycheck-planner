@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Pressable, SectionList, StyleSheet, type SectionListData } from "react-native";
+import { Pressable, SectionList, StyleSheet, View, type SectionListData } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
@@ -72,8 +72,10 @@ export default function HistoryScreen() {
           <AppText variant="bodyStrong" color="primaryText" center style={styles.unlockLabel}>
             {t("pro.earlierMonths")}
           </AppText>
-          <ProBadge />
-          <Ionicons name="chevron-forward" size={16} color={colors.primaryText} />
+          <View style={styles.unlockTrailing}>
+            <ProBadge />
+            <Ionicons name="chevron-forward" size={16} color={colors.primaryText} />
+          </View>
         </Pressable>
       ),
     [isPro, openPaywall, colors, t]
@@ -124,5 +126,11 @@ const styles = StyleSheet.create({
   },
   unlockLabel: {
     flexShrink: 1,
+  },
+  // One flex item, so the wrap can never leave the chevron alone on a line
+  unlockTrailing: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: MEASUREMENTS.spacing.md,
   },
 });

@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from "react";
-import { FlatList, Pressable, StyleSheet, type ScrollViewProps } from "react-native";
+import { FlatList, Pressable, StyleSheet, useWindowDimensions, type ScrollViewProps } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useStore } from "@/store";
@@ -41,6 +41,11 @@ function renderScrollComponent(props: ScrollViewProps) {
   return <KeyboardAwareScrollView {...props} bottomOffset={MEASUREMENTS.keyboardOffset} />;
 }
 
+// "Mark all paid" is 33 characters in Malayalam and took two-thirds of the
+// navigation bar, leaving no room for the title. The button gets at most this
+// share of the bar; a longer translation shrinks to fit, then truncates.
+const HEADER_BUTTON_MAX_WIDTH_RATIO = 0.4;
+const HEADER_BUTTON_MIN_FONT_SCALE = 0.7;
 // The navigation bar's button pill has a fixed height and shares the bar with
 // Back and the title, neither of which scales, so its text does not either
 const HEADER_MAX_FONT_MULTIPLIER = 1;
@@ -249,15 +254,29 @@ export default function PayDateDetailScreen() {
     hapticSuccess();
   }, [unpaidExpenseIds, markPaid, payDate, sourceId, t]);
 
+  const { width: windowWidth } = useWindowDimensions();
+  const headerButtonTextStyle = useMemo(
+    () => ({ maxWidth: windowWidth * HEADER_BUTTON_MAX_WIDTH_RATIO }),
+    [windowWidth]
+  );
+
   const renderMarkAllPaidButton = useCallback(
     () => (
       <Pressable onPress={handleMarkAllPaid} hitSlop={MEASUREMENTS.hitSlop} accessibilityRole="button">
-        <AppText variant="bodyStrong" color="primaryText" maxFontSizeMultiplier={HEADER_MAX_FONT_MULTIPLIER}>
+        <AppText
+          variant="bodyStrong"
+          color="primaryText"
+          numberOfLines={1}
+          adjustsFontSizeToFit
+          minimumFontScale={HEADER_BUTTON_MIN_FONT_SCALE}
+          maxFontSizeMultiplier={HEADER_MAX_FONT_MULTIPLIER}
+          style={headerButtonTextStyle}
+        >
           {t("payDate.markAllPaid")}
         </AppText>
       </Pressable>
     ),
-    [handleMarkAllPaid, t]
+    [handleMarkAllPaid, headerButtonTextStyle, t]
   );
 
   const screenOptions = useMemo(
