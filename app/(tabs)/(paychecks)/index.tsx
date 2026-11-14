@@ -160,6 +160,11 @@ export default function PaychecksScreen() {
   // until the list is dragged again. A timer cannot end it: the scroll a jump asks for
   // is carried out whenever the UI thread gets to it.
   const jumping = useSharedValue(false);
+  // The same for this thread: a shared value set here still reads as its old value until the UI thread has it
+  const jumpingRef = useRef(false);
+  const endJump = useCallback(() => {
+    jumpingRef.current = false;
+  }, []);
   // The first jump of a dataset happens before anything is laid out; the list stays unseen until it lands
   const hidden = useSharedValue(false);
   const showSoon = useCallback(() => {
@@ -184,6 +189,7 @@ export default function PaychecksScreen() {
     },
     onBeginDrag: () => {
       jumping.value = false;
+      scheduleOnRN(endJump);
     },
   });
 
@@ -209,7 +215,7 @@ export default function PaychecksScreen() {
       const list = listRef.current;
       const current = jump.current;
       // A drag ends the jump; a repeat that arrived after it would pull the list back
-      if (!list || !current || !jumping.get()) return;
+      if (!list || !current || !jumpingRef.current) return;
       clearTimeout(current.timer);
       current.failed = headerHeightRef.current === 0;
       if (current.failed) {
@@ -240,12 +246,13 @@ export default function PaychecksScreen() {
       current.timer = setTimeout(() => hidden.set(false), SHOW_FALLBACK_MS);
     };
     attempt(JUMP_TRIES, JUMP_CONFIRMS);
-  }, [pinTop, topOffset, scrollY, jumping, hidden]);
+  }, [pinTop, topOffset, scrollY, hidden]);
 
   const jumpTo = useCallback(
     (index: number) => {
       clearTimeout(jump.current?.timer);
       jump.current = { index };
+      jumpingRef.current = true;
       jumping.set(true);
       collapse.set(0);
       attemptJump();
@@ -259,6 +266,7 @@ export default function PaychecksScreen() {
 
   // A tap on the status bar scrolls to the top without a drag
   const handleScrollToTop = useCallback(() => {
+    jumpingRef.current = false;
     jumping.set(false);
   }, [jumping]);
 
