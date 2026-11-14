@@ -11,8 +11,10 @@ import { useKeyboardState } from "react-native-keyboard-controller";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
+import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
+import { AppWordWrapText } from "@/components/AppWordWrapText";
 import { AppInput } from "@/components/AppInput";
 import { AppButton } from "@/components/AppButton";
 
@@ -48,6 +50,7 @@ export function AmountSheet({
 }: Props) {
   const colors = useColors();
   const t = useT();
+  const largeText = useAccessibilityTextSize();
   const { height: windowHeight } = useWindowDimensions();
   const { top: topInset } = useSafeAreaInsets();
   const keyboardHeight = useKeyboardState((state) => state.height);
@@ -108,7 +111,11 @@ export function AmountSheet({
         onContentSizeChange={handleContentSizeChange}
       >
         <View style={styles.heading}>
-          <AppText variant="title">{title}</AppText>
+          {largeText ? (
+            <AppWordWrapText variant="title">{title}</AppWordWrapText>
+          ) : (
+            <AppText variant="title">{title}</AppText>
+          )}
           <AppText variant="meta">{subtitle}</AppText>
         </View>
         <AppInput
