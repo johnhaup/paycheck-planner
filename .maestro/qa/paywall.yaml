@@ -7,6 +7,8 @@ name: paywall
 # still reachable. Maestro cannot see the fade or positions: read paywall-restore-message and
 # paywall-restore-message-end ("Export bills as CSV" sits clear above the fade).
 # text-size.yaml covers the same screen with no message; pro-mock-store.yaml covers Buy.
+onFlowStart:
+  - runFlow: subflows/approve-deep-link.yaml   # iOS asks once per simulator before a deep link opens the app
 ---
 - stopApp
 - launchApp:

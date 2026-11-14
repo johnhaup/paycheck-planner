@@ -6,6 +6,8 @@
 # gate on a plain Release build on both platforms: no Xcode, no StoreKit configuration, no account.
 appId: com.johnhaup.paycheckplanner
 name: pro
+onFlowStart:
+  - runFlow: subflows/approve-deep-link.yaml   # iOS asks once per simulator before a deep link opens the app
 ---
 - launchApp:
     clearState: true

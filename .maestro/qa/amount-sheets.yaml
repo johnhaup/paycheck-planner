@@ -15,6 +15,8 @@
 appId: com.johnhaup.paycheckplanner
 tags: [ios]   # the mock store and the text size come from iOS launch arguments
 name: amount-sheets
+onFlowStart:
+  - runFlow: subflows/approve-deep-link.yaml   # iOS asks once per simulator before a deep link opens the app
 ---
 - launchApp:
     clearState: true

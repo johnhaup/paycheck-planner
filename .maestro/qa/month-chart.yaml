@@ -6,6 +6,8 @@
 appId: com.johnhaup.paycheckplanner
 tags: [ios]   # Pro via the mock store and Arabic, both iOS launch arguments
 name: month-chart
+onFlowStart:
+  - runFlow: subflows/approve-deep-link.yaml   # iOS asks once per simulator before a deep link opens the app
 ---
 - launchApp:
     clearState: true
