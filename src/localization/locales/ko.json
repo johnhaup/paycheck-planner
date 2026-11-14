@@ -32,7 +32,6 @@
     "payDate": "급여일",
     "language": "언어",
     "currency": "통화",
-    "history": "지난 급여",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "%{payee} 따로 모음으로 표시",
     "markUnpaid": "%{payee} 미납으로 표시",
     "moveThis": "%{payee} 이동",
-    "pastPaychecks": "지난 급여",
     "shortAhead": "%{date} · %{source} 급여가 %{amount} 부족"
   },
   "income": {
@@ -317,9 +315,6 @@
     "erased": "모든 데이터를 지움",
     "sampleLoaded": "샘플 데이터를 불러왔습니다. 설정에서 언제든 지울 수 있습니다.",
     "unpaidOn": "미납 청구서 알림 켜짐"
-  },
-  "history": {
-    "empty": "아직 지난 급여가 없습니다."
   },
   "demo": {
     "rent": "월세",

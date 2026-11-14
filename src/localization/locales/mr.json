@@ -35,7 +35,6 @@
     "payDate": "पगाराची तारीख",
     "language": "भाषा",
     "currency": "चलन",
-    "history": "मागील पगार",
     "pro": "Pro"
   },
   "paychecks": {
@@ -57,7 +56,6 @@
     "markSetAside": "%{payee} बाजूला ठेवले म्हणून मार्क करा",
     "markUnpaid": "%{payee} न भरलेले म्हणून मार्क करा",
     "moveThis": "%{payee} हलवा",
-    "pastPaychecks": "मागील पगार",
     "shortAhead": "%{date} · %{source} मध्ये %{amount} कमी"
   },
   "income": {
@@ -322,9 +320,6 @@
     "erased": "सर्व डेटा हटवला",
     "sampleLoaded": "नमुना डेटा लोड झाला. सेटिंग्जमधून कधीही हटवा.",
     "unpaidOn": "न भरलेल्या बिलांचा रिमाइंडर सुरू"
-  },
-  "history": {
-    "empty": "अजून मागील पगार नाहीत."
   },
   "demo": {
     "rent": "भाडे",

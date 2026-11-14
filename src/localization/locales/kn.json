@@ -32,7 +32,6 @@
     "payDate": "ಸಂಬಳದ ದಿನಾಂಕ",
     "language": "ಭಾಷೆ",
     "currency": "ಕರೆನ್ಸಿ",
-    "history": "ಹಿಂದಿನ ಸಂಬಳಗಳು",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "%{payee} ಮೀಸಲಿಟ್ಟಿದೆ ಎಂದು ಗುರುತಿಸಿ",
     "markUnpaid": "%{payee} ಪಾವತಿಸಿಲ್ಲ ಎಂದು ಗುರುತಿಸಿ",
     "moveThis": "%{payee} ಸರಿಸಿ",
-    "pastPaychecks": "ಹಿಂದಿನ ಸಂಬಳಗಳು",
     "shortAhead": "%{date} · %{source} ನಲ್ಲಿ %{amount} ಕೊರತೆ"
   },
   "income": {
@@ -319,9 +317,6 @@
     "erased": "ಎಲ್ಲಾ ಡೇಟಾ ಅಳಿಸಲಾಗಿದೆ",
     "sampleLoaded": "ಮಾದರಿ ಡೇಟಾ ಲೋಡ್ ಆಗಿದೆ. ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಯಾವಾಗ ಬೇಕಾದರೂ ಅಳಿಸಿ.",
     "unpaidOn": "ಪಾವತಿಸದ ಬಿಲ್ ಜ್ಞಾಪನೆ ಆನ್"
-  },
-  "history": {
-    "empty": "ಇನ್ನೂ ಹಿಂದಿನ ಸಂಬಳಗಳಿಲ್ಲ."
   },
   "demo": {
     "rent": "ಬಾಡಿಗೆ",

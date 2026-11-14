@@ -32,7 +32,6 @@
     "payDate": "Tarikh Gaji",
     "language": "Bahasa",
     "currency": "Mata Wang",
-    "history": "Gaji lepas",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "Tandakan %{payee} telah disimpan",
     "markUnpaid": "Tandakan %{payee} belum dibayar",
     "moveThis": "Alihkan %{payee}",
-    "pastPaychecks": "Gaji lepas",
     "shortAhead": "Gaji %{date} · %{source} kurang %{amount}"
   },
   "income": {
@@ -317,9 +315,6 @@
     "erased": "Semua data dipadam",
     "sampleLoaded": "Data contoh dimuatkan. Padamkannya bila-bila masa dalam Tetapan.",
     "unpaidOn": "Peringatan bil belum dibayar dihidupkan"
-  },
-  "history": {
-    "empty": "Belum ada gaji lepas."
   },
   "demo": {
     "rent": "Sewa",

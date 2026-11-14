@@ -32,7 +32,6 @@
     "payDate": "发薪日",
     "language": "语言",
     "currency": "货币",
-    "history": "过往工资",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "将%{payee}标记为已预留",
     "markUnpaid": "将%{payee}标记为未付",
     "moveThis": "移动%{payee}",
-    "pastPaychecks": "过往工资",
     "shortAhead": "%{date} · %{source}的工资差 %{amount}"
   },
   "income": {
@@ -317,9 +315,6 @@
     "erased": "已清除所有数据",
     "sampleLoaded": "已载入示例数据。可随时在设置中清除。",
     "unpaidOn": "已开启未付账单提醒"
-  },
-  "history": {
-    "empty": "暂无过往工资。"
   },
   "demo": {
     "rent": "房租",

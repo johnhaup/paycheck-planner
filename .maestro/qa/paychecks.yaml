@@ -1,5 +1,5 @@
 # Protects the Paychecks tab: the month hero, selecting another month in the
-# chart, the "Go to this month" icon, and the Past paychecks screen.
+# chart, the "Go to this month" icon, and the one list that scrolls through every month.
 appId: com.johnhaup.paycheckplanner
 name: paychecks
 ---
@@ -39,11 +39,13 @@ name: paychecks
     visible: ${output.thisMonth}
     timeout: 10000
 
-# Past paychecks is the list's footer: swipe to the bottom, then wait for it.
-# Not scrollUntilVisible: under gate load two lookups (5 s each) and two swipes
-# (8.5 s each) used up its 20 s budget, and it gave up with the link already on
-# screen (HAU-173, same as HAU-106). Three swipes, because the list is longest
-# early in a month (up to five paychecks); a swipe at the bottom only bounces.
+# One list runs through every month (HAU-316): scrolling on reaches next month's
+# paychecks with no tap, the chart's selected month follows, and where the free
+# months end a row opens the paywall instead of more paychecks.
+# Swipes, not scrollUntilVisible: under gate load two lookups (5 s each) and two
+# swipes (8.5 s each) used up its 20 s budget, and it gave up with the target
+# already on screen (HAU-173, same as HAU-106). Three swipes, because the list
+# is longest early in a month; a swipe at the bottom only bounces.
 - swipe:
     start: 50%, 80%
     end: 50%, 20%
@@ -54,19 +56,16 @@ name: paychecks
     start: 50%, 80%
     end: 50%, 20%
 - extendedWaitUntil:
-    visible: "Past paychecks"
+    visible: "See a full year of paychecks"
     timeout: 15000
-- tapOn: "Past paychecks"
+# Next month's column, the only one without "(this month)", is now the selected one
 - extendedWaitUntil:
-    visible: "Back|Navigate up"
-    timeout: 10000
-- takeScreenshot: past-paychecks
-# The header back button reads Back on iOS and Navigate up on Android
-- tapOn: "Back|Navigate up"
-- extendedWaitUntil:
-    visible: "Past paychecks"
-    timeout: 10000
-# Back to the top the same way: the month hero comes back under the large title
+    visible:
+      text: "[A-Za-z]+( [0-9]{4})?, \\$[^,]+ left"
+      selected: true
+    timeout: 15000
+- takeScreenshot: paychecks-scrolled-to-next-month
+# Back to the top the same way: this month's hero comes back under the large title
 - swipe:
     start: 50%, 20%
     end: 50%, 80%
@@ -77,5 +76,5 @@ name: paychecks
     start: 50%, 20%
     end: 50%, 80%
 - extendedWaitUntil:
-    visible: ".* · left over"
+    visible: ${output.thisMonth}
     timeout: 15000

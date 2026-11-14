@@ -32,7 +32,6 @@
     "payDate": "Betaaldatum",
     "language": "Taal",
     "currency": "Valuta",
-    "history": "Eerdere salarissen",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "%{payee} markeren als apart gezet",
     "markUnpaid": "%{payee} markeren als onbetaald",
     "moveThis": "%{payee} verplaatsen",
-    "pastPaychecks": "Eerdere salarissen",
     "shortAhead": "Salaris %{date} · %{source} komt %{amount} tekort"
   },
   "income": {
@@ -319,9 +317,6 @@
     "erased": "Alle gegevens gewist",
     "sampleLoaded": "Voorbeeldgegevens geladen. Wis ze wanneer je wilt in Instellingen.",
     "unpaidOn": "Herinnering voor onbetaalde rekeningen aan"
-  },
-  "history": {
-    "empty": "Nog geen eerdere salarissen."
   },
   "demo": {
     "rent": "Huur",

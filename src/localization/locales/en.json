@@ -36,7 +36,6 @@
     "payDate": "Pay Date",
     "language": "Language",
     "currency": "Currency",
-    "history": "Past paychecks",
     "pro": "Pro"
   },
   "paychecks": {
@@ -58,7 +57,6 @@
     "markSetAside": "Mark %{payee} set aside",
     "markUnpaid": "Mark %{payee} unpaid",
     "moveThis": "Move %{payee}",
-    "pastPaychecks": "Past paychecks",
     "shortAhead": "%{date} · %{source} is short by %{amount}"
   },
   "income": {
@@ -323,9 +321,6 @@
     "erased": "All data erased",
     "unpaidOn": "Unpaid bill reminder on",
     "sampleLoaded": "Sample data loaded. Erase it anytime in Settings."
-  },
-  "history": {
-    "empty": "No past paychecks yet."
   },
   "demo": {
     "rent": "Rent",

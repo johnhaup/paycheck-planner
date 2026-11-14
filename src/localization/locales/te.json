@@ -32,7 +32,6 @@
     "payDate": "జీతం తేదీ",
     "language": "భాష",
     "currency": "కరెన్సీ",
-    "history": "గత జీతాలు",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "%{payee} పక్కన పెట్టినట్లు గుర్తించు",
     "markUnpaid": "%{payee} చెల్లించలేదని గుర్తించు",
     "moveThis": "%{payee} తరలించు",
-    "pastPaychecks": "గత జీతాలు",
     "shortAhead": "%{date} · %{source}లో %{amount} తక్కువ"
   },
   "income": {
@@ -319,9 +317,6 @@
     "erased": "మొత్తం డేటా తొలగించబడింది",
     "sampleLoaded": "నమూనా డేటా లోడ్ అయింది. సెట్టింగ్‌లలో ఎప్పుడైనా తొలగించవచ్చు.",
     "unpaidOn": "చెల్లించని బిల్లు రిమైండర్ ఆన్"
-  },
-  "history": {
-    "empty": "ఇంకా గత జీతాలు లేవు."
   },
   "demo": {
     "rent": "అద్దె",

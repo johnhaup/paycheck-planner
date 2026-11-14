@@ -32,7 +32,6 @@
     "payDate": "تاريخ الراتب",
     "language": "اللغة",
     "currency": "العملة",
-    "history": "الرواتب السابقة",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "تحديد %{payee} كمبلغ محجوز",
     "markUnpaid": "تحديد %{payee} كغير مدفوع",
     "moveThis": "نقل %{payee}",
-    "pastPaychecks": "الرواتب السابقة",
     "shortAhead": "%{date} · %{source} به عجز بمقدار %{amount}"
   },
   "income": {
@@ -327,9 +325,6 @@
     "erased": "تم مسح كل البيانات",
     "sampleLoaded": "تم تحميل بيانات تجريبية. يمكنك مسحها في أي وقت من الإعدادات.",
     "unpaidOn": "تم تشغيل تذكير الفواتير غير المدفوعة"
-  },
-  "history": {
-    "empty": "لا توجد رواتب سابقة بعد."
   },
   "demo": {
     "rent": "الإيجار",

@@ -32,7 +32,6 @@
     "payDate": "Den výplaty",
     "language": "Jazyk",
     "currency": "Měna",
-    "history": "Minulé výplaty",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "Označit %{payee} jako odložené",
     "markUnpaid": "Označit %{payee} jako nezaplacené",
     "moveThis": "Přesunout %{payee}",
-    "pastPaychecks": "Minulé výplaty",
     "shortAhead": "Výplatě %{date} · %{source} chybí %{amount}"
   },
   "income": {
@@ -323,9 +321,6 @@
     "erased": "Všechna data smazána",
     "sampleLoaded": "Ukázková data načtena. Smazat je můžete kdykoli v Nastavení.",
     "unpaidOn": "Připomenutí nezaplacených účtů zapnuto"
-  },
-  "history": {
-    "empty": "Zatím žádné minulé výplaty."
   },
   "demo": {
     "rent": "Nájem",

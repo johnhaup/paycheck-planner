@@ -54,24 +54,28 @@ name: pro
     visible: "Paychecks"
     timeout: 15000
 
-# Free: history shows this month only, with a locked row
-- scrollUntilVisible:
-    element: "Past paychecks"
-    direction: DOWN
-- tapOn: "Past paychecks"
+# Free: the list ends after next month with a locked row instead of more paychecks.
+# Swipes, not scrollUntilVisible (HAU-173); a swipe at the bottom only bounces.
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
 - extendedWaitUntil:
-    visible: "See earlier months"
-    timeout: 10000
-- tapOn: "See earlier months"
+    visible: "See a full year of paychecks"
+    timeout: 15000
+- tapOn: "See a full year of paychecks"
 - extendedWaitUntil:
     visible: "Paycheck Planner Pro"
     timeout: 10000
 - tapOn: "Close"
 - extendedWaitUntil:
-    visible: "See earlier months"
+    visible: "See a full year of paychecks"
     timeout: 10000
-# The header back button reads Back on iOS and Navigate up on Android
-- tapOn: "Back|Navigate up"
 
 # Free: Settings shows the Pro row and badges; CSV export opens the paywall
 - openLink: paycheck-planner://settings

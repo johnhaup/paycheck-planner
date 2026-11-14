@@ -32,7 +32,6 @@
     "payDate": "Lønningsdag",
     "language": "Språk",
     "currency": "Valuta",
-    "history": "Tidligere lønninger",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "Merk %{payee} som satt av",
     "markUnpaid": "Merk %{payee} som ikke betalt",
     "moveThis": "Flytt %{payee}",
-    "pastPaychecks": "Tidligere lønninger",
     "shortAhead": "Lønnen %{date} · %{source} mangler %{amount}"
   },
   "income": {
@@ -319,9 +317,6 @@
     "erased": "Alle data slettet",
     "sampleLoaded": "Eksempeldata lastet inn. Slett dem når som helst i Innstillinger.",
     "unpaidOn": "Påminnelse om ubetalte regninger er på"
-  },
-  "history": {
-    "empty": "Ingen tidligere lønninger ennå."
   },
   "demo": {
     "rent": "Husleie",

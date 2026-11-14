@@ -1,4 +1,4 @@
-import { addMonths, endOfMonth, format, isAfter, isSameYear, startOfDay, startOfMonth, subDays, subMonths } from "date-fns";
+import { addMonths, endOfMonth, format, isAfter, isBefore, isSameYear, startOfMonth, subMonths } from "date-fns";
 import { formatMonthLong, formatMonthShort } from "@/utils/dates";
 import {
   getPaychecksThrough,
@@ -12,7 +12,7 @@ import type { MonthGroup, PaycheckExpense, PaycheckItem } from "@/components/pay
 
 /** The current month plus this many full months after it: a year for Pro, this month and next for free. */
 export const FULL_MONTHS_AHEAD = { pro: 11, free: 1 } as const;
-/** How far back past paychecks go, in whole months before the current one; free stays within this month. */
+/** How far back the Paychecks list goes, in whole months before the current one; free stays within this month. */
 export const PAST_MONTHS = { pro: 6, free: 0 } as const;
 
 /** This paycheck's pay amount: its override if one was set, else the source's usual amount. */
@@ -88,18 +88,23 @@ export function buildPaycheckItem(
   };
 }
 
-/** Upcoming paychecks for every source, with their bills, grouped by calendar month. */
+/**
+ * Paychecks for every source, with their bills, oldest first and grouped by calendar month,
+ * through the end of the month `monthsAhead` after this one. They start today, or with
+ * `monthsBack` at the start of the month that many before this one.
+ */
 export function buildMonthGroups(
   incomeSources: IncomeSource[],
   expenses: Expense[],
   assignments: ExpenseAssignment[],
   overrides: PaycheckOverride[],
   now: Date,
-  monthsAhead: number = FULL_MONTHS_AHEAD.pro
+  monthsAhead: number = FULL_MONTHS_AHEAD.pro,
+  monthsBack?: number
 ): MonthGroup[] {
   const until = endOfMonth(addMonths(now, monthsAhead));
   const allPaychecks = incomeSources.flatMap((source) =>
-    getPaychecksThrough(source, now, until).map((paycheck) =>
+    getPaychecksThrough(source, getStart(source, now, monthsBack), until).map((paycheck) =>
       buildPaycheckItem(source, paycheck, expenses, assignments, overrides)
     )
   );
@@ -107,27 +112,19 @@ export function buildMonthGroups(
   return groupByMonth(allPaychecks, now);
 }
 
-/** Paychecks before today, newest first, back to the start of PAST_MONTHS months ago. */
-export function buildPastMonthGroups(
-  incomeSources: IncomeSource[],
-  expenses: Expense[],
-  assignments: ExpenseAssignment[],
-  overrides: PaycheckOverride[],
-  now: Date,
-  pastMonths: number = PAST_MONTHS.pro
-): MonthGroup[] {
-  const from = startOfMonth(subMonths(now, pastMonths));
-  const until = subDays(startOfDay(now), 1);
-  const allPaychecks = incomeSources.flatMap((source) => {
-    // Monthly and semi-monthly schedules would otherwise invent paychecks before the first one
-    const firstPayDate = parseLocalDate(source.firstPayDate);
-    const start = isAfter(firstPayDate, from) ? firstPayDate : from;
-    return getPaychecksThrough(source, start, until).map((paycheck) =>
-      buildPaycheckItem(source, paycheck, expenses, assignments, overrides)
-    );
-  });
-  allPaychecks.sort((a, b) => b.date.getTime() - a.date.getTime());
-  return groupByMonth(allPaychecks, now);
+function getStart(source: IncomeSource, now: Date, monthsBack: number | undefined): Date {
+  if (monthsBack === undefined) return now;
+  const from = startOfMonth(subMonths(now, monthsBack));
+  // Monthly and semi-monthly schedules would otherwise invent past paychecks before the first one
+  const firstPayDate = parseLocalDate(source.firstPayDate);
+  const start = isAfter(firstPayDate, from) ? firstPayDate : from;
+  return isAfter(start, now) ? now : start;
+}
+
+/** Whether any source was already paying before the earliest month `monthsBack` reaches. */
+export function hasEarlierMonths(incomeSources: IncomeSource[], now: Date, monthsBack: number): boolean {
+  const from = startOfMonth(subMonths(now, monthsBack));
+  return incomeSources.some((source) => isBefore(parseLocalDate(source.firstPayDate), from));
 }
 
 /** Groups already-sorted paychecks by calendar month, keeping their order. */

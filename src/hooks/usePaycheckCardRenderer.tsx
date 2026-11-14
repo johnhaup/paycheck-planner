@@ -7,7 +7,7 @@ import { openPaymentLink } from "@/utils/links";
 import { useProGate } from "@/hooks/useProGate";
 import type { PaycheckItem } from "@/components/paychecks/types";
 
-/** A FlatList `renderItem` for interactive paycheck cards, shared by the upcoming and past lists. */
+/** A FlatList `renderItem` for interactive paycheck cards. */
 export function usePaycheckCardRenderer() {
   const router = useRouter();
   const assignments = useStore((s) => s.assignments);

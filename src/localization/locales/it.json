@@ -33,7 +33,6 @@
     "payDate": "Data di paga",
     "language": "Lingua",
     "currency": "Valuta",
-    "history": "Stipendi passati",
     "pro": "Pro"
   },
   "paychecks": {
@@ -55,7 +54,6 @@
     "markSetAside": "Segna %{payee} come accantonato",
     "markUnpaid": "Segna %{payee} come non pagata",
     "moveThis": "Sposta %{payee}",
-    "pastPaychecks": "Stipendi passati",
     "shortAhead": "Allo stipendio del %{date} · %{source} mancano %{amount}"
   },
   "income": {
@@ -320,9 +318,6 @@
     "erased": "Tutti i dati cancellati",
     "sampleLoaded": "Dati di esempio caricati. Puoi cancellarli quando vuoi da Impostazioni.",
     "unpaidOn": "Promemoria bollette non pagate attivo"
-  },
-  "history": {
-    "empty": "Ancora nessuno stipendio passato."
   },
   "demo": {
     "rent": "Affitto",

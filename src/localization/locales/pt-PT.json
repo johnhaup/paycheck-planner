@@ -32,7 +32,6 @@
     "payDate": "Data de pagamento",
     "language": "Idioma",
     "currency": "Moeda",
-    "history": "Ordenados anteriores",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "Marcar %{payee} como reservada",
     "markUnpaid": "Marcar %{payee} como não paga",
     "moveThis": "Mover %{payee}",
-    "pastPaychecks": "Ordenados anteriores",
     "shortAhead": "Ao ordenado de %{date} · %{source} faltam %{amount}"
   },
   "income": {
@@ -319,9 +317,6 @@
     "erased": "Todos os dados apagados",
     "sampleLoaded": "Dados de exemplo carregados. Apague-os quando quiser nas Definições.",
     "unpaidOn": "Lembrete de faturas por pagar ativado"
-  },
-  "history": {
-    "empty": "Ainda não há ordenados anteriores."
   },
   "demo": {
     "rent": "Renda",
