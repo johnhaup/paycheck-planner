@@ -1,8 +1,10 @@
-# Protects the pay date screen's navigation bar in the longest "Mark all paid" translation (HAU-326):
-# Malayalam's 33-character label is capped at 40% of the bar and shrinks to fit, so the title
-# "ശമ്പള തീയതി" (Pay Date) stays in the bar. Before the fix the button took about two-thirds of
-# the bar and the title was gone. The size and whole-letters check is a screenshot
-# (pay-date-header-ml); the position check below fails when the title is pushed out.
+# Protects the pay date screen's navigation bar in a long "Mark all paid" translation (HAU-326):
+# the button is capped at 40% of the bar and shrinks to fit, so the title "ശമ്പള തീയതി" (Pay Date)
+# stays in the bar. Before the fix the button took about two-thirds of the bar and the title was
+# gone. Since HAU-332 Malayalam's label is the shorter "എല്ലാം അടച്ചതാക്കുക" so it fits the cap at
+# about the title's size (the old 33-character one hit the cap's 0.7 floor, about 11 pt). The size
+# and whole-letters check is a screenshot (pay-date-header-ml); the position check below fails
+# when the title is pushed out.
 # pay-date-header.yaml covers English at the largest accessibility text size.
 appId: com.johnhaup.paycheckplanner
 tags: [ios]   # the language comes from an iOS launch argument
@@ -28,19 +30,19 @@ name: pay-date-header-locale
     index: 0
 # "Mark all paid"
 - extendedWaitUntil:
-    visible: "എല്ലാം അടച്ചതായി അടയാളപ്പെടുത്തുക"
+    visible: "എല്ലാം അടച്ചതാക്കുക"
     timeout: 15000
 - assertVisible:
     text: "ശമ്പള തീയതി"
-    leftOf: "എല്ലാം അടച്ചതായി അടയാളപ്പെടുത്തുക"
+    leftOf: "എല്ലാം അടച്ചതാക്കുക"
 - takeScreenshot: pay-date-header-ml
 
 # The button still works: Undo toast ("പഴയപടിയാക്കുക"), the button leaves, the title stays
-- tapOn: "എല്ലാം അടച്ചതായി അടയാളപ്പെടുത്തുക"
+- tapOn: "എല്ലാം അടച്ചതാക്കുക"
 - extendedWaitUntil:
     visible: "പഴയപടിയാക്കുക"
     timeout: 5000
 - extendedWaitUntil:
-    notVisible: "എല്ലാം അടച്ചതായി അടയാളപ്പെടുത്തുക"
+    notVisible: "എല്ലാം അടച്ചതാക്കുക"
     timeout: 15000
 - assertVisible: "ശമ്പള തീയതി"
