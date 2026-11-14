@@ -80,10 +80,12 @@ function ChoiceRow({ choice, selected, isFirst, isLast, onSelect }: ChoiceRowPro
         accessibilityRole="radio"
         accessibilityState={accessibilityState}
       >
-        <View style={styles.text}>
-          <AppText variant="body">{choice.label}</AppText>
-          {choice.detail ? <AppText variant="meta">{choice.detail}</AppText> : null}
-        </View>
+        {/* One text node: as its own node the System default row's detail ("English") is a second
+            element with a language's name, and on Android a tap on that name lands on this row (HAU-304) */}
+        <AppText variant="body" style={styles.text}>
+          {choice.label}
+          {choice.detail ? <AppText variant="meta">{`\n${choice.detail}`}</AppText> : null}
+        </AppText>
         {selected ? <Ionicons name="checkmark" size={20} color={colors.primary} /> : null}
       </Pressable>
     </View>
@@ -97,6 +99,5 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
-    gap: MEASUREMENTS.spacing.xs,
   },
 });
