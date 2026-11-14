@@ -1,9 +1,8 @@
-# Protects the Expenses tab: grouped bills with the monthly summary, the
-# All / Recurring / One-time filter, sort, and adding a bill through the form.
+# The expenses journey: grouped bills with the monthly summary, the All / Recurring /
+# One-time filter, sort, the Pro gate on Set-aside (HAU-146) and adding a bill through
+# the form. iOS adds the collapsing large title.
 appId: com.johnhaup.paycheckplanner
 name: expenses
-onFlowStart:
-  - runFlow: subflows/approve-deep-link.yaml   # iOS asks once per simulator before a deep link opens the app
 ---
 - launchApp:
     clearState: true
@@ -14,12 +13,52 @@ onFlowStart:
 - extendedWaitUntil:
     visible: ".* · left over"
     timeout: 10000
-- openLink: paycheck-planner://expenses
+- tapOn: "Expenses"
 - extendedWaitUntil:
     visible: ".* a month across .*"
     timeout: 10000
 - assertVisible: ".*Groceries.*"
 - takeScreenshot: expenses
+
+# iOS: the large title collapses into the bar on scroll and comes back at the top
+# (HAU-11, regression HAU-58). The collapsed title is centred in the bar, between the
+# status-bar clock and Sort; the large one never matches that. "Rent" is on screen
+# both at the top and after the scroll.
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - assertNotVisible:
+          text: "Expenses"
+          rightOf: "\\d{1,2}:\\d{2}.*"
+          leftOf: "Sort"
+          above: ".*Rent.*"
+      - swipe:
+          start: 50%, 65%
+          end: 50%, 15%
+          duration: 400
+      - assertNotVisible: ".* a month across .*"
+      - assertVisible:
+          text: "Expenses"
+          rightOf: "\\d{1,2}:\\d{2}.*"
+          leftOf: "Sort"
+          above: ".*Rent.*"
+      - swipe:
+          start: 50%, 15%
+          end: 50%, 65%
+          duration: 400
+      - swipe:
+          start: 50%, 15%
+          end: 50%, 65%
+          duration: 400
+      - extendedWaitUntil:
+          visible: ".* a month across .*"
+          timeout: 10000
+      - assertNotVisible:
+          text: "Expenses"
+          rightOf: "\\d{1,2}:\\d{2}.*"
+          leftOf: "Sort"
+          above: ".*Rent.*"
 
 # Filter (the segment comes before the "ONE-TIME" section header in the tree)
 - tapOn:
@@ -33,7 +72,7 @@ onFlowStart:
 - tapOn: "All"
 - assertVisible: ".*Groceries.*"
 
-# Sort action sheet
+# Sort action sheet, opened by the icon-only button's label (HAU-61)
 - tapOn: "Sort"
 - extendedWaitUntil:
     visible: "Amount, highest first"
@@ -41,11 +80,21 @@ onFlowStart:
 - tapOn: "Amount, highest first"
 - assertVisible: ".*Groceries.*"
 
-# Add a bill
+# The form's Set-aside option is Pro: it opens the paywall and the form stays (HAU-146)
 - tapOn: "Add expense"
 - extendedWaitUntil:
     visible: "e.g. Electric Company"
     timeout: 10000
+- tapOn: "Set-aside.*"
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 15000
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: "e.g. Electric Company"
+    timeout: 15000
+
+# Add a bill
 - tapOn: "e.g. 150.00"
 - inputText: "45"
 - tapOn: "e.g. Electric Company"
@@ -56,14 +105,11 @@ onFlowStart:
 - tapOn: "Add Expense"
 # The new bill has no linked source, so it lands in the "Not linked" section
 # under the two income sources, below the fold on an iPhone 17 Pro. Wait for
-# the summary to count it, then scroll to it (HAU-65, seen on the Release gate).
+# the summary to count it, then swipe to the bottom and wait for the row
+# (HAU-65, HAU-132).
 - extendedWaitUntil:
     visible: ".* a month across 9 bills"
     timeout: 15000
-# "Not linked" sits just above the last section (One-time): swipe to the bottom,
-# then wait for the row. Not scrollUntilVisible: under gate load its first
-# lookup took 5 s and its one swipe 48 s, so the 20 s budget ran out with the
-# row already on screen (HAU-132, same as HAU-106).
 - swipe:
     start: 50%, 80%
     end: 50%, 20%

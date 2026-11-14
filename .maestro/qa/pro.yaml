@@ -1,16 +1,21 @@
-# Protects Pro (HAU-69, HAU-78, HAU-116, HAU-118, HAU-146). First the free tier on the real store: the 12-month chart, earlier
-# history, per-paycheck amount changes, reminders, CSV export and the second income source carry a PRO
-# badge and open the paywall, which shows the live store price and Restore Purchases; it never taps Buy
-# there (a real Buy raises the sandbox sign-in alert on a simctl launch).
-# The purchase itself is pro-mock-store.yaml (iOS launch argument -proStoreMock). Runs in the release
-# gate on a plain Release build on both platforms: no Xcode, no StoreKit configuration, no account.
+# The Pro journey on the mock store (launch argument -proStoreMock, src/services/proStoreMock.ts):
+# Restore with nothing bought, Buy, unlocked; after a relaunch the account still owns Pro and the
+# Pro features open (the 12-month chart, a paycheck's own pay amount, another income source); a
+# refund (-proStoreMockRevoke) locks it again and Restore finds nothing.
+# The free tier's gates are steps in the other flows. Never tap Buy on a launch without
+# -proStoreMock: the real sandbox sign-in alert would break every later flow.
+# The paywall is reached the way a user reaches it (the Go Pro card, the Settings row): no deep
+# links, so a freshly erased simulator's "Open in Paycheck Planner?" alert never comes up.
 appId: com.johnhaup.paycheckplanner
+tags: [ios]   # the mock store is switched on by an iOS launch argument (Android reads every launch flag as off)
 name: pro
-onFlowStart:
-  - runFlow: subflows/approve-deep-link.yaml   # iOS asks once per simulator before a deep link opens the app
 ---
+# Start from an empty mock account (revoke) whatever an earlier run left behind
 - launchApp:
     clearState: true
+    arguments:
+      "-proStoreMock": true
+      "-proStoreMockRevoke": true
 - extendedWaitUntil:
     visible: "Try with sample data"
     timeout: 60000
@@ -18,135 +23,135 @@ onFlowStart:
 - extendedWaitUntil:
     visible: ".* · left over"
     timeout: 10000
-
-# Free: this month and next, then a Go Pro card that opens the paywall
-- assertVisible: "Go Pro to plan a full year ahead"
-- takeScreenshot: chart-locked
 - tapOn: "Go Pro to plan a full year ahead"
 - extendedWaitUntil:
-    visible: "Paycheck Planner Pro"
+    visible: "Buy for \\$4\\.99"
+    timeout: 20000
+# Nothing bought yet: Restore finds nothing and the paywall stays locked
+- tapOn: "Restore Purchases"
+- extendedWaitUntil:
+    visible: "No Pro purchase found for this account"
     timeout: 10000
-- tapOn: "Close"
+- tapOn: "Buy for \\$4\\.99"
+- extendedWaitUntil:
+    visible: "Pro is unlocked"
+    timeout: 20000
+- takeScreenshot: pro-unlocked
+- tapOn: "Done"
 - extendedWaitUntil:
     visible: ".* · left over"
     timeout: 10000
 
-# Collapsed, the card becomes a pill-high Go Pro banner beside the month pills and still opens the paywall
-# (HAU-116, HAU-145). The column's button still spans the faded card under the navigation bar, so tap
-# the banner itself by point (third column, just under the bar on the iPhone 17 Pro), as
-# large-title.yaml does for the December pill.
-- swipe:
-    start: "50%,70%"
-    end: "50%,30%"
-    duration: 800
+# Still Pro after a kill and relaunch (the launch check asks the mock account again)
+- launchApp:
+    stopApp: true
+    arguments:
+      "-proStoreMock": true
 - extendedWaitUntil:
-    visible:
-      text: "Paychecks"
-      rightOf: "\\d{1,2}:\\d{2}.*"
-      leftOf: "Settings"
-    timeout: 15000
-- takeScreenshot: chart-locked-collapsed
+    visible: ".* · left over"
+    timeout: 60000
+
+# The 12-month chart (HAU-316): a tap three months ahead jumps the list there, and
+# "Go to this month" returns to the current paycheck
+- assertNotVisible: "Go Pro to plan a full year ahead"
+- copyTextFrom: ".* · left over"
+- evalScript: ${output.thisMonth = maestro.copiedText}
 - tapOn:
-    point: 65%, 15%
+    text: "[A-Za-z]+( [0-9]{4})?, \\$[^,]+ left"
+    index: 2
 - extendedWaitUntil:
-    visible: "Paycheck Planner Pro"
+    visible: "Go to this month"
     timeout: 15000
-- tapOn: "Close"
+- waitForAnimationToEnd
+- copyTextFrom: ".* · left over"
+- evalScript: ${output.jumpedMonth = maestro.copiedText.split(' · ')[0]}
+- assertTrue: ${maestro.copiedText != output.thisMonth}
+- assertVisible: "(?i)${output.jumpedMonth} paychecks"
+- takeScreenshot: pro-month-jumped
+- tapOn: "Go to this month"
 - extendedWaitUntil:
-    visible: "Paychecks"
-    timeout: 15000
-
-# Free: the list ends after next month with a locked row instead of more paychecks.
-# Swipes, not scrollUntilVisible (HAU-173); a swipe at the bottom only bounces.
-- swipe:
-    start: 50%, 80%
-    end: 50%, 20%
-- swipe:
-    start: 50%, 80%
-    end: 50%, 20%
-- swipe:
-    start: 50%, 80%
-    end: 50%, 20%
-- extendedWaitUntil:
-    visible: "See a full year of paychecks"
-    timeout: 15000
-- tapOn: "See a full year of paychecks"
-- extendedWaitUntil:
-    visible: "Paycheck Planner Pro"
-    timeout: 10000
-- tapOn: "Close"
-- extendedWaitUntil:
-    visible: "See a full year of paychecks"
-    timeout: 10000
-
-# Free: Settings shows the Pro row and badges; CSV export opens the paywall
-- openLink: paycheck-planner://settings
-- extendedWaitUntil:
-    visible: "Paycheck Planner Pro, One-time purchase.*"
-    timeout: 10000
-- assertVisible: "PRO"
-- takeScreenshot: settings-pro-badges
-- swipe:
-    start: "50%,80%"
-    end: "50%,25%"
-- tapOn: ".*Export bills as CSV.*"
-- extendedWaitUntil:
-    visible: "Paycheck Planner Pro"
-    timeout: 10000
-- assertVisible: "Restore Purchases"
-- tapOn: "Close"
-- extendedWaitUntil:
-    visible: ".*Export bills as CSV.*"
-    timeout: 10000
-- tapOn: "Close"
-
-# Free: the expense form's Set-aside option carries a PRO badge and opens the paywall (HAU-146)
-- tapOn: "Expenses"
-- extendedWaitUntil:
-    visible: "Add expense.*"
-    timeout: 15000
-- tapOn: "Add expense.*"
-- extendedWaitUntil:
-    visible: "Set-aside.*"
-    timeout: 15000
-- takeScreenshot: expense-setaside-pro-badge
-- tapOn: "Set-aside.*"
-- extendedWaitUntil:
-    visible: "Paycheck Planner Pro"
-    timeout: 15000
-- tapOn: "Close"
-- extendedWaitUntil:
-    visible: "Bill"
-    timeout: 15000
-- swipe:
-    start: "50%,20%"
-    end: "50%,90%"
-- extendedWaitUntil:
-    visible: "Add expense.*"
+    visible: ${output.thisMonth}
     timeout: 15000
 
-# Free: two sample sources already exist and stay visible; adding a third is gated
-- openLink: paycheck-planner://income
+# A paycheck's own pay amount: the sheet opens instead of the paywall, Save closes it
+# and the header's Left over (the only amount that is its own element) follows the
+# new pay. inputText appends, so erase first.
+- tapOn:
+    text: "[A-Z]{3}, [0-9]+, .*"
+    index: 0
 - extendedWaitUntil:
-    visible: "Per month"
-    timeout: 10000
-- assertVisible: ".*Brightline Co\\..*"
-- assertVisible: ".*Mesa Health.*"
-# The FAB folds the badge into its label
-- assertVisible: "Add income source · PRO"
-- takeScreenshot: income-pro-badge
-- tapOn: "Add income source · PRO"
+    visible: "Mark all paid"
+    timeout: 15000
+- copyTextFrom: "-?\\$[0-9,]+\\.[0-9]{2}"
+- evalScript: ${output.leftOver = maestro.copiedText}
+- tapOn:
+    text: "Change .* pay amount for this paycheck"
+    index: 0
 - extendedWaitUntil:
-    visible: "Paycheck Planner Pro"
+    visible: "Save"
+    timeout: 15000
+- eraseText: 10
+- inputText: "2100"
+- tapOn: "Save"
+- extendedWaitUntil:
+    notVisible: "Save"
+    timeout: 15000
+- copyTextFrom: "-?\\$[0-9,]+\\.[0-9]{2}"
+- assertTrue: ${maestro.copiedText != output.leftOver}
+- takeScreenshot: pro-pay-amount
+- tapOn: "Back"
+- extendedWaitUntil:
+    visible: ".* · left over"
     timeout: 10000
-# The live price needs the store's product. Google Play has none yet (no Play Console app), so on
-# Android the paywall stays in its price-unavailable state and only Restore Purchases is checked.
-- runFlow:
-    when:
-      platform: iOS
+
+# Another income source: the FAB has no badge and opens the form
+- tapOn: "Income"
+- extendedWaitUntil:
+    visible: "Add income source"
+    timeout: 10000
+- assertNotVisible: "Add income source · PRO"
+- tapOn: "Add income source"
+- extendedWaitUntil:
+    visible: "e.g. Acme Corp"
+    timeout: 10000
+
+# Refund, at the largest accessibility text size: the launch check revokes Pro, so the
+# paywall offers Buy again and Restore finds nothing. With that message showing the
+# pinned footer is at its tallest (HAU-182): Buy, the message and Restore stay on
+# screen while the list scrolls behind them to its last row (CSV).
+- launchApp:
+    stopApp: true
+    arguments:
+      "-proStoreMock": true
+      "-proStoreMockRevoke": true
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 60000
+- tapOn: "Settings"
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro.*"
+    timeout: 15000
+- tapOn: "Paycheck Planner Pro.*"
+- extendedWaitUntil:
+    visible: "Buy for \\$4\\.99"
+    timeout: 25000
+- tapOn: "Restore Purchases"
+- extendedWaitUntil:
+    visible: "No Pro purchase found for this account"
+    timeout: 15000
+- assertNotVisible: "Pro is unlocked"
+- repeat:
+    times: 4
     commands:
-      - extendedWaitUntil:
-          visible: "Buy for \\$4\\.99"
-          timeout: 20000
+      - swipe:
+          start: "50%,45%"
+          end: "50%,10%"
+          duration: 300
+- extendedWaitUntil:
+    visible: "Export bills as CSV"
+    timeout: 15000
+- assertVisible: "Buy for \\$4\\.99"
+- assertVisible: "No Pro purchase found for this account"
 - assertVisible: "Restore Purchases"
-- takeScreenshot: paywall
+- takeScreenshot: pro-refunded-paywall-xxxl

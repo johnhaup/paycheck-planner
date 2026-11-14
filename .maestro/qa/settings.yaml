@@ -1,6 +1,7 @@
-# Protects Settings: appearance switching, the Language picker, and
-# Erase all data with Undo from its toast, and the erase returning the app to
-# the Welcome screen.
+# The settings journey: appearance, the Language picker (with the app
+# and the gear's label following the language), the Pro row and the gated CSV export,
+# and Erase all data with Undo from its toast, then for good, back to Welcome.
+# iOS adds the largest text size.
 appId: com.johnhaup.paycheckplanner
 name: settings
 ---
@@ -17,10 +18,11 @@ name: settings
 - extendedWaitUntil:
     visible: "Hide cents"
     timeout: 10000
+- assertVisible: "Paycheck Planner Pro, One-time purchase.*"
 
 # Appearance. A fresh install defaults to Dark. The segments expose
-# accessibilityState.selected, so wait for it before each screenshot: under
-# load the re-render can land after the tap reports done.
+# accessibilityState.selected, so wait for it: under load the re-render can land
+# after the tap reports done.
 - assertVisible:
     text: "Dark"
     selected: true
@@ -31,52 +33,39 @@ name: settings
       selected: true
     timeout: 15000
 - takeScreenshot: settings-light
-- tapOn: "Dark"
-- extendedWaitUntil:
-    visible:
-      text: "Dark"
-      selected: true
-    timeout: 15000
-- takeScreenshot: settings-dark
-- tapOn: "System"
-- extendedWaitUntil:
-    visible:
-      text: "System"
-      selected: true
-    timeout: 15000
 
-# Language picker round trip
+# Language: pick Spanish. Settings and the gear's label on Paychecks follow it
+# ("Ajustes", HAU-61); "Close" has English only. Then back to English.
 - tapOn: "Language, .*"
 - extendedWaitUntil:
-    visible: "English"
+    visible: "Español"
     timeout: 10000
-- takeScreenshot: language
 # A picker row's label and detail are one element (HAU-304): on Android the System
 # default row's detail "English" used to be its own node, and `tapOn: "English"` hit it.
 # [\s\S] because Android joins the two lines with a newline.
 - assertVisible: "System default[\\s\\S]*English[\\s\\S]*"
+- tapOn: "Español"
+- extendedWaitUntil:
+    visible: "Idioma, Español.*"
+    timeout: 10000
+- tapOn: "Close"
+- extendedWaitUntil:
+    notVisible: "Ocultar decimales"
+    timeout: 10000
+- tapOn: "Ajustes"
+- extendedWaitUntil:
+    visible: "Ocultar decimales"
+    timeout: 10000
+- tapOn: "Idioma, .*"
+- extendedWaitUntil:
+    visible: "English"
+    timeout: 10000
 - tapOn: "English"
 - extendedWaitUntil:
     visible: "Language, English.*"
     timeout: 10000
 
-# Currency picker round trip (same list component as Language)
-- tapOn: "Currency, .*"
-- extendedWaitUntil:
-    visible: "EUR[\\s\\S]*"
-    timeout: 10000
-- takeScreenshot: currency
-- tapOn: "EUR[\\s\\S]*"
-- extendedWaitUntil:
-    visible: "Currency, EUR.*"
-    timeout: 10000
-
-# Erase all data, then Undo from the toast. The "All data erased" toast renders
-# over the Settings modal; before HAU-60 the LogBox banner hid every toast from
-# Maestro, so this Undo tap also protects HAU-60.
-# Erase all data is the last row: swipe to the bottom, then wait for it.
-# Not scrollUntilVisible: under gate load its first lookup alone used up the
-# 20 s budget and it gave up one swipe short (HAU-106).
+# The Data rows are last: swipe to the bottom, then wait (HAU-106).
 - swipe:
     start: 50%, 80%
     end: 50%, 20%
@@ -86,53 +75,30 @@ name: settings
 - extendedWaitUntil:
     visible: ".*Erase all data.*"
     timeout: 15000
-- tapOn: ".*Erase all data.*"
+
+# CSV export is Pro: free opens the paywall (HAU-69)
+- tapOn: ".*Export bills as CSV.*"
 - extendedWaitUntil:
-    visible: "Delete"
-    timeout: 15000
-- tapOn: "Delete"
-# The toast dismisses itself after 4 s: tap Undo the moment it shows, no
-# screenshot in between (HAU-102). Even then, under load the Delete tap alone
-# can outlast the toast: it took 7.3 s at load ~40, so the Undo wait found
-# nothing (HAU-153). The Undo wait and tap are optional so a missed toast
-# reaches the retry below instead of failing here (same as pay-date-detail,
-# HAU-112).
-- extendedWaitUntil:
-    visible: "Undo"
-    timeout: 15000
-    optional: true
-- tapOn:
-    text: "Undo"
-    optional: true
+    visible: "Paycheck Planner Pro"
+    timeout: 10000
+- assertVisible: "Restore Purchases"
 - tapOn: "Close"
-# When Undo missed, the data is gone and Welcome is behind the closed modal:
-# load the sample data again and repeat erase → Undo, up to 5 times. A broken
-# Undo still fails at the "left over" wait below.
+- extendedWaitUntil:
+    visible: ".*Erase all data.*"
+    timeout: 10000
+
+# Erase all data, then Undo from the toast, which renders over the Settings modal.
+# The toast dismisses itself after 4 s: tap Undo the moment it shows (HAU-102). Under
+# load the Delete tap alone can outlast it (HAU-153), so the Undo wait and tap are
+# optional and the pair is tried up to 5 times (HAU-112). When Undo missed, the data
+# is gone and Welcome is behind the closed modal: load the sample data again and come
+# back here. A broken Undo still fails at the check after the loop.
+- evalScript: ${output.undone = false}
 - repeat:
     times: 5
     while:
-      visible: "Try with sample data"
+      true: ${!output.undone}
     commands:
-      - extendedWaitUntil:
-          notVisible: "Close"
-          timeout: 15000
-      - tapOn: "Try with sample data"
-      - extendedWaitUntil:
-          visible: ".* · left over"
-          timeout: 15000
-      - tapOn: "Settings"
-      - extendedWaitUntil:
-          visible: "Appearance"
-          timeout: 15000
-      - swipe:
-          start: 50%, 80%
-          end: 50%, 20%
-      - swipe:
-          start: 50%, 80%
-          end: 50%, 20%
-      - extendedWaitUntil:
-          visible: ".*Erase all data.*"
-          timeout: 15000
       - tapOn: ".*Erase all data.*"
       - extendedWaitUntil:
           visible: "Delete"
@@ -146,9 +112,33 @@ name: settings
           text: "Undo"
           optional: true
       - tapOn: "Close"
-- extendedWaitUntil:
-    visible: ".* · left over"
-    timeout: 10000
+      - runFlow:
+          when:
+            visible: ".* · left over"
+          commands:
+            - evalScript: ${output.undone = true}
+      - runFlow:
+          when:
+            true: ${!output.undone}
+          commands:
+            - tapOn: "Try with sample data"
+            - extendedWaitUntil:
+                visible: ".* · left over"
+                timeout: 15000
+            - tapOn: "Settings"
+            - extendedWaitUntil:
+                visible: "Appearance"
+                timeout: 15000
+            - swipe:
+                start: 50%, 80%
+                end: 50%, 20%
+            - swipe:
+                start: 50%, 80%
+                end: 50%, 20%
+            - extendedWaitUntil:
+                visible: ".*Erase all data.*"
+                timeout: 15000
+- assertTrue: ${output.undone}
 - assertVisible: "[A-Z]{3}, [0-9]+, Brightline Co\\..*"
 
 # Erase again and let it stand: Welcome comes back
@@ -178,3 +168,33 @@ name: settings
     visible: "Try with sample data"
     timeout: 10000
 - takeScreenshot: erased
+
+# iOS, largest accessibility text size (HAU-162): the Appearance segments stack, one
+# full-width row each, instead of clipping side by side. Maestro
+# can assert the stack (each below the one before, never to its right). The launch
+# argument lasts for this launch only.
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - launchApp:
+          stopApp: true
+          arguments:
+            "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+      - extendedWaitUntil:
+          visible: "Plan every paycheck"
+          timeout: 60000
+      - tapOn: "Settings"
+      - extendedWaitUntil:
+          visible: "Light"
+          timeout: 15000
+      - assertVisible:
+          text: "Dark"
+          below: "Light"
+      - assertVisible:
+          text: "System"
+          below: "Dark"
+      - assertNotVisible:
+          text: "Dark"
+          rightOf: "Light"
+      - takeScreenshot: settings-xxxl

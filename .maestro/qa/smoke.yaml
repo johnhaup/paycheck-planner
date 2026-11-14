@@ -1,19 +1,27 @@
-# Protects: cold launch, the first-run Welcome, every tab's empty state and sample
-# state, the Settings and Pay date round trips, and that data survives a relaunch.
+# Protects: cold launch, the first-run Welcome, every tab's empty state, the sample
+# budget, and that data survives a relaunch. Kept short: it is the first thing to
+# read when a build is broken. Everything else is in the journey flows.
 #
-# Conventions for every flow in this folder (dev build + Metro on the QA sim):
+# The suite is this file plus one flow per main journey (paychecks, income, expenses,
+# settings, pro): at most 8 flows, about 5 minutes on one simulator. A new feature
+# gets a few steps in the journey it belongs to, never a file of its own; variants
+# (Pro, a locale, a text size) are steps too (brain principles.md, 2026-11-14).
+#
+# Conventions for every flow in this folder:
+# - They run in the release gate on a plain Release build launched with simctl.
+# - Steps that need iOS (launch arguments for text size, language and the mock
+#   store; the collapsing large title) sit in `runFlow: when: platform: iOS`
+#   blocks, so the rest of the flow still runs on Android. pro.yaml is iOS only.
 # - The Settings gear and its close button are icon-only Pressables with
 #   accessibility labels (HAU-61), matched by "Settings" and "Close".
-# - Tabs are switched on the real tab bar. Before HAU-60 the Reanimated
-#   dependencies warning (from sonner-native's toast hooks) raised the LogBox
-#   banner over the tab bar after the first toast, invisible to Maestro, and the
-#   flows had to use deep links (paycheck-planner://income, //expenses, // for
-#   Paychecks); the deep links still work and other flows keep them for jumps.
-#   The tab taps after "Try with sample data" below are what protect HAU-60.
+# - No deep links (`openLink`): tabs are switched on the real tab bar, Settings is
+#   opened from the gear and the paywall from a gated control. The first openLink
+#   on an erased simulator raises iOS's "Open in Paycheck Planner?" alert, which
+#   Maestro has to tap before anything else works (HAU-299, HAU-334).
+# - No scrollUntilVisible for a known distance: swipe, then wait (HAU-106). Under
+#   load its lookups use up its budget with the target already on screen.
 appId: com.johnhaup.paycheckplanner
 name: smoke
-onFlowStart:
-  - runFlow: subflows/approve-deep-link.yaml   # iOS asks once per simulator before a deep link opens the app
 ---
 - launchApp:
     clearState: true
@@ -27,12 +35,10 @@ onFlowStart:
 - extendedWaitUntil:
     visible: "No income yet"
     timeout: 10000
-- takeScreenshot: income-empty
 - tapOn: "Expenses"
 - extendedWaitUntil:
     visible: "No expenses yet"
     timeout: 10000
-- takeScreenshot: expenses-empty
 - tapOn: "Paychecks"
 - extendedWaitUntil:
     visible: "Try with sample data"
@@ -45,50 +51,6 @@ onFlowStart:
     timeout: 10000
 - assertVisible: "[A-Z]{3}, [0-9]+, Brightline Co\\..*"
 - takeScreenshot: paychecks
-
-# The sample-data toast is the first toast; the tab bar must stay reachable (HAU-60)
-- assertNotVisible: "Open debugger to view warnings."
-- tapOn: "Income"
-- extendedWaitUntil:
-    visible: "Per month"
-    timeout: 10000
-- assertVisible: ".*Brightline Co\\..*"
-- takeScreenshot: income
-- tapOn: "Expenses"
-- extendedWaitUntil:
-    visible: ".* a month across .*"
-    timeout: 10000
-- assertVisible: ".*Groceries.*"
-- takeScreenshot: expenses
-- tapOn: "Paychecks"
-- extendedWaitUntil:
-    visible: ".* · left over"
-    timeout: 10000
-
-# Settings round trip
-- tapOn: "Settings"
-- extendedWaitUntil:
-    visible: "Hide cents"
-    timeout: 10000
-- takeScreenshot: settings
-- tapOn: "Close"
-- extendedWaitUntil:
-    notVisible: "Hide cents"
-    timeout: 10000
-
-# Pay date round trip
-- tapOn:
-    text: "[A-Z]{3}, [0-9]+, .*"
-    index: 0
-- extendedWaitUntil:
-    visible: "This paycheck"
-    timeout: 10000
-- takeScreenshot: pay-date
-# The header back button reads Back on iOS and Navigate up on Android
-- tapOn: "Back|Navigate up"
-- extendedWaitUntil:
-    visible: ".* · left over"
-    timeout: 10000
 
 # Persisted state survives a kill and relaunch
 - stopApp
