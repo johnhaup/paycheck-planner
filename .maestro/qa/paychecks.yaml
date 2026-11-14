@@ -1,7 +1,15 @@
-# Protects the Paychecks tab: the month hero, selecting another month in the
-# chart, the "Go to this month" icon, and the one list that scrolls through every month.
+# The paychecks and bills journey on the free tier: the month hero and chart, the one
+# list that scrolls through every month, the Pro gates where the free months end, and
+# the Pay date screen (paid toggles, Mark all paid with Undo). iOS adds the collapsing
+# large title with the pinned month pills, and Arabic.
+# No step names a month, so the flow passes on any date.
 appId: com.johnhaup.paycheckplanner
 name: paychecks
+env:
+  # A month's bar in the chart, or its pill once collapsed: "November (this month), $1.3k left", "January 2027, $5k left"
+  MONTH: "[A-Za-z]+( [0-9]{4})?( \\(this month\\))?, -?\\$[0-9.,]+k? left"
+  # The same for any month but this one. On the free tier that is next month only.
+  OTHER_MONTH: "[A-Za-z]+( [0-9]{4})?, \\$[^,]+ left"
 ---
 - launchApp:
     clearState: true
@@ -19,33 +27,52 @@ name: paychecks
 - extendedWaitUntil:
     visible: ".*(Brightline Co\\.|Mesa Health).* of \\d+ paid.*"
     timeout: 15000
-
-# Remember this month's hero label, pick next month's chart column, come back.
-# The free tier (HAU-69) shows only this month and next, so the only column
-# whose label lacks "(this month)" is next month's.
 - copyTextFrom: ".* · left over"
 - evalScript: ${output.thisMonth = maestro.copiedText}
-- tapOn:
-    text: "[A-Za-z]+( [0-9]{4})?, \\$[^,]+ left"
-    index: 0
-- extendedWaitUntil:
-    visible: "Go to this month"
-    timeout: 10000
-- copyTextFrom: ".* · left over"
-- assertTrue: ${maestro.copiedText != output.thisMonth}
-- takeScreenshot: paychecks-other-month
-- tapOn: "Go to this month"
-- extendedWaitUntil:
-    visible: ${output.thisMonth}
-    timeout: 10000
+
+# Free shows exactly two months that have paychecks, then the Go Pro card (HAU-329).
+# pro.yaml buys from that card.
+- assertVisible: "Go Pro to plan a full year ahead"
+- assertVisible:
+    text: ${MONTH}
+    index: 1
+- assertNotVisible:
+    text: ${MONTH}
+    index: 2
+# iOS: the large title collapses into the bar and the month chart into pills pinned
+# under it (HAU-11, HAU-12, HAU-113; both regressed once on an SDK upgrade, HAU-58).
+# Maestro cannot read font sizes, but the collapsed title is centred in the bar: right
+# of the status-bar clock and left of the gear. The large title is left-aligned under
+# the clock and never matches that.
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - assertNotVisible:
+          text: "Paychecks"
+          rightOf: "\\d{1,2}:\\d{2}.*"
+          leftOf: "Settings"
+          above: ".* · left over"
+      - swipe:
+          start: 50%, 65%
+          end: 50%, 15%
+          duration: 400
+      - waitForAnimationToEnd
+      - assertNotVisible: ".* · left over"
+      - assertVisible:
+          text: ${MONTH}
+          selected: true
+      - assertVisible:
+          text: "Paychecks"
+          rightOf: "\\d{1,2}:\\d{2}.*"
+          leftOf: "Settings"
+      - takeScreenshot: paychecks-collapsed
 
 # One list runs through every month (HAU-316): scrolling on reaches next month's
 # paychecks with no tap, the chart's selected month follows, and where the free
 # months end a row opens the paywall instead of more paychecks.
-# Swipes, not scrollUntilVisible: under gate load two lookups (5 s each) and two
-# swipes (8.5 s each) used up its 20 s budget, and it gave up with the target
-# already on screen (HAU-173, same as HAU-106). Three swipes, because the list
-# is longest early in a month; a swipe at the bottom only bounces.
+# Three swipes, because the list is longest early in a month; a swipe at the bottom
+# only bounces.
 - swipe:
     start: 50%, 80%
     end: 50%, 20%
@@ -58,37 +85,22 @@ name: paychecks
 - extendedWaitUntil:
     visible: "See a full year of paychecks"
     timeout: 15000
-# Next month's column, the only one without "(this month)", is now the selected one
 - extendedWaitUntil:
     visible:
-      text: "[A-Za-z]+( [0-9]{4})?, \\$[^,]+ left"
+      text: ${OTHER_MONTH}
       selected: true
     timeout: 15000
-- takeScreenshot: paychecks-scrolled-to-next-month
-# Back to the top the same way: this month's hero comes back under the large title
-- swipe:
-    start: 50%, 20%
-    end: 50%, 80%
-- swipe:
-    start: 50%, 20%
-    end: 50%, 80%
-- swipe:
-    start: 50%, 20%
-    end: 50%, 80%
+- tapOn: "See a full year of paychecks"
 - extendedWaitUntil:
-    visible: ${output.thisMonth}
-    timeout: 15000
-# The old "Past paychecks" link is gone: scrolling up replaces it (HAU-316)
-- assertNotVisible: "Past paychecks"
-
-# Leaving the tab and coming back opens on the current paycheck again (HAU-25, HAU-316):
-# jump to next month in the chart, visit Income, return
-- tapOn:
-    text: "[A-Za-z]+( [0-9]{4})?, \\$[^,]+ left"
-    index: 0
-- extendedWaitUntil:
-    visible: "Go to this month"
+    visible: "Paycheck Planner Pro"
     timeout: 10000
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: "See a full year of paychecks"
+    timeout: 10000
+
+# Leaving the tab and coming back opens on the current paycheck again, at the top
+# (HAU-25, HAU-316), on iOS under the large title
 - tapOn: "Income"
 - extendedWaitUntil:
     visible: "Per month"
@@ -100,4 +112,119 @@ name: paychecks
 - extendedWaitUntil:
     notVisible: "Go to this month"
     timeout: 10000
-- takeScreenshot: paychecks-tab-return
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - assertNotVisible:
+          text: "Paychecks"
+          rightOf: "\\d{1,2}:\\d{2}.*"
+          leftOf: "Settings"
+          above: ".* · left over"
+
+# Next month's chart column changes the hero; "Go to this month" comes back
+- tapOn:
+    text: ${OTHER_MONTH}
+    index: 0
+- extendedWaitUntil:
+    visible: "Go to this month"
+    timeout: 10000
+- copyTextFrom: ".* · left over"
+- assertTrue: ${maestro.copiedText != output.thisMonth}
+- tapOn: "Go to this month"
+- extendedWaitUntil:
+    visible: ${output.thisMonth}
+    timeout: 10000
+
+# Pay date
+- tapOn:
+    text: "[A-Z]{3}, [0-9]+, .*"
+    index: 0
+- extendedWaitUntil:
+    visible: "This paycheck"
+    timeout: 10000
+- assertVisible: "Left over"
+- assertVisible: "Available"
+- takeScreenshot: pay-date
+
+# Toggle one bill paid and back. Name the bill: "Mark .* paid" also matches the
+# header's "Mark all paid" (HAU-112).
+- tapOn: "Mark Internet paid"
+- extendedWaitUntil:
+    visible: "Mark Internet unpaid"
+    timeout: 15000
+- tapOn: "Mark Internet unpaid"
+- extendedWaitUntil:
+    visible: "Mark Internet paid"
+    timeout: 15000
+
+# Mark all paid, then undo from the toast. The toast dismisses itself after 4 s, so
+# nothing may sit between seeing Undo and tapping it (HAU-102), and under gate load
+# Maestro's own tap and lookup can still outlast it (HAU-112): the Undo wait and tap
+# are optional, and the pair is tried up to 5 times. When Undo missed, every bill is
+# paid and "Mark all paid" is hidden, so unpay one bill to bring it back. A broken
+# Undo still fails at the wait after the loop.
+- evalScript: ${output.undone = false}
+- repeat:
+    times: 5
+    while:
+      true: ${!output.undone}
+    commands:
+      - tapOn: "Mark all paid"
+      - extendedWaitUntil:
+          visible: "Undo"
+          timeout: 15000
+          optional: true
+      - tapOn:
+          text: "Undo"
+          optional: true
+      - runFlow:
+          when:
+            visible: "Mark all paid"
+          commands:
+            - evalScript: ${output.undone = true}
+      - runFlow:
+          when:
+            true: ${!output.undone}
+          commands:
+            - tapOn:
+                text: "Mark .* unpaid"
+                index: 0
+            - extendedWaitUntil:
+                visible: "Mark all paid"
+                timeout: 15000
+- assertTrue: ${output.undone}
+
+# Changing this paycheck's pay amount is Pro (HAU-69): the paywall, not the sheet
+- tapOn:
+    text: "Change .* pay amount for this paycheck"
+    index: 0
+- extendedWaitUntil:
+    visible: "Paycheck Planner Pro"
+    timeout: 10000
+- tapOn: "Close"
+- extendedWaitUntil:
+    visible: "Mark all paid"
+    timeout: 10000
+# The header back button reads Back on iOS and Navigate up on Android
+- tapOn: "Back|Navigate up"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 10000
+
+# iOS variant. The launch argument lasts for one launch and the data stays.
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      # Arabic device language: the app comes up translated, and a chart amount keeps its
+      # number, "k" and currency together between direction marks (HAU-154). The marks
+      # are in the pattern below. Display order is a screenshot check.
+      - launchApp:
+          stopApp: true
+          arguments:
+            "-AppleLanguages": "(ar)"
+      - extendedWaitUntil:
+          visible: ".*، المتبقي \u200F[0-9.,]+k?\u200F\u00A0US\\$"
+          timeout: 60000
+      - takeScreenshot: paychecks-arabic
