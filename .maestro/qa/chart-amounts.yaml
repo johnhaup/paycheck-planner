@@ -1,8 +1,9 @@
-# Protects the amount above each month bar in right-to-left languages (HAU-154): in Arabic
-# the number, its "k" and the sign stay together and a right-to-left mark closes the number,
-# so "US$" is not split ("$4.8k US", "$2,475k US-"). English is the control. The column's
-# accessibility label carries the same string, marks included. Display order itself is
-# invisible to Maestro: read the screenshots.
+# Protects amounts in right-to-left languages. Chart (HAU-154): in Arabic the number, its "k"
+# and the sign stay together and a right-to-left mark closes the number, so "US$" is not split
+# ("$4.8k US", "$2,475k US-"). Hero and cards (HAU-172): a negative amount also ends its number
+# with that mark, so it reads "$US -2,475,172.84", not "$-2,475,172.84 US". English is the
+# control. Accessibility labels carry the same strings, marks included. Display order itself
+# is invisible to Maestro: read the screenshots.
 appId: com.johnhaup.paycheckplanner
 tags: [ios]   # the Arabic runs come from iOS launch arguments
 name: chart-amounts
@@ -87,3 +88,9 @@ name: chart-amounts
     visible: ".*، المتبقي ‏‎-[0-9.,]+k‏ US\\$"
     timeout: 15000
 - takeScreenshot: chart-amounts-ar-negative
+
+# Hero and paycheck card, negative (HAU-172): the minus sign's mark opens the amount, a
+# right-to-left mark closes it after the last digit
+- assertVisible: "‏‎-[0-9,]+\\.[0-9]{2}‏ US\\$"
+- assertVisible: ".*, ‏‎-[0-9,]+\\.[0-9]{2}‏ US\\$ متبقي"
+- takeScreenshot: chart-amounts-ar-negative-hero

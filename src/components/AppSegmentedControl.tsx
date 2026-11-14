@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { Pressable, View, StyleSheet } from "react-native";
 import { useColors } from "@/hooks/useColors";
+import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { hapticSelection } from "@/utils/haptics";
@@ -21,10 +22,12 @@ interface Props<T> {
 
 export function AppSegmentedControl<T>({ options, value, onChange }: Props<T>) {
   const colors = useColors();
+  // At accessibility text sizes the labels no longer fit side by side, so the segments stack
+  const stacked = useAccessibilityTextSize();
 
   const trackStyle = useMemo(
-    () => [styles.track, { backgroundColor: colors.segmentTrack }],
-    [colors]
+    () => [styles.track, stacked ? styles.trackStacked : undefined, { backgroundColor: colors.segmentTrack }],
+    [colors, stacked]
   );
 
   return (
@@ -34,6 +37,7 @@ export function AppSegmentedControl<T>({ options, value, onChange }: Props<T>) {
           key={String(option.value)}
           option={option}
           selected={option.value === value}
+          stacked={stacked}
           onSelect={onChange}
         />
       ))}
@@ -44,10 +48,11 @@ export function AppSegmentedControl<T>({ options, value, onChange }: Props<T>) {
 interface SegmentProps<T> {
   option: SegmentOption<T>;
   selected: boolean;
+  stacked: boolean;
   onSelect: (value: T) => void;
 }
 
-function Segment<T>({ option, selected, onSelect }: SegmentProps<T>) {
+function Segment<T>({ option, selected, stacked, onSelect }: SegmentProps<T>) {
   const colors = useColors();
 
   const handlePress = useCallback(() => {
@@ -58,8 +63,12 @@ function Segment<T>({ option, selected, onSelect }: SegmentProps<T>) {
   }, [onSelect, option.value, selected]);
 
   const segmentStyle = useMemo(
-    () => [styles.segment, selected ? { backgroundColor: colors.segmentSelected } : undefined],
-    [selected, colors]
+    () => [
+      styles.segment,
+      stacked ? undefined : styles.segmentInRow,
+      selected ? { backgroundColor: colors.segmentSelected } : undefined,
+    ],
+    [selected, stacked, colors]
   );
 
   const accessibilityState = useMemo(() => ({ selected }), [selected]);
@@ -75,6 +84,10 @@ function Segment<T>({ option, selected, onSelect }: SegmentProps<T>) {
         variant="bodyStrong"
         color={selected ? "textDefault" : "textMuted"}
         numberOfLines={1}
+        // Stacked, a label has the whole row; a word still wider than that shrinks instead of ending in "…"
+        adjustsFontSizeToFit={stacked}
+        minimumFontScale={0.5}
+        style={stacked ? styles.labelStacked : undefined}
       >
         {option.label}
       </AppText>
@@ -90,9 +103,19 @@ const styles = StyleSheet.create({
     gap: MEASUREMENTS.spacing.sm,
     borderRadius: MEASUREMENTS.radius.track,
   },
-  segment: {
+  trackStacked: {
+    flexDirection: "column",
+  },
+  segmentInRow: {
     flex: 1,
-    height: 36,
+  },
+  labelStacked: {
+    flexShrink: 1,
+  },
+  segment: {
+    // Grows with the text: a fixed height clipped the labels at large text sizes
+    minHeight: 36,
+    paddingVertical: MEASUREMENTS.spacing.sm,
     borderRadius: MEASUREMENTS.radius.lg,
     flexDirection: "row",
     gap: MEASUREMENTS.spacing.sm + 2,

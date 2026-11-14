@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useMemo } from "react";
-import { Appearance, LogBox, Platform, Pressable, StyleSheet } from "react-native";
+import { Appearance, I18nManager, LogBox, Platform, Pressable, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider, useRouter } from "expo-router";
+import { requireOptionalNativeModule } from "expo";
 import { StatusBar } from "expo-status-bar";
 import { Toaster } from "sonner-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -20,6 +21,13 @@ import { MEASUREMENTS } from "@/constants/measurements";
 // and raises the LogBox banner over the tab bar in dev builds (HAU-60). LogBox is a
 // no-op in release builds, so this only affects dev.
 LogBox.ignoreLogs(["Dependencies should only be used on the web and are always ignored on native"]);
+
+// UIKit takes its direction from the device language, React Native from the
+// in-app one. modules/layout-direction makes the native headers follow React
+// Native when the two disagree (HAU-171). iOS only.
+void requireOptionalNativeModule<{ setRTL: (rtl: boolean) => Promise<void> }>("LayoutDirection")?.setRTL(
+  I18nManager.isRTL
+);
 
 const TABS_OPTIONS = { headerShown: false };
 const ANDROID_TOOLBAR_HEIGHT = 56;

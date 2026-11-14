@@ -35,6 +35,14 @@ interface Props {
  * content used to run under the number pad, Save included. The body is capped
  * to the space between the sheet's top and the keyboard: the buttons stay
  * pinned at the bottom of that space and the text above them scrolls.
+ *
+ * On iOS react-native-screens sizes a form sheet's scroll view to the whole
+ * sheet, which drew this one behind the buttons. It finds the scroll view
+ * among the direct subviews of the screen's content wrapper, or down the chain
+ * of first subviews (RNSScreen.mm, tryFindDescendantScrollView). The body is
+ * therefore never flattened into the wrapper, and an empty view sits ahead of
+ * the ScrollView: neither search reaches it, so it keeps the frame the layout
+ * gave it.
  */
 export function AmountSheet({
   title,
@@ -99,7 +107,8 @@ export function AmountSheet({
   );
 
   return (
-    <View style={containerStyle}>
+    <View style={containerStyle} collapsable={false}>
+      <View collapsable={false} />
       <ScrollView
         ref={scrollRef}
         alwaysBounceVertical={false}

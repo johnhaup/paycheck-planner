@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
+import { BACK_ICON_OPTIONS } from "@/constants/backIcon";
 
 const TRANSPARENT_HEADER = { backgroundColor: "transparent" };
 
@@ -21,6 +22,7 @@ export function useStackScreenOptions(largeTitle = false) {
       headerTintColor: colors.textDefault,
       headerTitleStyle: { fontWeight: "600" as const },
       headerBackTitle: t("common.back"),
+      ...BACK_ICON_OPTIONS,
       headerShadowVisible: false,
       contentStyle: { backgroundColor: colors.screenBackground },
       ...(largeTitle

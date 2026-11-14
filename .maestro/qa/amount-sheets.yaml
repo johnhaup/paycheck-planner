@@ -6,8 +6,9 @@
 # Then it reopens each sheet and resets it with the second button.
 # Read the screenshots too (Maestro counts a button under the keyboard as visible):
 # amount-sheets-pay and amount-sheets-bill-custom must show the amount field and every button whole
-# above the number pad. With two buttons the hint under the field runs behind them at this size;
-# that is a known cosmetic defect, filed from HAU-159's QA.
+# above the number pad, and the hint cut off above Save with nothing showing through the outline
+# button (HAU-311: react-native-screens used to stretch the sheet's ScrollView behind the buttons).
+# Maestro cannot see that clipping, so it stays a screenshot check, and so does the default size.
 # Both sheets are Pro, so the flow buys on the mock store first (empty account, default text size),
 # then relaunches at the largest size. The launch arguments last for one launch only.
 appId: com.johnhaup.paycheckplanner

@@ -1,6 +1,7 @@
 import { addMonths, endOfMonth, format, isAfter, isBefore, isSameYear, startOfMonth, subMonths } from "date-fns";
 import { formatMonthLong, formatMonthShort } from "@/utils/dates";
 import {
+  getPaychecks,
   getPaychecksThrough,
   formatPayDate,
   parseLocalDate,
@@ -10,7 +11,10 @@ import {
 import type { Expense, ExpenseAssignment, IncomeSource, PaycheckOverride } from "@/types";
 import type { MonthGroup, PaycheckExpense, PaycheckItem } from "@/components/paychecks/types";
 
-/** The current month plus this many full months after it: a year for Pro, this month and next for free. */
+/**
+ * The month of the next paycheck plus this many full months after it: a year for Pro, two months
+ * for free (this month and next, until this month's last paycheck has passed).
+ */
 export const FULL_MONTHS_AHEAD = { pro: 11, free: 1 } as const;
 /** How far back the Paychecks list goes, in whole months before the current one; free stays within this month. */
 export const PAST_MONTHS = { pro: 6, free: 0 } as const;
@@ -89,9 +93,10 @@ export function buildPaycheckItem(
 }
 
 /**
- * Paychecks for every source, with their bills, oldest first and grouped by calendar month,
- * through the end of the month `monthsAhead` after this one. They start today, or with
- * `monthsBack` at the start of the month that many before this one.
+ * Paychecks for every source, with their bills, oldest first and grouped by calendar month. They
+ * start today, or with `monthsBack` at the start of the month that many before this one, and run
+ * through the end of the month `monthsAhead` after the first month that has a paycheck to show:
+ * the month of the next paycheck, or with `monthsBack` this month when it has had one.
  */
 export function buildMonthGroups(
   incomeSources: IncomeSource[],
@@ -102,7 +107,12 @@ export function buildMonthGroups(
   monthsAhead: number = FULL_MONTHS_AHEAD.pro,
   monthsBack?: number
 ): MonthGroup[] {
-  const until = endOfMonth(addMonths(now, monthsAhead));
+  // Counted from the first paycheck shown, not from today: a month with nothing to show (no
+  // paycheck left, and its past ones not listed) would leave the window a month short
+  const firstPayDates = incomeSources.flatMap((source) =>
+    getPaychecks(source, monthsBack === undefined ? now : getStart(source, now, 0), 1).map((p) => p.date.getTime())
+  );
+  const until = endOfMonth(addMonths(firstPayDates.length > 0 ? Math.min(...firstPayDates) : now, monthsAhead));
   const allPaychecks = incomeSources.flatMap((source) =>
     getPaychecksThrough(source, getStart(source, now, monthsBack), until).map((paycheck) =>
       buildPaycheckItem(source, paycheck, expenses, assignments, overrides)

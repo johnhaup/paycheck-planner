@@ -2,7 +2,9 @@
 # Arabic device with English picked comes up in English, and Paychecks, the toast and
 # the Add expense form all work there. Maestro cannot see text alignment: read the
 # screenshots. Text and field contents must sit at the left edge of their
-# boxes, placeholders included.
+# boxes, placeholders included. The native headers follow the in-app language too
+# (HAU-171): Back left of the title and Mark all paid right of it on Pay Date, Close
+# right of the title on Settings and the paywall. Maestro can see those positions.
 appId: com.johnhaup.paycheckplanner
 tags: [ios]   # the device language comes from iOS launch arguments
 name: language-direction
@@ -54,6 +56,13 @@ name: language-direction
 - extendedWaitUntil:
     visible: "This paycheck"
     timeout: 15000
+- assertVisible:
+    text: "Back"
+    leftOf: "Pay Date"
+- assertVisible:
+    text: "Mark all paid"
+    rightOf: "Pay Date"
+- takeScreenshot: direction-pay-date-header
 - tapOn: "Mark all paid"
 # The toast lasts 4 s, so under gate load this wait can miss it; the step is optional
 - extendedWaitUntil:
@@ -77,3 +86,50 @@ name: language-direction
     visible: "QA Water"
     timeout: 15000
 - takeScreenshot: direction-form-typed
+
+- openLink: paycheck-planner://settings
+- extendedWaitUntil:
+    visible: "Language, English.*"
+    timeout: 15000
+- assertVisible:
+    text: "Close"
+    rightOf: "Settings"
+- takeScreenshot: direction-settings-header
+- tapOn: "Close"
+- openLink: paycheck-planner://paywall
+- extendedWaitUntil:
+    visible: "One-time purchase.*"
+    timeout: 15000
+- assertVisible:
+    text: "Close"
+    rightOf: "Pro"
+- takeScreenshot: direction-paywall-header
+
+# Cold relaunch in the same mismatch (HAU-325). On an Arabic device iOS mirrors the back
+# chevron after a cold launch, so the stack passes its own icon there: read
+# direction-pay-date-header-cold, it must show "‹ Back" at the left (not "› Back", not a bare
+# "Back"). Maestro cannot see the chevron; it can see that Back sits left of the title and
+# that tapping the custom icon still goes back.
+- launchApp:
+    stopApp: true
+    arguments:
+      "-AppleLanguages": "(ar)"
+      "-AppleLocale": "ar_AE"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 60000
+- tapOn:
+    text: "[A-Z]{3}, [0-9]+, .*"
+    index: 0
+- extendedWaitUntil:
+    visible: "This paycheck"
+    timeout: 15000
+- assertVisible:
+    text: "Back"
+    leftOf: "Pay Date"
+- takeScreenshot: direction-pay-date-header-cold
+- tapOn: "Back"
+- extendedWaitUntil:
+    visible: ".* · left over"
+    timeout: 15000
+- assertNotVisible: "This paycheck"

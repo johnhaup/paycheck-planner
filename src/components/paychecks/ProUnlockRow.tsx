@@ -16,7 +16,7 @@ export function ProUnlockRow({ label, onPress }: Props) {
 
   return (
     <Pressable style={styles.row} onPress={onPress} accessibilityRole="button" accessibilityLabel={label}>
-      <AppText variant="bodyStrong" color="primaryText" style={styles.label}>{label}</AppText>
+      <AppText variant="bodyStrong" color="primaryText" center style={styles.label}>{label}</AppText>
       <ProBadge />
       <Ionicons name="chevron-forward" size={16} color={colors.primaryText} />
     </Pressable>
@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    // When the label is as wide as the screen it wraps, and the badge and chevron drop under it
+    flexWrap: "wrap",
     gap: MEASUREMENTS.spacing.md,
     paddingVertical: MEASUREMENTS.spacing.xl,
   },
