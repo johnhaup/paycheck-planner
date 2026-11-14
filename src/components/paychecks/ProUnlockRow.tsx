@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
@@ -17,8 +17,10 @@ export function ProUnlockRow({ label, onPress }: Props) {
   return (
     <Pressable style={styles.row} onPress={onPress} accessibilityRole="button" accessibilityLabel={label}>
       <AppText variant="bodyStrong" color="primaryText" center style={styles.label}>{label}</AppText>
-      <ProBadge />
-      <Ionicons name="chevron-forward" size={16} color={colors.primaryText} />
+      <View style={styles.trailing}>
+        <ProBadge />
+        <Ionicons name="chevron-forward" size={16} color={colors.primaryText} />
+      </View>
     </Pressable>
   );
 }
@@ -35,5 +37,11 @@ const styles = StyleSheet.create({
   },
   label: {
     flexShrink: 1,
+  },
+  // One flex item, so the wrap can never leave the chevron alone on a line (HAU-330)
+  trailing: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: MEASUREMENTS.spacing.md,
   },
 });
