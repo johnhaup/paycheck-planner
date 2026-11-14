@@ -3,7 +3,8 @@
 # keys and a tap on it typed a digit instead ("1008" from "100"). Save and the use-default button
 # are now pinned above the keyboard and the text scrolls. The flow types an amount and taps Save on
 # both sheets: on the old layout that tap lands on a key, the sheet stays open and the wait fails.
-# Then it reopens each sheet and resets it with the second button.
+# Then it reopens each sheet and resets it with the second button, and reopens the bill sheet to
+# show its title (HAU-312).
 # Read the screenshots too (Maestro counts a button under the keyboard as visible):
 # amount-sheets-pay and amount-sheets-bill-custom must show the amount field and every button whole
 # above the number pad. With two buttons the hint under the field runs behind them at this size;
@@ -119,6 +120,32 @@ name: amount-sheets
 - assertVisible: "Save"
 - takeScreenshot: amount-sheets-bill-custom
 - tapOn: "Use default amount"
+- extendedWaitUntil:
+    notVisible: "Save"
+    timeout: 15000
+
+# The sheet title wraps between words only (HAU-312). It is scrolled out of view when the sheet
+# opens, so scroll the sheet's text up (swipes start below the grabber; a swipe from the top edge
+# drags the whole sheet down). Maestro cannot see where a line breaks: in
+# amount-sheets-bill-title "Registration" must be whole on its own line, not "Registratio / n".
+- tapOn: "Change Car Registration amount for this paycheck"
+- extendedWaitUntil:
+    visible: "Save"
+    timeout: 15000
+- swipe:
+    start: 50%, 25%
+    end: 50%, 45%
+    duration: 700
+- swipe:
+    start: 50%, 25%
+    end: 50%, 45%
+    duration: 700
+- waitForAnimationToEnd
+- assertVisible:
+    text: "Car Registration"
+    above: ".* paycheck only"
+- takeScreenshot: amount-sheets-bill-title
+- tapOn: "Save"
 - extendedWaitUntil:
     notVisible: "Save"
     timeout: 15000
