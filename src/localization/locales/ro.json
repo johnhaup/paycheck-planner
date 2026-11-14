@@ -33,7 +33,6 @@
     "payDate": "Data plății",
     "language": "Limbă",
     "currency": "Monedă",
-    "history": "Salarii anterioare",
     "pro": "Pro"
   },
   "paychecks": {
@@ -55,7 +54,6 @@
     "markSetAside": "Marchează %{payee} ca pus deoparte",
     "markUnpaid": "Marchează %{payee} ca neplătit",
     "moveThis": "Mută %{payee}",
-    "pastPaychecks": "Salarii anterioare",
     "shortAhead": "Salariului din %{date} · %{source} îi lipsesc %{amount}"
   },
   "income": {
@@ -322,9 +320,6 @@
     "erased": "Toate datele au fost șterse",
     "sampleLoaded": "Date exemplu încărcate. Le poți șterge oricând din Setări.",
     "unpaidOn": "Mementoul pentru facturi neplătite e activat"
-  },
-  "history": {
-    "empty": "Încă nu există salarii anterioare."
   },
   "demo": {
     "rent": "Chirie",

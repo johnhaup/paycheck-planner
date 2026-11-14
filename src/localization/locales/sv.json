@@ -33,7 +33,6 @@
     "payDate": "Lönedag",
     "language": "Språk",
     "currency": "Valuta",
-    "history": "Tidigare löner",
     "pro": "Pro"
   },
   "paychecks": {
@@ -55,7 +54,6 @@
     "markSetAside": "Markera %{payee} som avsatt",
     "markUnpaid": "Markera %{payee} som obetald",
     "moveThis": "Flytta %{payee}",
-    "pastPaychecks": "Tidigare löner",
     "shortAhead": "Lönen %{date} · %{source} saknar %{amount}"
   },
   "income": {
@@ -320,9 +318,6 @@
     "erased": "All data raderad",
     "sampleLoaded": "Exempeldata inläst. Radera den när du vill under Inställningar.",
     "unpaidOn": "Påminnelse om obetalda räkningar på"
-  },
-  "history": {
-    "empty": "Inga tidigare löner än."
   },
   "demo": {
     "rent": "Hyra",

@@ -33,7 +33,6 @@
     "payDate": "Fizetésnap",
     "language": "Nyelv",
     "currency": "Pénznem",
-    "history": "Korábbi fizetések",
     "pro": "Pro"
   },
   "paychecks": {
@@ -55,7 +54,6 @@
     "markSetAside": "%{payee} megjelölése félretettként",
     "markUnpaid": "%{payee} megjelölése fizetetlenként",
     "moveThis": "%{payee} áthelyezése",
-    "pastPaychecks": "Korábbi fizetések",
     "shortAhead": "%{date} · %{source}: %{amount} hiányzik"
   },
   "income": {
@@ -320,9 +318,6 @@
     "erased": "Minden adat törölve",
     "sampleLoaded": "Mintaadatok betöltve. A Beállításokban bármikor törölheted.",
     "unpaidOn": "Kifizetetlen számlák emlékeztetője bekapcsolva"
-  },
-  "history": {
-    "empty": "Még nincsenek korábbi fizetések."
   },
   "demo": {
     "rent": "Lakbér",

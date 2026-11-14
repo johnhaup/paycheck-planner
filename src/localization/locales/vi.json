@@ -32,7 +32,6 @@
     "payDate": "Ngày nhận lương",
     "language": "Ngôn ngữ",
     "currency": "Tiền tệ",
-    "history": "Kỳ lương trước",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "Đánh dấu %{payee} đã để dành",
     "markUnpaid": "Đánh dấu %{payee} chưa trả",
     "moveThis": "Chuyển %{payee}",
-    "pastPaychecks": "Kỳ lương trước",
     "shortAhead": "Kỳ lương %{date} · %{source} thiếu %{amount}"
   },
   "income": {
@@ -317,9 +315,6 @@
     "erased": "Đã xóa toàn bộ dữ liệu",
     "sampleLoaded": "Đã tải dữ liệu mẫu. Bạn có thể xóa bất cứ lúc nào trong Cài đặt.",
     "unpaidOn": "Đã bật nhắc hóa đơn chưa trả"
-  },
-  "history": {
-    "empty": "Chưa có kỳ lương nào trước đây."
   },
   "demo": {
     "rent": "Tiền nhà",

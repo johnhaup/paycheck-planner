@@ -32,7 +32,6 @@
     "payDate": "Zahltag",
     "language": "Sprache",
     "currency": "Währung",
-    "history": "Vergangene Gehälter",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "%{payee} als zurückgelegt markieren",
     "markUnpaid": "%{payee} als unbezahlt markieren",
     "moveThis": "%{payee} verschieben",
-    "pastPaychecks": "Vergangene Gehälter",
     "shortAhead": "Am %{date} · %{source} fehlen %{amount}"
   },
   "income": {
@@ -319,9 +317,6 @@
     "erased": "Alle Daten gelöscht",
     "sampleLoaded": "Beispieldaten geladen. Du kannst sie jederzeit in den Einstellungen löschen.",
     "unpaidOn": "Erinnerung an offene Rechnungen aktiviert"
-  },
-  "history": {
-    "empty": "Noch keine vergangenen Gehälter."
   },
   "demo": {
     "rent": "Miete",

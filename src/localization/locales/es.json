@@ -32,7 +32,6 @@
     "payDate": "Fecha de cobro",
     "language": "Idioma",
     "currency": "Moneda",
-    "history": "Cobros anteriores",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "Marcar %{payee} como apartado",
     "markUnpaid": "Marcar %{payee} como no pagada",
     "moveThis": "Mover %{payee}",
-    "pastPaychecks": "Cobros anteriores",
     "shortAhead": "Al cobro del %{date} · %{source} le faltan %{amount}"
   },
   "income": {
@@ -319,9 +317,6 @@
     "erased": "Todos los datos borrados",
     "sampleLoaded": "Datos de ejemplo cargados. Bórralos cuando quieras en Ajustes.",
     "unpaidOn": "Recordatorio de facturas pendientes activado"
-  },
-  "history": {
-    "empty": "Aún no hay cobros anteriores."
   },
   "demo": {
     "rent": "Alquiler",

@@ -36,7 +36,6 @@
     "payDate": "सैलरी की तारीख़",
     "language": "भाषा",
     "currency": "मुद्रा",
-    "history": "पिछली सैलरी",
     "pro": "Pro"
   },
   "paychecks": {
@@ -58,7 +57,6 @@
     "markSetAside": "%{payee} को अलग रखा मार्क करें",
     "markUnpaid": "%{payee} को बकाया मार्क करें",
     "moveThis": "%{payee} मूव करें",
-    "pastPaychecks": "पिछली सैलरी",
     "shortAhead": "%{date} · %{source} में %{amount} की कमी"
   },
   "income": {
@@ -323,9 +321,6 @@
     "erased": "सारा डेटा हटा दिया गया",
     "sampleLoaded": "सैंपल डेटा लोड हुआ। सेटिंग्स से कभी भी हटा सकते हैं।",
     "unpaidOn": "बकाया बिल रिमाइंडर चालू"
-  },
-  "history": {
-    "empty": "अभी कोई पिछली सैलरी नहीं।"
   },
   "demo": {
     "rent": "किराया",

@@ -34,6 +34,17 @@ export interface MonthGroup {
   paychecks: PaycheckItem[];
 }
 
+/** One row of the Paychecks list, which runs through every month in order. */
+export interface PaycheckRow {
+  paycheck: PaycheckItem;
+  month: MonthGroup;
+  monthIndex: number;
+  /** The month's first paycheck: its row starts with the month's title */
+  monthStart: boolean;
+  /** The list's last row */
+  last: boolean;
+}
+
 export type TogglePaidHandler = (
   assignmentId: string,
   expenseId: string,

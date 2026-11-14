@@ -1,6 +1,6 @@
 # Protects the free chart's window (HAU-329): free always shows two months that have paychecks,
-# counted from the month of the next paycheck. On the days after a month's last paycheck (e.g.
-# Dec 31 with sample data) it used to show next month alone. Holds on any date: the chart has
+# counted from the first month the list shows (this month, when it has or had a paycheck). On the
+# days after a month's last paycheck (e.g. Dec 31 with sample data) it used to show next month alone. Holds on any date: the chart has
 # exactly two month bars and then the Go Pro card. A bar's label is "<Month>[ <year>][ (this
 # month)], $<amount> left"; a paycheck card's starts "DEC, 18, …" and does not match.
 appId: com.johnhaup.paycheckplanner

@@ -32,7 +32,6 @@
     "payDate": "Tanggal Gajian",
     "language": "Bahasa",
     "currency": "Mata Uang",
-    "history": "Gaji sebelumnya",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "Tandai %{payee} sudah disisihkan",
     "markUnpaid": "Tandai %{payee} belum dibayar",
     "moveThis": "Pindahkan %{payee}",
-    "pastPaychecks": "Gaji sebelumnya",
     "shortAhead": "Gaji %{date} · %{source} kurang %{amount}"
   },
   "income": {
@@ -317,9 +315,6 @@
     "erased": "Semua data dihapus",
     "sampleLoaded": "Data contoh dimuat. Hapus kapan saja di Pengaturan.",
     "unpaidOn": "Pengingat tagihan belum dibayar aktif"
-  },
-  "history": {
-    "empty": "Belum ada gaji sebelumnya."
   },
   "demo": {
     "rent": "Sewa",

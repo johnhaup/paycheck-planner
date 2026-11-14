@@ -32,7 +32,6 @@
     "payDate": "تنخواہ کی تاریخ",
     "language": "زبان",
     "currency": "کرنسی",
-    "history": "پچھلی تنخواہیں",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "%{payee} کو الگ رکھا نشان زد کریں",
     "markUnpaid": "%{payee} کو غیر ادا شدہ نشان زد کریں",
     "moveThis": "%{payee} منتقل کریں",
-    "pastPaychecks": "پچھلی تنخواہیں",
     "shortAhead": "%{date} · %{source} میں %{amount} کم"
   },
   "income": {
@@ -319,9 +317,6 @@
     "erased": "تمام ڈیٹا حذف ہو گیا",
     "sampleLoaded": "نمونہ ڈیٹا لوڈ ہو گیا۔ ترتیبات سے کبھی بھی حذف کریں۔",
     "unpaidOn": "غیر ادا شدہ بل کی یاددہانی آن ہے"
-  },
-  "history": {
-    "empty": "ابھی کوئی پچھلی تنخواہ نہیں۔"
   },
   "demo": {
     "rent": "کرایہ",

@@ -32,7 +32,6 @@
     "payDate": "給料日",
     "language": "言語",
     "currency": "通貨",
-    "history": "過去の給料",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "%{payee}を取り置き済みにする",
     "markUnpaid": "%{payee}を未払いにする",
     "moveThis": "%{payee}を移動",
-    "pastPaychecks": "過去の給料",
     "shortAhead": "%{date} · %{source}の給料が%{amount}不足"
   },
   "income": {
@@ -317,9 +315,6 @@
     "erased": "すべてのデータを消去しました",
     "sampleLoaded": "サンプルデータを読み込みました。設定からいつでも消去できます。",
     "unpaidOn": "未払いの支払いリマインダーをオンにしました"
-  },
-  "history": {
-    "empty": "過去の給料はまだありません。"
   },
   "demo": {
     "rent": "家賃",

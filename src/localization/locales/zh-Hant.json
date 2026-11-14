@@ -32,7 +32,6 @@
     "payDate": "發薪日",
     "language": "語言",
     "currency": "幣別",
-    "history": "過往薪資",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "將%{payee}標示為已預留",
     "markUnpaid": "將%{payee}標示為未付",
     "moveThis": "移動%{payee}",
-    "pastPaychecks": "過往薪資",
     "shortAhead": "%{date} · %{source}的薪資短少 %{amount}"
   },
   "income": {
@@ -317,9 +315,6 @@
     "erased": "已清除所有資料",
     "sampleLoaded": "已載入範例資料。可隨時在設定中清除。",
     "unpaidOn": "已開啟未付帳單提醒"
-  },
-  "history": {
-    "empty": "尚無過往薪資。"
   },
   "demo": {
     "rent": "房租",

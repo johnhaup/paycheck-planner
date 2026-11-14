@@ -43,24 +43,8 @@ onFlowStart:
     above: ".* · left over"
 - takeScreenshot: paychecks-top
 
-# The scroll checks run on the second month of the chart, picked by position so no month name is
-# needed. It is always a whole month of paychecks; the first month holds only what is left of it, and
-# late in the month that is too short to scroll its section title out from under the pinned pills,
-# or to collapse the title at all (HAU-323). On the days after the month's last paycheck the free
-# chart has one month only, the next one, which is whole: the two month-switch blocks are skipped.
-- runFlow:
-    when:
-      visible:
-        text: ${MONTH}
-        rightOf: ${MONTH}
-    commands:
-      - tapOn:
-          text: ${MONTH}
-          rightOf: ${MONTH}
-      - extendedWaitUntil:
-          visible: "Go to this month"
-          timeout: 15000
-
+# One list runs through every month (HAU-316), so there is always enough of it to scroll, however
+# little of the current month is left (HAU-323).
 # Scroll about 400pt: the title collapses, the overview scrolls away and the
 # month chart collapses into a row of pills pinned under the bar (HAU-113); the
 # cards pass under it
@@ -77,42 +61,47 @@ onFlowStart:
     text: "Paychecks"
     rightOf: "\\d{1,2}:\\d{2}.*"
     leftOf: "Settings"
-# The section title scrolls away with the cards ("Past paychecks" stays in the footer)
-- assertNotVisible: "(?!Past ).* paychecks"
 - takeScreenshot: paychecks-scrolled
 
-# The collapsed pills still switch months. Each month's button spans its faded bar
-# too, which now sits under the navigation bar, so tap the first pill itself:
-# first column, just under the bar on the iPhone 17 Pro. A short first month cannot
-# hold the scroll offset, so the title may expand again here; only the switch is asserted.
-- runFlow:
-    when:
-      visible:
-        text: ${MONTH}
-        leftOf: ${MONTH}
-    commands:
-      - tapOn:
-          point: 11%, 15%
-      - extendedWaitUntil:
-          visible:
-            text: ${MONTH}
-            leftOf: ${MONTH}
-            selected: true
-          timeout: 15000
-      - takeScreenshot: paychecks-first-month-from-pinned-pills
-
-- swipe:
-    start: 50%, 15%
-    end: 50%, 65%
-    duration: 400
-- swipe:
-    start: 50%, 15%
-    end: 50%, 65%
-    duration: 400
-# Back at the top on the first month: the overview is back and its "Go to this month" icon is gone
+# The collapsed pills still switch months: the list jumps to that month and the
+# whole header comes back out over it (HAU-316). Each month's button spans its faded
+# bar too, which now sits under the navigation bar, so tap the second pill itself:
+# second column, just under the bar on the iPhone 17 Pro. Late in the month the second
+# month starts too near the top to hold the title collapsed, so that is not asserted.
+- tapOn:
+    point: 25%, 15%
+- extendedWaitUntil:
+    visible:
+      text: ${MONTH}
+      rightOf: ${MONTH}
+      selected: true
+    timeout: 15000
 - extendedWaitUntil:
     visible: ".* · left over"
     timeout: 15000
+- takeScreenshot: paychecks-second-month-jumped
+
+# Scrolling back up goes back in time: at the top the first month is selected
+# again and the large title is back
+- swipe:
+    start: 50%, 15%
+    end: 50%, 65%
+    duration: 400
+- swipe:
+    start: 50%, 15%
+    end: 50%, 65%
+    duration: 400
+- swipe:
+    start: 50%, 15%
+    end: 50%, 65%
+    duration: 400
+- extendedWaitUntil:
+    visible:
+      text: ${MONTH}
+      leftOf: ${MONTH}
+      selected: true
+    timeout: 15000
+- assertVisible: ".* · left over"
 - assertNotVisible: "Go to this month"
 - assertVisible: "(?!Past ).* paychecks"
 - assertNotVisible:

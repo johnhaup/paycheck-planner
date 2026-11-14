@@ -33,7 +33,6 @@
     "payDate": "Date de paie",
     "language": "Langue",
     "currency": "Devise",
-    "history": "Paies passées",
     "pro": "Pro"
   },
   "paychecks": {
@@ -55,7 +54,6 @@
     "markSetAside": "Marquer %{payee} comme mise de côté",
     "markUnpaid": "Marquer %{payee} comme non payée",
     "moveThis": "Déplacer %{payee}",
-    "pastPaychecks": "Paies passées",
     "shortAhead": "Il manque %{amount} sur la paie du %{date} · %{source}"
   },
   "income": {
@@ -320,9 +318,6 @@
     "erased": "Toutes les données effacées",
     "sampleLoaded": "Données d'exemple chargées. Effacez-les quand vous voulez dans Réglages.",
     "unpaidOn": "Rappel des factures impayées activé"
-  },
-  "history": {
-    "empty": "Aucune paie passée pour l'instant."
   },
   "demo": {
     "rent": "Loyer",

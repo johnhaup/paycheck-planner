@@ -32,7 +32,6 @@
     "payDate": "ଦରମା ତାରିଖ",
     "language": "ଭାଷା",
     "currency": "ମୁଦ୍ରା",
-    "history": "ପୂର୍ବ ଦରମା",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "%{payee} ଅଲଗା ରଖାଗଲା ବୋଲି ମାର୍କ କରନ୍ତୁ",
     "markUnpaid": "%{payee} ପଇଠ ହୋଇନାହିଁ ବୋଲି ମାର୍କ କରନ୍ତୁ",
     "moveThis": "%{payee} ଘୁଞ୍ଚାନ୍ତୁ",
-    "pastPaychecks": "ପୂର୍ବ ଦରମା",
     "shortAhead": "%{date} · %{source}ରେ %{amount} କମ୍"
   },
   "income": {
@@ -319,9 +317,6 @@
     "erased": "ସମସ୍ତ ଡାଟା ଡିଲିଟ୍ ହେଲା",
     "sampleLoaded": "ନମୁନା ଡାଟା ଲୋଡ୍ ହେଲା। ସେଟିଂସ୍‌ରୁ ଯେକୌଣସି ସମୟରେ ଡିଲିଟ୍ କରନ୍ତୁ।",
     "unpaidOn": "ପଇଠ ହୋଇନଥିବା ବିଲ୍ ରିମାଇଣ୍ଡର ଚାଲୁ"
-  },
-  "history": {
-    "empty": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ପୂର୍ବ ଦରମା ନାହିଁ।"
   },
   "demo": {
     "rent": "ଭଡ଼ା",

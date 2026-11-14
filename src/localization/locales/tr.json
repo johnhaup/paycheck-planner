@@ -32,7 +32,6 @@
     "payDate": "Maaş Tarihi",
     "language": "Dil",
     "currency": "Para Birimi",
-    "history": "Geçmiş maaşlar",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "%{payee} ayrıldı olarak işaretle",
     "markUnpaid": "%{payee} ödenmedi olarak işaretle",
     "moveThis": "%{payee} taşı",
-    "pastPaychecks": "Geçmiş maaşlar",
     "shortAhead": "%{date} · %{source} maaşında %{amount} eksik"
   },
   "income": {
@@ -319,9 +317,6 @@
     "erased": "Tüm veriler silindi",
     "sampleLoaded": "Örnek veriler yüklendi. İstediğin zaman Ayarlar'dan silebilirsin.",
     "unpaidOn": "Ödenmemiş fatura hatırlatıcısı açık"
-  },
-  "history": {
-    "empty": "Henüz geçmiş maaş yok."
   },
   "demo": {
     "rent": "Kira",

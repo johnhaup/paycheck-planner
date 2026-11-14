@@ -32,7 +32,6 @@
     "payDate": "Palkkapäivä",
     "language": "Kieli",
     "currency": "Valuutta",
-    "history": "Aiemmat palkat",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "Merkitse %{payee} varatuksi",
     "markUnpaid": "Merkitse %{payee} maksamattomaksi",
     "moveThis": "Siirrä %{payee}",
-    "pastPaychecks": "Aiemmat palkat",
     "shortAhead": "Palkasta %{date} · %{source} puuttuu %{amount}"
   },
   "income": {
@@ -319,9 +317,6 @@
     "erased": "Kaikki tiedot poistettu",
     "sampleLoaded": "Esimerkkitiedot ladattu. Voit poistaa ne milloin tahansa asetuksista.",
     "unpaidOn": "Maksamattomien laskujen muistutus päällä"
-  },
-  "history": {
-    "empty": "Ei vielä aiempia palkkoja."
   },
   "demo": {
     "rent": "Vuokra",

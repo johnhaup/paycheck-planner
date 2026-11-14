@@ -36,7 +36,6 @@
     "payDate": "বেতনের তারিখ",
     "language": "ভাষা",
     "currency": "মুদ্রা",
-    "history": "আগের বেতন",
     "pro": "Pro"
   },
   "paychecks": {
@@ -58,7 +57,6 @@
     "markSetAside": "%{payee} আলাদা রাখা হয়েছে হিসেবে চিহ্নিত করুন",
     "markUnpaid": "%{payee} অপরিশোধিত হিসেবে চিহ্নিত করুন",
     "moveThis": "%{payee} সরান",
-    "pastPaychecks": "আগের বেতন",
     "shortAhead": "%{date} · %{source}-এ %{amount} কম"
   },
   "income": {
@@ -323,9 +321,6 @@
     "erased": "সব ডেটা মুছে ফেলা হয়েছে",
     "sampleLoaded": "নমুনা ডেটা লোড হয়েছে। সেটিংস থেকে যেকোনো সময় মুছতে পারবেন।",
     "unpaidOn": "অপরিশোধিত বিলের রিমাইন্ডার চালু"
-  },
-  "history": {
-    "empty": "এখনো আগের কোনো বেতন নেই।"
   },
   "demo": {
     "rent": "বাড়িভাড়া",

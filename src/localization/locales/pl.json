@@ -32,7 +32,6 @@
     "payDate": "Dzień wypłaty",
     "language": "Język",
     "currency": "Waluta",
-    "history": "Poprzednie wypłaty",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "Oznacz %{payee} jako odłożone",
     "markUnpaid": "Oznacz %{payee} jako nieopłacone",
     "moveThis": "Przenieś %{payee}",
-    "pastPaychecks": "Poprzednie wypłaty",
     "shortAhead": "Wypłacie %{date} · %{source} brakuje %{amount}"
   },
   "income": {
@@ -323,9 +321,6 @@
     "erased": "Wszystkie dane usunięte",
     "sampleLoaded": "Wczytano przykładowe dane. Usuń je w dowolnej chwili w Ustawieniach.",
     "unpaidOn": "Przypomnienie o nieopłaconych rachunkach włączone"
-  },
-  "history": {
-    "empty": "Nie ma jeszcze poprzednich wypłat."
   },
   "demo": {
     "rent": "Czynsz",
