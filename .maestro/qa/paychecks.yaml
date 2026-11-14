@@ -78,3 +78,26 @@ name: paychecks
 - extendedWaitUntil:
     visible: ${output.thisMonth}
     timeout: 15000
+# The old "Past paychecks" link is gone: scrolling up replaces it (HAU-316)
+- assertNotVisible: "Past paychecks"
+
+# Leaving the tab and coming back opens on the current paycheck again (HAU-25, HAU-316):
+# jump to next month in the chart, visit Income, return
+- tapOn:
+    text: "[A-Za-z]+( [0-9]{4})?, \\$[^,]+ left"
+    index: 0
+- extendedWaitUntil:
+    visible: "Go to this month"
+    timeout: 10000
+- tapOn: "Income"
+- extendedWaitUntil:
+    visible: "Per month"
+    timeout: 10000
+- tapOn: "Paychecks"
+- extendedWaitUntil:
+    visible: ${output.thisMonth}
+    timeout: 15000
+- extendedWaitUntil:
+    notVisible: "Go to this month"
+    timeout: 10000
+- takeScreenshot: paychecks-tab-return
