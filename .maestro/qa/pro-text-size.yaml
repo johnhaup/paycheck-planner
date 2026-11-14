@@ -2,7 +2,7 @@
 # Past paychecks: "See earlier months" used to stay on one line wider than the screen, so the centred row lost its
 # first letter at the left edge and its badge at the right. It now wraps between words, with the badge and chevron
 # on a line of their own. The row is one accessibility element, so Maestro cannot see the wrap: read
-# pro-text-size-history-xl and -xxxl ("See earlier months" whole, PRO and the chevron on screen under it).
+# pro-text-size-history-al, -xl and -xxxl ("See earlier months" whole, PRO and the chevron on screen under it).
 # Add expense: the type control stacks, "Set-aside" stays whole with its PRO badge inside the second row (it used to
 # truncate to "Set-asi…" with the badge past the control's edge). Read pro-text-size-expense-form-xxxl.
 # Both controls still open the paywall at that size. The launch argument sets the text size for that launch only.
@@ -30,6 +30,20 @@ name: pro-text-size
     visible: "See earlier months"
     timeout: 15000
 - takeScreenshot: pro-text-size-history-xl
+
+# Accessibility L: label and badge fit on one line, so read that PRO and the chevron stay together (HAU-330)
+- stopApp
+- launchApp:
+    arguments:
+      "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityL"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 60000
+- openLink: paycheck-planner://history
+- extendedWaitUntil:
+    visible: "See earlier months"
+    timeout: 15000
+- takeScreenshot: pro-text-size-history-al
 
 - stopApp
 - launchApp:
