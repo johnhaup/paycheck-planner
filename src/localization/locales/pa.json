@@ -32,7 +32,6 @@
     "payDate": "ਤਨਖ਼ਾਹ ਦੀ ਤਾਰੀਖ਼",
     "language": "ਭਾਸ਼ਾ",
     "currency": "ਮੁਦਰਾ",
-    "history": "ਪਿਛਲੀਆਂ ਤਨਖ਼ਾਹਾਂ",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "%{payee} ਨੂੰ ਵੱਖ ਰੱਖਿਆ ਮਾਰਕ ਕਰੋ",
     "markUnpaid": "%{payee} ਨੂੰ ਬਕਾਇਆ ਮਾਰਕ ਕਰੋ",
     "moveThis": "%{payee} ਮੂਵ ਕਰੋ",
-    "pastPaychecks": "ਪਿਛਲੀਆਂ ਤਨਖ਼ਾਹਾਂ",
     "shortAhead": "%{date} · %{source} ਵਿੱਚ %{amount} ਘੱਟ"
   },
   "income": {
@@ -319,9 +317,6 @@
     "erased": "ਸਾਰਾ ਡਾਟਾ ਮਿਟਾਇਆ ਗਿਆ",
     "sampleLoaded": "ਨਮੂਨਾ ਡਾਟਾ ਲੋਡ ਹੋਇਆ। ਸੈਟਿੰਗਾਂ ਤੋਂ ਕਦੇ ਵੀ ਮਿਟਾਓ।",
     "unpaidOn": "ਬਕਾਇਆ ਬਿੱਲ ਰਿਮਾਈਂਡਰ ਚਾਲੂ"
-  },
-  "history": {
-    "empty": "ਅਜੇ ਕੋਈ ਪਿਛਲੀ ਤਨਖ਼ਾਹ ਨਹੀਂ।"
   },
   "demo": {
     "rent": "ਕਿਰਾਇਆ",

@@ -51,13 +51,12 @@ name: large-title
     text: "Paychecks"
     rightOf: "\\d{1,2}:\\d{2}.*"
     leftOf: "Settings"
-# The section title scrolls away with the cards ("Past paychecks" stays in the footer)
-- assertNotVisible: "(?!Past ).* paychecks"
 - takeScreenshot: paychecks-scrolled
 
-# The collapsed pills still switch months. Each month's button spans its faded bar
-# too, which now sits under the navigation bar, so tap the December pill itself:
-# second column, just under the bar on the iPhone 17 Pro.
+# The collapsed pills still switch months: the list jumps to that month and the
+# whole header comes back out over it, under the collapsed title (HAU-316). Each
+# month's button spans its faded bar too, which now sits under the navigation bar,
+# so tap the December pill itself: second column, just under the bar on the iPhone 17 Pro.
 # Free tier (HAU-69): the chart holds this month and next only, so pick December.
 - tapOn:
     point: 25%, 15%
@@ -66,12 +65,16 @@ name: large-title
       text: "December, .*"
       selected: true
     timeout: 15000
+- assertVisible: "December · left over"
+- assertVisible: "December paychecks"
 - assertVisible:
     text: "Paychecks"
     rightOf: "\\d{1,2}:\\d{2}.*"
     leftOf: "Settings"
-- takeScreenshot: paychecks-december-while-pinned
+- takeScreenshot: paychecks-december-jumped
 
+# Scrolling back up goes back in time: at the top the overview shows November
+# again and the large title is back
 - swipe:
     start: 50%, 15%
     end: 50%, 65%
@@ -80,15 +83,15 @@ name: large-title
     start: 50%, 15%
     end: 50%, 65%
     duration: 400
-# Back at the top the overview shows December; the calendar icon brings this month back
-- extendedWaitUntil:
-    visible: "December · left over"
-    timeout: 15000
-- tapOn: "Go to this month"
+- swipe:
+    start: 50%, 15%
+    end: 50%, 65%
+    duration: 400
 - extendedWaitUntil:
     visible: "November · left over"
     timeout: 15000
-- assertVisible: "(?!Past ).* paychecks"
+- assertNotVisible: "Go to this month"
+- assertVisible: "November paychecks"
 - assertNotVisible:
     text: "Paychecks"
     rightOf: "\\d{1,2}:\\d{2}.*"

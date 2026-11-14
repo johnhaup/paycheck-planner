@@ -32,7 +32,6 @@
     "payDate": "Dan plaće",
     "language": "Jezik",
     "currency": "Valuta",
-    "history": "Prošle plaće",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "Označi %{payee} kao odvojeno",
     "markUnpaid": "Označi %{payee} kao neplaćeno",
     "moveThis": "Premjesti %{payee}",
-    "pastPaychecks": "Prošle plaće",
     "shortAhead": "Plaći %{date} · %{source} nedostaje %{amount}"
   },
   "income": {
@@ -321,9 +319,6 @@
     "erased": "Svi podaci izbrisani",
     "sampleLoaded": "Učitani su primjeri podataka. Izbrišite ih bilo kad u Postavkama.",
     "unpaidOn": "Podsjetnik za neplaćene račune uključen"
-  },
-  "history": {
-    "empty": "Još nema prošlih plaća."
   },
   "demo": {
     "rent": "Najam",

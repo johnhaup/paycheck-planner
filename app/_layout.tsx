@@ -91,8 +91,6 @@ export default function RootLayout() {
     [t]
   );
 
-  const historyOptions = useMemo(() => ({ title: t("screens.history") }), [t]);
-
   const languageOptions = useMemo(
     () => ({ ...modalOptions, title: t("screens.language") }),
     [modalOptions, t]
@@ -167,7 +165,6 @@ export default function RootLayout() {
           <Stack.Screen name="income-form" options={incomeFormOptions} />
           <Stack.Screen name="expense-form" options={expenseFormOptions} />
           <Stack.Screen name="pay-date-detail" options={payDateDetailOptions} />
-          <Stack.Screen name="history" options={historyOptions} />
           <Stack.Screen name="settings" options={settingsOptions} />
           <Stack.Screen name="paywall" options={paywallOptions} />
           <Stack.Screen name="language" options={languageOptions} />

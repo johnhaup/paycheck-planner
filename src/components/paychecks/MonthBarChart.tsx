@@ -95,15 +95,23 @@ export function MonthBarChart({ months, selectedKey, currentKey, onSelect, onLoc
       : contentOffset.x;
   }, []);
 
-  // A month selected from elsewhere (Today, the shortfall line) can sit off
-  // screen in a year of columns; scroll just enough to show it.
+  // The selected month can sit off screen: Pro's chart starts months back and
+  // runs a year ahead, and the list, Today and the shortfall line select months
+  // too. The chart opens with it at the start; after that it scrolls just
+  // enough to show it.
+  const opened = useRef(false);
   useEffect(() => {
     if (selectedIndex < 0) return;
     const left = MEASUREMENTS.spacing.gutter + selectedIndex * (COLUMN_WIDTH + COLUMN_GAP);
     const right = left + COLUMN_WIDTH;
     const offset = scrollOffset.current;
+    const animated = opened.current;
+    opened.current = true;
     let target: number;
-    if (left < offset + MEASUREMENTS.spacing.gutter) {
+    if (!animated) {
+      target = Math.max(0, Math.min(left - MEASUREMENTS.spacing.gutter, contentWidth - viewportWidth));
+      if (target === 0) return;
+    } else if (left < offset + MEASUREMENTS.spacing.gutter) {
       target = left - MEASUREMENTS.spacing.gutter;
     } else if (right > offset + viewportWidth - MEASUREMENTS.spacing.gutter) {
       target = right + MEASUREMENTS.spacing.gutter - viewportWidth;
@@ -112,7 +120,7 @@ export function MonthBarChart({ months, selectedKey, currentKey, onSelect, onLoc
     }
     scrollRef.current?.scrollTo({
       x: I18nManager.isRTL ? contentWidth - viewportWidth - target : target,
-      animated: true,
+      animated,
     });
   }, [selectedIndex, viewportWidth, contentWidth]);
 

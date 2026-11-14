@@ -32,7 +32,6 @@
     "payDate": "Data de pagamento",
     "language": "Idioma",
     "currency": "Moeda",
-    "history": "Pagamentos anteriores",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "Marcar %{payee} como reservada",
     "markUnpaid": "Marcar %{payee} como não paga",
     "moveThis": "Mover %{payee}",
-    "pastPaychecks": "Pagamentos anteriores",
     "shortAhead": "O pagamento de %{date} · %{source} está faltando %{amount}"
   },
   "income": {
@@ -319,9 +317,6 @@
     "erased": "Todos os dados apagados",
     "sampleLoaded": "Dados de exemplo carregados. Apague quando quiser em Ajustes.",
     "unpaidOn": "Lembrete de contas não pagas ativado"
-  },
-  "history": {
-    "empty": "Ainda não há pagamentos anteriores."
   },
   "demo": {
     "rent": "Aluguel",

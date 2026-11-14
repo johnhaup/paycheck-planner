@@ -35,7 +35,6 @@
     "payDate": "Data de cobrament",
     "language": "Idioma",
     "currency": "Moneda",
-    "history": "Cobraments anteriors",
     "pro": "Pro"
   },
   "paychecks": {
@@ -57,7 +56,6 @@
     "markSetAside": "Marca %{payee} com a reservada",
     "markUnpaid": "Marca %{payee} com a no pagada",
     "moveThis": "Mou %{payee}",
-    "pastPaychecks": "Cobraments anteriors",
     "shortAhead": "Al cobrament del %{date} · %{source} hi falten %{amount}"
   },
   "income": {
@@ -322,9 +320,6 @@
     "erased": "Totes les dades esborrades",
     "sampleLoaded": "S'han carregat dades de mostra. Pots esborrar-les a Configuració quan vulguis.",
     "unpaidOn": "Recordatori de factures pendents activat"
-  },
-  "history": {
-    "empty": "Encara no hi ha cobraments anteriors."
   },
   "demo": {
     "rent": "Lloguer",

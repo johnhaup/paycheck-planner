@@ -36,7 +36,6 @@
     "payDate": "પગારની તારીખ",
     "language": "ભાષા",
     "currency": "ચલણ",
-    "history": "પાછલા પગાર",
     "pro": "Pro"
   },
   "paychecks": {
@@ -58,7 +57,6 @@
     "markSetAside": "%{payee} અલગ રાખેલ માર્ક કરો",
     "markUnpaid": "%{payee} ન ચૂકવેલ માર્ક કરો",
     "moveThis": "%{payee} ખસેડો",
-    "pastPaychecks": "પાછલા પગાર",
     "shortAhead": "%{date} · %{source}માં %{amount} ઘટે છે"
   },
   "income": {
@@ -323,9 +321,6 @@
     "erased": "બધો ડેટા ડિલીટ થયો",
     "sampleLoaded": "નમૂના ડેટા લોડ થયો. સેટિંગ્સમાંથી ગમે ત્યારે ડિલીટ કરો.",
     "unpaidOn": "ન ચૂકવેલ બિલ રિમાઇન્ડર ચાલુ"
-  },
-  "history": {
-    "empty": "હજી કોઈ પાછલો પગાર નથી."
   },
   "demo": {
     "rent": "ભાડું",

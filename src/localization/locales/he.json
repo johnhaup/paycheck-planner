@@ -32,7 +32,6 @@
     "payDate": "תאריך משכורת",
     "language": "שפה",
     "currency": "מטבע",
-    "history": "משכורות קודמות",
     "pro": "Pro"
   },
   "paychecks": {
@@ -54,7 +53,6 @@
     "markSetAside": "סימון %{payee} כהפרשה",
     "markUnpaid": "סימון %{payee} כלא שולם",
     "moveThis": "העברת %{payee}",
-    "pastPaychecks": "משכורות קודמות",
     "shortAhead": "במשכורת %{date} · %{source} חסרים %{amount}"
   },
   "income": {
@@ -323,9 +321,6 @@
     "erased": "כל הנתונים נמחקו",
     "sampleLoaded": "נטענו נתוני דוגמה. אפשר למחוק אותם בכל עת בהגדרות.",
     "unpaidOn": "תזכורת לחשבונות שלא שולמו הופעלה"
-  },
-  "history": {
-    "empty": "אין עדיין משכורות קודמות."
   },
   "demo": {
     "rent": "שכירות",
