@@ -69,7 +69,9 @@ export default function HistoryScreen() {
           accessibilityRole="button"
           accessibilityLabel={t("pro.earlierMonths")}
         >
-          <AppText variant="bodyStrong" color="primaryText">{t("pro.earlierMonths")}</AppText>
+          <AppText variant="bodyStrong" color="primaryText" center style={styles.unlockLabel}>
+            {t("pro.earlierMonths")}
+          </AppText>
           <ProBadge />
           <Ionicons name="chevron-forward" size={16} color={colors.primaryText} />
         </Pressable>
@@ -115,7 +117,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    // When the label is as wide as the screen it wraps, and the badge and chevron drop under it
+    flexWrap: "wrap",
     gap: MEASUREMENTS.spacing.md,
     paddingVertical: MEASUREMENTS.spacing.xl,
+  },
+  unlockLabel: {
+    flexShrink: 1,
   },
 });

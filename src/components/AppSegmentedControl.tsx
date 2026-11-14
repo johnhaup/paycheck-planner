@@ -4,6 +4,7 @@ import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { hapticSelection } from "@/utils/haptics";
+import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { ProBadge } from "@/components/ProBadge";
 
 export interface SegmentOption<T> {
@@ -21,10 +22,12 @@ interface Props<T> {
 
 export function AppSegmentedControl<T>({ options, value, onChange }: Props<T>) {
   const colors = useColors();
+  // Side by side, a label at an accessibility size is cut to "Set-asi…" and a PRO badge is pushed out of its segment
+  const stacked = useAccessibilityTextSize();
 
   const trackStyle = useMemo(
-    () => [styles.track, { backgroundColor: colors.segmentTrack }],
-    [colors]
+    () => [styles.track, stacked ? styles.trackStacked : undefined, { backgroundColor: colors.segmentTrack }],
+    [stacked, colors]
   );
 
   return (
@@ -34,6 +37,7 @@ export function AppSegmentedControl<T>({ options, value, onChange }: Props<T>) {
           key={String(option.value)}
           option={option}
           selected={option.value === value}
+          stacked={stacked}
           onSelect={onChange}
         />
       ))}
@@ -44,10 +48,11 @@ export function AppSegmentedControl<T>({ options, value, onChange }: Props<T>) {
 interface SegmentProps<T> {
   option: SegmentOption<T>;
   selected: boolean;
+  stacked: boolean;
   onSelect: (value: T) => void;
 }
 
-function Segment<T>({ option, selected, onSelect }: SegmentProps<T>) {
+function Segment<T>({ option, selected, stacked, onSelect }: SegmentProps<T>) {
   const colors = useColors();
 
   const handlePress = useCallback(() => {
@@ -58,8 +63,12 @@ function Segment<T>({ option, selected, onSelect }: SegmentProps<T>) {
   }, [onSelect, option.value, selected]);
 
   const segmentStyle = useMemo(
-    () => [styles.segment, selected ? { backgroundColor: colors.segmentSelected } : undefined],
-    [selected, colors]
+    () => [
+      styles.segment,
+      stacked ? styles.segmentStacked : styles.segmentInline,
+      selected ? { backgroundColor: colors.segmentSelected } : undefined,
+    ],
+    [selected, stacked, colors]
   );
 
   const accessibilityState = useMemo(() => ({ selected }), [selected]);
@@ -74,7 +83,9 @@ function Segment<T>({ option, selected, onSelect }: SegmentProps<T>) {
       <AppText
         variant="bodyStrong"
         color={selected ? "textDefault" : "textMuted"}
-        numberOfLines={1}
+        numberOfLines={stacked ? undefined : 1}
+        center={stacked}
+        style={stacked ? styles.labelStacked : undefined}
       >
         {option.label}
       </AppText>
@@ -90,14 +101,28 @@ const styles = StyleSheet.create({
     gap: MEASUREMENTS.spacing.sm,
     borderRadius: MEASUREMENTS.radius.track,
   },
+  trackStacked: {
+    flexDirection: "column",
+  },
   segment: {
-    flex: 1,
-    height: 36,
     borderRadius: MEASUREMENTS.radius.lg,
     flexDirection: "row",
     gap: MEASUREMENTS.spacing.sm + 2,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: MEASUREMENTS.spacing.sm,
+  },
+  segmentInline: {
+    flex: 1,
+    height: 36,
+  },
+  // One option per line; a badge that does not fit beside its label drops under it
+  segmentStacked: {
+    minHeight: 36,
+    flexWrap: "wrap",
+    paddingVertical: MEASUREMENTS.spacing.sm,
+  },
+  labelStacked: {
+    flexShrink: 1,
   },
 });
