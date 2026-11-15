@@ -230,4 +230,12 @@ env:
       - extendedWaitUntil:
           visible: ".*، المتبقي \u200F[0-9.,]+k?\u200F\u00A0US\\$"
           timeout: 60000
+      # The layout is mirrored too: the tab bar runs right to left, Paychecks rightmost.
+      # An app that declares no languages (no CFBundleLocalizations) stays LTR here (HAU-365).
+      - assertVisible:
+          text: "الرواتب"
+          rightOf: "الدخل"
+      - assertVisible:
+          text: "الدخل"
+          rightOf: "المصروفات"
       - takeScreenshot: paychecks-arabic
