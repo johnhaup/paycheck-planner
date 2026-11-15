@@ -2,6 +2,7 @@ import { useCallback, useMemo } from "react";
 import { View, StyleSheet } from "react-native";
 import { Pressable } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
@@ -11,7 +12,11 @@ import { AppText } from "@/components/AppText";
 import { AppLetterTile } from "@/components/AppLetterTile";
 import { AppSetAsideIcon } from "@/components/AppSetAsideIcon";
 import { AppSwipeActions, type SwipeAction } from "@/components/AppSwipeActions";
+import { AppWordWrapText } from "@/components/AppWordWrapText";
 import type { Expense } from "@/types";
+
+/** An amount too long for the row's width shrinks this far instead of breaking mid-number */
+const AMOUNT_MIN_FONT_SCALE = 0.5;
 
 interface Props {
   expense: Expense;
@@ -43,6 +48,7 @@ export function ExpenseRow({
   const groupedStyles = useGroupedRowStyles(isFirst, isLast);
   const { split, format: formatMoney } = useMoneyFormat();
   const t = useT();
+  const stacked = useAccessibilityTextSize();
   const { whole, cents } = split(expense.amount);
 
   const handlePress = useCallback(() => {
@@ -87,19 +93,28 @@ export function ExpenseRow({
     [goalProgress, colors]
   );
 
+  const rowStyle = useMemo(
+    () => (stacked ? [groupedStyles.row, styles.rowStacked] : groupedStyles.row),
+    [stacked, groupedStyles]
+  );
+
   return (
     <AppSwipeActions
       rightAction={deleteAction}
       style={groupedStyles.container}
     >
-      <Pressable style={groupedStyles.row} onPress={handlePress}>
+      <Pressable style={rowStyle} onPress={handlePress}>
         <AppLetterTile label={expense.payee} tintIndex={tintIndex} icon={expense.icon} />
-        <View style={styles.text}>
+        <View style={stacked ? styles.textStacked : styles.text}>
           <View style={styles.titleRow}>
             {expense.kind === "set-aside" ? <AppSetAsideIcon size={15} /> : null}
-            <AppText variant="rowTitle" numberOfLines={1} style={styles.title}>
-              {expense.payee}
-            </AppText>
+            {stacked ? (
+              <AppWordWrapText variant="rowTitle">{expense.payee}</AppWordWrapText>
+            ) : (
+              <AppText variant="rowTitle" numberOfLines={1} style={styles.title}>
+                {expense.payee}
+              </AppText>
+            )}
             {expense.link ? (
               <Pressable
                 onPress={handleOpenLink}
@@ -111,10 +126,14 @@ export function ExpenseRow({
               </Pressable>
             ) : null}
           </View>
-          <AppText variant="meta" numberOfLines={1}>{meta}</AppText>
+          <AppText variant="meta" numberOfLines={stacked ? undefined : 1}>{meta}</AppText>
           {goalProgress ? (
             <>
-              <AppText variant="caption" color={goalReached ? "primaryText" : "textSecondary"} numberOfLines={1}>
+              <AppText
+                variant="caption"
+                color={goalReached ? "primaryText" : "textSecondary"}
+                numberOfLines={stacked ? undefined : 1}
+              >
                 {t(goalReached ? "expenses.goalReached" : "expenses.goalProgress", {
                   saved: formatMoney(goalProgress.saved),
                   goal: formatMoney(goalProgress.goal),
@@ -126,8 +145,13 @@ export function ExpenseRow({
             </>
           ) : null}
         </View>
-        <View style={styles.amount}>
-          <AppText variant="rowTitle">
+        <View style={stacked ? styles.amountStacked : styles.amount}>
+          <AppText
+            variant="rowTitle"
+            numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={AMOUNT_MIN_FONT_SCALE}
+          >
             {whole}
             <AppText variant="rowTitle" color="textMuted">{cents}</AppText>
           </AppText>
@@ -139,8 +163,16 @@ export function ExpenseRow({
 }
 
 const styles = StyleSheet.create({
+  rowStacked: {
+    flexDirection: "column",
+    alignItems: "flex-start",
+  },
   text: {
     flex: 1,
+    gap: MEASUREMENTS.spacing.xs,
+  },
+  textStacked: {
+    alignSelf: "stretch",
     gap: MEASUREMENTS.spacing.xs,
   },
   titleRow: {
@@ -163,6 +195,9 @@ const styles = StyleSheet.create({
   },
   amount: {
     alignItems: "flex-end",
+    gap: MEASUREMENTS.spacing.xs,
+  },
+  amountStacked: {
     gap: MEASUREMENTS.spacing.xs,
   },
 });

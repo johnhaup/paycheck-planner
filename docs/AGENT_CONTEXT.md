@@ -22,7 +22,6 @@ None of those are loaded; grep them. Dates are absolute (YYYY-MM-DD).
 
 ## Open follow-ups
 
-- Accessibility text sizes on Expenses are unchecked (Paychecks, the pay date detail and Income are done). The Expenses rows likely have the same side-by-side squeeze; `useAccessibilityTextSize()` is the tool for them.
 - linear-runner (not this repo): the gate's simulator build should not depend on `devicectl`. Building with `xcodebuild -configuration Release -destination id=<udid>` plus `simctl install` would avoid Expo's 5 s device listing, and so would treating three `devicectl` timeouts as exit 2 (retry next tick) instead of filing a ticket (HAU-110).
 - Three steps still use `scrollUntilVisible` (income's form buttons ×2 and the expenses form's "Add Expense" button) and can fail the same way as HAU-106 under load; convert them if they show up in a "Flaky gate flow" ticket.
 - linear-runner (not this repo): `gate.sh` files a "Release gate failed" ticket even when Maestro never opened a session (no `[Failed]` line), and two apps' gates start together on one tick. Treating "no flow ran" as exit 2 (could not run, retry next tick) and serialising gates would stop tickets like HAU-99.
