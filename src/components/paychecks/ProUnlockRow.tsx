@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
+import { FORWARD_CHEVRON } from "@/constants/direction";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { ProBadge } from "@/components/ProBadge";
@@ -19,7 +20,7 @@ export function ProUnlockRow({ label, onPress }: Props) {
       <AppText variant="bodyStrong" color="primaryText" center style={styles.label}>{label}</AppText>
       <View style={styles.trailing}>
         <ProBadge />
-        <Ionicons name="chevron-forward" size={16} color={colors.primaryText} />
+        <Ionicons name={FORWARD_CHEVRON} size={16} color={colors.primaryText} />
       </View>
     </Pressable>
   );
