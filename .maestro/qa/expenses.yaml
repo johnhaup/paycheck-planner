@@ -120,3 +120,26 @@ name: expenses
     visible: ".*QA Water.*"
     timeout: 15000
 - takeScreenshot: expenses-added
+
+# iOS, largest accessibility text size: a source's group header stacks, its monthly
+# total below the name, instead of squeezing the name into a one-letter column
+# (HAU-363). The data from above survives the relaunch.
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - launchApp:
+          stopApp: true
+          arguments:
+            "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+      - extendedWaitUntil:
+          visible: ".*left over.*"
+          timeout: 60000
+      - tapOn: "Expenses"
+      - extendedWaitUntil:
+          visible: "\\$1,477\\.33/mo"
+          timeout: 15000
+      - assertVisible:
+          text: "\\$1,477\\.33/mo"
+          below: "(?i)brightline co\\."
+      - takeScreenshot: expenses-xxxl
