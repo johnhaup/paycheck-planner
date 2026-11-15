@@ -15,7 +15,7 @@ const RTL_SCRIPT = /[֐-ࣿיִ-﷿ﹰ-﻿]/;
 
 interface Props {
   children: string;
-  variant: "title" | "rowTitle" | "body";
+  variant: "title" | "rowTitle" | "body" | "section";
   color?: PaletteColor;
   /** Applied to every word */
   style?: StyleProp<TextStyle>;
