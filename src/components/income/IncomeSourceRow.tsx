@@ -70,7 +70,8 @@ export function IncomeSourceRow({ source, tintIndex, isFirst, isLast, onEdit, on
           ) : (
             <AppText variant="rowTitle" numberOfLines={1}>{source.name}</AppText>
           )}
-          <AppText variant="meta" numberOfLines={stacked ? undefined : 1}>{describePaySchedule(source)}</AppText>
+          {/* Wraps at every size: cut to one line, long locales lost the pay days ("Zweimal monatlich · 15. &…") */}
+          <AppText variant="meta">{describePaySchedule(source)}</AppText>
         </View>
         <View style={stacked ? styles.amountStacked : styles.amount}>
           <AppText
