@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
+import { FORWARD_CHEVRON } from "@/constants/direction";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppWordWrapText } from "@/components/AppWordWrapText";
@@ -43,7 +44,7 @@ export function SettingsLinkRow({ label, value, destructive, pro, onPress }: Pro
             </AppWordWrapText>
           ) : null}
         </View>
-        <Ionicons name="chevron-forward" size={18} color={colors.textMuted} />
+        <Ionicons name={FORWARD_CHEVRON} size={18} color={colors.textMuted} />
       </Pressable>
     );
   }
@@ -59,7 +60,7 @@ export function SettingsLinkRow({ label, value, destructive, pro, onPress }: Pro
           {value}
         </AppText>
       ) : null}
-      <Ionicons name="chevron-forward" size={18} color={colors.textMuted} />
+      <Ionicons name={FORWARD_CHEVRON} size={18} color={colors.textMuted} />
     </Pressable>
   );
 }

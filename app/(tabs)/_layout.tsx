@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Platform } from "react-native";
+import { I18nManager, Platform } from "react-native";
 import { NativeTabs } from "expo-router/native-tabs";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
@@ -7,6 +7,8 @@ import { useT } from "@/hooks/useLocale";
 const PAYCHECKS_SF = { default: "wallet.bifold", selected: "wallet.bifold.fill" } as const;
 const INCOME_SF = { default: "briefcase", selected: "briefcase.fill" } as const;
 const EXPENSES_SF = { default: "list.bullet.rectangle", selected: "list.bullet.rectangle.fill" } as const;
+// The native tab bar follows iOS's direction, which ignores an in-app language that differs from the device's
+const NATIVE_PROPS = { direction: I18nManager.isRTL ? "rtl" : "ltr" } as const;
 
 export default function TabsLayout() {
   const colors = useColors();
@@ -33,7 +35,7 @@ export default function TabsLayout() {
   );
 
   return (
-    <NativeTabs {...tabBarProps} disableTransparentOnScrollEdge>
+    <NativeTabs {...tabBarProps} disableTransparentOnScrollEdge unstable_nativeProps={NATIVE_PROPS}>
       <NativeTabs.Trigger name="(paychecks)">
         <NativeTabs.Trigger.Label>{t("tabs.paychecks")}</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf={PAYCHECKS_SF} md="account_balance_wallet" />

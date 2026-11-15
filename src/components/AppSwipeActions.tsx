@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useRef, type ComponentProps, type ReactNode } from "react";
-import { Pressable, StyleSheet, type StyleProp, type ViewStyle } from "react-native";
+import { I18nManager, Pressable, StyleSheet, type StyleProp, type ViewStyle } from "react-native";
 import ReanimatedSwipeable, {
   type SwipeableMethods,
 } from "react-native-gesture-handler/ReanimatedSwipeable";
@@ -17,15 +17,18 @@ export interface SwipeAction {
 
 interface Props {
   children: ReactNode;
-  /** Revealed by swiping right */
-  leftAction?: SwipeAction;
-  /** Revealed by swiping left */
-  rightAction?: SwipeAction;
+  /** Sits at the row's start edge: left, or right in RTL */
+  startAction?: SwipeAction;
+  /** Sits at the row's end edge: right, or left in RTL */
+  endAction?: SwipeAction;
   style?: StyleProp<ViewStyle>;
 }
 
-export function AppSwipeActions({ children, leftAction, rightAction, style }: Props) {
+export function AppSwipeActions({ children, startAction, endAction, style }: Props) {
   const swipeableRef = useRef<SwipeableMethods>(null);
+  // ReanimatedSwipeable's left and right are physical edges in every direction
+  const leftAction = I18nManager.isRTL ? endAction : startAction;
+  const rightAction = I18nManager.isRTL ? startAction : endAction;
 
   // Close first so a row that comes back (undo, re-render) isn't left swiped open
   const run = useCallback((action: SwipeAction) => {

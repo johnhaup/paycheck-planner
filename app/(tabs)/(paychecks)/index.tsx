@@ -18,6 +18,7 @@ import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { usePaycheckCardRenderer } from "@/hooks/usePaycheckCardRenderer";
+import { FORWARD_CHEVRON, LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
@@ -428,7 +429,7 @@ export default function PaychecksScreen() {
                     amount: formatMoney(-shortElsewhere.paycheck.remaining),
                   })}
                 </AppText>
-                <Ionicons name="chevron-forward" size={16} color={colors.destructive} />
+                <Ionicons name={FORWARD_CHEVRON} size={16} color={colors.destructive} />
               </Pressable>
             ) : null}
           </Animated.View>
@@ -509,7 +510,7 @@ export default function PaychecksScreen() {
   );
 
   const hiddenStyle = useAnimatedStyle(() => ({ opacity: hidden.value ? 0 : 1 }));
-  const listStyle = useMemo(() => [styles.list, hiddenStyle], [hiddenStyle]);
+  const listStyle = useMemo(() => [styles.list, LARGE_TITLE_LIST, hiddenStyle], [hiddenStyle]);
 
   // The list is the screen's root in both the welcome and the paychecks state:
   // iOS only collapses the large title into the header when the scroll view
@@ -543,7 +544,7 @@ export default function PaychecksScreen() {
           onLayout={handleListLayout}
           contentInsetAdjustmentBehavior="automatic"
           scrollToOverflowEnabled
-          contentContainerStyle={styles.listContent}
+          contentContainerStyle={LIST_CONTENT_STYLE}
           showsVerticalScrollIndicator={false}
           onScroll={handleScroll}
           scrollEventThrottle={16}
@@ -596,3 +597,5 @@ const styles = StyleSheet.create({
     marginHorizontal: -MEASUREMENTS.spacing.gutter,
   },
 });
+
+const LIST_CONTENT_STYLE = [styles.listContent, LARGE_TITLE_LIST_CONTENT];

@@ -100,7 +100,7 @@ export function ExpenseRow({
 
   return (
     <AppSwipeActions
-      rightAction={deleteAction}
+      endAction={deleteAction}
       style={groupedStyles.container}
     >
       <Pressable style={rowStyle} onPress={handlePress}>
