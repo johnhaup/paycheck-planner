@@ -126,7 +126,7 @@ export function ExpenseRow({
               </Pressable>
             ) : null}
           </View>
-          <AppText variant="meta" numberOfLines={stacked ? undefined : 1}>{meta}</AppText>
+          <AppText variant="meta">{meta}</AppText>
           {goalProgress ? (
             <>
               <AppText
