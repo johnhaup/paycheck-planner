@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { View, StyleSheet } from "react-native";
 import { useColors } from "@/hooks/useColors";
-import { formatDayOfMonth, formatMonthShort } from "@/utils/dates";
+import { formatDayNumber, formatMonthShort } from "@/utils/dates";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 
@@ -36,7 +36,7 @@ export function AppDateTile({ date }: Props) {
         {formatMonthShort(date).toUpperCase()}
       </AppText>
       <AppText variant="rowTitle" style={styles.day} maxFontSizeMultiplier={MAX_FONT_MULTIPLIER}>
-        {formatDayOfMonth(date)}
+        {formatDayNumber(date)}
       </AppText>
     </View>
   );

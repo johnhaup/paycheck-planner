@@ -55,6 +55,13 @@ export function formatDayOfMonth(date: Date): string {
   return formatter({ day: "numeric" }).format(date);
 }
 
+const NOT_DIGIT = /\P{Nd}/gu;
+
+/** "24" in every language: only the digits of the day, without the "日" ja, zh and ko add */
+export function formatDayNumber(date: Date): string {
+  return formatDayOfMonth(date).replace(NOT_DIGIT, "") || String(date.getDate());
+}
+
 /** "6:00 PM" */
 export function formatTimeOfDay(hour: number, minute: number): string {
   return formatter({ hour: "numeric", minute: "2-digit" }).format(new Date(2000, 0, 1, hour, minute));
