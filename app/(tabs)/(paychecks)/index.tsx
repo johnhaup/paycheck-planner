@@ -50,8 +50,10 @@ const JUMP_RETRY_MS = 50;
 // title bar, which collapses and shifts the offset on the way, and rows measured since
 // the first try move the target
 const JUMP_CONFIRMS = 2;
-// A hidden list is shown this long after its jump lands, once the repeats are through
+// A hidden list is shown this long after its last scroll event, once the repeats are through
 const SHOW_AFTER_LANDING_MS = 150;
+// How often a hidden list's jump is run again because iOS moved the list after it landed
+const MAX_REJUMPS = 5;
 const SHOW_FALLBACK_MS = 1000;
 // A month counts as on top once its title is within this of the header's bottom edge
 const MONTH_TOP_SLACK = 2;
@@ -170,13 +172,25 @@ export default function PaychecksScreen() {
   }, []);
   // The first jump of a dataset happens before anything is laid out; the list stays unseen until it lands
   const hidden = useSharedValue(false);
-  const showSoon = useCallback(() => {
-    setTimeout(() => hidden.set(false), SHOW_AFTER_LANDING_MS);
-  }, [hidden]);
+  // While the opening jump is unseen iOS can still move the list: on a cold launch it can apply
+  // the navigation bar's inset after the jump has landed, which takes the offset off it by that
+  // inset (HAU-321). A scroll event that moves the list runs the jump again (`rejump`, set below
+  // once the jump exists), and the list is shown once the offset holds still.
+  const rejump = useRef<() => void>(undefined);
+  const showTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const handleHiddenScroll = useCallback(
+    (moved: boolean) => {
+      clearTimeout(showTimer.current);
+      if (moved) rejump.current?.();
+      showTimer.current = setTimeout(() => hidden.set(false), SHOW_AFTER_LANDING_MS);
+    },
+    [hidden]
+  );
 
   const handleScroll = useAnimatedScrollHandler({
     onScroll: (event) => {
       const y = event.contentOffset.y;
+      const moved = y !== scrollY.value;
       scrollY.value = y;
       topOffset.value ??= y;
       // The bounce at either end is not a change of direction
@@ -188,7 +202,7 @@ export default function PaychecksScreen() {
         collapse.value = Math.min(1, Math.max(0, next));
       }
       lastPastTitle.value = pastTitle;
-      if (jumping.value && hidden.value) scheduleOnRN(showSoon);
+      if (jumping.value && hidden.value) scheduleOnRN(handleHiddenScroll, moved);
     },
     onBeginDrag: () => {
       jumping.value = false;
@@ -211,7 +225,9 @@ export default function PaychecksScreen() {
   // rows are not mounted yet; the jump is tried again until its row is.
   const listRef = useRef<FlatList<PaycheckRow>>(null);
   const headerHeightRef = useRef(0);
-  const jump = useRef<{ index: number; timer?: ReturnType<typeof setTimeout>; failed?: boolean }>(undefined);
+  const jump = useRef<{ index: number; timer?: ReturnType<typeof setTimeout>; failed?: boolean; rejumps?: number }>(
+    undefined
+  );
 
   const attemptJump = useCallback(() => {
     const attempt = (triesLeft: number, confirmsLeft: number) => {
@@ -262,6 +278,15 @@ export default function PaychecksScreen() {
     },
     [attemptJump, jumping, collapse]
   );
+
+  useEffect(() => {
+    rejump.current = () => {
+      const current = jump.current;
+      if (!current || (current.rejumps ?? 0) >= MAX_REJUMPS) return;
+      current.rejumps = (current.rejumps ?? 0) + 1;
+      attemptJump();
+    };
+  }, [attemptJump]);
 
   const handleScrollToIndexFailed = useCallback(() => {
     if (jump.current) jump.current.failed = true;
