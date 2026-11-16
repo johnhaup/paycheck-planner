@@ -15,6 +15,7 @@ import { usePaydayReminders } from "@/hooks/usePaydayReminders";
 import { useThemeStore } from "@/stores/themeStore";
 import { useProEntitlement } from "@/services/pro";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { DIM_ON_PRESS } from "@/constants/press";
 
 // sonner-native 0.27.0 passes dependency arrays to useDerivedValue/useAnimatedStyle,
 // which Reanimated 4 warns about on native. The warning fires with the first toast
@@ -49,6 +50,7 @@ export default function RootLayout() {
   const renderCloseButton = useCallback(
     () => (
       <Pressable
+        style={DIM_ON_PRESS}
         onPress={handleCloseModal}
         hitSlop={MEASUREMENTS.hitSlop}
         accessibilityRole="button"

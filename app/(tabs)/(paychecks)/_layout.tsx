@@ -6,6 +6,7 @@ import { useColors } from "@/hooks/useColors";
 import { useStackScreenOptions } from "@/hooks/useStackScreenOptions";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { DIM_ON_PRESS } from "@/constants/press";
 
 export default function PaychecksLayout() {
   const colors = useColors();
@@ -20,6 +21,7 @@ export default function PaychecksLayout() {
   const renderSettingsButton = useCallback(
     () => (
       <Pressable
+        style={DIM_ON_PRESS}
         onPress={handleOpenSettings}
         hitSlop={MEASUREMENTS.hitSlop}
         accessibilityRole="button"

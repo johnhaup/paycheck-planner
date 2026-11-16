@@ -18,6 +18,8 @@ import { formatMonthDay } from "@/utils/dates";
 import { withUndo } from "@/utils/undo";
 import { useProGate } from "@/hooks/useProGate";
 import type { IncomeSource } from "@/types";
+import { LayoutAnimationConfig } from "react-native-reanimated";
+import { AppAnimatedListCell } from "@/components/AppAnimatedListCell";
 
 /** A total or date too long for its tile shrinks this far instead of breaking mid-number */
 const TILE_VALUE_MIN_FONT_SCALE = 0.5;
@@ -145,17 +147,20 @@ export default function IncomeScreen() {
   // The list is the screen's root view so iOS collapses the large title on scroll
   return (
     <>
-      <FlatList
-        style={LARGE_TITLE_LIST}
-        data={incomeSources}
-        keyExtractor={keyExtractor}
-        renderItem={renderItem}
-        ListHeaderComponent={hasSources ? listHeader : undefined}
-        ListFooterComponent={hasSources ? listFooter : undefined}
-        ListEmptyComponent={listEmpty}
-        contentInsetAdjustmentBehavior="automatic"
-        contentContainerStyle={[hasSources ? styles.listContent : styles.emptyContent, LARGE_TITLE_LIST_CONTENT]}
-      />
+      <LayoutAnimationConfig skipEntering>
+        <FlatList
+          style={LARGE_TITLE_LIST}
+          data={incomeSources}
+          CellRendererComponent={AppAnimatedListCell}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          ListHeaderComponent={hasSources ? listHeader : undefined}
+          ListFooterComponent={hasSources ? listFooter : undefined}
+          ListEmptyComponent={listEmpty}
+          contentInsetAdjustmentBehavior="automatic"
+          contentContainerStyle={[hasSources ? styles.listContent : styles.emptyContent, LARGE_TITLE_LIST_CONTENT]}
+        />
+      </LayoutAnimationConfig>
       <AppFab accessibilityLabel={t("income.addSource")} onPress={handleAddGated} pro={addLocked} />
     </>
   );

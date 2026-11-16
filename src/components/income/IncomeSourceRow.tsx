@@ -13,6 +13,7 @@ import { AppSwipeActions, type SwipeAction } from "@/components/AppSwipeActions"
 import { AppWordWrapText } from "@/components/AppWordWrapText";
 import { describePaySchedule } from "@/utils/payDates";
 import type { IncomeSource } from "@/types";
+import { highlightOnPress } from "@/constants/press";
 
 /** A pay amount too long for the row's width shrinks this far instead of breaking mid-number */
 const AMOUNT_MIN_FONT_SCALE = 0.5;
@@ -53,8 +54,8 @@ export function IncomeSourceRow({ source, tintIndex, isFirst, isLast, onEdit, on
   );
 
   const rowStyle = useMemo(
-    () => (stacked ? [groupedStyles.row, styles.rowStacked] : groupedStyles.row),
-    [stacked, groupedStyles]
+    () => highlightOnPress(stacked ? [groupedStyles.row, styles.rowStacked] : groupedStyles.row, colors.rowPressed),
+    [stacked, groupedStyles, colors]
   );
 
   return (

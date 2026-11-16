@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, ViewStyle, StyleProp } from "react-native";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
+import { dimOnPress } from "@/constants/press";
 
 type Variant = "primary" | "destructive" | "outline";
 
@@ -37,7 +38,7 @@ export function AppButton({
               borderWidth: StyleSheet.hairlineWidth,
               borderColor: colors.border,
             };
-    return [styles.base, variantStyle, disabled ? styles.disabled : undefined, style];
+    return dimOnPress([styles.base, variantStyle, disabled ? styles.disabled : undefined, style]);
   }, [variant, style, disabled, colors]);
 
   return (

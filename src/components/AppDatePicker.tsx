@@ -10,6 +10,7 @@ import { useDatePickerStore, type DatePickerMode } from "@/stores/datePickerStor
 import { useLocale } from "@/hooks/useLocale";
 import { formatFullDate, formatTimeOfDay } from "@/utils/dates";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { dimOnPress } from "@/constants/press";
 import { AppText } from "@/components/AppText";
 
 interface Props {
@@ -53,13 +54,14 @@ export function AppDatePicker({ value, mode = "date", onChange }: Props) {
   );
 
   const triggerStyle = useMemo(
-    () => [
-      styles.trigger,
-      {
-        backgroundColor: colors.inputBackground,
-        borderColor: colors.border,
-      },
-    ],
+    () =>
+      dimOnPress([
+        styles.trigger,
+        {
+          backgroundColor: colors.inputBackground,
+          borderColor: colors.border,
+        },
+      ]),
     [colors]
   );
 

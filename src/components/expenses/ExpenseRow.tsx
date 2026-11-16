@@ -14,6 +14,7 @@ import { AppSetAsideIcon } from "@/components/AppSetAsideIcon";
 import { AppSwipeActions, type SwipeAction } from "@/components/AppSwipeActions";
 import { AppWordWrapText } from "@/components/AppWordWrapText";
 import type { Expense } from "@/types";
+import { DIM_ON_PRESS, highlightOnPress } from "@/constants/press";
 
 /** An amount too long for the row's width shrinks this far instead of breaking mid-number */
 const AMOUNT_MIN_FONT_SCALE = 0.5;
@@ -94,8 +95,8 @@ export function ExpenseRow({
   );
 
   const rowStyle = useMemo(
-    () => (stacked ? [groupedStyles.row, styles.rowStacked] : groupedStyles.row),
-    [stacked, groupedStyles]
+    () => highlightOnPress(stacked ? [groupedStyles.row, styles.rowStacked] : groupedStyles.row, colors.rowPressed),
+    [stacked, groupedStyles, colors]
   );
 
   return (
@@ -117,6 +118,7 @@ export function ExpenseRow({
             )}
             {expense.link ? (
               <Pressable
+                style={DIM_ON_PRESS}
                 onPress={handleOpenLink}
                 hitSlop={MEASUREMENTS.hitSlop}
                 accessibilityRole="link"

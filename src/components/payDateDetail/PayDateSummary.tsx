@@ -1,8 +1,10 @@
+import { useMemo } from "react";
 import { Pressable, View, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { dimOnPress } from "@/constants/press";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { AppText } from "@/components/AppText";
@@ -40,6 +42,12 @@ export function PayDateSummary({
   const stacked = useAccessibilityTextSize();
   const date = parseLocalDate(payDate);
 
+  const metaStyle = useMemo(() => dimOnPress(styles.meta), []);
+  const shortRowStyle = useMemo(
+    () => dimOnPress(stacked ? styles.shortRowStacked : styles.shortRow),
+    [stacked]
+  );
+
   return (
     <View>
       <View style={stacked ? styles.sourceStacked : styles.source}>
@@ -56,7 +64,7 @@ export function PayDateSummary({
       <AppText variant="meta" style={styles.heroLabel}>{t("payDate.leftAfterBills")}</AppText>
       <AppHeroAmount amount={remaining} />
       <Pressable
-        style={styles.meta}
+        style={metaStyle}
         onPress={onEditPayAmount}
         hitSlop={MEASUREMENTS.hitSlop}
         accessibilityRole="button"
@@ -69,7 +77,7 @@ export function PayDateSummary({
       </Pressable>
       {remaining < 0 && canMoveBill ? (
         <Pressable
-          style={stacked ? styles.shortRowStacked : styles.shortRow}
+          style={shortRowStyle}
           onPress={onMoveBill}
           hitSlop={MEASUREMENTS.hitSlop}
           accessibilityRole="button"

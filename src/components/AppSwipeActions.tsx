@@ -5,6 +5,7 @@ import ReanimatedSwipeable, {
 } from "react-native-gesture-handler/ReanimatedSwipeable";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
+import { dimOnPress } from "@/constants/press";
 
 const ACTION_WIDTH = 72;
 
@@ -65,7 +66,7 @@ export function AppSwipeActions({ children, startAction, endAction, style }: Pro
 
 function ActionButton({ action, onRun }: { action: SwipeAction; onRun: (action: SwipeAction) => void }) {
   const colors = useColors();
-  const style = useMemo(() => [styles.action, { backgroundColor: action.color }], [action.color]);
+  const style = useMemo(() => dimOnPress([styles.action, { backgroundColor: action.color }]), [action.color]);
   const handlePress = useCallback(() => onRun(action), [onRun, action]);
 
   return (

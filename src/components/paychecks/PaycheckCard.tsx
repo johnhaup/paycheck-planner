@@ -19,6 +19,7 @@ import type {
   PaycheckItem,
   TogglePaidHandler,
 } from "@/components/paychecks/types";
+import { DIM_ON_PRESS, highlightOnPress } from "@/constants/press";
 
 /** A pay amount too long for the card's width shrinks this far instead of breaking mid-number */
 const AMOUNT_MIN_FONT_SCALE = 0.5;
@@ -62,13 +63,22 @@ export function PaycheckCard({
   }, [onMoveBill, item.payDate, item.sourceId]);
 
   const shortRowStyle = useMemo(
-    () => [stacked ? styles.shortRowStacked : styles.shortRow, { borderTopColor: colors.divider }],
+    () =>
+      highlightOnPress(
+        [stacked ? styles.shortRowStacked : styles.shortRow, { borderTopColor: colors.divider }],
+        colors.rowPressed
+      ),
     [stacked, colors]
   );
 
   const emptyRowStyle = useMemo(
-    () => [styles.emptyRow, { borderTopColor: colors.divider }],
+    () => highlightOnPress([styles.emptyRow, { borderTopColor: colors.divider }], colors.rowPressed),
     [colors]
+  );
+
+  const headerStyle = useMemo(
+    () => highlightOnPress(stacked ? styles.headerStacked : styles.header, colors.rowPressed),
+    [stacked, colors]
   );
 
   const billCount = item.expenses.length;
@@ -82,7 +92,7 @@ export function PaycheckCard({
   return (
     <AppCard style={styles.card}>
       <Pressable
-        style={stacked ? styles.headerStacked : styles.header}
+        style={headerStyle}
         onPress={handlePress}
         accessibilityRole="button"
         accessibilityHint={t("paychecks.opensPaycheck")}
@@ -98,6 +108,7 @@ export function PaycheckCard({
         </View>
         <View style={stacked ? styles.amountsStacked : styles.amounts}>
           <Pressable
+            style={DIM_ON_PRESS}
             onPress={handleEditPayAmount}
             hitSlop={MEASUREMENTS.hitSlop}
             accessibilityRole="button"

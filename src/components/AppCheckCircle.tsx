@@ -4,6 +4,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { hapticTap } from "@/utils/haptics";
+import { dimOnPress } from "@/constants/press";
 
 interface Props {
   checked: boolean;
@@ -20,12 +21,12 @@ export function AppCheckCircle({ checked, onPress, accessibilityLabel }: Props) 
   }, [onPress]);
 
   const circleStyle = useMemo(
-    () => [
+    () => dimOnPress([
       styles.circle,
       checked
         ? { backgroundColor: colors.primary, borderColor: colors.primary }
         : { borderColor: colors.textMuted },
-    ],
+    ]),
     [checked, colors]
   );
 

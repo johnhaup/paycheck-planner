@@ -19,6 +19,7 @@ import type {
   PaycheckExpense,
   TogglePaidHandler,
 } from "@/components/paychecks/types";
+import { DIM_ON_PRESS, dimOnPress } from "@/constants/press";
 
 /** An amount too long for the row's width shrinks this far instead of breaking mid-number */
 const AMOUNT_MIN_FONT_SCALE = 0.5;
@@ -98,6 +99,8 @@ export function PaycheckExpenseRow({
     [expense.paid, expense.payee, colors, handleMove, t]
   );
 
+  const payeePressStyle = useMemo(() => dimOnPress(styles.payee), []);
+
   const payeeStyle = useMemo(
     () => [styles.payeeText, expense.paid ? styles.paid : undefined],
     [expense.paid]
@@ -117,7 +120,7 @@ export function PaycheckExpenseRow({
           <View style={stacked ? styles.contentStacked : styles.content}>
             <View style={styles.payeeColumn}>
               <Pressable
-                style={styles.payee}
+                style={payeePressStyle}
                 onPress={handleLinkTap}
                 disabled={!expense.link}
                 hitSlop={MEASUREMENTS.hitSlop}
@@ -142,6 +145,7 @@ export function PaycheckExpenseRow({
               ) : null}
             </View>
             <Pressable
+              style={DIM_ON_PRESS}
               onPress={handleEditAmount}
               hitSlop={MEASUREMENTS.hitSlop}
               accessibilityRole="button"

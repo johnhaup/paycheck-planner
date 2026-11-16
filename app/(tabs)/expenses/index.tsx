@@ -17,6 +17,7 @@ import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { DIM_ON_PRESS } from "@/constants/press";
 import { LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { AppText } from "@/components/AppText";
 import { AppEmptyState } from "@/components/AppEmptyState";
@@ -34,6 +35,8 @@ import {
   type ExpenseListItem,
   type ExpenseSection,
 } from "@/utils/expenseSections";
+import { LayoutAnimationConfig } from "react-native-reanimated";
+import { AppAnimatedListCell } from "@/components/AppAnimatedListCell";
 
 function keyExtractor(item: ExpenseListItem) {
   return item.expense.id;
@@ -151,6 +154,7 @@ export default function ExpensesScreen() {
   const renderSortButton = useCallback(
     () => (
       <Pressable
+        style={DIM_ON_PRESS}
         onPress={handleSortPress}
         hitSlop={MEASUREMENTS.hitSlop}
         accessibilityRole="button"
@@ -235,18 +239,21 @@ export default function ExpensesScreen() {
   return (
     <>
       <Stack.Screen options={screenOptions} />
-      <SectionList
-        style={LARGE_TITLE_LIST}
-        sections={sections}
-        keyExtractor={keyExtractor}
-        renderItem={renderItem}
-        renderSectionHeader={renderSectionHeader}
-        ListHeaderComponent={hasExpenses ? listHeader : undefined}
-        ListEmptyComponent={listEmpty}
-        stickySectionHeadersEnabled={false}
-        contentInsetAdjustmentBehavior="automatic"
-        contentContainerStyle={[hasExpenses ? styles.listContent : styles.emptyContent, LARGE_TITLE_LIST_CONTENT]}
-      />
+      <LayoutAnimationConfig skipEntering>
+        <SectionList
+          style={LARGE_TITLE_LIST}
+          sections={sections}
+          CellRendererComponent={AppAnimatedListCell}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          renderSectionHeader={renderSectionHeader}
+          ListHeaderComponent={hasExpenses ? listHeader : undefined}
+          ListEmptyComponent={listEmpty}
+          stickySectionHeadersEnabled={false}
+          contentInsetAdjustmentBehavior="automatic"
+          contentContainerStyle={[hasExpenses ? styles.listContent : styles.emptyContent, LARGE_TITLE_LIST_CONTENT]}
+        />
+      </LayoutAnimationConfig>
       <AppFab accessibilityLabel={t("expenses.addExpense")} onPress={handleAdd} />
     </>
   );
