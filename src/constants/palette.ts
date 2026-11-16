@@ -40,6 +40,7 @@ export type ThemeColors = Record<
   | "modalBackgroundClear"
   | "cardBackground"
   | "cardBackgroundElevated"
+  | "rowPressed"
   | "inputBackground"
   | "segmentTrack"
   | "segmentSelected"
@@ -73,6 +74,8 @@ export const DarkPalette = {
   modalBackgroundClear: palette.slate900Clear,
   cardBackground: palette.slate850,
   cardBackgroundElevated: palette.slate800,
+  // A held row or card, a step above elevated rows like a UIKit cell highlight
+  rowPressed: palette.slate700,
   inputBackground: palette.slate750,
   segmentTrack: palette.slate850,
   segmentSelected: palette.slate700,
@@ -109,6 +112,7 @@ export const LightPalette = {
   modalBackgroundClear: palette.whiteClear,
   cardBackground: palette.white,
   cardBackgroundElevated: palette.lightGray,
+  rowPressed: palette.barGray,
   inputBackground: palette.offWhite,
   segmentTrack: palette.trackGray,
   segmentSelected: palette.white,

@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
@@ -13,6 +13,7 @@ import { AppCheckCircle } from "@/components/AppCheckCircle";
 import { AppSetAsideIcon } from "@/components/AppSetAsideIcon";
 import { formatDueDay, parseLocalDate } from "@/utils/payDates";
 import type { Expense } from "@/types";
+import { DIM_ON_PRESS, dimOnPress } from "@/constants/press";
 
 interface Props {
   expense: Expense;
@@ -76,6 +77,9 @@ export function PayDateExpenseRow({
     }
   }, [isAssigned, onAssign, onUnassign, expense.id]);
 
+  const titleRowStyle = useMemo(() => dimOnPress(styles.titleRow), []);
+  const amountStyle = useMemo(() => dimOnPress(styles.amount), []);
+
   const textColor = isPaid ? "textMuted" : "textDefault";
   const isSetAside = expense.kind === "set-aside";
 
@@ -94,7 +98,7 @@ export function PayDateExpenseRow({
         ) : null}
         <View style={styles.info}>
           <Pressable
-            style={styles.titleRow}
+            style={titleRowStyle}
             onPress={handleOpenLink}
             disabled={!expense.link}
             accessibilityRole={expense.link ? "link" : undefined}
@@ -119,7 +123,7 @@ export function PayDateExpenseRow({
             ) : null}
           </Pressable>
           <Pressable
-            style={styles.amount}
+            style={amountStyle}
             onPress={handleEditAmount}
             disabled={!isAssigned}
             accessibilityRole={isAssigned ? "button" : undefined}
@@ -140,6 +144,7 @@ export function PayDateExpenseRow({
           stacked ? null : <AppText variant="caption">{t("payDate.linked")}</AppText>
         ) : (
           <Pressable
+            style={DIM_ON_PRESS}
             onPress={handleToggleAssigned}
             hitSlop={MEASUREMENTS.hitSlop}
             accessibilityRole="button"

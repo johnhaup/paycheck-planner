@@ -6,6 +6,7 @@ import { useColors, useIsDark } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
 import { useDatePickerStore } from "@/stores/datePickerStore";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { DIM_ON_PRESS } from "@/constants/press";
 import { AppText } from "@/components/AppText";
 
 export default function DatePickerScreen() {
@@ -39,13 +40,13 @@ export default function DatePickerScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable onPress={handleCancel} hitSlop={MEASUREMENTS.hitSlop}>
+        <Pressable style={DIM_ON_PRESS} onPress={handleCancel} hitSlop={MEASUREMENTS.hitSlop}>
           <AppText variant="body" color="textSecondary">{t("common.cancel")}</AppText>
         </Pressable>
         <AppText variant="bodyStrong">
           {mode === "time" ? t("common.selectTime") : t("common.selectDate")}
         </AppText>
-        <Pressable onPress={handleDone} hitSlop={MEASUREMENTS.hitSlop}>
+        <Pressable style={DIM_ON_PRESS} onPress={handleDone} hitSlop={MEASUREMENTS.hitSlop}>
           <AppText variant="bodyStrong" color="primaryText">{t("common.done")}</AppText>
         </Pressable>
       </View>

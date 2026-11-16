@@ -4,6 +4,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { dimOnPress } from "@/constants/press";
 import { EXPENSE_ICONS, type ExpenseIcon } from "@/constants/expenseIcons";
 import { AppText } from "@/components/AppText";
 import { hapticSelection } from "@/utils/haptics";
@@ -61,13 +62,14 @@ function IconTile({ value, selected, letter, accessibilityLabel, onSelect }: Ico
   }, [onSelect, value, selected]);
 
   const tileStyle = useMemo(
-    () => [
-      styles.tile,
-      {
-        backgroundColor: selected ? colors.primary : colors.inputBackground,
-        borderColor: selected ? colors.primary : colors.border,
-      },
-    ],
+    () =>
+      dimOnPress([
+        styles.tile,
+        {
+          backgroundColor: selected ? colors.primary : colors.inputBackground,
+          borderColor: selected ? colors.primary : colors.border,
+        },
+      ]),
     [selected, colors]
   );
 

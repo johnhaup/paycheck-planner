@@ -4,6 +4,7 @@ import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { hapticSelection } from "@/utils/haptics";
+import { dimOnPress } from "@/constants/press";
 
 interface Props<T> {
   label: string;
@@ -24,14 +25,14 @@ export function AppChip<T>({ label, value, selected, onSelect, style }: Props<T>
   }, [onSelect, value, selected]);
 
   const chipStyle = useMemo(
-    () => [
+    () => dimOnPress([
       styles.chip,
       {
         backgroundColor: selected ? colors.primary : colors.inputBackground,
         borderColor: selected ? colors.primary : colors.border,
       },
       style,
-    ],
+    ]),
     [selected, style, colors]
   );
 

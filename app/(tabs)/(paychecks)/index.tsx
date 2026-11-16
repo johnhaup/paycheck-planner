@@ -21,6 +21,7 @@ import { useT } from "@/hooks/useLocale";
 import { usePaycheckCardRenderer } from "@/hooks/usePaycheckCardRenderer";
 import { FORWARD_CHEVRON, LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { DIM_ON_PRESS, dimOnPress } from "@/constants/press";
 import { AppText } from "@/components/AppText";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
@@ -457,6 +458,8 @@ export default function PaychecksScreen() {
     }
   }, [shortElsewhere, shortElsewhereIndex, setSelectedMonthKey, jumpTo]);
 
+  const shortRowStyle = useMemo(() => dimOnPress(styles.shortRow), []);
+
   const stickyHeaderStyle = useMemo(
     () => [styles.stickyHeader, { backgroundColor: colors.screenBackground, minHeight: headerFloor.height }],
     [colors, headerFloor.height]
@@ -475,6 +478,7 @@ export default function PaychecksScreen() {
               </AppText>
               {isAwayFromToday ? (
                 <Pressable
+                  style={DIM_ON_PRESS}
                   onPress={handleTodayPress}
                   hitSlop={MEASUREMENTS.hitSlop}
                   accessibilityRole="button"
@@ -492,7 +496,7 @@ export default function PaychecksScreen() {
               })}
             </AppText>
             {shortElsewhere ? (
-              <Pressable style={styles.shortRow} onPress={handleShowShort} accessibilityRole="button">
+              <Pressable style={shortRowStyle} onPress={handleShowShort} accessibilityRole="button">
                 <Ionicons name="alert-circle" size={16} color={colors.destructive} />
                 <AppText variant="meta" color="destructive" style={styles.shortText}>
                   {t("paychecks.shortAhead", {
@@ -526,6 +530,7 @@ export default function PaychecksScreen() {
       handleTodayPress,
       shortElsewhere,
       handleShowShort,
+      shortRowStyle,
       handleSelectMonth,
       isPro,
       openPaywall,

@@ -8,6 +8,7 @@ import { useThemeStore } from "@/stores/themeStore";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { DIM_ON_PRESS } from "@/constants/press";
 import { AppText } from "@/components/AppText";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { PayDateSummary } from "@/components/payDateDetail/PayDateSummary";
@@ -19,6 +20,8 @@ import { hapticSuccess } from "@/utils/haptics";
 import { withUndo } from "@/utils/undo";
 import { useProGate } from "@/hooks/useProGate";
 import type { Expense } from "@/types";
+import { LayoutAnimationConfig } from "react-native-reanimated";
+import { AppAnimatedListCell } from "@/components/AppAnimatedListCell";
 
 type ListItem =
   | { key: string; type: "header" | "one-time-form" | "empty" }
@@ -262,7 +265,7 @@ export default function PayDateDetailScreen() {
 
   const renderMarkAllPaidButton = useCallback(
     () => (
-      <Pressable onPress={handleMarkAllPaid} hitSlop={MEASUREMENTS.hitSlop} accessibilityRole="button">
+      <Pressable style={DIM_ON_PRESS} onPress={handleMarkAllPaid} hitSlop={MEASUREMENTS.hitSlop} accessibilityRole="button">
         <AppText
           variant="bodyStrong"
           color="primaryText"
@@ -404,15 +407,18 @@ export default function PayDateDetailScreen() {
   return (
     <>
       <Stack.Screen options={screenOptions} />
-      <FlatList
-        data={listData}
-        keyExtractor={keyExtractor}
-        renderItem={renderItem}
-        style={listStyle}
-        contentContainerStyle={styles.listContent}
-        renderScrollComponent={renderScrollComponent}
-        keyboardShouldPersistTaps="handled"
-      />
+      <LayoutAnimationConfig skipEntering>
+        <FlatList
+          data={listData}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          CellRendererComponent={AppAnimatedListCell}
+          style={listStyle}
+          contentContainerStyle={styles.listContent}
+          renderScrollComponent={renderScrollComponent}
+          keyboardShouldPersistTaps="handled"
+        />
+      </LayoutAnimationConfig>
     </>
   );
 }

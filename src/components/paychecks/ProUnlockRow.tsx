@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
@@ -5,6 +6,7 @@ import { FORWARD_CHEVRON } from "@/constants/direction";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { ProBadge } from "@/components/ProBadge";
+import { dimOnPress } from "@/constants/press";
 
 interface Props {
   label: string;
@@ -14,9 +16,10 @@ interface Props {
 /** Where the free months end in the Paychecks list: opens the paywall for the months Pro adds. */
 export function ProUnlockRow({ label, onPress }: Props) {
   const colors = useColors();
+  const rowStyle = useMemo(() => dimOnPress(styles.row), []);
 
   return (
-    <Pressable style={styles.row} onPress={onPress} accessibilityRole="button" accessibilityLabel={label}>
+    <Pressable style={rowStyle} onPress={onPress} accessibilityRole="button" accessibilityLabel={label}>
       <AppText variant="bodyStrong" color="primaryText" center style={styles.label}>{label}</AppText>
       <View style={styles.trailing}>
         <ProBadge />

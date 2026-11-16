@@ -5,6 +5,7 @@ import { useColors } from "@/hooks/useColors";
 import { useGroupedRowStyles } from "@/hooks/useGroupedRowStyles";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
+import { highlightOnPress } from "@/constants/press";
 
 export interface Choice {
   key: string;
@@ -70,12 +71,17 @@ function ChoiceRow({ choice, selected, isFirst, isLast, onSelect }: ChoiceRowPro
     onSelect(choice.key);
   }, [onSelect, choice.key]);
 
+  const rowStyle = useMemo(
+    () => highlightOnPress(groupedStyles.row, colors.rowPressed),
+    [groupedStyles, colors]
+  );
+
   const accessibilityState = useMemo(() => ({ selected }), [selected]);
 
   return (
     <View style={groupedStyles.container}>
       <Pressable
-        style={groupedStyles.row}
+        style={rowStyle}
         onPress={handlePress}
         accessibilityRole="radio"
         accessibilityState={accessibilityState}

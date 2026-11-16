@@ -8,6 +8,7 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppWordWrapText } from "@/components/AppWordWrapText";
 import { ProBadge } from "@/components/ProBadge";
+import { highlightOnPress } from "@/constants/press";
 
 interface Props {
   label: string;
@@ -24,7 +25,7 @@ export function SettingsLinkRow({ label, value, destructive, pro, onPress }: Pro
   const stacked = useAccessibilityTextSize();
 
   const rowStyle = useMemo(
-    () => [styles.row, { backgroundColor: colors.cardBackgroundElevated }],
+    () => highlightOnPress([styles.row, { backgroundColor: colors.cardBackgroundElevated }], colors.rowPressed),
     [colors]
   );
 
