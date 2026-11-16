@@ -121,6 +121,33 @@ name: expenses
     timeout: 15000
 - takeScreenshot: expenses-added
 
+# A linked recurring bill takes a due day, shown in its row in place of the schedule
+# (HAU-349). Internet is already once a month, so Brightline's total below is unchanged.
+- scrollUntilVisible:
+    element: ".*Internet.*"
+    direction: UP
+    centerElement: true
+- tapOn: ".*Internet.*"
+- extendedWaitUntil:
+    visible: "e.g. Electric Company"
+    timeout: 10000
+- scrollUntilVisible:
+    element: "e.g. 18"
+    centerElement: true
+- tapOn: "e.g. 18"
+- inputText: "18"
+# The keyboard covers the button, and Maestro counts it visible there; scroll it up first
+- swipe:
+    start: 50%, 45%
+    end: 50%, 20%
+- scrollUntilVisible:
+    element: "Update Expense"
+- tapOn: "Update Expense"
+- extendedWaitUntil:
+    visible: ".*Internet.*Due the 18th.*"
+    timeout: 15000
+- takeScreenshot: expenses-due-day
+
 # iOS, largest accessibility text size: a source's group header stacks, its monthly
 # total below the name, instead of squeezing the name into a one-letter column
 # (HAU-363). The data from above survives the relaunch.
