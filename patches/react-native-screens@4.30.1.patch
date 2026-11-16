@@ -1,0 +1,82 @@
+diff --git a/ios/tabs/host/RNSTabBarController.mm b/ios/tabs/host/RNSTabBarController.mm
+index 4e0e1118e1aca72354dbb92d6b1bef43c3605510..60637c5cc974e3f68fa9b32a12232b51eee4625b 100644
+--- a/ios/tabs/host/RNSTabBarController.mm
++++ b/ios/tabs/host/RNSTabBarController.mm
+@@ -68,6 +68,51 @@ static void rns_pushViewController(__unsafe_unretained id self,
+ }
+ #endif // RNS_MORE_NAVIGATION_CONTROLLER_AVAILABLE
+ 
++// Slides tab content horizontally on tab change, towards the side of the newly selected tab.
++@interface RNSTabSlideAnimator : NSObject <UIViewControllerAnimatedTransitioning>
++@property (nonatomic) CGFloat direction; // +1: new tab comes in from the right, -1: from the left
++@end
++
++@implementation RNSTabSlideAnimator
++
++- (NSTimeInterval)transitionDuration:(nullable id<UIViewControllerContextTransitioning>)transitionContext
++{
++  return 0.35;
++}
++
++- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
++{
++  UIView *containerView = transitionContext.containerView;
++  UIView *fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
++  UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
++  UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
++  toView.frame = [transitionContext finalFrameForViewController:toViewController];
++  [containerView addSubview:toView];
++
++  CGFloat offset = containerView.bounds.size.width * self.direction;
++  toView.transform = CGAffineTransformMakeTranslation(offset, 0);
++  [UIView animateWithDuration:[self transitionDuration:transitionContext]
++      delay:0
++      usingSpringWithDamping:1
++      initialSpringVelocity:0
++      options:UIViewAnimationOptionCurveEaseInOut
++      animations:^{
++        fromView.transform = CGAffineTransformMakeTranslation(-offset, 0);
++        toView.transform = CGAffineTransformIdentity;
++      }
++      completion:^(BOOL finished) {
++        fromView.transform = CGAffineTransformIdentity;
++        toView.transform = CGAffineTransformIdentity;
++        BOOL cancelled = transitionContext.transitionWasCancelled;
++        if (cancelled) {
++          [toView removeFromSuperview];
++        }
++        [transitionContext completeTransition:!cancelled];
++      }];
++}
++
++@end
++
+ @implementation RNSTabBarController {
+   NSArray<RNSTabsScreenViewController *> *_Nullable _tabScreenControllers;
+ 
+@@ -542,6 +587,25 @@ static void rns_pushViewController(__unsafe_unretained id self,
+   _isHandlingExplicitSelectionUpdate = NO;
+ }
+ 
++- (nullable id<UIViewControllerAnimatedTransitioning>)tabBarController:(UITabBarController *)tabBarController
++            animationControllerForTransitionFromViewController:(UIViewController *)fromVC
++                                              toViewController:(UIViewController *)toVC
++{
++  if (UIAccessibilityIsReduceMotionEnabled()) {
++    return nil;
++  }
++  NSArray<RNSTabsScreenViewController *> *controllers = [self installedScreenControllers];
++  NSUInteger fromIndex = [controllers indexOfObject:(RNSTabsScreenViewController *)fromVC];
++  NSUInteger toIndex = [controllers indexOfObject:(RNSTabsScreenViewController *)toVC];
++  if (fromIndex == NSNotFound || toIndex == NSNotFound || fromIndex == toIndex) {
++    return nil;
++  }
++  BOOL isRTL = self.traitCollection.layoutDirection == UITraitEnvironmentLayoutDirectionRightToLeft;
++  RNSTabSlideAnimator *animator = [RNSTabSlideAnimator new];
++  animator.direction = ((toIndex > fromIndex) != isRTL) ? 1 : -1;
++  return animator;
++}
++
+ #if RNS_UITAB_API_SDK_AVAILABLE
+ 
+ #pragma mark UITabBarControllerDelegate (UITab API)
