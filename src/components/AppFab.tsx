@@ -1,5 +1,7 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { Pressable, StyleSheet } from "react-native";
+import Animated, { useAnimatedStyle, useSharedValue, withSequence, withSpring, withTiming } from "react-native-reanimated";
+import { useIsFocused } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
@@ -7,6 +9,14 @@ import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { hapticTap } from "@/utils/haptics";
 import { ProBadge } from "@/components/ProBadge";
+
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+
+// Underdamped so the button overshoots and settles: the bounce in
+const BOUNCE_IN = { dampingRatio: 0.5, duration: 500 } as const;
+// A small swell before it shrinks away: the bounce out
+const SWELL = { duration: 90 } as const;
+const SHRINK = { duration: 160 } as const;
 
 interface Props {
   accessibilityLabel: string;
@@ -19,6 +29,19 @@ export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
   const colors = useColors();
   const insets = useSafeAreaInsets();
   const t = useT();
+  // Native tabs keep every tab mounted, so the FAB follows its screen's focus: it bounces in when the
+  // tab (or the screen under a closing sheet) comes to the front and bounces out when it leaves.
+  // Reanimated skips to the end value when Reduce Motion is on.
+  const isFocused = useIsFocused();
+  const scale = useSharedValue(0);
+
+  useEffect(() => {
+    scale.value = isFocused
+      ? withSpring(1, BOUNCE_IN)
+      : withSequence(withTiming(1.1, SWELL), withTiming(0, SHRINK));
+  }, [isFocused, scale]);
+
+  const scaleStyle = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
 
   const handlePress = useCallback(() => {
     hapticTap();
@@ -33,15 +56,16 @@ export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
         shadowColor: colors.shadow,
         bottom: insets.bottom + MEASUREMENTS.spacing.lg,
       },
+      scaleStyle,
     ],
-    [colors, insets.bottom]
+    [colors, insets.bottom, scaleStyle]
   );
 
   // A ring in the screen colour cuts the badge out of the button so it reads as a separate tag
   const badgeStyle = useMemo(() => [styles.badge, { borderColor: colors.screenBackground }], [colors]);
 
   return (
-    <Pressable
+    <AnimatedPressable
       style={fabStyle}
       onPress={handlePress}
       hitSlop={MEASUREMENTS.hitSlop}
@@ -51,7 +75,7 @@ export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
     >
       <Ionicons name="add" size={28} color={colors.onPrimary} />
       {pro ? <ProBadge style={badgeStyle} fixed /> : null}
-    </Pressable>
+    </AnimatedPressable>
   );
 }
 
