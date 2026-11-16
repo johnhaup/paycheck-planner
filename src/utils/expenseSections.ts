@@ -1,8 +1,9 @@
 import {
+  formatDueDay,
   getLinkedSlot,
+  getExpenseRepeatMonths,
   getMonthlyCost,
   getPaycheckSlotLabel,
-  getRepeatMonths,
   isRepeatMonth,
   parseLocalDate,
 } from "@/utils/payDates";
@@ -64,20 +65,37 @@ export function summarizeExpenses(expenses: Expense[], incomeSources: IncomeSour
   };
 }
 
-/** "Every paycheck", "2nd paycheck each month", "1st paycheck in Mar, Jun, Sep, Dec", "March" */
-export function describeLinkSchedule(expense: Expense, source: IncomeSource): string {
-  const slot = getLinkedSlot(expense, source);
-  const months = getRepeatMonths(expense.linkSchedule);
-  if (expense.linkSchedule === "every-other-paycheck") return t("expenses.form.everyOtherPaycheck");
-  if (months === undefined || (months === 1 && slot === undefined)) return t("expenses.meta.everyPaycheck");
-  const slotLabel = slot === undefined ? undefined : getPaycheckSlotLabel(source, slot);
-  if (months === 1) return t("expenses.meta.slotEachMonth", { slot: slotLabel });
+/** "March", or "Mar, Jun, Sep, Dec": the months a bill repeating every `months` months lands in. */
+function repeatMonthList(expense: Expense, source: IncomeSource, months: number): string {
   const start = parseLocalDate(expense.repeatStart ?? source.firstPayDate);
   const inMonths = Array.from({ length: 12 }, (_, month) => new Date(2024, month, 1)).filter((date) =>
     isRepeatMonth(date, months, start)
   );
-  const monthList =
-    inMonths.length === 1 ? formatMonthLong(inMonths[0]) : inMonths.map(formatMonthShort).join(t("expenses.meta.monthSeparator"));
+  return inMonths.length === 1
+    ? formatMonthLong(inMonths[0])
+    : inMonths.map(formatMonthShort).join(t("expenses.meta.monthSeparator"));
+}
+
+/**
+ * "Every paycheck", "2nd paycheck each month", "1st paycheck in Mar, Jun, Sep, Dec", "Due the 18th",
+ * "Due the 15th in March"
+ */
+export function describeLinkSchedule(expense: Expense, source: IncomeSource): string {
+  if (expense.linkSchedule === "every-other-paycheck") return t("expenses.form.everyOtherPaycheck");
+  const months = getExpenseRepeatMonths(expense);
+  // A due day picks the paycheck in place of the slot
+  const slot = getLinkedSlot(expense, source);
+  const slotLabel =
+    expense.dueDay !== undefined
+      ? formatDueDay(expense.dueDay)
+      : slot === undefined
+        ? undefined
+        : getPaycheckSlotLabel(source, slot);
+  if (months === undefined || (months === 1 && slotLabel === undefined)) return t("expenses.meta.everyPaycheck");
+  if (months === 1) {
+    return expense.dueDay !== undefined ? formatDueDay(expense.dueDay) : t("expenses.meta.slotEachMonth", { slot: slotLabel });
+  }
+  const monthList = repeatMonthList(expense, source, months);
   return slotLabel ? t("expenses.meta.inMonths", { slot: slotLabel, months: monthList }) : monthList;
 }
 
@@ -92,7 +110,7 @@ export function cadenceLabel(expense: Expense, source: IncomeSource) {
     case "yearly":
       return t("expenses.cadence.yearly");
     default:
-      return getLinkedSlot(expense, source) === undefined
+      return getLinkedSlot(expense, source) === undefined && expense.dueDay === undefined
         ? t("expenses.cadence.perCheck")
         : t("expenses.cadence.monthly");
   }

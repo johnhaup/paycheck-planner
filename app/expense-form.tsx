@@ -65,6 +65,7 @@ export default function ExpenseFormScreen() {
   );
   const [paycheckSlot, setPaycheckSlot] = useState<PaycheckSlot>(existing?.paycheckOrdinal ?? 0);
   const [repeatStart, setRepeatStart] = useState<string | undefined>(existing?.repeatStart);
+  const [dueDay, setDueDay] = useState(existing?.dueDay ? String(existing.dueDay) : "");
   const [paycheck, setPaycheck] = useState<PaycheckChoice | undefined>(() => {
     const assignment = existing ? assignments.find((a) => a.expenseId === existing.id) : undefined;
     return assignment ? { payDate: assignment.payDate, sourceId: assignment.employerId } : undefined;
@@ -98,11 +99,21 @@ export default function ExpenseFormScreen() {
   // Switching to a source with fewer paychecks per month clamps the choice
   const effectiveSlot: PaycheckSlot =
     paycheckSlot === "last" ? "last" : Math.min(paycheckSlot, Math.max(slotCount - 1, 0));
-  // Monthly is every paycheck for a source paid once a month, so that source doesn't offer it
-  const schedule: LinkSchedule =
-    linkSchedule === "monthly" && slotCount < 2 ? "every-paycheck" : linkSchedule;
+  // Linked recurring bills can carry a due day, which picks the paycheck in place of the schedule
+  const canHaveDueDay = !isOneTime && !isSetAside && !!selectedSource;
+  const hasDueDay = canHaveDueDay && dueDay.trim() !== "";
+
+  // A due day picks the paycheck within a month, so with one the schedule goes by month. Without
+  // one, Monthly is every paycheck for a source paid once a month, so that source doesn't offer it.
+  const schedule: LinkSchedule = hasDueDay
+    ? getRepeatMonths(linkSchedule) === undefined
+      ? "monthly"
+      : linkSchedule
+    : linkSchedule === "monthly" && slotCount < 2
+      ? "every-paycheck"
+      : linkSchedule;
   const repeatMonths = getRepeatMonths(schedule);
-  const isMonthly = slotCount > 1 && repeatMonths !== undefined;
+  const isMonthly = !hasDueDay && slotCount > 1 && repeatMonths !== undefined;
 
   // Every other paycheck starts on one of the next two paychecks; every 3, 6 or 12 months in one
   // of the next 3, 6 or 12 months. Together they cover every way the repeat can fall.
@@ -153,6 +164,12 @@ export default function ExpenseFormScreen() {
       return;
     }
 
+    const parsedDueDay = hasDueDay ? Number(dueDay.trim()) : undefined;
+    if (parsedDueDay !== undefined && !(Number.isInteger(parsedDueDay) && parsedDueDay >= 1 && parsedDueDay <= 31)) {
+      toast.error(t("expenses.form.dueDayRange"));
+      return;
+    }
+
     const data = {
       kind: isSetAside ? kind : undefined,
       payee: payee.trim(),
@@ -163,6 +180,7 @@ export default function ExpenseFormScreen() {
       linkSchedule: selectedSource && schedule !== "every-paycheck" ? schedule : undefined,
       paycheckOrdinal: isMonthly ? effectiveSlot : undefined,
       repeatStart: effectiveStart,
+      dueDay: parsedDueDay,
       icon,
       goal: isSetAside ? parsedGoal : undefined,
     };
@@ -189,6 +207,8 @@ export default function ExpenseFormScreen() {
     schedule,
     effectiveSlot,
     effectiveStart,
+    hasDueDay,
+    dueDay,
     paycheck,
     icon,
     goal,
@@ -221,8 +241,9 @@ export default function ExpenseFormScreen() {
       { value: "semiannual", label: t("expenses.form.semiannual") },
       { value: "yearly", label: t("expenses.form.yearly") },
     ];
+    if (hasDueDay) return options.filter((o) => getRepeatMonths(o.value) !== undefined);
     return slotCount > 1 ? options : options.filter((o) => o.value !== "monthly");
-  }, [slotCount, t]);
+  }, [hasDueDay, slotCount, t]);
 
   const slotOptions = useMemo<SegmentOption<PaycheckSlot>[]>(() => {
     if (!selectedSource) return [];
@@ -345,6 +366,22 @@ export default function ExpenseFormScreen() {
           </View>
           <AppText variant="caption" style={styles.hint}>
             {t("expenses.form.linkedHint")}
+          </AppText>
+        </>
+      ) : null}
+
+      {canHaveDueDay ? (
+        <>
+          <AppText variant="section" style={styles.label}>{t("expenses.form.dueDay")}</AppText>
+          <AppInput
+            value={dueDay}
+            onChangeText={setDueDay}
+            placeholder={t("expenses.form.dueDayPlaceholder")}
+            keyboardType="number-pad"
+            maxLength={2}
+          />
+          <AppText variant="caption" style={styles.hint}>
+            {t("expenses.form.dueDayHint")}
           </AppText>
         </>
       ) : null}

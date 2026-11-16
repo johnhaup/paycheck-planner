@@ -48,6 +48,26 @@ env:
     when:
       platform: iOS
     commands:
+      # The list opens on the paycheck nearest today. With this month's past paychecks
+      # above it (sample data: after the 15th) it opens scrolled, the title already
+      # collapsed. Note which, for the tab return below, then scroll to the top (HAU-328).
+      - evalScript: ${output.openedAtTop = false}
+      - runFlow:
+          when:
+            notVisible:
+              text: "Paychecks"
+              rightOf: "\\d{1,2}:\\d{2}.*"
+              leftOf: "Settings"
+              above: ".* · left over"
+          commands:
+            - evalScript: ${output.openedAtTop = true}
+      - swipe:
+          start: 50%, 35%
+          end: 50%, 90%
+      - swipe:
+          start: 50%, 35%
+          end: 50%, 90%
+      - waitForAnimationToEnd
       - assertNotVisible:
           text: "Paychecks"
           rightOf: "\\d{1,2}:\\d{2}.*"
@@ -74,8 +94,11 @@ env:
 # One list runs through every month (HAU-316): scrolling on reaches next month's
 # paychecks with no tap, the chart's selected month follows, and where the free
 # months end a row opens the paywall instead of more paychecks.
-# Three swipes, because the list is longest early in a month; a swipe at the bottom
-# only bounces.
+# Four swipes from the top: early in a month the list is longest, and late in one it
+# starts with this month's past paychecks. A swipe at the bottom only bounces.
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
 - swipe:
     start: 50%, 80%
     end: 50%, 20%
@@ -102,8 +125,8 @@ env:
     visible: "See a full year of paychecks"
     timeout: 10000
 
-# Leaving the tab and coming back opens on the current paycheck again, at the top
-# (HAU-25, HAU-316), on iOS under the large title
+# Leaving the tab and coming back opens on the current paycheck again (HAU-25,
+# HAU-316), on iOS under the large title when that paycheck is the list's first
 - tapOn: "Income"
 - extendedWaitUntil:
     visible: "Per month"
@@ -118,6 +141,7 @@ env:
 - runFlow:
     when:
       platform: iOS
+      true: ${output.openedAtTop}
     commands:
       - assertNotVisible:
           text: "Paychecks"
@@ -125,10 +149,12 @@ env:
           leftOf: "Settings"
           above: ".* · left over"
 
-# Next month's chart column changes the hero; "Go to this month" comes back
+# Another month's chart column changes the hero; "Go to this month" comes back. The
+# first column not selected: next month mid-month, but after the month's last paycheck
+# home is next month and the other column is this month, to its left (HAU-328).
 - tapOn:
-    text: ${OTHER_MONTH}
-    index: 0
+    text: ${MONTH}
+    selected: false
 - extendedWaitUntil:
     visible: "Go to this month"
     timeout: 10000
@@ -139,9 +165,20 @@ env:
     visible: ${output.thisMonth}
     timeout: 10000
 
-# Pay date
+# Pay date: the next Brightline paycheck, the one the sample data puts Internet on.
+# By name, not the first card: after the 15th the list starts with this month's past
+# Mesa Health paychecks, out of sight above the current one (HAU-328). When today is
+# a Mesa payday (2026-11-30) that card sits low enough that its centre is under the
+# floating tab bar and the tap opens Income, so bring it to mid-screen first.
+- scrollUntilVisible:
+    element:
+      text: "[A-Z]{3}, [0-9]+, Brightline Co\\..*"
+      index: 0
+    direction: DOWN
+    centerElement: true
+    timeout: 15000
 - tapOn:
-    text: "[A-Z]{3}, [0-9]+, .*"
+    text: "[A-Z]{3}, [0-9]+, Brightline Co\\..*"
     index: 0
 - extendedWaitUntil:
     visible: "This paycheck"
@@ -210,9 +247,16 @@ env:
     visible: "Mark all paid"
     timeout: 10000
 # The header back button reads Back on iOS and Navigate up on Android
+# Back on the list, scrolled to that card: the hero may be out of view, but the
+# selected month (bar, or pill under a collapsed title) is always there.
 - tapOn: "Back|Navigate up"
 - extendedWaitUntil:
-    visible: ".* · left over"
+    notVisible: "Mark all paid"
+    timeout: 10000
+- extendedWaitUntil:
+    visible:
+      text: ${MONTH}
+      selected: true
     timeout: 10000
 
 # iOS variant. The launch argument lasts for one launch and the data stays.

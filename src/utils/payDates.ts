@@ -9,6 +9,8 @@ import {
   format,
   getDay,
   subDays,
+  startOfMonth,
+  endOfMonth,
 } from "date-fns";
 import { formatOrdinal, t } from "@/localization/i18n";
 import { formatDayOfMonth, formatWeekday } from "@/utils/dates";
@@ -155,6 +157,11 @@ export function getRepeatMonths(schedule: LinkSchedule | undefined): number | un
   return REPEAT_MONTHS[schedule ?? "every-paycheck"];
 }
 
+/** Months between the months a linked expense lands in, or undefined if it goes by paycheck. A due day goes by month. */
+export function getExpenseRepeatMonths(expense: Expense): number | undefined {
+  return getRepeatMonths(expense.linkSchedule) ?? (expense.dueDay !== undefined ? 1 : undefined);
+}
+
 /** The paycheck slot within its months a linked expense targets, or undefined if any paycheck counts. */
 export function getLinkedSlot(expense: Expense, source: IncomeSource): PaycheckSlot | undefined {
   const slotCount = getMonthlySlotCount(source);
@@ -184,6 +191,31 @@ function getRepeatStart(expense: Expense, source: IncomeSource): Date {
   return parseLocalDate(expense.repeatStart ?? source.firstPayDate);
 }
 
+/** A due day in the month of `date`, so 31 means the month's last day. */
+export function getDueDayInMonth(dueDay: number, date: Date): number {
+  return Math.min(dueDay, daysInMonth(date));
+}
+
+/**
+ * The paycheck a bill due on `dueDay` lands on in the month of `date`: the source's last paycheck
+ * on or before the due day, or the month's first paycheck when none is.
+ */
+export function getDueDayPaycheckDate(source: IncomeSource, dueDay: number, date: Date): Date | undefined {
+  // Monthly and semi-monthly schedules would otherwise invent paychecks before the first one
+  const firstPayDate = parseLocalDate(source.firstPayDate);
+  const monthStart = startOfMonth(date);
+  const from = isAfter(firstPayDate, monthStart) ? firstPayDate : monthStart;
+  const paychecks = getPaychecksThrough(source, from, endOfMonth(date));
+  const due = getDueDayInMonth(dueDay, date);
+  const onOrBefore = paychecks.filter((p) => p.date.getDate() <= due);
+  return (onOrBefore.at(-1) ?? paychecks[0])?.date;
+}
+
+/** "Due the 18th"; pass the paycheck's date to clamp 31 to that month's last day. */
+export function formatDueDay(dueDay: number, date?: Date): string {
+  return t("expenses.meta.dueDay", dayOfMonthOptions(date ? getDueDayInMonth(dueDay, date) : dueDay));
+}
+
 export function isExpenseLinkedToPaycheck(
   expense: Expense,
   sourceId: string,
@@ -192,6 +224,15 @@ export function isExpenseLinkedToPaycheck(
 ): boolean {
   if (expense.incomeSourceId !== sourceId || !source) return false;
   const schedule = expense.linkSchedule ?? "every-paycheck";
+  if (expense.dueDay !== undefined) {
+    // A due day picks the paycheck in each month the bill lands in
+    if (!paycheck) return false;
+    if (!isRepeatMonth(paycheck.date, getExpenseRepeatMonths(expense) ?? 1, getRepeatStart(expense, source))) {
+      return false;
+    }
+    const target = getDueDayPaycheckDate(source, expense.dueDay, paycheck.date);
+    return !!target && isEqual(target, paycheck.date);
+  }
   const target = getLinkedSlot(expense, source);
   if (schedule === "every-paycheck" || (schedule === "monthly" && target === undefined)) return true;
   if (!paycheck) return false;
@@ -205,7 +246,7 @@ export function isExpenseLinkedToPaycheck(
 
 /** What a linked expense costs per month on average, given how often it lands. */
 export function getMonthlyCost(expense: Expense, source: IncomeSource): number {
-  const months = getRepeatMonths(expense.linkSchedule);
+  const months = getExpenseRepeatMonths(expense);
   if (months !== undefined) return expense.amount / months;
   const perMonth = expense.amount * getPaychecksPerMonth(source);
   return expense.linkSchedule === "every-other-paycheck" ? perMonth / 2 : perMonth;
