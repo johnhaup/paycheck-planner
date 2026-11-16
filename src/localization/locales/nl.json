@@ -118,6 +118,8 @@
     "meta": {
       "everyPaycheck": "Elk salaris",
       "slotEachMonth": "%{slot} elke maand",
+      "inMonths": "%{slot} in %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Per salaris toewijzen",
       "due": "Vervalt %{date}",
       "oneTime": "Eenmalig",
@@ -126,6 +128,10 @@
     "cadence": {
       "perCheck": "per salaris",
       "monthly": "maandelijks",
+      "everyOther": "om de andere",
+      "quarterly": "per kwartaal",
+      "semiannual": "halfjaarlijks",
+      "yearly": "jaarlijks",
       "recurring": "terugkerend",
       "oneTime": "eenmalig"
     },
@@ -149,7 +155,13 @@
       "howOften": "Hoe vaak",
       "everyPaycheck": "Elk salaris",
       "monthly": "Maandelijks",
+      "everyOtherPaycheck": "Om het andere salaris",
+      "quarterly": "Elke 3 maanden",
+      "semiannual": "Elke 6 maanden",
+      "yearly": "Jaarlijks",
       "whichPaycheck": "Welk salaris",
+      "startingWith": "Beginnend met",
+      "firstMonth": "Eerste maand",
       "slotHintLast": "Komt op het laatste salaris van elke maand, ook in maanden met een extra salaris.",
       "slotHintOrdinal": "Extra salarissen in langere maanden worden overgeslagen. Kies Laatste om altijd het laatste te gebruiken.",
       "addButton": "Uitgave toevoegen",

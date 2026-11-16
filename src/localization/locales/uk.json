@@ -120,6 +120,8 @@
     "meta": {
       "everyPaycheck": "Кожна зарплата",
       "slotEachMonth": "%{slot} щомісяця",
+      "inMonths": "%{slot} · %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Призначати для кожної зарплати",
       "due": "Термін %{date}",
       "oneTime": "Разова",
@@ -128,6 +130,10 @@
     "cadence": {
       "perCheck": "за виплату",
       "monthly": "щомісяця",
+      "everyOther": "через раз",
+      "quarterly": "щокварталу",
+      "semiannual": "раз на пів року",
+      "yearly": "щороку",
       "recurring": "регулярна",
       "oneTime": "разова"
     },
@@ -151,7 +157,13 @@
       "howOften": "Як часто",
       "everyPaycheck": "Кожна зарплата",
       "monthly": "Щомісяця",
+      "everyOtherPaycheck": "Кожна друга зарплата",
+      "quarterly": "Раз на 3 місяці",
+      "semiannual": "Раз на 6 місяців",
+      "yearly": "Щороку",
       "whichPaycheck": "Яка зарплата",
+      "startingWith": "Починаючи з",
+      "firstMonth": "Перший місяць",
       "slotHintLast": "Припадає на останню зарплату місяця, зокрема в місяцях із додатковою виплатою.",
       "slotHintOrdinal": "Додаткові виплати в довгих місяцях пропускаються. Виберіть «Остання», щоб завжди використовувати завершальну.",
       "addButton": "Додати витрату",

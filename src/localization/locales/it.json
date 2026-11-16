@@ -119,6 +119,8 @@
     "meta": {
       "everyPaycheck": "Ogni stipendio",
       "slotEachMonth": "%{slot} di ogni mese",
+      "inMonths": "%{slot} · %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Assegna per stipendio",
       "due": "Scade il %{date}",
       "oneTime": "Una tantum",
@@ -127,6 +129,10 @@
     "cadence": {
       "perCheck": "per stipendio",
       "monthly": "mensile",
+      "everyOther": "ogni due",
+      "quarterly": "trimestrale",
+      "semiannual": "semestrale",
+      "yearly": "annuale",
       "recurring": "ricorrente",
       "oneTime": "una tantum"
     },
@@ -150,7 +156,13 @@
       "howOften": "Frequenza",
       "everyPaycheck": "Ogni stipendio",
       "monthly": "Mensile",
+      "everyOtherPaycheck": "Ogni due stipendi",
+      "quarterly": "Ogni 3 mesi",
+      "semiannual": "Ogni 6 mesi",
+      "yearly": "Annuale",
       "whichPaycheck": "Quale stipendio",
+      "startingWith": "A partire da",
+      "firstMonth": "Primo mese",
       "slotHintLast": "Va sull'ultimo stipendio di ogni mese, compresi i mesi con uno in più.",
       "slotHintOrdinal": "Gli stipendi extra dei mesi più lunghi vengono ignorati. Scegli Ultimo per usare sempre l'ultimo.",
       "addButton": "Aggiungi spesa",

@@ -117,6 +117,8 @@
     "meta": {
       "everyPaycheck": "每筆薪水",
       "slotEachMonth": "每月%{slot}",
+      "inMonths": "%{months}的%{slot}",
+      "monthSeparator": "、",
       "assignPerPaycheck": "依薪水分配",
       "due": "%{date}到期",
       "oneTime": "一次性",
@@ -125,6 +127,10 @@
     "cadence": {
       "perCheck": "每筆",
       "monthly": "每月",
+      "everyOther": "隔筆",
+      "quarterly": "每季",
+      "semiannual": "每半年",
+      "yearly": "每年",
       "recurring": "定期",
       "oneTime": "一次性"
     },
@@ -148,7 +154,13 @@
       "howOften": "頻率",
       "everyPaycheck": "每筆薪水",
       "monthly": "每月",
+      "everyOtherPaycheck": "每隔一筆薪水",
+      "quarterly": "每 3 個月",
+      "semiannual": "每 6 個月",
+      "yearly": "每年",
       "whichPaycheck": "哪一筆薪水",
+      "startingWith": "起始薪水",
+      "firstMonth": "首月",
       "slotHintLast": "分配到每月最後一筆薪水，包括多發一筆的月份。",
       "slotHintOrdinal": "較長月份多出的薪水會被略過。選擇「最後一筆」可一律使用最後一筆薪水。",
       "addButton": "新增支出",

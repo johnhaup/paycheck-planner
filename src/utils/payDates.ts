@@ -12,7 +12,7 @@ import {
 } from "date-fns";
 import { formatOrdinal, t } from "@/localization/i18n";
 import { formatDayOfMonth, formatWeekday } from "@/utils/dates";
-import type { Expense, IncomeSource, PaycheckSlot } from "@/types";
+import type { Expense, IncomeSource, LinkSchedule, PaycheckSlot } from "@/types";
 
 export interface Paycheck {
   date: Date;
@@ -143,14 +143,45 @@ export function getPaycheckSlotLabel(source: IncomeSource, slot: PaycheckSlot, s
   return short ? ordinal : t("expenses.slot.ordinalPaycheck", { ordinal });
 }
 
-/** The monthly paycheck slot a linked expense targets, or undefined if it lands on every paycheck. */
+/** Months between the months a bill lands in, for schedules that go by month. */
+const REPEAT_MONTHS: Partial<Record<LinkSchedule, number>> = {
+  monthly: 1,
+  quarterly: 3,
+  semiannual: 6,
+  yearly: 12,
+};
+
+export function getRepeatMonths(schedule: LinkSchedule | undefined): number | undefined {
+  return REPEAT_MONTHS[schedule ?? "every-paycheck"];
+}
+
+/** The paycheck slot within its months a linked expense targets, or undefined if any paycheck counts. */
 export function getLinkedSlot(expense: Expense, source: IncomeSource): PaycheckSlot | undefined {
   const slotCount = getMonthlySlotCount(source);
-  if (expense.linkSchedule !== "monthly" || slotCount < 2) return undefined;
+  if (getRepeatMonths(expense.linkSchedule) === undefined || slotCount < 2) return undefined;
   const slot = expense.paycheckOrdinal ?? 0;
   if (slot === "last") return slot;
   // Clamp in case the source's frequency changed to one with fewer paychecks
   return Math.min(slot, slotCount - 1);
+}
+
+/** Whether `date` falls in a month that is a whole number of `months` away from `start`'s month. */
+export function isRepeatMonth(date: Date, months: number, start: Date): boolean {
+  const diff = date.getFullYear() * 12 + date.getMonth() - (start.getFullYear() * 12 + start.getMonth());
+  return ((diff % months) + months) % months === 0;
+}
+
+/** Whether `date` is an even number of paychecks away from the first paycheck on or after `start`. */
+export function isAlternatePaycheck(source: IncomeSource, date: Date, start: Date): boolean {
+  const anchor = getPaychecks(source, start, 1)[0]?.date ?? start;
+  const [from, until] = isBefore(date, anchor) ? [date, anchor] : [anchor, date];
+  // Inclusive of both ends, so the anchor itself counts as one
+  return getPaychecksThrough(source, from, until).length % 2 === 1;
+}
+
+/** Where an expense's repeat starts; bills saved without one start with the source. */
+function getRepeatStart(expense: Expense, source: IncomeSource): Date {
+  return parseLocalDate(expense.repeatStart ?? source.firstPayDate);
 }
 
 export function isExpenseLinkedToPaycheck(
@@ -160,10 +191,24 @@ export function isExpenseLinkedToPaycheck(
   source: IncomeSource | undefined
 ): boolean {
   if (expense.incomeSourceId !== sourceId || !source) return false;
+  const schedule = expense.linkSchedule ?? "every-paycheck";
   const target = getLinkedSlot(expense, source);
-  if (target === undefined) return true;
+  if (schedule === "every-paycheck" || (schedule === "monthly" && target === undefined)) return true;
   if (!paycheck) return false;
+  if (schedule === "every-other-paycheck") {
+    return isAlternatePaycheck(source, paycheck.date, getRepeatStart(expense, source));
+  }
+  if (!isRepeatMonth(paycheck.date, getRepeatMonths(schedule) ?? 1, getRepeatStart(expense, source))) return false;
+  if (target === undefined) return true;
   return target === "last" ? paycheck.isLast : target === paycheck.ordinal;
+}
+
+/** What a linked expense costs per month on average, given how often it lands. */
+export function getMonthlyCost(expense: Expense, source: IncomeSource): number {
+  const months = getRepeatMonths(expense.linkSchedule);
+  if (months !== undefined) return expense.amount / months;
+  const perMonth = expense.amount * getPaychecksPerMonth(source);
+  return expense.linkSchedule === "every-other-paycheck" ? perMonth / 2 : perMonth;
 }
 
 /** Average paychecks per month, for monthly totals. */

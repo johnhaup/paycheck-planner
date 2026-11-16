@@ -122,6 +122,8 @@
     "meta": {
       "everyPaycheck": "Every paycheck",
       "slotEachMonth": "%{slot} each month",
+      "inMonths": "%{slot} in %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Assign per paycheck",
       "due": "Due %{date}",
       "oneTime": "One-time",
@@ -130,6 +132,10 @@
     "cadence": {
       "perCheck": "per check",
       "monthly": "monthly",
+      "everyOther": "every other check",
+      "quarterly": "quarterly",
+      "semiannual": "twice a year",
+      "yearly": "yearly",
       "recurring": "recurring",
       "oneTime": "one-time"
     },
@@ -153,7 +159,13 @@
       "howOften": "How Often",
       "everyPaycheck": "Every paycheck",
       "monthly": "Monthly",
+      "everyOtherPaycheck": "Every other paycheck",
+      "quarterly": "Every 3 months",
+      "semiannual": "Every 6 months",
+      "yearly": "Yearly",
       "whichPaycheck": "Which Paycheck",
+      "startingWith": "Starting With",
+      "firstMonth": "First Month",
       "slotHintLast": "Lands on the final paycheck of each month, including months with an extra one.",
       "slotHintOrdinal": "Extra paychecks in longer months are skipped. Choose Last to always use the final one.",
       "addButton": "Add Expense",

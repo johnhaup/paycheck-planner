@@ -15,7 +15,19 @@ import { AppSegmentedControl, type SegmentOption } from "@/components/AppSegment
 import { PaycheckPicker, type PaycheckChoice } from "@/components/expenseForm/PaycheckPicker";
 import { IconPicker } from "@/components/expenseForm/IconPicker";
 import type { ExpenseIcon } from "@/constants/expenseIcons";
-import { getMonthlySlotCount, getPaycheckSlotLabel, hasExtraPaychecks } from "@/utils/payDates";
+import { addMonths, startOfMonth } from "date-fns";
+import {
+  formatPayDate,
+  getMonthlySlotCount,
+  getPaychecks,
+  getPaycheckSlotLabel,
+  getRepeatMonths,
+  hasExtraPaychecks,
+  isAlternatePaycheck,
+  isRepeatMonth,
+  parseLocalDate,
+} from "@/utils/payDates";
+import { formatMonthShort, formatShortDate } from "@/utils/dates";
 import { normalizeLink } from "@/utils/links";
 import type { ExpenseKind, LinkSchedule, PaycheckSlot } from "@/types";
 import { useProGate } from "@/hooks/useProGate";
@@ -52,6 +64,7 @@ export default function ExpenseFormScreen() {
     existing?.linkSchedule ?? "every-paycheck"
   );
   const [paycheckSlot, setPaycheckSlot] = useState<PaycheckSlot>(existing?.paycheckOrdinal ?? 0);
+  const [repeatStart, setRepeatStart] = useState<string | undefined>(existing?.repeatStart);
   const [paycheck, setPaycheck] = useState<PaycheckChoice | undefined>(() => {
     const assignment = existing ? assignments.find((a) => a.expenseId === existing.id) : undefined;
     return assignment ? { payDate: assignment.payDate, sourceId: assignment.employerId } : undefined;
@@ -85,7 +98,44 @@ export default function ExpenseFormScreen() {
   // Switching to a source with fewer paychecks per month clamps the choice
   const effectiveSlot: PaycheckSlot =
     paycheckSlot === "last" ? "last" : Math.min(paycheckSlot, Math.max(slotCount - 1, 0));
-  const isMonthly = slotCount > 1 && linkSchedule === "monthly";
+  // Monthly is every paycheck for a source paid once a month, so that source doesn't offer it
+  const schedule: LinkSchedule =
+    linkSchedule === "monthly" && slotCount < 2 ? "every-paycheck" : linkSchedule;
+  const repeatMonths = getRepeatMonths(schedule);
+  const isMonthly = slotCount > 1 && repeatMonths !== undefined;
+
+  // Every other paycheck starts on one of the next two paychecks; every 3, 6 or 12 months in one
+  // of the next 3, 6 or 12 months. Together they cover every way the repeat can fall.
+  const startOptions = useMemo(() => {
+    if (!selectedSource) return [];
+    if (schedule === "every-other-paycheck") {
+      return getPaychecks(selectedSource, new Date(), 2).map((p) => ({
+        value: formatPayDate(p.date),
+        label: formatShortDate(p.date),
+      }));
+    }
+    if (repeatMonths === undefined || repeatMonths === 1) return [];
+    const thisMonth = startOfMonth(new Date());
+    return Array.from({ length: repeatMonths }, (_, i) => {
+      const month = addMonths(thisMonth, i);
+      return { value: formatPayDate(month), label: formatMonthShort(month) };
+    });
+    // t changes with the language, which changes the labels
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedSource, schedule, repeatMonths, t]);
+
+  // A saved start may lie in the past; pick the option it repeats into
+  const effectiveStart = useMemo(() => {
+    if (!selectedSource || startOptions.length === 0) return undefined;
+    if (!repeatStart) return startOptions[0].value;
+    const start = parseLocalDate(repeatStart);
+    const match = startOptions.find(({ value }) =>
+      schedule === "every-other-paycheck"
+        ? isAlternatePaycheck(selectedSource, parseLocalDate(value), start)
+        : isRepeatMonth(parseLocalDate(value), repeatMonths ?? 1, start)
+    );
+    return (match ?? startOptions[0]).value;
+  }, [selectedSource, startOptions, repeatStart, schedule, repeatMonths]);
 
   const handleSave = useCallback(() => {
     if (!payee.trim()) {
@@ -110,8 +160,9 @@ export default function ExpenseFormScreen() {
       link: isSetAside ? undefined : normalizeLink(link),
       isRecurring: !isOneTime,
       incomeSourceId: selectedSourceId,
-      linkSchedule: isMonthly ? linkSchedule : undefined,
+      linkSchedule: selectedSource && schedule !== "every-paycheck" ? schedule : undefined,
       paycheckOrdinal: isMonthly ? effectiveSlot : undefined,
+      repeatStart: effectiveStart,
       icon,
       goal: isSetAside ? parsedGoal : undefined,
     };
@@ -134,8 +185,10 @@ export default function ExpenseFormScreen() {
     selectedSourceId,
     isOneTime,
     isMonthly,
-    linkSchedule,
+    selectedSource,
+    schedule,
     effectiveSlot,
+    effectiveStart,
     paycheck,
     icon,
     goal,
@@ -159,13 +212,17 @@ export default function ExpenseFormScreen() {
     [setAsideLocked, t]
   );
 
-  const scheduleOptions = useMemo<SegmentOption<LinkSchedule>[]>(
-    () => [
+  const scheduleOptions = useMemo(() => {
+    const options: { value: LinkSchedule; label: string }[] = [
       { value: "every-paycheck", label: t("expenses.form.everyPaycheck") },
+      { value: "every-other-paycheck", label: t("expenses.form.everyOtherPaycheck") },
       { value: "monthly", label: t("expenses.form.monthly") },
-    ],
-    [t]
-  );
+      { value: "quarterly", label: t("expenses.form.quarterly") },
+      { value: "semiannual", label: t("expenses.form.semiannual") },
+      { value: "yearly", label: t("expenses.form.yearly") },
+    ];
+    return slotCount > 1 ? options : options.filter((o) => o.value !== "monthly");
+  }, [slotCount, t]);
 
   const slotOptions = useMemo<SegmentOption<PaycheckSlot>[]>(() => {
     if (!selectedSource) return [];
@@ -292,14 +349,39 @@ export default function ExpenseFormScreen() {
         </>
       ) : null}
 
-      {slotCount > 1 ? (
+      {selectedSource && !isOneTime ? (
         <>
           <AppText variant="section" style={styles.label}>{t("expenses.form.howOften")}</AppText>
-          <AppSegmentedControl
-            options={scheduleOptions}
-            value={linkSchedule}
-            onChange={setLinkSchedule}
-          />
+          <View style={styles.chipRow}>
+            {scheduleOptions.map((option) => (
+              <AppChip
+                key={option.value}
+                label={option.label}
+                value={option.value}
+                selected={schedule === option.value}
+                onSelect={setLinkSchedule}
+              />
+            ))}
+          </View>
+        </>
+      ) : null}
+
+      {startOptions.length > 0 ? (
+        <>
+          <AppText variant="section" style={styles.label}>
+            {t(schedule === "every-other-paycheck" ? "expenses.form.startingWith" : "expenses.form.firstMonth")}
+          </AppText>
+          <View style={styles.chipRow}>
+            {startOptions.map((option) => (
+              <AppChip
+                key={option.value}
+                label={option.label}
+                value={option.value}
+                selected={effectiveStart === option.value}
+                onSelect={setRepeatStart}
+              />
+            ))}
+          </View>
         </>
       ) : null}
 

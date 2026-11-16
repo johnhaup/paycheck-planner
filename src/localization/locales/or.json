@@ -118,6 +118,8 @@
     "meta": {
       "everyPaycheck": "ପ୍ରତ୍ୟେକ ଦରମା",
       "slotEachMonth": "ପ୍ରତି ମାସ %{slot}",
+      "inMonths": "%{months} · %{slot}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "ପ୍ରତି ଦରମାରେ ଆସାଇନ୍ କରନ୍ତୁ",
       "due": "%{date} ସୁଦ୍ଧା",
       "oneTime": "ଏକ ଥର",
@@ -126,6 +128,10 @@
     "cadence": {
       "perCheck": "ପ୍ରତି ଦରମା",
       "monthly": "ମାସିକ",
+      "everyOther": "ଏକାନ୍ତର",
+      "quarterly": "ତ୍ରୈମାସିକ",
+      "semiannual": "ଷାଣ୍ମାସିକ",
+      "yearly": "ବାର୍ଷିକ",
       "recurring": "ନିୟମିତ",
       "oneTime": "ଏକ ଥର"
     },
@@ -149,7 +155,13 @@
       "howOften": "କେତେ ଥର",
       "everyPaycheck": "ପ୍ରତ୍ୟେକ ଦରମା",
       "monthly": "ମାସିକ",
+      "everyOtherPaycheck": "ଗୋଟିଏ ଛାଡ଼ି ଗୋଟିଏ ଦରମା",
+      "quarterly": "ପ୍ରତି 3 ମାସରେ",
+      "semiannual": "ପ୍ରତି 6 ମାସରେ",
+      "yearly": "ବାର୍ଷିକ",
       "whichPaycheck": "କେଉଁ ଦରମା",
+      "startingWith": "ଆରମ୍ଭ",
+      "firstMonth": "ପ୍ରଥମ ମାସ",
       "slotHintLast": "ପ୍ରତି ମାସର ଶେଷ ଦରମାରେ ପଡ଼େ, ଅତିରିକ୍ତ ଦରମା ଥିବା ମାସରେ ମଧ୍ୟ।",
       "slotHintOrdinal": "ଲମ୍ବା ମାସର ଅତିରିକ୍ତ ଦରମା ଛାଡ଼ି ଦିଆଯାଏ। ସବୁବେଳେ ଶେଷଟି ବ୍ୟବହାର କରିବାକୁ 'ଶେଷ' ବାଛନ୍ତୁ।",
       "addButton": "ଖର୍ଚ୍ଚ ଯୋଡ଼ନ୍ତୁ",

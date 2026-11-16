@@ -122,6 +122,8 @@
     "meta": {
       "everyPaycheck": "हर सैलरी",
       "slotEachMonth": "हर महीने %{slot}",
+      "inMonths": "%{months} में %{slot}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "हर सैलरी पर असाइन करें",
       "due": "%{date} तक",
       "oneTime": "एक बार",
@@ -130,6 +132,10 @@
     "cadence": {
       "perCheck": "प्रति सैलरी",
       "monthly": "मासिक",
+      "everyOther": "हर दूसरी",
+      "quarterly": "तिमाही",
+      "semiannual": "छमाही",
+      "yearly": "सालाना",
       "recurring": "बार-बार",
       "oneTime": "एक बार"
     },
@@ -153,7 +159,13 @@
       "howOften": "कितनी बार",
       "everyPaycheck": "हर सैलरी",
       "monthly": "मासिक",
+      "everyOtherPaycheck": "हर दूसरी सैलरी",
+      "quarterly": "हर 3 महीने",
+      "semiannual": "हर 6 महीने",
+      "yearly": "सालाना",
       "whichPaycheck": "कौन सी सैलरी",
+      "startingWith": "शुरुआत",
+      "firstMonth": "पहला महीना",
       "slotHintLast": "हर महीने की आख़िरी सैलरी पर लगता है, उन महीनों में भी जिनमें एक अतिरिक्त सैलरी हो।",
       "slotHintOrdinal": "लंबे महीनों की अतिरिक्त सैलरी छोड़ दी जाती है। हमेशा आख़िरी वाली इस्तेमाल करने के लिए 'आख़िरी' चुनें।",
       "addButton": "खर्च जोड़ें",

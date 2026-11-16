@@ -1,10 +1,12 @@
 import {
   getLinkedSlot,
+  getMonthlyCost,
   getPaycheckSlotLabel,
-  getPaychecksPerMonth,
+  getRepeatMonths,
+  isRepeatMonth,
   parseLocalDate,
 } from "@/utils/payDates";
-import { formatMonthDay } from "@/utils/dates";
+import { formatMonthDay, formatMonthLong, formatMonthShort } from "@/utils/dates";
 import { t } from "@/localization/i18n";
 import type { Expense, ExpenseAssignment, IncomeSource } from "@/types";
 
@@ -35,10 +37,7 @@ interface Summary {
 
 /** What a recurring expense costs per month, given how often it lands. */
 function monthlyCost(expense: Expense, source: IncomeSource | undefined): number {
-  if (!source) return expense.amount;
-  return getLinkedSlot(expense, source) === undefined
-    ? expense.amount * getPaychecksPerMonth(source)
-    : expense.amount;
+  return source ? getMonthlyCost(expense, source) : expense.amount;
 }
 
 /** Every paycheck this set-aside was marked set aside on. */
@@ -65,17 +64,38 @@ export function summarizeExpenses(expenses: Expense[], incomeSources: IncomeSour
   };
 }
 
-function scheduleMeta(expense: Expense, source: IncomeSource) {
+/** "Every paycheck", "2nd paycheck each month", "1st paycheck in Mar, Jun, Sep, Dec", "March" */
+export function describeLinkSchedule(expense: Expense, source: IncomeSource): string {
   const slot = getLinkedSlot(expense, source);
-  return slot === undefined
-    ? t("expenses.meta.everyPaycheck")
-    : t("expenses.meta.slotEachMonth", { slot: getPaycheckSlotLabel(source, slot) });
+  const months = getRepeatMonths(expense.linkSchedule);
+  if (expense.linkSchedule === "every-other-paycheck") return t("expenses.form.everyOtherPaycheck");
+  if (months === undefined || (months === 1 && slot === undefined)) return t("expenses.meta.everyPaycheck");
+  const slotLabel = slot === undefined ? undefined : getPaycheckSlotLabel(source, slot);
+  if (months === 1) return t("expenses.meta.slotEachMonth", { slot: slotLabel });
+  const start = parseLocalDate(expense.repeatStart ?? source.firstPayDate);
+  const inMonths = Array.from({ length: 12 }, (_, month) => new Date(2024, month, 1)).filter((date) =>
+    isRepeatMonth(date, months, start)
+  );
+  const monthList =
+    inMonths.length === 1 ? formatMonthLong(inMonths[0]) : inMonths.map(formatMonthShort).join(t("expenses.meta.monthSeparator"));
+  return slotLabel ? t("expenses.meta.inMonths", { slot: slotLabel, months: monthList }) : monthList;
 }
 
-function cadenceLabel(expense: Expense, source: IncomeSource) {
-  return getLinkedSlot(expense, source) === undefined
-    ? t("expenses.cadence.perCheck")
-    : t("expenses.cadence.monthly");
+export function cadenceLabel(expense: Expense, source: IncomeSource) {
+  switch (expense.linkSchedule) {
+    case "every-other-paycheck":
+      return t("expenses.cadence.everyOther");
+    case "quarterly":
+      return t("expenses.cadence.quarterly");
+    case "semiannual":
+      return t("expenses.cadence.semiannual");
+    case "yearly":
+      return t("expenses.cadence.yearly");
+    default:
+      return getLinkedSlot(expense, source) === undefined
+        ? t("expenses.cadence.perCheck")
+        : t("expenses.cadence.monthly");
+  }
 }
 
 function compareItems(sort: ExpenseSort) {
@@ -127,7 +147,7 @@ export function buildExpenseSections(
               : undefined,
             tintIndex: source ? sourceIndex.get(source.id) : undefined,
             meta: source
-              ? t("expenses.meta.withSource", { source: source.name, meta: scheduleMeta(expense, source) })
+              ? t("expenses.meta.withSource", { source: source.name, meta: describeLinkSchedule(expense, source) })
               : t("expenses.meta.assignPerPaycheck"),
             cadence: source ? cadenceLabel(expense, source) : t("expenses.cadence.recurring"),
           };
@@ -147,7 +167,7 @@ export function buildExpenseSections(
         data: linked.map((expense) => ({
           expense,
           tintIndex,
-          meta: scheduleMeta(expense, source),
+          meta: describeLinkSchedule(expense, source),
           cadence: cadenceLabel(expense, source),
         })),
       });

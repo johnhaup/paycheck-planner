@@ -118,6 +118,8 @@
     "meta": {
       "everyPaycheck": "ہر تنخواہ",
       "slotEachMonth": "ہر مہینے %{slot}",
+      "inMonths": "%{months} میں %{slot}",
+      "monthSeparator": "، ",
       "assignPerPaycheck": "فی تنخواہ مختص کریں",
       "due": "%{date} کو واجب",
       "oneTime": "ایک بار",
@@ -126,6 +128,10 @@
     "cadence": {
       "perCheck": "فی تنخواہ",
       "monthly": "ماہانہ",
+      "everyOther": "ہر دوسری",
+      "quarterly": "سہ ماہی",
+      "semiannual": "ششماہی",
+      "yearly": "سالانہ",
       "recurring": "بار بار",
       "oneTime": "ایک بار"
     },
@@ -149,7 +155,13 @@
       "howOften": "کتنی بار",
       "everyPaycheck": "ہر تنخواہ",
       "monthly": "ماہانہ",
+      "everyOtherPaycheck": "ہر دوسری تنخواہ",
+      "quarterly": "ہر 3 مہینے",
+      "semiannual": "ہر 6 مہینے",
+      "yearly": "سالانہ",
       "whichPaycheck": "کون سی تنخواہ",
+      "startingWith": "آغاز",
+      "firstMonth": "پہلا مہینہ",
       "slotHintLast": "ہر مہینے کی آخری تنخواہ پر آتا ہے، بشمول وہ مہینے جن میں ایک اضافی تنخواہ ہو۔",
       "slotHintOrdinal": "لمبے مہینوں کی اضافی تنخواہیں چھوڑ دی جاتی ہیں۔ ہمیشہ آخری تنخواہ استعمال کرنے کے لیے 'آخری' منتخب کریں۔",
       "addButton": "خرچ شامل کریں",

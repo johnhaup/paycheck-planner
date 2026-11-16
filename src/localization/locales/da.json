@@ -118,6 +118,8 @@
     "meta": {
       "everyPaycheck": "Hver lønudbetaling",
       "slotEachMonth": "%{slot} hver måned",
+      "inMonths": "%{slot} i %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Tildel pr. lønudbetaling",
       "due": "Forfalder %{date}",
       "oneTime": "Engangs",
@@ -126,6 +128,10 @@
     "cadence": {
       "perCheck": "pr. udbetaling",
       "monthly": "månedligt",
+      "everyOther": "hver anden",
+      "quarterly": "kvartalsvis",
+      "semiannual": "halvårligt",
+      "yearly": "årligt",
       "recurring": "tilbagevendende",
       "oneTime": "engangs"
     },
@@ -149,7 +155,13 @@
       "howOften": "Hvor ofte",
       "everyPaycheck": "Hver lønudbetaling",
       "monthly": "Månedligt",
+      "everyOtherPaycheck": "Hver anden lønudbetaling",
+      "quarterly": "Hver 3. måned",
+      "semiannual": "Hver 6. måned",
+      "yearly": "Årligt",
       "whichPaycheck": "Hvilken lønudbetaling",
+      "startingWith": "Starter med",
+      "firstMonth": "Første måned",
       "slotHintLast": "Lander på månedens sidste lønudbetaling, også i måneder med en ekstra.",
       "slotHintOrdinal": "Ekstra lønudbetalinger i længere måneder springes over. Vælg Sidste for altid at bruge den sidste.",
       "addButton": "Tilføj udgift",

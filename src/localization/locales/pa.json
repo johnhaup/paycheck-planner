@@ -118,6 +118,8 @@
     "meta": {
       "everyPaycheck": "ਹਰ ਤਨਖ਼ਾਹ",
       "slotEachMonth": "ਹਰ ਮਹੀਨੇ %{slot}",
+      "inMonths": "%{months} ਵਿੱਚ %{slot}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "ਹਰ ਤਨਖ਼ਾਹ 'ਤੇ ਅਸਾਈਨ ਕਰੋ",
       "due": "%{date} ਤੱਕ",
       "oneTime": "ਇੱਕ ਵਾਰ",
@@ -126,6 +128,10 @@
     "cadence": {
       "perCheck": "ਪ੍ਰਤੀ ਤਨਖ਼ਾਹ",
       "monthly": "ਮਹੀਨਾਵਾਰ",
+      "everyOther": "ਹਰ ਦੂਜੀ",
+      "quarterly": "ਤਿਮਾਹੀ",
+      "semiannual": "ਛਿਮਾਹੀ",
+      "yearly": "ਸਾਲਾਨਾ",
       "recurring": "ਵਾਰ-ਵਾਰ",
       "oneTime": "ਇੱਕ ਵਾਰ"
     },
@@ -149,7 +155,13 @@
       "howOften": "ਕਿੰਨੀ ਵਾਰ",
       "everyPaycheck": "ਹਰ ਤਨਖ਼ਾਹ",
       "monthly": "ਮਹੀਨਾਵਾਰ",
+      "everyOtherPaycheck": "ਹਰ ਦੂਜੀ ਤਨਖ਼ਾਹ",
+      "quarterly": "ਹਰ 3 ਮਹੀਨੇ",
+      "semiannual": "ਹਰ 6 ਮਹੀਨੇ",
+      "yearly": "ਸਾਲਾਨਾ",
       "whichPaycheck": "ਕਿਹੜੀ ਤਨਖ਼ਾਹ",
+      "startingWith": "ਸ਼ੁਰੂਆਤ",
+      "firstMonth": "ਪਹਿਲਾ ਮਹੀਨਾ",
       "slotHintLast": "ਹਰ ਮਹੀਨੇ ਦੀ ਆਖਰੀ ਤਨਖ਼ਾਹ 'ਤੇ ਲੱਗਦਾ ਹੈ, ਉਨ੍ਹਾਂ ਮਹੀਨਿਆਂ ਵਿੱਚ ਵੀ ਜਿਨ੍ਹਾਂ ਵਿੱਚ ਇੱਕ ਵਾਧੂ ਹੋਵੇ।",
       "slotHintOrdinal": "ਲੰਬੇ ਮਹੀਨਿਆਂ ਦੀਆਂ ਵਾਧੂ ਤਨਖ਼ਾਹਾਂ ਛੱਡ ਦਿੱਤੀਆਂ ਜਾਂਦੀਆਂ ਹਨ। ਹਮੇਸ਼ਾ ਆਖਰੀ ਵਰਤਣ ਲਈ 'ਆਖਰੀ' ਚੁਣੋ।",
       "addButton": "ਖਰਚਾ ਸ਼ਾਮਲ ਕਰੋ",

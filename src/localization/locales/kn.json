@@ -118,6 +118,8 @@
     "meta": {
       "everyPaycheck": "ಪ್ರತಿ ಸಂಬಳ",
       "slotEachMonth": "ಪ್ರತಿ ತಿಂಗಳು %{slot}",
+      "inMonths": "%{months} · %{slot}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "ಸಂಬಳದ ಪ್ರಕಾರ ನಿಗದಿಪಡಿಸಿ",
       "due": "ಬಾಕಿ %{date}",
       "oneTime": "ಒಂದು ಬಾರಿ",
@@ -126,6 +128,10 @@
     "cadence": {
       "perCheck": "ಪ್ರತಿ ಸಂಬಳಕ್ಕೆ",
       "monthly": "ಮಾಸಿಕ",
+      "everyOther": "ಪರ್ಯಾಯ",
+      "quarterly": "ತ್ರೈಮಾಸಿಕ",
+      "semiannual": "ಅರ್ಧವಾರ್ಷಿಕ",
+      "yearly": "ವಾರ್ಷಿಕ",
       "recurring": "ಪುನರಾವರ್ತಿತ",
       "oneTime": "ಒಂದು ಬಾರಿ"
     },
@@ -149,7 +155,13 @@
       "howOften": "ಎಷ್ಟು ಬಾರಿ",
       "everyPaycheck": "ಪ್ರತಿ ಸಂಬಳ",
       "monthly": "ಮಾಸಿಕ",
+      "everyOtherPaycheck": "ಒಂದು ಬಿಟ್ಟು ಒಂದು ಸಂಬಳ",
+      "quarterly": "ಪ್ರತಿ 3 ತಿಂಗಳು",
+      "semiannual": "ಪ್ರತಿ 6 ತಿಂಗಳು",
+      "yearly": "ವಾರ್ಷಿಕ",
       "whichPaycheck": "ಯಾವ ಸಂಬಳ",
+      "startingWith": "ಆರಂಭ",
+      "firstMonth": "ಮೊದಲ ತಿಂಗಳು",
       "slotHintLast": "ಹೆಚ್ಚುವರಿ ಸಂಬಳ ಇರುವ ತಿಂಗಳುಗಳೂ ಸೇರಿ, ಪ್ರತಿ ತಿಂಗಳ ಕೊನೆಯ ಸಂಬಳಕ್ಕೆ ಸೇರುತ್ತದೆ.",
       "slotHintOrdinal": "ದೀರ್ಘ ತಿಂಗಳುಗಳ ಹೆಚ್ಚುವರಿ ಸಂಬಳಗಳನ್ನು ಬಿಡಲಾಗುತ್ತದೆ. ಯಾವಾಗಲೂ ಕೊನೆಯದನ್ನು ಬಳಸಲು \"ಕೊನೆಯ\" ಆಯ್ಕೆಮಾಡಿ.",
       "addButton": "ಖರ್ಚು ಸೇರಿಸಿ",

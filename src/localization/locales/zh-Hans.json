@@ -117,6 +117,8 @@
     "meta": {
       "everyPaycheck": "每笔工资",
       "slotEachMonth": "每月%{slot}",
+      "inMonths": "%{months}的%{slot}",
+      "monthSeparator": "、",
       "assignPerPaycheck": "按工资分配",
       "due": "%{date}到期",
       "oneTime": "一次性",
@@ -125,6 +127,10 @@
     "cadence": {
       "perCheck": "每笔",
       "monthly": "每月",
+      "everyOther": "隔笔",
+      "quarterly": "每季度",
+      "semiannual": "每半年",
+      "yearly": "每年",
       "recurring": "定期",
       "oneTime": "一次性"
     },
@@ -148,7 +154,13 @@
       "howOften": "频率",
       "everyPaycheck": "每笔工资",
       "monthly": "每月",
+      "everyOtherPaycheck": "每隔一笔工资",
+      "quarterly": "每 3 个月",
+      "semiannual": "每 6 个月",
+      "yearly": "每年",
       "whichPaycheck": "哪笔工资",
+      "startingWith": "起始工资",
+      "firstMonth": "首月",
       "slotHintLast": "分配到每月最后一笔工资，包括多发一笔的月份。",
       "slotHintOrdinal": "较长月份多出的工资会被跳过。选择“最后一笔”可始终使用最后一笔工资。",
       "addButton": "添加支出",

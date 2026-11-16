@@ -32,15 +32,27 @@ export interface Expense {
   incomeSourceId?: string;
   /** Which linked paychecks it lands on; defaults to every paycheck */
   linkSchedule?: LinkSchedule;
-  /** For monthly links: which paycheck within the month */
+  /** For links by month (monthly, every 3 or 6 months, yearly): which paycheck within the month */
   paycheckOrdinal?: PaycheckSlot;
+  /**
+   * Where the repeat starts (YYYY-MM-DD). Every other paycheck: the pay date it lands on, counting
+   * every other one from there in both directions. Every 3 or 6 months and yearly: the 1st of a
+   * month it lands in; it repeats in both directions from there.
+   */
+  repeatStart?: string;
   /** Shown on the tile in place of the payee's first letter */
   icon?: ExpenseIcon;
   /** Set-asides only: the total to save, tracked by paychecks marked set aside */
   goal?: number;
 }
 
-export type LinkSchedule = "every-paycheck" | "monthly";
+export type LinkSchedule =
+  | "every-paycheck"
+  | "every-other-paycheck"
+  | "monthly"
+  | "quarterly"
+  | "semiannual"
+  | "yearly";
 
 /** A one-off pay amount for a single paycheck, replacing the source's usual amount */
 export interface PaycheckOverride {

@@ -117,6 +117,8 @@
     "meta": {
       "everyPaycheck": "Mỗi kỳ lương",
       "slotEachMonth": "%{slot} mỗi tháng",
+      "inMonths": "%{slot} vào %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Phân bổ theo kỳ lương",
       "due": "Hạn %{date}",
       "oneTime": "Một lần",
@@ -125,6 +127,10 @@
     "cadence": {
       "perCheck": "mỗi kỳ",
       "monthly": "hàng tháng",
+      "everyOther": "cách kỳ",
+      "quarterly": "hàng quý",
+      "semiannual": "nửa năm",
+      "yearly": "hàng năm",
       "recurring": "định kỳ",
       "oneTime": "một lần"
     },
@@ -148,7 +154,13 @@
       "howOften": "Tần suất",
       "everyPaycheck": "Mỗi kỳ lương",
       "monthly": "Hàng tháng",
+      "everyOtherPaycheck": "Cách một kỳ lương",
+      "quarterly": "Mỗi 3 tháng",
+      "semiannual": "Mỗi 6 tháng",
+      "yearly": "Hàng năm",
       "whichPaycheck": "Kỳ lương nào",
+      "startingWith": "Bắt đầu từ",
+      "firstMonth": "Tháng đầu tiên",
       "slotHintLast": "Rơi vào kỳ lương cuối của mỗi tháng, kể cả tháng có thêm một kỳ.",
       "slotHintOrdinal": "Kỳ lương thêm trong tháng dài hơn sẽ bị bỏ qua. Chọn Cuối để luôn dùng kỳ cuối.",
       "addButton": "Thêm khoản chi",
