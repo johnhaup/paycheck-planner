@@ -6,6 +6,7 @@ import Animated, {
   useDerivedValue,
   useAnimatedStyle,
   useSharedValue,
+  withTiming,
 } from "react-native-reanimated";
 import { scheduleOnRN } from "react-native-worklets";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -55,6 +56,11 @@ const SHOW_AFTER_LANDING_MS = 150;
 // How often a hidden list's jump is run again because iOS moved the list after it landed
 const MAX_REJUMPS = 5;
 const SHOW_FALLBACK_MS = 1000;
+// A tapped jump scrolls with UIKit's animation, then is run again from where it stopped, because the
+// title bar or a header resize can move the target on the way; the repeat is short or nothing.
+const MAX_SETTLES = 2;
+// About as long as UIKit's animated scroll, so the header comes out with the list
+const HEADER_EXPAND_MS = 300;
 // A month counts as on top once its title is within this of the header's bottom edge
 const MONTH_TOP_SLACK = 2;
 const PAYCHECKS_TAB = "(paychecks)";
@@ -110,6 +116,14 @@ export default function PaychecksScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [incomeSources, expenses, assignments, paycheckOverrides, isPro, t]
   );
+
+  // The header never shrinks while the data stays the same. It sits above every row, so
+  // a month whose header is shorter (fewer lines at a large text size) would move the
+  // whole list as it scrolls to the top, and could move the month back out again (HAU-440).
+  const [headerFloor, setHeaderFloor] = useState({ months, height: 0 });
+  if (headerFloor.months !== months) {
+    setHeaderFloor({ months, height: 0 });
+  }
 
   // One list through every month, oldest first
   const rows = useMemo(() => {
@@ -177,6 +191,9 @@ export default function PaychecksScreen() {
   // inset (HAU-321). A scroll event that moves the list runs the jump again (`rejump`, set below
   // once the jump exists), and the list is shown once the offset holds still.
   const rejump = useRef<() => void>(undefined);
+  // An animated jump is run again when its scroll ends (`settle`, set below once the jump exists)
+  const settle = useRef<() => void>(undefined);
+  const handleJumpScrollEnd = useCallback(() => settle.current?.(), []);
   const showTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const handleHiddenScroll = useCallback(
     (moved: boolean) => {
@@ -204,6 +221,10 @@ export default function PaychecksScreen() {
       lastPastTitle.value = pastTitle;
       if (jumping.value && hidden.value) scheduleOnRN(handleHiddenScroll, moved);
     },
+    // Also sent when an animated scrollTo finishes
+    onMomentumEnd: () => {
+      if (jumping.value) scheduleOnRN(handleJumpScrollEnd);
+    },
     onBeginDrag: () => {
       jumping.value = false;
       scheduleOnRN(endJump);
@@ -225,9 +246,14 @@ export default function PaychecksScreen() {
   // rows are not mounted yet; the jump is tried again until its row is.
   const listRef = useRef<FlatList<PaycheckRow>>(null);
   const headerHeightRef = useRef(0);
-  const jump = useRef<{ index: number; timer?: ReturnType<typeof setTimeout>; failed?: boolean; rejumps?: number }>(
-    undefined
-  );
+  const jump = useRef<{
+    index: number;
+    animated: boolean;
+    timer?: ReturnType<typeof setTimeout>;
+    failed?: boolean;
+    rejumps?: number;
+    settles?: number;
+  }>(undefined);
 
   const attemptJump = useCallback(() => {
     const attempt = (triesLeft: number, confirmsLeft: number) => {
@@ -236,23 +262,27 @@ export default function PaychecksScreen() {
       // A drag ends the jump; a repeat that arrived after it would pull the list back
       if (!list || !current || !jumpingRef.current) return;
       clearTimeout(current.timer);
+      const { animated } = current;
       current.failed = headerHeightRef.current === 0;
       if (current.failed) {
         // Nothing is laid out yet
       } else if (current.index === 0) {
         // The top of a large-title list is the offset iOS first reported, not 0.
         // From a collapsed title the first scroll expands the title, which grows the
-        // top inset and shifts the offset past the top; the second lands on it.
+        // top inset and shifts the offset past the top; the second (for an animated
+        // jump, the settle when it ends) lands on it.
         // Not when it is already there, as at launch: the scroll is carried out late
         // while the list mounts its rows, and would undo a scroll made in the meantime.
         const top = topOffset.get();
         if (top !== undefined && scrollY.get() !== top) {
-          list.scrollToOffset({ offset: top, animated: false });
-          list.scrollToOffset({ offset: top, animated: false });
+          list.scrollToOffset({ offset: top, animated });
+          if (!animated) list.scrollToOffset({ offset: top, animated: false });
         }
       } else {
-        list.scrollToIndex({ index: current.index, viewOffset: pinTop + headerHeightRef.current, animated: false });
+        list.scrollToIndex({ index: current.index, viewOffset: pinTop + headerHeightRef.current, animated });
       }
+      // Repeating an animated scroll on a timer would restart it mid-flight; it is settled when it ends
+      if (animated && !current.failed) return;
       if (current.failed ? triesLeft > 0 : confirmsLeft > 0) {
         current.timer = setTimeout(
           () => attempt(triesLeft - 1, current.failed ? JUMP_CONFIRMS : confirmsLeft - 1),
@@ -267,13 +297,14 @@ export default function PaychecksScreen() {
     attempt(JUMP_TRIES, JUMP_CONFIRMS);
   }, [pinTop, topOffset, scrollY, hidden]);
 
+  // Animated for a tap the user watches; the opening jump and a tab return land at once
   const jumpTo = useCallback(
-    (index: number) => {
+    (index: number, animated = false) => {
       clearTimeout(jump.current?.timer);
-      jump.current = { index };
+      jump.current = { index, animated };
       jumpingRef.current = true;
       jumping.set(true);
-      collapse.set(0);
+      collapse.set(animated ? withTiming(0, { duration: HEADER_EXPAND_MS }) : 0);
       attemptJump();
     },
     [attemptJump, jumping, collapse]
@@ -284,6 +315,12 @@ export default function PaychecksScreen() {
       const current = jump.current;
       if (!current || (current.rejumps ?? 0) >= MAX_REJUMPS) return;
       current.rejumps = (current.rejumps ?? 0) + 1;
+      attemptJump();
+    };
+    settle.current = () => {
+      const current = jump.current;
+      if (!current?.animated || !jumpingRef.current || (current.settles ?? 0) >= MAX_SETTLES) return;
+      current.settles = (current.settles ?? 0) + 1;
       attemptJump();
     };
   }, [attemptJump]);
@@ -302,6 +339,7 @@ export default function PaychecksScreen() {
     (event: LayoutChangeEvent) => {
       const { height } = event.nativeEvent.layout;
       headerHeight.set(height);
+      setHeaderFloor((floor) => (height > floor.height ? { ...floor, height } : floor));
       if (headerHeightRef.current === height) return;
       headerHeightRef.current = height;
       // The header can change height with the month a jump selected; land under the new one
@@ -310,10 +348,15 @@ export default function PaychecksScreen() {
     [headerHeight, attemptJump]
   );
 
-  const goHome = useCallback(() => {
-    setSelectedMonthKey(undefined);
-    jumpTo(homeIndex);
-  }, [setSelectedMonthKey, jumpTo, homeIndex]);
+  const goHome = useCallback(
+    (animated: boolean) => {
+      setSelectedMonthKey(undefined);
+      jumpTo(homeIndex, animated);
+    },
+    [setSelectedMonthKey, jumpTo, homeIndex]
+  );
+
+  const handleTodayPress = useCallback(() => goHome(true), [goHome]);
 
   // The list stays mounted across Erase all data and keeps its scroll offset,
   // so the welcome screen opens at the top and every dataset on its current
@@ -331,7 +374,7 @@ export default function PaychecksScreen() {
   const lastTab = useRef(tab);
   useEffect(() => {
     if (!tab) return;
-    if (tab === PAYCHECKS_TAB && lastTab.current !== PAYCHECKS_TAB) goHome();
+    if (tab === PAYCHECKS_TAB && lastTab.current !== PAYCHECKS_TAB) goHome(false);
     lastTab.current = tab;
   }, [tab, goHome]);
 
@@ -340,7 +383,7 @@ export default function PaychecksScreen() {
       const index = rows.findIndex((row) => row.month.key === monthKey);
       if (index < 0) return;
       setSelectedMonthKey(monthKey);
-      jumpTo(index);
+      jumpTo(index, true);
     },
     [rows, setSelectedMonthKey, jumpTo]
   );
@@ -398,23 +441,25 @@ export default function PaychecksScreen() {
     toast(t("toasts.sampleLoaded"));
   }, [t]);
 
-  // The first short paycheck still to come outside the month on screen; the chart's red bar is easy to miss
-  const shortElsewhereIndex = useMemo(
-    () => rows.findIndex((row, index) => index >= homeIndex && row.month !== selectedMonth && row.paycheck.remaining < 0),
-    [rows, homeIndex, selectedMonth]
-  );
+  // The first short paycheck still to come, outside the month on screen if there is one; the chart's
+  // red bar is easy to miss. The line shows whichever month is on screen, so the header keeps its height.
+  const shortElsewhereIndex = useMemo(() => {
+    const isShortAhead = (row: PaycheckRow, index: number) => index >= homeIndex && row.paycheck.remaining < 0;
+    const elsewhere = rows.findIndex((row, index) => isShortAhead(row, index) && row.month !== selectedMonth);
+    return elsewhere >= 0 ? elsewhere : rows.findIndex(isShortAhead);
+  }, [rows, homeIndex, selectedMonth]);
   const shortElsewhere = rows[shortElsewhereIndex];
 
   const handleShowShort = useCallback(() => {
     if (shortElsewhere) {
       setSelectedMonthKey(shortElsewhere.month.key);
-      jumpTo(shortElsewhereIndex);
+      jumpTo(shortElsewhereIndex, true);
     }
   }, [shortElsewhere, shortElsewhereIndex, setSelectedMonthKey, jumpTo]);
 
   const stickyHeaderStyle = useMemo(
-    () => [styles.stickyHeader, { backgroundColor: colors.screenBackground }],
-    [colors]
+    () => [styles.stickyHeader, { backgroundColor: colors.screenBackground, minHeight: headerFloor.height }],
+    [colors, headerFloor.height]
   );
 
   const currentMonthKey = format(new Date(), "yyyy-MM");
@@ -430,7 +475,7 @@ export default function PaychecksScreen() {
               </AppText>
               {isAwayFromToday ? (
                 <Pressable
-                  onPress={goHome}
+                  onPress={handleTodayPress}
                   hitSlop={MEASUREMENTS.hitSlop}
                   accessibilityRole="button"
                   accessibilityLabel={t("paychecks.goToThisMonth")}
@@ -478,7 +523,7 @@ export default function PaychecksScreen() {
       months,
       currentMonthKey,
       isAwayFromToday,
-      goHome,
+      handleTodayPress,
       shortElsewhere,
       handleShowShort,
       handleSelectMonth,
