@@ -1,5 +1,7 @@
 import {
+  formatDueDay,
   getLinkedSlot,
+  isOncePerMonth,
   getPaycheckSlotLabel,
   getPaychecksPerMonth,
   parseLocalDate,
@@ -36,9 +38,7 @@ interface Summary {
 /** What a recurring expense costs per month, given how often it lands. */
 function monthlyCost(expense: Expense, source: IncomeSource | undefined): number {
   if (!source) return expense.amount;
-  return getLinkedSlot(expense, source) === undefined
-    ? expense.amount * getPaychecksPerMonth(source)
-    : expense.amount;
+  return isOncePerMonth(expense, source) ? expense.amount : expense.amount * getPaychecksPerMonth(source);
 }
 
 /** Every paycheck this set-aside was marked set aside on. */
@@ -66,6 +66,7 @@ export function summarizeExpenses(expenses: Expense[], incomeSources: IncomeSour
 }
 
 function scheduleMeta(expense: Expense, source: IncomeSource) {
+  if (expense.dueDay !== undefined) return formatDueDay(expense.dueDay);
   const slot = getLinkedSlot(expense, source);
   return slot === undefined
     ? t("expenses.meta.everyPaycheck")
@@ -73,9 +74,7 @@ function scheduleMeta(expense: Expense, source: IncomeSource) {
 }
 
 function cadenceLabel(expense: Expense, source: IncomeSource) {
-  return getLinkedSlot(expense, source) === undefined
-    ? t("expenses.cadence.perCheck")
-    : t("expenses.cadence.monthly");
+  return isOncePerMonth(expense, source) ? t("expenses.cadence.monthly") : t("expenses.cadence.perCheck");
 }
 
 function compareItems(sort: ExpenseSort) {

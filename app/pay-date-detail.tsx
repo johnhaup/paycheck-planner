@@ -364,6 +364,7 @@ export default function PayDateDetailScreen() {
           return (
             <PayDateExpenseRow
               expense={item.expense}
+              payDate={payDate}
               amount={(isAssigned ? entry?.amount : undefined) ?? item.expense.amount}
               isAssigned={isAssigned}
               isPaid={isAssigned && !!entry?.paid}

@@ -7,6 +7,8 @@ export interface PaycheckExpense {
   link?: string;
   paid?: boolean;
   isSetAside?: boolean;
+  /** Recurring bills with a due day: the day in this paycheck's month */
+  dueDay?: number;
 }
 
 export interface PaycheckItem {

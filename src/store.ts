@@ -66,7 +66,7 @@ export const useStore = create<AppState>()(
           paycheckOverrides: s.paycheckOverrides.filter((o) => o.sourceId !== id),
           expenses: s.expenses.map((e) =>
             e.incomeSourceId === id
-              ? { ...e, incomeSourceId: undefined, linkSchedule: undefined, paycheckOrdinal: undefined }
+              ? { ...e, incomeSourceId: undefined, linkSchedule: undefined, paycheckOrdinal: undefined, dueDay: undefined }
               : e
           ),
         })),

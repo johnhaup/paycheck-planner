@@ -34,6 +34,12 @@ export interface Expense {
   linkSchedule?: LinkSchedule;
   /** For monthly links: which paycheck within the month */
   paycheckOrdinal?: PaycheckSlot;
+  /**
+   * Linked recurring bills: day of the month it is due (1–31, clamped to short months). When set
+   * it replaces linkSchedule/paycheckOrdinal: the bill lands on the source's last paycheck on or
+   * before this day, or the month's first paycheck when none is.
+   */
+  dueDay?: number;
   /** Shown on the tile in place of the payee's first letter */
   icon?: ExpenseIcon;
   /** Set-asides only: the total to save, tracked by paychecks marked set aside */
