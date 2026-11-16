@@ -48,8 +48,9 @@ export default function ExpenseFormScreen() {
   const [selectedSourceId, setSelectedSourceId] = useState<string | undefined>(
     existing?.incomeSourceId
   );
+  // A due-day bill saved before HAU-417 lost its schedule; it was monthly, so clearing the day keeps it monthly
   const [linkSchedule, setLinkSchedule] = useState<LinkSchedule>(
-    existing?.linkSchedule ?? "every-paycheck"
+    existing?.linkSchedule ?? (existing?.dueDay !== undefined ? "monthly" : "every-paycheck")
   );
   const [paycheckSlot, setPaycheckSlot] = useState<PaycheckSlot>(existing?.paycheckOrdinal ?? 0);
   const [dueDay, setDueDay] = useState(existing?.dueDay ? String(existing.dueDay) : "");
@@ -89,7 +90,8 @@ export default function ExpenseFormScreen() {
   // Linked recurring bills can carry a due day, which picks the paycheck in place of the schedule
   const canHaveDueDay = !isOneTime && !isSetAside && !!selectedSource;
   const hasDueDay = canHaveDueDay && dueDay.trim() !== "";
-  const isMonthly = !hasDueDay && slotCount > 1 && linkSchedule === "monthly";
+  // Kept under a due day (which wins when set), so clearing the day brings the old schedule back
+  const isMonthly = slotCount > 1 && linkSchedule === "monthly";
 
   const handleSave = useCallback(() => {
     if (!payee.trim()) {
@@ -120,7 +122,7 @@ export default function ExpenseFormScreen() {
       link: isSetAside ? undefined : normalizeLink(link),
       isRecurring: !isOneTime,
       incomeSourceId: selectedSourceId,
-      linkSchedule: isMonthly ? linkSchedule : undefined,
+      linkSchedule: slotCount > 1 ? linkSchedule : undefined,
       paycheckOrdinal: isMonthly ? effectiveSlot : undefined,
       dueDay: parsedDueDay,
       icon,
@@ -145,6 +147,7 @@ export default function ExpenseFormScreen() {
     selectedSourceId,
     isOneTime,
     isMonthly,
+    slotCount,
     linkSchedule,
     effectiveSlot,
     hasDueDay,
@@ -332,7 +335,7 @@ export default function ExpenseFormScreen() {
         </>
       ) : null}
 
-      {isMonthly ? (
+      {isMonthly && !hasDueDay ? (
         <>
           <AppText variant="section" style={styles.label}>{t("expenses.form.whichPaycheck")}</AppText>
           <AppSegmentedControl
