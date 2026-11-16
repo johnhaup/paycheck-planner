@@ -9,6 +9,8 @@ import {
   format,
   getDay,
   subDays,
+  startOfMonth,
+  endOfMonth,
 } from "date-fns";
 import { formatOrdinal, t } from "@/localization/i18n";
 import { formatDayOfMonth, formatWeekday } from "@/utils/dates";
@@ -153,6 +155,36 @@ export function getLinkedSlot(expense: Expense, source: IncomeSource): PaycheckS
   return Math.min(slot, slotCount - 1);
 }
 
+/** Whether a linked expense lands once a month (a due day or a monthly slot) rather than on every paycheck. */
+export function isOncePerMonth(expense: Expense, source: IncomeSource): boolean {
+  return expense.dueDay !== undefined || getLinkedSlot(expense, source) !== undefined;
+}
+
+/** A due day in the month of `date`, so 31 means the month's last day. */
+export function getDueDayInMonth(dueDay: number, date: Date): number {
+  return Math.min(dueDay, daysInMonth(date));
+}
+
+/**
+ * The paycheck a bill due on `dueDay` lands on in the month of `date`: the source's last paycheck
+ * on or before the due day, or the month's first paycheck when none is.
+ */
+export function getDueDayPaycheckDate(source: IncomeSource, dueDay: number, date: Date): Date | undefined {
+  // Monthly and semi-monthly schedules would otherwise invent paychecks before the first one
+  const firstPayDate = parseLocalDate(source.firstPayDate);
+  const monthStart = startOfMonth(date);
+  const from = isAfter(firstPayDate, monthStart) ? firstPayDate : monthStart;
+  const paychecks = getPaychecksThrough(source, from, endOfMonth(date));
+  const due = getDueDayInMonth(dueDay, date);
+  const onOrBefore = paychecks.filter((p) => p.date.getDate() <= due);
+  return (onOrBefore.at(-1) ?? paychecks[0])?.date;
+}
+
+/** "Due the 18th"; pass the paycheck's date to clamp 31 to that month's last day. */
+export function formatDueDay(dueDay: number, date?: Date): string {
+  return t("expenses.meta.dueDay", dayOfMonthOptions(date ? getDueDayInMonth(dueDay, date) : dueDay));
+}
+
 export function isExpenseLinkedToPaycheck(
   expense: Expense,
   sourceId: string,
@@ -160,6 +192,11 @@ export function isExpenseLinkedToPaycheck(
   source: IncomeSource | undefined
 ): boolean {
   if (expense.incomeSourceId !== sourceId || !source) return false;
+  if (expense.dueDay !== undefined) {
+    if (!paycheck) return false;
+    const target = getDueDayPaycheckDate(source, expense.dueDay, paycheck.date);
+    return !!target && isEqual(target, paycheck.date);
+  }
   const target = getLinkedSlot(expense, source);
   if (target === undefined) return true;
   if (!paycheck) return false;

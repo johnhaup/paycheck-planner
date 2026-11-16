@@ -52,6 +52,7 @@ export default function ExpenseFormScreen() {
     existing?.linkSchedule ?? "every-paycheck"
   );
   const [paycheckSlot, setPaycheckSlot] = useState<PaycheckSlot>(existing?.paycheckOrdinal ?? 0);
+  const [dueDay, setDueDay] = useState(existing?.dueDay ? String(existing.dueDay) : "");
   const [paycheck, setPaycheck] = useState<PaycheckChoice | undefined>(() => {
     const assignment = existing ? assignments.find((a) => a.expenseId === existing.id) : undefined;
     return assignment ? { payDate: assignment.payDate, sourceId: assignment.employerId } : undefined;
@@ -85,7 +86,10 @@ export default function ExpenseFormScreen() {
   // Switching to a source with fewer paychecks per month clamps the choice
   const effectiveSlot: PaycheckSlot =
     paycheckSlot === "last" ? "last" : Math.min(paycheckSlot, Math.max(slotCount - 1, 0));
-  const isMonthly = slotCount > 1 && linkSchedule === "monthly";
+  // Linked recurring bills can carry a due day, which picks the paycheck in place of the schedule
+  const canHaveDueDay = !isOneTime && !isSetAside && !!selectedSource;
+  const hasDueDay = canHaveDueDay && dueDay.trim() !== "";
+  const isMonthly = !hasDueDay && slotCount > 1 && linkSchedule === "monthly";
 
   const handleSave = useCallback(() => {
     if (!payee.trim()) {
@@ -103,6 +107,12 @@ export default function ExpenseFormScreen() {
       return;
     }
 
+    const parsedDueDay = hasDueDay ? Number(dueDay.trim()) : undefined;
+    if (parsedDueDay !== undefined && !(Number.isInteger(parsedDueDay) && parsedDueDay >= 1 && parsedDueDay <= 31)) {
+      toast.error(t("expenses.form.dueDayRange"));
+      return;
+    }
+
     const data = {
       kind: isSetAside ? kind : undefined,
       payee: payee.trim(),
@@ -112,6 +122,7 @@ export default function ExpenseFormScreen() {
       incomeSourceId: selectedSourceId,
       linkSchedule: isMonthly ? linkSchedule : undefined,
       paycheckOrdinal: isMonthly ? effectiveSlot : undefined,
+      dueDay: parsedDueDay,
       icon,
       goal: isSetAside ? parsedGoal : undefined,
     };
@@ -136,6 +147,8 @@ export default function ExpenseFormScreen() {
     isMonthly,
     linkSchedule,
     effectiveSlot,
+    hasDueDay,
+    dueDay,
     paycheck,
     icon,
     goal,
@@ -292,7 +305,23 @@ export default function ExpenseFormScreen() {
         </>
       ) : null}
 
-      {slotCount > 1 ? (
+      {canHaveDueDay ? (
+        <>
+          <AppText variant="section" style={styles.label}>{t("expenses.form.dueDay")}</AppText>
+          <AppInput
+            value={dueDay}
+            onChangeText={setDueDay}
+            placeholder={t("expenses.form.dueDayPlaceholder")}
+            keyboardType="number-pad"
+            maxLength={2}
+          />
+          <AppText variant="caption" style={styles.hint}>
+            {t("expenses.form.dueDayHint")}
+          </AppText>
+        </>
+      ) : null}
+
+      {slotCount > 1 && !hasDueDay ? (
         <>
           <AppText variant="section" style={styles.label}>{t("expenses.form.howOften")}</AppText>
           <AppSegmentedControl

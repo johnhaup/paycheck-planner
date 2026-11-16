@@ -12,6 +12,7 @@ import { AppCheckCircle } from "@/components/AppCheckCircle";
 import { AppSetAsideIcon } from "@/components/AppSetAsideIcon";
 import { AppSwipeActions, type SwipeAction } from "@/components/AppSwipeActions";
 import { AppWordWrapText } from "@/components/AppWordWrapText";
+import { formatDueDay } from "@/utils/payDates";
 import type {
   EditAmountHandler,
   LinkTapHandler,
@@ -114,27 +115,32 @@ export function PaycheckExpenseRow({
             accessibilityLabel={markLabel}
           />
           <View style={stacked ? styles.contentStacked : styles.content}>
-            <Pressable
-              style={styles.payee}
-              onPress={handleLinkTap}
-              disabled={!expense.link}
-              hitSlop={MEASUREMENTS.hitSlop}
-              accessibilityRole={expense.link ? "link" : undefined}
-            >
-              {expense.isSetAside ? <AppSetAsideIcon /> : null}
-              {stacked ? (
-                <AppWordWrapText variant="body" color={textColor} style={expense.paid ? styles.paid : undefined}>
-                  {expense.payee}
-                </AppWordWrapText>
-              ) : (
-                <AppText variant="body" color={textColor} numberOfLines={1} style={payeeStyle}>
-                  {expense.payee}
-                </AppText>
-              )}
-              {expense.link ? (
-                <Ionicons name="open-outline" size={14} color={colors.textMuted} />
+            <View style={styles.payeeColumn}>
+              <Pressable
+                style={styles.payee}
+                onPress={handleLinkTap}
+                disabled={!expense.link}
+                hitSlop={MEASUREMENTS.hitSlop}
+                accessibilityRole={expense.link ? "link" : undefined}
+              >
+                {expense.isSetAside ? <AppSetAsideIcon /> : null}
+                {stacked ? (
+                  <AppWordWrapText variant="body" color={textColor} style={expense.paid ? styles.paid : undefined}>
+                    {expense.payee}
+                  </AppWordWrapText>
+                ) : (
+                  <AppText variant="body" color={textColor} numberOfLines={1} style={payeeStyle}>
+                    {expense.payee}
+                  </AppText>
+                )}
+                {expense.link ? (
+                  <Ionicons name="open-outline" size={14} color={colors.textMuted} />
+                ) : null}
+              </Pressable>
+              {expense.dueDay !== undefined ? (
+                <AppText variant="caption">{formatDueDay(expense.dueDay)}</AppText>
               ) : null}
-            </Pressable>
+            </View>
             <Pressable
               onPress={handleEditAmount}
               hitSlop={MEASUREMENTS.hitSlop}
@@ -178,6 +184,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "flex-start",
     gap: MEASUREMENTS.spacing.md,
+  },
+  payeeColumn: {
+    flexShrink: 1,
+    gap: MEASUREMENTS.spacing.xs,
   },
   payee: {
     flexShrink: 1,

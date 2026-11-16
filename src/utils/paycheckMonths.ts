@@ -6,6 +6,7 @@ import {
   formatPayDate,
   parseLocalDate,
   isExpenseLinkedToPaycheck,
+  getDueDayInMonth,
   type Paycheck,
 } from "@/utils/payDates";
 import type { Expense, ExpenseAssignment, IncomeSource, PaycheckOverride } from "@/types";
@@ -40,6 +41,8 @@ export function buildPaycheckItem(
   overrides: PaycheckOverride[]
 ): PaycheckItem {
   const expensesById = new Map(expenses.map((e) => [e.id, e]));
+  const dueDay = (expense: Expense | undefined) =>
+    expense?.dueDay !== undefined ? getDueDayInMonth(expense.dueDay, paycheck.date) : undefined;
   const payDate = formatPayDate(paycheck.date);
   const matched = assignments.filter((a) => a.payDate === payDate && a.employerId === source.id);
   // Skip markers hide a moved linked bill, so they count as assigned but add no row
@@ -56,6 +59,7 @@ export function buildPaycheckItem(
         link: expense?.link,
         paid: a.paid,
         isSetAside: expense?.kind === "set-aside",
+        dueDay: dueDay(expense),
       };
     });
   for (const expense of expenses) {
@@ -70,6 +74,7 @@ export function buildPaycheckItem(
         assignmentId: "",
         link: expense.link,
         isSetAside: expense.kind === "set-aside",
+        dueDay: dueDay(expense),
       });
     }
   }

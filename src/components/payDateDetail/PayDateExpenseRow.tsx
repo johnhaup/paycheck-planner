@@ -11,10 +11,13 @@ import { AppText } from "@/components/AppText";
 import { AppWordWrapText } from "@/components/AppWordWrapText";
 import { AppCheckCircle } from "@/components/AppCheckCircle";
 import { AppSetAsideIcon } from "@/components/AppSetAsideIcon";
+import { formatDueDay, parseLocalDate } from "@/utils/payDates";
 import type { Expense } from "@/types";
 
 interface Props {
   expense: Expense;
+  /** This paycheck's date (YYYY-MM-DD), for the due day in its month */
+  payDate: string;
   /** This paycheck's amount, which may differ from the expense default */
   amount: number;
   isAssigned: boolean;
@@ -32,6 +35,7 @@ interface Props {
 
 export function PayDateExpenseRow({
   expense,
+  payDate,
   amount,
   isAssigned,
   isPaid,
@@ -125,6 +129,9 @@ export function PayDateExpenseRow({
               {formatMoney(amount)}
             </AppText>
           </Pressable>
+          {expense.dueDay !== undefined && expense.isRecurring ? (
+            <AppText variant="caption">{formatDueDay(expense.dueDay, parseLocalDate(payDate))}</AppText>
+          ) : null}
           {isLinkedPreload && stacked ? (
             <AppText variant="caption">{t("payDate.linked")}</AppText>
           ) : null}
