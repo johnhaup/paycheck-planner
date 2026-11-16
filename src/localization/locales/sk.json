@@ -120,6 +120,8 @@
     "meta": {
       "everyPaycheck": "Každá výplata",
       "slotEachMonth": "%{slot} každý mesiac",
+      "inMonths": "%{slot} · %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Priraďovať pri každej výplate",
       "due": "Splatnosť %{date}",
       "dueDay": "Splatnosť %{day}",
@@ -129,6 +131,10 @@
     "cadence": {
       "perCheck": "na výplatu",
       "monthly": "mesačne",
+      "everyOther": "každá druhá",
+      "quarterly": "štvrťročne",
+      "semiannual": "polročne",
+      "yearly": "ročne",
       "recurring": "opakovaný",
       "oneTime": "jednorazový"
     },
@@ -152,7 +158,13 @@
       "howOften": "Ako často",
       "everyPaycheck": "Každá výplata",
       "monthly": "Mesačne",
+      "everyOtherPaycheck": "Každá druhá výplata",
+      "quarterly": "Každé 3 mesiace",
+      "semiannual": "Každých 6 mesiacov",
+      "yearly": "Ročne",
       "whichPaycheck": "Ktorá výplata",
+      "startingWith": "Počnúc",
+      "firstMonth": "Prvý mesiac",
       "slotHintLast": "Pripadne na poslednú výplatu v mesiaci, aj v mesiacoch s výplatou navyše.",
       "slotHintOrdinal": "Výplaty navyše v dlhších mesiacoch sa preskočia. Zvoľte „Posledná“, ak chcete vždy použiť tú záverečnú.",
       "dueDay": "Deň splatnosti v mesiaci (nepovinné)",

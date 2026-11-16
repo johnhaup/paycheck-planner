@@ -120,6 +120,8 @@
     "meta": {
       "everyPaycheck": "Каждая зарплата",
       "slotEachMonth": "%{slot} каждый месяц",
+      "inMonths": "%{slot} · %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Назначать для каждой зарплаты",
       "due": "Срок %{date}",
       "dueDay": "Срок — %{date}-е число",
@@ -129,6 +131,10 @@
     "cadence": {
       "perCheck": "за выплату",
       "monthly": "ежемесячно",
+      "everyOther": "через раз",
+      "quarterly": "ежеквартально",
+      "semiannual": "раз в полгода",
+      "yearly": "ежегодно",
       "recurring": "регулярный",
       "oneTime": "разовый"
     },
@@ -152,7 +158,13 @@
       "howOften": "Как часто",
       "everyPaycheck": "Каждая зарплата",
       "monthly": "Ежемесячно",
+      "everyOtherPaycheck": "Каждая вторая зарплата",
+      "quarterly": "Раз в 3 месяца",
+      "semiannual": "Раз в 6 месяцев",
+      "yearly": "Ежегодно",
       "whichPaycheck": "Какая зарплата",
+      "startingWith": "Начиная с",
+      "firstMonth": "Первый месяц",
       "slotHintLast": "Попадает на последнюю зарплату месяца, в том числе в месяцах с дополнительной выплатой.",
       "slotHintOrdinal": "Дополнительные выплаты в длинных месяцах пропускаются. Выберите «Последняя», чтобы всегда использовать завершающую.",
       "dueDay": "День оплаты в месяце (необязательно)",

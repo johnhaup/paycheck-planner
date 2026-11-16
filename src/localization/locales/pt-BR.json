@@ -118,6 +118,8 @@
     "meta": {
       "everyPaycheck": "Todo pagamento",
       "slotEachMonth": "%{slot} de cada mês",
+      "inMonths": "%{slot} em %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Atribuir por pagamento",
       "due": "Vence em %{date}",
       "dueDay": "Vence dia %{day}",
@@ -127,6 +129,10 @@
     "cadence": {
       "perCheck": "por pagamento",
       "monthly": "mensal",
+      "everyOther": "a cada dois",
+      "quarterly": "trimestral",
+      "semiannual": "semestral",
+      "yearly": "anual",
       "recurring": "recorrente",
       "oneTime": "única"
     },
@@ -150,7 +156,13 @@
       "howOften": "Frequência",
       "everyPaycheck": "Todo pagamento",
       "monthly": "Mensal",
+      "everyOtherPaycheck": "A cada dois pagamentos",
+      "quarterly": "A cada 3 meses",
+      "semiannual": "A cada 6 meses",
+      "yearly": "Anual",
       "whichPaycheck": "Qual pagamento",
+      "startingWith": "Começando em",
+      "firstMonth": "Primeiro mês",
       "slotHintLast": "Cai no último pagamento de cada mês, inclusive nos meses com um pagamento extra.",
       "slotHintOrdinal": "Pagamentos extras em meses mais longos são ignorados. Escolha Último para usar sempre o final.",
       "dueDay": "Dia de vencimento (opcional)",

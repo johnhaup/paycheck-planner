@@ -122,6 +122,8 @@
     "meta": {
       "everyPaycheck": "દરેક પગાર",
       "slotEachMonth": "દર મહિને %{slot}",
+      "inMonths": "%{months}માં %{slot}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "દરેક પગાર પર ફાળવો",
       "due": "%{date} સુધી",
       "dueDay": "%{day} સુધી",
@@ -131,6 +133,10 @@
     "cadence": {
       "perCheck": "પ્રતિ પગાર",
       "monthly": "માસિક",
+      "everyOther": "એકાંતરે",
+      "quarterly": "ત્રિમાસિક",
+      "semiannual": "છ માસિક",
+      "yearly": "વાર્ષિક",
       "recurring": "નિયમિત",
       "oneTime": "એક વાર"
     },
@@ -154,7 +160,13 @@
       "howOften": "કેટલી વાર",
       "everyPaycheck": "દરેક પગાર",
       "monthly": "માસિક",
+      "everyOtherPaycheck": "એક પગાર છોડીને",
+      "quarterly": "દર 3 મહિને",
+      "semiannual": "દર 6 મહિને",
+      "yearly": "વાર્ષિક",
       "whichPaycheck": "કયો પગાર",
+      "startingWith": "શરૂઆત",
+      "firstMonth": "પ્રથમ મહિનો",
       "slotHintLast": "દર મહિનાના છેલ્લા પગાર પર લાગે છે, વધારાનો પગાર હોય તેવા મહિનામાં પણ.",
       "slotHintOrdinal": "લાંબા મહિનાના વધારાના પગાર છોડી દેવાય છે. હંમેશાં છેલ્લો વાપરવા 'છેલ્લો' પસંદ કરો.",
       "dueDay": "મહિનાની નિયત તારીખ (વૈકલ્પિક)",

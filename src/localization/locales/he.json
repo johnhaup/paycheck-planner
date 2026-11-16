@@ -120,6 +120,8 @@
     "meta": {
       "everyPaycheck": "כל משכורת",
       "slotEachMonth": "%{slot} בכל חודש",
+      "inMonths": "%{slot} · %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "שיבוץ לפי משכורת",
       "due": "לתשלום עד %{date}",
       "dueDay": "לתשלום עד ה־%{day}",
@@ -129,6 +131,10 @@
     "cadence": {
       "perCheck": "למשכורת",
       "monthly": "חודשי",
+      "everyOther": "כל שנייה",
+      "quarterly": "רבעוני",
+      "semiannual": "חצי שנתי",
+      "yearly": "שנתי",
       "recurring": "חוזר",
       "oneTime": "חד-פעמי"
     },
@@ -152,7 +158,13 @@
       "howOften": "תדירות",
       "everyPaycheck": "כל משכורת",
       "monthly": "חודשי",
+      "everyOtherPaycheck": "כל משכורת שנייה",
+      "quarterly": "כל 3 חודשים",
+      "semiannual": "כל 6 חודשים",
+      "yearly": "שנתי",
       "whichPaycheck": "איזו משכורת",
+      "startingWith": "מתחיל ב",
+      "firstMonth": "החודש הראשון",
       "slotHintLast": "חל על המשכורת האחרונה בכל חודש, כולל חודשים עם משכורת נוספת.",
       "slotHintOrdinal": "משכורות נוספות בחודשים ארוכים יותר מדולגות. בחרו 'אחרונה' כדי להשתמש תמיד במשכורת האחרונה.",
       "dueDay": "יום התשלום בחודש (אופציונלי)",

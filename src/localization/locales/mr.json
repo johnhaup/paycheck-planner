@@ -121,6 +121,8 @@
     "meta": {
       "everyPaycheck": "प्रत्येक पगार",
       "slotEachMonth": "दरमहा %{slot}",
+      "inMonths": "%{months} मध्ये %{slot}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "प्रति पगार नेमून द्या",
       "due": "%{date} पर्यंत",
       "dueDay": "%{day} पर्यंत",
@@ -130,6 +132,10 @@
     "cadence": {
       "perCheck": "प्रति पगार",
       "monthly": "मासिक",
+      "everyOther": "एक आड एक",
+      "quarterly": "त्रैमासिक",
+      "semiannual": "सहामाही",
+      "yearly": "वार्षिक",
       "recurring": "नियमित",
       "oneTime": "एकदाच"
     },
@@ -153,7 +159,13 @@
       "howOften": "किती वेळा",
       "everyPaycheck": "प्रत्येक पगार",
       "monthly": "मासिक",
+      "everyOtherPaycheck": "एक आड एक पगार",
+      "quarterly": "दर 3 महिन्यांनी",
+      "semiannual": "दर 6 महिन्यांनी",
+      "yearly": "वार्षिक",
       "whichPaycheck": "कोणता पगार",
+      "startingWith": "सुरुवात",
+      "firstMonth": "पहिला महिना",
       "slotHintLast": "दर महिन्याच्या शेवटच्या पगारावर लागतो, जास्तीचा पगार असलेल्या महिन्यांतही.",
       "slotHintOrdinal": "मोठ्या महिन्यांतील जास्तीचे पगार वगळले जातात. नेहमी शेवटचा वापरण्यासाठी 'शेवटचा' निवडा.",
       "dueDay": "महिन्यातील देय तारीख (ऐच्छिक)",

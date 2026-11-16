@@ -32,11 +32,18 @@ export interface Expense {
   incomeSourceId?: string;
   /** Which linked paychecks it lands on; defaults to every paycheck */
   linkSchedule?: LinkSchedule;
-  /** For monthly links: which paycheck within the month */
+  /** For links by month (monthly, every 3 or 6 months, yearly): which paycheck within the month */
   paycheckOrdinal?: PaycheckSlot;
   /**
+   * Where the repeat starts (YYYY-MM-DD). Every other paycheck: the pay date it lands on, counting
+   * every other one from there in both directions. Every 3 or 6 months and yearly: the 1st of a
+   * month it lands in; it repeats in both directions from there.
+   */
+  repeatStart?: string;
+  /**
    * Linked recurring bills: day of the month it is due (1–31, clamped to short months). When set
-   * it replaces linkSchedule/paycheckOrdinal: the bill lands on the source's last paycheck on or
+   * it replaces paycheckOrdinal and the schedule goes by month (monthly, every 3 or 6 months,
+   * yearly): in each month it lands in, the bill lands on the source's last paycheck on or
    * before this day, or the month's first paycheck when none is.
    */
   dueDay?: number;
@@ -46,7 +53,13 @@ export interface Expense {
   goal?: number;
 }
 
-export type LinkSchedule = "every-paycheck" | "monthly";
+export type LinkSchedule =
+  | "every-paycheck"
+  | "every-other-paycheck"
+  | "monthly"
+  | "quarterly"
+  | "semiannual"
+  | "yearly";
 
 /** A one-off pay amount for a single paycheck, replacing the source's usual amount */
 export interface PaycheckOverride {

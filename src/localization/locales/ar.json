@@ -122,6 +122,8 @@
     "meta": {
       "everyPaycheck": "كل راتب",
       "slotEachMonth": "%{slot} كل شهر",
+      "inMonths": "%{slot} في %{months}",
+      "monthSeparator": "، ",
       "assignPerPaycheck": "تخصيص لكل راتب",
       "due": "يستحق %{date}",
       "dueDay": "يستحق يوم %{day}",
@@ -131,6 +133,10 @@
     "cadence": {
       "perCheck": "لكل راتب",
       "monthly": "شهري",
+      "everyOther": "كل راتبين",
+      "quarterly": "ربع سنوي",
+      "semiannual": "نصف سنوي",
+      "yearly": "سنوي",
       "recurring": "متكرر",
       "oneTime": "لمرة واحدة"
     },
@@ -154,7 +160,13 @@
       "howOften": "التكرار",
       "everyPaycheck": "كل راتب",
       "monthly": "شهري",
+      "everyOtherPaycheck": "كل راتبين",
+      "quarterly": "كل 3 أشهر",
+      "semiannual": "كل 6 أشهر",
+      "yearly": "سنوي",
       "whichPaycheck": "أي راتب",
+      "startingWith": "بدءًا من",
+      "firstMonth": "الشهر الأول",
       "slotHintLast": "يقع على الراتب الأخير من كل شهر، بما في ذلك الأشهر التي فيها راتب إضافي.",
       "slotHintOrdinal": "تُتجاوز الرواتب الإضافية في الأشهر الأطول. اختر «الأخير» لاستخدام الراتب الأخير دائمًا.",
       "dueDay": "يوم الاستحقاق في الشهر (اختياري)",

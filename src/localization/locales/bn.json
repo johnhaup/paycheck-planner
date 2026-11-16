@@ -122,6 +122,8 @@
     "meta": {
       "everyPaycheck": "প্রতি বেতনে",
       "slotEachMonth": "প্রতি মাসে %{slot}",
+      "inMonths": "%{months}-এ %{slot}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "বেতন অনুযায়ী বরাদ্দ করুন",
       "due": "শেষ তারিখ %{date}",
       "dueDay": "শেষ তারিখ %{date} তারিখ",
@@ -131,6 +133,10 @@
     "cadence": {
       "perCheck": "প্রতি বেতনে",
       "monthly": "মাসিক",
+      "everyOther": "একটি পরপর",
+      "quarterly": "ত্রৈমাসিক",
+      "semiannual": "বছরে দুবার",
+      "yearly": "বার্ষিক",
       "recurring": "নিয়মিত",
       "oneTime": "একবার"
     },
@@ -154,7 +160,13 @@
       "howOften": "কত ঘন ঘন",
       "everyPaycheck": "প্রতি বেতনে",
       "monthly": "মাসিক",
+      "everyOtherPaycheck": "একটি বেতন পরপর",
+      "quarterly": "প্রতি ৩ মাসে",
+      "semiannual": "প্রতি ৬ মাসে",
+      "yearly": "বার্ষিক",
       "whichPaycheck": "কোন বেতন",
+      "startingWith": "শুরু",
+      "firstMonth": "প্রথম মাস",
       "slotHintLast": "প্রতি মাসের শেষ বেতনে পড়ে, অতিরিক্ত বেতনের মাসেও।",
       "slotHintOrdinal": "দীর্ঘ মাসের অতিরিক্ত বেতন বাদ যায়। সবসময় শেষটি ব্যবহার করতে 'শেষ' বেছে নিন।",
       "dueDay": "মাসের শেষ তারিখ (ঐচ্ছিক)",

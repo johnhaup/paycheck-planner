@@ -118,6 +118,8 @@
     "meta": {
       "everyPaycheck": "Jedes Gehalt",
       "slotEachMonth": "%{slot} jeden Monat",
+      "inMonths": "%{slot} · %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Pro Gehalt zuweisen",
       "due": "Fällig am %{date}",
       "dueDay": "Fällig am %{day}",
@@ -127,6 +129,10 @@
     "cadence": {
       "perCheck": "pro Gehalt",
       "monthly": "monatlich",
+      "everyOther": "jedes zweite",
+      "quarterly": "vierteljährlich",
+      "semiannual": "halbjährlich",
+      "yearly": "jährlich",
       "recurring": "wiederkehrend",
       "oneTime": "einmalig"
     },
@@ -150,7 +156,13 @@
       "howOften": "Wie oft",
       "everyPaycheck": "Jedes Gehalt",
       "monthly": "Monatlich",
+      "everyOtherPaycheck": "Jedes zweite Gehalt",
+      "quarterly": "Alle 3 Monate",
+      "semiannual": "Alle 6 Monate",
+      "yearly": "Jährlich",
       "whichPaycheck": "Welches Gehalt",
+      "startingWith": "Beginnend mit",
+      "firstMonth": "Erster Monat",
       "slotHintLast": "Landet auf dem letzten Gehalt jedes Monats, auch in Monaten mit einer zusätzlichen Zahlung.",
       "slotHintOrdinal": "Zusätzliche Gehaltszahlungen in längeren Monaten werden übersprungen. Wähle „Letztes“, um immer die letzte zu verwenden.",
       "dueDay": "Fälligkeitstag im Monat (optional)",

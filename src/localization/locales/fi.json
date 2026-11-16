@@ -118,6 +118,8 @@
     "meta": {
       "everyPaycheck": "Joka palkka",
       "slotEachMonth": "%{slot} joka kuukausi",
+      "inMonths": "%{slot} · %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Kohdista palkoittain",
       "due": "Eräpäivä %{date}",
       "dueDay": "Eräpäivä %{day}",
@@ -127,6 +129,10 @@
     "cadence": {
       "perCheck": "per palkka",
       "monthly": "kuukausittain",
+      "everyOther": "joka toinen",
+      "quarterly": "neljännesvuosittain",
+      "semiannual": "puolivuosittain",
+      "yearly": "vuosittain",
       "recurring": "toistuva",
       "oneTime": "kertaluonteinen"
     },
@@ -150,7 +156,13 @@
       "howOften": "Kuinka usein",
       "everyPaycheck": "Joka palkka",
       "monthly": "Kuukausittain",
+      "everyOtherPaycheck": "Joka toinen palkka",
+      "quarterly": "3 kuukauden välein",
+      "semiannual": "6 kuukauden välein",
+      "yearly": "Vuosittain",
       "whichPaycheck": "Mikä palkka",
+      "startingWith": "Alkaen",
+      "firstMonth": "Ensimmäinen kuukausi",
       "slotHintLast": "Osuu kuukauden viimeiselle palkalle, myös kuukausina, joissa on ylimääräinen palkka.",
       "slotHintOrdinal": "Pitempien kuukausien ylimääräiset palkat ohitetaan. Valitse Viimeinen käyttääksesi aina viimeistä.",
       "dueDay": "Eräpäivä kuukaudessa (valinnainen)",

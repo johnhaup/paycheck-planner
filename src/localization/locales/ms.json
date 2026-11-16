@@ -117,6 +117,8 @@
     "meta": {
       "everyPaycheck": "Setiap gaji",
       "slotEachMonth": "%{slot} setiap bulan",
+      "inMonths": "%{slot} pada %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Peruntukkan mengikut gaji",
       "due": "Perlu dibayar %{date}",
       "dueDay": "Perlu dibayar %{date} hari bulan",
@@ -126,6 +128,10 @@
     "cadence": {
       "perCheck": "setiap gaji",
       "monthly": "bulanan",
+      "everyOther": "selang satu",
+      "quarterly": "suku tahunan",
+      "semiannual": "setengah tahunan",
+      "yearly": "tahunan",
       "recurring": "berulang",
       "oneTime": "sekali sahaja"
     },
@@ -149,7 +155,13 @@
       "howOften": "Berapa Kerap",
       "everyPaycheck": "Setiap gaji",
       "monthly": "Bulanan",
+      "everyOtherPaycheck": "Selang satu gaji",
+      "quarterly": "Setiap 3 bulan",
+      "semiannual": "Setiap 6 bulan",
+      "yearly": "Tahunan",
       "whichPaycheck": "Gaji yang Mana",
+      "startingWith": "Bermula dengan",
+      "firstMonth": "Bulan Pertama",
       "slotHintLast": "Jatuh pada gaji terakhir setiap bulan, termasuk bulan yang ada gaji tambahan.",
       "slotHintOrdinal": "Gaji tambahan pada bulan yang lebih panjang dilangkau. Pilih Terakhir untuk sentiasa menggunakan yang terakhir.",
       "dueDay": "Hari Tarikh Akhir (pilihan)",

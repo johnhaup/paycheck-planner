@@ -118,6 +118,8 @@
     "meta": {
       "everyPaycheck": "Todos os ordenados",
       "slotEachMonth": "%{slot} de cada mês",
+      "inMonths": "%{slot} em %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Atribuir por ordenado",
       "due": "Vence a %{date}",
       "dueDay": "Vence a dia %{day}",
@@ -127,6 +129,10 @@
     "cadence": {
       "perCheck": "por ordenado",
       "monthly": "mensal",
+      "everyOther": "a cada dois",
+      "quarterly": "trimestral",
+      "semiannual": "semestral",
+      "yearly": "anual",
       "recurring": "recorrente",
       "oneTime": "pontual"
     },
@@ -150,7 +156,13 @@
       "howOften": "Frequência",
       "everyPaycheck": "Todos os ordenados",
       "monthly": "Mensal",
+      "everyOtherPaycheck": "A cada dois ordenados",
+      "quarterly": "De 3 em 3 meses",
+      "semiannual": "De 6 em 6 meses",
+      "yearly": "Anual",
       "whichPaycheck": "Qual o ordenado",
+      "startingWith": "A começar em",
+      "firstMonth": "Primeiro mês",
       "slotHintLast": "Fica no último ordenado de cada mês, incluindo os meses com um ordenado extra.",
       "slotHintOrdinal": "Os ordenados extra dos meses mais longos são ignorados. Escolha Último para usar sempre o final.",
       "dueDay": "Dia de vencimento (opcional)",

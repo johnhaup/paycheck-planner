@@ -119,6 +119,8 @@
     "meta": {
       "everyPaycheck": "Svaka plaća",
       "slotEachMonth": "%{slot} svaki mjesec",
+      "inMonths": "%{slot} · %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Dodijeli uz svaku plaću",
       "due": "Dospijeva %{date}",
       "dueDay": "Dospijeva %{day}",
@@ -128,6 +130,10 @@
     "cadence": {
       "perCheck": "po plaći",
       "monthly": "mjesečno",
+      "everyOther": "svaka druga",
+      "quarterly": "tromjesečno",
+      "semiannual": "polugodišnje",
+      "yearly": "godišnje",
       "recurring": "ponavljajući",
       "oneTime": "jednokratni"
     },
@@ -151,7 +157,13 @@
       "howOften": "Koliko često",
       "everyPaycheck": "Svaka plaća",
       "monthly": "Mjesečno",
+      "everyOtherPaycheck": "Svaka druga plaća",
+      "quarterly": "Svaka 3 mjeseca",
+      "semiannual": "Svakih 6 mjeseci",
+      "yearly": "Godišnje",
       "whichPaycheck": "Koja plaća",
+      "startingWith": "Počevši od",
+      "firstMonth": "Prvi mjesec",
       "slotHintLast": "Dolazi na posljednju plaću u mjesecu, i u mjesecima s dodatnom plaćom.",
       "slotHintOrdinal": "Dodatne plaće u duljim mjesecima se preskaču. Odaberite „Posljednja” da se uvijek koristi zadnja.",
       "dueDay": "Dan dospijeća u mjesecu (neobavezno)",
