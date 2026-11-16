@@ -63,5 +63,8 @@
     "ship:ios": "expo-local-ship ios",
     "ship:android": "expo-local-ship android"
   },
-  "private": true
+  "private": true,
+  "patchedDependencies": {
+    "react-native-screens@4.30.1": "patches/react-native-screens@4.30.1.patch"
+  }
 }
