@@ -125,10 +125,14 @@ env:
           leftOf: "Settings"
           above: ".* · left over"
 
-# Next month's chart column changes the hero; "Go to this month" comes back
+# Next month's chart column changes the hero; "Go to this month" comes back. Picked
+# by position, right of the selected (home) column: after the month's last paycheck
+# no column is "(this month)" and the first one is home (HAU-328).
 - tapOn:
-    text: ${OTHER_MONTH}
-    index: 0
+    text: ${MONTH}
+    rightOf:
+      text: ${MONTH}
+      selected: true
 - extendedWaitUntil:
     visible: "Go to this month"
     timeout: 10000
