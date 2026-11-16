@@ -167,7 +167,16 @@ env:
 
 # Pay date: the next Brightline paycheck, the one the sample data puts Internet on.
 # By name, not the first card: after the 15th the list starts with this month's past
-# Mesa Health paychecks, out of sight above the current one (HAU-328).
+# Mesa Health paychecks, out of sight above the current one (HAU-328). When today is
+# a Mesa payday (2026-11-30) that card sits low enough that its centre is under the
+# floating tab bar and the tap opens Income, so bring it to mid-screen first.
+- scrollUntilVisible:
+    element:
+      text: "[A-Z]{3}, [0-9]+, Brightline Co\\..*"
+      index: 0
+    direction: DOWN
+    centerElement: true
+    timeout: 15000
 - tapOn:
     text: "[A-Z]{3}, [0-9]+, Brightline Co\\..*"
     index: 0
@@ -238,9 +247,16 @@ env:
     visible: "Mark all paid"
     timeout: 10000
 # The header back button reads Back on iOS and Navigate up on Android
+# Back on the list, scrolled to that card: the hero may be out of view, but the
+# selected month (bar, or pill under a collapsed title) is always there.
 - tapOn: "Back|Navigate up"
 - extendedWaitUntil:
-    visible: ".* · left over"
+    notVisible: "Mark all paid"
+    timeout: 10000
+- extendedWaitUntil:
+    visible:
+      text: ${MONTH}
+      selected: true
     timeout: 10000
 
 # iOS variant. The launch argument lasts for one launch and the data stays.
