@@ -148,6 +148,26 @@ name: expenses
     timeout: 15000
 - takeScreenshot: expenses-due-day
 
+# Clearing the due day brings back the bill's old slot, not every paycheck (HAU-417).
+# Tapping the section label drops the number pad without hitting a key.
+- tapOn: ".*Internet.*"
+- extendedWaitUntil:
+    visible: "e.g. Electric Company"
+    timeout: 10000
+- scrollUntilVisible:
+    element: "18"
+    centerElement: true
+- tapOn: "18"
+- eraseText: 4
+- tapOn: "(?i)linked income source"
+- scrollUntilVisible:
+    element: "Update Expense"
+- tapOn: "Update Expense"
+- extendedWaitUntil:
+    visible: ".*Internet.*2nd paycheck each month.*monthly.*"
+    timeout: 15000
+- assertVisible: "\\$1,477\\.33/mo"
+
 # A linked bill can repeat yearly: First Month appears and the row says "yearly" (HAU-350).
 # QA Water goes on Mesa Health, whose total nothing below checks.
 - scrollUntilVisible:

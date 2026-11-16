@@ -60,8 +60,9 @@ export default function ExpenseFormScreen() {
   const [selectedSourceId, setSelectedSourceId] = useState<string | undefined>(
     existing?.incomeSourceId
   );
+  // A due-day bill saved before HAU-417 lost its schedule; it was monthly, so clearing the day keeps it monthly
   const [linkSchedule, setLinkSchedule] = useState<LinkSchedule>(
-    existing?.linkSchedule ?? "every-paycheck"
+    existing?.linkSchedule ?? (existing?.dueDay !== undefined ? "monthly" : "every-paycheck")
   );
   const [paycheckSlot, setPaycheckSlot] = useState<PaycheckSlot>(existing?.paycheckOrdinal ?? 0);
   const [repeatStart, setRepeatStart] = useState<string | undefined>(existing?.repeatStart);
@@ -114,6 +115,10 @@ export default function ExpenseFormScreen() {
       : linkSchedule;
   const repeatMonths = getRepeatMonths(schedule);
   const isMonthly = !hasDueDay && slotCount > 1 && repeatMonths !== undefined;
+  // Saved under a due day too (the due day wins while set), so clearing it brings the old schedule
+  // and paycheck back instead of every paycheck (HAU-417)
+  const savedSchedule: LinkSchedule = hasDueDay ? linkSchedule : schedule;
+  const keepsSlot = slotCount > 1 && getRepeatMonths(savedSchedule) !== undefined;
 
   // Every other paycheck starts on one of the next two paychecks; every 3, 6 or 12 months in one
   // of the next 3, 6 or 12 months. Together they cover every way the repeat can fall.
@@ -177,9 +182,11 @@ export default function ExpenseFormScreen() {
       link: isSetAside ? undefined : normalizeLink(link),
       isRecurring: !isOneTime,
       incomeSourceId: selectedSourceId,
-      linkSchedule: selectedSource && schedule !== "every-paycheck" ? schedule : undefined,
-      paycheckOrdinal: isMonthly ? effectiveSlot : undefined,
-      repeatStart: effectiveStart,
+      // Every paycheck is written out under a due day: a due day with no schedule is a pre-HAU-417 bill
+      linkSchedule:
+        selectedSource && (hasDueDay || savedSchedule !== "every-paycheck") ? savedSchedule : undefined,
+      paycheckOrdinal: keepsSlot ? effectiveSlot : undefined,
+      repeatStart: effectiveStart ?? (hasDueDay ? repeatStart : undefined),
       dueDay: parsedDueDay,
       icon,
       goal: isSetAside ? parsedGoal : undefined,
@@ -202,11 +209,12 @@ export default function ExpenseFormScreen() {
     link,
     selectedSourceId,
     isOneTime,
-    isMonthly,
     selectedSource,
-    schedule,
+    savedSchedule,
+    keepsSlot,
     effectiveSlot,
     effectiveStart,
+    repeatStart,
     hasDueDay,
     dueDay,
     paycheck,
@@ -422,7 +430,7 @@ export default function ExpenseFormScreen() {
         </>
       ) : null}
 
-      {isMonthly ? (
+      {isMonthly && !hasDueDay ? (
         <>
           <AppText variant="section" style={styles.label}>{t("expenses.form.whichPaycheck")}</AppText>
           <AppSegmentedControl

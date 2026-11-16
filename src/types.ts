@@ -44,7 +44,8 @@ export interface Expense {
    * Linked recurring bills: day of the month it is due (1–31, clamped to short months). When set
    * it replaces paycheckOrdinal and the schedule goes by month (monthly, every 3 or 6 months,
    * yearly): in each month it lands in, the bill lands on the source's last paycheck on or
-   * before this day, or the month's first paycheck when none is.
+   * before this day, or the month's first paycheck when none is. Every paycheck and every other
+   * paycheck count as monthly here; they and paycheckOrdinal are kept for when the day is cleared.
    */
   dueDay?: number;
   /** Shown on the tile in place of the payee's first letter */

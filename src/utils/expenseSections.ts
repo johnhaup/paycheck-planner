@@ -81,7 +81,10 @@ function repeatMonthList(expense: Expense, source: IncomeSource, months: number)
  * "Due the 15th in March"
  */
 export function describeLinkSchedule(expense: Expense, source: IncomeSource): string {
-  if (expense.linkSchedule === "every-other-paycheck") return t("expenses.form.everyOtherPaycheck");
+  // A due day goes by month; the schedule under it is kept only for when the day is cleared
+  if (expense.linkSchedule === "every-other-paycheck" && expense.dueDay === undefined) {
+    return t("expenses.form.everyOtherPaycheck");
+  }
   const months = getExpenseRepeatMonths(expense);
   // A due day picks the paycheck in place of the slot
   const slot = getLinkedSlot(expense, source);
@@ -100,7 +103,10 @@ export function describeLinkSchedule(expense: Expense, source: IncomeSource): st
 }
 
 export function cadenceLabel(expense: Expense, source: IncomeSource) {
-  switch (expense.linkSchedule) {
+  // Under a due day every other paycheck is kept only for when the day is cleared; it goes by month
+  const schedule =
+    expense.dueDay !== undefined && expense.linkSchedule === "every-other-paycheck" ? undefined : expense.linkSchedule;
+  switch (schedule) {
     case "every-other-paycheck":
       return t("expenses.cadence.everyOther");
     case "quarterly":
