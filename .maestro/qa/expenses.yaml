@@ -124,10 +124,10 @@ name: expenses
 # A linked recurring bill takes a due day, shown in its row in place of the schedule
 # (HAU-349). Internet is already once a month, so Brightline's total below is unchanged.
 - scrollUntilVisible:
-    element: ".*Internet.*"
+    element: "Internet.*"
     direction: UP
     centerElement: true
-- tapOn: ".*Internet.*"
+- tapOn: "Internet.*"
 - extendedWaitUntil:
     visible: "e.g. Electric Company"
     timeout: 10000
@@ -150,7 +150,7 @@ name: expenses
 
 # Clearing the due day brings back the bill's old slot, not every paycheck (HAU-417).
 # Tapping the section label drops the number pad without hitting a key.
-- tapOn: ".*Internet.*"
+- tapOn: "Internet.*"
 - extendedWaitUntil:
     visible: "e.g. Electric Company"
     timeout: 10000
