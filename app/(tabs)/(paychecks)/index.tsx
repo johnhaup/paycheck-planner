@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { FlatList, View, Pressable, StyleSheet, type LayoutChangeEvent } from "react-native";
+import { FlatList, View, Platform, Pressable, StyleSheet, type LayoutChangeEvent } from "react-native";
 import Animated, {
   useAnimatedReaction,
   useAnimatedScrollHandler,
@@ -139,8 +139,10 @@ export default function PaychecksScreen() {
   // The list runs under the navigation bar so iOS can collapse the large title,
   // so the header pins against the collapsed bar's bottom edge, not the list's
   // top edge. Until the first scroll event the offset is unknown, which the
-  // math below treats as not pinned.
-  const pinTop = insets.top + NAV_BAR_HEIGHT;
+  // math below treats as not pinned. Android's toolbar is opaque and the list
+  // starts below it, so there the header pins against the list's own top edge;
+  // the iOS distance pushed the whole header 90dp down over the first card (HAU-357).
+  const pinTop = Platform.OS === "ios" ? insets.top + NAV_BAR_HEIGHT : 0;
   const scrollY = useSharedValue(-Infinity);
 
   // iOS reports the resting offset under the expanded large title as the first
