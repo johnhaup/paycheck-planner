@@ -118,6 +118,8 @@
     "meta": {
       "everyPaycheck": "Hver lønn",
       "slotEachMonth": "%{slot} hver måned",
+      "inMonths": "%{slot} i %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Tildel per lønn",
       "due": "Forfaller %{date}",
       "dueDay": "Forfaller den %{day}",
@@ -127,6 +129,10 @@
     "cadence": {
       "perCheck": "per utbetaling",
       "monthly": "månedlig",
+      "everyOther": "annenhver",
+      "quarterly": "kvartalsvis",
+      "semiannual": "halvårlig",
+      "yearly": "årlig",
       "recurring": "gjentakende",
       "oneTime": "engangs"
     },
@@ -150,7 +156,13 @@
       "howOften": "Hvor ofte",
       "everyPaycheck": "Hver lønn",
       "monthly": "Månedlig",
+      "everyOtherPaycheck": "Annenhver lønn",
+      "quarterly": "Hver 3. måned",
+      "semiannual": "Hver 6. måned",
+      "yearly": "Årlig",
       "whichPaycheck": "Hvilken lønn",
+      "startingWith": "Starter med",
+      "firstMonth": "Første måned",
       "slotHintLast": "Havner på månedens siste lønn, også i måneder med en ekstra.",
       "slotHintOrdinal": "Ekstra lønninger i lengre måneder hoppes over. Velg Siste for alltid å bruke den siste.",
       "dueDay": "Forfallsdag i måneden (valgfritt)",

@@ -119,6 +119,8 @@
     "meta": {
       "everyPaycheck": "Chaque salaire",
       "slotEachMonth": "%{slot} de chaque mois",
+      "inMonths": "%{slot} en %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Affecter par salaire",
       "due": "Échéance le %{date}",
       "dueDay": "Échéance le %{day}",
@@ -128,6 +130,10 @@
     "cadence": {
       "perCheck": "par salaire",
       "monthly": "mensuelle",
+      "everyOther": "un sur deux",
+      "quarterly": "trimestrielle",
+      "semiannual": "semestrielle",
+      "yearly": "annuelle",
       "recurring": "récurrente",
       "oneTime": "ponctuelle"
     },
@@ -151,7 +157,13 @@
       "howOften": "Fréquence",
       "everyPaycheck": "Chaque salaire",
       "monthly": "Mensuelle",
+      "everyOtherPaycheck": "Un salaire sur deux",
+      "quarterly": "Tous les 3 mois",
+      "semiannual": "Tous les 6 mois",
+      "yearly": "Annuelle",
       "whichPaycheck": "Quel salaire",
+      "startingWith": "À partir de",
+      "firstMonth": "Premier mois",
       "slotHintLast": "Tombe sur le dernier salaire de chaque mois, y compris les mois qui en comptent un de plus.",
       "slotHintOrdinal": "Les salaires supplémentaires des mois plus longs sont ignorés. Choisissez Dernier pour toujours utiliser le dernier.",
       "dueDay": "Jour d'échéance du mois (facultatif)",

@@ -3,6 +3,8 @@ import * as DocumentPicker from "expo-document-picker";
 import * as Sharing from "expo-sharing";
 import { format } from "date-fns";
 import { t } from "@/localization/i18n";
+import { cadenceLabel, describeLinkSchedule } from "@/utils/expenseSections";
+import { getRepeatMonths } from "@/utils/payDates";
 import type { Expense, ExpenseAssignment, IncomeSource, PaycheckOverride } from "@/types";
 
 const BACKUP_APP = "paycheck-planner";
@@ -41,9 +43,16 @@ function csvField(value: string | number): string {
   return /[",\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
 }
 
+/** "Every paycheck", "2nd paycheck each month", "yearly · 1st paycheck in March" */
+function linkedScheduleText(expense: Expense, source: IncomeSource): string {
+  const meta = describeLinkSchedule(expense, source);
+  const months = getRepeatMonths(expense.linkSchedule);
+  return months !== undefined && months > 1 ? `${cadenceLabel(expense, source)} · ${meta}` : meta;
+}
+
 /** One row per bill or set-aside, for opening in a spreadsheet. */
 export async function shareExpensesCsv(expenses: Expense[], incomeSources: IncomeSource[]): Promise<void> {
-  const sourceNames = new Map(incomeSources.map((s) => [s.id, s.name]));
+  const sourcesById = new Map(incomeSources.map((s) => [s.id, s]));
   const header = [
     t("expenses.form.payee"),
     t("expenses.form.amount"),
@@ -52,14 +61,19 @@ export async function shareExpensesCsv(expenses: Expense[], incomeSources: Incom
     t("expenses.form.linkedSource"),
     t("expenses.form.paycheck"),
   ];
-  const rows = expenses.map((e) => [
-    e.payee,
-    e.amount,
-    t(e.kind === "set-aside" ? "expenses.kind.setAside" : "expenses.kind.bill"),
-    t(e.isRecurring ? "expenses.filters.recurring" : "expenses.filters.oneTime"),
-    e.incomeSourceId ? (sourceNames.get(e.incomeSourceId) ?? "") : "",
-    e.dueDate ?? "",
-  ]);
+  const rows = expenses.map((e) => {
+    const source = e.incomeSourceId ? sourcesById.get(e.incomeSourceId) : undefined;
+    return [
+      e.payee,
+      e.amount,
+      t(e.kind === "set-aside" ? "expenses.kind.setAside" : "expenses.kind.bill"),
+      e.isRecurring && source
+        ? linkedScheduleText(e, source)
+        : t(e.isRecurring ? "expenses.filters.recurring" : "expenses.filters.oneTime"),
+      source?.name ?? "",
+      e.dueDate ?? "",
+    ];
+  });
   const csv = [header, ...rows].map((row) => row.map(csvField).join(",")).join("\n");
   await shareFile(
     `paycheck-planner-bills-${format(new Date(), "yyyy-MM-dd")}.csv`,

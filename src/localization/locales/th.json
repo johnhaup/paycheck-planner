@@ -117,6 +117,8 @@
     "meta": {
       "everyPaycheck": "ทุกงวดเงินเดือน",
       "slotEachMonth": "%{slot} ของทุกเดือน",
+      "inMonths": "%{slot} ใน %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "จัดสรรแยกตามงวด",
       "due": "ครบกำหนด %{date}",
       "dueDay": "ครบกำหนดวันที่ %{date}",
@@ -126,6 +128,10 @@
     "cadence": {
       "perCheck": "ต่องวด",
       "monthly": "รายเดือน",
+      "everyOther": "ทุกสองงวด",
+      "quarterly": "รายไตรมาส",
+      "semiannual": "ทุกครึ่งปี",
+      "yearly": "รายปี",
       "recurring": "ประจำ",
       "oneTime": "ครั้งเดียว"
     },
@@ -149,7 +155,13 @@
       "howOften": "ความถี่",
       "everyPaycheck": "ทุกงวดเงินเดือน",
       "monthly": "รายเดือน",
+      "everyOtherPaycheck": "ทุกสองงวด",
+      "quarterly": "ทุก 3 เดือน",
+      "semiannual": "ทุก 6 เดือน",
+      "yearly": "รายปี",
       "whichPaycheck": "เงินเดือนงวดไหน",
+      "startingWith": "เริ่มที่",
+      "firstMonth": "เดือนแรก",
       "slotHintLast": "จะอยู่ในเงินเดือนงวดสุดท้ายของแต่ละเดือน รวมถึงเดือนที่มีงวดพิเศษด้วย",
       "slotHintOrdinal": "งวดพิเศษในเดือนที่ยาวกว่าจะถูกข้าม เลือก \"งวดสุดท้าย\" เพื่อใช้งวดสุดท้ายเสมอ",
       "dueDay": "วันครบกำหนดของเดือน (ไม่บังคับ)",

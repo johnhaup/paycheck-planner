@@ -119,6 +119,8 @@
     "meta": {
       "everyPaycheck": "Minden fizetés",
       "slotEachMonth": "%{slot} minden hónapban",
+      "inMonths": "%{slot} · %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Beosztás fizetésenként",
       "due": "Esedékes: %{date}",
       "dueDay": "Esedékes: %{day}",
@@ -128,6 +130,10 @@
     "cadence": {
       "perCheck": "fizetésenként",
       "monthly": "havonta",
+      "everyOther": "minden második",
+      "quarterly": "negyedévente",
+      "semiannual": "félévente",
+      "yearly": "évente",
       "recurring": "ismétlődő",
       "oneTime": "egyszeri"
     },
@@ -151,7 +157,13 @@
       "howOften": "Milyen gyakran",
       "everyPaycheck": "Minden fizetés",
       "monthly": "Havonta",
+      "everyOtherPaycheck": "Minden második fizetés",
+      "quarterly": "3 havonta",
+      "semiannual": "6 havonta",
+      "yearly": "Évente",
       "whichPaycheck": "Melyik fizetés",
+      "startingWith": "Kezdés",
+      "firstMonth": "Első hónap",
       "slotHintLast": "Minden hónap utolsó fizetésére kerül, az extra fizetéses hónapokban is.",
       "slotHintOrdinal": "A hosszabb hónapok extra fizetései kimaradnak. Válaszd az Utolsót, hogy mindig az utolsóra kerüljön.",
       "dueDay": "Esedékesség napja a hónapban (opcionális)",

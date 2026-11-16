@@ -118,6 +118,8 @@
     "meta": {
       "everyPaycheck": "Cada sueldo",
       "slotEachMonth": "%{slot} de cada mes",
+      "inMonths": "%{slot} en %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Asignar por sueldo",
       "due": "Vence %{date}",
       "dueDay": "Vence el día %{day}",
@@ -127,6 +129,10 @@
     "cadence": {
       "perCheck": "por sueldo",
       "monthly": "mensual",
+      "everyOther": "cada dos",
+      "quarterly": "trimestral",
+      "semiannual": "semestral",
+      "yearly": "anual",
       "recurring": "recurrente",
       "oneTime": "puntual"
     },
@@ -150,7 +156,13 @@
       "howOften": "Frecuencia",
       "everyPaycheck": "Cada sueldo",
       "monthly": "Mensual",
+      "everyOtherPaycheck": "Cada dos sueldos",
+      "quarterly": "Cada 3 meses",
+      "semiannual": "Cada 6 meses",
+      "yearly": "Anual",
       "whichPaycheck": "Qué sueldo",
+      "startingWith": "Empezando por",
+      "firstMonth": "Primer mes",
       "slotHintLast": "Se asigna al último sueldo de cada mes, incluidos los meses con uno extra.",
       "slotHintOrdinal": "Los sueldos extra de los meses más largos se omiten. Elige Último para usar siempre el final.",
       "dueDay": "Día de vencimiento del mes (opcional)",

@@ -118,6 +118,8 @@
     "meta": {
       "everyPaycheck": "ప్రతి జీతం",
       "slotEachMonth": "ప్రతి నెల %{slot}",
+      "inMonths": "%{months} · %{slot}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "జీతం వారీగా కేటాయించు",
       "due": "%{date} గడువు",
       "dueDay": "%{day} గడువు",
@@ -127,6 +129,10 @@
     "cadence": {
       "perCheck": "ఒక జీతానికి",
       "monthly": "నెలవారీ",
+      "everyOther": "ఒకటి విడిచి",
+      "quarterly": "త్రైమాసికం",
+      "semiannual": "అర్ధవార్షికం",
+      "yearly": "వార్షికం",
       "recurring": "పునరావృతం",
       "oneTime": "ఒకసారి"
     },
@@ -150,7 +156,13 @@
       "howOften": "ఎంత తరచుగా",
       "everyPaycheck": "ప్రతి జీతం",
       "monthly": "నెలవారీ",
+      "everyOtherPaycheck": "ఒకటి విడిచి ఒక జీతం",
+      "quarterly": "ప్రతి 3 నెలలకు",
+      "semiannual": "ప్రతి 6 నెలలకు",
+      "yearly": "వార్షికం",
       "whichPaycheck": "ఏ జీతం",
+      "startingWith": "ప్రారంభం",
+      "firstMonth": "మొదటి నెల",
       "slotHintLast": "అదనపు జీతం ఉన్న నెలలతో సహా, ప్రతి నెల చివరి జీతంపై పడుతుంది.",
       "slotHintOrdinal": "పొడవైన నెలల్లో అదనపు జీతాలు దాటవేయబడతాయి. ఎప్పుడూ చివరిదాన్ని వాడాలంటే \"చివరి\"ని ఎంచుకోండి.",
       "dueDay": "నెలలో గడువు రోజు (ఐచ్ఛికం)",

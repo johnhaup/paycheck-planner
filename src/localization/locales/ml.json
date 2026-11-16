@@ -118,6 +118,8 @@
     "meta": {
       "everyPaycheck": "ഓരോ ശമ്പളവും",
       "slotEachMonth": "ഓരോ മാസവും %{slot}",
+      "inMonths": "%{months} · %{slot}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "ഓരോ ശമ്പളത്തിനും നീക്കിവെക്കുക",
       "due": "%{date} അവസാന തീയതി",
       "dueDay": "%{day} അവസാന തീയതി",
@@ -127,6 +129,10 @@
     "cadence": {
       "perCheck": "ഓരോ ശമ്പളത്തിനും",
       "monthly": "പ്രതിമാസം",
+      "everyOther": "ഒന്നിടവിട്ട്",
+      "quarterly": "ത്രൈമാസികം",
+      "semiannual": "അർധവാർഷികം",
+      "yearly": "വാർഷികം",
       "recurring": "ആവർത്തിക്കുന്നത്",
       "oneTime": "ഒറ്റത്തവണ"
     },
@@ -150,7 +156,13 @@
       "howOften": "എത്ര തവണ",
       "everyPaycheck": "ഓരോ ശമ്പളവും",
       "monthly": "പ്രതിമാസം",
+      "everyOtherPaycheck": "ഒന്നിടവിട്ട ശമ്പളം",
+      "quarterly": "ഓരോ 3 മാസത്തിലും",
+      "semiannual": "ഓരോ 6 മാസത്തിലും",
+      "yearly": "വാർഷികം",
       "whichPaycheck": "ഏത് ശമ്പളം",
+      "startingWith": "തുടക്കം",
+      "firstMonth": "ആദ്യ മാസം",
       "slotHintLast": "അധിക ശമ്പളമുള്ള മാസങ്ങൾ ഉൾപ്പെടെ, ഓരോ മാസത്തിന്റെയും അവസാന ശമ്പളത്തിൽ വരും.",
       "slotHintOrdinal": "നീണ്ട മാസങ്ങളിലെ അധിക ശമ്പളങ്ങൾ ഒഴിവാക്കും. എപ്പോഴും അവസാനത്തേത് ഉപയോഗിക്കാൻ \"അവസാനം\" തിരഞ്ഞെടുക്കുക.",
       "dueDay": "മാസത്തിലെ അവസാന തീയതി (ഓപ്ഷണൽ)",

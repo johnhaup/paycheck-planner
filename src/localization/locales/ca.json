@@ -121,6 +121,8 @@
     "meta": {
       "everyPaycheck": "Cada sou",
       "slotEachMonth": "%{slot} de cada mes",
+      "inMonths": "%{slot} · %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Assigna per sou",
       "due": "Venç el %{date}",
       "dueDay": "Venç el dia %{day}",
@@ -130,6 +132,10 @@
     "cadence": {
       "perCheck": "per sou",
       "monthly": "mensual",
+      "everyOther": "cada dos sous",
+      "quarterly": "trimestral",
+      "semiannual": "semestral",
+      "yearly": "anual",
       "recurring": "recurrent",
       "oneTime": "puntual"
     },
@@ -153,7 +159,13 @@
       "howOften": "Freqüència",
       "everyPaycheck": "Cada sou",
       "monthly": "Mensual",
+      "everyOtherPaycheck": "Un sou de cada dos",
+      "quarterly": "Cada 3 mesos",
+      "semiannual": "Cada 6 mesos",
+      "yearly": "Anual",
       "whichPaycheck": "Quin sou",
+      "startingWith": "Començant amb",
+      "firstMonth": "Primer mes",
       "slotHintLast": "S'assigna a l'últim sou de cada mes, inclosos els mesos amb un d'extra.",
       "slotHintOrdinal": "Els sous extra dels mesos més llargs s'ometen. Tria Últim per fer servir sempre el final.",
       "dueDay": "Dia de venciment del mes (opcional)",

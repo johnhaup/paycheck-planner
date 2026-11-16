@@ -118,6 +118,8 @@
     "meta": {
       "everyPaycheck": "Her maaş",
       "slotEachMonth": "Her ay %{slot}",
+      "inMonths": "%{months} · %{slot}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Maaş başına ata",
       "due": "Son ödeme %{date}",
       "dueDay": "Son ödeme ayın %{day}",
@@ -127,6 +129,10 @@
     "cadence": {
       "perCheck": "maaş başına",
       "monthly": "aylık",
+      "everyOther": "iki maaşta bir",
+      "quarterly": "üç aylık",
+      "semiannual": "altı aylık",
+      "yearly": "yıllık",
       "recurring": "düzenli",
       "oneTime": "tek seferlik"
     },
@@ -150,7 +156,13 @@
       "howOften": "Ne Sıklıkla",
       "everyPaycheck": "Her maaş",
       "monthly": "Aylık",
+      "everyOtherPaycheck": "İki maaşta bir",
+      "quarterly": "3 ayda bir",
+      "semiannual": "6 ayda bir",
+      "yearly": "Yıllık",
       "whichPaycheck": "Hangi Maaş",
+      "startingWith": "Başlangıç",
+      "firstMonth": "İlk Ay",
       "slotHintLast": "Her ayın son maaşına denk gelir; fazladan maaş olan aylar dahil.",
       "slotHintOrdinal": "Uzun aylardaki fazladan maaşlar atlanır. Her zaman sonuncuyu kullanmak için Son'u seç.",
       "dueDay": "Ayın Son Ödeme Günü (isteğe bağlı)",

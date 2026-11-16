@@ -118,6 +118,8 @@
     "meta": {
       "everyPaycheck": "Κάθε μισθό",
       "slotEachMonth": "%{slot} κάθε μήνα",
+      "inMonths": "%{slot} · %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Ανάθεση ανά μισθό",
       "due": "Λήξη %{date}",
       "dueDay": "Λήξη στις %{day}",
@@ -127,6 +129,10 @@
     "cadence": {
       "perCheck": "ανά μισθό",
       "monthly": "μηνιαία",
+      "everyOther": "κάθε δεύτερο",
+      "quarterly": "τριμηνιαία",
+      "semiannual": "εξαμηνιαία",
+      "yearly": "ετήσια",
       "recurring": "επαναλαμβανόμενο",
       "oneTime": "εφάπαξ"
     },
@@ -150,7 +156,13 @@
       "howOften": "Πόσο συχνά",
       "everyPaycheck": "Κάθε μισθό",
       "monthly": "Μηνιαία",
+      "everyOtherPaycheck": "Κάθε δεύτερο μισθό",
+      "quarterly": "Κάθε 3 μήνες",
+      "semiannual": "Κάθε 6 μήνες",
+      "yearly": "Ετήσια",
       "whichPaycheck": "Ποιος μισθός",
+      "startingWith": "Ξεκινώντας με",
+      "firstMonth": "Πρώτος μήνας",
       "slotHintLast": "Μπαίνει στον τελευταίο μισθό κάθε μήνα, και στους μήνες με έναν επιπλέον.",
       "slotHintOrdinal": "Οι επιπλέον μισθοί σε μεγαλύτερους μήνες παραλείπονται. Διάλεξε «Τελευταία» για να χρησιμοποιείται πάντα ο τελευταίος.",
       "dueDay": "Ημέρα λήξης του μήνα (προαιρετικό)",

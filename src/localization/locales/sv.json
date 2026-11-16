@@ -119,6 +119,8 @@
     "meta": {
       "everyPaycheck": "Varje lön",
       "slotEachMonth": "%{slot} varje månad",
+      "inMonths": "%{slot} i %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Tilldela per lön",
       "due": "Förfaller %{date}",
       "dueDay": "Förfaller den %{day}",
@@ -128,6 +130,10 @@
     "cadence": {
       "perCheck": "per utbetalning",
       "monthly": "månadsvis",
+      "everyOther": "varannan",
+      "quarterly": "kvartalsvis",
+      "semiannual": "halvårsvis",
+      "yearly": "årsvis",
       "recurring": "återkommande",
       "oneTime": "engångs"
     },
@@ -151,7 +157,13 @@
       "howOften": "Hur ofta",
       "everyPaycheck": "Varje lön",
       "monthly": "Varje månad",
+      "everyOtherPaycheck": "Varannan lön",
+      "quarterly": "Var 3:e månad",
+      "semiannual": "Var 6:e månad",
+      "yearly": "Varje år",
       "whichPaycheck": "Vilken lön",
+      "startingWith": "Börjar med",
+      "firstMonth": "Första månad",
       "slotHintLast": "Hamnar på månadens sista lön, även i månader med en extra.",
       "slotHintOrdinal": "Extra löner i längre månader hoppas över. Välj Sista för att alltid använda den sista.",
       "dueDay": "Förfallodag i månaden (valfritt)",

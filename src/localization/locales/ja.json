@@ -117,6 +117,8 @@
     "meta": {
       "everyPaycheck": "毎回の給料",
       "slotEachMonth": "毎月%{slot}",
+      "inMonths": "%{months}の%{slot}",
+      "monthSeparator": "、",
       "assignPerPaycheck": "給料ごとに割り当て",
       "due": "期限 %{date}",
       "dueDay": "期限 %{date}",
@@ -126,6 +128,10 @@
     "cadence": {
       "perCheck": "1回あたり",
       "monthly": "毎月",
+      "everyOther": "1回おき",
+      "quarterly": "3か月ごと",
+      "semiannual": "半年ごと",
+      "yearly": "毎年",
       "recurring": "定期",
       "oneTime": "1回限り"
     },
@@ -149,7 +155,13 @@
       "howOften": "頻度",
       "everyPaycheck": "毎回の給料",
       "monthly": "毎月",
+      "everyOtherPaycheck": "1回おきの給料",
+      "quarterly": "3か月ごと",
+      "semiannual": "6か月ごと",
+      "yearly": "毎年",
       "whichPaycheck": "どの給料",
+      "startingWith": "開始する給料",
+      "firstMonth": "最初の月",
       "slotHintLast": "毎月最後の給料に割り当てます（給料が1回多い月も含む）。",
       "slotHintOrdinal": "給料回数が多い月の追加分はスキップされます。常に最後の給料に割り当てるには「最後」を選択してください。",
       "dueDay": "毎月の期日（任意）",

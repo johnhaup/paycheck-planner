@@ -120,6 +120,8 @@
     "meta": {
       "everyPaycheck": "Fiecare salariu",
       "slotEachMonth": "%{slot} în fiecare lună",
+      "inMonths": "%{slot} în %{months}",
+      "monthSeparator": ", ",
       "assignPerPaycheck": "Alocă per salariu",
       "due": "Scadent %{date}",
       "dueDay": "Scadent pe %{day}",
@@ -129,6 +131,10 @@
     "cadence": {
       "perCheck": "pe salariu",
       "monthly": "lunar",
+      "everyOther": "din două în două",
+      "quarterly": "trimestrial",
+      "semiannual": "semestrial",
+      "yearly": "anual",
       "recurring": "recurentă",
       "oneTime": "o singură dată"
     },
@@ -152,7 +158,13 @@
       "howOften": "Cât de des",
       "everyPaycheck": "Fiecare salariu",
       "monthly": "Lunar",
+      "everyOtherPaycheck": "Din două în două salarii",
+      "quarterly": "La fiecare 3 luni",
+      "semiannual": "La fiecare 6 luni",
+      "yearly": "Anual",
       "whichPaycheck": "Care salariu",
+      "startingWith": "Începând cu",
+      "firstMonth": "Prima lună",
       "slotHintLast": "Cade pe ultimul salariu al fiecărei luni, inclusiv în lunile cu un salariu în plus.",
       "slotHintOrdinal": "Salariile în plus din lunile mai lungi sunt sărite. Alege Ultimul pentru a folosi mereu ultimul salariu.",
       "dueDay": "Ziua scadenței din lună (opțional)",
