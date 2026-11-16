@@ -10,7 +10,14 @@ import {
   type NativeSyntheticEvent,
   type ScrollViewInstance,
 } from "react-native";
-import Animated, { useAnimatedStyle, useDerivedValue, type SharedValue } from "react-native-reanimated";
+import Animated, {
+  interpolateColor,
+  useAnimatedStyle,
+  useDerivedValue,
+  useSharedValue,
+  withTiming,
+  type SharedValue,
+} from "react-native-reanimated";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
@@ -46,6 +53,15 @@ const COLUMN_MIN_FONT_SCALE = 0.5;
 const LOCKED_MIN_FONT_SCALE = 0.7;
 /** Their boxes have a fixed height, so accessibility text sizes stop here instead of overflowing them */
 const LOCKED_MAX_FONT_MULTIPLIER = 1.5;
+/** The selected pill slides to a newly selected month and the bars change colour over this long */
+const SELECTION_MS = 250;
+/** RN does not mirror a transform in RTL, where the first month sits at the right */
+const START_SIGN = I18nManager.isRTL ? -1 : 1;
+
+/** A month pill's start edge from the content's start edge: the pill is centred on its column and wider than it */
+function pillStart(index: number) {
+  return MEASUREMENTS.spacing.gutter + index * (COLUMN_WIDTH + COLUMN_GAP) - (PILL_WIDTH - COLUMN_WIDTH) / 2;
+}
 
 interface Props {
   months: MonthGroup[];
@@ -60,6 +76,7 @@ interface Props {
 
 /** Each bar is a month's money left after bills; tapping one selects that month. */
 export function MonthBarChart({ months, selectedKey, currentKey, onSelect, onLockedPress, collapse }: Props) {
+  const colors = useColors();
   const scrollRef = useRef<ScrollViewInstance>(null);
   const scrollOffset = useRef(0);
   // The chart runs edge to edge, so the window is its viewport
@@ -80,6 +97,21 @@ export function MonthBarChart({ months, selectedKey, currentKey, onSelect, onLoc
   // The bars fade out over the first half of the collapse and the pill fills fade in over the second
   const barsOpacity = useDerivedValue(() => Math.max(0, 1 - collapse.value * 2));
   const pillOpacity = useDerivedValue(() => Math.min(1, Math.max(0, collapse.value * 2 - 1)));
+
+  // One tinted pill for the selected month, sliding from month to month under the labels
+  const selectedPillX = useSharedValue(pillStart(Math.max(0, selectedIndex)));
+  const selectedPillMotion = useAnimatedStyle(() => ({
+    opacity: pillOpacity.value,
+    transform: [{ translateX: START_SIGN * selectedPillX.value }],
+  }));
+  const selectedPillStyle = useMemo(
+    () => [styles.selectedPill, { backgroundColor: colors.primary + PILL_TINT_ALPHA }, selectedPillMotion],
+    [colors, selectedPillMotion]
+  );
+  useEffect(() => {
+    if (selectedIndex < 0) return;
+    selectedPillX.set(withTiming(pillStart(selectedIndex), { duration: SELECTION_MS }));
+  }, [selectedIndex, selectedPillX]);
 
   const contentWidth =
     2 * MEASUREMENTS.spacing.gutter +
@@ -134,6 +166,7 @@ export function MonthBarChart({ months, selectedKey, currentKey, onSelect, onLoc
       onScroll={handleScroll}
       scrollEventThrottle={16}
     >
+      {selectedIndex >= 0 ? <Animated.View style={selectedPillStyle} pointerEvents="none" /> : null}
       {months.map((month) => (
         <MonthBar
           key={month.key}
@@ -180,32 +213,35 @@ function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect, barsOpac
     onSelect(month.key);
   }, [onSelect, month.key, selected]);
 
+  // 1 while selected; eases between the two so the colour moves with the sliding pill
+  const selection = useSharedValue(selected ? 1 : 0);
+  useEffect(() => {
+    selection.set(withTiming(selected ? 1 : 0, { duration: SELECTION_MS }));
+  }, [selected, selection]);
+
+  const isShort = month.remaining < 0;
   const barsStyle = useAnimatedStyle(() => ({ opacity: barsOpacity.value }));
-  const pillFillStyle = useAnimatedStyle(() => ({ opacity: pillOpacity.value }));
+  // The selected month's own fill gives way to the sliding pill
+  const pillFillStyle = useAnimatedStyle(() => ({ opacity: pillOpacity.value * (1 - selection.value) }));
+  const barColor = useAnimatedStyle(() => ({
+    backgroundColor: isShort
+      ? colors.destructive
+      : interpolateColor(selection.value, [0, 1], [colors.chartBar, colors.primary]),
+  }));
 
   const barStyle = useMemo(() => {
     const height = Math.max(
       BAR_MIN_HEIGHT,
       Math.round((Math.abs(month.remaining) / maxMagnitude) * BAR_MAX_HEIGHT)
     );
-    const fill =
-      month.remaining < 0
-        ? colors.destructive
-        : selected
-          ? colors.primary
-          : colors.chartBar;
-    return [styles.bar, { height, backgroundColor: fill }];
-  }, [month.remaining, maxMagnitude, selected, colors]);
+    return [styles.bar, { height }, barColor];
+  }, [month.remaining, maxMagnitude, barColor]);
 
-  // The collapsed pill keeps the bar's meaning: green tint when selected, red when the month runs short
+  // The collapsed pill keeps the bar's meaning: red when the month runs short (the sliding pill marks the selected one)
   const pillFill = useMemo(() => {
-    const backgroundColor = selected
-      ? colors.primary + PILL_TINT_ALPHA
-      : month.remaining < 0
-        ? colors.destructive + PILL_TINT_ALPHA
-        : colors.cardBackgroundElevated;
+    const backgroundColor = isShort ? colors.destructive + PILL_TINT_ALPHA : colors.cardBackgroundElevated;
     return [styles.pillFill, { backgroundColor }, pillFillStyle];
-  }, [selected, month.remaining, colors, pillFillStyle]);
+  }, [isShort, colors, pillFillStyle]);
 
   const barsGroupStyle = useMemo(() => [styles.bars, barsStyle], [barsStyle]);
 
@@ -242,7 +278,7 @@ function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect, barsOpac
         >
           {amount}
         </AppText>
-        <View style={barStyle} />
+        <Animated.View style={barStyle} />
       </Animated.View>
       <View style={styles.pill}>
         <Animated.View style={pillFill} />
@@ -357,6 +393,15 @@ const styles = StyleSheet.create({
   },
   pillFill: {
     ...StyleSheet.absoluteFill,
+    borderRadius: MEASUREMENTS.radius.card,
+  },
+  // Sits where a column's pill does: above the dot row at the column's bottom
+  selectedPill: {
+    position: "absolute",
+    start: 0,
+    bottom: DOT_GAP + DOT_SIZE,
+    width: PILL_WIDTH,
+    height: PILL_HEIGHT,
     borderRadius: MEASUREMENTS.radius.card,
   },
   dot: {
