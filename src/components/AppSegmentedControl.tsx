@@ -84,10 +84,10 @@ function Segment<T>({ option, selected, stacked, onSelect }: SegmentProps<T>) {
         variant="bodyStrong"
         color={selected ? "textDefault" : "textMuted"}
         numberOfLines={1}
-        // Stacked, a label has the whole row; a word still wider than that shrinks instead of ending in "…"
-        adjustsFontSizeToFit={stacked}
+        // A label still wider than its segment shrinks instead of ending in "…"
+        adjustsFontSizeToFit
         minimumFontScale={0.5}
-        style={stacked ? styles.labelStacked : undefined}
+        style={styles.label}
       >
         {option.label}
       </AppText>
@@ -106,10 +106,14 @@ const styles = StyleSheet.create({
   trackStacked: {
     flexDirection: "column",
   },
+  // Side by side, each segment starts at its label's width and shares the spare room equally,
+  // so a long label ("Wiederkehrend") takes space from short ones ("Alle") before it shrinks
   segmentInRow: {
-    flex: 1,
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: "auto",
   },
-  labelStacked: {
+  label: {
     flexShrink: 1,
   },
   segment: {
