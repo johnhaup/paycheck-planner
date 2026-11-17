@@ -20,7 +20,9 @@
 #   Maestro has to tap before anything else works (HAU-299, HAU-334).
 # - No scrollUntilVisible for a known distance: swipe, then wait (HAU-106). Under
 #   load its lookups use up its budget with the target already on screen.
-# - A relaunch in the middle of a flow goes inside `retry` (HAU-497).
+# - No `retry` around a bare launchApp: Maestro 2.11.0 retries failed assertions only,
+#   and a simulator that refuses the launch fails the flow at once (HAU-511). The
+#   gate's re-run of the failed flow is what covers a failed launch.
 appId: com.johnhaup.paycheckplanner
 name: smoke
 ---
@@ -54,12 +56,8 @@ name: smoke
 - takeScreenshot: paychecks
 
 # Persisted state survives a kill and relaunch. launchApp stops the app itself, so
-# there is no stopApp before it. Retried: under gate load the simulator can fail the
-# launch with "did not return a process handle nor launch error" (HAU-497).
-- retry:
-    maxRetries: 2
-    commands:
-      - launchApp
+# there is no stopApp before it.
+- launchApp
 - extendedWaitUntil:
     visible: ".* · left over"
     timeout: 60000

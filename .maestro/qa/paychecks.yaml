@@ -259,8 +259,7 @@ env:
       selected: true
     timeout: 10000
 
-# iOS variant. The launch argument lasts for one launch and the data stays. Each relaunch
-# is retried: under gate load the simulator can fail a launch outright (HAU-497).
+# iOS variant. The launch argument lasts for one launch and the data stays.
 - runFlow:
     when:
       platform: iOS
@@ -268,13 +267,10 @@ env:
       # Arabic device language: the app comes up translated, and a chart amount keeps its
       # number, "k" and currency together between direction marks (HAU-154). The marks
       # are in the pattern below. Display order is a screenshot check.
-      - retry:
-          maxRetries: 2
-          commands:
-            - launchApp:
-                stopApp: true
-                arguments:
-                  "-AppleLanguages": "(ar)"
+      - launchApp:
+          stopApp: true
+          arguments:
+            "-AppleLanguages": "(ar)"
       - extendedWaitUntil:
           visible: ".*، المتبقي \u200F[0-9.,]+k?\u200F\u00A0US\\$"
           timeout: 60000
@@ -290,13 +286,10 @@ env:
       # Japanese: the date tile shows the day as a bare number under the month ("11月 / 20"),
       # not "20日", which wrapped onto two lines in the tile (HAU-364). The card's label
       # starts with the tile's two lines. One line in the tile is a screenshot check.
-      - retry:
-          maxRetries: 2
-          commands:
-            - launchApp:
-                stopApp: true
-                arguments:
-                  "-AppleLanguages": "(ja)"
+      - launchApp:
+          stopApp: true
+          arguments:
+            "-AppleLanguages": "(ja)"
       - extendedWaitUntil:
           visible: "\\d{1,2}月, \\d{1,2}, .*"
           timeout: 60000

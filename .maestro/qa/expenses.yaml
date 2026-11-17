@@ -290,14 +290,10 @@ name: expenses
     when:
       platform: iOS
     commands:
-      # Retried: under gate load the simulator can refuse a launch (HAU-497, see smoke.yaml)
-      - retry:
-          maxRetries: 2
-          commands:
-            - launchApp:
-                stopApp: true
-                arguments:
-                  "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+      - launchApp:
+          stopApp: true
+          arguments:
+            "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
       - extendedWaitUntil:
           visible: ".*left over.*"
           timeout: 60000
