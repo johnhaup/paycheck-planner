@@ -36,7 +36,11 @@ import {
   type ExpenseSection,
 } from "@/utils/expenseSections";
 import { LayoutAnimationConfig } from "react-native-reanimated";
-import { AppAnimatedListCell } from "@/components/AppAnimatedListCell";
+import {
+  AppAnimatedListCell,
+  ListCellAnimationContext,
+  useListSwap,
+} from "@/components/AppAnimatedListCell";
 
 function keyExtractor(item: ExpenseListItem) {
   return item.expense.id;
@@ -63,6 +67,8 @@ export default function ExpensesScreen() {
   const [filter, setFilter] = useState<ExpenseFilter>("all");
   const [sort, setSort] = useState<ExpenseSort>("default");
   const [query, setQuery] = useState("");
+  // Filter, sort and search swap the rows; only adds and deletes animate them
+  const { animated, swap } = useListSwap();
 
   const handleAdd = useCallback(() => {
     router.push("/expense-form");
@@ -109,9 +115,27 @@ export default function ExpensesScreen() {
     [handleEdit, handleDelete]
   );
 
-  const handleSearch = useCallback((e: NativeSyntheticEvent<{ text: string }>) => {
-    setQuery(e.nativeEvent.text);
-  }, []);
+  const handleSearch = useCallback(
+    (e: NativeSyntheticEvent<{ text: string }>) => {
+      const text = e.nativeEvent.text;
+      swap(() => setQuery(text));
+    },
+    [swap]
+  );
+
+  const handleFilterChange = useCallback(
+    (next: ExpenseFilter) => {
+      swap(() => setFilter(next));
+    },
+    [swap]
+  );
+
+  const applySort = useCallback(
+    (next: ExpenseSort) => {
+      swap(() => setSort(next));
+    },
+    [swap]
+  );
 
   const handleSortPress = useCallback(() => {
     const sorts: ExpenseSort[] = ["default", "amount", "name"];
@@ -124,7 +148,7 @@ export default function ExpensesScreen() {
         [
           ...sorts
             .filter((s) => s !== sort)
-            .map((s) => ({ text: t(`expenses.sort.${s}`), onPress: () => setSort(s) })),
+            .map((s) => ({ text: t(`expenses.sort.${s}`), onPress: () => applySort(s) })),
           { text: t("common.cancel"), style: "cancel" as const },
         ],
         { cancelable: true }
@@ -145,11 +169,11 @@ export default function ExpensesScreen() {
       (index) => {
         const next = sorts[index];
         if (next) {
-          setSort(next);
+          applySort(next);
         }
       }
     );
-  }, [t, sort]);
+  }, [t, sort, applySort]);
 
   const renderSortButton = useCallback(
     () => (
@@ -211,10 +235,10 @@ export default function ExpensesScreen() {
             count: summary.recurringCount,
           })}
         </AppText>
-        <AppSegmentedControl options={filterOptions} value={filter} onChange={setFilter} />
+        <AppSegmentedControl options={filterOptions} value={filter} onChange={handleFilterChange} />
       </View>
     ),
-    [summary, filter, filterOptions, formatMoney, t]
+    [summary, filter, filterOptions, handleFilterChange, formatMoney, t]
   );
 
   const listEmpty = useMemo(
@@ -239,21 +263,23 @@ export default function ExpensesScreen() {
   return (
     <>
       <Stack.Screen options={screenOptions} />
-      <LayoutAnimationConfig skipEntering>
-        <SectionList
-          style={LARGE_TITLE_LIST}
-          sections={sections}
-          CellRendererComponent={AppAnimatedListCell}
-          keyExtractor={keyExtractor}
-          renderItem={renderItem}
-          renderSectionHeader={renderSectionHeader}
-          ListHeaderComponent={hasExpenses ? listHeader : undefined}
-          ListEmptyComponent={listEmpty}
-          stickySectionHeadersEnabled={false}
-          contentInsetAdjustmentBehavior="automatic"
-          contentContainerStyle={[hasExpenses ? styles.listContent : styles.emptyContent, LARGE_TITLE_LIST_CONTENT]}
-        />
-      </LayoutAnimationConfig>
+      <ListCellAnimationContext.Provider value={animated}>
+        <LayoutAnimationConfig skipEntering>
+          <SectionList
+            style={LARGE_TITLE_LIST}
+            sections={sections}
+            CellRendererComponent={AppAnimatedListCell}
+            keyExtractor={keyExtractor}
+            renderItem={renderItem}
+            renderSectionHeader={renderSectionHeader}
+            ListHeaderComponent={hasExpenses ? listHeader : undefined}
+            ListEmptyComponent={listEmpty}
+            stickySectionHeadersEnabled={false}
+            contentInsetAdjustmentBehavior="automatic"
+            contentContainerStyle={[hasExpenses ? styles.listContent : styles.emptyContent, LARGE_TITLE_LIST_CONTENT]}
+          />
+        </LayoutAnimationConfig>
+      </ListCellAnimationContext.Provider>
       <AppFab accessibilityLabel={t("expenses.addExpense")} onPress={handleAdd} />
     </>
   );
