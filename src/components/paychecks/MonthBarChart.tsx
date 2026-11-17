@@ -49,6 +49,8 @@ const LOCKED_MIN_WIDTH = 168;
 const PILL_TINT_ALPHA = "38";
 /** Text in a month column shrinks this far before it would truncate: long amounts (vi "4,8k US$"), month abbreviations (fr "janv.", vi "Tháng 10") and large Dynamic Type */
 const COLUMN_MIN_FONT_SCALE = 0.5;
+/** The month label sits in a fixed 52pt pill: past this, "Nov" fills it edge to edge at accessibility sizes (HAU-540) */
+const MONTH_LABEL_MAX_FONT_MULTIPLIER = 1.3;
 /** Long translations of the Go Pro card's and banner's text shrink this far before they would truncate */
 const LOCKED_MIN_FONT_SCALE = 0.7;
 /** Their boxes have a fixed height, so accessibility text sizes stop here instead of overflowing them */
@@ -288,6 +290,7 @@ function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect, barsOpac
           numberOfLines={1}
           adjustsFontSizeToFit
           minimumFontScale={COLUMN_MIN_FONT_SCALE}
+          maxFontSizeMultiplier={MONTH_LABEL_MAX_FONT_MULTIPLIER}
         >
           {month.shortLabel}
         </AppText>
@@ -387,7 +390,7 @@ const styles = StyleSheet.create({
   pill: {
     height: PILL_HEIGHT,
     width: PILL_WIDTH,
-    paddingHorizontal: MEASUREMENTS.spacing.sm,
+    paddingHorizontal: MEASUREMENTS.spacing.md,
     alignItems: "center",
     justifyContent: "center",
   },
