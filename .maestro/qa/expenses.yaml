@@ -113,9 +113,9 @@ name: expenses
     start: 50%, 45%
     end: 50%, 15%
 - extendedWaitUntil:
-    visible: "Add Expense"
+    visible: "Add expense"
     timeout: 15000
-- tapOn: "Add Expense"
+- tapOn: "Add expense"
 # The new bill has no linked source, so it lands in the "Not linked" section
 # under the two income sources, below the fold on an iPhone 17 Pro. Wait for
 # the summary to count it, then swipe to the bottom and wait for the row
@@ -168,9 +168,9 @@ name: expenses
     start: 50%, 45%
     end: 50%, 20%
 - extendedWaitUntil:
-    visible: "Update Expense"
+    visible: "Update expense"
     timeout: 15000
-- tapOn: "Update Expense"
+- tapOn: "Update expense"
 # iOS reads a row as one element; on Android the name, the schedule and the amount's
 # unit are separate text elements, so a regex across them never matches there (HAU-451).
 - extendedWaitUntil:
@@ -204,9 +204,9 @@ name: expenses
     start: 50%, 45%
     end: 50%, 15%
 - extendedWaitUntil:
-    visible: "Update Expense"
+    visible: "Update expense"
     timeout: 15000
-- tapOn: "Update Expense"
+- tapOn: "Update expense"
 - runFlow:
     when:
       platform: iOS
@@ -228,7 +228,7 @@ name: expenses
           below: "Internet"
 - assertVisible: "\\$1,477\\.33/mo"
 
-# A linked bill can repeat yearly: First Month appears and the row says "yearly" (HAU-350).
+# A linked bill can repeat yearly: First month appears and the row says "yearly" (HAU-350).
 # QA Water goes on Mesa Health, whose total nothing below checks.
 - swipe:
     start: 50%, 80%
@@ -265,9 +265,9 @@ name: expenses
     timeout: 15000
 - tapOn: "Yearly"
 - extendedWaitUntil:
-    visible: "First Month"
+    visible: "First month"
     timeout: 15000
-# First Month's chips push the button off the screen
+# First month's chips push the button off the screen
 - swipe:
     start: 50%, 45%
     end: 50%, 15%
@@ -275,9 +275,9 @@ name: expenses
     start: 50%, 45%
     end: 50%, 15%
 - extendedWaitUntil:
-    visible: "Update Expense"
+    visible: "Update expense"
     timeout: 15000
-- tapOn: "Update Expense"
+- tapOn: "Update expense"
 - extendedWaitUntil:
     visible: "(.*QA Water.*)?yearly.*"
     timeout: 15000
