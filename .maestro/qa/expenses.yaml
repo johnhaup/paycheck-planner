@@ -1,6 +1,12 @@
 # The expenses journey: grouped bills with the monthly summary, the All / Recurring /
 # One-time filter, sort, the Pro gate on Set-aside (HAU-146) and adding a bill through
 # the form. iOS adds the collapsing large title.
+#
+# No scrollUntilVisible (HAU-106, HAU-497): the form's lower fields sit at its end and
+# the rows this flow edits at the list's top or end, so the flow swipes to that end
+# (short swipes in the form, above the keyboard) and waits for the element. With
+# centerElement it kept swiping at an element that could not move any nearer the centre
+# until its 20 s ran out.
 appId: com.johnhaup.paycheckplanner
 name: expenses
 ---
@@ -100,8 +106,15 @@ name: expenses
 - tapOn: "e.g. Electric Company"
 - inputText: "QA Water"
 - pressKey: Enter
-- scrollUntilVisible:
-    element: "Add Expense"
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- extendedWaitUntil:
+    visible: "Add Expense"
+    timeout: 15000
 - tapOn: "Add Expense"
 # The new bill has no linked source, so it lands in the "Not linked" section
 # under the two income sources, below the fold on an iPhone 17 Pro. Wait for
@@ -126,25 +139,37 @@ name: expenses
 # iOS reads the whole row as "I Internet Open payment link for Internet …"; Android has
 # "Internet" and the link button as separate elements. Anchored at the start so the tap
 # never hits "Open payment link for Internet" (opens the browser on Android, HAU-435).
-- scrollUntilVisible:
-    element: "(I )?Internet.*"
-    direction: UP
-    centerElement: true
+- swipe:
+    start: 50%, 30%
+    end: 50%, 80%
+- swipe:
+    start: 50%, 30%
+    end: 50%, 80%
+- extendedWaitUntil:
+    visible: "(I )?Internet.*"
+    timeout: 15000
 - tapOn: "(I )?Internet.*"
 - extendedWaitUntil:
     visible: "e.g. Electric Company"
     timeout: 10000
-- scrollUntilVisible:
-    element: "e.g. 18"
-    centerElement: true
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- extendedWaitUntil:
+    visible: "e.g. 18"
+    timeout: 15000
 - tapOn: "e.g. 18"
 - inputText: "18"
 # The keyboard covers the button, and Maestro counts it visible there; scroll it up first
 - swipe:
     start: 50%, 45%
     end: 50%, 20%
-- scrollUntilVisible:
-    element: "Update Expense"
+- extendedWaitUntil:
+    visible: "Update Expense"
+    timeout: 15000
 - tapOn: "Update Expense"
 # iOS reads a row as one element; on Android the name, the schedule and the amount's
 # unit are separate text elements, so a regex across them never matches there (HAU-451).
@@ -159,14 +184,28 @@ name: expenses
 - extendedWaitUntil:
     visible: "e.g. Electric Company"
     timeout: 10000
-- scrollUntilVisible:
-    element: "18"
-    centerElement: true
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- extendedWaitUntil:
+    visible: "18"
+    timeout: 15000
 - tapOn: "18"
 - eraseText: 4
 - tapOn: "(?i)linked income source"
-- scrollUntilVisible:
-    element: "Update Expense"
+# With the due day gone the form grows a "Which paycheck" row; the button is below it
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- extendedWaitUntil:
+    visible: "Update Expense"
+    timeout: 15000
 - tapOn: "Update Expense"
 - runFlow:
     when:
@@ -191,24 +230,53 @@ name: expenses
 
 # A linked bill can repeat yearly: First Month appears and the row says "yearly" (HAU-350).
 # QA Water goes on Mesa Health, whose total nothing below checks.
-- scrollUntilVisible:
-    element: ".*QA Water.*"
-    centerElement: true
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- swipe:
+    start: 50%, 80%
+    end: 50%, 20%
+- extendedWaitUntil:
+    visible: ".*QA Water.*"
+    timeout: 15000
 - tapOn: ".*QA Water.*"
 - extendedWaitUntil:
     visible: "e.g. Electric Company"
     timeout: 10000
-- scrollUntilVisible:
-    element: "Mesa Health"
-    centerElement: true
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- extendedWaitUntil:
+    visible: "Mesa Health"
+    timeout: 15000
 - tapOn: "Mesa Health"
-- scrollUntilVisible:
-    element: "Yearly"
-    centerElement: true
+# Linked, the form grows the due day and How Often; Yearly is at its new end
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- extendedWaitUntil:
+    visible: "Yearly"
+    timeout: 15000
 - tapOn: "Yearly"
-- assertVisible: "First Month"
-- scrollUntilVisible:
-    element: "Update Expense"
+- extendedWaitUntil:
+    visible: "First Month"
+    timeout: 15000
+# First Month's chips push the button off the screen
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- extendedWaitUntil:
+    visible: "Update Expense"
+    timeout: 15000
 - tapOn: "Update Expense"
 - extendedWaitUntil:
     visible: "(.*QA Water.*)?yearly.*"
@@ -222,10 +290,14 @@ name: expenses
     when:
       platform: iOS
     commands:
-      - launchApp:
-          stopApp: true
-          arguments:
-            "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
+      # Retried: under gate load the simulator can refuse a launch (HAU-497, see smoke.yaml)
+      - retry:
+          maxRetries: 2
+          commands:
+            - launchApp:
+                stopApp: true
+                arguments:
+                  "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
       - extendedWaitUntil:
           visible: ".*left over.*"
           timeout: 60000
