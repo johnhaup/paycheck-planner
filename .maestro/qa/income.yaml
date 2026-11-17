@@ -1,7 +1,7 @@
 # The income journey: adding the first source through the form (free), the summary
 # tiles and source list, editing a source, the Pro gate on a second source (HAU-69:
-# the FAB carries the PRO badge and opens the paywall), and the source turning up as
-# paychecks.
+# the FAB carries the PRO badge and opens the paywall), the form's Close button, and
+# the source turning up as paychecks.
 appId: com.johnhaup.paycheckplanner
 name: income
 ---
@@ -11,7 +11,22 @@ name: income
     visible: "Try with sample data"
     timeout: 60000
 
+# The form's Close (X) leaves without saving (HAU-538)
+- tapOn: "Add income source"
+- extendedWaitUntil:
+    visible: "e.g. Acme Corp"
+    timeout: 10000
+- tapOn: "e.g. Acme Corp"
+- inputText: "Discard me"
+- tapOn: "Close"
+- extendedWaitUntil:
+    notVisible: "e.g. Acme Corp"
+    timeout: 10000
+- assertVisible: "Try with sample data"
+- assertNotVisible: ".*Discard me.*"
+
 # Add the first source (weekly) from the Welcome screen; free tier allows one
+# (the form opens empty again after the Close above)
 - tapOn: "Add income source"
 - extendedWaitUntil:
     visible: "e.g. Acme Corp"

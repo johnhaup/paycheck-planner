@@ -87,13 +87,13 @@ export default function RootLayout() {
   );
 
   const incomeFormOptions = useMemo(
-    () => ({ ...modalOptions, title: t("screens.incomeSource") }),
-    [modalOptions, t]
+    () => ({ ...modalOptions, title: t("screens.incomeSource"), headerRight: renderCloseButton }),
+    [modalOptions, renderCloseButton, t]
   );
 
   const expenseFormOptions = useMemo(
-    () => ({ ...modalOptions, title: t("screens.expense") }),
-    [modalOptions, t]
+    () => ({ ...modalOptions, title: t("screens.expense"), headerRight: renderCloseButton }),
+    [modalOptions, renderCloseButton, t]
   );
 
   const payDateDetailOptions = useMemo(
