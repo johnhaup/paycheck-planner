@@ -23,6 +23,12 @@ import {
 export const PRO_PRODUCT_ID = "com.johnhaup.paycheckplanner.pro";
 
 /**
+ * Inlined at build time; only screenshot builds (expo-local-ship screenshots capture --build) set it.
+ * `paycheck-planner://demo` then loads sample data with Pro on, so the store shots show Pro screens.
+ */
+export const IS_STORE_DEMO = process.env.EXPO_PUBLIC_STORE_DEMO === "1";
+
+/**
  * The store connection for the root hook and the paywall: expo-iap, or the mock
  * store when the app was launched with `-proStoreMock` (QA only, see proStoreMock.ts).
  */
@@ -99,7 +105,8 @@ export function useProEntitlement() {
   });
 
   useEffect(() => {
-    if (connected) {
+    // A screenshot build has no purchase; asking the store would take the demo's Pro away again
+    if (connected && !IS_STORE_DEMO) {
       refreshProEntitlement().catch(ignore);
     }
   }, [connected]);
