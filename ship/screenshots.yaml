@@ -1,9 +1,13 @@
-# App Store screenshots. Run with: bun store:screenshots
-# Needs a build with EXPO_PUBLIC_STORE_DEMO=1 so paycheck-planner://demo loads sample data (pass --build once).
-appId: com.johnhaup.paycheckplanner
+# Store screenshots. iOS: bun store:screenshots. Google Play: add --android to capture and frame.
+# Needs a build with EXPO_PUBLIC_STORE_DEMO=1 so paycheck-planner://demo loads sample data with Pro on (pass --build once).
+appId: ${APP_ID}
 ---
 - launchApp:
     clearState: true
+# Android drops a link that arrives before the first screen is up
+- extendedWaitUntil:
+    visible: "Paychecks"
+    timeout: 30000
 - openLink: paycheck-planner://demo
 - tapOn:
     text: "Open"
@@ -32,9 +36,12 @@ appId: com.johnhaup.paycheckplanner
 - scrollUntilVisible:
     element: ".*Mesa Health.*"
     centerElement: true
-- tapOn: ".*Mesa Health.*"
+# The card's own label; the pay amount inside it is a second button (per-paycheck amount)
+- tapOn:
+    text: "[A-Z]{3}, [0-9]+, Mesa Health.*"
+    index: 0
 - extendedWaitUntil:
-    visible: ".*Pay Date.*"
+    visible: "This paycheck"
     timeout: 5000
 - waitForAnimationToEnd
 - takeScreenshot: detail
