@@ -81,7 +81,7 @@ name: settings
 - extendedWaitUntil:
     visible: "Paycheck Planner Pro"
     timeout: 10000
-- assertVisible: "Restore Purchases"
+- assertVisible: "Restore purchases"
 - tapOn: "Close"
 - extendedWaitUntil:
     visible: ".*Erase all data.*"

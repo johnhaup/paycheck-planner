@@ -28,7 +28,7 @@ name: pro
     visible: "Buy for \\$4\\.99"
     timeout: 20000
 # Nothing bought yet: Restore finds nothing and the paywall stays locked
-- tapOn: "Restore Purchases"
+- tapOn: "Restore purchases"
 - extendedWaitUntil:
     visible: "No Pro purchase found for this account"
     timeout: 10000
@@ -136,7 +136,7 @@ name: pro
 - extendedWaitUntil:
     visible: "Buy for \\$4\\.99"
     timeout: 25000
-- tapOn: "Restore Purchases"
+- tapOn: "Restore purchases"
 - extendedWaitUntil:
     visible: "No Pro purchase found for this account"
     timeout: 15000
@@ -153,5 +153,5 @@ name: pro
     timeout: 15000
 - assertVisible: "Buy for \\$4\\.99"
 - assertVisible: "No Pro purchase found for this account"
-- assertVisible: "Restore Purchases"
+- assertVisible: "Restore purchases"
 - takeScreenshot: pro-refunded-paywall-xxxl
