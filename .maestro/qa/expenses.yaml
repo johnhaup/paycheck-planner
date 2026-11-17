@@ -146,8 +146,10 @@ name: expenses
 - scrollUntilVisible:
     element: "Update Expense"
 - tapOn: "Update Expense"
+# iOS reads a row as one element; on Android the name, the schedule and the amount's
+# unit are separate text elements, so a regex across them never matches there (HAU-451).
 - extendedWaitUntil:
-    visible: ".*Internet.*Due the 18th.*"
+    visible: "(.*Internet.*)?Due the 18th.*"
     timeout: 15000
 - takeScreenshot: expenses-due-day
 
@@ -166,9 +168,25 @@ name: expenses
 - scrollUntilVisible:
     element: "Update Expense"
 - tapOn: "Update Expense"
-- extendedWaitUntil:
-    visible: ".*Internet.*2nd paycheck each month.*monthly.*"
-    timeout: 15000
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - extendedWaitUntil:
+          visible: ".*Internet.*2nd paycheck each month.*monthly.*"
+          timeout: 15000
+# Android: Car Payment has the same schedule line, above Internet; only Internet's own
+# line is below its name.
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - extendedWaitUntil:
+          notVisible: "Due the 18th"
+          timeout: 15000
+      - assertVisible:
+          text: "2nd paycheck each month"
+          below: "Internet"
 - assertVisible: "\\$1,477\\.33/mo"
 
 # A linked bill can repeat yearly: First Month appears and the row says "yearly" (HAU-350).
@@ -193,7 +211,7 @@ name: expenses
     element: "Update Expense"
 - tapOn: "Update Expense"
 - extendedWaitUntil:
-    visible: ".*QA Water.*yearly.*"
+    visible: "(.*QA Water.*)?yearly.*"
     timeout: 15000
 - takeScreenshot: expenses-yearly
 
