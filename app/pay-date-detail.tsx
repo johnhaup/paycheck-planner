@@ -8,7 +8,7 @@ import { useThemeStore } from "@/stores/themeStore";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
-import { DIM_ON_PRESS } from "@/constants/press";
+import { dimOnPress } from "@/constants/press";
 import { AppText } from "@/components/AppText";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { PayDateSummary } from "@/components/payDateDetail/PayDateSummary";
@@ -265,7 +265,7 @@ export default function PayDateDetailScreen() {
 
   const renderMarkAllPaidButton = useCallback(
     () => (
-      <Pressable style={DIM_ON_PRESS} onPress={handleMarkAllPaid} hitSlop={MEASUREMENTS.hitSlop} accessibilityRole="button">
+      <Pressable style={HEADER_BUTTON_STYLE} onPress={handleMarkAllPaid} hitSlop={MEASUREMENTS.hitSlop} accessibilityRole="button">
         <AppText
           variant="bodyStrong"
           color="primaryText"
@@ -431,4 +431,11 @@ const styles = StyleSheet.create({
   empty: {
     paddingHorizontal: MEASUREMENTS.spacing.xs,
   },
+  // iOS wraps a custom bar button in a glass pill hugging its content; this gives the text the
+  // same side padding inside it as UIKit's own Back button.
+  headerButton: {
+    paddingHorizontal: MEASUREMENTS.spacing.base,
+  },
 });
+
+const HEADER_BUTTON_STYLE = dimOnPress(styles.headerButton);
