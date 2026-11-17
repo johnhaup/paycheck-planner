@@ -26,7 +26,7 @@ export function AppToggle({ value, onValueChange }: Props) {
   const trackStyle = useMemo(
     () => [
       styles.track,
-      { backgroundColor: value ? colors.primary : colors.border },
+      { backgroundColor: value ? colors.primary : colors.toggleTrackOff },
     ],
     [value, colors]
   );

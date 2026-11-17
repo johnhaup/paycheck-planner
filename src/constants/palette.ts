@@ -10,6 +10,7 @@ const palette = {
   slate750: "#2B3038",
   slate700: "#333A44",
   slate650: "#2E343D",
+  slate600: "#434A55",
   slate500: "#8A929E",
   slate300: "#A3ABB7",
   offWhite: "#F2F2F7",
@@ -17,6 +18,7 @@ const palette = {
   paleGray: "#EFEFF4",
   trackGray: "#E3E3E8",
   barGray: "#D6D6DC",
+  switchGray: "#C7C7CC",
   gray: "#9A9AA0",
   darkGray: "#6E6E73",
   white: "#FFFFFF",
@@ -59,6 +61,7 @@ export type ThemeColors = Record<
   | "proGradientEnd"
   | "onPro"
   | "border"
+  | "toggleTrackOff"
   | "overlay"
   | "shadow"
   | "tabBarBackground"
@@ -98,6 +101,8 @@ export const DarkPalette = {
   onPro: palette.proInk,
 
   border: palette.slate650,
+  // An off switch's track: a step darker or lighter than both the elevated row and the modal
+  toggleTrackOff: palette.slate600,
   overlay: palette.scrim,
   shadow: palette.black,
 
@@ -134,6 +139,8 @@ export const LightPalette = {
   onPro: palette.proInk,
 
   border: palette.lightGray,
+  // iOS's own off-track grey is too pale on the elevated row, so a step darker
+  toggleTrackOff: palette.switchGray,
   overlay: palette.scrim,
   shadow: palette.black,
 
