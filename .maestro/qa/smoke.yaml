@@ -28,6 +28,11 @@ name: smoke
 ---
 - launchApp:
     clearState: true
+    arguments:
+      "--initialUrl": ${METRO_URL}
+      "-EXDevMenuShowsAtLaunch": "NO"
+      "-EXDevMenuShowFloatingActionButton": "NO"
+      "-EXDevMenuIsOnboardingFinished": "YES"
 - extendedWaitUntil:
     visible: "Try with sample data"
     timeout: 60000
@@ -57,7 +62,12 @@ name: smoke
 
 # Persisted state survives a kill and relaunch. launchApp stops the app itself, so
 # there is no stopApp before it.
-- launchApp
+- launchApp:
+    arguments:
+      "--initialUrl": ${METRO_URL}
+      "-EXDevMenuShowsAtLaunch": "NO"
+      "-EXDevMenuShowFloatingActionButton": "NO"
+      "-EXDevMenuIsOnboardingFinished": "YES"
 - extendedWaitUntil:
     visible: ".* · left over"
     timeout: 60000

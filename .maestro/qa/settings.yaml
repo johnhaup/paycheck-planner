@@ -7,6 +7,11 @@ name: settings
 ---
 - launchApp:
     clearState: true
+    arguments:
+      "--initialUrl": ${METRO_URL}
+      "-EXDevMenuShowsAtLaunch": "NO"
+      "-EXDevMenuShowFloatingActionButton": "NO"
+      "-EXDevMenuIsOnboardingFinished": "YES"
 - extendedWaitUntil:
     visible: "Try with sample data"
     timeout: 60000
@@ -180,6 +185,10 @@ name: settings
       - launchApp:
           stopApp: true
           arguments:
+            "--initialUrl": ${METRO_URL}
+            "-EXDevMenuShowsAtLaunch": "NO"
+            "-EXDevMenuShowFloatingActionButton": "NO"
+            "-EXDevMenuIsOnboardingFinished": "YES"
             "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
       - extendedWaitUntil:
           visible: "Plan every paycheck"

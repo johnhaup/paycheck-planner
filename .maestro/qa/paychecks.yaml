@@ -13,6 +13,11 @@ env:
 ---
 - launchApp:
     clearState: true
+    arguments:
+      "--initialUrl": ${METRO_URL}
+      "-EXDevMenuShowsAtLaunch": "NO"
+      "-EXDevMenuShowFloatingActionButton": "NO"
+      "-EXDevMenuIsOnboardingFinished": "YES"
 - extendedWaitUntil:
     visible: "Try with sample data"
     timeout: 60000
@@ -270,6 +275,10 @@ env:
       - launchApp:
           stopApp: true
           arguments:
+            "--initialUrl": ${METRO_URL}
+            "-EXDevMenuShowsAtLaunch": "NO"
+            "-EXDevMenuShowFloatingActionButton": "NO"
+            "-EXDevMenuIsOnboardingFinished": "YES"
             "-AppleLanguages": "(ar)"
       - extendedWaitUntil:
           visible: ".*، المتبقي \u200F[0-9.,]+k?\u200F\u00A0US\\$"
@@ -289,6 +298,10 @@ env:
       - launchApp:
           stopApp: true
           arguments:
+            "--initialUrl": ${METRO_URL}
+            "-EXDevMenuShowsAtLaunch": "NO"
+            "-EXDevMenuShowFloatingActionButton": "NO"
+            "-EXDevMenuIsOnboardingFinished": "YES"
             "-AppleLanguages": "(ja)"
       - extendedWaitUntil:
           visible: "\\d{1,2}月, \\d{1,2}, .*"
