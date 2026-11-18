@@ -5,6 +5,7 @@ import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useStore } from "@/store";
 import { openPaymentLink } from "@/utils/links";
 import { useThemeStore } from "@/stores/themeStore";
+import { useGutters } from "@/hooks/useGutters";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
@@ -65,6 +66,8 @@ export default function PayDateDetailScreen() {
 
   const router = useRouter();
   const colors = useColors();
+  const gutters = useGutters();
+  const contentStyle = useMemo(() => [styles.listContent, gutters], [gutters]);
   const t = useT();
   const incomeSources = useStore((s) => s.incomeSources);
   const expenses = useStore((s) => s.expenses);
@@ -414,7 +417,7 @@ export default function PayDateDetailScreen() {
           renderItem={renderItem}
           CellRendererComponent={AppAnimatedListCell}
           style={listStyle}
-          contentContainerStyle={styles.listContent}
+          contentContainerStyle={contentStyle}
           renderScrollComponent={renderScrollComponent}
           keyboardShouldPersistTaps="handled"
         />

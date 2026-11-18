@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { useRouter } from "expo-router";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useT } from "@/hooks/useLocale";
 import { useLocaleStore, SYSTEM } from "@/stores/localeStore";
 import { AVAILABLE_LANGUAGES, getDeviceLanguage, isLanguageCode } from "@/localization/i18n";
@@ -28,5 +29,10 @@ export default function LanguageScreen() {
     ];
   }, [t]);
 
-  return <SettingsChoiceList choices={choices} selectedKey={language} onSelect={handleSelect} />;
+  // A modal reads its own safe area: iPhone Duo centres it clear of the status column when unfolded
+  return (
+    <SafeAreaProvider>
+      <SettingsChoiceList choices={choices} selectedKey={language} onSelect={handleSelect} />
+    </SafeAreaProvider>
+  );
 }

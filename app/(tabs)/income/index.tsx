@@ -6,6 +6,7 @@ import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { useGutters } from "@/hooks/useGutters";
 import { LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { AppText } from "@/components/AppText";
 import { AppCard } from "@/components/AppCard";
@@ -144,6 +145,16 @@ export default function IncomeScreen() {
     [handleAdd, t]
   );
 
+  const gutters = useGutters();
+  const emptyGutters = useGutters(0);
+  const contentStyle = useMemo(
+    () =>
+      hasSources
+        ? [styles.listContent, gutters, LARGE_TITLE_LIST_CONTENT]
+        : [styles.emptyContent, emptyGutters, LARGE_TITLE_LIST_CONTENT],
+    [hasSources, gutters, emptyGutters]
+  );
+
   // The list is the screen's root view so iOS collapses the large title on scroll
   return (
     <>
@@ -158,7 +169,7 @@ export default function IncomeScreen() {
           ListFooterComponent={hasSources ? listFooter : undefined}
           ListEmptyComponent={listEmpty}
           contentInsetAdjustmentBehavior="automatic"
-          contentContainerStyle={[hasSources ? styles.listContent : styles.emptyContent, LARGE_TITLE_LIST_CONTENT]}
+          contentContainerStyle={contentStyle}
         />
       </LayoutAnimationConfig>
       <AppFab accessibilityLabel={t("income.addSource")} onPress={handleAddGated} pro={addLocked} />
@@ -168,7 +179,6 @@ export default function IncomeScreen() {
 
 const styles = StyleSheet.create({
   listContent: {
-    paddingHorizontal: MEASUREMENTS.spacing.gutter,
     paddingTop: MEASUREMENTS.spacing.md,
     paddingBottom: MEASUREMENTS.fabSize + MEASUREMENTS.spacing.bottom,
   },

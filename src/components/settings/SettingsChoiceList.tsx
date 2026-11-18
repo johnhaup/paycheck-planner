@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { FlatList, Pressable, StyleSheet, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useGutters } from "@/hooks/useGutters";
 import { useColors } from "@/hooks/useColors";
 import { useGroupedRowStyles } from "@/hooks/useGroupedRowStyles";
 import { MEASUREMENTS } from "@/constants/measurements";
@@ -26,6 +27,8 @@ function keyExtractor(choice: Choice) {
 /** Single-select list with a checkmark, for the language and currency screens. */
 export function SettingsChoiceList({ choices, selectedKey, onSelect }: Props) {
   const colors = useColors();
+  const gutters = useGutters();
+  const contentStyle = useMemo(() => [styles.content, gutters], [gutters]);
 
   const renderItem = useCallback(
     ({ item, index }: { item: Choice; index: number }) => (
@@ -49,7 +52,7 @@ export function SettingsChoiceList({ choices, selectedKey, onSelect }: Props) {
       renderItem={renderItem}
       extraData={selectedKey}
       style={listStyle}
-      contentContainerStyle={styles.content}
+      contentContainerStyle={contentStyle}
       contentInsetAdjustmentBehavior="automatic"
     />
   );

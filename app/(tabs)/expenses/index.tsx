@@ -18,6 +18,7 @@ import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { DIM_ON_PRESS } from "@/constants/press";
+import { useGutters } from "@/hooks/useGutters";
 import { LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { AppText } from "@/components/AppText";
 import { AppEmptyState } from "@/components/AppEmptyState";
@@ -259,6 +260,16 @@ export default function ExpensesScreen() {
     [hasExpenses, query, handleAdd, t]
   );
 
+  const gutters = useGutters();
+  const emptyGutters = useGutters(0);
+  const contentStyle = useMemo(
+    () =>
+      hasExpenses
+        ? [styles.listContent, gutters, LARGE_TITLE_LIST_CONTENT]
+        : [styles.emptyContent, emptyGutters, LARGE_TITLE_LIST_CONTENT],
+    [hasExpenses, gutters, emptyGutters]
+  );
+
   // The list is the screen's root view so iOS collapses the large title on scroll
   return (
     <>
@@ -276,7 +287,7 @@ export default function ExpensesScreen() {
             ListEmptyComponent={listEmpty}
             stickySectionHeadersEnabled={false}
             contentInsetAdjustmentBehavior="automatic"
-            contentContainerStyle={[hasExpenses ? styles.listContent : styles.emptyContent, LARGE_TITLE_LIST_CONTENT]}
+            contentContainerStyle={contentStyle}
           />
         </LayoutAnimationConfig>
       </ListCellAnimationContext.Provider>
@@ -287,7 +298,6 @@ export default function ExpensesScreen() {
 
 const styles = StyleSheet.create({
   listContent: {
-    paddingHorizontal: MEASUREMENTS.spacing.gutter,
     paddingTop: MEASUREMENTS.spacing.md,
     paddingBottom: MEASUREMENTS.fabSize + MEASUREMENTS.spacing.bottom,
   },

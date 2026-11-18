@@ -9,7 +9,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { scheduleOnRN } from "react-native-worklets";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useSafeAreaFrame, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRouter, useSegments } from "expo-router";
 import { format, startOfDay } from "date-fns";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -19,6 +19,7 @@ import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { usePaycheckCardRenderer } from "@/hooks/usePaycheckCardRenderer";
+import { useGutters } from "@/hooks/useGutters";
 import { FORWARD_CHEVRON, LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { DIM_ON_PRESS, dimOnPress } from "@/constants/press";
@@ -42,6 +43,8 @@ const TODAY_ICON_SIZE = 22;
 const STICKY_HEADER = [0];
 // Collapsed portrait iPhone navigation bar; the app is portrait-only and iPhone-only
 const NAV_BAR_HEIGHT = 44;
+const WIDE_WINDOW_WIDTH = 600;
+const REFLOW_SETTLE_MS = 400;
 // Once collapsed, the pinned header shows the month pills with room above them
 // (clear of the navigation bar's edge blur) and its own bottom padding
 const COLLAPSED_HEADER_HEIGHT = MEASUREMENTS.spacing.lg + CHART_STRIP_HEIGHT + MEASUREMENTS.spacing.base;
@@ -86,6 +89,7 @@ export default function PaychecksScreen() {
   const paycheckOverrides = useStore((s) => s.paycheckOverrides);
   const renderPaycheck = usePaycheckCardRenderer();
   const insets = useSafeAreaInsets();
+  const { width: frameWidth, height: frameHeight } = useSafeAreaFrame();
   const hasIncome = incomeSources.length > 0;
   const { isPro, openPaywall } = useProGate();
 
@@ -159,7 +163,14 @@ export default function PaychecksScreen() {
   // math below treats as not pinned. Android's toolbar is opaque and the list
   // starts below it, so there the header pins against the list's own top edge;
   // the iOS distance pushed the whole header 90dp down over the first card (HAU-357).
-  const pinTop = Platform.OS === "ios" ? insets.top + NAV_BAR_HEIGHT : 0;
+  // On a wide window (iPhone Duo unfolded and upright) iOS puts the bar in the status row, inside the top inset.
+  const barInTopInset = frameWidth >= WIDE_WINDOW_WIDTH && insets.top > 0;
+  const pinTop = Platform.OS === "ios" ? insets.top + (barInTopInset ? 0 : NAV_BAR_HEIGHT) : 0;
+  // A jump reads it when it runs: a fold changes it, and that alone must not send the list home
+  const pinTopRef = useRef(pinTop);
+  useEffect(() => {
+    pinTopRef.current = pinTop;
+  }, [pinTop]);
   const scrollY = useSharedValue(-Infinity);
 
   // iOS reports the resting offset under the expanded large title as the first
@@ -232,6 +243,26 @@ export default function PaychecksScreen() {
     },
   });
 
+  // A fold or a turn of the unfolded screen moves the bar and the list under it, which the handler
+  // above reads as scrolling and leaves the header part collapsed. Once it has settled the header
+  // is put where scrolling down from the top to the same place would have left it.
+  const reflowed = useRef(false);
+  useEffect(() => {
+    if (!reflowed.current) {
+      reflowed.current = true;
+      return;
+    }
+    const timer = setTimeout(() => {
+      if (jumpingRef.current || scrollY.get() === -Infinity) return;
+      const pastTitle = Math.max(0, scrollY.get() + pinTop);
+      const distance = collapseDistance.get();
+      // Not animated: the next scroll event would stop it part way
+      collapse.set(distance > 0 ? Math.min(1, pastTitle / distance) : 0);
+      lastPastTitle.set(pastTitle);
+    }, REFLOW_SETTLE_MS);
+    return () => clearTimeout(timer);
+  }, [frameWidth, frameHeight, pinTop, scrollY, collapseDistance, collapse, lastPastTitle]);
+
   // Past the collapsed title PinnedHeader pushes the header down the content as
   // fast as the content scrolls up, less whatever part of it has collapsed
   // under the navigation bar.
@@ -280,7 +311,7 @@ export default function PaychecksScreen() {
           if (!animated) list.scrollToOffset({ offset: top, animated: false });
         }
       } else {
-        list.scrollToIndex({ index: current.index, viewOffset: pinTop + headerHeightRef.current, animated });
+        list.scrollToIndex({ index: current.index, viewOffset: pinTopRef.current + headerHeightRef.current, animated });
       }
       // Repeating an animated scroll on a timer would restart it mid-flight; it is settled when it ends
       if (animated && !current.failed) return;
@@ -296,7 +327,7 @@ export default function PaychecksScreen() {
       current.timer = setTimeout(() => hidden.set(false), SHOW_FALLBACK_MS);
     };
     attempt(JUMP_TRIES, JUMP_CONFIRMS);
-  }, [pinTop, topOffset, scrollY, hidden]);
+  }, [topOffset, scrollY, hidden]);
 
   // Animated for a tap the user watches; the opening jump and a tab return land at once
   const jumpTo = useCallback(
@@ -588,6 +619,8 @@ export default function PaychecksScreen() {
 
   const hiddenStyle = useAnimatedStyle(() => ({ opacity: hidden.value ? 0 : 1 }));
   const listStyle = useMemo(() => [styles.list, LARGE_TITLE_LIST, hiddenStyle], [hiddenStyle]);
+  const gutters = useGutters();
+  const listContentStyle = useMemo(() => [styles.listContent, gutters, LARGE_TITLE_LIST_CONTENT], [gutters]);
 
   // The list is the screen's root in both the welcome and the paychecks state:
   // iOS only collapses the large title into the header when the scroll view
@@ -621,7 +654,7 @@ export default function PaychecksScreen() {
           onLayout={handleListLayout}
           contentInsetAdjustmentBehavior="automatic"
           scrollToOverflowEnabled
-          contentContainerStyle={LIST_CONTENT_STYLE}
+          contentContainerStyle={listContentStyle}
           showsVerticalScrollIndicator={false}
           onScroll={handleScroll}
           scrollEventThrottle={16}
@@ -636,7 +669,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listContent: {
-    paddingHorizontal: MEASUREMENTS.spacing.gutter,
     paddingBottom: MEASUREMENTS.spacing.bottom,
   },
   stickyHeader: {
@@ -674,5 +706,3 @@ const styles = StyleSheet.create({
     marginHorizontal: -MEASUREMENTS.spacing.gutter,
   },
 });
-
-const LIST_CONTENT_STYLE = [styles.listContent, LARGE_TITLE_LIST_CONTENT];

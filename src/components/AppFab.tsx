@@ -4,6 +4,7 @@ import Animated, { useAnimatedStyle, useSharedValue, withSequence, withSpring, w
 import { useIsFocused } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useGutters } from "@/hooks/useGutters";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
@@ -28,6 +29,8 @@ interface Props {
 export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
   const colors = useColors();
   const insets = useSafeAreaInsets();
+  // The same distance inside the content's edge on every screen width
+  const { paddingRight } = useGutters(MEASUREMENTS.spacing.lg);
   const t = useT();
   // Native tabs keep every tab mounted, so the FAB follows its screen's focus: it bounces in when the
   // tab (or the screen under a closing sheet) comes to the front and bounces out when it leaves.
@@ -55,10 +58,11 @@ export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
         backgroundColor: colors.primary,
         shadowColor: colors.shadow,
         bottom: insets.bottom + MEASUREMENTS.spacing.lg,
+        right: paddingRight,
       },
       scaleStyle,
     ],
-    [colors, insets.bottom, scaleStyle]
+    [colors, insets.bottom, paddingRight, scaleStyle]
   );
 
   // A ring in the screen colour cuts the badge out of the button so it reads as a separate tag
@@ -82,7 +86,6 @@ export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
 const styles = StyleSheet.create({
   fab: {
     position: "absolute",
-    right: MEASUREMENTS.spacing.lg,
     width: MEASUREMENTS.fabSize,
     height: MEASUREMENTS.fabSize,
     borderRadius: MEASUREMENTS.fabSize / 2,

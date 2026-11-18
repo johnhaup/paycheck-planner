@@ -4,6 +4,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { toast } from "sonner-native";
 import { useStore } from "@/store";
+import { useGutters } from "@/hooks/useGutters";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
@@ -32,9 +34,20 @@ import { normalizeLink } from "@/utils/links";
 import type { ExpenseKind, LinkSchedule, PaycheckSlot } from "@/types";
 import { useProGate } from "@/hooks/useProGate";
 
+// A modal reads its own safe area: iPhone Duo centres it clear of the status column when unfolded
 export default function ExpenseFormScreen() {
+  return (
+    <SafeAreaProvider>
+      <ExpenseForm />
+    </SafeAreaProvider>
+  );
+}
+
+function ExpenseForm() {
   const router = useRouter();
   const colors = useColors();
+  const gutters = useGutters();
+  const contentStyle = useMemo(() => [styles.content, gutters], [gutters]);
   const t = useT();
   const { id } = useLocalSearchParams<{ id?: string }>();
   const expenses = useStore((s) => s.expenses);
@@ -285,7 +298,7 @@ export default function ExpenseFormScreen() {
   return (
     <KeyboardAwareScrollView
       style={scrollStyle}
-      contentContainerStyle={styles.content}
+      contentContainerStyle={contentStyle}
       keyboardShouldPersistTaps="handled"
       bottomOffset={MEASUREMENTS.keyboardOffset}
     >

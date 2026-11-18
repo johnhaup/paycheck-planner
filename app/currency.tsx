@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { useRouter } from "expo-router";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useLocale, useT } from "@/hooks/useLocale";
 import { useLocaleStore, SYSTEM } from "@/stores/localeStore";
 import { getDeviceCurrency } from "@/localization/i18n";
@@ -35,5 +36,10 @@ export default function CurrencyScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [t, localeTag]);
 
-  return <SettingsChoiceList choices={choices} selectedKey={currency} onSelect={handleSelect} />;
+  // A modal reads its own safe area: iPhone Duo centres it clear of the status column when unfolded
+  return (
+    <SafeAreaProvider>
+      <SettingsChoiceList choices={choices} selectedKey={currency} onSelect={handleSelect} />
+    </SafeAreaProvider>
+  );
 }

@@ -5,11 +5,11 @@ import {
   ScrollView,
   StyleSheet,
   View,
-  useWindowDimensions,
   type NativeScrollEvent,
   type NativeSyntheticEvent,
   type ScrollViewInstance,
 } from "react-native";
+import { useSafeAreaFrame } from "react-native-safe-area-context";
 import Animated, {
   interpolateColor,
   useAnimatedStyle,
@@ -20,6 +20,7 @@ import Animated, {
 } from "react-native-reanimated";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
+import { useGutters } from "@/hooks/useGutters";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
@@ -81,8 +82,11 @@ export function MonthBarChart({ months, selectedKey, currentKey, onSelect, onLoc
   const colors = useColors();
   const scrollRef = useRef<ScrollViewInstance>(null);
   const scrollOffset = useRef(0);
-  // The chart runs edge to edge, so the window is its viewport
-  const { width: viewportWidth } = useWindowDimensions();
+  // The chart runs one gutter past the screen's content on both sides: edge to edge, except where the
+  // content keeps clear of iPhone Duo's status column or is centred on its unfolded screen
+  const { width: frameWidth } = useSafeAreaFrame();
+  const { paddingLeft, paddingRight } = useGutters(0);
+  const viewportWidth = frameWidth - paddingLeft - paddingRight;
   const selectedIndex = months.findIndex((m) => m.key === selectedKey);
 
   const maxMagnitude = useMemo(

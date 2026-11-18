@@ -3,6 +3,8 @@ import { Alert, ScrollView, StyleSheet, View } from "react-native";
 import { useRouter } from "expo-router";
 import { toast } from "sonner-native";
 import { useStore } from "@/store";
+import { useGutters } from "@/hooks/useGutters";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useColors } from "@/hooks/useColors";
 import { useLocale, useT } from "@/hooks/useLocale";
 import { useThemeStore, ThemeMode } from "@/stores/themeStore";
@@ -22,9 +24,20 @@ import { SettingsToggleRow } from "@/components/settings/SettingsToggleRow";
 import { SettingsLinkRow } from "@/components/settings/SettingsLinkRow";
 import { useProGate } from "@/hooks/useProGate";
 
+// A modal reads its own safe area: iPhone Duo centres it clear of the status column when unfolded
 export default function SettingsScreen() {
+  return (
+    <SafeAreaProvider>
+      <SettingsContent />
+    </SafeAreaProvider>
+  );
+}
+
+function SettingsContent() {
   const router = useRouter();
   const colors = useColors();
+  const gutters = useGutters();
+  const contentStyle = useMemo(() => [styles.content, gutters], [gutters]);
   const t = useT();
   const { currency } = useLocale();
   const themeMode = useThemeStore((s) => s.themeMode);
@@ -191,7 +204,7 @@ export default function SettingsScreen() {
   return (
     <ScrollView
       style={containerStyle}
-      contentContainerStyle={styles.content}
+      contentContainerStyle={contentStyle}
       contentInsetAdjustmentBehavior="automatic"
     >
       <SettingsLinkRow
@@ -273,7 +286,6 @@ export default function SettingsScreen() {
 
 const styles = StyleSheet.create({
   content: {
-    paddingHorizontal: MEASUREMENTS.spacing.gutter,
     paddingBottom: MEASUREMENTS.spacing.bottom,
   },
   label: {
