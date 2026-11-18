@@ -35,8 +35,8 @@ export function AppButton({
           ? { backgroundColor: colors.destructive }
           : {
               backgroundColor: "transparent",
-              borderWidth: StyleSheet.hairlineWidth,
-              borderColor: colors.border,
+              borderWidth: 1,
+              borderColor: colors.buttonOutline,
             };
     return dimOnPress([styles.base, variantStyle, disabled ? styles.disabled : undefined, style]);
   }, [variant, style, disabled, colors]);
