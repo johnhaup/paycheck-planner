@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useMemo, useState, type ComponentProps } from "react";
 import { ActivityIndicator, ScrollView, StyleSheet, View, type LayoutChangeEvent } from "react-native";
 import { useRouter } from "expo-router";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { toast } from "sonner-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useGutters } from "@/hooks/useGutters";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
@@ -40,10 +41,20 @@ const FADE_HEIGHT = 32;
  * The one paywall: what Pro adds in a list that scrolls behind a pinned footer with the store's
  * localized price, Buy and Restore Purchases (the layout every paywall shares, see the brain's principles).
  */
+// A modal reads its own safe area: iPhone Duo centres it clear of the status column when unfolded
 export default function PaywallScreen() {
+  return (
+    <SafeAreaProvider>
+      <Paywall />
+    </SafeAreaProvider>
+  );
+}
+
+function Paywall() {
   const router = useRouter();
   const colors = useColors();
   const insets = useSafeAreaInsets();
+  const gutters = useGutters();
   const t = useT();
   const isPro = useIsPro();
   const [priceFailed, setPriceFailed] = useState(false);
@@ -110,7 +121,10 @@ export default function PaywallScreen() {
     () => [styles.container, { backgroundColor: colors.modalBackground }],
     [colors]
   );
-  const contentStyle = useMemo(() => [styles.content, { paddingBottom: footerHeight }], [footerHeight]);
+  const contentStyle = useMemo(
+    () => [styles.content, gutters, { paddingBottom: footerHeight }],
+    [gutters, footerHeight]
+  );
   const scrollIndicatorInsets = useMemo(() => ({ bottom: footerHeight }), [footerHeight]);
   const fadeStyle = useMemo(
     () => [
@@ -123,10 +137,10 @@ export default function PaywallScreen() {
   );
   const footerBodyStyle = useMemo(
     () => [
-      styles.footerBody,
+      gutters,
       { backgroundColor: colors.modalBackground, paddingBottom: insets.bottom + MEASUREMENTS.spacing.md },
     ],
-    [colors, insets.bottom]
+    [colors, gutters, insets.bottom]
   );
 
   useEffect(() => {
@@ -230,7 +244,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    paddingHorizontal: MEASUREMENTS.spacing.gutter,
     paddingTop: MEASUREMENTS.spacing.base,
   },
   tagline: {
@@ -257,9 +270,6 @@ const styles = StyleSheet.create({
   },
   fade: {
     height: FADE_HEIGHT,
-  },
-  footerBody: {
-    paddingHorizontal: MEASUREMENTS.spacing.gutter,
   },
   priceState: {
     alignItems: "center",
