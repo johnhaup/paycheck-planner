@@ -39,8 +39,37 @@ name: settings
     timeout: 15000
 - takeScreenshot: settings-light
 
+# The Language and Currency sheets have their own X, which goes back to Settings
+# without changing the choice (HAU-617).
+- tapOn: "Currency, .*"
+- extendedWaitUntil:
+    visible: "EUR.*"
+    timeout: 10000
+- assertVisible:
+    text: "Close"
+    rightOf: "Currency"
+- tapOn:
+    text: "Close"
+    rightOf: "Currency"
+- extendedWaitUntil:
+    visible: "Currency, System default.*"
+    timeout: 10000
+
 # Language: pick Spanish. Settings and the gear's label on Paychecks follow it
 # ("Ajustes", HAU-61); "Close" has English only. Then back to English.
+- tapOn: "Language, .*"
+- extendedWaitUntil:
+    visible: "Español"
+    timeout: 10000
+- assertVisible:
+    text: "Close"
+    rightOf: "Language"
+- tapOn:
+    text: "Close"
+    rightOf: "Language"
+- extendedWaitUntil:
+    visible: "Language, System default.*"
+    timeout: 10000
 - tapOn: "Language, .*"
 - extendedWaitUntil:
     visible: "Español"
