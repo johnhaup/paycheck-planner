@@ -47,6 +47,7 @@ export function AppButton({
         variant="bodyStrong"
         color={variant === "outline" ? "textDefault" : "onPrimary"}
         maxFontSizeMultiplier={maxFontSizeMultiplier}
+        center
       >
         {title}
       </AppText>
