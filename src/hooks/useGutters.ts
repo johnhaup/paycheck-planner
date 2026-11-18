@@ -3,7 +3,11 @@ import { I18nManager } from "react-native";
 import { useSafeAreaFrame, useSafeAreaInsets } from "react-native-safe-area-context";
 import { MEASUREMENTS } from "@/constants/measurements";
 
-/** Content and its gutters never grow wider than this; what is left over is split between the two sides */
+/**
+ * Content and its gutters never grow wider than this; what is left over is split between the two sides.
+ * On iOS a stack with a navigation bar adds that leftover to its safe area, so the bar's large title and
+ * buttons sit on the column's edges (the react-native-screens patch, same 600), and the margin here is 0.
+ */
 const COLUMN_MAX_WIDTH = 600;
 
 /**

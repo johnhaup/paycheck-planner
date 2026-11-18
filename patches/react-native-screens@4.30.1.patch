@@ -1,3 +1,30 @@
+diff --git a/ios/RNSScreenStack.mm b/ios/RNSScreenStack.mm
+index 5da1196..8a4df06 100644
+--- a/ios/RNSScreenStack.mm
++++ b/ios/RNSScreenStack.mm
+@@ -83,6 +83,22 @@ namespace react = facebook::react;
+ {
+   [super viewDidLayoutSubviews];
+ 
++  // Paycheck Planner: content stops at a centred 600 pt column on a wide window (iPhone Duo unfolded, see
++  // src/hooks/useGutters.ts). UIKit places the bar's large title and buttons by the bar's safe area, not by layout
++  // margins, so the space beside the column is added to the safe area of this controller. `useGutters` reads the
++  // same safe area and keeps the content on the same edges.
++  // Measured in the superview: our own safe area already holds the insets set here.
++  UIView *host = self.view.superview;
++  CGFloat safeWidth =
++      CGRectIntersection(self.view.frame, UIEdgeInsetsInsetRect(host.bounds, host.safeAreaInsets)).size.width;
++  CGFloat columnMargin = self.navigationBarHidden ? 0 : MAX(0, (safeWidth - 600) / 2);
++  UIEdgeInsets columnInsets = self.additionalSafeAreaInsets;
++  if (columnInsets.left != columnMargin || columnInsets.right != columnMargin) {
++    columnInsets.left = columnMargin;
++    columnInsets.right = columnMargin;
++    self.additionalSafeAreaInsets = columnInsets;
++  }
++
+ #if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
+   if (@available(iOS 26.0, *)) {
+     [self requestLayoutIfNavigationBarFrameChanged];
 diff --git a/ios/tabs/host/RNSTabBarController.mm b/ios/tabs/host/RNSTabBarController.mm
 index 4e0e1118e1aca72354dbb92d6b1bef43c3605510..60637c5cc974e3f68fa9b32a12232b51eee4625b 100644
 --- a/ios/tabs/host/RNSTabBarController.mm
