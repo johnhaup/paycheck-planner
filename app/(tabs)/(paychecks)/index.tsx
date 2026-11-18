@@ -164,8 +164,10 @@ export default function PaychecksScreen() {
   // starts below it, so there the header pins against the list's own top edge;
   // the iOS distance pushed the whole header 90dp down over the first card (HAU-357).
   // On a wide window (iPhone Duo unfolded and upright) iOS puts the bar in the status row, inside the top inset.
-  const barInTopInset = frameWidth >= WIDE_WINDOW_WIDTH && insets.top > 0;
-  const pinTop = Platform.OS === "ios" ? insets.top + (barInTopInset ? 0 : NAV_BAR_HEIGHT) : 0;
+  // With no top inset (Duo folded, and unfolded on its side) the layout turns the large title off, and
+  // the list starts below the standard bar as on Android (HAU-568).
+  const barInTopInset = frameWidth >= WIDE_WINDOW_WIDTH;
+  const pinTop = Platform.OS === "ios" && insets.top > 0 ? insets.top + (barInTopInset ? 0 : NAV_BAR_HEIGHT) : 0;
   // A jump reads it when it runs: a fold changes it, and that alone must not send the list home
   const pinTopRef = useRef(pinTop);
   useEffect(() => {
