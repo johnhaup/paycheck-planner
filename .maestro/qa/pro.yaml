@@ -14,6 +14,10 @@ name: pro
 - launchApp:
     clearState: true
     arguments:
+      "--initialUrl": ${METRO_URL}
+      "-EXDevMenuShowsAtLaunch": "NO"
+      "-EXDevMenuShowFloatingActionButton": "NO"
+      "-EXDevMenuIsOnboardingFinished": "YES"
       "-proStoreMock": true
       "-proStoreMockRevoke": true
 - extendedWaitUntil:
@@ -46,6 +50,10 @@ name: pro
 - launchApp:
     stopApp: true
     arguments:
+      "--initialUrl": ${METRO_URL}
+      "-EXDevMenuShowsAtLaunch": "NO"
+      "-EXDevMenuShowFloatingActionButton": "NO"
+      "-EXDevMenuIsOnboardingFinished": "YES"
       "-proStoreMock": true
 - extendedWaitUntil:
     visible: ".* · left over"
@@ -122,6 +130,10 @@ name: pro
 - launchApp:
     stopApp: true
     arguments:
+      "--initialUrl": ${METRO_URL}
+      "-EXDevMenuShowsAtLaunch": "NO"
+      "-EXDevMenuShowFloatingActionButton": "NO"
+      "-EXDevMenuIsOnboardingFinished": "YES"
       "-proStoreMock": true
       "-proStoreMockRevoke": true
       "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"

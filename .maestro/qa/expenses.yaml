@@ -12,6 +12,11 @@ name: expenses
 ---
 - launchApp:
     clearState: true
+    arguments:
+      "--initialUrl": ${METRO_URL}
+      "-EXDevMenuShowsAtLaunch": "NO"
+      "-EXDevMenuShowFloatingActionButton": "NO"
+      "-EXDevMenuIsOnboardingFinished": "YES"
 - extendedWaitUntil:
     visible: "Try with sample data"
     timeout: 60000
@@ -293,6 +298,10 @@ name: expenses
       - launchApp:
           stopApp: true
           arguments:
+            "--initialUrl": ${METRO_URL}
+            "-EXDevMenuShowsAtLaunch": "NO"
+            "-EXDevMenuShowFloatingActionButton": "NO"
+            "-EXDevMenuIsOnboardingFinished": "YES"
             "-UIPreferredContentSizeCategoryName": "UICTContentSizeCategoryAccessibilityXXXL"
       - extendedWaitUntil:
           visible: ".*left over.*"
