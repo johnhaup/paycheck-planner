@@ -102,13 +102,13 @@ export default function RootLayout() {
   );
 
   const languageOptions = useMemo(
-    () => ({ ...modalOptions, title: t("screens.language") }),
-    [modalOptions, t]
+    () => ({ ...modalOptions, title: t("screens.language"), headerRight: renderCloseButton }),
+    [modalOptions, renderCloseButton, t]
   );
 
   const currencyOptions = useMemo(
-    () => ({ ...modalOptions, title: t("screens.currency") }),
-    [modalOptions, t]
+    () => ({ ...modalOptions, title: t("screens.currency"), headerRight: renderCloseButton }),
+    [modalOptions, renderCloseButton, t]
   );
 
   const sheetOptions = useMemo(
