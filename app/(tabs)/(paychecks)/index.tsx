@@ -179,6 +179,8 @@ export default function PaychecksScreen() {
   // iOS reports the resting offset under the expanded large title as the first
   // scroll event, when it applies the navigation bar inset at mount. That is the
   // offset to return to, since offset 0 is the collapsed-title position.
+  // Without a large title (pinTop 0) the list starts below the bar and its top is 0. A folded iPhone Duo
+  // still reports a passing -58 first, from a layout with the large title on (HAU-629).
   const topOffset = useSharedValue<number | undefined>(undefined);
 
   const headerHeight = useSharedValue(0);
@@ -224,7 +226,7 @@ export default function PaychecksScreen() {
       const y = event.contentOffset.y;
       const moved = y !== scrollY.value;
       scrollY.value = y;
-      topOffset.value ??= y;
+      topOffset.value ??= pinTop > 0 ? y : 0;
       // The bounce at either end is not a change of direction
       const end = event.contentSize.height - event.layoutMeasurement.height;
       const pastTitle = Math.max(0, Math.min(y, end) + pinTop);
