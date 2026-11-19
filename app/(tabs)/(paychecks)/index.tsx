@@ -125,12 +125,10 @@ export default function PaychecksScreen() {
   // The header never shrinks while the data stays the same. It sits above every row, so
   // a month whose header is shorter (fewer lines at a large text size) would move the
   // whole list as it scrolls to the top, and could move the month back out again (HAU-440).
-  // A new window width starts a new floor: the header measures taller part way through a fold,
-  // and a floor kept from then left an empty strip under the chart and pinned the pills that
-  // much higher, under the navigation bar (HAU-568).
-  const [headerFloor, setHeaderFloor] = useState({ months, frameWidth, height: 0 });
-  if (headerFloor.months !== months || headerFloor.frameWidth !== frameWidth) {
-    setHeaderFloor({ months, frameWidth, height: 0 });
+  // The floor belongs to one header width too (see handleHeaderLayout).
+  const [headerFloor, setHeaderFloor] = useState({ months, width: 0, height: 0 });
+  if (headerFloor.months !== months) {
+    setHeaderFloor({ months, width: 0, height: 0 });
   }
 
   // One list through every month, oldest first
@@ -374,9 +372,16 @@ export default function PaychecksScreen() {
 
   const handleHeaderLayout = useCallback(
     (event: LayoutChangeEvent) => {
-      const { height } = event.nativeEvent.layout;
+      const { width, height } = event.nativeEvent.layout;
       headerHeight.set(height);
-      setHeaderFloor((floor) => (height > floor.height ? { ...floor, height } : floor));
+      setHeaderFloor((floor) => {
+        if (width === floor.width) return height > floor.height ? { ...floor, height } : floor;
+        // A fold lays the header out at a passing narrow width on its way to the new one (iPhone Duo),
+        // where its text wraps and it grows. Kept as the floor, that height would make the header
+        // collapse past the month pills and pin them under the bar (HAU-625). At a new width a
+        // height no taller than the old floor may be the floor itself: drop it and measure again.
+        return { ...floor, width, height: height > floor.height ? height : 0 };
+      });
       if (headerHeightRef.current === height) return;
       headerHeightRef.current = height;
       // The header can change height with the month a jump selected; land under the new one
