@@ -6,6 +6,7 @@ import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { FORWARD_CHEVRON } from "@/constants/direction";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
+import { TOGGLE_HEIGHT } from "@/components/AppToggle";
 import { AppWordWrapText } from "@/components/AppWordWrapText";
 import { ProBadge } from "@/components/ProBadge";
 import { highlightOnPress } from "@/constants/press";
@@ -72,6 +73,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: MEASUREMENTS.spacing.md,
     padding: MEASUREMENTS.spacing.lg,
+    // As tall as a SettingsToggleRow (padding around the switch), so Settings keeps one row height
+    minHeight: TOGGLE_HEIGHT + MEASUREMENTS.spacing.lg * 2,
     borderRadius: MEASUREMENTS.radius.lg,
     marginTop: MEASUREMENTS.spacing.base,
   },
