@@ -10,9 +10,13 @@ interface Props {
   checked: boolean;
   onPress: () => void;
   accessibilityLabel: string;
+  /** Diameter; scaled with the text where rows stack at accessibility sizes */
+  size?: number;
 }
 
-export function AppCheckCircle({ checked, onPress, accessibilityLabel }: Props) {
+const DEFAULT_SIZE = 22;
+
+export function AppCheckCircle({ checked, onPress, accessibilityLabel, size = DEFAULT_SIZE }: Props) {
   const colors = useColors();
 
   const handlePress = useCallback(() => {
@@ -23,11 +27,12 @@ export function AppCheckCircle({ checked, onPress, accessibilityLabel }: Props) 
   const circleStyle = useMemo(
     () => dimOnPress([
       styles.circle,
+      { width: size, height: size, borderRadius: size / 2 },
       checked
         ? { backgroundColor: colors.primary, borderColor: colors.primary }
         : { borderColor: colors.textMuted },
     ]),
-    [checked, colors]
+    [checked, colors, size]
   );
 
   const accessibilityState = useMemo(() => ({ checked }), [checked]);
@@ -41,16 +46,13 @@ export function AppCheckCircle({ checked, onPress, accessibilityLabel }: Props) 
       accessibilityState={accessibilityState}
       accessibilityLabel={accessibilityLabel}
     >
-      {checked ? <Ionicons name="checkmark" size={14} color={colors.screenBackground} /> : null}
+      {checked ? <Ionicons name="checkmark" size={(size * 14) / DEFAULT_SIZE} color={colors.screenBackground} /> : null}
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   circle: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
     borderWidth: 2,
     alignItems: "center",
     justifyContent: "center",
