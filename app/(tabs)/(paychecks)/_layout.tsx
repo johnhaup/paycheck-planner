@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { Pressable } from "react-native";
 import { Stack, useRouter } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { useStackScreenOptions } from "@/hooks/useStackScreenOptions";
@@ -11,7 +12,11 @@ import { DIM_ON_PRESS } from "@/constants/press";
 export default function PaychecksLayout() {
   const colors = useColors();
   const router = useRouter();
-  const screenOptions = useStackScreenOptions(true);
+  // With no top inset (iPhone Duo folded, and unfolded on its side) iOS hides the whole bar as the
+  // list scrolls and brings it back with the large title expanded after a fold, over the pinned
+  // month pills. The standard bar there keeps the height the pills pin under (HAU-568).
+  const { top } = useSafeAreaInsets();
+  const screenOptions = useStackScreenOptions(top > 0);
   const t = useT();
 
   const handleOpenSettings = useCallback(() => {
