@@ -95,6 +95,18 @@ env:
           leftOf: "Settings"
           selected: false
       - takeScreenshot: paychecks-collapsed
+      # The selected pill jumps back to the top, under the expanded large title, not the
+      # collapsed one (HAU-630)
+      - tapOn:
+          text: ${MONTH}
+          selected: true
+      - waitForAnimationToEnd
+      - assertVisible: ".* · left over"
+      - assertNotVisible:
+          text: "Paychecks"
+          rightOf: "\\d{1,2}:\\d{2}.*"
+          leftOf: "Settings"
+          above: ".* · left over"
 
 # One list runs through every month (HAU-316): scrolling on reaches next month's
 # paychecks with no tap, the chart's selected month follows, and where the free
