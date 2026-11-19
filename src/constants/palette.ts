@@ -20,9 +20,9 @@ const palette = {
   trackGray: "#E3E3E8",
   barGray: "#D6D6DC",
   switchGray: "#C7C7CC",
-  gray: "#9A9AA0",
   systemGray: "#8E8E93",
   darkGray: "#6E6E73",
+  mutedGray: "#636366",
   white: "#FFFFFF",
   whiteClear: "#FFFFFF00",
   scrim: "rgba(0,0,0,0.5)",
@@ -131,7 +131,8 @@ export const LightPalette = {
 
   textDefault: palette.ink,
   textSecondary: palette.darkGray,
-  textMuted: palette.gray,
+  // At least 4.5:1 on the screen, the cards and the elevated month pill; #6E6E73 is only 4:1 on the pill (HAU-640)
+  textMuted: palette.mutedGray,
 
   primary: palette.green,
   primaryDark: palette.greenDark,
