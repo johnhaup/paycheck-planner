@@ -10,7 +10,9 @@ interface Props {
 }
 
 const TRACK_WIDTH = 48;
-const TRACK_HEIGHT = 28;
+/** Also the floor for rows that sit beside a toggle (Settings link rows match toggle rows) */
+export const TOGGLE_HEIGHT = 28;
+const TRACK_HEIGHT = TOGGLE_HEIGHT;
 const THUMB_SIZE = 22;
 /** Transforms do not mirror in RTL, so the thumb travels the other way there */
 const THUMB_TRAVEL = (TRACK_WIDTH - THUMB_SIZE - 6) * (I18nManager.isRTL ? -1 : 1);
