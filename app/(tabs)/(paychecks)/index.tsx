@@ -310,8 +310,12 @@ export default function PaychecksScreen() {
         // jump, the settle when it ends) lands on it.
         // Not when it is already there, as at launch: the scroll is carried out late
         // while the list mounts its rows, and would undo a scroll made in the meantime.
-        const top = topOffset.get();
-        if (top !== undefined && scrollY.get() !== top) {
+        // Without a large title the top is 0, whatever offset was recorded in a pose that had one: a
+        // fold walk passes through the Duo's upright pose, where the first event can be a passing -41 (HAU-631).
+        // A list with no scroll event yet is at its top.
+        const top = pinTopRef.current > 0 ? topOffset.get() : 0;
+        const y = scrollY.get();
+        if (top !== undefined && y !== -Infinity && y !== top) {
           list.scrollToOffset({ offset: top, animated });
           if (!animated) list.scrollToOffset({ offset: top, animated: false });
         }
