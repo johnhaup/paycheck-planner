@@ -179,8 +179,8 @@ export default function PaychecksScreen() {
   // iOS reports the resting offset under the expanded large title as the first
   // scroll event, when it applies the navigation bar inset at mount. That is the
   // offset to return to, since offset 0 is the collapsed-title position.
-  // With no large title (pinTop 0) the top is offset 0, and there is no such event at mount: the
-  // first one can come from a fold and is not the top (HAU-627), so it is not recorded.
+  // Without a large title (pinTop 0) the list starts below the bar and its top is 0. A folded iPhone Duo
+  // still reports a passing -58 first, from a layout with the large title on (HAU-629).
   const topOffset = useSharedValue<number | undefined>(undefined);
 
   const headerHeight = useSharedValue(0);
@@ -226,7 +226,7 @@ export default function PaychecksScreen() {
       const y = event.contentOffset.y;
       const moved = y !== scrollY.value;
       scrollY.value = y;
-      if (pinTop > 0) topOffset.value ??= y;
+      topOffset.value ??= pinTop > 0 ? y : 0;
       // The bounce at either end is not a change of direction
       const end = event.contentSize.height - event.layoutMeasurement.height;
       const pastTitle = Math.max(0, Math.min(y, end) + pinTop);
@@ -308,12 +308,10 @@ export default function PaychecksScreen() {
         // From a collapsed title the first scroll expands the title, which grows the
         // top inset and shifts the offset past the top; the second (for an animated
         // jump, the settle when it ends) lands on it.
-        // With no large title it is 0, where a list that has not scrolled yet is.
         // Not when it is already there, as at launch: the scroll is carried out late
         // while the list mounts its rows, and would undo a scroll made in the meantime.
-        const top = pinTopRef.current > 0 ? topOffset.get() : 0;
-        const y = scrollY.get();
-        if (top !== undefined && (y === -Infinity ? 0 : y) !== top) {
+        const top = topOffset.get();
+        if (top !== undefined && scrollY.get() !== top) {
           list.scrollToOffset({ offset: top, animated });
           if (!animated) list.scrollToOffset({ offset: top, animated: false });
         }
