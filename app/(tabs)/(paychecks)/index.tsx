@@ -44,6 +44,8 @@ const STICKY_HEADER = [0];
 // Collapsed portrait iPhone navigation bar; the app is portrait-only and iPhone-only
 const NAV_BAR_HEIGHT = 44;
 const WIDE_WINDOW_WIDTH = 600;
+// The expanded large title's height on an iPhone Duo unfolded upright, at every text size (HAU-630)
+const DUO_LARGE_TITLE_HEIGHT = 52;
 const REFLOW_SETTLE_MS = 400;
 // Once collapsed, the pinned header shows the month pills with room above them
 // (clear of the navigation bar's edge blur) and its own bottom padding
@@ -177,11 +179,14 @@ export default function PaychecksScreen() {
   const scrollY = useSharedValue(-Infinity);
 
   // iOS reports the resting offset under the expanded large title as the first
-  // scroll event, when it applies the navigation bar inset at mount. That is the
-  // offset to return to, since offset 0 is the collapsed-title position.
+  // scroll event, when it applies the navigation bar inset at mount: minus the bar and the
+  // large title. The top of the list is minus the bar and that title height, since offset 0 is the
+  // collapsed-title position; an iPhone Duo's bar changes with the fold, so the height is kept, not the offset.
   // Without a large title (pinTop 0) the list starts below the bar and its top is 0. A folded iPhone Duo
-  // still reports a passing -58 first, from a layout with the large title on (HAU-629).
-  const topOffset = useSharedValue<number | undefined>(undefined);
+  // still reports a passing -58 first, from a layout with the large title on (HAU-629), so a session
+  // that starts without one (null) learns no height and uses the Duo's when it is unfolded upright.
+  // Undefined until the first scroll event.
+  const titleHeight = useSharedValue<number | null | undefined>(undefined);
 
   const headerHeight = useSharedValue(0);
   const collapseDistance = useDerivedValue(() => Math.max(0, headerHeight.value - COLLAPSED_HEADER_HEIGHT));
@@ -226,7 +231,7 @@ export default function PaychecksScreen() {
       const y = event.contentOffset.y;
       const moved = y !== scrollY.value;
       scrollY.value = y;
-      topOffset.value ??= pinTop > 0 ? y : 0;
+      if (titleHeight.value === undefined) titleHeight.value = pinTop > 0 ? -y - pinTop : null;
       // The bounce at either end is not a change of direction
       const end = event.contentSize.height - event.layoutMeasurement.height;
       const pastTitle = Math.max(0, Math.min(y, end) + pinTop);
@@ -304,13 +309,15 @@ export default function PaychecksScreen() {
       if (current.failed) {
         // Nothing is laid out yet
       } else if (current.index === 0) {
-        // The top of a large-title list is the offset iOS first reported, not 0.
+        // The top of a large-title list is above 0 by the bar and the title (see titleHeight).
         // From a collapsed title the first scroll expands the title, which grows the
         // top inset and shifts the offset past the top; the second (for an animated
         // jump, the settle when it ends) lands on it.
         // Not when it is already there, as at launch: the scroll is carried out late
         // while the list mounts its rows, and would undo a scroll made in the meantime.
-        const top = topOffset.get();
+        const height = titleHeight.get();
+        const barTop = pinTopRef.current;
+        const top = height === undefined ? undefined : barTop > 0 ? -(barTop + (height ?? DUO_LARGE_TITLE_HEIGHT)) : 0;
         if (top !== undefined && scrollY.get() !== top) {
           list.scrollToOffset({ offset: top, animated });
           if (!animated) list.scrollToOffset({ offset: top, animated: false });
@@ -332,7 +339,7 @@ export default function PaychecksScreen() {
       current.timer = setTimeout(() => hidden.set(false), SHOW_FALLBACK_MS);
     };
     attempt(JUMP_TRIES, JUMP_CONFIRMS);
-  }, [topOffset, scrollY, hidden]);
+  }, [titleHeight, scrollY, hidden]);
 
   // Animated for a tap the user watches; the opening jump and a tab return land at once
   const jumpTo = useCallback(
