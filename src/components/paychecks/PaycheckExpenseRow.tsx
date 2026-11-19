@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from "react";
-import { View, Pressable, StyleSheet } from "react-native";
+import { View, Pressable, StyleSheet, useWindowDimensions } from "react-native";
 import Animated, { FadeIn, FadeOut, LinearTransition } from "react-native-reanimated";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
@@ -20,6 +20,12 @@ import type {
   TogglePaidHandler,
 } from "@/components/paychecks/types";
 import { DIM_ON_PRESS, dimOnPress } from "@/constants/press";
+
+/** Size of the payee's icons at the default text size; they scale with the text where rows stack */
+const ICON_SIZE = 14;
+
+/** iOS's line height for the system font, as a share of its size */
+const LINE_HEIGHT_RATIO = 1.2;
 
 /** An amount too long for the row's width shrinks this far instead of breaking mid-number */
 const AMOUNT_MIN_FONT_SCALE = 0.5;
@@ -47,6 +53,8 @@ export function PaycheckExpenseRow({
   const { format: formatMoney } = useMoneyFormat();
   const t = useT();
   const stacked = useAccessibilityTextSize();
+  const { fontScale } = useWindowDimensions();
+  const iconSize = stacked ? ICON_SIZE * fontScale : ICON_SIZE;
 
   const handleTogglePaid = useCallback(() => {
     onTogglePaid(expense.assignmentId, expense.expenseId, payDate, sourceId);
@@ -67,8 +75,12 @@ export function PaycheckExpenseRow({
   }, [onMove, expense.expenseId, payDate, sourceId]);
 
   const rowStyle = useMemo(
-    () => [styles.row, { borderTopColor: colors.divider, backgroundColor: colors.cardBackground }],
-    [colors]
+    () => [
+      styles.row,
+      stacked ? styles.rowStacked : undefined,
+      { borderTopColor: colors.divider, backgroundColor: colors.cardBackground },
+    ],
+    [colors, stacked]
   );
 
   const markLabel = expense.paid
@@ -107,6 +119,10 @@ export function PaycheckExpenseRow({
   );
 
   const textColor = expense.paid ? "textMuted" : "textDefault";
+  const setAsideIcon = expense.isSetAside ? <AppSetAsideIcon size={iconSize} /> : null;
+  const linkIcon = expense.link ? (
+    <Ionicons name="open-outline" size={iconSize} color={colors.textMuted} />
+  ) : null;
 
   return (
     <Animated.View entering={FadeIn} exiting={FadeOut} layout={LinearTransition}>
@@ -116,6 +132,8 @@ export function PaycheckExpenseRow({
             checked={!!expense.paid}
             onPress={handleTogglePaid}
             accessibilityLabel={markLabel}
+            // Stacked, the circle is one line of the name tall and sits on its first line
+            size={stacked ? MEASUREMENTS.font.body * fontScale * LINE_HEIGHT_RATIO : undefined}
           />
           <View style={stacked ? styles.contentStacked : styles.content}>
             <View style={styles.payeeColumn}>
@@ -126,19 +144,25 @@ export function PaycheckExpenseRow({
                 hitSlop={MEASUREMENTS.hitSlop}
                 accessibilityRole={expense.link ? "link" : undefined}
               >
-                {expense.isSetAside ? <AppSetAsideIcon /> : null}
                 {stacked ? (
-                  <AppWordWrapText variant="body" color={textColor} style={expense.paid ? styles.paid : undefined}>
+                  <AppWordWrapText
+                    variant="body"
+                    color={textColor}
+                    style={expense.paid ? styles.paid : undefined}
+                    leading={setAsideIcon}
+                    trailing={linkIcon}
+                  >
                     {expense.payee}
                   </AppWordWrapText>
                 ) : (
-                  <AppText variant="body" color={textColor} numberOfLines={1} style={payeeStyle}>
-                    {expense.payee}
-                  </AppText>
+                  <>
+                    {setAsideIcon}
+                    <AppText variant="body" color={textColor} numberOfLines={1} style={payeeStyle}>
+                      {expense.payee}
+                    </AppText>
+                    {linkIcon}
+                  </>
                 )}
-                {expense.link ? (
-                  <Ionicons name="open-outline" size={14} color={colors.textMuted} />
-                ) : null}
               </Pressable>
               {expense.dueDay !== undefined ? (
                 <AppText variant="caption">{formatDueDay(expense.dueDay)}</AppText>
@@ -176,6 +200,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: MEASUREMENTS.spacing.lg,
     paddingVertical: MEASUREMENTS.spacing.base - 1,
     borderTopWidth: 1,
+  },
+  rowStacked: {
+    alignItems: "flex-start",
   },
   content: {
     flex: 1,
