@@ -125,9 +125,12 @@ export default function PaychecksScreen() {
   // The header never shrinks while the data stays the same. It sits above every row, so
   // a month whose header is shorter (fewer lines at a large text size) would move the
   // whole list as it scrolls to the top, and could move the month back out again (HAU-440).
-  const [headerFloor, setHeaderFloor] = useState({ months, height: 0 });
-  if (headerFloor.months !== months) {
-    setHeaderFloor({ months, height: 0 });
+  // A new window width starts a new floor: the header measures taller part way through a fold,
+  // and a floor kept from then left an empty strip under the chart and pinned the pills that
+  // much higher, under the navigation bar (HAU-568).
+  const [headerFloor, setHeaderFloor] = useState({ months, frameWidth, height: 0 });
+  if (headerFloor.months !== months || headerFloor.frameWidth !== frameWidth) {
+    setHeaderFloor({ months, frameWidth, height: 0 });
   }
 
   // One list through every month, oldest first
