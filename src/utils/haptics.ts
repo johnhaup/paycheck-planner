@@ -15,3 +15,8 @@ export function hapticTap() {
 export function hapticSuccess() {
   Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(ignore);
 }
+
+/** A refused save or a failed action; paired with its error toast through `toastError`. */
+export function hapticWarning() {
+  Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning).catch(ignore);
+}

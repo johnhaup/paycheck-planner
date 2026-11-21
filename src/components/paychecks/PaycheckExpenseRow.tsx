@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { View, Pressable, StyleSheet, useWindowDimensions } from "react-native";
-import Animated, { FadeIn, FadeOut, LinearTransition } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
+import { LAYOUT_SPRING, ROW_ENTERING, ROW_EXITING } from "@/constants/motion";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { useColors } from "@/hooks/useColors";
@@ -125,7 +126,7 @@ export function PaycheckExpenseRow({
   ) : null;
 
   return (
-    <Animated.View entering={FadeIn} exiting={FadeOut} layout={LinearTransition}>
+    <Animated.View entering={ROW_ENTERING} exiting={ROW_EXITING} layout={LAYOUT_SPRING}>
       <AppSwipeActions startAction={paidAction} endAction={moveAction}>
         <View style={rowStyle}>
           <AppCheckCircle

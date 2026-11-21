@@ -1,12 +1,13 @@
 import { useCallback, useState } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { toast } from "sonner-native";
 import { useStore } from "@/store";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { AmountSheet } from "@/components/AmountSheet";
 import { parseLocalDate } from "@/utils/payDates";
 import { formatShortDate } from "@/utils/dates";
+import { toastError } from "@/utils/toastError";
+import { hapticSuccess } from "@/utils/haptics";
 
 export default function PaycheckAmountScreen() {
   const router = useRouter();
@@ -25,15 +26,17 @@ export default function PaycheckAmountScreen() {
   const handleSave = useCallback(() => {
     const parsed = parseFloat(amount);
     if (isNaN(parsed) || parsed < 0) {
-      toast.error(t("payAmountSheet.invalidAmount"));
+      toastError(t("payAmountSheet.invalidAmount"));
       return;
     }
     setPaycheckAmount(sourceId, payDate, parsed === source?.payAmount ? undefined : parsed);
+    hapticSuccess();
     router.back();
   }, [amount, setPaycheckAmount, sourceId, payDate, source, router, t]);
 
   const handleReset = useCallback(() => {
     setPaycheckAmount(sourceId, payDate, undefined);
+    hapticSuccess();
     router.back();
   }, [setPaycheckAmount, sourceId, payDate, router]);
 

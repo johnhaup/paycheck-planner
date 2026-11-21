@@ -10,14 +10,12 @@ import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { hapticTap } from "@/utils/haptics";
 import { ProBadge } from "@/components/ProBadge";
+import { DURATION, PRESSED_SCALE, SPRING, TIMING } from "@/constants/motion";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
-// Underdamped so the button overshoots and settles: the bounce in
-const BOUNCE_IN = { dampingRatio: 0.5, duration: 500 } as const;
 // A small swell before it shrinks away: the bounce out
-const SWELL = { duration: 90 } as const;
-const SHRINK = { duration: 160 } as const;
+const SWELL_SCALE = 1.1;
 
 interface Props {
   accessibilityLabel: string;
@@ -37,19 +35,23 @@ export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
   // Reanimated skips to the end value when Reduce Motion is on.
   const isFocused = useIsFocused();
   const scale = useSharedValue(0);
+  // Shrinks while held and pops back on release
+  const pressScale = useSharedValue(1);
 
-  useEffect(() => {
-    scale.value = isFocused
-      ? withSpring(1, BOUNCE_IN)
-      : withSequence(withTiming(1.1, SWELL), withTiming(0, SHRINK));
-  }, [isFocused, scale]);
-
-  const scaleStyle = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
+  const scaleStyle = useAnimatedStyle(() => ({ transform: [{ scale: scale.get() * pressScale.get() }] }));
 
   const handlePress = useCallback(() => {
     hapticTap();
     onPress();
   }, [onPress]);
+
+  const handlePressIn = useCallback(() => {
+    pressScale.set(withTiming(PRESSED_SCALE, TIMING.press));
+  }, [pressScale]);
+
+  const handlePressOut = useCallback(() => {
+    pressScale.set(withSpring(1, SPRING.pop));
+  }, [pressScale]);
 
   const fabStyle = useMemo(
     () => [
@@ -65,6 +67,14 @@ export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
     [colors, insets.bottom, paddingRight, scaleStyle]
   );
 
+  useEffect(() => {
+    scale.set(
+      isFocused
+        ? withSpring(1, SPRING.bounce)
+        : withSequence(withTiming(SWELL_SCALE, TIMING.press), withTiming(0, { duration: DURATION.fade }))
+    );
+  }, [isFocused, scale]);
+
   // A ring in the screen colour cuts the badge out of the button so it reads as a separate tag
   const badgeStyle = useMemo(() => [styles.badge, { borderColor: colors.screenBackground }], [colors]);
 
@@ -72,6 +82,8 @@ export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
     <AnimatedPressable
       style={fabStyle}
       onPress={handlePress}
+      onPressIn={handlePressIn}
+      onPressOut={handlePressOut}
       hitSlop={MEASUREMENTS.hitSlop}
       accessibilityRole="button"
       // The badge is inside the button, so VoiceOver and Maestro read it from the label

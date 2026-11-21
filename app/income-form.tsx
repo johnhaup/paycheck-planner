@@ -2,7 +2,6 @@ import { useState, useCallback, useMemo } from "react";
 import { View, StyleSheet } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { useRouter, useLocalSearchParams } from "expo-router";
-import { toast } from "sonner-native";
 import { useStore } from "@/store";
 import { useGutters } from "@/hooks/useGutters";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -17,6 +16,8 @@ import { AppDatePicker } from "@/components/AppDatePicker";
 import { AppToggle } from "@/components/AppToggle";
 import { formatPayDate, parseLocalDate } from "@/utils/payDates";
 import type { PayFrequency } from "@/types";
+import { toastError } from "@/utils/toastError";
+import { hapticSuccess } from "@/utils/haptics";
 
 // A modal reads its own safe area: iPhone Duo centres it clear of the status column when unfolded
 export default function IncomeFormScreen() {
@@ -65,12 +66,12 @@ function IncomeForm() {
 
   const handleSave = useCallback(() => {
     if (!name.trim()) {
-      toast.error(t("income.form.nameRequired"));
+      toastError(t("income.form.nameRequired"));
       return;
     }
     const amount = parseFloat(payAmount);
     if (isNaN(amount) || amount <= 0) {
-      toast.error(t("income.form.invalidAmount"));
+      toastError(t("income.form.invalidAmount"));
       return;
     }
     const day1 = Number(semiDay1);
@@ -80,7 +81,7 @@ function IncomeForm() {
       frequency === "semi-monthly" &&
       !semiMonthlyDays.every((d) => Number.isInteger(d) && d >= 1 && d <= 31)
     ) {
-      toast.error(t("income.form.payDaysRange"));
+      toastError(t("income.form.payDaysRange"));
       return;
     }
 
@@ -100,6 +101,7 @@ function IncomeForm() {
     } else {
       addIncomeSource(data);
     }
+    hapticSuccess();
     router.back();
   }, [
     name,

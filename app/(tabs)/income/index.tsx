@@ -10,6 +10,7 @@ import { useGutters } from "@/hooks/useGutters";
 import { useColumns } from "@/hooks/useColumns";
 import { LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { AppText } from "@/components/AppText";
+import { AppCountUpText } from "@/components/AppCountUpText";
 import { AppCard } from "@/components/AppCard";
 import { AppEmptyState } from "@/components/AppEmptyState";
 import { AppFab } from "@/components/AppFab";
@@ -84,12 +85,17 @@ export default function IncomeScreen() {
     const nextDates = incomeSources.map((s) => getPaychecks(s, now, 1)[0].date);
     const next = nextDates.sort((a, b) => a.getTime() - b.getTime())[0];
     return {
-      perMonth: formatWholeMoney(perMonth),
+      perMonth: [perMonth],
       nextPayday: next ? formatMonthDay(next) : "—",
     };
     // t changes with the language, which changes the date format
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [incomeSources, formatWholeMoney, t]);
+  }, [incomeSources, t]);
+
+  const renderPerMonth = useCallback(
+    (amounts: readonly number[]) => formatWholeMoney(amounts[0]),
+    [formatWholeMoney]
+  );
 
   // Regular width (iPhone Duo unfolded): the totals in the first column, the sources in the second.
   // The list's content keeps to the second column and the tiles are placed back into the first,
@@ -113,14 +119,14 @@ export default function IncomeScreen() {
         <View style={tilesStyle}>
           <AppCard style={stacked ? styles.tileStacked : styles.tile}>
             <AppText variant="meta">{t("income.perMonth")}</AppText>
-            <AppText
+            <AppCountUpText
               variant="title"
               numberOfLines={1}
               adjustsFontSizeToFit
               minimumFontScale={TILE_VALUE_MIN_FONT_SCALE}
-            >
-              {summary.perMonth}
-            </AppText>
+              amounts={summary.perMonth}
+              render={renderPerMonth}
+            />
           </AppCard>
           <AppCard style={stacked ? styles.tileStacked : styles.tile}>
             <AppText variant="meta">{t("income.nextPayday")}</AppText>
@@ -137,7 +143,7 @@ export default function IncomeScreen() {
         <AppSectionHeader title={t("income.sources")} />
       </View>
     ),
-    [summary, t, stacked, tilesStyle]
+    [summary, renderPerMonth, t, stacked, tilesStyle]
   );
 
   const listFooter = useMemo(

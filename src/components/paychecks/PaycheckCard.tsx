@@ -10,6 +10,7 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { AppCard } from "@/components/AppCard";
 import { AppDateTile } from "@/components/AppDateTile";
 import { AppText } from "@/components/AppText";
+import { AppCountUpText } from "@/components/AppCountUpText";
 import { AppWordWrapText } from "@/components/AppWordWrapText";
 import { PaidProgress } from "@/components/paychecks/PaidProgress";
 import { PaycheckExpenseRow } from "@/components/paychecks/PaycheckExpenseRow";
@@ -67,6 +68,18 @@ export function PaycheckCard({
   const handleMoveBill = useCallback(() => {
     onMoveBill(item.payDate, item.sourceId);
   }, [onMoveBill, item.payDate, item.sourceId]);
+
+  const payAmounts = useMemo(() => [item.payAmount], [item.payAmount]);
+  const remainingAmounts = useMemo(() => [item.remaining], [item.remaining]);
+  const renderPay = useCallback((amounts: readonly number[]) => formatMoney(amounts[0]), [formatMoney]);
+  const renderLeft = useCallback(
+    (amounts: readonly number[]) => t("paychecks.amountLeft", { amount: formatMoney(amounts[0]) }),
+    [t, formatMoney]
+  );
+  const renderShort = useCallback(
+    (amounts: readonly number[]) => t("paychecks.shortBy", { amount: formatMoney(-amounts[0]) }),
+    [t, formatMoney]
+  );
 
   const shortRowStyle = useMemo(
     () =>
@@ -131,18 +144,21 @@ export function PaycheckCard({
             accessibilityRole="button"
             accessibilityLabel={t("paychecks.changePayAmount", { source: item.sourceName })}
           >
-            <AppText
+            <AppCountUpText
               variant="rowTitle"
               numberOfLines={1}
               adjustsFontSizeToFit
               minimumFontScale={AMOUNT_MIN_FONT_SCALE}
-            >
-              {formatMoney(item.payAmount)}
-            </AppText>
+              amounts={payAmounts}
+              render={renderPay}
+            />
           </Pressable>
-          <AppText variant="meta" color={item.remaining < 0 ? "destructive" : "primaryText"}>
-            {t("paychecks.amountLeft", { amount: formatMoney(item.remaining) })}
-          </AppText>
+          <AppCountUpText
+            variant="meta"
+            color={item.remaining < 0 ? "destructive" : "primaryText"}
+            amounts={remainingAmounts}
+            render={renderLeft}
+          />
         </View>
       </Pressable>
       <PaidProgress paid={item.paidCount} total={billCount} />
@@ -172,9 +188,13 @@ export function PaycheckCard({
           accessibilityLabel={t("paychecks.moveBill")}
         >
           <Ionicons name="alert-circle" size={16} color={colors.destructive} />
-          <AppText variant="meta" color="destructive" style={stacked ? undefined : styles.shortText}>
-            {t("paychecks.shortBy", { amount: formatMoney(-item.remaining) })}
-          </AppText>
+          <AppCountUpText
+            variant="meta"
+            color="destructive"
+            style={stacked ? undefined : styles.shortText}
+            amounts={remainingAmounts}
+            render={renderShort}
+          />
           <AppText variant="bodyStrong" color="primaryText">{t("paychecks.moveBill")}</AppText>
         </Pressable>
       ) : null}

@@ -1,4 +1,4 @@
-import { useMemo, type ReactNode } from "react";
+import { useCallback, useMemo, type ReactNode } from "react";
 import { Pressable, View, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
@@ -11,6 +11,7 @@ import { AppText } from "@/components/AppText";
 import { AppWordWrapText } from "@/components/AppWordWrapText";
 import { AppDateTile } from "@/components/AppDateTile";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
+import { AppCountUpText } from "@/components/AppCountUpText";
 import { parseLocalDate } from "@/utils/payDates";
 import { formatLongDate } from "@/utils/dates";
 
@@ -45,6 +46,18 @@ export function PayDateSummary({
   const stacked = useAccessibilityTextSize();
   const date = parseLocalDate(payDate);
 
+  const metaAmounts = useMemo(() => [payAmount, totalAssigned], [payAmount, totalAssigned]);
+  const remainingAmounts = useMemo(() => [remaining], [remaining]);
+  const renderMeta = useCallback(
+    ([pay, assigned]: readonly number[]) =>
+      t("payDate.summaryMeta", { pay: formatMoney(pay), assigned: formatMoney(assigned) }),
+    [t, formatMoney]
+  );
+  const renderShort = useCallback(
+    (amounts: readonly number[]) => t("paychecks.shortBy", { amount: formatMoney(-amounts[0]) }),
+    [t, formatMoney]
+  );
+
   const metaStyle = useMemo(() => dimOnPress(styles.meta), []);
   const shortRowStyle = useMemo(
     () => dimOnPress(stacked ? styles.shortRowStacked : styles.shortRow),
@@ -74,9 +87,7 @@ export function PayDateSummary({
         accessibilityRole="button"
         accessibilityLabel={t("paychecks.changePayAmount", { source: sourceName })}
       >
-        <AppText variant="meta" style={styles.shrink}>
-          {t("payDate.summaryMeta", { pay: formatMoney(payAmount), assigned: formatMoney(totalAssigned) })}
-        </AppText>
+        <AppCountUpText variant="meta" style={styles.shrink} amounts={metaAmounts} render={renderMeta} />
         <Ionicons name="create-outline" size={14} color={colors.textMuted} />
       </Pressable>
       {remaining < 0 && canMoveBill ? (
@@ -88,9 +99,13 @@ export function PayDateSummary({
           accessibilityLabel={t("paychecks.moveBill")}
         >
           <Ionicons name="alert-circle" size={16} color={colors.destructive} />
-          <AppText variant="meta" color="destructive" style={stacked ? undefined : styles.shrink}>
-            {t("paychecks.shortBy", { amount: formatMoney(-remaining) })}
-          </AppText>
+          <AppCountUpText
+            variant="meta"
+            color="destructive"
+            style={stacked ? undefined : styles.shrink}
+            amounts={remainingAmounts}
+            render={renderShort}
+          />
           <AppText variant="bodyStrong" color="primaryText">{t("paychecks.moveBill")}</AppText>
         </Pressable>
       ) : null}
