@@ -85,7 +85,10 @@ env:
 
 - tapOn: "Income"
 # The form shows every pay schedule; the row is one element (tile letter, name, schedule, amount)
-- tapOn: ".*Mesa Health.*per check"
+# Again if nothing opened: on the iPhone Duo's cover a tap straight after the tab change can be dropped
+- tapOn:
+    text: ".*Mesa Health.*per check"
+    retryTapIfNoChange: true
 - extendedWaitUntil:
     visible: "Adjust to workday"
     timeout: 5000
