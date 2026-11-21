@@ -20,6 +20,10 @@ import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { usePaycheckCardRenderer } from "@/hooks/usePaycheckCardRenderer";
 import { useGutters } from "@/hooks/useGutters";
+import { useColumns } from "@/hooks/useColumns";
+import { usePaycheckSelectionStore } from "@/stores/paycheckSelectionStore";
+import { hapticSelection } from "@/utils/haptics";
+import { PayDateDetail } from "@/components/payDateDetail/PayDateDetail";
 import { FORWARD_CHEVRON, LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { DIM_ON_PRESS, dimOnPress } from "@/constants/press";
@@ -43,9 +47,6 @@ const TODAY_ICON_SIZE = 22;
 const STICKY_HEADER = [0];
 // Collapsed portrait iPhone navigation bar; the app is portrait-only and iPhone-only
 const NAV_BAR_HEIGHT = 44;
-const WIDE_WINDOW_WIDTH = 600;
-// The expanded large title's height on an iPhone Duo unfolded upright, at every text size (HAU-630)
-const DUO_LARGE_TITLE_HEIGHT = 52;
 const REFLOW_SETTLE_MS = 400;
 // Once collapsed, the pinned header shows the month pills with room above them
 // (clear of the navigation bar's edge blur) and its own bottom padding
@@ -89,11 +90,14 @@ export default function PaychecksScreen() {
   const expenses = useStore((s) => s.expenses);
   const assignments = useStore((s) => s.assignments);
   const paycheckOverrides = useStore((s) => s.paycheckOverrides);
-  const renderPaycheck = usePaycheckCardRenderer();
   const insets = useSafeAreaInsets();
   const { width: frameWidth, height: frameHeight } = useSafeAreaFrame();
   const hasIncome = incomeSources.length > 0;
   const { isPro, openPaywall } = useProGate();
+  // Regular width (iPhone Duo unfolded): the list keeps to the first column and the picked paycheck is beside it
+  const columns = useColumns();
+  const picked = usePaycheckSelectionStore((s) => s.selected);
+  const select = usePaycheckSelectionStore((s) => s.select);
 
   // The selected month belongs to one dataset: when income comes back after
   // Erase all data (sample data or a new source) the screen opens on the current
@@ -153,6 +157,26 @@ export default function PaychecksScreen() {
   }, [rows]);
   const homeMonth = rows[homeIndex]?.month;
 
+  // The paycheck beside the list: the one tapped, or the current one until then and when it is gone
+  const shownPaycheck = useMemo(() => {
+    if (!columns) return undefined;
+    const row =
+      (picked &&
+        rows.find((r) => r.paycheck.payDate === picked.payDate && r.paycheck.sourceId === picked.sourceId)) ??
+      rows[homeIndex];
+    return row ? { payDate: row.paycheck.payDate, sourceId: row.paycheck.sourceId } : undefined;
+  }, [columns, picked, rows, homeIndex]);
+
+  const handleSelectPaycheck = useCallback(
+    (payDate: string, sourceId: string) => {
+      hapticSelection();
+      select(payDate, sourceId);
+    },
+    [select]
+  );
+
+  const renderPaycheck = usePaycheckCardRenderer(shownPaycheck, columns ? handleSelectPaycheck : undefined);
+
   const selectedMonth = useMemo(
     () => months.find((m) => m.key === selection.monthKey) ?? homeMonth,
     [months, selection.monthKey, homeMonth]
@@ -166,11 +190,10 @@ export default function PaychecksScreen() {
   // math below treats as not pinned. Android's toolbar is opaque and the list
   // starts below it, so there the header pins against the list's own top edge;
   // the iOS distance pushed the whole header 90dp down over the first card (HAU-357).
-  // On a wide window (iPhone Duo unfolded and upright) iOS puts the bar in the status row, inside the top inset.
-  // With no top inset (Duo folded, and unfolded on its side) the layout turns the large title off, and
-  // the list starts below the standard bar as on Android (HAU-568).
-  const barInTopInset = frameWidth >= WIDE_WINDOW_WIDTH;
-  const pinTop = Platform.OS === "ios" && insets.top > 0 ? insets.top + (barInTopInset ? 0 : NAV_BAR_HEIGHT) : 0;
+  // With no top inset (iPhone Duo folded, and unfolded on its side) and on a regular width (Duo unfolded,
+  // where the paycheck beside the list has no title to collapse) the layout turns the large title off,
+  // and the list starts below the standard bar as on Android (HAU-568).
+  const pinTop = Platform.OS === "ios" && insets.top > 0 && !columns ? insets.top + NAV_BAR_HEIGHT : 0;
   // A jump reads it when it runs: a fold changes it, and that alone must not send the list home
   const pinTopRef = useRef(pinTop);
   useEffect(() => {
@@ -184,7 +207,7 @@ export default function PaychecksScreen() {
   // collapsed-title position; an iPhone Duo's bar changes with the fold, so the height is kept, not the offset.
   // Without a large title (pinTop 0) the list starts below the bar and its top is 0. A folded iPhone Duo
   // still reports a passing -58 first, from a layout with the large title on (HAU-629), so a session
-  // that starts without one (null) learns no height and uses the Duo's when it is unfolded upright.
+  // that starts without one (null) learns no height.
   // Undefined until the first scroll event.
   const titleHeight = useSharedValue<number | null | undefined>(undefined);
 
@@ -318,7 +341,7 @@ export default function PaychecksScreen() {
         // A list with no scroll event yet is at its top (HAU-631): a fold walk can pass a stale -41 otherwise.
         const height = titleHeight.get();
         const barTop = pinTopRef.current;
-        const top = height === undefined ? undefined : barTop > 0 ? -(barTop + (height ?? DUO_LARGE_TITLE_HEIGHT)) : 0;
+        const top = height === undefined ? undefined : barTop > 0 ? -(barTop + (height ?? 0)) : 0;
         const y = scrollY.get();
         if (top !== undefined && y !== -Infinity && y !== top) {
           list.scrollToOffset({ offset: top, animated });
@@ -641,14 +664,41 @@ export default function PaychecksScreen() {
   const hiddenStyle = useAnimatedStyle(() => ({ opacity: hidden.value ? 0 : 1 }));
   const listStyle = useMemo(() => [styles.list, LARGE_TITLE_LIST, hiddenStyle], [hiddenStyle]);
   const gutters = useGutters();
-  const listContentStyle = useMemo(() => [styles.listContent, gutters, LARGE_TITLE_LIST_CONTENT], [gutters]);
+  const showsPaycheck = hasIncome && columns !== undefined && shownPaycheck !== undefined;
+  const listContentStyle = useMemo(
+    () => [
+      styles.listContent,
+      gutters,
+      showsPaycheck ? { paddingRight: columns.pastMiddle } : undefined,
+      LARGE_TITLE_LIST_CONTENT,
+    ],
+    [gutters, showsPaycheck, columns]
+  );
+  const paneStyle = useMemo(
+    () =>
+      columns
+        ? [styles.pane, { width: columns.endWidth + gutters.paddingRight, backgroundColor: colors.screenBackground }]
+        : undefined,
+    [columns, gutters, colors]
+  );
+  const paneContentStyle = useMemo(
+    () => ({
+      // The date tile lines up with the first line of the list's header
+      paddingTop: MEASUREMENTS.spacing.md,
+      paddingLeft: 0,
+      paddingRight: gutters.paddingRight,
+      paddingBottom: insets.bottom + MEASUREMENTS.spacing.bottom,
+    }),
+    [gutters, insets.bottom]
+  );
 
   // The list is the screen's root in both the welcome and the paychecks state:
   // iOS only collapses the large title into the header when the scroll view
   // is the first view, and swapping roots after the store rehydrates drops it.
   return (
-    <PinnedHeaderShift value={pinShift}>
-      <PaycheckCellLayoutsContext value={cellLayouts}>
+    <>
+      <PinnedHeaderShift value={pinShift}>
+        <PaycheckCellLayoutsContext value={cellLayouts}>
         <PaycheckList
           ref={listRef}
           style={listStyle}
@@ -680,8 +730,21 @@ export default function PaychecksScreen() {
           onScroll={handleScroll}
           scrollEventThrottle={16}
         />
-      </PaycheckCellLayoutsContext>
-    </PinnedHeaderShift>
+        </PaycheckCellLayoutsContext>
+      </PinnedHeaderShift>
+      {showsPaycheck ? (
+        <View style={paneStyle}>
+          {/* Keyed: another paycheck is drawn afresh, its rows do not slide in from the last one's */}
+          <PayDateDetail
+            key={`${shownPaycheck.payDate}|${shownPaycheck.sourceId}`}
+            payDate={shownPaycheck.payDate}
+            sourceId={shownPaycheck.sourceId}
+            contentContainerStyle={paneContentStyle}
+            embedded
+          />
+        </View>
+      ) : null}
+    </>
   );
 }
 
@@ -691,6 +754,13 @@ const styles = StyleSheet.create({
   },
   listContent: {
     paddingBottom: MEASUREMENTS.spacing.bottom,
+  },
+  // Beside the list, from the window's middle to its end edge; the list is the screen's root view
+  pane: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    end: 0,
   },
   stickyHeader: {
     // Bleed past the list gutter so cards never peek out beside the pinned header

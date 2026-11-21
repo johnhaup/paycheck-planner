@@ -3,6 +3,8 @@ import { StyleSheet, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
+import { useColumns } from "@/hooks/useColumns";
+import { COLUMN_GAP } from "@/constants/layout";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppButton } from "@/components/AppButton";
@@ -17,18 +19,28 @@ interface Props {
 /** First-run content on the Paychecks tab, shown in the list until there's an income source. */
 export function Welcome({ onAddIncome, onTrySample }: Props) {
   const t = useT();
+  // Regular width (iPhone Duo unfolded): what the app does in the first column, the two ways to start in the second
+  const columns = useColumns();
+  const introStyle = useMemo(
+    () => (columns ? [styles.group, { width: columns.startWidth }] : styles.group),
+    [columns]
+  );
 
   return (
-    <View style={styles.content}>
-      <AppText variant="title">{t("welcome.title")}</AppText>
-      <AppText variant="meta">{t("welcome.body")}</AppText>
-      <View style={styles.steps}>
-        <Step icon="briefcase-outline" title={t("welcome.incomeTitle")} body={t("welcome.incomeBody")} />
-        <Step icon="receipt-outline" title={t("welcome.billsTitle")} body={t("welcome.billsBody")} />
-        <Step icon="wallet-outline" title={t("welcome.leftTitle")} body={t("welcome.leftBody")} />
+    <View style={columns ? styles.contentWide : styles.content}>
+      <View style={introStyle}>
+        <AppText variant="title">{t("welcome.title")}</AppText>
+        <AppText variant="meta">{t("welcome.body")}</AppText>
+        <View style={styles.steps}>
+          <Step icon="briefcase-outline" title={t("welcome.incomeTitle")} body={t("welcome.incomeBody")} />
+          <Step icon="receipt-outline" title={t("welcome.billsTitle")} body={t("welcome.billsBody")} />
+          <Step icon="wallet-outline" title={t("welcome.leftTitle")} body={t("welcome.leftBody")} />
+        </View>
       </View>
-      <AppButton title={t("welcome.addIncome")} onPress={onAddIncome} />
-      <AppButton title={t("welcome.trySample")} variant="outline" onPress={onTrySample} />
+      <View style={columns ? styles.actionsWide : styles.group}>
+        <AppButton title={t("welcome.addIncome")} onPress={onAddIncome} />
+        <AppButton title={t("welcome.trySample")} variant="outline" onPress={onTrySample} />
+      </View>
     </View>
   );
 }
@@ -63,6 +75,19 @@ function Step({ icon, title, body }: StepProps) {
 const styles = StyleSheet.create({
   content: {
     paddingVertical: MEASUREMENTS.spacing.gutter,
+    gap: MEASUREMENTS.spacing.base,
+  },
+  contentWide: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: MEASUREMENTS.spacing.gutter,
+    gap: COLUMN_GAP,
+  },
+  group: {
+    gap: MEASUREMENTS.spacing.base,
+  },
+  actionsWide: {
+    flex: 1,
     gap: MEASUREMENTS.spacing.base,
   },
   steps: {

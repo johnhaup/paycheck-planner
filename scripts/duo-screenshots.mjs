@@ -1,11 +1,14 @@
 /**
  * App Store screenshots for the iPhone Duo (`bun store:screenshots:duo [capture|frame]`), kept in
  * ship/screenshots/duo. expo-local-ship cannot take these itself: `simctl` cannot fold and Maestro
- * only drives the Duo's cover screen, so duoctl (github.com/skarol/duoctl, v0.2.1; on PATH or in
- * $DUOCTL) folds, taps and shoots. The scenes are those of ship/screenshots.yaml; framing is
- * expo-local-ship's, at the two Duo sizes.
+ * only drives the Duo's cover screen. So the cover set is ship/screenshots.yaml run by Maestro on the
+ * folded Duo, and the inner set is the same seven scenes driven by duoctl (github.com/skarol/duoctl,
+ * v0.2.1; on PATH or in $DUOCTL), which folds, taps and shoots. Framing is expo-local-ship's, at the
+ * two Duo sizes, with the captions of the iPhone set.
  *
- * Capture needs a Release build made with EXPO_PUBLIC_STORE_DEMO=1 on the simulator.
+ * Capture needs a build with EXPO_PUBLIC_STORE_DEMO=1 on the simulator named in $DUO_SIMULATOR
+ * (default "Paycheck Planner Duo"): a Release build, or a dev build with $METRO_URL pointing at a
+ * Metro started with that flag (see the header of ship/screenshots.yaml).
  */
 import { execFileSync } from "child_process";
 import fs from "fs";
@@ -14,10 +17,20 @@ import path from "path";
 import { loadShipConfig, requireScreenshots } from "@johnhaup/expo-local-ship/src/store/config";
 import { frameScreenshots } from "@johnhaup/expo-local-ship/src/store/frame";
 
-const SIMULATOR = "Paycheck Planner Duo";
+const SIMULATOR = process.env.DUO_SIMULATOR ?? "Paycheck Planner Duo";
 const DUOCTL = process.env.DUOCTL ?? "duoctl";
+const METRO_URL = process.env.METRO_URL;
+/** What opens a dev build straight on Metro; a Release build ignores them */
+const DEV_ARGS = METRO_URL
+  ? ["--initialUrl", METRO_URL, "-EXDevMenuShowsAtLaunch", "NO", "-EXDevMenuShowFloatingActionButton", "NO", "-EXDevMenuIsOnboardingFinished", "YES"]
+  : [];
 /** The portrait pixel size App Store Connect takes for each screen (display type APP_IPHONE_DUO) */
 const SCREENS = { folded: [1398, 2034], unfolded: [2007, 2853] };
+/**
+ * The amount sheet's number pad on the inner screen upright, in points. The keys are not in the
+ * accessibility tree, and duoctl cannot type.
+ */
+const PAD = { 4: [121, 728], 8: [333, 787], 9: [548, 787], ".": [121, 853], delete: [548, 853] };
 
 const config = loadShipConfig(process.cwd());
 const screenshots = requireScreenshots(config);
@@ -44,18 +57,18 @@ function capture() {
       }
     }
   };
-  const find = async (label, type) => {
+  const find = async (label, type, index = 0) => {
     const [, height] = JSON.parse(duoctl("state")).sizePoints;
-    return (await elements()).find((e) => {
+    return (await elements()).filter((e) => {
       const middle = e.frame.y + e.frame.height / 2;
       // A row under the navigation bar or the pinned month strip cannot be tapped
       return label.test(e.label ?? "") && (!type || e.type === type) && middle > (type ? 0 : 140) && middle < height;
-    });
+    })[index];
   };
-  /** Taps the element, scrolling the list up to it first */
-  const tap = async (label, type) => {
+  /** Taps the element, scrolling the list in the first column up to it first */
+  const tap = async (label, type, index) => {
     for (let swipes = 0; swipes < 8; swipes++) {
-      const element = await find(label, type);
+      const element = await find(label, type, index);
       if (element) {
         duoctl("tap", String(element.frame.x + element.frame.width / 2), String(element.frame.y + element.frame.height / 2));
         await sleep(2000);
@@ -66,8 +79,12 @@ function capture() {
     }
     throw new Error(`Nothing on screen is labelled ${label}`);
   };
-  const fold = async (posture, orientation) => {
-    duoctl(posture);
+  const press = async (key) => {
+    duoctl("tap", ...PAD[key].map(String));
+    // Taps that follow each other at once are dropped
+    await sleep(600);
+  };
+  const rotate = async (orientation) => {
     // Now and then a rotation does not take the first time it is asked for
     for (let attempt = 0; attempt < 3; attempt++) {
       try {
@@ -80,46 +97,95 @@ function capture() {
     // The screen redraws for its new size after the display has switched
     await sleep(2500);
   };
-  const shoot = (file) => {
+  const openLink = async (url) => {
+    simctl("openurl", udid, url);
+    await sleep(4000);
+    // iOS asks before a link opens the app
+    if (await find(/^Open$/, "Button")) await tap(/^Open$/, "Button");
+    await sleep(3000);
+  };
+  const save = (file) => {
     fs.mkdirSync(path.dirname(file), { recursive: true });
     duoctl("screenshot", file);
     console.log(`  → ${path.relative(process.cwd(), file)}`);
   };
-  const shootAll = async (scene) => {
-    // The app is portrait-only, so the cover screen has one orientation; the inner screen has both
-    shoot(dir("folded", "raw", `${scene}.png`));
-    await fold("open", "portrait");
-    shoot(dir("unfolded", "raw", `${scene}.png`));
-    await fold("open", "landscape");
-    shoot(dir("unfolded", "landscape", `${scene}.png`));
-    await fold("close", "portrait");
+  /** The inner screen upright (the store size), then on its side */
+  const shoot = async (scene) => {
+    save(dir("unfolded", "raw", `${scene}.png`));
+    await rotate("landscape");
+    save(dir("unfolded", "landscape", `${scene}.png`));
+    await rotate("portrait");
+  };
+
+  /** The cover screen is an iPhone to Maestro: the iPhone set's own flow, at the cover's size */
+  const captureFolded = async () => {
+    duoctl("close");
+    await rotate("portrait");
+    const out = fs.mkdtempSync(path.join(os.tmpdir(), "duo-folded-"));
+    try {
+      execFileSync(
+        "maestro",
+        ["--udid", udid, "test", "-e", `METRO_URL=${METRO_URL ?? ""}`, screenshots.flow, "--test-output-dir", out],
+        { stdio: "inherit" }
+      );
+      const shots = fs.globSync(path.join(out, "**", "takeScreenshot", "*.png"));
+      for (const shot of shots) {
+        const file = dir("folded", "raw", path.basename(shot));
+        fs.mkdirSync(path.dirname(file), { recursive: true });
+        fs.copyFileSync(shot, file);
+        console.log(`  → ${path.relative(process.cwd(), file)}`);
+      }
+    } finally {
+      fs.rmSync(out, { recursive: true, force: true });
+    }
+  };
+
+  /** The scenes of ship/screenshots.yaml on the inner screen, where a paycheck opens beside the list */
+  const captureUnfolded = async () => {
+    simctl("terminate", udid, config.bundleId);
+    simctl("launch", udid, config.bundleId, ...DEV_ARGS);
+    await sleep(8000);
+    duoctl("open");
+    await rotate("portrait");
+    // The sample budget again: the cover run left a paycheck short
+    await openLink("paycheck-planner://demo");
+    await shoot("paychecks");
+
+    await tap(/^Change Internet amount for this paycheck$/);
+    for (const key of ["delete", "delete", "delete", "delete", "delete", "8", "4", ".", "9", "9"]) await press(key);
+    await shoot("amount");
+    await tap(/^Save$/);
+
+    await tap(/^[A-Z]{3}, [0-9]+, Mesa Health/);
+    await shoot("detail");
+
+    await tap(/^Expenses$/, "RadioButton");
+    await shoot("goals");
+    duoctl("swipe", "200", "700", "200", "380", "--duration", "1.5");
+    await sleep(3000);
+    await shoot("expenses");
+
+    await tap(/^Income$/, "RadioButton");
+    await tap(/Mesa Health.*per check/);
+    await shoot("income");
+    await tap(/^Close$/, "Button");
+
+    await openLink("paycheck-planner://demo?short=1");
+    await tap(/is short by/);
+    await tap(/^Move a bill$/);
+    await tap(/^Car repair · /);
+    // The Brightline paycheck after the next one
+    await tap(/ · Brightline Co\.$/, undefined, 1);
+    await shoot("move");
   };
 
   return (async () => {
     simctl("bootstatus", udid, "-b");
     simctl("status_bar", udid, "override", "--time", "9:41");
     try {
-      await fold("close", "portrait");
-      simctl("terminate", udid, config.bundleId);
-      simctl("launch", udid, config.bundleId);
-      await sleep(6000);
-      // Sample data with Pro on. iOS asks before it opens the link.
-      simctl("openurl", udid, "paycheck-planner://demo");
-      await sleep(4000);
-      if (await find(/^Open$/, "Button")) await tap(/^Open$/, "Button");
-      await sleep(3000);
-
-      await shootAll("paychecks");
-      await tap(/^Expenses$/, "RadioButton");
-      await shootAll("expenses");
-      await tap(/^Income$/, "RadioButton");
-      await shootAll("income");
-      await tap(/^Paychecks$/, "RadioButton");
-      // The card's own label; the pay amount inside it is a second button
-      await tap(/^[A-Z]{3}, [0-9]+, Mesa Health/);
-      await shootAll("detail");
-      await tap(/^Change Electric amount for this paycheck$/);
-      await shootAll("amount");
+      await captureFolded();
+      await captureUnfolded();
+      duoctl("close");
     } finally {
       simctl("status_bar", udid, "clear");
     }
