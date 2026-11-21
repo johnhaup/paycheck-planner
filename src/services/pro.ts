@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { toast } from "sonner-native";
 import {
   finishTransaction,
   getAvailablePurchases,
@@ -18,6 +17,7 @@ import {
   useMockIAP,
   type ProStoreConnection,
 } from "@/services/proStoreMock";
+import { toastError } from "@/utils/toastError";
 
 /** The one non-consumable: created in App Store Connect and Play Console under this id. */
 export const PRO_PRODUCT_ID = "com.johnhaup.paycheckplanner.pro";
@@ -99,7 +99,7 @@ export function useProEntitlement() {
     },
     onPurchaseError: (error) => {
       if (!isUserCancelledError(error)) {
-        toast.error(t("pro.purchaseFailed"));
+        toastError(t("pro.purchaseFailed"));
       }
     },
   });

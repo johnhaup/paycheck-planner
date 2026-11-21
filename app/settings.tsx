@@ -23,6 +23,7 @@ import { AppSegmentedControl, type SegmentOption } from "@/components/AppSegment
 import { SettingsToggleRow } from "@/components/settings/SettingsToggleRow";
 import { SettingsLinkRow } from "@/components/settings/SettingsLinkRow";
 import { useProGate } from "@/hooks/useProGate";
+import { toastError } from "@/utils/toastError";
 
 // A modal reads its own safe area: iPhone Duo centres it clear of the status column when unfolded
 export default function SettingsScreen() {
@@ -128,7 +129,7 @@ function SettingsContent() {
     const result = await pickBackup();
     if (result.status === "canceled") return;
     if (result.status === "invalid") {
-      toast.error(t("settings.data.invalidBackup"));
+      toastError(t("settings.data.invalidBackup"));
       return;
     }
     Alert.alert(t("settings.data.restoreTitle"), t("settings.data.restoreBody"), [

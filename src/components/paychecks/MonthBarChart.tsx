@@ -15,6 +15,7 @@ import Animated, {
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
+  withSpring,
   withTiming,
   type SharedValue,
 } from "react-native-reanimated";
@@ -27,6 +28,7 @@ import { AppText } from "@/components/AppText";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { hapticSelection } from "@/utils/haptics";
+import { SPRING, TIMING } from "@/constants/motion";
 import type { MonthGroup } from "@/components/paychecks/types";
 
 const BAR_MAX_HEIGHT = 86;
@@ -58,7 +60,6 @@ const LOCKED_MIN_FONT_SCALE = 0.7;
 /** Their boxes have a fixed height, so accessibility text sizes stop here instead of overflowing them */
 const LOCKED_MAX_FONT_MULTIPLIER = 1.5;
 /** The selected pill slides to a newly selected month and the bars change colour over this long */
-const SELECTION_MS = 250;
 /** RN does not mirror a transform in RTL, where the first month sits at the right */
 const START_SIGN = I18nManager.isRTL ? -1 : 1;
 
@@ -120,7 +121,7 @@ export function MonthBarChart({ months, selectedKey, currentKey, onSelect, onLoc
   );
   useEffect(() => {
     if (selectedIndex < 0) return;
-    selectedPillX.set(withTiming(pillStart(selectedIndex), { duration: SELECTION_MS }));
+    selectedPillX.set(withTiming(pillStart(selectedIndex), TIMING.move));
   }, [selectedIndex, selectedPillX]);
 
   const contentWidth =
@@ -226,7 +227,7 @@ function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect, barsOpac
   // 1 while selected; eases between the two so the colour moves with the sliding pill
   const selection = useSharedValue(selected ? 1 : 0);
   useEffect(() => {
-    selection.set(withTiming(selected ? 1 : 0, { duration: SELECTION_MS }));
+    selection.set(withTiming(selected ? 1 : 0, TIMING.move));
   }, [selected, selection]);
 
   const isShort = month.remaining < 0;
@@ -239,13 +240,18 @@ function MonthBar({ month, maxMagnitude, selected, isCurrent, onSelect, barsOpac
       : interpolateColor(selection.value, [0, 1], [colors.chartBar, colors.primary]),
   }));
 
-  const barStyle = useMemo(() => {
-    const height = Math.max(
-      BAR_MIN_HEIGHT,
-      Math.round((Math.abs(month.remaining) / maxMagnitude) * BAR_MAX_HEIGHT)
-    );
-    return [styles.bar, { height }, barColor];
-  }, [month.remaining, maxMagnitude, barColor]);
+  // A new amount springs the bar to its new height (a jump under Reduce Motion)
+  const targetHeight = Math.max(
+    BAR_MIN_HEIGHT,
+    Math.round((Math.abs(month.remaining) / maxMagnitude) * BAR_MAX_HEIGHT)
+  );
+  const barHeight = useSharedValue(targetHeight);
+  const barHeightStyle = useAnimatedStyle(() => ({ height: barHeight.get() }));
+  useEffect(() => {
+    barHeight.set(withSpring(targetHeight, SPRING.snap));
+  }, [targetHeight, barHeight]);
+
+  const barStyle = useMemo(() => [styles.bar, barHeightStyle, barColor], [barHeightStyle, barColor]);
 
   // The collapsed pill keeps the bar's meaning: red when the month runs short (the sliding pill marks the selected one)
   const pillFill = useMemo(() => {

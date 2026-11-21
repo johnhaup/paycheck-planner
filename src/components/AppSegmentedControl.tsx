@@ -1,11 +1,14 @@
-import { useCallback, useMemo } from "react";
-import { Pressable, View, StyleSheet } from "react-native";
+import { useCallback, useEffect, useMemo, useRef } from "react";
+import { Pressable, View, StyleSheet, type LayoutChangeEvent, type LayoutRectangle } from "react-native";
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import { useColors } from "@/hooks/useColors";
 import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { hapticSelection } from "@/utils/haptics";
 import { ProBadge } from "@/components/ProBadge";
+import { SPRING } from "@/constants/motion";
+import { dimOnPress } from "@/constants/press";
 
 export interface SegmentOption<T> {
   value: T;
@@ -25,13 +28,62 @@ export function AppSegmentedControl<T>({ options, value, onChange }: Props<T>) {
   // At accessibility text sizes the labels no longer fit side by side, so the segments stack
   const stacked = useAccessibilityTextSize();
 
+  // One pill slides between the measured segments, in a row or stacked
+  const layouts = useRef(new Map<T, LayoutRectangle>());
+  const pillX = useSharedValue(0);
+  const pillY = useSharedValue(0);
+  const pillWidth = useSharedValue(0);
+  const pillHeight = useSharedValue(0);
+
+  const placePill = useCallback(
+    (layout: LayoutRectangle, animated: boolean) => {
+      const place = (target: number) => (animated ? withSpring(target, SPRING.snap) : target);
+      pillX.set(place(layout.x));
+      pillY.set(place(layout.y));
+      pillWidth.set(place(layout.width));
+      pillHeight.set(place(layout.height));
+    },
+    [pillX, pillY, pillWidth, pillHeight]
+  );
+
+  const handleSegmentLayout = useCallback(
+    (segmentValue: T, layout: LayoutRectangle) => {
+      layouts.current.set(segmentValue, layout);
+      // A first layout, a new text size or a fold moves the pill at once
+      if (segmentValue === value) {
+        placePill(layout, false);
+      }
+    },
+    [value, placePill]
+  );
+
   const trackStyle = useMemo(
     () => [styles.track, stacked ? styles.trackStacked : undefined, { backgroundColor: colors.segmentTrack }],
     [colors, stacked]
   );
 
+  const pillAnimatedStyle = useAnimatedStyle(() => ({
+    left: pillX.get(),
+    top: pillY.get(),
+    width: pillWidth.get(),
+    height: pillHeight.get(),
+  }));
+
+  const pillStyle = useMemo(
+    () => [styles.pill, { backgroundColor: colors.segmentSelected }, pillAnimatedStyle],
+    [colors, pillAnimatedStyle]
+  );
+
+  useEffect(() => {
+    const layout = layouts.current.get(value);
+    if (layout) {
+      placePill(layout, true);
+    }
+  }, [value, placePill]);
+
   return (
     <View style={trackStyle} accessibilityRole="tablist">
+      <Animated.View style={pillStyle} pointerEvents="none" />
       {options.map((option) => (
         <Segment
           key={String(option.value)}
@@ -39,6 +91,7 @@ export function AppSegmentedControl<T>({ options, value, onChange }: Props<T>) {
           selected={option.value === value}
           stacked={stacked}
           onSelect={onChange}
+          onLayout={handleSegmentLayout}
         />
       ))}
     </View>
@@ -50,10 +103,10 @@ interface SegmentProps<T> {
   selected: boolean;
   stacked: boolean;
   onSelect: (value: T) => void;
+  onLayout: (value: T, layout: LayoutRectangle) => void;
 }
 
-function Segment<T>({ option, selected, stacked, onSelect }: SegmentProps<T>) {
-  const colors = useColors();
+function Segment<T>({ option, selected, stacked, onSelect, onLayout }: SegmentProps<T>) {
 
   const handlePress = useCallback(() => {
     if (!selected) {
@@ -62,13 +115,14 @@ function Segment<T>({ option, selected, stacked, onSelect }: SegmentProps<T>) {
     onSelect(option.value);
   }, [onSelect, option.value, selected]);
 
+  const handleLayout = useCallback(
+    (event: LayoutChangeEvent) => onLayout(option.value, event.nativeEvent.layout),
+    [onLayout, option.value]
+  );
+
   const segmentStyle = useMemo(
-    () => [
-      styles.segment,
-      stacked ? undefined : styles.segmentInRow,
-      selected ? { backgroundColor: colors.segmentSelected } : undefined,
-    ],
-    [selected, stacked, colors]
+    () => dimOnPress([styles.segment, stacked ? undefined : styles.segmentInRow]),
+    [stacked]
   );
 
   const accessibilityState = useMemo(() => ({ selected }), [selected]);
@@ -77,6 +131,7 @@ function Segment<T>({ option, selected, stacked, onSelect }: SegmentProps<T>) {
     <Pressable
       style={segmentStyle}
       onPress={handlePress}
+      onLayout={handleLayout}
       accessibilityRole="tab"
       accessibilityState={accessibilityState}
     >
@@ -112,6 +167,10 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: "auto",
+  },
+  pill: {
+    position: "absolute",
+    borderRadius: MEASUREMENTS.radius.lg,
   },
   label: {
     flexShrink: 1,

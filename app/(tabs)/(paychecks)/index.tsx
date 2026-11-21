@@ -29,6 +29,7 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { DIM_ON_PRESS, dimOnPress } from "@/constants/press";
 import { AppText } from "@/components/AppText";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
+import { AppCountUpText } from "@/components/AppCountUpText";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { CHART_STRIP_HEIGHT, MonthBarChart } from "@/components/paychecks/MonthBarChart";
 import { PaycheckCell, PaycheckCellLayoutsContext } from "@/components/paychecks/PaycheckCell";
@@ -542,6 +543,16 @@ export default function PaychecksScreen() {
 
   const currentMonthKey = format(new Date(), "yyyy-MM");
 
+  const heroMetaAmounts = useMemo(
+    () => [selectedMonth?.income ?? 0, selectedMonth?.assigned ?? 0],
+    [selectedMonth?.income, selectedMonth?.assigned]
+  );
+  const renderHeroMeta = useCallback(
+    ([income, assigned]: readonly number[]) =>
+      t("paychecks.heroMeta", { income: formatMoney(income), assigned: formatMoney(assigned) }),
+    [t, formatMoney]
+  );
+
   const listHeader = useMemo(
     () =>
       hasIncome && selectedMonth ? (
@@ -564,12 +575,12 @@ export default function PaychecksScreen() {
               ) : null}
             </View>
             <AppHeroAmount amount={selectedMonth.remaining} />
-            <AppText variant="meta" style={styles.heroMeta}>
-              {t("paychecks.heroMeta", {
-                income: formatMoney(selectedMonth.income),
-                assigned: formatMoney(selectedMonth.assigned),
-              })}
-            </AppText>
+            <AppCountUpText
+              variant="meta"
+              style={styles.heroMeta}
+              amounts={heroMetaAmounts}
+              render={renderHeroMeta}
+            />
             {shortElsewhere ? (
               <Pressable style={shortRowStyle} onPress={handleShowShort} accessibilityRole="button">
                 <Ionicons name="alert-circle" size={16} color={colors.destructive} />
@@ -615,6 +626,8 @@ export default function PaychecksScreen() {
       collapse,
       colors,
       formatMoney,
+      heroMetaAmounts,
+      renderHeroMeta,
       t,
     ]
   );

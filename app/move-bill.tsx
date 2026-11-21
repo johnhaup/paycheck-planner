@@ -17,7 +17,6 @@ import {
 import { getPaycheck, parseLocalDate } from "@/utils/payDates";
 import { buildPaycheckItem } from "@/utils/paycheckMonths";
 import { formatShortDate } from "@/utils/dates";
-import { hapticSuccess } from "@/utils/haptics";
 import { withUndo } from "@/utils/undo";
 
 export default function MoveBillScreen() {
@@ -66,7 +65,6 @@ export default function MoveBillScreen() {
     const payee = bills.find((b) => b.expenseId === expenseId)?.payee ?? "";
     const targetDate = formatShortDate(parseLocalDate(target.payDate));
     withUndo(t("toasts.billMoved", { payee, date: targetDate }), () => moveExpense(expenseId, from, target));
-    hapticSuccess();
     router.back();
   }, [expenseId, target, bills, moveExpense, from, router, t]);
 

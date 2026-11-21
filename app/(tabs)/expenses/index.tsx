@@ -23,6 +23,7 @@ import { useColumns } from "@/hooks/useColumns";
 import { COLUMN_GAP } from "@/constants/layout";
 import { LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { AppText } from "@/components/AppText";
+import { AppCountUpText } from "@/components/AppCountUpText";
 import { AppEmptyState } from "@/components/AppEmptyState";
 import { AppFab } from "@/components/AppFab";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
@@ -264,21 +265,23 @@ export default function ExpensesScreen() {
     [expenses, incomeSources]
   );
 
+  const summaryAmounts = useMemo(() => [summary.monthlyTotal], [summary.monthlyTotal]);
+  const renderSummary = useCallback(
+    (amounts: readonly number[]) =>
+      t("expenses.monthlySummary", { amount: formatMoney(amounts[0]), count: summary.recurringCount }),
+    [t, formatMoney, summary.recurringCount]
+  );
+
   const listHeader = useMemo(
     () => (
       <View style={startColumnStyle ? styles.headerWide : styles.header}>
-        <AppText variant="meta" style={startColumnStyle}>
-          {t("expenses.monthlySummary", {
-            amount: formatMoney(summary.monthlyTotal),
-            count: summary.recurringCount,
-          })}
-        </AppText>
+        <AppCountUpText variant="meta" style={startColumnStyle} amounts={summaryAmounts} render={renderSummary} />
         <View style={startColumnStyle ? styles.endColumn : undefined}>
           <AppSegmentedControl options={filterOptions} value={filter} onChange={handleFilterChange} />
         </View>
       </View>
     ),
-    [summary, filter, filterOptions, handleFilterChange, formatMoney, startColumnStyle, t]
+    [summaryAmounts, renderSummary, filter, filterOptions, handleFilterChange, startColumnStyle]
   );
 
   const listEmpty = useMemo(

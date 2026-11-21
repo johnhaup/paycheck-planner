@@ -24,7 +24,6 @@ import { PayDateExpenseRow } from "@/components/payDateDetail/PayDateExpenseRow"
 import { OneTimeExpenseForm } from "@/components/payDateDetail/OneTimeExpenseForm";
 import { getPaycheck, isExpenseLinkedToPaycheck } from "@/utils/payDates";
 import { getPayAmount } from "@/utils/paycheckMonths";
-import { hapticSuccess } from "@/utils/haptics";
 import { withUndo } from "@/utils/undo";
 import { useProGate } from "@/hooks/useProGate";
 import type { Expense } from "@/types";
@@ -271,7 +270,6 @@ export function PayDateDetail({ payDate, sourceId, contentContainerStyle, embedd
 
   const handleMarkAllPaid = useCallback(() => {
     withUndo(t("toasts.markedAllPaid"), () => markPaid(unpaidExpenseIds, payDate, sourceId));
-    hapticSuccess();
   }, [unpaidExpenseIds, markPaid, payDate, sourceId, t]);
 
   const { width: windowWidth } = useWindowDimensions();

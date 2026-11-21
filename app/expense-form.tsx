@@ -2,7 +2,6 @@ import { useState, useCallback, useMemo } from "react";
 import { View, StyleSheet } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { useRouter, useLocalSearchParams } from "expo-router";
-import { toast } from "sonner-native";
 import { useStore } from "@/store";
 import { useGutters } from "@/hooks/useGutters";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -33,6 +32,8 @@ import { formatMonthShort, formatShortDate } from "@/utils/dates";
 import { normalizeLink } from "@/utils/links";
 import type { ExpenseKind, LinkSchedule, PaycheckSlot } from "@/types";
 import { useProGate } from "@/hooks/useProGate";
+import { toastError } from "@/utils/toastError";
+import { hapticSuccess } from "@/utils/haptics";
 
 // A modal reads its own safe area: iPhone Duo centres it clear of the status column when unfolded
 export default function ExpenseFormScreen() {
@@ -168,23 +169,23 @@ function ExpenseForm() {
 
   const handleSave = useCallback(() => {
     if (!payee.trim()) {
-      toast.error(t(isSetAside ? "expenses.form.nameRequired" : "expenses.form.payeeRequired"));
+      toastError(t(isSetAside ? "expenses.form.nameRequired" : "expenses.form.payeeRequired"));
       return;
     }
     const parsedAmount = parseFloat(amount);
     if (isNaN(parsedAmount) || parsedAmount <= 0) {
-      toast.error(t("expenses.form.invalidAmount"));
+      toastError(t("expenses.form.invalidAmount"));
       return;
     }
     const parsedGoal = goal.trim() ? parseFloat(goal) : undefined;
     if (isSetAside && parsedGoal !== undefined && (isNaN(parsedGoal) || parsedGoal <= 0)) {
-      toast.error(t("expenses.form.invalidGoal"));
+      toastError(t("expenses.form.invalidGoal"));
       return;
     }
 
     const parsedDueDay = hasDueDay ? Number(dueDay.trim()) : undefined;
     if (parsedDueDay !== undefined && !(Number.isInteger(parsedDueDay) && parsedDueDay >= 1 && parsedDueDay <= 31)) {
-      toast.error(t("expenses.form.dueDayRange"));
+      toastError(t("expenses.form.dueDayRange"));
       return;
     }
 
@@ -213,6 +214,7 @@ function ExpenseForm() {
     } else {
       addExpense(data);
     }
+    hapticSuccess();
     router.back();
   }, [
     isSetAside,

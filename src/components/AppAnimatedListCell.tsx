@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import type { LayoutChangeEvent, StyleProp, ViewStyle } from "react-native";
-import Animated, { FadeIn, FadeOut, LinearTransition } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
+import { LAYOUT_SPRING, ROW_ENTERING, ROW_EXITING } from "@/constants/motion";
 
 interface Props {
   children: ReactNode;
@@ -17,15 +18,15 @@ export const ListCellAnimationContext = createContext(true);
  * `CellRendererComponent` for a FlatList or SectionList: when rows are added, removed or
  * reordered, the rest slide to their new place, new rows fade in and removed ones fade out.
  * Wrap the list in `<LayoutAnimationConfig skipEntering>` so the first render does not fade in.
- * Reduce Motion skips all three (Reanimated's default `ReduceMotion.System`).
+ * Timings come from `@/constants/motion`. Reduce Motion skips all three (Reanimated's default `ReduceMotion.System`).
  */
 export function AppAnimatedListCell({ children, style, onLayout }: Props) {
   const animated = useContext(ListCellAnimationContext);
   return (
     <Animated.View
-      entering={animated ? FadeIn : undefined}
-      exiting={animated ? FadeOut : undefined}
-      layout={animated ? LinearTransition : undefined}
+      entering={animated ? ROW_ENTERING : undefined}
+      exiting={animated ? ROW_EXITING : undefined}
+      layout={animated ? LAYOUT_SPRING : undefined}
       style={style}
       onLayout={onLayout}
     >

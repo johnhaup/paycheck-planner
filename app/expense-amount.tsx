@@ -1,12 +1,13 @@
 import { useCallback, useState } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { toast } from "sonner-native";
 import { useStore } from "@/store";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { AmountSheet } from "@/components/AmountSheet";
 import { parseLocalDate } from "@/utils/payDates";
 import { formatShortDate } from "@/utils/dates";
+import { toastError } from "@/utils/toastError";
+import { hapticSuccess } from "@/utils/haptics";
 
 export default function ExpenseAmountScreen() {
   const router = useRouter();
@@ -32,12 +33,13 @@ export default function ExpenseAmountScreen() {
   const handleSave = useCallback(() => {
     const parsed = parseFloat(amount);
     if (isNaN(parsed) || parsed < 0) {
-      toast.error(t("expenses.form.invalidAmount"));
+      toastError(t("expenses.form.invalidAmount"));
       return;
     }
     // Linked bills have no assignment until something on this paycheck is changed
     const id = assignment?.id || assignExpense(expenseId, payDate, sourceId);
     setAssignmentAmount(id, parsed === expense?.amount ? undefined : parsed);
+    hapticSuccess();
     router.back();
   }, [amount, assignment, assignExpense, expenseId, payDate, sourceId, setAssignmentAmount, expense, router, t]);
 
@@ -45,6 +47,7 @@ export default function ExpenseAmountScreen() {
     if (assignment) {
       setAssignmentAmount(assignment.id, undefined);
     }
+    hapticSuccess();
     router.back();
   }, [assignment, setAssignmentAmount, router]);
 

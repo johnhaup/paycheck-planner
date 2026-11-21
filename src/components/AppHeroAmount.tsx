@@ -2,7 +2,8 @@ import { useMemo } from "react";
 import { StyleSheet } from "react-native";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
-import { useAnimatedNumber } from "@/hooks/useAnimatedNumber";
+import Animated from "react-native-reanimated";
+import { useCountUp } from "@/hooks/useCountUp";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 
@@ -15,8 +16,10 @@ interface Props {
 
 export function AppHeroAmount({ amount }: Props) {
   const colors = useColors();
-  const { split } = useMoneyFormat();
-  const shown = useAnimatedNumber(amount);
+  const { split, format } = useMoneyFormat();
+  const targets = useMemo(() => [amount], [amount]);
+  const { values, style } = useCountUp(targets);
+  const shown = values[0];
   const { whole, cents } = split(shown);
   const isNegative = shown < 0;
 
@@ -26,18 +29,22 @@ export function AppHeroAmount({ amount }: Props) {
   );
 
   return (
-    <AppText
-      variant="hero"
-      style={wholeStyle}
-      numberOfLines={1}
-      adjustsFontSizeToFit
-      minimumFontScale={MIN_FONT_SCALE}
-    >
-      {whole}
-      <AppText variant="hero" color="textSecondary" style={styles.cents}>
-        {cents}
+    <Animated.View style={style}>
+      <AppText
+        variant="hero"
+        style={wholeStyle}
+        numberOfLines={1}
+        adjustsFontSizeToFit
+        minimumFontScale={MIN_FONT_SCALE}
+        // VoiceOver and Maestro read the amount it is counting to
+        accessibilityLabel={format(amount)}
+      >
+        {whole}
+        <AppText variant="hero" color="textSecondary" style={styles.cents}>
+          {cents}
+        </AppText>
       </AppText>
-    </AppText>
+    </Animated.View>
   );
 }
 

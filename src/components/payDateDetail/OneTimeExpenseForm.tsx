@@ -1,6 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
 import { View, StyleSheet } from "react-native";
-import { toast } from "sonner-native";
 import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
@@ -8,6 +7,8 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppButton } from "@/components/AppButton";
 import { AppInput } from "@/components/AppInput";
+import { toastError } from "@/utils/toastError";
+import { hapticSuccess } from "@/utils/haptics";
 
 interface Props {
   payDate: string;
@@ -35,12 +36,12 @@ export function OneTimeExpenseForm({ payDate, sourceId }: Props) {
 
   const handleAdd = useCallback(() => {
     if (!payee.trim()) {
-      toast.error(t("expenses.form.payeeRequired"));
+      toastError(t("expenses.form.payeeRequired"));
       return;
     }
     const parsed = parseFloat(amount);
     if (isNaN(parsed) || parsed <= 0) {
-      toast.error(t("expenses.form.invalidAmount"));
+      toastError(t("expenses.form.invalidAmount"));
       return;
     }
     const expenseId = addExpense({
@@ -50,6 +51,7 @@ export function OneTimeExpenseForm({ payDate, sourceId }: Props) {
       dueDate: payDate,
     });
     assignExpense(expenseId, payDate, sourceId);
+    hapticSuccess();
     handleCancel();
   }, [payee, amount, addExpense, assignExpense, payDate, sourceId, handleCancel, t]);
 
