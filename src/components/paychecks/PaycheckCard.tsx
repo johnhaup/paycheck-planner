@@ -26,6 +26,11 @@ const AMOUNT_MIN_FONT_SCALE = 0.5;
 
 interface Props {
   item: PaycheckItem;
+  /**
+   * Set on a regular-width screen, where a tap shows the paycheck beside the list: the card of the
+   * one on show is outlined. Every card there keeps the outline's room so picking one moves nothing.
+   */
+  selected?: boolean;
   onPress: (payDate: string, sourceId: string) => void;
   onTogglePaid: TogglePaidHandler;
   onLinkTap: LinkTapHandler;
@@ -37,6 +42,7 @@ interface Props {
 
 export function PaycheckCard({
   item,
+  selected,
   onPress,
   onTogglePaid,
   onLinkTap,
@@ -81,6 +87,16 @@ export function PaycheckCard({
     [stacked, colors]
   );
 
+  const cardStyle = useMemo(
+    () =>
+      selected === undefined
+        ? styles.card
+        : [styles.card, styles.selectable, { borderColor: selected ? colors.primary : "transparent" }],
+    [selected, colors]
+  );
+
+  const accessibilityState = useMemo(() => (selected === undefined ? undefined : { selected }), [selected]);
+
   const billCount = item.expenses.length;
   const canMoveBill = item.remaining < 0 && item.paidCount < billCount;
   const weekday = formatWeekday(item.date);
@@ -90,11 +106,12 @@ export function PaycheckCard({
       : `${weekday} · ${t("paychecks.paidProgress", { paid: item.paidCount, total: billCount })}`;
 
   return (
-    <AppCard style={styles.card}>
+    <AppCard style={cardStyle}>
       <Pressable
         style={headerStyle}
         onPress={handlePress}
         accessibilityRole="button"
+        accessibilityState={accessibilityState}
         accessibilityHint={t("paychecks.opensPaycheck")}
       >
         <AppDateTile date={item.date} />
@@ -168,6 +185,9 @@ export function PaycheckCard({
 const styles = StyleSheet.create({
   card: {
     marginBottom: MEASUREMENTS.spacing.base,
+  },
+  selectable: {
+    borderWidth: 2,
   },
   header: {
     flexDirection: "row",

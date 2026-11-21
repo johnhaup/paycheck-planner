@@ -19,6 +19,8 @@ import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { DIM_ON_PRESS } from "@/constants/press";
 import { useGutters } from "@/hooks/useGutters";
+import { useColumns } from "@/hooks/useColumns";
+import { COLUMN_GAP } from "@/constants/layout";
 import { LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { AppText } from "@/components/AppText";
 import { AppEmptyState } from "@/components/AppEmptyState";
@@ -43,15 +45,18 @@ import {
   useListSwap,
 } from "@/components/AppAnimatedListCell";
 
-function keyExtractor(item: ExpenseListItem) {
-  return item.expense.id;
+/**
+ * One line of the list: a bill, or on a regular-width screen (iPhone Duo unfolded) two side by side.
+ * A section's bills run down the first column and then down the second.
+ */
+type ExpenseLine = ExpenseListItem[];
+type LineSection = Omit<ExpenseSection, "data"> & { data: ExpenseLine[] };
+
+function keyExtractor(line: ExpenseLine) {
+  return line[0].expense.id;
 }
 
-function renderSectionHeader({
-  section,
-}: {
-  section: SectionListData<ExpenseListItem, ExpenseSection>;
-}) {
+function renderSectionHeader({ section }: { section: SectionListData<ExpenseLine, LineSection> }) {
   return <AppSectionHeader title={section.title} trailing={section.total} />;
 }
 
@@ -90,30 +95,51 @@ export default function ExpensesScreen() {
     [expenses, deleteExpense, t]
   );
 
+  const columns = useColumns();
+  const startColumnStyle = useMemo(() => (columns ? { width: columns.startWidth } : undefined), [columns]);
+  // Two bills on one line can differ in height (a schedule that wraps); the shorter one's cell is
+  // card all the way down, so its column still reads as one card
+  const cellStyle = useMemo(() => [styles.cell, { backgroundColor: colors.cardBackground }], [colors]);
+
   const renderItem = useCallback(
     ({
-      item,
+      item: line,
       index,
       section,
     }: {
-      item: ExpenseListItem;
+      item: ExpenseLine;
       index: number;
-      section: SectionListData<ExpenseListItem, ExpenseSection>;
-    }) => (
-      <ExpenseRow
-        expense={item.expense}
-        meta={item.meta}
-        cadence={item.cadence}
-        tintIndex={item.tintIndex}
-        goalProgress={item.goalProgress}
-        isFirst={index === 0}
-        isLast={index === section.data.length - 1}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-        onOpenLink={openPaymentLink}
-      />
-    ),
-    [handleEdit, handleDelete]
+      section: SectionListData<ExpenseLine, LineSection>;
+    }) => {
+      const renderRow = (item: ExpenseListItem, isLast: boolean) => (
+        <ExpenseRow
+          expense={item.expense}
+          meta={item.meta}
+          cadence={item.cadence}
+          tintIndex={item.tintIndex}
+          goalProgress={item.goalProgress}
+          isFirst={index === 0}
+          isLast={isLast}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          onOpenLink={openPaymentLink}
+        />
+      );
+      const isLastLine = index === section.data.length - 1;
+      if (!startColumnStyle) return renderRow(line[0], isLastLine);
+      // Each column is its own card; the second ends a line early when the bills are an odd number
+      const isLastEnd = !section.data[index + 1]?.[1];
+      const corners = (isLast: boolean) => [index === 0 ? styles.firstCell : undefined, isLast ? styles.lastCell : undefined];
+      return (
+        <View style={styles.line}>
+          <View style={[cellStyle, startColumnStyle, corners(isLastLine)]}>{renderRow(line[0], isLastLine)}</View>
+          {line[1] ? (
+            <View style={[cellStyle, styles.endColumn, corners(isLastEnd)]}>{renderRow(line[1], isLastEnd)}</View>
+          ) : null}
+        </View>
+      );
+    },
+    [handleEdit, handleDelete, startColumnStyle, cellStyle]
   );
 
   const handleSearch = useCallback(
@@ -215,11 +241,22 @@ export default function ExpensesScreen() {
     [t]
   );
 
+  const wide = columns !== undefined;
   const sections = useMemo(
-    () => buildExpenseSections(visibleExpenses, incomeSources, assignments, filter, sort, formatMoney),
+    () =>
+      buildExpenseSections(visibleExpenses, incomeSources, assignments, filter, sort, formatMoney).map(
+        (section): LineSection => {
+          const { data } = section;
+          const lines = wide ? Math.ceil(data.length / 2) : data.length;
+          return {
+            ...section,
+            data: data.slice(0, lines).map((item, i) => (wide && data[lines + i] ? [item, data[lines + i]] : [item])),
+          };
+        }
+      ),
     // t changes with the language, which changes the section labels
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [visibleExpenses, incomeSources, assignments, filter, sort, formatMoney, t]
+    [visibleExpenses, incomeSources, assignments, filter, sort, formatMoney, wide, t]
   );
 
   const summary = useMemo(
@@ -229,17 +266,19 @@ export default function ExpensesScreen() {
 
   const listHeader = useMemo(
     () => (
-      <View style={styles.header}>
-        <AppText variant="meta">
+      <View style={startColumnStyle ? styles.headerWide : styles.header}>
+        <AppText variant="meta" style={startColumnStyle}>
           {t("expenses.monthlySummary", {
             amount: formatMoney(summary.monthlyTotal),
             count: summary.recurringCount,
           })}
         </AppText>
-        <AppSegmentedControl options={filterOptions} value={filter} onChange={handleFilterChange} />
+        <View style={startColumnStyle ? styles.endColumn : undefined}>
+          <AppSegmentedControl options={filterOptions} value={filter} onChange={handleFilterChange} />
+        </View>
       </View>
     ),
-    [summary, filter, filterOptions, handleFilterChange, formatMoney, t]
+    [summary, filter, filterOptions, handleFilterChange, formatMoney, startColumnStyle, t]
   );
 
   const listEmpty = useMemo(
@@ -307,6 +346,30 @@ const styles = StyleSheet.create({
   },
   header: {
     gap: MEASUREMENTS.spacing.base,
+  },
+  // Regular width: the summary in the first column, the filter in the second, clear of the middle
+  headerWide: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: COLUMN_GAP,
+  },
+  line: {
+    flexDirection: "row",
+    gap: COLUMN_GAP,
+  },
+  endColumn: {
+    flex: 1,
+  },
+  cell: {
+    overflow: "hidden",
+  },
+  firstCell: {
+    borderTopLeftRadius: MEASUREMENTS.radius.card,
+    borderTopRightRadius: MEASUREMENTS.radius.card,
+  },
+  lastCell: {
+    borderBottomLeftRadius: MEASUREMENTS.radius.card,
+    borderBottomRightRadius: MEASUREMENTS.radius.card,
   },
   filterEmpty: {
     marginTop: MEASUREMENTS.spacing.section,

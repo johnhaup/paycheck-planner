@@ -7,6 +7,7 @@ import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { useGutters } from "@/hooks/useGutters";
+import { useColumns } from "@/hooks/useColumns";
 import { LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { AppText } from "@/components/AppText";
 import { AppCard } from "@/components/AppCard";
@@ -90,10 +91,26 @@ export default function IncomeScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [incomeSources, formatWholeMoney, t]);
 
+  // Regular width (iPhone Duo unfolded): the totals in the first column, the sources in the second.
+  // The list's content keeps to the second column and the tiles are placed back into the first,
+  // so a fold changes styles only and the list stays as it is.
+  const gutters = useGutters();
+  const emptyGutters = useGutters(0);
+  const columns = useColumns();
+  const tilesStyle = useMemo(
+    () => [
+      stacked ? styles.tilesStacked : styles.tiles,
+      columns
+        ? [styles.tilesWide, { start: gutters.paddingLeft - columns.pastMiddle, width: columns.startWidth }]
+        : undefined,
+    ],
+    [stacked, columns, gutters]
+  );
+
   const listHeader = useMemo(
     () => (
       <View>
-        <View style={stacked ? styles.tilesStacked : styles.tiles}>
+        <View style={tilesStyle}>
           <AppCard style={stacked ? styles.tileStacked : styles.tile}>
             <AppText variant="meta">{t("income.perMonth")}</AppText>
             <AppText
@@ -120,7 +137,7 @@ export default function IncomeScreen() {
         <AppSectionHeader title={t("income.sources")} />
       </View>
     ),
-    [summary, t, stacked]
+    [summary, t, stacked, tilesStyle]
   );
 
   const listFooter = useMemo(
@@ -145,14 +162,17 @@ export default function IncomeScreen() {
     [handleAdd, t]
   );
 
-  const gutters = useGutters();
-  const emptyGutters = useGutters(0);
   const contentStyle = useMemo(
     () =>
       hasSources
-        ? [styles.listContent, gutters, LARGE_TITLE_LIST_CONTENT]
+        ? [
+            styles.listContent,
+            gutters,
+            columns ? { paddingLeft: columns.pastMiddle } : undefined,
+            LARGE_TITLE_LIST_CONTENT,
+          ]
         : [styles.emptyContent, emptyGutters, LARGE_TITLE_LIST_CONTENT],
-    [hasSources, gutters, emptyGutters]
+    [hasSources, gutters, emptyGutters, columns]
   );
 
   // The list is the screen's root view so iOS collapses the large title on scroll
@@ -193,6 +213,11 @@ const styles = StyleSheet.create({
   // At accessibility text sizes each tile takes the full width, one above the other
   tilesStacked: {
     gap: MEASUREMENTS.spacing.base,
+  },
+  // Level with the sources card: below the section title's margins and its line of text
+  tilesWide: {
+    position: "absolute",
+    top: MEASUREMENTS.spacing.xxl + MEASUREMENTS.spacing.md + 2 + 17,
   },
   tile: {
     flex: 1,

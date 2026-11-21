@@ -7,8 +7,16 @@ import { openPaymentLink } from "@/utils/links";
 import { useProGate } from "@/hooks/useProGate";
 import type { PaycheckItem } from "@/components/paychecks/types";
 
-/** A FlatList `renderItem` for interactive paycheck cards. */
-export function usePaycheckCardRenderer() {
+interface Selection {
+  payDate: string;
+  sourceId: string;
+}
+
+/**
+ * A FlatList `renderItem` for interactive paycheck cards. With `selection` (a regular-width screen)
+ * a tap on a card picks its paycheck through `onSelect` instead of opening the pay date screen.
+ */
+export function usePaycheckCardRenderer(selection?: Selection, onSelect?: (payDate: string, sourceId: string) => void) {
   const router = useRouter();
   const assignments = useStore((s) => s.assignments);
   const assignExpense = useStore((s) => s.assignExpense);
@@ -40,9 +48,13 @@ export function usePaycheckCardRenderer() {
 
   const handlePressPaycheck = useCallback(
     (payDate: string, sourceId: string) => {
-      router.push({ pathname: "/pay-date-detail", params: { payDate, sourceId } });
+      if (onSelect) {
+        onSelect(payDate, sourceId);
+      } else {
+        router.push({ pathname: "/pay-date-detail", params: { payDate, sourceId } });
+      }
     },
-    [router]
+    [router, onSelect]
   );
 
   // Changing one paycheck's bill or pay amount is Pro; amounts already changed still show
@@ -80,6 +92,7 @@ export function usePaycheckCardRenderer() {
     ({ item }: { item: PaycheckItem }) => (
       <PaycheckCard
         item={item}
+        selected={selection && item.payDate === selection.payDate && item.sourceId === selection.sourceId}
         onPress={handlePressPaycheck}
         onTogglePaid={handleTogglePaid}
         onLinkTap={handleLinkTap}
@@ -90,6 +103,7 @@ export function usePaycheckCardRenderer() {
       />
     ),
     [
+      selection,
       handlePressPaycheck,
       handleTogglePaid,
       handleLinkTap,
