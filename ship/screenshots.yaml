@@ -84,8 +84,12 @@ env:
 - takeScreenshot: expenses
 
 - tapOn: "Income"
+# On the iPhone Duo's cover a tap straight after the tab change is dropped: let the tab settle first
+- extendedWaitUntil:
+    visible: "Next payday"
+    timeout: 5000
+- waitForAnimationToEnd
 # The form shows every pay schedule; the row is one element (tile letter, name, schedule, amount)
-# Again if nothing opened: on the iPhone Duo's cover a tap straight after the tab change can be dropped
 - tapOn:
     text: ".*Mesa Health.*per check"
     retryTapIfNoChange: true
@@ -102,6 +106,11 @@ env:
     visible: ".*is short by.*"
     timeout: 15000
 - tapOn: ".*is short by.*"
+- waitForAnimationToEnd
+# On the iPhone Duo's cover the card's Move a bill row is below the fold after the scroll
+- scrollUntilVisible:
+    element: "Move a bill"
+    direction: DOWN
 - tapOn: "Move a bill"
 - extendedWaitUntil:
     visible: "To paycheck"

@@ -154,7 +154,7 @@ function capture() {
     await tap(/^Change Internet amount for this paycheck$/);
     for (const key of ["delete", "delete", "delete", "delete", "delete", "8", "4", ".", "9", "9"]) await press(key);
     await shoot("amount");
-    await tap(/^Save$/, "Button");
+    await tap(/^Save$/);
 
     await tap(/^[A-Z]{3}, [0-9]+, Mesa Health/);
     await shoot("detail");
