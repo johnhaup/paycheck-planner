@@ -1,14 +1,30 @@
-# Store screenshots. iOS: bun store:screenshots. Google Play: add --android to capture and frame.
-# Needs a build with EXPO_PUBLIC_STORE_DEMO=1 so paycheck-planner://demo loads sample data with Pro on (pass --build once).
+# Store screenshots. iOS: bun store:screenshots, then bun store:screenshots:sizes for the 6.5" set. Google Play:
+# add --android. Needs a build with EXPO_PUBLIC_STORE_DEMO=1, where paycheck-planner://demo loads the store
+# sample budget with Pro on (pass --build once).
+# On a dev build instead: start a Metro with that flag (EXPO_PUBLIC_STORE_DEMO=1 bunx expo start --dev-client
+# --port 8096), set the status bar (xcrun simctl status_bar <udid> override --time 9:41 ...), run
+#   maestro --udid <udid> test -e METRO_URL=http://127.0.0.1:8096 ship/screenshots.yaml --test-output-dir <tmp>
+# and copy <tmp>/**/takeScreenshot/*.png to ship/screenshots/raw. A Release build ignores METRO_URL and the
+# -EXDevMenu* arguments.
 appId: ${APP_ID}
+env:
+  APP_ID: ${APP_ID || "com.johnhaup.paycheckplanner"}
+  METRO_URL: ${METRO_URL || ""}
 ---
 - launchApp:
+    appId: ${APP_ID}
     clearState: true
+    arguments:
+      "--initialUrl": ${METRO_URL}
+      "-EXDevMenuShowsAtLaunch": "NO"
+      "-EXDevMenuShowFloatingActionButton": "NO"
+      "-EXDevMenuIsOnboardingFinished": "YES"
 # Android drops a link that arrives before the first screen is up
 - extendedWaitUntil:
-    visible: "Paychecks"
-    timeout: 30000
+    visible: "Try with sample data"
+    timeout: 120000
 - openLink: paycheck-planner://demo
+# iOS asks before a link opens the app
 - tapOn:
     text: "Open"
     optional: true
@@ -18,27 +34,9 @@ appId: ${APP_ID}
 - waitForAnimationToEnd
 - takeScreenshot: paychecks
 
-- tapOn: "Expenses"
-- extendedWaitUntil:
-    visible: ".*Rent.*"
-    timeout: 5000
-- waitForAnimationToEnd
-- takeScreenshot: expenses
-
-- tapOn: "Income"
-- extendedWaitUntil:
-    visible: ".*Per month.*"
-    timeout: 5000
-- waitForAnimationToEnd
-- takeScreenshot: income
-
-- tapOn: "Paychecks"
-- scrollUntilVisible:
-    element: ".*Mesa Health.*"
-    centerElement: true
 # The card's own label; the pay amount inside it is a second button (per-paycheck amount)
 - tapOn:
-    text: "[A-Z]{3}, [0-9]+, Mesa Health.*"
+    text: "[A-Z]{3}, [0-9]+, Brightline Co.*"
     index: 0
 - extendedWaitUntil:
     visible: "This paycheck"
@@ -46,9 +44,69 @@ appId: ${APP_ID}
 - waitForAnimationToEnd
 - takeScreenshot: detail
 
-- tapOn: "Change Electric amount for this paycheck"
+- tapOn: "Change Internet amount for this paycheck"
 - extendedWaitUntil:
     visible: ".*paycheck only"
     timeout: 5000
+- eraseText
+- inputText: "84.99"
 - waitForAnimationToEnd
 - takeScreenshot: amount
+- tapOn: "Save"
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - tapOn: "Back"
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - back
+
+# Set-asides lead the list, each with its savings goal
+- tapOn: "Expenses"
+- extendedWaitUntil:
+    visible: ".*Emergency fund.*"
+    timeout: 5000
+- waitForAnimationToEnd
+- takeScreenshot: goals
+
+# Slowly, so the list stops where the finger does: the first linked bills under the bar, the last bill above the tabs
+- swipe:
+    start: 50%, 70%
+    end: 50%, 26%
+    duration: 2000
+# Twice: the scroll indicator fades a moment after the list stops
+- waitForAnimationToEnd
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: expenses
+
+- tapOn: "Income"
+# The form shows every pay schedule; the row is one element (tile letter, name, schedule, amount)
+- tapOn: ".*Mesa Health.*per check"
+- extendedWaitUntil:
+    visible: "Adjust to workday"
+    timeout: 5000
+- waitForAnimationToEnd
+- takeScreenshot: income
+- tapOn: "Close"
+
+# A surprise car repair leaves the next Mesa Health paycheck short
+- openLink: paycheck-planner://demo?short=1
+- extendedWaitUntil:
+    visible: ".*is short by.*"
+    timeout: 15000
+- tapOn: ".*is short by.*"
+- tapOn: "Move a bill"
+- extendedWaitUntil:
+    visible: "To paycheck"
+    timeout: 5000
+- tapOn: "Car repair · .*"
+# The Brightline paycheck after the next one
+- tapOn:
+    text: ".* · Brightline Co\\."
+    index: 1
+- waitForAnimationToEnd
+- takeScreenshot: move

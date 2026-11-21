@@ -54,10 +54,10 @@
     }
   ],
   "screenshots": {
-    "simulator": "iPhone 17 Pro Max",
+    "simulator": "iPhone 17 Pro",
     "flow": "ship/screenshots.yaml",
     "dir": "ship/screenshots",
-    "bezel": "~/Resources/images/bezels/iphone15/iPhone 15 Pro Max/iPhone 15 Pro Max - Black Titanium - Portrait.png",
+    "bezel": "ship/iPhone 17 Pro - Deep Blue - Portrait.png",
     "poster": {
       "raw": "paychecks",
       "icon": "assets/icon.png",
@@ -69,17 +69,33 @@
         "raw": "paychecks",
         "title": [
           "Know what’s left",
-          "after every payday"
+          "every payday"
         ],
         "subtitle": "Each paycheck, its bills, and what remains."
       },
       {
+        "raw": "detail",
+        "title": [
+          "Check off bills",
+          "as you pay"
+        ],
+        "subtitle": "One tap per bill, with pay links built in."
+      },
+      {
         "raw": "expenses",
         "title": [
-          "Bills land on",
+          "Every bill on",
           "the right paycheck"
         ],
         "subtitle": "Link a bill once and it shows up on payday."
+      },
+      {
+        "raw": "move",
+        "title": [
+          "Short this payday?",
+          "Move a bill"
+        ],
+        "subtitle": "See a tight paycheck coming and fix it early."
       },
       {
         "raw": "amount",
@@ -90,12 +106,12 @@
         "subtitle": "Change it for just one paycheck."
       },
       {
-        "raw": "detail",
+        "raw": "goals",
         "title": [
-          "Plan any paycheck",
-          "in a tap"
+          "Save toward",
+          "your goals"
         ],
-        "subtitle": "Add bills, check them off, see what’s left."
+        "subtitle": "Set money aside from each paycheck."
       },
       {
         "raw": "income",

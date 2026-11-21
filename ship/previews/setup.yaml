@@ -1,0 +1,25 @@
+# Before each App Preview recording (scripts/store-previews.mjs runs this off camera): a fresh install with the
+# store sample budget. DEMO_LINK is paycheck-planner://demo, or ...?short=1 for the short paycheck.
+appId: com.johnhaup.paycheckplanner
+env:
+  METRO_URL: ${METRO_URL || ""}
+---
+- launchApp:
+    clearState: true
+    arguments:
+      "--initialUrl": ${METRO_URL}
+      "-EXDevMenuShowsAtLaunch": "NO"
+      "-EXDevMenuShowFloatingActionButton": "NO"
+      "-EXDevMenuIsOnboardingFinished": "YES"
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 120000
+- openLink: ${DEMO_LINK}
+# iOS asks before a link opens the app
+- tapOn:
+    text: "Open"
+    optional: true
+- extendedWaitUntil:
+    visible: ".*Brightline Co\\..*"
+    timeout: 15000
+- waitForAnimationToEnd

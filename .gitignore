@@ -45,6 +45,8 @@ ship/screenshots/maestro-debug/
 ship/screenshots/android/maestro-debug/
 ship/screenshots/framed/*
 !ship/screenshots/framed/en-US/
+ship/screenshots/framed-6.5/*
+!ship/screenshots/framed-6.5/en-US/
 ship/screenshots/duo/*/framed/*
 !ship/screenshots/duo/*/framed/en-US/
 

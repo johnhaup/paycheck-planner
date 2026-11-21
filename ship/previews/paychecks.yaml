@@ -1,0 +1,49 @@
+# App Preview 1, the core job: every paycheck with its bills, check bills off, look a month ahead.
+# Recorded by scripts/store-previews.mjs after setup.yaml; the still Paychecks screen at the start is the poster.
+# No pauses here: the script cuts every still stretch between two steps to the same short hold.
+appId: com.johnhaup.paycheckplanner
+env:
+  NEXT_MONTH: ${["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][(new Date().getMonth() + 1) % 12]}
+---
+# Down the month's paychecks and back
+- swipe:
+    start: 50%, 72%
+    end: 50%, 38%
+    duration: 1400
+- swipe:
+    start: 50%, 38%
+    end: 50%, 80%
+    duration: 1200
+
+# Check bills off on today's paycheck
+- tapOn:
+    text: "[A-Z]{3}, [0-9]+, Brightline Co.*"
+    index: 0
+- extendedWaitUntil:
+    visible: "This paycheck"
+    timeout: 5000
+# Each check is waited for, so it is on screen before the next tap
+- tapOn: "Mark Internet paid"
+- extendedWaitUntil:
+    visible: "Mark Internet unpaid"
+    timeout: 15000
+- tapOn: "Mark Car Registration paid"
+- extendedWaitUntil:
+    visible: "Mark Car Registration unpaid"
+    timeout: 15000
+- tapOn: "Mark Emergency fund set aside"
+- extendedWaitUntil:
+    visible: "Mark Emergency fund unpaid"
+    timeout: 15000
+- tapOn: "Back"
+
+# The month ahead: the chart's next column. The list follows it, so wait for that before scrolling on.
+- tapOn: ${NEXT_MONTH.slice(0, 3) + ".*"}
+- extendedWaitUntil:
+    visible: ${NEXT_MONTH + " · left over"}
+    timeout: 15000
+- waitForAnimationToEnd
+- swipe:
+    start: 50%, 72%
+    end: 50%, 40%
+    duration: 1400

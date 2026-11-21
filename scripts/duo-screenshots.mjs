@@ -150,7 +150,9 @@ async function frame() {
   try {
     for (const [screen, size] of Object.entries(SCREENS)) {
       // The framer's poster is laid out for a tall phone and runs off these pages
-      const duo = { ...screenshots, dir: dir(screen), size: [...size], bezel: drawBezel(size, tmp), poster: undefined };
+      // Only the scenes capture() shoots here; the iPhone set has more
+      const shots = screenshots.shots.filter((shot) => fs.existsSync(dir(screen, "raw", `${shot.raw}.png`)));
+      const duo = { ...screenshots, shots, dir: dir(screen), size: [...size], bezel: drawBezel(size, tmp), poster: undefined };
       await frameScreenshots(config, duo, { only });
     }
   } finally {
