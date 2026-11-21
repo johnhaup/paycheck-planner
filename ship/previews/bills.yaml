@@ -1,0 +1,21 @@
+# App Preview 2: a paycheck that comes up short, fixed by moving a bill; then the bills and savings goals behind
+# the plan. Recorded by scripts/store-previews.mjs after setup.yaml with the short paycheck loaded.
+appId: com.johnhaup.paycheckplanner
+---
+- tapOn: ".*is short by.*"
+- tapOn: "Move a bill"
+- extendedWaitUntil:
+    visible: "To paycheck"
+    timeout: 5000
+- tapOn: "Car repair · .*"
+# The Brightline paycheck after the next one
+- tapOn:
+    text: ".* · Brightline Co\\."
+    index: 1
+- tapOn: "Move"
+
+- tapOn: "Expenses"
+- swipe:
+    start: 50%, 70%
+    end: 50%, 26%
+    duration: 3500

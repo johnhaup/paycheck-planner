@@ -60,7 +60,9 @@
     "store:screenshots:capture": "expo-local-ship screenshots capture",
     "store:screenshots:frame": "expo-local-ship screenshots frame",
     "store:screenshots:upload": "expo-local-ship screenshots upload",
+    "store:screenshots:sizes": "bun scripts/store-screenshot-sizes.mjs",
     "store:screenshots:duo": "bun scripts/duo-screenshots.mjs",
+    "store:previews": "bun scripts/store-previews.mjs",
     "store:review": "expo-local-ship review --auto-release",
     "ship:ios": "expo-local-ship ios",
     "ship:android": "expo-local-ship android"

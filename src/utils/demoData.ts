@@ -1,6 +1,7 @@
-import { format, isFriday, nextFriday, startOfDay } from "date-fns";
+import { format, isFriday, nextFriday, startOfDay, subMonths, subWeeks } from "date-fns";
+import type { ExpenseIcon } from "@/constants/expenseIcons";
 import type { Expense, ExpenseAssignment, IncomeSource } from "@/types";
-import { getPaychecks } from "@/utils/payDates";
+import { getPaychecks, parseLocalDate } from "@/utils/payDates";
 import { t } from "@/localization/i18n";
 
 const ISO_DATE = "yyyy-MM-dd";
@@ -68,6 +69,70 @@ export function buildDemoData(today: Date): DemoData {
       { id: "demo-a2", expenseId: "demo-car", payDate: brightlineDate, employerId: brightline.id, paid: true },
       { id: "demo-a3", expenseId: "demo-registration", payDate: brightlineDate, employerId: brightline.id },
       { id: "demo-a4", expenseId: "demo-electric", payDate: mesaDate, employerId: mesa.id, amount: 112.85 },
+    ],
+  };
+}
+
+const STORE_ICONS: Record<string, ExpenseIcon> = {
+  "demo-rent": "home",
+  "demo-groceries": "cart",
+  "demo-car": "car",
+  "demo-electric": "flash",
+  "demo-internet": "wifi",
+  "demo-phone": "phone-portrait",
+  "demo-streaming": "tv",
+  "demo-registration": "card",
+  "demo-savings": "shield-checkmark",
+};
+
+/**
+ * The sample budget dressed up for the store screenshots and previews (`paycheck-planner://demo`, store-demo
+ * builds only): icons on the bills, and two set-asides with savings goals part-way there. The set-aside names
+ * are English only, as the screenshots are. `short` adds a surprise car repair that leaves the next Mesa Health
+ * paycheck short, for the "Move a bill" shot.
+ */
+export function buildStoreDemoData(today: Date, short = false): DemoData {
+  const demo = buildDemoData(today);
+  const [brightline, mesa] = demo.incomeSources;
+  const firstBrightline = parseLocalDate(brightline.firstPayDate);
+  const mesaDate = format(getPaychecks(mesa, startOfDay(today), 1)[0].date, ISO_DATE);
+  const saved = (expenseId: string, source: IncomeSource, dates: Date[]): ExpenseAssignment[] =>
+    dates.map((date, i) => ({
+      id: `${expenseId}-saved-${i}`,
+      expenseId,
+      payDate: format(date, ISO_DATE),
+      employerId: source.id,
+      paid: true,
+    }));
+
+  return {
+    ...demo,
+    expenses: [
+      ...demo.expenses.map((expense) => ({
+        ...expense,
+        icon: STORE_ICONS[expense.id],
+        ...(expense.id === "demo-savings" ? { payee: "Emergency fund", kind: "set-aside" as const, goal: 5000 } : {}),
+      })),
+      {
+        id: "demo-vacation",
+        payee: "Vacation",
+        kind: "set-aside",
+        icon: "airplane",
+        amount: 150,
+        goal: 1800,
+        isRecurring: true,
+        incomeSourceId: mesa.id,
+        linkSchedule: "every-paycheck",
+      },
+      ...(short
+        ? [{ id: "demo-repair", payee: "Car repair", icon: "car" as const, amount: 420, isRecurring: false, dueDate: mesaDate }]
+        : []),
+    ],
+    assignments: [
+      ...demo.assignments,
+      ...(short ? [{ id: "demo-a5", expenseId: "demo-repair", payDate: mesaDate, employerId: mesa.id }] : []),
+      ...saved("demo-savings", brightline, Array.from({ length: 13 }, (_, i) => subWeeks(firstBrightline, 2 * (i + 1)))),
+      ...saved("demo-vacation", mesa, getPaychecks(mesa, subMonths(startOfDay(today), 4), 7).map((p) => p.date)),
     ],
   };
 }
