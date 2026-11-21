@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, type ReactNode } from "react";
 import { Pressable, View, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
@@ -24,6 +24,8 @@ interface Props {
   canMoveBill: boolean;
   onEditPayAmount: () => void;
   onMoveBill: () => void;
+  /** A control at the end of the first row, for where the screen has no navigation bar of its own */
+  action?: ReactNode;
 }
 
 export function PayDateSummary({
@@ -35,6 +37,7 @@ export function PayDateSummary({
   canMoveBill,
   onEditPayAmount,
   onMoveBill,
+  action,
 }: Props) {
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
@@ -60,6 +63,7 @@ export function PayDateSummary({
           )}
           <AppText variant="meta">{formatLongDate(date)}</AppText>
         </View>
+        {action}
       </View>
       <AppText variant="meta" style={styles.heroLabel}>{t("payDate.leftAfterBills")}</AppText>
       <AppHeroAmount amount={remaining} />

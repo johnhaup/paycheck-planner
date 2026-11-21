@@ -1,0 +1,474 @@
+import { useCallback, useMemo } from "react";
+import {
+  FlatList,
+  Pressable,
+  StyleSheet,
+  useWindowDimensions,
+  type ScrollViewProps,
+  type StyleProp,
+  type ViewStyle,
+} from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
+import { Stack, useRouter } from "expo-router";
+import { useStore } from "@/store";
+import { openPaymentLink } from "@/utils/links";
+import { useThemeStore } from "@/stores/themeStore";
+import { useColors } from "@/hooks/useColors";
+import { useT } from "@/hooks/useLocale";
+import { MEASUREMENTS } from "@/constants/measurements";
+import { dimOnPress } from "@/constants/press";
+import { AppText } from "@/components/AppText";
+import { AppSectionHeader } from "@/components/AppSectionHeader";
+import { PayDateSummary } from "@/components/payDateDetail/PayDateSummary";
+import { PayDateExpenseRow } from "@/components/payDateDetail/PayDateExpenseRow";
+import { OneTimeExpenseForm } from "@/components/payDateDetail/OneTimeExpenseForm";
+import { getPaycheck, isExpenseLinkedToPaycheck } from "@/utils/payDates";
+import { getPayAmount } from "@/utils/paycheckMonths";
+import { hapticSuccess } from "@/utils/haptics";
+import { withUndo } from "@/utils/undo";
+import { useProGate } from "@/hooks/useProGate";
+import type { Expense } from "@/types";
+import { LayoutAnimationConfig } from "react-native-reanimated";
+import { AppAnimatedListCell } from "@/components/AppAnimatedListCell";
+
+type ListItem =
+  | { key: string; type: "header" | "one-time-form" | "empty" }
+  | { key: string; type: "section-title"; title: string; trailing?: string }
+  | {
+      key: string;
+      type: "assigned" | "unassigned";
+      expense: Expense;
+      isFirst: boolean;
+      isLast: boolean;
+    };
+
+function keyExtractor(item: ListItem) {
+  return item.key;
+}
+
+// The inline one-time expense form sits at the bottom of the list, so the
+// list itself has to scroll its inputs clear of the keyboard.
+function renderScrollComponent(props: ScrollViewProps) {
+  return <KeyboardAwareScrollView {...props} bottomOffset={MEASUREMENTS.keyboardOffset} />;
+}
+
+// "Mark all paid" is 33 characters in Malayalam and took two-thirds of the
+// navigation bar, leaving no room for the title. The button gets at most this
+// share of the bar; a longer translation shrinks to fit, then truncates.
+const HEADER_BUTTON_MAX_WIDTH_RATIO = 0.4;
+const HEADER_BUTTON_MIN_FONT_SCALE = 0.7;
+// The navigation bar's button pill has a fixed height and shares the bar with
+// Back and the title, neither of which scales, so its text does not either
+const HEADER_MAX_FONT_MULTIPLIER = 1;
+
+function billsFirst(a: Expense, b: Expense) {
+  return Number(a.kind === "set-aside") - Number(b.kind === "set-aside");
+}
+
+interface Props {
+  payDate: string;
+  sourceId: string;
+  /** Side and bottom padding for where the list is shown */
+  contentContainerStyle: StyleProp<ViewStyle>;
+  /**
+   * Beside the Paychecks list on a regular-width screen instead of on its own screen: there is no
+   * navigation bar of its own to hold "Mark all paid", so it sits in the summary.
+   */
+  embedded?: boolean;
+}
+
+/** One paycheck: what is left, its bills, the bills that could be added, and a one-time expense form. */
+export function PayDateDetail({ payDate, sourceId, contentContainerStyle, embedded }: Props) {
+  const router = useRouter();
+  const colors = useColors();
+  const contentStyle = useMemo(() => [styles.listContent, contentContainerStyle], [contentContainerStyle]);
+  const t = useT();
+  const incomeSources = useStore((s) => s.incomeSources);
+  const expenses = useStore((s) => s.expenses);
+  const assignments = useStore((s) => s.assignments);
+  const paycheckOverrides = useStore((s) => s.paycheckOverrides);
+  const assignExpense = useStore((s) => s.assignExpense);
+  const unassignExpense = useStore((s) => s.unassignExpense);
+  const togglePaid = useStore((s) => s.togglePaid);
+  const markPaid = useStore((s) => s.markPaid);
+  const autoMarkPaid = useThemeStore((s) => s.autoMarkPaidOnLinkTap);
+  // Changing one paycheck's bill or pay amount is Pro
+  const { gate } = useProGate();
+
+  const incomeSource = useMemo(
+    () => incomeSources.find((e) => e.id === sourceId),
+    [incomeSources, sourceId]
+  );
+
+  const paycheckAssignments = useMemo(
+    () => assignments.filter((a) => a.payDate === payDate && a.employerId === sourceId),
+    [assignments, payDate, sourceId]
+  );
+
+  const assignedExpenseIds = useMemo(
+    () =>
+      new Map(
+        paycheckAssignments
+          .filter((a) => !a.skipped)
+          .map((a) => [a.expenseId, { assignmentId: a.id, paid: !!a.paid, amount: a.amount }])
+      ),
+    [paycheckAssignments]
+  );
+
+  // Linked bills moved off this paycheck; they show under Available instead
+  const skippedExpenseIds = useMemo(
+    () => new Set(paycheckAssignments.filter((a) => a.skipped).map((a) => a.expenseId)),
+    [paycheckAssignments]
+  );
+
+  const handleAssign = useCallback(
+    (expenseId: string) => {
+      assignExpense(expenseId, payDate, sourceId);
+    },
+    [assignExpense, payDate, sourceId]
+  );
+
+  const handleUnassign = useCallback(
+    (expenseId: string) => {
+      const entry = assignedExpenseIds.get(expenseId);
+      if (entry) {
+        unassignExpense(entry.assignmentId);
+      }
+    },
+    [unassignExpense, assignedExpenseIds]
+  );
+
+  const handleTogglePaid = useCallback(
+    (expenseId: string) => {
+      const entry = assignedExpenseIds.get(expenseId);
+      if (entry) {
+        togglePaid(entry.assignmentId);
+      } else {
+        const id = assignExpense(expenseId, payDate, sourceId);
+        togglePaid(id);
+      }
+    },
+    [assignedExpenseIds, togglePaid, assignExpense, payDate, sourceId]
+  );
+
+  const handleEditAmount = useMemo(
+    () =>
+      gate((expenseId: string) => {
+        router.push({
+          pathname: "/expense-amount",
+          params: { expenseId, payDate, sourceId },
+        });
+      }),
+    [gate, router, payDate, sourceId]
+  );
+
+  const handleEditPayAmount = useMemo(
+    () =>
+      gate(() => {
+        router.push({
+          pathname: "/paycheck-amount",
+          params: { payDate, sourceId },
+        });
+      }),
+    [gate, router, payDate, sourceId]
+  );
+
+  const handleMoveBill = useCallback(() => {
+    router.push({
+      pathname: "/move-bill",
+      params: { payDate, sourceId },
+    });
+  }, [router, payDate, sourceId]);
+
+  const handleOpenLink = useCallback(
+    (link: string, expenseId: string) => {
+      openPaymentLink(link);
+      if (autoMarkPaid) {
+        const entry = assignedExpenseIds.get(expenseId);
+        if (entry && !entry.paid) {
+          togglePaid(entry.assignmentId);
+        } else if (!entry) {
+          const id = assignExpense(expenseId, payDate, sourceId);
+          togglePaid(id);
+        }
+      }
+    },
+    [autoMarkPaid, assignedExpenseIds, togglePaid, assignExpense, payDate, sourceId]
+  );
+
+  const paycheck = useMemo(
+    () => (incomeSource ? getPaycheck(incomeSource, payDate) : undefined),
+    [incomeSource, payDate]
+  );
+
+  const linkedExpenseIds = useMemo(() => {
+    const ids = new Set<string>();
+    for (const e of expenses) {
+      if (
+        !assignedExpenseIds.has(e.id) &&
+        !skippedExpenseIds.has(e.id) &&
+        isExpenseLinkedToPaycheck(e, sourceId, paycheck, incomeSource)
+      ) {
+        ids.add(e.id);
+      }
+    }
+    return ids;
+  }, [expenses, sourceId, paycheck, incomeSource, assignedExpenseIds, skippedExpenseIds]);
+
+  const assignedExpenses = useMemo(
+    () =>
+      expenses
+        .filter((e) => assignedExpenseIds.has(e.id) || linkedExpenseIds.has(e.id))
+        .sort(billsFirst),
+    [expenses, assignedExpenseIds, linkedExpenseIds]
+  );
+
+  // One-time bills live on a single paycheck; they're moved from the expense form, not added twice
+  const scheduledElsewhereIds = useMemo(() => {
+    const oneTimeIds = new Set(expenses.filter((e) => !e.isRecurring).map((e) => e.id));
+    return new Set(
+      assignments
+        .filter((a) => oneTimeIds.has(a.expenseId) && !(a.payDate === payDate && a.employerId === sourceId))
+        .map((a) => a.expenseId)
+    );
+  }, [expenses, assignments, payDate, sourceId]);
+
+  const unassignedExpenses = useMemo(
+    () =>
+      expenses
+        .filter(
+          (e) =>
+            !assignedExpenseIds.has(e.id) &&
+            !linkedExpenseIds.has(e.id) &&
+            !scheduledElsewhereIds.has(e.id)
+        )
+        .sort(billsFirst),
+    [expenses, assignedExpenseIds, linkedExpenseIds, scheduledElsewhereIds]
+  );
+
+  const totalAssigned = useMemo(
+    () =>
+      assignedExpenses.reduce(
+        (sum, e) => sum + (assignedExpenseIds.get(e.id)?.amount ?? e.amount),
+        0
+      ),
+    [assignedExpenses, assignedExpenseIds]
+  );
+
+  const payAmount = useMemo(
+    () => (incomeSource ? getPayAmount(incomeSource, payDate, paycheckOverrides) : 0),
+    [incomeSource, payDate, paycheckOverrides]
+  );
+
+  const remaining = useMemo(() => payAmount - totalAssigned, [payAmount, totalAssigned]);
+
+  const unpaidExpenseIds = useMemo(
+    () => assignedExpenses.filter((e) => !assignedExpenseIds.get(e.id)?.paid).map((e) => e.id),
+    [assignedExpenses, assignedExpenseIds]
+  );
+
+  const canMoveBill = unpaidExpenseIds.length > 0;
+
+  const handleMarkAllPaid = useCallback(() => {
+    withUndo(t("toasts.markedAllPaid"), () => markPaid(unpaidExpenseIds, payDate, sourceId));
+    hapticSuccess();
+  }, [unpaidExpenseIds, markPaid, payDate, sourceId, t]);
+
+  const { width: windowWidth } = useWindowDimensions();
+  // Embedded, the button shares the summary's first row and shrinks with it
+  const headerButtonTextStyle = useMemo(
+    () => (embedded ? styles.embeddedButtonText : { maxWidth: windowWidth * HEADER_BUTTON_MAX_WIDTH_RATIO }),
+    [embedded, windowWidth]
+  );
+
+  const renderMarkAllPaidButton = useCallback(
+    () => (
+      <Pressable
+        style={embedded ? EMBEDDED_BUTTON_STYLE : HEADER_BUTTON_STYLE}
+        onPress={handleMarkAllPaid}
+        hitSlop={MEASUREMENTS.hitSlop}
+        accessibilityRole="button"
+      >
+        <AppText
+          variant="bodyStrong"
+          color="primaryText"
+          numberOfLines={1}
+          adjustsFontSizeToFit
+          minimumFontScale={HEADER_BUTTON_MIN_FONT_SCALE}
+          maxFontSizeMultiplier={HEADER_MAX_FONT_MULTIPLIER}
+          style={headerButtonTextStyle}
+        >
+          {t("payDate.markAllPaid")}
+        </AppText>
+      </Pressable>
+    ),
+    [embedded, handleMarkAllPaid, headerButtonTextStyle, t]
+  );
+
+  const screenOptions = useMemo(
+    () => ({ headerRight: canMoveBill ? renderMarkAllPaidButton : undefined }),
+    [canMoveBill, renderMarkAllPaidButton]
+  );
+
+  const listData = useMemo(() => {
+    const items: ListItem[] = [
+      { key: "header", type: "header" },
+      {
+        key: "assigned-title",
+        type: "section-title",
+        title: t("payDate.thisPaycheck"),
+        trailing: String(assignedExpenses.length),
+      },
+    ];
+
+    if (assignedExpenses.length === 0) {
+      items.push({ key: "empty", type: "empty" });
+    }
+    assignedExpenses.forEach((expense, i) => {
+      items.push({
+        key: `assigned-${expense.id}`,
+        type: "assigned",
+        expense,
+        isFirst: i === 0,
+        isLast: i === assignedExpenses.length - 1,
+      });
+    });
+
+    if (unassignedExpenses.length > 0) {
+      items.push({ key: "available-title", type: "section-title", title: t("payDate.available") });
+      unassignedExpenses.forEach((expense, i) => {
+        items.push({
+          key: `unassigned-${expense.id}`,
+          type: "unassigned",
+          expense,
+          isFirst: i === 0,
+          isLast: i === unassignedExpenses.length - 1,
+        });
+      });
+    }
+
+    items.push({ key: "one-time-form", type: "one-time-form" });
+
+    return items;
+  }, [assignedExpenses, unassignedExpenses, t]);
+
+  const listStyle = useMemo(
+    () => ({ backgroundColor: colors.screenBackground }),
+    [colors]
+  );
+
+  const renderItem = useCallback(
+    ({ item }: { item: ListItem }) => {
+      switch (item.type) {
+        case "header":
+          return (
+            <PayDateSummary
+              sourceName={incomeSource?.name ?? t("common.unknown")}
+              payDate={payDate}
+              payAmount={payAmount}
+              totalAssigned={totalAssigned}
+              remaining={remaining}
+              canMoveBill={canMoveBill}
+              onEditPayAmount={handleEditPayAmount}
+              onMoveBill={handleMoveBill}
+              action={embedded && canMoveBill ? renderMarkAllPaidButton() : undefined}
+            />
+          );
+        case "one-time-form":
+          return <OneTimeExpenseForm payDate={payDate} sourceId={sourceId} />;
+        case "section-title":
+          return <AppSectionHeader title={item.title} trailing={item.trailing} />;
+        case "empty":
+          return (
+            <AppText variant="meta" style={styles.empty}>
+              {t("payDate.emptyAssigned")}
+            </AppText>
+          );
+        case "assigned":
+        case "unassigned": {
+          const isAssigned = item.type === "assigned";
+          const entry = assignedExpenseIds.get(item.expense.id);
+          return (
+            <PayDateExpenseRow
+              expense={item.expense}
+              payDate={payDate}
+              amount={(isAssigned ? entry?.amount : undefined) ?? item.expense.amount}
+              isAssigned={isAssigned}
+              isPaid={isAssigned && !!entry?.paid}
+              isLinkedPreload={isAssigned && !entry}
+              isFirst={item.isFirst}
+              isLast={item.isLast}
+              onTogglePaid={handleTogglePaid}
+              onOpenLink={handleOpenLink}
+              onAssign={handleAssign}
+              onUnassign={handleUnassign}
+              onEditAmount={handleEditAmount}
+            />
+          );
+        }
+      }
+    },
+    [
+      incomeSource,
+      payDate,
+      sourceId,
+      payAmount,
+      totalAssigned,
+      remaining,
+      canMoveBill,
+      handleEditPayAmount,
+      handleMoveBill,
+      embedded,
+      renderMarkAllPaidButton,
+      assignedExpenseIds,
+      handleAssign,
+      handleUnassign,
+      handleTogglePaid,
+      handleOpenLink,
+      handleEditAmount,
+      t,
+    ]
+  );
+
+  return (
+    <>
+      {embedded ? null : <Stack.Screen options={screenOptions} />}
+      <LayoutAnimationConfig skipEntering skipExiting={embedded}>
+        <FlatList
+          data={listData}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          CellRendererComponent={AppAnimatedListCell}
+          style={listStyle}
+          contentContainerStyle={contentStyle}
+          renderScrollComponent={renderScrollComponent}
+          keyboardShouldPersistTaps="handled"
+        />
+      </LayoutAnimationConfig>
+    </>
+  );
+}
+
+const styles = StyleSheet.create({
+  listContent: {
+    padding: MEASUREMENTS.spacing.gutter,
+    paddingBottom: MEASUREMENTS.spacing.bottom,
+  },
+  empty: {
+    paddingHorizontal: MEASUREMENTS.spacing.xs,
+  },
+  // iOS wraps a custom bar button in a glass pill hugging its content; this gives the text the
+  // same side padding inside it as UIKit's own Back button.
+  headerButton: {
+    paddingHorizontal: MEASUREMENTS.spacing.base,
+  },
+  embeddedButton: {
+    flexShrink: 1,
+  },
+  embeddedButtonText: {
+    flexShrink: 1,
+  },
+});
+
+const HEADER_BUTTON_STYLE = dimOnPress(styles.headerButton);
+const EMBEDDED_BUTTON_STYLE = dimOnPress(styles.embeddedButton);

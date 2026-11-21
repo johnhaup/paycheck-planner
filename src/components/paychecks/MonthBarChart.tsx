@@ -21,6 +21,7 @@ import Animated, {
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { useGutters } from "@/hooks/useGutters";
+import { useColumns } from "@/hooks/useColumns";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
@@ -83,10 +84,13 @@ export function MonthBarChart({ months, selectedKey, currentKey, onSelect, onLoc
   const scrollRef = useRef<ScrollViewInstance>(null);
   const scrollOffset = useRef(0);
   // The chart runs one gutter past the screen's content on both sides: edge to edge, except where the
-  // content keeps clear of iPhone Duo's status column or is centred on its unfolded screen
+  // content keeps clear of iPhone Duo's status column, or keeps to the first column on its unfolded screen
   const { width: frameWidth } = useSafeAreaFrame();
   const { paddingLeft, paddingRight } = useGutters(0);
-  const viewportWidth = frameWidth - paddingLeft - paddingRight;
+  const columns = useColumns(0);
+  const viewportWidth = columns
+    ? columns.startWidth + MEASUREMENTS.spacing.gutter
+    : frameWidth - paddingLeft - paddingRight;
   const selectedIndex = months.findIndex((m) => m.key === selectedKey);
 
   const maxMagnitude = useMemo(
