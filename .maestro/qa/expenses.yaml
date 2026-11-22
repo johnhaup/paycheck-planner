@@ -105,12 +105,43 @@ name: expenses
     visible: "e.g. Electric Company"
     timeout: 15000
 
-# Add a bill
-- tapOn: "e.g. 150.00"
-- inputText: "45"
-- tapOn: "e.g. Electric Company"
+# Add a bill. A refused save shows its error under the field it names, never as a
+# toast over the sheet's title and close button (HAU-700); typing in the field clears it.
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- tapOn: "Add expense"
+- extendedWaitUntil:
+    visible: "Payee name is required."
+    timeout: 10000
+- assertVisible: "Close"
 - inputText: "QA Water"
+- assertNotVisible: "Payee name is required."
 - pressKey: Enter
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- tapOn: "Add expense"
+- extendedWaitUntil:
+    visible: "Enter a valid amount."
+    timeout: 10000
+- takeScreenshot: expenses-form-error
+- inputText: "45"
+- assertNotVisible: "Enter a valid amount."
+# Drop the number pad without touching a key: a label on iOS, back on Android
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - tapOn: "Payee"
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - hideKeyboard
 - swipe:
     start: 50%, 45%
     end: 50%, 15%
