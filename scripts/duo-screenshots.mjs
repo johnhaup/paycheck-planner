@@ -79,6 +79,12 @@ function capture() {
     }
     throw new Error(`Nothing on screen is labelled ${label}`);
   };
+  /** Upright the tabs are in iOS's sidebar (HAU-695), behind the button at the top left of the navigation bar */
+  const openTab = async (name) => {
+    duoctl("tap", "44", "48");
+    await sleep(2000);
+    await tap(new RegExp(`^${name}$`), "GenericElement");
+  };
   const press = async (key) => {
     duoctl("tap", ...PAD[key].map(String));
     // Taps that follow each other at once are dropped
@@ -159,13 +165,12 @@ function capture() {
     await tap(/^[A-Z]{3}, [0-9]+, Mesa Health/);
     await shoot("detail");
 
-    await tap(/^Expenses$/, "RadioButton");
+    await openTab("Expenses");
     await shoot("goals");
-    duoctl("swipe", "200", "700", "200", "380", "--duration", "1.5");
-    await sleep(3000);
+    // The inner screen shows the whole list from its top: scrolling would cut the summary and filter under the bar
     await shoot("expenses");
 
-    await tap(/^Income$/, "RadioButton");
+    await openTab("Income");
     await tap(/Mesa Health.*per check/);
     await shoot("income");
     await tap(/^Close$/, "Button");
