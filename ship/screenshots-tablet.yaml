@@ -1,0 +1,81 @@
+# Google Play tablet screenshots (7" and 10"), run by `bun store:play tablets` (scripts/play-assets.mjs) on a
+# store demo Release APK. The phone set's scenes, where a tablet's width shows two columns: the picked paycheck
+# opens beside the list, so nothing here goes back. No `goals`: the whole Expenses list fits one screen.
+# No `amount`: on a tablet the amount sheet's Save sits half under Android's keyboard.
+appId: ${APP_ID}
+env:
+  APP_ID: ${APP_ID || "com.johnhaup.paycheckplanner"}
+  METRO_URL: ${METRO_URL || ""}
+---
+- launchApp:
+    appId: ${APP_ID}
+    clearState: true
+    arguments:
+      "--initialUrl": ${METRO_URL}
+# Android drops a link that arrives before the first screen is up
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 120000
+- openLink: paycheck-planner://demo
+- extendedWaitUntil:
+    visible: "This paycheck"
+    timeout: 15000
+- waitForAnimationToEnd
+- takeScreenshot: paychecks
+
+# Check bills off on the picked paycheck, in the second column
+- tapOn: "Mark Internet paid"
+- extendedWaitUntil:
+    visible: "Mark Internet unpaid"
+    timeout: 15000
+- tapOn: "Mark Car Registration paid"
+- extendedWaitUntil:
+    visible: "Mark Car Registration unpaid"
+    timeout: 15000
+- waitForAnimationToEnd
+- takeScreenshot: detail
+
+- tapOn: "Expenses"
+- extendedWaitUntil:
+    visible: ".*Emergency fund.*"
+    timeout: 5000
+- waitForAnimationToEnd
+- takeScreenshot: expenses
+
+- tapOn: "Income"
+# The totals tiles are placed outside their list row, and Android leaves them out of the accessibility tree
+- extendedWaitUntil:
+    visible: "Mesa Health"
+    timeout: 5000
+- waitForAnimationToEnd
+# One tap: a retry lands on the opened form's amount field and brings up the keyboard
+- tapOn: "Mesa Health"
+- extendedWaitUntil:
+    visible: "Adjust to workday"
+    timeout: 5000
+- waitForAnimationToEnd
+- takeScreenshot: income
+- tapOn: "Close"
+
+# A surprise car repair leaves the next Mesa Health paycheck short
+- tapOn: "Paychecks"
+- openLink: paycheck-planner://demo?short=1
+- extendedWaitUntil:
+    visible: ".*is short by.*"
+    timeout: 15000
+- tapOn: ".*is short by.*"
+- waitForAnimationToEnd
+- scrollUntilVisible:
+    element: "Move a bill"
+    direction: DOWN
+- tapOn: "Move a bill"
+- extendedWaitUntil:
+    visible: "To paycheck"
+    timeout: 5000
+- tapOn: "Car repair · .*"
+# The Brightline paycheck after the next one
+- tapOn:
+    text: ".* · Brightline Co\\."
+    index: 1
+- waitForAnimationToEnd
+- takeScreenshot: move

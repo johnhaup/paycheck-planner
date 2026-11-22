@@ -63,6 +63,7 @@
     "store:screenshots:sizes": "bun scripts/store-screenshot-sizes.mjs",
     "store:screenshots:duo": "bun scripts/duo-screenshots.mjs",
     "store:previews": "bun scripts/store-previews.mjs",
+    "store:play": "bun scripts/play-assets.mjs",
     "store:review": "expo-local-ship review --auto-release",
     "ship:ios": "expo-local-ship ios",
     "ship:android": "expo-local-ship android"

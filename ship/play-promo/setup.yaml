@@ -1,0 +1,25 @@
+# Before each Play promo scene (scripts/play-assets.mjs runs this off camera): a fresh install with the store
+# sample budget, on Paychecks. DEMO_LINK is paycheck-planner://demo, or ...?short=1 for the short paycheck.
+appId: ${APP_ID}
+env:
+  APP_ID: ${APP_ID || "com.johnhaup.paycheckplanner"}
+  METRO_URL: ${METRO_URL || ""}
+  DEMO_LINK: ${DEMO_LINK || "paycheck-planner://demo"}
+---
+- launchApp:
+    appId: ${APP_ID}
+    clearState: true
+    arguments:
+      "--initialUrl": ${METRO_URL}
+      "-EXDevMenuShowsAtLaunch": "NO"
+      "-EXDevMenuShowFloatingActionButton": "NO"
+      "-EXDevMenuIsOnboardingFinished": "YES"
+# Android drops a link that arrives before the first screen is up
+- extendedWaitUntil:
+    visible: "Try with sample data"
+    timeout: 120000
+- openLink: ${DEMO_LINK}
+- extendedWaitUntil:
+    visible: ".*Brightline Co\\..*"
+    timeout: 15000
+- waitForAnimationToEnd

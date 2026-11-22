@@ -1,0 +1,19 @@
+# Play promo scene 3 (setup.yaml with the short paycheck): a paycheck comes up short, a bill moves to a later one
+appId: ${APP_ID}
+env:
+  APP_ID: ${APP_ID || "com.johnhaup.paycheckplanner"}
+---
+- tapOn: ".*is short by.*"
+- scrollUntilVisible:
+    element: "Move a bill"
+    direction: DOWN
+- tapOn: "Move a bill"
+- extendedWaitUntil:
+    visible: "To paycheck"
+    timeout: 5000
+- tapOn: "Car repair · .*"
+# The Brightline paycheck after the next one
+- tapOn:
+    text: ".* · Brightline Co\\."
+    index: 1
+- tapOn: "Move"

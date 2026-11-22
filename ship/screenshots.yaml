@@ -1,6 +1,7 @@
 # Store screenshots. iOS: bun store:screenshots, then bun store:screenshots:sizes for the 6.5" set. Google Play:
-# add --android. Needs a build with EXPO_PUBLIC_STORE_DEMO=1, where paycheck-planner://demo loads the store
-# sample budget with Pro on (pass --build once).
+# bun store:play phone (scripts/play-assets.mjs, on the Linux worker; tablets use ship/screenshots-tablet.yaml).
+# Needs a build with EXPO_PUBLIC_STORE_DEMO=1, where paycheck-planner://demo loads the store sample budget with
+# Pro on (pass --build once).
 # On a dev build instead: start a Metro with that flag (EXPO_PUBLIC_STORE_DEMO=1 bunx expo start --dev-client
 # --port 8096), set the status bar (xcrun simctl status_bar <udid> override --time 9:41 ...), run
 #   maestro --udid <udid> test -e METRO_URL=http://127.0.0.1:8096 ship/screenshots.yaml --test-output-dir <tmp>
@@ -62,7 +63,14 @@ env:
     when:
       platform: Android
     commands:
-      - back
+      # A system back straight after Save only closes the keyboard, and a tap while the sheet closes is dropped
+      - extendedWaitUntil:
+          notVisible: ".*paycheck only"
+          timeout: 5000
+      - waitForAnimationToEnd
+      - tapOn:
+          text: "Back|Navigate up"
+          retryTapIfNoChange: true
 
 # Set-asides lead the list, each with its savings goal
 - tapOn: "Expenses"
@@ -73,10 +81,23 @@ env:
 - takeScreenshot: goals
 
 # Slowly, so the list stops where the finger does: the first linked bills under the bar, the last bill above the tabs
-- swipe:
-    start: 50%, 70%
-    end: 50%, 26%
-    duration: 2000
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - swipe:
+          start: 50%, 70%
+          end: 50%, 26%
+          duration: 2000
+# Android's list starts lower, under an opaque toolbar: a shorter swipe brings the Brightline heading under it
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - swipe:
+          start: 50%, 70%
+          end: 50%, 36%
+          duration: 2000
 # Twice: the scroll indicator fades a moment after the list stops
 - waitForAnimationToEnd
 - waitForAnimationToEnd:
@@ -90,9 +111,19 @@ env:
     timeout: 5000
 - waitForAnimationToEnd
 # The form shows every pay schedule; the row is one element (tile letter, name, schedule, amount)
-- tapOn:
-    text: ".*Mesa Health.*per check"
-    retryTapIfNoChange: true
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - tapOn:
+          text: ".*Mesa Health.*per check"
+          retryTapIfNoChange: true
+# Android reads each text of the row on its own
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - tapOn: "Mesa Health"
 - extendedWaitUntil:
     visible: "Adjust to workday"
     timeout: 5000
