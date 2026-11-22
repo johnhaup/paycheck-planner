@@ -10,6 +10,8 @@ import { AppText } from "@/components/AppText";
 import { hapticSelection } from "@/utils/haptics";
 
 const TILE_SIZE = 44;
+// The tile is fixed-size, so the letter scales only a little, to about the glyph icons' 20pt.
+const LETTER_MAX_FONT_MULTIPLIER = 1.3;
 
 interface Props {
   /** Shown on the "no icon" tile */
@@ -88,7 +90,11 @@ function IconTile({ value, selected, letter, accessibilityLabel, onSelect }: Ico
       {value ? (
         <Ionicons name={value} size={20} color={foreground} />
       ) : (
-        <AppText variant="bodyStrong" style={letterStyle}>
+        <AppText
+          variant="bodyStrong"
+          style={letterStyle}
+          maxFontSizeMultiplier={LETTER_MAX_FONT_MULTIPLIER}
+        >
           {letter?.trim().charAt(0).toUpperCase() || "?"}
         </AppText>
       )}
