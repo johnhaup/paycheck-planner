@@ -1,0 +1,13 @@
+# Play promo scene 4: set-asides with their savings goals lead the Expenses list
+appId: ${APP_ID}
+env:
+  APP_ID: ${APP_ID || "com.johnhaup.paycheckplanner"}
+---
+- tapOn: "Expenses"
+- extendedWaitUntil:
+    visible: ".*Emergency fund.*"
+    timeout: 5000
+- swipe:
+    start: 50%, 70%
+    end: 50%, 30%
+    duration: 3500

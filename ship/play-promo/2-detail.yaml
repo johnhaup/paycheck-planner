@@ -1,0 +1,20 @@
+# Play promo scene 2: check bills off on today's paycheck
+appId: ${APP_ID}
+env:
+  APP_ID: ${APP_ID || "com.johnhaup.paycheckplanner"}
+---
+- tapOn:
+    text: "[A-Z]{3}, [0-9]+, Brightline Co.*"
+    index: 0
+- extendedWaitUntil:
+    visible: "This paycheck"
+    timeout: 5000
+# Each check is waited for, so it is on screen before the next tap
+- tapOn: "Mark Internet paid"
+- extendedWaitUntil:
+    visible: "Mark Internet unpaid"
+    timeout: 15000
+- tapOn: "Mark Car Registration paid"
+- extendedWaitUntil:
+    visible: "Mark Car Registration unpaid"
+    timeout: 15000

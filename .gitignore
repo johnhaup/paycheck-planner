@@ -56,3 +56,7 @@ build/
 # Local signing credentials (never commit)
 credentials.json
 credentials/
+ship/screenshots/android/framed/*
+!ship/screenshots/android/framed/en-US/
+ship/screenshots/android/tablet-*/framed/*
+!ship/screenshots/android/tablet-*/framed/en-US/

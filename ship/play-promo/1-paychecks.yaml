@@ -1,0 +1,14 @@
+# Play promo scene 1 (after setup.yaml): down the month's paychecks and back. No pauses: scripts/play-assets.mjs
+# cuts every still stretch to a short hold.
+appId: ${APP_ID}
+env:
+  APP_ID: ${APP_ID || "com.johnhaup.paycheckplanner"}
+---
+- swipe:
+    start: 50%, 72%
+    end: 50%, 38%
+    duration: 1400
+- swipe:
+    start: 50%, 38%
+    end: 50%, 80%
+    duration: 1200
