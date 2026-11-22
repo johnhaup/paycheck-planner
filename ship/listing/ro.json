@@ -18,7 +18,7 @@
     },
     "expenses": {
       "title": [
-        "Facturile ajung",
+        "Fiecare factură",
         "la salariul potrivit"
       ],
       "subtitle": "Leag-o o dată și apare în ziua de salariu."
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Planifică un salariu",
-        "dintr-o atingere"
+        "Bifează facturile",
+        "pe măsură ce plătești"
       ],
-      "subtitle": "Adaugă facturi, bifează-le, vezi ce rămâne."
+      "subtitle": "O atingere per factură, cu linkuri de plată incluse."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "cum ești plătit"
       ],
       "subtitle": "Săptămânal, la 2 săptămâni, bilunar sau lunar."
+    },
+    "move": {
+      "title": [
+        "Nu-ți ajunge?",
+        "Mută o factură"
+      ],
+      "subtitle": "Vezi din timp un salariu strâmt și rezolvă-l."
+    },
+    "goals": {
+      "title": [
+        "Economisește",
+        "pentru obiective"
+      ],
+      "subtitle": "Pune bani deoparte din fiecare salariu."
     }
   }
 }

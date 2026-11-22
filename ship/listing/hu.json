@@ -12,7 +12,7 @@
     "paychecks": {
       "title": [
         "Tudd, mennyi marad",
-        "minden fizetés után"
+        "minden fizetésnapon"
       ],
       "subtitle": "Minden fizetés, a számlái és a maradék."
     },
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Bármelyik fizetés",
-        "egy koppintással"
+        "Pipáld ki a számlát,",
+        "amint fizettél"
       ],
-      "subtitle": "Adj hozzá, pipálj ki, lásd, mi marad."
+      "subtitle": "Egy koppintás számlánként, beépített fizetési linkekkel."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "ahogy fizetést kapsz"
       ],
       "subtitle": "Heti, kétheti, havi kétszeri vagy havi."
+    },
+    "move": {
+      "title": [
+        "Kevés lesz a pénz?",
+        "Tolj át egy számlát"
+      ],
+      "subtitle": "Lásd előre a szűkös fizetést, és oldd meg időben."
+    },
+    "goals": {
+      "title": [
+        "Spórolj",
+        "a céljaidra"
+      ],
+      "subtitle": "Tegyél félre minden fizetésből."
     }
   }
 }

@@ -21,7 +21,7 @@
         "Vos comptes sur",
         "la bonne paye"
       ],
-      "subtitle": "Liez un compte une fois, il suit votre paye."
+      "subtitle": "Liez un compte une fois, il apparaît à chaque paye."
     },
     "amount": {
       "title": [
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Planifiez une paye",
-        "en un instant"
+        "Cochez vos comptes",
+        "une fois payés"
       ],
-      "subtitle": "Ajoutez, cochez, voyez ce qu’il reste."
+      "subtitle": "Un toucher par compte, liens de paiement inclus."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "fréquence de paye"
       ],
       "subtitle": "Hebdo, aux deux semaines, bimensuelle ou mensuelle."
+    },
+    "move": {
+      "title": [
+        "Paye trop serrée?",
+        "Déplacez un compte"
+      ],
+      "subtitle": "Voyez venir une paye serrée et agissez tôt."
+    },
+    "goals": {
+      "title": [
+        "Épargnez pour",
+        "vos objectifs"
+      ],
+      "subtitle": "Mettez de l’argent de côté à chaque paye."
     }
   }
 }

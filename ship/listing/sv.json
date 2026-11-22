@@ -18,7 +18,7 @@
     },
     "expenses": {
       "title": [
-        "Räkningar på",
+        "Varje räkning på",
         "rätt lön"
       ],
       "subtitle": "Koppla en räkning en gång – klar på lönedagen."
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Planera varje lön",
-        "med ett tryck"
+        "Bocka av räkningar",
+        "när du betalar"
       ],
-      "subtitle": "Lägg till, bocka av och se vad som blir kvar."
+      "subtitle": "Ett tryck per räkning, med betallänkar inbyggda."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "du får lön"
       ],
       "subtitle": "Veckolön, varannan vecka, 2×/mån eller månadslön"
+    },
+    "move": {
+      "title": [
+        "Tajt den här lönen?",
+        "Flytta en räkning"
+      ],
+      "subtitle": "Se en tajt lön i förväg och fixa det i tid."
+    },
+    "goals": {
+      "title": [
+        "Spara mot",
+        "dina mål"
+      ],
+      "subtitle": "Lägg undan pengar från varje lön."
     }
   }
 }

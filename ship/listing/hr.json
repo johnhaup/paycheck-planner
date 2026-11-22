@@ -18,8 +18,8 @@
     },
     "expenses": {
       "title": [
-        "Računi stižu",
-        "na pravu plaću"
+        "Svaki račun",
+        "na pravoj plaći"
       ],
       "subtitle": "Poveži račun jednom i stiže na dan plaće."
     },
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Planiraj plaću",
-        "jednim dodirom"
+        "Označi račune",
+        "dok ih plaćaš"
       ],
-      "subtitle": "Dodaj račune, označi ih, vidi što ostaje."
+      "subtitle": "Jedan dodir po računu, s poveznicama za plaćanje."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "tvojim isplatama"
       ],
       "subtitle": "Tjedno, dvotjedno, dvaput mjesečno ili mjesečno."
+    },
+    "move": {
+      "title": [
+        "Fali ti ove plaće?",
+        "Premjesti račun"
+      ],
+      "subtitle": "Uoči tijesnu plaću na vrijeme i riješi to unaprijed."
+    },
+    "goals": {
+      "title": [
+        "Štedi za",
+        "svoje ciljeve"
+      ],
+      "subtitle": "Odvoji novac od svake plaće."
     }
   }
 }

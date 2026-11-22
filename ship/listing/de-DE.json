@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Jedes Gehalt planen",
-        "mit einem Tipp"
+        "Rechnungen abhaken",
+        "beim Bezahlen"
       ],
-      "subtitle": "Rechnungen hinzufügen, abhaken, Rest sehen."
+      "subtitle": "Ein Tipp pro Rechnung, mit Zahlungslinks."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "Zahlungsrhythmus"
       ],
       "subtitle": "Wöchentlich, 14-tägig, 2× im Monat, monatlich."
+    },
+    "move": {
+      "title": [
+        "Knapp am Zahltag?",
+        "Rechnung verschieben"
+      ],
+      "subtitle": "Engpässe früh erkennen und gegensteuern."
+    },
+    "goals": {
+      "title": [
+        "Für deine Ziele",
+        "sparen"
+      ],
+      "subtitle": "Leg von jedem Gehalt etwas zurück."
     }
   }
 }

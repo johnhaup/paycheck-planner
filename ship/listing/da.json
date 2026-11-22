@@ -12,16 +12,16 @@
     "paychecks": {
       "title": [
         "Se hvad der er",
-        "tilbage efter lønnen"
+        "tilbage hver løndag"
       ],
       "subtitle": "Hver løn, dens regninger og det, der er tilbage."
     },
     "expenses": {
       "title": [
-        "Regninger på",
+        "Hver regning på",
         "den rigtige løn"
       ],
-      "subtitle": "Tilknyt en regning én gang – klar på lønnen."
+      "subtitle": "Tilknyt en regning én gang – klar på lønningsdagen."
     },
     "amount": {
       "title": [
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Planlæg hver løn",
-        "med et tryk"
+        "Sæt flueben",
+        "når du betaler"
       ],
-      "subtitle": "Tilføj, sæt flueben og se, hvad der er tilbage."
+      "subtitle": "Ét tryk pr. regning – med betalingslinks indbygget."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "hvordan du får løn"
       ],
       "subtitle": "Ugentlig, hver 14. dag, 2×/md. eller månedlig"
+    },
+    "move": {
+      "title": [
+        "Mangler du penge?",
+        "Flyt en regning"
+      ],
+      "subtitle": "Se en stram løn komme, og ret det i tide."
+    },
+    "goals": {
+      "title": [
+        "Spar op til",
+        "dine mål"
+      ],
+      "subtitle": "Sæt penge til side fra hver løn."
     }
   }
 }

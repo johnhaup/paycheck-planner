@@ -12,13 +12,13 @@
     "paychecks": {
       "title": [
         "Know what’s left",
-        "after every pay"
+        "every payday"
       ],
       "subtitle": "Each pay, its bills and what’s left over."
     },
     "expenses": {
       "title": [
-        "Bills land on",
+        "Every bill on",
         "the right pay"
       ],
       "subtitle": "Link a bill once and it shows up on payday."
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Plan any pay",
-        "in a tap"
+        "Tick off bills",
+        "as you pay"
       ],
-      "subtitle": "Add bills, tick them off, see what’s left."
+      "subtitle": "One tap per bill, with pay links built in."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "you get paid"
       ],
       "subtitle": "Weekly, fortnightly, twice a month or monthly."
+    },
+    "move": {
+      "title": [
+        "Short this payday?",
+        "Move a bill"
+      ],
+      "subtitle": "Spot a tight pay coming and sort it early."
+    },
+    "goals": {
+      "title": [
+        "Save towards",
+        "your goals"
+      ],
+      "subtitle": "Put money aside from each pay."
     }
   }
 }

@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Planea tu quincena",
-        "en un toque"
+        "Marca tus recibos",
+        "al pagarlos"
       ],
-      "subtitle": "Agrega recibos, márcalos y ve lo que queda."
+      "subtitle": "Un toque por recibo, con enlaces para pagar."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "cómo te pagan"
       ],
       "subtitle": "Semanal, catorcenal, quincenal o mensual."
+    },
+    "move": {
+      "title": [
+        "¿No te alcanza?",
+        "Mueve un recibo"
+      ],
+      "subtitle": "Anticipa una quincena apretada y ajústala a tiempo."
+    },
+    "goals": {
+      "title": [
+        "Ahorra para",
+        "tus metas"
+      ],
+      "subtitle": "Aparta dinero de cada pago."
     }
   }
 }

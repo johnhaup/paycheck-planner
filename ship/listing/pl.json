@@ -18,10 +18,10 @@
     },
     "expenses": {
       "title": [
-        "Rachunki trafiają",
-        "na właściwą wypłatę"
+        "Każdy rachunek",
+        "na właściwej wypłacie"
       ],
-      "subtitle": "Przypisz rachunek raz, a sam trafi na wypłatę."
+      "subtitle": "Przypisz rachunek raz, a pojawi się w dniu wypłaty."
     },
     "amount": {
       "title": [
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Zaplanuj wypłatę",
-        "jednym dotknięciem"
+        "Odhaczaj rachunki",
+        "na bieżąco"
       ],
-      "subtitle": "Dodawaj, odhaczaj i patrz, ile zostaje."
+      "subtitle": "Jedno dotknięcie na rachunek, z linkami do płatności."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "Twoich wypłat"
       ],
       "subtitle": "Co tydzień, co 2 tygodnie, 2×/mies. lub co miesiąc"
+    },
+    "move": {
+      "title": [
+        "Za mało tym razem?",
+        "Przesuń rachunek"
+      ],
+      "subtitle": "Wcześniej zobaczysz ciasną wypłatę i zdążysz zareagować."
+    },
+    "goals": {
+      "title": [
+        "Oszczędzaj",
+        "na swoje cele"
+      ],
+      "subtitle": "Odkładaj pieniądze z każdej wypłaty."
     }
   }
 }

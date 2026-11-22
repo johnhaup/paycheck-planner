@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Planeje o salário",
-        "com um toque"
+        "Marque as contas",
+        "ao pagar"
       ],
-      "subtitle": "Adicione contas, marque e veja o que sobra."
+      "subtitle": "Um toque por conta, com links para pagar."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "você recebe"
       ],
       "subtitle": "Semanal, a cada 2 semanas, 2x por mês ou mensal."
+    },
+    "move": {
+      "title": [
+        "Vai faltar dinheiro?",
+        "Mova uma conta"
+      ],
+      "subtitle": "Veja um pagamento apertado e ajuste antes."
+    },
+    "goals": {
+      "title": [
+        "Economize para",
+        "suas metas"
+      ],
+      "subtitle": "Separe um valor de cada pagamento."
     }
   }
 }

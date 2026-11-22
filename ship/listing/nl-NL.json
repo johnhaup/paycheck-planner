@@ -12,14 +12,14 @@
     "paychecks": {
       "title": [
         "Weet wat je over",
-        "houdt na elk salaris"
+        "houdt elke betaaldag"
       ],
       "subtitle": "Elk salaris, de rekeningen en wat overblijft."
     },
     "expenses": {
       "title": [
-        "Rekeningen op het",
-        "juiste salaris"
+        "Elke rekening op",
+        "het juiste salaris"
       ],
       "subtitle": "Koppel een rekening één keer, klaar op betaaldag."
     },
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Plan elk salaris",
-        "met één tik"
+        "Vink rekeningen af",
+        "zodra je betaalt"
       ],
-      "subtitle": "Voeg toe, vink af en zie wat overblijft."
+      "subtitle": "Eén tik per rekening, met ingebouwde betaallinks."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "jij betaald krijgt"
       ],
       "subtitle": "Wekelijks, om de week, 2× per maand of maandelijks"
+    },
+    "move": {
+      "title": [
+        "Krap deze betaaldag?",
+        "Verschuif een rekening"
+      ],
+      "subtitle": "Zie een krap salaris aankomen en los het op tijd op."
+    },
+    "goals": {
+      "title": [
+        "Spaar voor",
+        "je doelen"
+      ],
+      "subtitle": "Zet van elk salaris geld opzij."
     }
   }
 }

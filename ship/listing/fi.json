@@ -18,8 +18,8 @@
     },
     "expenses": {
       "title": [
-        "Laskut oikealle",
-        "palkalle"
+        "Jokainen lasku",
+        "oikealle palkalle"
       ],
       "subtitle": "Liitä lasku kerran, ja se näkyy palkkapäivänä."
     },
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Suunnittele palkka",
-        "hetkessä"
+        "Kuittaa laskut",
+        "maksaessasi"
       ],
-      "subtitle": "Lisää laskut, kuittaa ja näe, mitä jää."
+      "subtitle": "Yksi napautus per lasku, maksulinkit mukana."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "palkkarytmiisi"
       ],
       "subtitle": "Viikoittain, joka 2. viikko, 2×/kk tai kuukausittain"
+    },
+    "move": {
+      "title": [
+        "Palkka ei riitä?",
+        "Siirrä lasku"
+      ],
+      "subtitle": "Näe tiukka palkka ajoissa ja korjaa se etukäteen."
+    },
+    "goals": {
+      "title": [
+        "Säästä kohti",
+        "tavoitteitasi"
+      ],
+      "subtitle": "Laita rahaa sivuun jokaisesta palkasta."
     }
   }
 }

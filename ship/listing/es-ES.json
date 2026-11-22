@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Planifica tu nómina",
-        "en un toque"
+        "Marca tus recibos",
+        "al pagarlos"
       ],
-      "subtitle": "Añade recibos, márcalos y mira lo que queda."
+      "subtitle": "Un toque por recibo, con enlaces de pago."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "cómo cobras"
       ],
       "subtitle": "Semanal, cada 2 semanas, 2 veces al mes o mensual."
+    },
+    "move": {
+      "title": [
+        "¿No llegas este mes?",
+        "Mueve un recibo"
+      ],
+      "subtitle": "Anticipa una nómina justa y corrígela a tiempo."
+    },
+    "goals": {
+      "title": [
+        "Ahorra para",
+        "tus metas"
+      ],
+      "subtitle": "Aparta dinero de cada nómina."
     }
   }
 }

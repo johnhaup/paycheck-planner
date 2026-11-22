@@ -12,13 +12,13 @@
     "paychecks": {
       "title": [
         "Se hva som er igjen",
-        "etter hver lønn"
+        "hver lønningsdag"
       ],
       "subtitle": "Hver lønn, regningene og hva som er igjen."
     },
     "expenses": {
       "title": [
-        "Regninger på",
+        "Hver regning på",
         "riktig lønn"
       ],
       "subtitle": "Koble en regning én gang – klar på lønningsdagen."
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Planlegg hver lønn",
-        "med ett trykk"
+        "Huk av regninger",
+        "når du betaler"
       ],
-      "subtitle": "Legg til, huk av og se hva som er igjen."
+      "subtitle": "Ett trykk per regning, med betalingslenker innebygd."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "du får lønn"
       ],
       "subtitle": "Ukentlig, annenhver uke, 2×/mnd. eller månedlig"
+    },
+    "move": {
+      "title": [
+        "For lite denne gang?",
+        "Flytt en regning"
+      ],
+      "subtitle": "Se en stram lønn komme og fiks det i tide."
+    },
+    "goals": {
+      "title": [
+        "Spar mot",
+        "dine mål"
+      ],
+      "subtitle": "Sett av penger fra hver lønn."
     }
   }
 }

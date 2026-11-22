@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Pianifica la paga",
-        "con un tocco"
+        "Spunta le bollette",
+        "man mano che paghi"
       ],
-      "subtitle": "Aggiungi spese, spuntale, vedi quanto resta."
+      "subtitle": "Un tocco per bolletta, con i link per pagare."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "come vieni pagato"
       ],
       "subtitle": "Settimanale, bisettimanale, bimensile o mensile."
+    },
+    "move": {
+      "title": [
+        "Paga troppo corta?",
+        "Sposta una bolletta"
+      ],
+      "subtitle": "Vedi in anticipo uno stipendio stretto e rimedia."
+    },
+    "goals": {
+      "title": [
+        "Risparmia per",
+        "i tuoi obiettivi"
+      ],
+      "subtitle": "Metti da parte qualcosa da ogni stipendio."
     }
   }
 }

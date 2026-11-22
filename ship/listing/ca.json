@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Planifica qualsevol",
-        "nòmina amb un toc"
+        "Marca les factures",
+        "quan les pagues"
       ],
-      "subtitle": "Afegeix factures, marca-les i mira què queda."
+      "subtitle": "Un toc per factura, amb enllaços de pagament."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "manera de cobrar"
       ],
       "subtitle": "Setmanal, quinzenal, dos cops al mes o mensual."
+    },
+    "move": {
+      "title": [
+        "Vas just aquest mes?",
+        "Mou una factura"
+      ],
+      "subtitle": "Preveu una nòmina ajustada i arregla-ho abans."
+    },
+    "goals": {
+      "title": [
+        "Estalvia per als",
+        "teus objectius"
+      ],
+      "subtitle": "Reserva diners de cada nòmina."
     }
   }
 }

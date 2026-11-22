@@ -18,7 +18,7 @@
     },
     "expenses": {
       "title": [
-        "Hóa đơn tự vào",
+        "Mỗi hóa đơn vào",
         "đúng kỳ lương"
       ],
       "subtitle": "Gắn hóa đơn một lần, tự hiện vào ngày lương."
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Lập kế hoạch lương",
-        "chỉ một chạm"
+        "Đánh dấu hóa đơn",
+        "khi đã trả"
       ],
-      "subtitle": "Thêm hóa đơn, đánh dấu đã trả, xem số dư."
+      "subtitle": "Một chạm mỗi hóa đơn, có sẵn liên kết thanh toán."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "bạn nhận lương"
       ],
       "subtitle": "Hằng tuần, hai tuần, hai lần/tháng hoặc hằng tháng."
+    },
+    "move": {
+      "title": [
+        "Kỳ này thiếu tiền?",
+        "Dời hóa đơn"
+      ],
+      "subtitle": "Thấy trước kỳ lương eo hẹp và xử lý sớm."
+    },
+    "goals": {
+      "title": [
+        "Tiết kiệm cho",
+        "mục tiêu của bạn"
+      ],
+      "subtitle": "Để dành tiền từ mỗi kỳ lương."
     }
   }
 }

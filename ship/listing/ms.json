@@ -12,16 +12,16 @@
     "paychecks": {
       "title": [
         "Tahu baki wang",
-        "selepas setiap gaji"
+        "setiap hari gaji"
       ],
       "subtitle": "Setiap gaji, bilnya dan baki yang tinggal."
     },
     "expenses": {
       "title": [
-        "Bil masuk ke",
+        "Setiap bil pada",
         "gaji yang betul"
       ],
-      "subtitle": "Pautkan sekali, terus muncul pada hari gaji."
+      "subtitle": "Pautkan bil sekali, terus muncul pada hari gaji."
     },
     "amount": {
       "title": [
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Rancang gaji",
-        "dengan satu ketikan"
+        "Tandakan bil",
+        "sebaik dibayar"
       ],
-      "subtitle": "Tambah bil, tandakan, lihat bakinya."
+      "subtitle": "Satu ketikan setiap bil, dengan pautan bayaran terbina."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "anda dibayar"
       ],
       "subtitle": "Mingguan, dua minggu sekali, dua kali sebulan, bulanan."
+    },
+    "move": {
+      "title": [
+        "Gaji tak cukup?",
+        "Alihkan bil"
+      ],
+      "subtitle": "Nampak gaji yang ketat lebih awal dan atasinya segera."
+    },
+    "goals": {
+      "title": [
+        "Menabung untuk",
+        "matlamat anda"
+      ],
+      "subtitle": "Asingkan wang daripada setiap gaji."
     }
   }
 }

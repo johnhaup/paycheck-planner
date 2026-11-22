@@ -12,7 +12,7 @@
     "paychecks": {
       "title": [
         "Saiba quanto sobra",
-        "após cada ordenado"
+        "em cada ordenado"
       ],
       "subtitle": "Cada ordenado, as suas contas e o que sobra."
     },
@@ -21,7 +21,7 @@
         "Cada conta no",
         "ordenado certo"
       ],
-      "subtitle": "Associe uma vez e aparece no dia certo."
+      "subtitle": "Associe uma conta uma vez e aparece no dia certo."
     },
     "amount": {
       "title": [
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Planeie o ordenado",
-        "com um toque"
+        "Assinale as contas",
+        "à medida que paga"
       ],
-      "subtitle": "Adicione contas, assinale e veja o que sobra."
+      "subtitle": "Um toque por conta, com links de pagamento."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "como recebe"
       ],
       "subtitle": "Semanal, de 2 em 2 semanas, 2x por mês ou mensal."
+    },
+    "move": {
+      "title": [
+        "Ordenado curto?",
+        "Mova uma conta"
+      ],
+      "subtitle": "Veja um ordenado apertado a chegar e resolva cedo."
+    },
+    "goals": {
+      "title": [
+        "Poupe para os",
+        "seus objetivos"
+      ],
+      "subtitle": "Reserve dinheiro de cada ordenado."
     }
   }
 }

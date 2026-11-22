@@ -12,13 +12,13 @@
     "paychecks": {
       "title": [
         "Veš, koliko ostane",
-        "po vsaki plači"
+        "ob vsaki plači"
       ],
       "subtitle": "Vsaka plača, njeni računi in preostanek."
     },
     "expenses": {
       "title": [
-        "Računi pristanejo",
+        "Vsak račun",
         "na pravi plači"
       ],
       "subtitle": "Račun poveži enkrat in pojavi se na dan plače."
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Načrtuj plačo",
-        "z enim dotikom"
+        "Odkljukaj račune",
+        "sproti, ko plačaš"
       ],
-      "subtitle": "Dodaj račune, odkljukaj, poglej preostanek."
+      "subtitle": "En dotik na račun, s povezavami za plačilo."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "tvojemu izplačilu"
       ],
       "subtitle": "Tedensko, dvotedensko, dvakrat mesečno ali mesečno."
+    },
+    "move": {
+      "title": [
+        "Ta plača ne zadošča?",
+        "Prestavi račun"
+      ],
+      "subtitle": "Vnaprej opazi tesno plačo in jo pravočasno uredi."
+    },
+    "goals": {
+      "title": [
+        "Varčuj za",
+        "svoje cilje"
+      ],
+      "subtitle": "Od vsake plače odloži nekaj denarja."
     }
   }
 }

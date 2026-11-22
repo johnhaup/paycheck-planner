@@ -18,7 +18,7 @@
     },
     "expenses": {
       "title": [
-        "Tagihan masuk ke",
+        "Setiap tagihan di",
         "gaji yang tepat"
       ],
       "subtitle": "Hubungkan sekali, muncul otomatis saat gajian."
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Rencanakan gaji",
-        "cukup sekali ketuk"
+        "Centang tagihan",
+        "saat dibayar"
       ],
-      "subtitle": "Tambah tagihan, centang, lihat sisanya."
+      "subtitle": "Sekali ketuk per tagihan, lengkap dengan tautan bayar."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "Anda digaji"
       ],
       "subtitle": "Mingguan, dua mingguan, dua kali sebulan, bulanan."
+    },
+    "move": {
+      "title": [
+        "Gajian kali ini kurang?",
+        "Pindahkan tagihan"
+      ],
+      "subtitle": "Lihat gaji yang pas-pasan lebih awal dan atasi segera."
+    },
+    "goals": {
+      "title": [
+        "Menabung untuk",
+        "tujuan Anda"
+      ],
+      "subtitle": "Sisihkan uang dari setiap gaji."
     }
   }
 }

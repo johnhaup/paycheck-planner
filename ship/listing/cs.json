@@ -18,7 +18,7 @@
     },
     "expenses": {
       "title": [
-        "Platby na",
+        "Každá platba na",
         "správnou výplatu"
       ],
       "subtitle": "Přiřaďte platbu jednou a ukáže se v den výplaty."
@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Naplánujte výplatu",
-        "jedním klepnutím"
+        "Odškrtněte platby,",
+        "jak je platíte"
       ],
-      "subtitle": "Přidávejte, odškrtávejte a sledujte, co zbude."
+      "subtitle": "Jedno klepnutí na platbu, odkazy k placení v aplikaci."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "vašim výplatám"
       ],
       "subtitle": "Týdně, po 14 dnech, 2× měsíčně nebo měsíčně"
+    },
+    "move": {
+      "title": [
+        "Nevystačí výplata?",
+        "Přesuňte platbu"
+      ],
+      "subtitle": "Uvidíte napjatou výplatu předem a vyřešíte to včas."
+    },
+    "goals": {
+      "title": [
+        "Spořte na",
+        "své cíle"
+      ],
+      "subtitle": "Z každé výplaty si odložte něco stranou."
     }
   }
 }

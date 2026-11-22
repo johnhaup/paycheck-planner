@@ -32,10 +32,10 @@
     },
     "detail": {
       "title": [
-        "Planifiez une paie",
-        "en un geste"
+        "Cochez vos factures",
+        "une fois payées"
       ],
-      "subtitle": "Ajoutez, cochez, voyez ce qu’il reste."
+      "subtitle": "Un geste par facture, liens de paiement inclus."
     },
     "income": {
       "title": [
@@ -43,6 +43,20 @@
         "rythme de paie"
       ],
       "subtitle": "Hebdo, toutes les 2 semaines, bimensuel ou mensuel."
+    },
+    "move": {
+      "title": [
+        "Paie trop juste ?",
+        "Déplacez une facture"
+      ],
+      "subtitle": "Anticipez une paie serrée et corrigez à temps."
+    },
+    "goals": {
+      "title": [
+        "Épargnez pour",
+        "vos objectifs"
+      ],
+      "subtitle": "Mettez de côté à chaque paie."
     }
   }
 }
