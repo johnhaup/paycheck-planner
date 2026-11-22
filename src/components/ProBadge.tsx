@@ -1,5 +1,5 @@
-import { useMemo } from "react";
-import { StyleSheet, View, type StyleProp, type ViewStyle } from "react-native";
+import { useMemo, useState } from "react";
+import { StyleSheet, View, type LayoutChangeEvent, type StyleProp, type ViewStyle } from "react-native";
 import Svg, { Defs, LinearGradient, Rect, Stop } from "react-native-svg";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
@@ -29,19 +29,26 @@ export function ProBadge({ style, fixed }: Props) {
   const t = useT();
 
   const badgeStyle = useMemo(() => [styles.badge, style], [style]);
+  // The border-box size, measured: an absolutely filled Svg can keep its first, smaller frame when the label scales (large text sizes)
+  const [size, setSize] = useState<{ width: number; height: number } | null>(null);
+  const onLayout = (e: LayoutChangeEvent) => {
+    const { width, height } = e.nativeEvent.layout;
+    setSize((prev) => (prev && prev.width === width && prev.height === height ? prev : { width, height }));
+  };
 
   return (
-    <View style={badgeStyle} accessibilityLabel={t("pro.badge")}>
-      {/* No width/height props: Yoga resolves an absolute child's percent size without the parent's padding, so the gold stops short */}
-      <Svg style={StyleSheet.absoluteFill}>
-        <Defs>
-          <LinearGradient id="proBadgeGradient" x1="0" y1="0" x2="1" y2="1">
-            <Stop offset="0" stopColor={colors.proGradientStart} />
-            <Stop offset="1" stopColor={colors.proGradientEnd} />
-          </LinearGradient>
-        </Defs>
-        <Rect width="100%" height="100%" fill="url(#proBadgeGradient)" />
-      </Svg>
+    <View style={badgeStyle} onLayout={onLayout} accessibilityLabel={t("pro.badge")}>
+      {size && (
+        <Svg width={size.width} height={size.height} style={styles.gradient}>
+          <Defs>
+            <LinearGradient id="proBadgeGradient" x1="0" y1="0" x2="1" y2="1">
+              <Stop offset="0" stopColor={colors.proGradientStart} />
+              <Stop offset="1" stopColor={colors.proGradientEnd} />
+            </LinearGradient>
+          </Defs>
+          <Rect width={size.width} height={size.height} fill="url(#proBadgeGradient)" />
+        </Svg>
+      )}
       <AppText variant="caption" color="onPro" style={styles.text} {...(fixed ? FIXED_TEXT_PROPS : undefined)}>
         {t("pro.badge")}
       </AppText>
@@ -56,6 +63,11 @@ const styles = StyleSheet.create({
     borderRadius: MEASUREMENTS.radius.sm,
     overflow: "hidden",
     alignSelf: "center",
+  },
+  gradient: {
+    position: "absolute",
+    top: 0,
+    left: 0,
   },
   text: {
     fontSize: 10,
