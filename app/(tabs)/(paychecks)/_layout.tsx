@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from "react";
-import { Pressable } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -9,6 +9,7 @@ import { useStackScreenOptions } from "@/hooks/useStackScreenOptions";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { DIM_ON_PRESS } from "@/constants/press";
+import { AppText } from "@/components/AppText";
 
 export default function PaychecksLayout() {
   const colors = useColors();
@@ -18,6 +19,8 @@ export default function PaychecksLayout() {
   // month pills. The standard bar there keeps the height the pills pin under (HAU-568).
   // On a regular width (Duo unfolded) the picked paycheck sits beside the list under the same bar,
   // and a title that collapses with one of the two would not belong to the other.
+  // There the tabs sit in iOS's sidebar, and closing it drops the bar's plain title for good; a title
+  // view stays (HAU-706).
   const { top } = useSafeAreaInsets();
   const wide = useColumns() !== undefined;
   const screenOptions = useStackScreenOptions(top > 0 && !wide);
@@ -42,9 +45,22 @@ export default function PaychecksLayout() {
     [handleOpenSettings, colors, t]
   );
 
+  const renderTitle = useCallback(
+    () => (
+      <AppText variant="bodyStrong" style={styles.title} accessibilityRole="header" numberOfLines={1} maxFontSizeMultiplier={1}>
+        {t("tabs.paychecks")}
+      </AppText>
+    ),
+    [t]
+  );
+
   const indexOptions = useMemo(
-    () => ({ title: t("tabs.paychecks"), headerRight: renderSettingsButton }),
-    [renderSettingsButton, t]
+    () => ({
+      title: t("tabs.paychecks"),
+      headerRight: renderSettingsButton,
+      ...(wide ? { headerTitle: renderTitle } : {}),
+    }),
+    [renderSettingsButton, renderTitle, wide, t]
   );
 
   return (
@@ -53,3 +69,8 @@ export default function PaychecksLayout() {
     </Stack>
   );
 }
+
+// The size of iOS's own navigation bar title
+const styles = StyleSheet.create({
+  title: { fontSize: MEASUREMENTS.font.lg },
+});
