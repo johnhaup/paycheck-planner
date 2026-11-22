@@ -1,6 +1,8 @@
 import { useMemo } from "react";
 import { I18nManager, Platform } from "react-native";
 import { NativeTabs } from "expo-router/native-tabs";
+import { useSafeAreaFrame } from "react-native-safe-area-context";
+import { isRegularWidth } from "@/constants/layout";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
 
@@ -13,6 +15,12 @@ const NATIVE_PROPS = { direction: I18nManager.isRTL ? "rtl" : "ltr" } as const;
 export default function TabsLayout() {
   const colors = useColors();
   const t = useT();
+  const { width, height } = useSafeAreaFrame();
+  // An iPhone Duo unfolded upright centres the floating tab bar on the fold, over both columns.
+  // There the tabs move into iOS's sidebar, which overlays the first column only. Everywhere else
+  // they stay a tab bar: folded and on its side iOS puts it in the control column, and a sidebar
+  // on its side would dock and squeeze both columns.
+  const tabPlacement = isRegularWidth(width) && height > width ? "sidebar" : "tabBar";
 
   // iOS 26 Liquid Glass derives its look from the content behind it, so only the
   // selected tint is set there. Android's Material bar needs explicit colors.
@@ -35,7 +43,7 @@ export default function TabsLayout() {
   );
 
   return (
-    <NativeTabs {...tabBarProps} disableTransparentOnScrollEdge unstable_nativeProps={NATIVE_PROPS}>
+    <NativeTabs {...tabBarProps} preferredPlacement={tabPlacement} disableTransparentOnScrollEdge unstable_nativeProps={NATIVE_PROPS}>
       <NativeTabs.Trigger name="(paychecks)">
         <NativeTabs.Trigger.Label>{t("tabs.paychecks")}</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf={PAYCHECKS_SF} md="account_balance_wallet" />
