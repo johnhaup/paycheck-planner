@@ -344,7 +344,10 @@
     "phone": "فون",
     "savings": "بچت",
     "streaming": "اسٹریمنگ",
-    "carRegistration": "گاڑی کی رجسٹریشن"
+    "carRegistration": "گاڑی کی رجسٹریشن",
+    "emergencyFund": "ہنگامی فنڈ",
+    "vacation": "چھٹیاں",
+    "carRepair": "گاڑی کی مرمت"
   },
   "welcome": {
     "title": "ہر تنخواہ کی منصوبہ بندی کریں",

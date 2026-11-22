@@ -345,7 +345,10 @@
     "phone": "Telefon",
     "savings": "Sparande",
     "streaming": "Streaming",
-    "carRegistration": "Fordonsskatt"
+    "carRegistration": "Fordonsskatt",
+    "emergencyFund": "Buffert",
+    "vacation": "Semester",
+    "carRepair": "Bilreparation"
   },
   "welcome": {
     "title": "Planera varje lön",

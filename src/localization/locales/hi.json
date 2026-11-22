@@ -348,7 +348,10 @@
     "phone": "फ़ोन",
     "savings": "बचत",
     "streaming": "स्ट्रीमिंग",
-    "carRegistration": "कार रजिस्ट्रेशन"
+    "carRegistration": "कार रजिस्ट्रेशन",
+    "emergencyFund": "आपातकालीन फ़ंड",
+    "vacation": "छुट्टियाँ",
+    "carRepair": "कार की मरम्मत"
   },
   "welcome": {
     "title": "हर सैलरी की योजना बनाएं",

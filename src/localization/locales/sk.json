@@ -348,7 +348,10 @@
     "phone": "Telefón",
     "savings": "Sporenie",
     "streaming": "Streaming",
-    "carRegistration": "Registrácia auta"
+    "carRegistration": "Registrácia auta",
+    "emergencyFund": "Rezerva",
+    "vacation": "Dovolenka",
+    "carRepair": "Oprava auta"
   },
   "welcome": {
     "title": "Naplánujte každú výplatu",

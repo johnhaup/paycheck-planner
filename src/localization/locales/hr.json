@@ -346,7 +346,10 @@
     "phone": "Telefon",
     "savings": "Štednja",
     "streaming": "Streaming",
-    "carRegistration": "Registracija auta"
+    "carRegistration": "Registracija auta",
+    "emergencyFund": "Fond za hitne slučajeve",
+    "vacation": "Godišnji odmor",
+    "carRepair": "Popravak auta"
   },
   "welcome": {
     "title": "Planirajte svaku plaću",

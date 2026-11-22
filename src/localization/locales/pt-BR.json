@@ -344,7 +344,10 @@
     "phone": "Celular",
     "savings": "Poupança",
     "streaming": "Streaming",
-    "carRegistration": "IPVA"
+    "carRegistration": "IPVA",
+    "emergencyFund": "Reserva de emergência",
+    "vacation": "Férias",
+    "carRepair": "Conserto do carro"
   },
   "welcome": {
     "title": "Planeje cada pagamento",

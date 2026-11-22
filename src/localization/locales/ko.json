@@ -342,7 +342,10 @@
     "phone": "휴대폰",
     "savings": "저축",
     "streaming": "스트리밍",
-    "carRegistration": "자동차세"
+    "carRegistration": "자동차세",
+    "emergencyFund": "비상금",
+    "vacation": "휴가",
+    "carRepair": "자동차 수리"
   },
   "welcome": {
     "title": "급여마다 계획하세요",

@@ -344,7 +344,10 @@
     "phone": "Telefon",
     "savings": "Birikim",
     "streaming": "Dijital yayın",
-    "carRegistration": "Araç vergisi"
+    "carRegistration": "Araç vergisi",
+    "emergencyFund": "Acil durum fonu",
+    "vacation": "Tatil",
+    "carRepair": "Araba tamiri"
   },
   "welcome": {
     "title": "Her maaşı planla",

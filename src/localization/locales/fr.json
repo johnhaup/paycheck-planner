@@ -345,7 +345,10 @@
     "phone": "Téléphone",
     "savings": "Épargne",
     "streaming": "Streaming",
-    "carRegistration": "Carte grise"
+    "carRegistration": "Carte grise",
+    "emergencyFund": "Fonds d'urgence",
+    "vacation": "Vacances",
+    "carRepair": "Réparation de la voiture"
   },
   "welcome": {
     "title": "Planifiez chaque paie",

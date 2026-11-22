@@ -345,7 +345,10 @@
     "phone": "Telefon",
     "savings": "Megtakarítás",
     "streaming": "Streaming",
-    "carRegistration": "Gépjárműadó"
+    "carRegistration": "Gépjárműadó",
+    "emergencyFund": "Vésztartalék",
+    "vacation": "Nyaralás",
+    "carRepair": "Autójavítás"
   },
   "welcome": {
     "title": "Tervezd meg minden fizetésed",

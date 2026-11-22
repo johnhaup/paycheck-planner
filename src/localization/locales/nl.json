@@ -344,7 +344,10 @@
     "phone": "Telefoon",
     "savings": "Sparen",
     "streaming": "Streaming",
-    "carRegistration": "Motorrijtuigenbelasting"
+    "carRegistration": "Motorrijtuigenbelasting",
+    "emergencyFund": "Noodfonds",
+    "vacation": "Vakantie",
+    "carRepair": "Autoreparatie"
   },
   "welcome": {
     "title": "Plan elk salaris",

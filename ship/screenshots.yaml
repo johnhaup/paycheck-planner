@@ -6,10 +6,30 @@
 #   maestro --udid <udid> test -e METRO_URL=http://127.0.0.1:8096 ship/screenshots.yaml --test-output-dir <tmp>
 # and copy <tmp>/**/takeScreenshot/*.png to ship/screenshots/raw. A Release build ignores METRO_URL and the
 # -EXDevMenu* arguments.
+# Every label the flow taps or waits for is a variable holding the English text as a regex. The iPhone Duo script
+# (scripts/duo-screenshots.mjs) passes another language's from its locale file, with LANGUAGE set to that language.
 appId: ${APP_ID}
 env:
   APP_ID: ${APP_ID || "com.johnhaup.paycheckplanner"}
   METRO_URL: ${METRO_URL || ""}
+  LANGUAGE: ${LANGUAGE || "en"}
+  TRY_SAMPLE: ${TRY_SAMPLE || "Try with sample data"}
+  THIS_PAYCHECK: ${THIS_PAYCHECK || "This paycheck"}
+  CHANGE_INTERNET: ${CHANGE_INTERNET || "Change Internet amount for this paycheck"}
+  PAYCHECK_ONLY: ${PAYCHECK_ONLY || ".*paycheck only"}
+  SAVE: ${SAVE || "Save"}
+  BACK: ${BACK || "Back"}
+  EXPENSES: ${EXPENSES || "Expenses"}
+  EMERGENCY_FUND: ${EMERGENCY_FUND || ".*Emergency fund.*"}
+  INCOME: ${INCOME || "Income"}
+  NEXT_PAYDAY: ${NEXT_PAYDAY || "Next payday"}
+  MESA_ROW: ${MESA_ROW || ".*Mesa Health.*per check"}
+  ADJUST_TO_WORKDAY: ${ADJUST_TO_WORKDAY || "Adjust to workday"}
+  CLOSE: ${CLOSE || "Close"}
+  SHORT: ${SHORT || ".*is short by.*"}
+  MOVE_BILL: ${MOVE_BILL || "Move a bill"}
+  TO_PAYCHECK: ${TO_PAYCHECK || "To paycheck"}
+  CAR_REPAIR: ${CAR_REPAIR || "Car repair · .*"}
 ---
 - launchApp:
     appId: ${APP_ID}
@@ -19,9 +39,10 @@ env:
       "-EXDevMenuShowsAtLaunch": "NO"
       "-EXDevMenuShowFloatingActionButton": "NO"
       "-EXDevMenuIsOnboardingFinished": "YES"
+      "-AppleLanguages": "(${LANGUAGE})"
 # Android drops a link that arrives before the first screen is up
 - extendedWaitUntil:
-    visible: "Try with sample data"
+    visible: ${TRY_SAMPLE}
     timeout: 120000
 - openLink: paycheck-planner://demo
 # iOS asks before a link opens the app
@@ -34,30 +55,31 @@ env:
 - waitForAnimationToEnd
 - takeScreenshot: paychecks
 
-# The card's own label; the pay amount inside it is a second button (per-paycheck amount)
+# The card's own label (date tile, name, ...; iOS joins them with the language's comma); the pay amount inside it
+# is a second button (per-paycheck amount)
 - tapOn:
-    text: "[A-Z]{3}, [0-9]+, Brightline Co.*"
+    text: ".*[,،、] ?Brightline Co\\.[,،、].*"
     index: 0
 - extendedWaitUntil:
-    visible: "This paycheck"
+    visible: ${THIS_PAYCHECK}
     timeout: 5000
 - waitForAnimationToEnd
 - takeScreenshot: detail
 
-- tapOn: "Change Internet amount for this paycheck"
+- tapOn: ${CHANGE_INTERNET}
 - extendedWaitUntil:
-    visible: ".*paycheck only"
+    visible: ${PAYCHECK_ONLY}
     timeout: 5000
 - eraseText
 - inputText: "84.99"
 - waitForAnimationToEnd
 - takeScreenshot: amount
-- tapOn: "Save"
+- tapOn: ${SAVE}
 - runFlow:
     when:
       platform: iOS
     commands:
-      - tapOn: "Back"
+      - tapOn: ${BACK}
 - runFlow:
     when:
       platform: Android
@@ -65,9 +87,9 @@ env:
       - back
 
 # Set-asides lead the list, each with its savings goal
-- tapOn: "Expenses"
+- tapOn: ${EXPENSES}
 - extendedWaitUntil:
-    visible: ".*Emergency fund.*"
+    visible: ${EMERGENCY_FUND}
     timeout: 5000
 - waitForAnimationToEnd
 - takeScreenshot: goals
@@ -83,39 +105,39 @@ env:
     timeout: 3000
 - takeScreenshot: expenses
 
-- tapOn: "Income"
+- tapOn: ${INCOME}
 # On the iPhone Duo's cover a tap straight after the tab change is dropped: let the tab settle first
 - extendedWaitUntil:
-    visible: "Next payday"
+    visible: ${NEXT_PAYDAY}
     timeout: 5000
 - waitForAnimationToEnd
 # The form shows every pay schedule; the row is one element (tile letter, name, schedule, amount)
 - tapOn:
-    text: ".*Mesa Health.*per check"
+    text: ${MESA_ROW}
     retryTapIfNoChange: true
 - extendedWaitUntil:
-    visible: "Adjust to workday"
+    visible: ${ADJUST_TO_WORKDAY}
     timeout: 5000
 - waitForAnimationToEnd
 - takeScreenshot: income
-- tapOn: "Close"
+- tapOn: ${CLOSE}
 
 # A surprise car repair leaves the next Mesa Health paycheck short
 - openLink: paycheck-planner://demo?short=1
 - extendedWaitUntil:
-    visible: ".*is short by.*"
+    visible: ${SHORT}
     timeout: 15000
-- tapOn: ".*is short by.*"
+- tapOn: ${SHORT}
 - waitForAnimationToEnd
 # On the iPhone Duo's cover the card's Move a bill row is below the fold after the scroll
 - scrollUntilVisible:
-    element: "Move a bill"
+    element: ${MOVE_BILL}
     direction: DOWN
-- tapOn: "Move a bill"
+- tapOn: ${MOVE_BILL}
 - extendedWaitUntil:
-    visible: "To paycheck"
+    visible: ${TO_PAYCHECK}
     timeout: 5000
-- tapOn: "Car repair · .*"
+- tapOn: ${CAR_REPAIR}
 # The Brightline paycheck after the next one
 - tapOn:
     text: ".* · Brightline Co\\."

@@ -344,7 +344,10 @@
     "phone": "Τηλέφωνο",
     "savings": "Αποταμίευση",
     "streaming": "Streaming",
-    "carRegistration": "Τέλη κυκλοφορίας"
+    "carRegistration": "Τέλη κυκλοφορίας",
+    "emergencyFund": "Ταμείο έκτακτης ανάγκης",
+    "vacation": "Διακοπές",
+    "carRepair": "Επισκευή αυτοκινήτου"
   },
   "welcome": {
     "title": "Σχεδιάστε κάθε μισθό",

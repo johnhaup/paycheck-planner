@@ -344,7 +344,10 @@
     "phone": "Telemóvel",
     "savings": "Poupança",
     "streaming": "Streaming",
-    "carRegistration": "IUC"
+    "carRegistration": "IUC",
+    "emergencyFund": "Fundo de emergência",
+    "vacation": "Férias",
+    "carRepair": "Reparação do carro"
   },
   "welcome": {
     "title": "Planeie cada ordenado",

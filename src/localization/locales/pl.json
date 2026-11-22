@@ -348,7 +348,10 @@
     "phone": "Telefon",
     "savings": "Oszczędności",
     "streaming": "Streaming",
-    "carRegistration": "Rejestracja auta"
+    "carRegistration": "Rejestracja auta",
+    "emergencyFund": "Fundusz awaryjny",
+    "vacation": "Wakacje",
+    "carRepair": "Naprawa auta"
   },
   "welcome": {
     "title": "Zaplanuj każdą wypłatę",

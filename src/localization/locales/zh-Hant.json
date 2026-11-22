@@ -342,7 +342,10 @@
     "phone": "手機費",
     "savings": "儲蓄",
     "streaming": "影音訂閱",
-    "carRegistration": "牌照稅"
+    "carRegistration": "牌照稅",
+    "emergencyFund": "緊急預備金",
+    "vacation": "旅行",
+    "carRepair": "修車"
   },
   "welcome": {
     "title": "規劃每一筆薪資",

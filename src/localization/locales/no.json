@@ -344,7 +344,10 @@
     "phone": "Telefon",
     "savings": "Sparing",
     "streaming": "Strømming",
-    "carRegistration": "Årsavgift bil"
+    "carRegistration": "Årsavgift bil",
+    "emergencyFund": "Bufferkonto",
+    "vacation": "Ferie",
+    "carRepair": "Bilreparasjon"
   },
   "welcome": {
     "title": "Planlegg hver lønning",

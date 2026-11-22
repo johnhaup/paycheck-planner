@@ -344,7 +344,10 @@
     "phone": "ਫ਼ੋਨ",
     "savings": "ਬੱਚਤ",
     "streaming": "ਸਟ੍ਰੀਮਿੰਗ",
-    "carRegistration": "ਕਾਰ ਰਜਿਸਟ੍ਰੇਸ਼ਨ"
+    "carRegistration": "ਕਾਰ ਰਜਿਸਟ੍ਰੇਸ਼ਨ",
+    "emergencyFund": "ਐਮਰਜੈਂਸੀ ਫੰਡ",
+    "vacation": "ਛੁੱਟੀਆਂ",
+    "carRepair": "ਕਾਰ ਦੀ ਮੁਰੰਮਤ"
   },
   "welcome": {
     "title": "ਹਰ ਤਨਖ਼ਾਹ ਦੀ ਯੋਜਨਾ ਬਣਾਓ",

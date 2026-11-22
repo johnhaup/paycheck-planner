@@ -347,7 +347,10 @@
     "phone": "फोन",
     "savings": "बचत",
     "streaming": "स्ट्रीमिंग",
-    "carRegistration": "कार नोंदणी"
+    "carRegistration": "कार नोंदणी",
+    "emergencyFund": "आपत्कालीन निधी",
+    "vacation": "सुट्टी",
+    "carRepair": "गाडी दुरुस्ती"
   },
   "welcome": {
     "title": "प्रत्येक पगाराचे नियोजन करा",

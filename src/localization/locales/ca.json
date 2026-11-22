@@ -347,7 +347,10 @@
     "phone": "Telèfon",
     "savings": "Estalvis",
     "streaming": "Streaming",
-    "carRegistration": "Impost del cotxe"
+    "carRegistration": "Impost del cotxe",
+    "emergencyFund": "Fons d'emergència",
+    "vacation": "Vacances",
+    "carRepair": "Reparació del cotxe"
   },
   "welcome": {
     "title": "Planifica cada cobrament",

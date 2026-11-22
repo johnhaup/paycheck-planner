@@ -348,7 +348,10 @@
     "phone": "Phone",
     "savings": "Savings",
     "streaming": "Streaming",
-    "carRegistration": "Car Registration"
+    "carRegistration": "Car Registration",
+    "emergencyFund": "Emergency fund",
+    "vacation": "Vacation",
+    "carRepair": "Car repair"
   },
   "welcome": {
     "title": "Plan every paycheck",

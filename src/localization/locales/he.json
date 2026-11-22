@@ -348,7 +348,10 @@
     "phone": "טלפון",
     "savings": "חיסכון",
     "streaming": "סטרימינג",
-    "carRegistration": "רישוי רכב"
+    "carRegistration": "רישוי רכב",
+    "emergencyFund": "קרן חירום",
+    "vacation": "חופשה",
+    "carRepair": "תיקון רכב"
   },
   "welcome": {
     "title": "תכננו כל משכורת",

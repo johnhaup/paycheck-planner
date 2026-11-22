@@ -342,7 +342,10 @@
     "phone": "Telepon",
     "savings": "Tabungan",
     "streaming": "Streaming",
-    "carRegistration": "Pajak kendaraan"
+    "carRegistration": "Pajak kendaraan",
+    "emergencyFund": "Dana darurat",
+    "vacation": "Liburan",
+    "carRepair": "Perbaikan mobil"
   },
   "welcome": {
     "title": "Rencanakan setiap gaji",

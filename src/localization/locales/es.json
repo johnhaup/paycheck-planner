@@ -344,7 +344,10 @@
     "phone": "Teléfono",
     "savings": "Ahorro",
     "streaming": "Streaming",
-    "carRegistration": "Impuesto del coche"
+    "carRegistration": "Impuesto del coche",
+    "emergencyFund": "Fondo de emergencia",
+    "vacation": "Vacaciones",
+    "carRepair": "Reparación del coche"
   },
   "welcome": {
     "title": "Planifica cada cobro",

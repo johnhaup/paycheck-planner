@@ -344,7 +344,10 @@
     "phone": "ଫୋନ୍",
     "savings": "ସଞ୍ଚୟ",
     "streaming": "ଷ୍ଟ୍ରିମିଂ",
-    "carRegistration": "କାର୍ ପଞ୍ଜୀକରଣ"
+    "carRegistration": "କାର୍ ପଞ୍ଜୀକରଣ",
+    "emergencyFund": "ଜରୁରୀକାଳୀନ ପାଣ୍ଠି",
+    "vacation": "ଛୁଟି",
+    "carRepair": "କାର ମରାମତି"
   },
   "welcome": {
     "title": "ପ୍ରତି ଦରମାର ଯୋଜନା କରନ୍ତୁ",

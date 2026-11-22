@@ -87,9 +87,8 @@ const STORE_ICONS: Record<string, ExpenseIcon> = {
 
 /**
  * The sample budget dressed up for the store screenshots and previews (`paycheck-planner://demo`, store-demo
- * builds only): icons on the bills, and two set-asides with savings goals part-way there. The set-aside names
- * are English only, as the screenshots are. `short` adds a surprise car repair that leaves the next Mesa Health
- * paycheck short, for the "Move a bill" shot.
+ * builds only): icons on the bills, and two set-asides with savings goals part-way there. `short` adds a surprise
+ * car repair that leaves the next Mesa Health paycheck short, for the "Move a bill" shot.
  */
 export function buildStoreDemoData(today: Date, short = false): DemoData {
   const demo = buildDemoData(today);
@@ -111,11 +110,11 @@ export function buildStoreDemoData(today: Date, short = false): DemoData {
       ...demo.expenses.map((expense) => ({
         ...expense,
         icon: STORE_ICONS[expense.id],
-        ...(expense.id === "demo-savings" ? { payee: "Emergency fund", kind: "set-aside" as const, goal: 5000 } : {}),
+        ...(expense.id === "demo-savings" ? { payee: t("demo.emergencyFund"), kind: "set-aside" as const, goal: 5000 } : {}),
       })),
       {
         id: "demo-vacation",
-        payee: "Vacation",
+        payee: t("demo.vacation"),
         kind: "set-aside",
         icon: "airplane",
         amount: 150,
@@ -125,7 +124,7 @@ export function buildStoreDemoData(today: Date, short = false): DemoData {
         linkSchedule: "every-paycheck",
       },
       ...(short
-        ? [{ id: "demo-repair", payee: "Car repair", icon: "car" as const, amount: 420, isRecurring: false, dueDate: mesaDate }]
+        ? [{ id: "demo-repair", payee: t("demo.carRepair"), icon: "car" as const, amount: 420, isRecurring: false, dueDate: mesaDate }]
         : []),
     ],
     assignments: [

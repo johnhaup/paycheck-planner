@@ -344,7 +344,10 @@
     "phone": "ఫోన్",
     "savings": "పొదుపు",
     "streaming": "స్ట్రీమింగ్",
-    "carRegistration": "కారు రిజిస్ట్రేషన్"
+    "carRegistration": "కారు రిజిస్ట్రేషన్",
+    "emergencyFund": "అత్యవసర నిధి",
+    "vacation": "సెలవులు",
+    "carRepair": "కారు రిపేర్"
   },
   "welcome": {
     "title": "ప్రతి జీతాన్ని ప్లాన్ చేయండి",

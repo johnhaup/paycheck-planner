@@ -348,7 +348,10 @@
     "phone": "Telefon",
     "savings": "Varčevanje",
     "streaming": "Pretakanje",
-    "carRegistration": "Registracija avta"
+    "carRegistration": "Registracija avta",
+    "emergencyFund": "Sklad za nujne primere",
+    "vacation": "Dopust",
+    "carRepair": "Popravilo avta"
   },
   "welcome": {
     "title": "Načrtujte vsako plačo",

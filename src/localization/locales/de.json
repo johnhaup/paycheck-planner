@@ -344,7 +344,10 @@
     "phone": "Handy",
     "savings": "Sparen",
     "streaming": "Streaming",
-    "carRegistration": "Kfz-Steuer"
+    "carRegistration": "Kfz-Steuer",
+    "emergencyFund": "Notgroschen",
+    "vacation": "Urlaub",
+    "carRepair": "Autoreparatur"
   },
   "welcome": {
     "title": "Plane jedes Gehalt",

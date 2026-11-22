@@ -348,7 +348,10 @@
     "phone": "ফোন",
     "savings": "সঞ্চয়",
     "streaming": "স্ট্রিমিং",
-    "carRegistration": "গাড়ির নিবন্ধন"
+    "carRegistration": "গাড়ির নিবন্ধন",
+    "emergencyFund": "জরুরি তহবিল",
+    "vacation": "ছুটি",
+    "carRepair": "গাড়ি মেরামত"
   },
   "welcome": {
     "title": "প্রতিটি বেতন পরিকল্পনা করুন",

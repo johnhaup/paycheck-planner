@@ -56,3 +56,4 @@ build/
 # Local signing credentials (never commit)
 credentials.json
 credentials/
+ship/screenshots/duo/*/raw/*/

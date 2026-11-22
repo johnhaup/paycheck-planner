@@ -342,7 +342,10 @@
     "phone": "携帯電話",
     "savings": "貯金",
     "streaming": "動画配信",
-    "carRegistration": "自動車税"
+    "carRegistration": "自動車税",
+    "emergencyFund": "緊急資金",
+    "vacation": "旅行",
+    "carRepair": "車の修理"
   },
   "welcome": {
     "title": "給料日ごとに計画しよう",

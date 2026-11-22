@@ -342,7 +342,10 @@
     "phone": "Điện thoại",
     "savings": "Tiết kiệm",
     "streaming": "Xem phim trực tuyến",
-    "carRegistration": "Phí đăng ký xe"
+    "carRegistration": "Phí đăng ký xe",
+    "emergencyFund": "Quỹ khẩn cấp",
+    "vacation": "Du lịch",
+    "carRepair": "Sửa xe"
   },
   "welcome": {
     "title": "Lên kế hoạch cho từng kỳ lương",

@@ -348,7 +348,10 @@
     "phone": "Телефон",
     "savings": "Заощадження",
     "streaming": "Стримінг",
-    "carRegistration": "Транспортний податок"
+    "carRegistration": "Транспортний податок",
+    "emergencyFund": "Резервний фонд",
+    "vacation": "Відпустка",
+    "carRepair": "Ремонт авто"
   },
   "welcome": {
     "title": "Плануйте кожну зарплату",

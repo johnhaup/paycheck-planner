@@ -347,7 +347,10 @@
     "phone": "Telefon",
     "savings": "Economii",
     "streaming": "Streaming",
-    "carRegistration": "Taxă auto"
+    "carRegistration": "Taxă auto",
+    "emergencyFund": "Fond de urgență",
+    "vacation": "Vacanță",
+    "carRepair": "Reparație auto"
   },
   "welcome": {
     "title": "Planifică fiecare salariu",

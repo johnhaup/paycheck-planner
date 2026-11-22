@@ -348,7 +348,10 @@
     "phone": "Телефон",
     "savings": "Накопления",
     "streaming": "Стриминг",
-    "carRegistration": "Транспортный налог"
+    "carRegistration": "Транспортный налог",
+    "emergencyFund": "Подушка безопасности",
+    "vacation": "Отпуск",
+    "carRepair": "Ремонт машины"
   },
   "welcome": {
     "title": "Планируйте каждую зарплату",

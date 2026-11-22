@@ -344,7 +344,10 @@
     "phone": "தொலைபேசி",
     "savings": "சேமிப்பு",
     "streaming": "ஸ்ட்ரீமிங்",
-    "carRegistration": "கார் பதிவு"
+    "carRegistration": "கார் பதிவு",
+    "emergencyFund": "அவசர நிதி",
+    "vacation": "விடுமுறை",
+    "carRepair": "கார் பழுது"
   },
   "welcome": {
     "title": "ஒவ்வொரு சம்பளத்தையும் திட்டமிடுங்கள்",

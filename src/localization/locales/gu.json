@@ -348,7 +348,10 @@
     "phone": "ફોન",
     "savings": "બચત",
     "streaming": "સ્ટ્રીમિંગ",
-    "carRegistration": "કાર રજિસ્ટ્રેશન"
+    "carRegistration": "કાર રજિસ્ટ્રેશન",
+    "emergencyFund": "કટોકટી ભંડોળ",
+    "vacation": "રજાઓ",
+    "carRepair": "કાર રિપેર"
   },
   "welcome": {
     "title": "દરેક પગારનું આયોજન કરો",

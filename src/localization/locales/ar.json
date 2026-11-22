@@ -352,7 +352,10 @@
     "phone": "الهاتف",
     "savings": "الادخار",
     "streaming": "البث",
-    "carRegistration": "ترخيص السيارة"
+    "carRegistration": "ترخيص السيارة",
+    "emergencyFund": "صندوق الطوارئ",
+    "vacation": "الإجازة",
+    "carRepair": "إصلاح السيارة"
   },
   "welcome": {
     "title": "خطط لكل راتب",

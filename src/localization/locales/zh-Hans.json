@@ -342,7 +342,10 @@
     "phone": "手机费",
     "savings": "储蓄",
     "streaming": "视频会员",
-    "carRegistration": "车辆登记"
+    "carRegistration": "车辆登记",
+    "emergencyFund": "应急基金",
+    "vacation": "旅行",
+    "carRepair": "修车"
   },
   "welcome": {
     "title": "规划每一笔工资",

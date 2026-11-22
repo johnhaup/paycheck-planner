@@ -344,7 +344,10 @@
     "phone": "Puhelin",
     "savings": "Säästöt",
     "streaming": "Suoratoisto",
-    "carRegistration": "Ajoneuvovero"
+    "carRegistration": "Ajoneuvovero",
+    "emergencyFund": "Hätärahasto",
+    "vacation": "Loma",
+    "carRepair": "Auton korjaus"
   },
   "welcome": {
     "title": "Suunnittele jokainen palkka",

@@ -344,7 +344,10 @@
     "phone": "ಫೋನ್",
     "savings": "ಉಳಿತಾಯ",
     "streaming": "ಸ್ಟ್ರೀಮಿಂಗ್",
-    "carRegistration": "ಕಾರು ನೋಂದಣಿ"
+    "carRegistration": "ಕಾರು ನೋಂದಣಿ",
+    "emergencyFund": "ತುರ್ತು ನಿಧಿ",
+    "vacation": "ರಜೆ",
+    "carRepair": "ಕಾರು ರಿಪೇರಿ"
   },
   "welcome": {
     "title": "ಪ್ರತಿ ಸಂಬಳವನ್ನು ಯೋಜಿಸಿ",

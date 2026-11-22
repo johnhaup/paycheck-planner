@@ -345,7 +345,10 @@
     "phone": "Telefono",
     "savings": "Risparmi",
     "streaming": "Streaming",
-    "carRegistration": "Bollo auto"
+    "carRegistration": "Bollo auto",
+    "emergencyFund": "Fondo emergenze",
+    "vacation": "Vacanze",
+    "carRepair": "Riparazione auto"
   },
   "welcome": {
     "title": "Pianifica ogni stipendio",

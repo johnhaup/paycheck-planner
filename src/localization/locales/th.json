@@ -342,7 +342,10 @@
     "phone": "โทรศัพท์",
     "savings": "เงินออม",
     "streaming": "สตรีมมิ่ง",
-    "carRegistration": "ภาษีรถ"
+    "carRegistration": "ภาษีรถ",
+    "emergencyFund": "เงินสำรองฉุกเฉิน",
+    "vacation": "ท่องเที่ยว",
+    "carRepair": "ซ่อมรถ"
   },
   "welcome": {
     "title": "วางแผนทุกงวดเงินเดือน",

@@ -344,7 +344,10 @@
     "phone": "ഫോൺ",
     "savings": "സമ്പാദ്യം",
     "streaming": "സ്ട്രീമിംഗ്",
-    "carRegistration": "കാർ രജിസ്ട്രേഷൻ"
+    "carRegistration": "കാർ രജിസ്ട്രേഷൻ",
+    "emergencyFund": "അടിയന്തര ഫണ്ട്",
+    "vacation": "അവധിക്കാലം",
+    "carRepair": "കാർ റിപ്പയർ"
   },
   "welcome": {
     "title": "ഓരോ ശമ്പളവും ആസൂത്രണം ചെയ്യുക",
