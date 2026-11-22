@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     padding: MEASUREMENTS.spacing.lg,
     // As tall as a SettingsToggleRow (padding around the switch), so Settings keeps one row height
     minHeight: TOGGLE_HEIGHT + MEASUREMENTS.spacing.lg * 2,
-    borderRadius: MEASUREMENTS.radius.lg,
+    borderRadius: MEASUREMENTS.radius.card,
     marginTop: MEASUREMENTS.spacing.base,
   },
   label: {
