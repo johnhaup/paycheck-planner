@@ -92,7 +92,14 @@ export default function RootLayout() {
   );
 
   const expenseFormOptions = useMemo(
-    () => ({ ...modalOptions, title: t("screens.expense"), headerRight: renderCloseButton }),
+    () => ({
+      ...modalOptions,
+      // See-through at rest so iOS paints its scroll-edge blur and hairline once the form scrolls under the bar (HAU-716).
+      headerStyle: { backgroundColor: "transparent" },
+      headerTransparent: true,
+      title: t("screens.expense"),
+      headerRight: renderCloseButton,
+    }),
     [modalOptions, renderCloseButton, t]
   );
 
