@@ -10,6 +10,7 @@ import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { hapticTap } from "@/utils/haptics";
 import { ProBadge } from "@/components/ProBadge";
+import { IS_STORE_DEMO } from "@/services/pro";
 import { DURATION, PRESSED_SCALE, SPRING, TIMING } from "@/constants/motion";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
@@ -77,6 +78,9 @@ export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
 
   // A ring in the screen colour cuts the badge out of the button so it reads as a separate tag
   const badgeStyle = useMemo(() => [styles.badge, { borderColor: colors.screenBackground }], [colors]);
+
+  // Store screenshots (EXPO_PUBLIC_STORE_DEMO builds) show the lists whole: the button would cover the last row
+  if (IS_STORE_DEMO) return null;
 
   return (
     <AnimatedPressable
