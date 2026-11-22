@@ -49,6 +49,8 @@ const STICKY_HEADER = [0];
 // Collapsed portrait iPhone navigation bar; the app is portrait-only and iPhone-only
 const NAV_BAR_HEIGHT = 44;
 const REFLOW_SETTLE_MS = 400;
+// Points of rows under the pinned header over which its divider fades in
+const PINNED_DIVIDER_FADE = 8;
 // Once collapsed, the pinned header shows the month pills with room above them
 // (clear of the navigation bar's edge blur) and its own bottom padding
 const COLLAPSED_HEADER_HEIGHT = MEASUREMENTS.spacing.lg + CHART_STRIP_HEIGHT + MEASUREMENTS.spacing.base;
@@ -307,6 +309,8 @@ export default function PaychecksScreen() {
 
   // The summary slides under the navigation bar as the chart collapses
   const summaryFade = useAnimatedStyle(() => ({ opacity: Math.max(0, 1 - collapse.value * 1.5) }));
+  // A hairline under the pinned header once rows scroll beneath it, so they read as passing under it, not cut off
+  const pinnedDividerFade = useAnimatedStyle(() => ({ opacity: Math.min(1, pinShift.value / PINNED_DIVIDER_FADE) }));
 
   // Scrolls a row to just under the whole header. Right after launch the later
   // rows are not mounted yet; the jump is tried again until its row is.
@@ -540,6 +544,10 @@ export default function PaychecksScreen() {
     () => [styles.stickyHeader, { backgroundColor: colors.screenBackground, minHeight: headerFloor.height }],
     [colors, headerFloor.height]
   );
+  const pinnedDividerStyle = useMemo(
+    () => [styles.pinnedDivider, { backgroundColor: colors.border }, pinnedDividerFade],
+    [colors, pinnedDividerFade]
+  );
 
   const currentMonthKey = format(new Date(), "yyyy-MM");
 
@@ -605,6 +613,7 @@ export default function PaychecksScreen() {
               collapse={collapse}
             />
           </View>
+          <Animated.View style={pinnedDividerStyle} pointerEvents="none" />
         </View>
       ) : undefined,
     [
@@ -623,6 +632,7 @@ export default function PaychecksScreen() {
       stickyHeaderStyle,
       handleHeaderLayout,
       summaryFade,
+      pinnedDividerStyle,
       collapse,
       colors,
       formatMoney,
@@ -781,6 +791,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: MEASUREMENTS.spacing.gutter,
     paddingTop: MEASUREMENTS.spacing.md,
     paddingBottom: MEASUREMENTS.spacing.base,
+  },
+  pinnedDivider: {
+    position: "absolute",
+    start: 0,
+    end: 0,
+    bottom: 0,
+    height: StyleSheet.hairlineWidth,
   },
   heroLabelRow: {
     // Reserve the icon's height so the hero does not jump when it appears
