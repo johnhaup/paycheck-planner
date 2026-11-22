@@ -321,6 +321,7 @@ function ExpenseForm() {
     <KeyboardAwareScrollView
       style={scrollStyle}
       contentContainerStyle={contentStyle}
+      contentInsetAdjustmentBehavior="automatic"
       keyboardShouldPersistTaps="handled"
       bottomOffset={MEASUREMENTS.keyboardOffset}
     >
