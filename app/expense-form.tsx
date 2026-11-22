@@ -1,5 +1,5 @@
-import { useState, useCallback, useMemo } from "react";
-import { View, StyleSheet } from "react-native";
+import { useState, useCallback, useMemo, useRef } from "react";
+import { View, StyleSheet, type TextInputInstance } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useStore } from "@/store";
@@ -32,8 +32,9 @@ import { formatMonthShort, formatShortDate } from "@/utils/dates";
 import { normalizeLink } from "@/utils/links";
 import type { ExpenseKind, LinkSchedule, PaycheckSlot } from "@/types";
 import { useProGate } from "@/hooks/useProGate";
-import { toastError } from "@/utils/toastError";
-import { hapticSuccess } from "@/utils/haptics";
+import { hapticSuccess, hapticWarning } from "@/utils/haptics";
+
+type Field = "payee" | "amount" | "goal" | "dueDay";
 
 // A modal reads its own safe area: iPhone Duo centres it clear of the status column when unfolded
 export default function ExpenseFormScreen() {
@@ -85,6 +86,24 @@ function ExpenseForm() {
     const assignment = existing ? assignments.find((a) => a.expenseId === existing.id) : undefined;
     return assignment ? { payDate: assignment.payDate, sourceId: assignment.employerId } : undefined;
   });
+
+  // Errors sit under their field: a toast covered the sheet's title and close button (HAU-700)
+  const [error, setError] = useState<{ field: Field; message: string } | undefined>();
+  const inputRefs = useRef<Partial<Record<Field, TextInputInstance | null>>>({});
+  const fieldError = (field: Field) => (error?.field === field ? error.message : undefined);
+  const refuse = useCallback((field: Field, message: string) => {
+    hapticWarning();
+    setError({ field, message });
+    // Focusing scrolls the field into view above the keyboard
+    inputRefs.current[field]?.focus();
+  }, []);
+  const editField = useCallback(
+    (field: Field, set: (value: string) => void) => (value: string) => {
+      set(value);
+      setError((current) => (current?.field === field ? undefined : current));
+    },
+    []
+  );
 
   const isOneTime = existing ? !existing.isRecurring : false;
   const isSetAside = kind === "set-aside";
@@ -169,23 +188,23 @@ function ExpenseForm() {
 
   const handleSave = useCallback(() => {
     if (!payee.trim()) {
-      toastError(t(isSetAside ? "expenses.form.nameRequired" : "expenses.form.payeeRequired"));
+      refuse("payee", t(isSetAside ? "expenses.form.nameRequired" : "expenses.form.payeeRequired"));
       return;
     }
     const parsedAmount = parseFloat(amount);
     if (isNaN(parsedAmount) || parsedAmount <= 0) {
-      toastError(t("expenses.form.invalidAmount"));
+      refuse("amount", t("expenses.form.invalidAmount"));
       return;
     }
     const parsedGoal = goal.trim() ? parseFloat(goal) : undefined;
     if (isSetAside && parsedGoal !== undefined && (isNaN(parsedGoal) || parsedGoal <= 0)) {
-      toastError(t("expenses.form.invalidGoal"));
+      refuse("goal", t("expenses.form.invalidGoal"));
       return;
     }
 
     const parsedDueDay = hasDueDay ? Number(dueDay.trim()) : undefined;
     if (parsedDueDay !== undefined && !(Number.isInteger(parsedDueDay) && parsedDueDay >= 1 && parsedDueDay <= 31)) {
-      toastError(t("expenses.form.dueDayRange"));
+      refuse("dueDay", t("expenses.form.dueDayRange"));
       return;
     }
 
@@ -240,6 +259,7 @@ function ExpenseForm() {
     updateExpense,
     rescheduleExpense,
     router,
+    refuse,
     t,
   ]);
 
@@ -315,15 +335,19 @@ function ExpenseForm() {
         {t(isSetAside ? "expenses.form.name" : "expenses.form.payee")}
       </AppText>
       <AppInput
+        ref={(el) => { inputRefs.current.payee = el; }}
         value={payee}
-        onChangeText={setPayee}
+        onChangeText={editField("payee", setPayee)}
+        error={fieldError("payee")}
         placeholder={t(isSetAside ? "expenses.form.setAsidePlaceholder" : "expenses.form.payeePlaceholder")}
       />
 
       <AppText variant="section" style={styles.label}>{t("expenses.form.amount")}</AppText>
       <AppInput
+        ref={(el) => { inputRefs.current.amount = el; }}
         value={amount}
-        onChangeText={setAmount}
+        onChangeText={editField("amount", setAmount)}
+        error={fieldError("amount")}
         placeholder={t("expenses.form.amountPlaceholder")}
         keyboardType="decimal-pad"
       />
@@ -332,8 +356,10 @@ function ExpenseForm() {
         <>
           <AppText variant="section" style={styles.label}>{t("expenses.form.goal")}</AppText>
           <AppInput
+            ref={(el) => { inputRefs.current.goal = el; }}
             value={goal}
-            onChangeText={setGoal}
+            onChangeText={editField("goal", setGoal)}
+            error={fieldError("goal")}
             placeholder={t("expenses.form.goalPlaceholder")}
             keyboardType="decimal-pad"
           />
@@ -397,8 +423,10 @@ function ExpenseForm() {
         <>
           <AppText variant="section" style={styles.label}>{t("expenses.form.dueDay")}</AppText>
           <AppInput
+            ref={(el) => { inputRefs.current.dueDay = el; }}
             value={dueDay}
-            onChangeText={setDueDay}
+            onChangeText={editField("dueDay", setDueDay)}
+            error={fieldError("dueDay")}
             placeholder={t("expenses.form.dueDayPlaceholder")}
             keyboardType="number-pad"
             maxLength={2}
