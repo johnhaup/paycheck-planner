@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useIsFocused } from "expo-router";
 import {
-  ReduceMotion,
-  useAnimatedReaction,
   useAnimatedStyle,
   useReducedMotion,
   useSharedValue,
@@ -9,10 +8,46 @@ import {
   withTiming,
 } from "react-native-reanimated";
 import { scheduleOnRN } from "react-native-worklets";
-import { FADE, TIMING } from "@/constants/motion";
+import { DURATION, FADE, TIMING } from "@/constants/motion";
 
-const COUNT = { ...TIMING.count, reduceMotion: ReduceMotion.Never };
-const RESTART = { duration: 0, reduceMotion: ReduceMotion.Never };
+/** Moves a count by one frame's time; returns true when it is done */
+type Tick = (stepMs: number) => boolean;
+
+const FRAME_MS = 1000 / 60;
+/** A late frame moves the count by at most two 60 Hz frames, so a busy JS thread slows it instead of skipping it */
+const MAX_STEP_MS = 1000 / 30;
+
+const ticks = new Set<Tick>();
+let running = false;
+let lastFrame = 0;
+
+function frame(now: number) {
+  const step = lastFrame === 0 ? FRAME_MS : Math.min(now - lastFrame, MAX_STEP_MS);
+  lastFrame = now;
+  for (const tick of ticks) {
+    if (tick(step)) {
+      ticks.delete(tick);
+    }
+  }
+  if (ticks.size > 0) {
+    requestAnimationFrame(frame);
+  } else {
+    running = false;
+  }
+}
+
+/** Runs `tick` on every frame from the next one until it returns true; the returned function stops it */
+function startTick(tick: Tick) {
+  ticks.add(tick);
+  if (!running) {
+    running = true;
+    lastFrame = 0;
+    requestAnimationFrame(frame);
+  }
+  return () => {
+    ticks.delete(tick);
+  };
+}
 
 function sameValues(a: readonly number[], b: readonly number[]) {
   return a.length === b.length && a.every((value, i) => value === b[i]);
@@ -24,36 +59,25 @@ function toCents(value: number) {
 
 /**
  * Counts every number in `targets` from the values last shown to the new ones, together, so
- * several numbers in one line move as one. The timing runs on the UI thread and hands React each
- * frame's progress. The first render shows `targets` as they are. Under Reduce Motion the numbers
- * do not count: `style` fades them out and back in with the new values.
+ * several numbers in one line move as one. Counts run on the JS thread from the frame after the
+ * commit, one shared frame loop for every count, so all of them update in one render per frame;
+ * steps are capped so a busy frame delays the count instead of skipping most of it. The first
+ * render shows `targets` as they are, and a screen that is not focused snaps to them. Under
+ * Reduce Motion the numbers do not count: `style` fades them out and back in with the new values.
  */
 export function useCountUp(targets: readonly number[]) {
   const reduceMotion = useReducedMotion();
+  const isFocused = useIsFocused();
   const [shown, setShown] = useState(targets);
-  const fromRef = useRef(targets);
   const toRef = useRef(targets);
   const shownRef = useRef(targets);
-  const progress = useSharedValue(1);
+  const stopRef = useRef<(() => void) | null>(null);
   const opacity = useSharedValue(1);
 
-  const showProgress = useCallback((p: number) => {
-    const from = fromRef.current;
-    const next = toRef.current.map((to, i) => (p >= 1 ? to : toCents(from[i] + (to - from[i]) * p)));
-    shownRef.current = next;
-    setShown(next);
+  const showTargets = useCallback(() => {
+    shownRef.current = toRef.current;
+    setShown(toRef.current);
   }, []);
-
-  const showTargets = useCallback(() => showProgress(1), [showProgress]);
-
-  useAnimatedReaction(
-    () => progress.get(),
-    (p, previous) => {
-      if (previous !== null && p !== previous) {
-        scheduleOnRN(showProgress, p);
-      }
-    }
-  );
 
   const style = useAnimatedStyle(() => ({ opacity: opacity.get() }));
 
@@ -61,9 +85,15 @@ export function useCountUp(targets: readonly number[]) {
     if (sameValues(targets, toRef.current)) {
       return;
     }
+    stopRef.current?.();
+    stopRef.current = null;
     // A count interrupted halfway starts again from where it is
-    fromRef.current = shownRef.current.length === targets.length ? shownRef.current : targets;
+    const from = shownRef.current.length === targets.length ? shownRef.current : targets;
     toRef.current = targets;
+    if (!isFocused) {
+      showTargets();
+      return;
+    }
     if (reduceMotion) {
       opacity.set(
         withSequence(
@@ -77,8 +107,19 @@ export function useCountUp(targets: readonly number[]) {
       );
       return;
     }
-    progress.set(withSequence(withTiming(0, RESTART), withTiming(1, COUNT)));
-  }, [targets, reduceMotion, progress, opacity, showTargets]);
+    let elapsed = 0;
+    stopRef.current = startTick((step) => {
+      elapsed += step;
+      const done = elapsed >= DURATION.count;
+      const p = TIMING.count.easing(Math.min(elapsed / DURATION.count, 1));
+      const next = done ? targets : targets.map((to, i) => toCents(from[i] + (to - from[i]) * p));
+      shownRef.current = next;
+      setShown(next);
+      return done;
+    });
+  }, [targets, reduceMotion, isFocused, opacity, showTargets]);
+
+  useEffect(() => () => stopRef.current?.(), []);
 
   return { values: shown, style };
 }
