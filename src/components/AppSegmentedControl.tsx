@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef } from "react";
-import { Pressable, View, StyleSheet, type LayoutChangeEvent, type LayoutRectangle } from "react-native";
+import { I18nManager, Pressable, View, StyleSheet, type LayoutChangeEvent, type LayoutRectangle } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import { useColors } from "@/hooks/useColors";
 import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
@@ -34,6 +34,7 @@ export function AppSegmentedControl<T>({ options, value, onChange }: Props<T>) {
   const pillY = useSharedValue(0);
   const pillWidth = useSharedValue(0);
   const pillHeight = useSharedValue(0);
+  const trackWidth = useSharedValue(0);
 
   const placePill = useCallback(
     (layout: LayoutRectangle, animated: boolean) => {
@@ -62,8 +63,11 @@ export function AppSegmentedControl<T>({ options, value, onChange }: Props<T>) {
     [colors, stacked]
   );
 
+  const handleTrackLayout = useCallback((event: LayoutChangeEvent) => trackWidth.set(event.nativeEvent.layout.width), [trackWidth]);
+
+  // onLayout x counts from the physical left, but RN turns `left` into `right` in RTL
   const pillAnimatedStyle = useAnimatedStyle(() => ({
-    left: pillX.get(),
+    left: I18nManager.isRTL ? trackWidth.get() - pillX.get() - pillWidth.get() : pillX.get(),
     top: pillY.get(),
     width: pillWidth.get(),
     height: pillHeight.get(),
@@ -82,7 +86,7 @@ export function AppSegmentedControl<T>({ options, value, onChange }: Props<T>) {
   }, [value, placePill]);
 
   return (
-    <View style={trackStyle} accessibilityRole="tablist">
+    <View style={trackStyle} onLayout={handleTrackLayout} accessibilityRole="tablist">
       <Animated.View style={pillStyle} pointerEvents="none" />
       {options.map((option) => (
         <Segment
