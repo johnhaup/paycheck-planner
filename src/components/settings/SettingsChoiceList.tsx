@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import { FlatList, Pressable, StyleSheet, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useGutters } from "@/hooks/useGutters";
@@ -7,6 +7,7 @@ import { useGroupedRowStyles } from "@/hooks/useGroupedRowStyles";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { highlightOnPress } from "@/constants/press";
+import { useScrollKeptOnResize } from "@/hooks/useScrollKeptOnResize";
 
 export interface Choice {
   key: string;
@@ -27,6 +28,8 @@ function keyExtractor(choice: Choice) {
 /** Single-select list with a checkmark, for the language and currency screens. */
 export function SettingsChoiceList({ choices, selectedKey, onSelect }: Props) {
   const colors = useColors();
+  const scrollRef = useRef<FlatList<Choice>>(null);
+  const keptScroll = useScrollKeptOnResize(scrollRef);
   const gutters = useGutters();
   const contentStyle = useMemo(() => [styles.content, gutters], [gutters]);
 
@@ -47,6 +50,8 @@ export function SettingsChoiceList({ choices, selectedKey, onSelect }: Props) {
 
   return (
     <FlatList
+      ref={scrollRef}
+      {...keptScroll}
       data={choices}
       keyExtractor={keyExtractor}
       renderItem={renderItem}

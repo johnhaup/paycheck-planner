@@ -1,6 +1,6 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useRef } from "react";
 import { View, StyleSheet } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
+import { KeyboardAwareScrollView, type KeyboardAwareScrollViewRef } from "react-native-keyboard-controller";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useStore } from "@/store";
 import { useGutters } from "@/hooks/useGutters";
@@ -18,6 +18,7 @@ import { formatPayDate, parseLocalDate } from "@/utils/payDates";
 import type { PayFrequency } from "@/types";
 import { toastError } from "@/utils/toastError";
 import { hapticSuccess } from "@/utils/haptics";
+import { useScrollKeptOnResize } from "@/hooks/useScrollKeptOnResize";
 
 // A modal reads its own safe area: iPhone Duo centres it clear of the status column when unfolded
 export default function IncomeFormScreen() {
@@ -31,6 +32,8 @@ export default function IncomeFormScreen() {
 function IncomeForm() {
   const router = useRouter();
   const colors = useColors();
+  const scrollRef = useRef<KeyboardAwareScrollViewRef>(null);
+  const keptScroll = useScrollKeptOnResize(scrollRef);
   const gutters = useGutters();
   const contentStyle = useMemo(() => [styles.content, gutters], [gutters]);
   const t = useT();
@@ -135,6 +138,8 @@ function IncomeForm() {
 
   return (
     <KeyboardAwareScrollView
+      ref={scrollRef}
+      {...keptScroll}
       style={scrollStyle}
       contentContainerStyle={contentStyle}
       keyboardShouldPersistTaps="handled"

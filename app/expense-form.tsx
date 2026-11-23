@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo, useRef } from "react";
 import { View, StyleSheet, type TextInputInstance } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
+import { KeyboardAwareScrollView, type KeyboardAwareScrollViewRef } from "react-native-keyboard-controller";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useStore } from "@/store";
 import { useGutters } from "@/hooks/useGutters";
@@ -33,6 +33,7 @@ import { normalizeLink } from "@/utils/links";
 import type { ExpenseKind, LinkSchedule, PaycheckSlot } from "@/types";
 import { useProGate } from "@/hooks/useProGate";
 import { hapticSuccess, hapticWarning } from "@/utils/haptics";
+import { useScrollKeptOnResize } from "@/hooks/useScrollKeptOnResize";
 
 type Field = "payee" | "amount" | "goal" | "dueDay";
 
@@ -48,6 +49,8 @@ export default function ExpenseFormScreen() {
 function ExpenseForm() {
   const router = useRouter();
   const colors = useColors();
+  const scrollRef = useRef<KeyboardAwareScrollViewRef>(null);
+  const keptScroll = useScrollKeptOnResize(scrollRef);
   const gutters = useGutters();
   const contentStyle = useMemo(() => [styles.content, gutters], [gutters]);
   const t = useT();
@@ -319,6 +322,8 @@ function ExpenseForm() {
 
   return (
     <KeyboardAwareScrollView
+      ref={scrollRef}
+      {...keptScroll}
       style={scrollStyle}
       contentContainerStyle={contentStyle}
       contentInsetAdjustmentBehavior="automatic"

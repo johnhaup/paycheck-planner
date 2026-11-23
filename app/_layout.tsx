@@ -95,8 +95,9 @@ export default function RootLayout() {
     () => ({
       ...modalOptions,
       // See-through at rest so iOS paints its scroll-edge blur and hairline once the form scrolls under the bar (HAU-716).
-      headerStyle: { backgroundColor: "transparent" },
-      headerTransparent: true,
+      // iOS only: Android has no automatic content inset, so the form started under the bar and its Bill | Set-aside
+      // control could not be tapped (HAU-669).
+      ...(Platform.OS === "ios" ? { headerStyle: { backgroundColor: "transparent" }, headerTransparent: true } : null),
       title: t("screens.expense"),
       headerRight: renderCloseButton,
     }),
