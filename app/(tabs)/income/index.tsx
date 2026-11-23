@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import { useStore } from "@/store";
@@ -23,6 +23,7 @@ import { useProGate } from "@/hooks/useProGate";
 import type { IncomeSource } from "@/types";
 import { LayoutAnimationConfig } from "react-native-reanimated";
 import { AppAnimatedListCell } from "@/components/AppAnimatedListCell";
+import { useScrollKeptOnResize } from "@/hooks/useScrollKeptOnResize";
 
 /** A total or date too long for its tile shrinks this far instead of breaking mid-number */
 const TILE_VALUE_MIN_FONT_SCALE = 0.5;
@@ -32,6 +33,8 @@ function keyExtractor(item: IncomeSource) {
 }
 
 export default function IncomeScreen() {
+  const scrollRef = useRef<FlatList<IncomeSource>>(null);
+  const keptScroll = useScrollKeptOnResize(scrollRef);
   const router = useRouter();
   const { whole: formatWholeMoney } = useMoneyFormat();
   const t = useT();
@@ -186,6 +189,8 @@ export default function IncomeScreen() {
     <>
       <LayoutAnimationConfig skipEntering>
         <FlatList
+          ref={scrollRef}
+          {...keptScroll}
           style={LARGE_TITLE_LIST}
           data={incomeSources}
           CellRendererComponent={AppAnimatedListCell}

@@ -1,5 +1,5 @@
-import { useCallback, useMemo } from "react";
-import { Alert, ScrollView, StyleSheet, View } from "react-native";
+import { useCallback, useMemo, useRef } from "react";
+import { Alert, ScrollView, StyleSheet, View, type ScrollViewInstance } from "react-native";
 import { useRouter } from "expo-router";
 import { toast } from "sonner-native";
 import { useStore } from "@/store";
@@ -24,6 +24,7 @@ import { SettingsToggleRow } from "@/components/settings/SettingsToggleRow";
 import { SettingsLinkRow } from "@/components/settings/SettingsLinkRow";
 import { useProGate } from "@/hooks/useProGate";
 import { toastError } from "@/utils/toastError";
+import { useScrollKeptOnResize } from "@/hooks/useScrollKeptOnResize";
 
 // A modal reads its own safe area: iPhone Duo centres it clear of the status column when unfolded
 export default function SettingsScreen() {
@@ -37,6 +38,8 @@ export default function SettingsScreen() {
 function SettingsContent() {
   const router = useRouter();
   const colors = useColors();
+  const scrollRef = useRef<ScrollViewInstance>(null);
+  const keptScroll = useScrollKeptOnResize(scrollRef);
   const gutters = useGutters();
   const contentStyle = useMemo(() => [styles.content, gutters], [gutters]);
   const t = useT();
@@ -204,6 +207,8 @@ function SettingsContent() {
 
   return (
     <ScrollView
+      ref={scrollRef}
+      {...keptScroll}
       style={containerStyle}
       contentContainerStyle={contentStyle}
       contentInsetAdjustmentBehavior="automatic"

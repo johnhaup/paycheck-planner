@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Text, TextProps, StyleSheet } from "react-native";
+import { Platform, Text, TextProps, StyleSheet, useWindowDimensions } from "react-native";
 import { useColors } from "@/hooks/useColors";
 import { MEASUREMENTS } from "@/constants/measurements";
 import type { PaletteColor } from "@/constants/palette";
@@ -51,7 +51,20 @@ export function AppText({
     [variant, color, center, style, colors]
   );
 
+  if (Platform.OS === "android" && rest.adjustsFontSizeToFit) {
+    return <RefittedText style={textStyles} {...rest} />;
+  }
   return <Text style={textStyles} {...rest} />;
+}
+
+/**
+ * Android shrinks a fitted text while a fold resizes the window and never grows it back: after a fold
+ * or an unfold the amounts were drawn at a quarter of their size. A new window width draws it afresh,
+ * which fits it again (HAU-669). Only the text remounts; it holds no state.
+ */
+function RefittedText(props: TextProps) {
+  const { width } = useWindowDimensions();
+  return <Text key={width} {...props} />;
 }
 
 const styles = StyleSheet.create({

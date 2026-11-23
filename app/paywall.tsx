@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useState, type ComponentProps } from "react";
-import { ActivityIndicator, ScrollView, StyleSheet, View, type LayoutChangeEvent } from "react-native";
+import { useCallback, useEffect, useMemo, useState, type ComponentProps, useRef } from "react";
+import { ActivityIndicator, ScrollView, StyleSheet, View, type LayoutChangeEvent, type ScrollViewInstance } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { toast } from "sonner-native";
@@ -13,6 +13,7 @@ import { AppButton } from "@/components/AppButton";
 import { PRO_PRODUCT_ID, refreshProEntitlement, useIsPro, useProStoreConnection } from "@/services/pro";
 import { hapticSuccess } from "@/utils/haptics";
 import type { TranslationKey } from "@/localization/i18n";
+import { useScrollKeptOnResize } from "@/hooks/useScrollKeptOnResize";
 
 type IconName = ComponentProps<typeof Ionicons>["name"];
 
@@ -53,6 +54,8 @@ export default function PaywallScreen() {
 function Paywall() {
   const router = useRouter();
   const colors = useColors();
+  const scrollRef = useRef<ScrollViewInstance>(null);
+  const keptScroll = useScrollKeptOnResize(scrollRef);
   const insets = useSafeAreaInsets();
   const gutters = useGutters();
   const t = useT();
@@ -170,6 +173,8 @@ function Paywall() {
   return (
     <View style={containerStyle}>
       <ScrollView
+        ref={scrollRef}
+        {...keptScroll}
         contentContainerStyle={contentStyle}
         scrollIndicatorInsets={scrollIndicatorInsets}
         contentInsetAdjustmentBehavior="automatic"

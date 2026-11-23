@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState, useRef } from "react";
 import {
   ActionSheetIOS,
   Alert,
@@ -45,6 +45,7 @@ import {
   ListCellAnimationContext,
   useListSwap,
 } from "@/components/AppAnimatedListCell";
+import { useScrollKeptOnResize } from "@/hooks/useScrollKeptOnResize";
 
 /**
  * One line of the list: a bill, or on a regular-width screen (iPhone Duo unfolded) two side by side.
@@ -64,6 +65,8 @@ function renderSectionHeader({ section }: { section: SectionListData<ExpenseLine
 export default function ExpensesScreen() {
   const router = useRouter();
   const colors = useColors();
+  const scrollRef = useRef<SectionList<ExpenseLine, LineSection>>(null);
+  const keptScroll = useScrollKeptOnResize(scrollRef);
   const { format: formatMoney } = useMoneyFormat();
   const t = useT();
   const expenses = useStore((s) => s.expenses);
@@ -319,6 +322,8 @@ export default function ExpensesScreen() {
       <ListCellAnimationContext.Provider value={animated}>
         <LayoutAnimationConfig skipEntering>
           <SectionList
+            ref={scrollRef}
+            {...keptScroll}
             style={LARGE_TITLE_LIST}
             sections={sections}
             CellRendererComponent={AppAnimatedListCell}
