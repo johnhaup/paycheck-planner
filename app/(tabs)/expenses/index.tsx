@@ -48,18 +48,32 @@ import {
 import { useScrollKeptOnResize } from "@/hooks/useScrollKeptOnResize";
 
 /**
- * One line of the list: a bill, or on a regular-width screen (iPhone Duo unfolded) two side by side.
- * A section's bills run down the first column and then down the second.
+ * One item of the list: a bill, or on a regular-width screen (iPhone Duo or Pixel 9 Pro Fold unfolded)
+ * the whole list as two columns of sections, each section's header and total above its own card.
  */
-type ExpenseLine = ExpenseListItem[];
+type ExpenseLine = { kind: "bill"; item: ExpenseListItem } | { kind: "columns"; columns: ExpenseSection[][] };
 type LineSection = Omit<ExpenseSection, "data"> & { data: ExpenseLine[] };
 
 function keyExtractor(line: ExpenseLine) {
-  return line[0].expense.id;
+  return line.kind === "bill" ? line.item.expense.id : "columns";
 }
 
 function renderSectionHeader({ section }: { section: SectionListData<ExpenseLine, LineSection> }) {
-  return <AppSectionHeader title={section.title} trailing={section.total} />;
+  // The wide layout draws each header inside its column
+  return section.title ? <AppSectionHeader title={section.title} trailing={section.total} /> : null;
+}
+
+/** Sections stay whole and in order; each goes to the column that is shorter so far */
+function splitIntoColumns(sections: ExpenseSection[]): ExpenseSection[][] {
+  const columns: ExpenseSection[][] = [[], []];
+  const heights = [0, 0];
+  for (const section of sections) {
+    const at = heights[1] < heights[0] ? 1 : 0;
+    columns[at].push(section);
+    // A header weighs about one row
+    heights[at] += section.data.length + 1;
+  }
+  return columns;
 }
 
 export default function ExpensesScreen() {
@@ -101,9 +115,24 @@ export default function ExpensesScreen() {
 
   const columns = useColumns();
   const startColumnStyle = useMemo(() => (columns ? { width: columns.startWidth } : undefined), [columns]);
-  // Two bills on one line can differ in height (a schedule that wraps); the shorter one's cell is
-  // card all the way down, so its column still reads as one card
-  const cellStyle = useMemo(() => [styles.cell, { backgroundColor: colors.cardBackground }], [colors]);
+
+  const renderBill = useCallback(
+    (item: ExpenseListItem, index: number, count: number) => (
+      <ExpenseRow
+        expense={item.expense}
+        meta={item.meta}
+        cadence={item.cadence}
+        tintIndex={item.tintIndex}
+        goalProgress={item.goalProgress}
+        isFirst={index === 0}
+        isLast={index === count - 1}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+        onOpenLink={openPaymentLink}
+      />
+    ),
+    [handleEdit, handleDelete]
+  );
 
   const renderItem = useCallback(
     ({
@@ -115,35 +144,28 @@ export default function ExpensesScreen() {
       index: number;
       section: SectionListData<ExpenseLine, LineSection>;
     }) => {
-      const renderRow = (item: ExpenseListItem, isLast: boolean) => (
-        <ExpenseRow
-          expense={item.expense}
-          meta={item.meta}
-          cadence={item.cadence}
-          tintIndex={item.tintIndex}
-          goalProgress={item.goalProgress}
-          isFirst={index === 0}
-          isLast={isLast}
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-          onOpenLink={openPaymentLink}
-        />
-      );
-      const isLastLine = index === section.data.length - 1;
-      if (!startColumnStyle) return renderRow(line[0], isLastLine);
-      // Each column is its own card; the second ends a line early when the bills are an odd number
-      const isLastEnd = !section.data[index + 1]?.[1];
-      const corners = (isLast: boolean) => [index === 0 ? styles.firstCell : undefined, isLast ? styles.lastCell : undefined];
+      if (line.kind === "bill") return renderBill(line.item, index, section.data.length);
       return (
         <View style={styles.line}>
-          <View style={[cellStyle, startColumnStyle, corners(isLastLine)]}>{renderRow(line[0], isLastLine)}</View>
-          {line[1] ? (
-            <View style={[cellStyle, styles.endColumn, corners(isLastEnd)]}>{renderRow(line[1], isLastEnd)}</View>
-          ) : null}
+          {line.columns.map((column, i) => (
+            <View
+              key={column[0]?.key ?? i}
+              style={[i === 0 ? startColumnStyle : styles.endColumn, i === 0 ? styles.startColumn : null]}
+            >
+              {column.map((s) => (
+                <View key={s.key}>
+                  <AppSectionHeader title={s.title} trailing={s.total} />
+                  {s.data.map((item, k) => (
+                    <View key={item.expense.id}>{renderBill(item, k, s.data.length)}</View>
+                  ))}
+                </View>
+              ))}
+            </View>
+          ))}
         </View>
       );
     },
-    [handleEdit, handleDelete, startColumnStyle, cellStyle]
+    [renderBill, startColumnStyle]
   );
 
   const handleSearch = useCallback(
@@ -247,17 +269,20 @@ export default function ExpensesScreen() {
 
   const wide = columns !== undefined;
   const sections = useMemo(
-    () =>
-      buildExpenseSections(visibleExpenses, incomeSources, assignments, filter, sort, formatMoney).map(
-        (section): LineSection => {
-          const { data } = section;
-          const lines = wide ? Math.ceil(data.length / 2) : data.length;
-          return {
-            ...section,
-            data: data.slice(0, lines).map((item, i) => (wide && data[lines + i] ? [item, data[lines + i]] : [item])),
-          };
-        }
-      ),
+    () => {
+      const built = buildExpenseSections(visibleExpenses, incomeSources, assignments, filter, sort, formatMoney);
+      if (wide) {
+        if (built.length === 0) return [];
+        const columns = splitIntoColumns(built);
+        return [{ key: "columns", title: "", total: "", data: [{ kind: "columns" as const, columns }] }];
+      }
+      return built.map(
+        (section): LineSection => ({
+          ...section,
+          data: section.data.map((item) => ({ kind: "bill" as const, item })),
+        })
+      );
+    },
     // t changes with the language, which changes the section labels
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [visibleExpenses, incomeSources, assignments, filter, sort, formatMoney, wide, t]
@@ -368,16 +393,8 @@ const styles = StyleSheet.create({
   endColumn: {
     flex: 1,
   },
-  cell: {
-    overflow: "hidden",
-  },
-  firstCell: {
-    borderTopLeftRadius: MEASUREMENTS.radius.card,
-    borderTopRightRadius: MEASUREMENTS.radius.card,
-  },
-  lastCell: {
-    borderBottomLeftRadius: MEASUREMENTS.radius.card,
-    borderBottomRightRadius: MEASUREMENTS.radius.card,
+  startColumn: {
+    flexGrow: 0,
   },
   filterEmpty: {
     marginTop: MEASUREMENTS.spacing.section,
