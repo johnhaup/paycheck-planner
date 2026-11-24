@@ -10,6 +10,7 @@ import {
   type LanguageCode,
 } from "@/localization/i18n";
 import { RTL_LANGUAGES } from "@/localization/languages";
+import { pickLocaleTag } from "@/utils/localeTag";
 
 export const SYSTEM = "system";
 
@@ -40,18 +41,9 @@ export function resolveCurrency(currency: LocaleState["currency"]): string {
   return currency === SYSTEM ? getDeviceCurrency() : currency;
 }
 
-/** Language plus the device region, so "en" on a UK phone formats as en-GB. */
+/** Language plus the device region ("en" on a UK phone formats as en-GB), or the bare language when Intl has no such pair: Hermes on Android then formats in the device default instead of throwing (HAU-785). */
 export function toLocaleTag(language: LanguageCode): string {
-  if (language.includes("-")) return language;
-  const region = getDeviceRegion();
-  if (!region) return language;
-  const tag = `${language}-${region}`;
-  try {
-    new Intl.DateTimeFormat(tag);
-    return tag;
-  } catch {
-    return language;
-  }
+  return pickLocaleTag(language, getDeviceRegion());
 }
 
 export function getLanguage(): LanguageCode {

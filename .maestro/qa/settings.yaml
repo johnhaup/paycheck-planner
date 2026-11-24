@@ -90,7 +90,31 @@ name: settings
 - extendedWaitUntil:
     visible: "Ocultar decimales"
     timeout: 10000
+# German formats amounts in German: Hermes on Android silently fell back to
+# en-US for de-US ("$1,270.15", HAU-785). The amount check is Android-only.
 - tapOn: "Idioma, .*"
+- extendedWaitUntil:
+    visible: "Deutsch"
+    timeout: 10000
+- tapOn: "Deutsch"
+- extendedWaitUntil:
+    visible: "Sprache, Deutsch.*"
+    timeout: 10000
+- tapOn: "Close"
+- extendedWaitUntil:
+    notVisible: "Cent ausblenden"
+    timeout: 10000
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - assertVisible: ".*[0-9],[0-9]{2}.\\$ Einkommen · .*[0-9],[0-9]{2}.\\$ zugewiesen"
+      - assertNotVisible: ".*\\$[0-9].*"
+- tapOn: "Einstellungen"
+- extendedWaitUntil:
+    visible: "Cent ausblenden"
+    timeout: 10000
+- tapOn: "Sprache, .*"
 - extendedWaitUntil:
     visible: "English"
     timeout: 10000
