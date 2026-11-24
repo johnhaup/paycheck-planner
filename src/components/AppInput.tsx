@@ -20,11 +20,14 @@ const TEXT_ALIGN = I18nManager.isRTL ? "right" : "left";
 type AppInputProps = TextInputProps & {
   /** Shown in red under the field, which gets a red outline; inline so no toast covers a sheet's header. */
   error?: string;
+  /** Red outline with no message: for a field whose message is shown by its group (a row of inputs). */
+  invalid?: boolean;
   ref?: Ref<TextInputInstance>;
 };
 
-export function AppInput({ style, error, ref, ...rest }: AppInputProps) {
+export function AppInput({ style, error, invalid, ref, ...rest }: AppInputProps) {
   const colors = useColors();
+  const outlined = Boolean(error) || invalid;
 
   const inputStyle = useMemo(
     () => [
@@ -32,12 +35,12 @@ export function AppInput({ style, error, ref, ...rest }: AppInputProps) {
       {
         backgroundColor: colors.inputBackground,
         color: colors.textDefault,
-        borderColor: error ? colors.destructive : colors.border,
+        borderColor: outlined ? colors.destructive : colors.border,
       },
-      error ? styles.inputError : undefined,
+      outlined ? styles.inputError : undefined,
       style,
     ],
-    [colors, error, style]
+    [colors, outlined, style]
   );
 
   return (
