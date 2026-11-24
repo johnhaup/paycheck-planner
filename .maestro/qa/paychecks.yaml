@@ -282,8 +282,9 @@ env:
       platform: iOS
     commands:
       # Arabic device language: the app comes up translated, and a chart amount keeps its
-      # number, "k" and currency together between direction marks (HAU-154). The marks
-      # are in the pattern below. Display order is a screenshot check.
+      # number, "k" and currency together between direction marks (HAU-154), and ends with a
+      # left-to-right mark so "US$" reads as one unit, not "$US" (HAU-789). The marks are in
+      # the pattern below. Display order is a screenshot check.
       - launchApp:
           stopApp: true
           arguments:
@@ -293,7 +294,7 @@ env:
             "-EXDevMenuIsOnboardingFinished": "YES"
             "-AppleLanguages": "(ar)"
       - extendedWaitUntil:
-          visible: ".*، المتبقي \u200F[0-9.,]+k?\u200F\u00A0US\\$"
+          visible: ".*، المتبقي \u200F[0-9.,]+k?\u200F\u00A0US\\$\u200E"
           timeout: 60000
       # The layout is mirrored too: the tab bar runs right to left, Paychecks rightmost.
       # An app that declares no languages (no CFBundleLocalizations) stays LTR here (HAU-365).
