@@ -1,5 +1,5 @@
 import type { SQLiteDatabase } from "expo-sqlite";
-import { upsertSql } from "@/db/budget";
+import { insertSql } from "@/db/budget";
 import { SETTINGS_STORES, writeSetting } from "@/db/settings";
 import { TABLES, toRow, type BudgetEntity } from "@/db/tables";
 
@@ -44,7 +44,7 @@ export async function importLegacyStore(
     for (const spec of TABLES) {
       const entities = budget?.[spec.stateKey];
       if (!Array.isArray(entities)) continue;
-      const insert = upsertSql(spec, "ignore");
+      const insert = insertSql(spec, true);
       for (const entity of entities as BudgetEntity[]) {
         db.runSync(insert, spec.id(entity), ...toRow(spec, entity), now + created++, now);
       }

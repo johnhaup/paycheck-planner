@@ -83,6 +83,27 @@ test("adds, edits and removals are marked for sync, and a removal is never a har
   expect(file.query("SELECT deleted_at FROM expenses WHERE id = 'rent'").get()).toEqual({ deleted_at: 3000 });
 });
 
+test("edits to a row that has not synced yet persist and stay queued (HAU-791)", () => {
+  saveBudgetChanges(db, EMPTY, BUDGET, 1000);
+  const once = {
+    ...BUDGET,
+    expenses: [{ ...BUDGET.expenses[0], amount: 9000 }],
+    assignments: [{ ...BUDGET.assignments[0], paid: false }],
+    paycheckOverrides: [{ ...BUDGET.paycheckOverrides[0], payAmount: 2200 }],
+  };
+  saveBudgetChanges(db, BUDGET, once, 2000);
+  const twice = { ...once, incomeSources: [{ ...once.incomeSources[0], payAmount: 2500 }], expenses: [{ ...once.expenses[0], amount: 9100 }] };
+  saveBudgetChanges(db, once, twice, 3000);
+  expect(loadBudget(db)).toEqual(twice);
+  expect(file.query("SELECT created_at, updated_at FROM expenses WHERE id = 'rent'").get()).toEqual({ created_at: 1001, updated_at: 3000 });
+  expect(dirty()).toEqual(["assignments/a1", "expenses/rent", "income_sources/job", "paycheck_overrides/job|2026-12-01"]);
+
+  writeSetting(db, "currency", "EUR");
+  writeSetting(db, "currency", "GBP");
+  expect(readSettings(db).currency).toBe("GBP");
+  expect(dirty()).toContain("settings/currency");
+});
+
 test("a restore stamps every live row so it wins over older copies", () => {
   saveBudgetChanges(db, EMPTY, BUDGET, 1000);
   saveBudgetChanges(db, BUDGET, { ...BUDGET, expenses: [] }, 2000);
