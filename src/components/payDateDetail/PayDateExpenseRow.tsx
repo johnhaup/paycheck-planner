@@ -22,7 +22,7 @@ const TOGGLE_SIZE = 26;
 /** iOS's line height for the system font, as a share of its size */
 const LINE_HEIGHT_RATIO = 1.2;
 
-/** The add / remove button stops growing here, so the name keeps room in the card */
+/** The add / remove button stops growing here, so it fits the card */
 const TOGGLE_MAX_SCALE = 2;
 
 interface Props {
@@ -66,7 +66,9 @@ export function PayDateExpenseRow({
   const stacked = useAccessibilityTextSize();
   const { fontScale } = useWindowDimensions();
   const iconSize = stacked ? ICON_SIZE * fontScale : ICON_SIZE;
-  const toggleSize = stacked ? TOGGLE_SIZE * Math.min(fontScale, TOGGLE_MAX_SCALE) : TOGGLE_SIZE;
+  const toggleSize = stacked
+    ? TOGGLE_SIZE * Math.min(fontScale, TOGGLE_MAX_SCALE)
+    : TOGGLE_SIZE;
 
   const handleTogglePaid = useCallback(() => {
     onTogglePaid(expense.id);
@@ -91,7 +93,6 @@ export function PayDateExpenseRow({
   }, [isAssigned, onAssign, onUnassign, expense.id]);
 
   const titleRowStyle = useMemo(() => dimOnPress(styles.titleRow), []);
-  const amountStyle = useMemo(() => dimOnPress(styles.amount), []);
 
   const textColor = isPaid ? "textMuted" : "textDefault";
   const isSetAside = expense.kind === "set-aside";
@@ -99,18 +100,50 @@ export function PayDateExpenseRow({
     <Ionicons name="open-outline" size={iconSize} color={colors.textMuted} />
   ) : null;
 
+  const toggle = isLinkedPreload ? null : (
+    <Pressable
+      style={DIM_ON_PRESS}
+      onPress={handleToggleAssigned}
+      hitSlop={MEASUREMENTS.hitSlop}
+      accessibilityRole="button"
+      accessibilityLabel={
+        isAssigned
+          ? t("payDate.remove", { payee: expense.payee })
+          : t("payDate.add", { payee: expense.payee })
+      }
+    >
+      <Ionicons
+        name={isAssigned ? "remove-circle-outline" : "add-circle"}
+        size={toggleSize}
+        color={isAssigned ? colors.textMuted : colors.primary}
+      />
+    </Pressable>
+  );
+
   return (
     <View style={groupedStyles.container}>
-      <View style={stacked ? [groupedStyles.row, styles.rowStacked] : groupedStyles.row}>
+      <View
+        style={
+          stacked ? [groupedStyles.row, styles.rowStacked] : groupedStyles.row
+        }
+      >
         {isAssigned ? (
           <AppCheckCircle
             checked={isPaid}
             onPress={handleTogglePaid}
             // Stacked, the circle is one line of the name tall and sits on its first line
-            size={stacked ? MEASUREMENTS.font.body * fontScale * LINE_HEIGHT_RATIO : undefined}
+            size={
+              stacked
+                ? MEASUREMENTS.font.body * fontScale * LINE_HEIGHT_RATIO
+                : undefined
+            }
             accessibilityLabel={t(
-              isPaid ? "paychecks.markUnpaid" : isSetAside ? "paychecks.markSetAside" : "paychecks.markPaid",
-              { payee: expense.payee }
+              isPaid
+                ? "paychecks.markUnpaid"
+                : isSetAside
+                  ? "paychecks.markSetAside"
+                  : "paychecks.markPaid",
+              { payee: expense.payee },
             )}
           />
         ) : null}
@@ -127,7 +160,9 @@ export function PayDateExpenseRow({
                 variant="body"
                 color={textColor}
                 style={isPaid ? styles.titlePaid : undefined}
-                leading={isSetAside ? <AppSetAsideIcon size={iconSize} /> : null}
+                leading={
+                  isSetAside ? <AppSetAsideIcon size={iconSize} /> : null
+                }
                 trailing={linkIcon}
               >
                 {expense.payee}
@@ -144,44 +179,38 @@ export function PayDateExpenseRow({
             )}
             {stacked ? null : linkIcon}
           </Pressable>
-          <Pressable
-            style={amountStyle}
-            onPress={handleEditAmount}
-            disabled={!isAssigned}
-            accessibilityRole={isAssigned ? "button" : undefined}
-            accessibilityLabel={t("paychecks.changeAmount", { payee: expense.payee })}
-          >
-            <AppText variant="meta" color={isPaid ? "textMuted" : "textSecondary"}>
-              {formatMoney(amount)}
-            </AppText>
-          </Pressable>
+          <View style={styles.amountRow}>
+            <Pressable
+              style={DIM_ON_PRESS}
+              onPress={handleEditAmount}
+              disabled={!isAssigned}
+              accessibilityRole={isAssigned ? "button" : undefined}
+              accessibilityLabel={t("paychecks.changeAmount", {
+                payee: expense.payee,
+              })}
+            >
+              <AppText
+                variant="meta"
+                color={isPaid ? "textMuted" : "textSecondary"}
+              >
+                {formatMoney(amount)}
+              </AppText>
+            </Pressable>
+            {stacked ? toggle : null}
+          </View>
           {expense.dueDay !== undefined && expense.isRecurring ? (
-            <AppText variant="caption">{formatDueDay(expense.dueDay, parseLocalDate(payDate))}</AppText>
+            <AppText variant="caption">
+              {formatDueDay(expense.dueDay, parseLocalDate(payDate))}
+            </AppText>
           ) : null}
           {isLinkedPreload && stacked ? (
             <AppText variant="caption">{t("payDate.linked")}</AppText>
           ) : null}
         </View>
-        {isLinkedPreload ? (
-          stacked ? null : <AppText variant="caption">{t("payDate.linked")}</AppText>
+        {stacked ? null : isLinkedPreload ? (
+          <AppText variant="caption">{t("payDate.linked")}</AppText>
         ) : (
-          <Pressable
-            style={DIM_ON_PRESS}
-            onPress={handleToggleAssigned}
-            hitSlop={MEASUREMENTS.hitSlop}
-            accessibilityRole="button"
-            accessibilityLabel={
-              isAssigned
-                ? t("payDate.remove", { payee: expense.payee })
-                : t("payDate.add", { payee: expense.payee })
-            }
-          >
-            <Ionicons
-              name={isAssigned ? "remove-circle-outline" : "add-circle"}
-              size={toggleSize}
-              color={isAssigned ? colors.textMuted : colors.primary}
-            />
-          </Pressable>
+          toggle
         )}
       </View>
     </View>
@@ -203,8 +232,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: MEASUREMENTS.spacing.sm + 2,
   },
-  amount: {
-    alignSelf: "flex-start",
+  amountRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   title: {
     flexShrink: 1,
