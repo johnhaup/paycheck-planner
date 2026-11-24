@@ -1,5 +1,5 @@
 import { useCallback, useMemo, type ReactNode } from "react";
-import { Pressable, View, StyleSheet } from "react-native";
+import { Pressable, View, StyleSheet, useWindowDimensions } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { useColors } from "@/hooks/useColors";
@@ -44,6 +44,7 @@ export function PayDateSummary({
   const { format: formatMoney } = useMoneyFormat();
   const t = useT();
   const stacked = useAccessibilityTextSize();
+  const { fontScale } = useWindowDimensions();
   const date = parseLocalDate(payDate);
 
   const metaAmounts = useMemo(() => [payAmount, totalAssigned], [payAmount, totalAssigned]);
@@ -58,7 +59,7 @@ export function PayDateSummary({
     [t, formatMoney]
   );
 
-  const metaStyle = useMemo(() => dimOnPress(styles.meta), []);
+  const metaStyle = useMemo(() => dimOnPress(stacked ? [styles.meta, styles.metaStacked] : styles.meta), [stacked]);
   const shortRowStyle = useMemo(
     () => dimOnPress(stacked ? styles.shortRowStacked : styles.shortRow),
     [stacked]
@@ -88,7 +89,7 @@ export function PayDateSummary({
         accessibilityLabel={t("paychecks.changePayAmount", { source: sourceName })}
       >
         <AppCountUpText variant="meta" style={styles.shrink} amounts={metaAmounts} render={renderMeta} />
-        <Ionicons name="create-outline" size={14} color={colors.textMuted} />
+        <Ionicons name="create-outline" size={stacked ? 14 * fontScale : 14} color={colors.textMuted} />
       </Pressable>
       {remaining < 0 && canMoveBill ? (
         <Pressable
@@ -141,6 +142,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: MEASUREMENTS.spacing.sm + 2,
+  },
+  metaStacked: {
+    alignItems: "flex-start",
   },
   shortRow: {
     alignSelf: "flex-start",

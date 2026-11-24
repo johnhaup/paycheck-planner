@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from "react";
-import { View, Pressable, StyleSheet } from "react-native";
+import { View, Pressable, StyleSheet, useWindowDimensions } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
 import { useColors } from "@/hooks/useColors";
@@ -14,6 +14,16 @@ import { AppSetAsideIcon } from "@/components/AppSetAsideIcon";
 import { formatDueDay, parseLocalDate } from "@/utils/payDates";
 import type { Expense } from "@/types";
 import { DIM_ON_PRESS, dimOnPress } from "@/constants/press";
+
+/** Icon sizes at the default text size; they scale with the text where rows stack */
+const ICON_SIZE = 14;
+const TOGGLE_SIZE = 26;
+
+/** iOS's line height for the system font, as a share of its size */
+const LINE_HEIGHT_RATIO = 1.2;
+
+/** The add / remove button stops growing here, so the name keeps room in the card */
+const TOGGLE_MAX_SCALE = 2;
 
 interface Props {
   expense: Expense;
@@ -54,6 +64,9 @@ export function PayDateExpenseRow({
   const t = useT();
   const groupedStyles = useGroupedRowStyles(isFirst, isLast);
   const stacked = useAccessibilityTextSize();
+  const { fontScale } = useWindowDimensions();
+  const iconSize = stacked ? ICON_SIZE * fontScale : ICON_SIZE;
+  const toggleSize = stacked ? TOGGLE_SIZE * Math.min(fontScale, TOGGLE_MAX_SCALE) : TOGGLE_SIZE;
 
   const handleTogglePaid = useCallback(() => {
     onTogglePaid(expense.id);
@@ -82,14 +95,19 @@ export function PayDateExpenseRow({
 
   const textColor = isPaid ? "textMuted" : "textDefault";
   const isSetAside = expense.kind === "set-aside";
+  const linkIcon = expense.link ? (
+    <Ionicons name="open-outline" size={iconSize} color={colors.textMuted} />
+  ) : null;
 
   return (
     <View style={groupedStyles.container}>
-      <View style={groupedStyles.row}>
+      <View style={stacked ? [groupedStyles.row, styles.rowStacked] : groupedStyles.row}>
         {isAssigned ? (
           <AppCheckCircle
             checked={isPaid}
             onPress={handleTogglePaid}
+            // Stacked, the circle is one line of the name tall and sits on its first line
+            size={stacked ? MEASUREMENTS.font.body * fontScale * LINE_HEIGHT_RATIO : undefined}
             accessibilityLabel={t(
               isPaid ? "paychecks.markUnpaid" : isSetAside ? "paychecks.markSetAside" : "paychecks.markPaid",
               { payee: expense.payee }
@@ -103,9 +121,15 @@ export function PayDateExpenseRow({
             disabled={!expense.link}
             accessibilityRole={expense.link ? "link" : undefined}
           >
-            {isSetAside ? <AppSetAsideIcon /> : null}
+            {isSetAside && !stacked ? <AppSetAsideIcon /> : null}
             {stacked ? (
-              <AppWordWrapText variant="body" color={textColor} style={isPaid ? styles.titlePaid : undefined}>
+              <AppWordWrapText
+                variant="body"
+                color={textColor}
+                style={isPaid ? styles.titlePaid : undefined}
+                leading={isSetAside ? <AppSetAsideIcon size={iconSize} /> : null}
+                trailing={linkIcon}
+              >
                 {expense.payee}
               </AppWordWrapText>
             ) : (
@@ -118,9 +142,7 @@ export function PayDateExpenseRow({
                 {expense.payee}
               </AppText>
             )}
-            {expense.link ? (
-              <Ionicons name="open-outline" size={14} color={colors.textMuted} />
-            ) : null}
+            {stacked ? null : linkIcon}
           </Pressable>
           <Pressable
             style={amountStyle}
@@ -156,7 +178,7 @@ export function PayDateExpenseRow({
           >
             <Ionicons
               name={isAssigned ? "remove-circle-outline" : "add-circle"}
-              size={26}
+              size={toggleSize}
               color={isAssigned ? colors.textMuted : colors.primary}
             />
           </Pressable>
@@ -167,6 +189,9 @@ export function PayDateExpenseRow({
 }
 
 const styles = StyleSheet.create({
+  rowStacked: {
+    alignItems: "flex-start",
+  },
   info: {
     flex: 1,
     gap: MEASUREMENTS.spacing.xs,
