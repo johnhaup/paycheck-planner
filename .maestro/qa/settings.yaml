@@ -227,6 +227,47 @@ name: settings
     timeout: 10000
 - takeScreenshot: erased
 
+# iOS: the Sync section (HAU-787). `-cloudSyncMock` swaps iCloud for the module's
+# in-memory cloud with a signed-in account, so it runs on any simulator, Release too.
+# Turn off and delete asks first; Cancel leaves sync on.
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - launchApp:
+          stopApp: true
+          arguments:
+            "--initialUrl": ${METRO_URL}
+            "-EXDevMenuShowsAtLaunch": "NO"
+            "-EXDevMenuShowFloatingActionButton": "NO"
+            "-EXDevMenuIsOnboardingFinished": "YES"
+            "-cloudSyncMock": "YES"
+      - extendedWaitUntil:
+          visible: "Plan every paycheck"
+          timeout: 60000
+      - tapOn: "Settings"
+      - extendedWaitUntil:
+          visible: "Hide cents"
+          timeout: 15000
+      - scrollUntilVisible:
+          element: "Turn off and delete iCloud copy.*"
+          direction: DOWN
+          centerElement: true
+      - extendedWaitUntil:
+          visible: "Last synced .*|Your budget syncs with iCloud across your devices\\."
+          timeout: 15000
+      - assertVisible: "iCloud sync"
+      - tapOn: "Turn off and delete iCloud copy.*"
+      - extendedWaitUntil:
+          visible: "Delete the iCloud copy?"
+          timeout: 10000
+      - tapOn: "Cancel"
+      - extendedWaitUntil:
+          notVisible: "Delete the iCloud copy?"
+          timeout: 10000
+      - assertVisible: "Turn off and delete iCloud copy.*"
+      - takeScreenshot: settings-sync
+
 # iOS, largest accessibility text size (HAU-162): the Appearance segments stack, one
 # full-width row each, instead of clipping side by side. Maestro
 # can assert the stack (each below the one before, never to its right). The launch
