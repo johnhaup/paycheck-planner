@@ -28,7 +28,6 @@ public class LayoutDirectionModule: Module {
     ])
 
     AsyncFunction("setRTL") { (rtl: Bool) in
-      guard #available(iOS 17.0, *) else { return }
       for scene in UIApplication.shared.connectedScenes {
         (scene as? UIWindowScene)?.traitOverrides.layoutDirection = rtl ? .rightToLeft : .leftToRight
       }
