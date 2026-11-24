@@ -3,7 +3,8 @@ import { Appearance, I18nManager, LogBox, Platform, Pressable, StyleSheet } from
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardProvider } from "react-native-keyboard-controller";
-import { DarkTheme, DefaultTheme, Stack, ThemeProvider, useRouter } from "expo-router";
+import { DarkTheme, DefaultTheme, SplashScreen, Stack, ThemeProvider, useRouter } from "expo-router";
+import { SQLiteProvider } from "expo-sqlite";
 import { requireOptionalNativeModule } from "expo";
 import { StatusBar } from "expo-status-bar";
 import { Toaster } from "sonner-native";
@@ -16,6 +17,7 @@ import { useThemeStore } from "@/stores/themeStore";
 import { useProEntitlement } from "@/services/pro";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { DIM_ON_PRESS } from "@/constants/press";
+import { initDatabase } from "@/db/init";
 
 // sonner-native 0.27.0 passes dependency arrays to useDerivedValue/useAnimatedStyle,
 // which Reanimated 4 warns about on native. The warning fires with the first toast
@@ -30,10 +32,30 @@ void requireOptionalNativeModule<{ setRTL: (rtl: boolean) => Promise<void> }>("L
   I18nManager.isRTL
 );
 
+// Held until the database has loaded the stores, so the first screen shows the saved budget and theme
+SplashScreen.preventAutoHideAsync();
+
 const TABS_OPTIONS = { headerShown: false };
 const ANDROID_TOOLBAR_HEIGHT = 56;
 
+/** Rendered once `initDatabase` has run. */
+function HideSplash() {
+  useEffect(() => {
+    SplashScreen.hideAsync();
+  }, []);
+  return null;
+}
+
 export default function RootLayout() {
+  return (
+    <SQLiteProvider databaseName="paycheck-planner.db" onInit={initDatabase}>
+      <HideSplash />
+      <RootNavigator />
+    </SQLiteProvider>
+  );
+}
+
+function RootNavigator() {
   const colors = useColors();
   const isDark = useIsDark();
   const router = useRouter();

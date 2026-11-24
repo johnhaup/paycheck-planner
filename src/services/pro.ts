@@ -1,7 +1,5 @@
 import { useEffect } from "react";
 import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   finishTransaction,
   getAvailablePurchases,
@@ -45,16 +43,10 @@ interface ProState {
  * offline launch keeps whatever was last confirmed.
  */
 export const useProStore = create<ProState>()(
-  persist(
-    (set) => ({
-      isPro: false,
-      setIsPro: (isPro) => set({ isPro }),
-    }),
-    {
-      name: "paycheck-planner-pro",
-      storage: createJSONStorage(() => AsyncStorage),
-    }
-  )
+  (set) => ({
+    isPro: false,
+    setIsPro: (isPro) => set({ isPro }),
+  })
 );
 
 export function useIsPro(): boolean {

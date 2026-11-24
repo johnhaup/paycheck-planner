@@ -1,8 +1,6 @@
 import { I18nManager } from "react-native";
 import { reloadAppAsync } from "expo";
 import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   DEFAULT_LANGUAGE,
   getDeviceCurrency,
@@ -14,7 +12,6 @@ import {
 import { RTL_LANGUAGES } from "@/localization/languages";
 
 export const SYSTEM = "system";
-const STORAGE_KEY = "paycheck-planner-locale";
 
 interface LocaleState {
   language: LanguageCode | typeof SYSTEM;
@@ -24,21 +21,15 @@ interface LocaleState {
 }
 
 export const useLocaleStore = create<LocaleState>()(
-  persist(
-    (set) => ({
-      language: SYSTEM,
-      currency: SYSTEM,
-      setLanguage: (language) => {
-        set({ language });
-        void applyLayoutDirection(language);
-      },
-      setCurrency: (currency) => set({ currency }),
-    }),
-    {
-      name: STORAGE_KEY,
-      storage: createJSONStorage(() => AsyncStorage),
-    }
-  )
+  (set) => ({
+    language: SYSTEM,
+    currency: SYSTEM,
+    setLanguage: (language) => {
+      set({ language });
+      void applyLayoutDirection(language);
+    },
+    setCurrency: (currency) => set({ currency }),
+  })
 );
 
 export function resolveLanguage(language: LocaleState["language"]): LanguageCode {
@@ -93,14 +84,13 @@ async function applyLayoutDirection(language: LocaleState["language"]) {
   if (rtl === I18nManager.isRTL) return;
   I18nManager.allowRTL(rtl);
   I18nManager.forceRTL(rtl);
-  // AsyncStorage runs on a serial queue, so this returns after the language's
-  // write. Reloading sooner could lose it and flip the direction straight back.
-  await AsyncStorage.getItem(STORAGE_KEY);
+  // The language's settings row is written synchronously by its subscriber in
+  // src/db/init.ts, so the reload cannot lose it.
   await reloadAppAsync("Layout direction changed");
 }
 
 applyLanguage(DEFAULT_LANGUAGE);
 applyLanguage(useLocaleStore.getState().language);
 useLocaleStore.subscribe((state) => applyLanguage(state.language));
-// Picks up a device language changed in iOS Settings while the app was closed
-useLocaleStore.persist.onFinishHydration((state) => void applyLayoutDirection(state.language));
+/** Called once the saved language is loaded; picks up a device language changed in iOS Settings while the app was closed. */
+export const syncLayoutDirection = () => applyLayoutDirection(useLocaleStore.getState().language);

@@ -1,6 +1,4 @@
 import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export type ThemeMode = "light" | "dark" | "system";
 
@@ -14,18 +12,12 @@ interface ThemeState {
 }
 
 export const useThemeStore = create<ThemeState>()(
-  persist(
-    (set) => ({
-      themeMode: "dark",
-      setThemeMode: (mode) => set({ themeMode: mode }),
-      autoMarkPaidOnLinkTap: false,
-      setAutoMarkPaidOnLinkTap: (value) => set({ autoMarkPaidOnLinkTap: value }),
-      hideCents: false,
-      setHideCents: (value) => set({ hideCents: value }),
-    }),
-    {
-      name: "paycheck-planner-theme",
-      storage: createJSONStorage(() => AsyncStorage),
-    }
-  )
+  (set) => ({
+    themeMode: "dark",
+    setThemeMode: (mode) => set({ themeMode: mode }),
+    autoMarkPaidOnLinkTap: false,
+    setAutoMarkPaidOnLinkTap: (value) => set({ autoMarkPaidOnLinkTap: value }),
+    hideCents: false,
+    setHideCents: (value) => set({ hideCents: value }),
+  })
 );
