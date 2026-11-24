@@ -264,6 +264,55 @@ name: expenses
           below: "Internet"
 - assertVisible: "\\$1,477\\.33/mo"
 
+# An edit to an existing bill survives a relaunch: an upsert that fired cloud-sync's
+# trigger on a row already queued for sync rolled the write back (HAU-791). Internet
+# 70 -> 90 adds $20 to Brightline's total.
+- tapOn: "(I )?Internet.*"
+- extendedWaitUntil:
+    visible: "70"
+    timeout: 10000
+- tapOn: "70"
+- eraseText: 4
+- inputText: "90"
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - tapOn: "Payee"
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - hideKeyboard
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- swipe:
+    start: 50%, 45%
+    end: 50%, 15%
+- extendedWaitUntil:
+    visible: "Update expense"
+    timeout: 15000
+- tapOn: "Update expense"
+- extendedWaitUntil:
+    visible: "\\$1,497\\.33/mo"
+    timeout: 15000
+- launchApp:
+    stopApp: true
+    arguments:
+      "--initialUrl": ${METRO_URL}
+      "-EXDevMenuShowsAtLaunch": "NO"
+      "-EXDevMenuShowFloatingActionButton": "NO"
+      "-EXDevMenuIsOnboardingFinished": "YES"
+- extendedWaitUntil:
+    visible: ".*left over.*"
+    timeout: 60000
+- tapOn: "Expenses"
+- extendedWaitUntil:
+    visible: "\\$1,497\\.33/mo"
+    timeout: 15000
+- assertVisible: "(.*Internet.*)?\\$90\\.00.*"
+
 # A linked bill can repeat yearly: First month appears and the row says "yearly" (HAU-350).
 # QA Water goes on Mesa Health, whose total nothing below checks.
 - swipe:
@@ -339,9 +388,9 @@ name: expenses
           timeout: 60000
       - tapOn: "Expenses"
       - extendedWaitUntil:
-          visible: "\\$1,477\\.33/mo"
+          visible: "\\$1,497\\.33/mo"
           timeout: 15000
       - assertVisible:
-          text: "\\$1,477\\.33/mo"
+          text: "\\$1,497\\.33/mo"
           below: "(?i)brightline co\\."
       - takeScreenshot: expenses-xxxl

@@ -16,14 +16,22 @@ export function loadBudget(db: SQLiteDatabase): BudgetData {
   return data as unknown as BudgetData;
 }
 
-/** Upserts one entity; a row that comes back (undo, restore) loses its tombstone and keeps its created_at. */
-export function upsertSql(spec: TableSpec, conflict: "update" | "ignore") {
+/** Inserts one entity; with `ignoreExisting`, a row that is already there is left as it is. */
+export function insertSql(spec: TableSpec, ignoreExisting = false) {
   const columns = spec.columns.map(([column]) => column);
   const placeholders = ["?", ...columns.map(() => "?"), "?", "?"].join(", ");
   const insert = `INSERT INTO ${spec.table} (id, ${columns.join(", ")}, created_at, updated_at) VALUES (${placeholders})`;
-  if (conflict === "ignore") return `${insert} ON CONFLICT(id) DO NOTHING`;
-  const updates = columns.map((column) => `${column} = excluded.${column}`).join(", ");
-  return `${insert} ON CONFLICT(id) DO UPDATE SET ${updates}, updated_at = excluded.updated_at, deleted_at = NULL`;
+  return ignoreExisting ? `${insert} ON CONFLICT(id) DO NOTHING` : insert;
+}
+
+/**
+ * Overwrites one entity; a row that comes back (undo, restore) loses its tombstone and keeps its created_at.
+ * Never an `ON CONFLICT … DO UPDATE` upsert: its conflict policy overrides the `INSERT OR REPLACE` in
+ * cloud-sync's update trigger, which then aborts on a row already queued in `_sync_changes` (HAU-791).
+ */
+function updateSql(spec: TableSpec) {
+  const updates = spec.columns.map(([column]) => `${column} = ?`).join(", ");
+  return `UPDATE ${spec.table} SET ${updates}, updated_at = ?, deleted_at = NULL WHERE id = ?`;
 }
 
 const sameRow = (a: unknown[], b: unknown[]) => a.every((value, i) => value === b[i]);
@@ -41,7 +49,8 @@ export function saveBudgetChanges(db: SQLiteDatabase, prev: BudgetData, next: Bu
       if (before === after) continue;
       const previous = new Map(before.map((entity) => [spec.id(entity), entity]));
       const kept = new Set<string>();
-      const upsert = upsertSql(spec, "update");
+      const insert = insertSql(spec);
+      const update = updateSql(spec);
       for (const entity of after) {
         const id = spec.id(entity);
         kept.add(id);
@@ -49,7 +58,8 @@ export function saveBudgetChanges(db: SQLiteDatabase, prev: BudgetData, next: Bu
         if (old === entity) continue;
         const row = toRow(spec, entity);
         if (old && sameRow(row, toRow(spec, old))) continue;
-        db.runSync(upsert, id, ...row, now + created++, now);
+        if (db.runSync(update, ...row, now, id).changes === 0) db.runSync(insert, id, ...row, now + created, now);
+        created++;
       }
       for (const id of previous.keys()) {
         if (!kept.has(id)) {

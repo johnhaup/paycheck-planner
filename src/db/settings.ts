@@ -36,14 +36,11 @@ export function readSettings(db: SQLiteDatabase): Record<string, unknown> {
   return Object.fromEntries(rows.map((row) => [row.key, JSON.parse(row.value)]));
 }
 
+/** Update, then insert: an `ON CONFLICT … DO UPDATE` upsert aborts in cloud-sync's trigger (see `updateSql` in `@/db/budget`). */
 export function writeSetting(db: SQLiteDatabase, key: string, value: unknown, now = Date.now()) {
-  db.runSync(
-    `INSERT INTO settings (key, value, updated_at) VALUES (?, ?, ?)
-     ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = excluded.updated_at`,
-    key,
-    JSON.stringify(value),
-    now
-  );
+  const json = JSON.stringify(value);
+  if (db.runSync("UPDATE settings SET value = ?, updated_at = ? WHERE key = ?", json, now, key).changes > 0) return;
+  db.runSync("INSERT INTO settings (key, value, updated_at) VALUES (?, ?, ?)", key, json, now);
 }
 
 /** A store's fields that have a row, ready for its `setState`. */
