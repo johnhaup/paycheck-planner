@@ -22,7 +22,7 @@ No unit tests exist. Type check and lint before calling anything done.
 
 - `app/`: Expo Router screens only (`(tabs)` for Paychecks / Income / Expenses; modals and sheets as sibling routes, `paywall.tsx` for Pro).
 - `src/`: everything else, imported through `@/` (`@/components/AppText`, never relative paths).
-- `src/store.ts`: the one data store (zustand + `persist` to AsyncStorage): income sources, expenses, assignments, per-paycheck overrides. Smaller stores live in `src/stores/`.
+- `src/store.ts`: the one data store (zustand, loaded from and written through to expo-sqlite by `src/db/`, one table per entity, settings in a `settings` table): income sources, expenses, assignments, per-paycheck overrides. Smaller stores live in `src/stores/`.
 - `src/utils/`: pure logic (pay dates, money, months, backup, CSV). Keep it free of React.
 - `src/services/pro.ts`: the Pro entitlement (see below).
 
