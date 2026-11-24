@@ -45,6 +45,27 @@ name: settings
     timeout: 15000
 - takeScreenshot: settings-light
 
+# iOS with no iCloud account (pool and gate simulators have none): the iCloud sync
+# switch is off and disabled under the sign-in hint (HAU-790). Skipped when signed in.
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - scrollUntilVisible:
+          element: ".*Erase all data.*"
+          direction: DOWN
+      - runFlow:
+          when:
+            visible: "Sign in to iCloud in the Settings app to sync."
+          commands:
+            - assertVisible:
+                enabled: false
+                rightOf: "iCloud sync"
+            - assertNotVisible: "Turn off and delete iCloud copy.*"
+      - scrollUntilVisible:
+          element: "Currency, .*"
+          direction: UP
+
 # The Language and Currency sheets have their own X, which goes back to Settings
 # without changing the choice (HAU-617).
 - tapOn: "Currency, .*"
