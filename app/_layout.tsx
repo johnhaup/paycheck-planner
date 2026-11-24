@@ -112,6 +112,8 @@ function RootNavigator() {
   const modalOptions = useMemo(
     () => ({
       presentation: "modal" as const,
+      // Android pushes a modal as a full screen, so the stack would add its back arrow next to the X (HAU-786).
+      ...(Platform.OS === "android" ? { headerBackVisible: false } : null),
       headerStyle: { backgroundColor: colors.modalBackground },
       contentStyle: { backgroundColor: colors.modalBackground },
     }),

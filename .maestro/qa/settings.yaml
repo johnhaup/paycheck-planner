@@ -24,6 +24,12 @@ name: settings
     visible: "Hide cents"
     timeout: 10000
 - assertVisible: "Paycheck Planner Pro, One-time purchase.*"
+# Android: a modal has the X only, no stack back arrow (HAU-786)
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - assertNotVisible: "Navigate up"
 
 # Appearance. A fresh install defaults to Dark. The segments expose
 # accessibilityState.selected, so wait for it: under load the re-render can land
@@ -48,6 +54,11 @@ name: settings
 - assertVisible:
     text: "Close"
     rightOf: "Currency"
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - assertNotVisible: "Navigate up"
 - tapOn:
     text: "Close"
     rightOf: "Currency"
