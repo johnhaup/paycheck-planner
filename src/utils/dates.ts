@@ -66,3 +66,8 @@ export function formatDayNumber(date: Date): string {
 export function formatTimeOfDay(hour: number, minute: number): string {
   return formatter({ hour: "numeric", minute: "2-digit" }).format(new Date(2000, 0, 1, hour, minute));
 }
+
+/** "Nov 24, 6:05 PM" */
+export function formatDateTime(date: Date): string {
+  return formatter({ month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }).format(date);
+}

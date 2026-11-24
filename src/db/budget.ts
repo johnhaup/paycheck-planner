@@ -64,3 +64,15 @@ export function saveBudgetChanges(db: SQLiteDatabase, prev: BudgetData, next: Bu
     }
   });
 }
+
+/**
+ * Stamps every live row as changed now. After a restore from a backup file, so the restored budget wins
+ * over the copies other devices hold, including rows the restore left as they were.
+ */
+export function stampBudget(db: SQLiteDatabase, now = Date.now()) {
+  db.withTransactionSync(() => {
+    for (const spec of TABLES) {
+      db.runSync(`UPDATE ${spec.table} SET updated_at = ? WHERE deleted_at IS NULL`, now);
+    }
+  });
+}

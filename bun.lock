@@ -6,6 +6,7 @@
       "name": "paycheck-planner",
       "dependencies": {
         "@expo/vector-icons": "^15.0.2",
+        "@johnhaup/expo-cloud-sync": "github:johnhaup/expo-cloud-sync#v0.4.0",
         "@react-native-community/datetimepicker": "9.2.1",
         "date-fns": "^4.4.0",
         "expo": "~58.0.22",
@@ -316,6 +317,8 @@
     "@jest/schemas": ["@jest/schemas@29.6.3", "", { "dependencies": { "@sinclair/typebox": "^0.27.8" } }, "sha512-mo5j5X+jIZmJQveBKeS/clAueipV7KgiX1vMgCxam1RNYiqE1w62n0/tJJnHtjW8ZHcQco5gY85jA3mi0L+nSA=="],
 
     "@jest/types": ["@jest/types@29.6.3", "", { "dependencies": { "@jest/schemas": "^29.6.3", "@types/istanbul-lib-coverage": "^2.0.0", "@types/istanbul-reports": "^3.0.0", "@types/node": "*", "@types/yargs": "^17.0.8", "chalk": "^4.0.0" } }, "sha512-u3UPsIilWKOM3F9CXtrG8LEJmNxwoCQC/XVj4IKYXvvpx7QIi/Kg1LI5uDmDpKlac62NUtX7eLjRh+jVZcLOzw=="],
+
+    "@johnhaup/expo-cloud-sync": ["@johnhaup/expo-cloud-sync@github:johnhaup/expo-cloud-sync#4708cf4", { "peerDependencies": { "expo": "*", "expo-sqlite": "*", "react": "*", "react-native": "*" } }, "johnhaup-expo-cloud-sync-4708cf4", "sha512-42HdowHhQd4NLBVq1wdQTcW/giz2suW9bQWv5eUWcXNcT2L2MWFvC6kBfVCKqE6ESbXxkzCRbPoLeSNwwY2ARw=="],
 
     "@johnhaup/expo-local-ship": ["@johnhaup/expo-local-ship@link:@johnhaup/expo-local-ship", { "bin": { "expo-local-ship": "./dist/index.js" } }],
 

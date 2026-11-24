@@ -43,7 +43,6 @@
           ]
         }
       ],
-      "./plugins/withoutPushEntitlement.js",
       [
         "expo-notifications",
         {
@@ -64,7 +63,14 @@
       "expo-iap",
       "./plugins/withStoreKitConfiguration.js",
       "./plugins/withOptionalPortrait.js",
-      "expo-sqlite"
+      "expo-sqlite",
+      [
+        "@johnhaup/expo-cloud-sync",
+        {
+          "iCloudContainer": "iCloud.com.johnhaup.paycheckplanner",
+          "backupInclude": [{ "domain": "database", "path": "RKStorage" }]
+        }
+      ]
     ],
     "extra": {
       "router": {},

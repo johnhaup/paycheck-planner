@@ -5,6 +5,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 import { DarkTheme, DefaultTheme, SplashScreen, Stack, ThemeProvider, useRouter } from "expo-router";
 import { SQLiteProvider } from "expo-sqlite";
+import { CloudSyncProvider } from "@johnhaup/expo-cloud-sync";
 import { requireOptionalNativeModule } from "expo";
 import { StatusBar } from "expo-status-bar";
 import { Toaster } from "sonner-native";
@@ -18,6 +19,8 @@ import { useProEntitlement } from "@/services/pro";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { DIM_ON_PRESS } from "@/constants/press";
 import { initDatabase } from "@/db/init";
+import { SYNC_CONFIG } from "@/db/sync";
+import { SyncedStores } from "@/components/SyncedStores";
 
 // sonner-native 0.27.0 passes dependency arrays to useDerivedValue/useAnimatedStyle,
 // which Reanimated 4 warns about on native. The warning fires with the first toast
@@ -50,7 +53,14 @@ export default function RootLayout() {
   return (
     <SQLiteProvider databaseName="paycheck-planner.db" onInit={initDatabase}>
       <HideSplash />
-      <RootNavigator />
+      {Platform.OS === "ios" ? (
+        <CloudSyncProvider config={SYNC_CONFIG}>
+          <SyncedStores />
+          <RootNavigator />
+        </CloudSyncProvider>
+      ) : (
+        <RootNavigator />
+      )}
     </SQLiteProvider>
   );
 }
