@@ -63,7 +63,8 @@
       "expo-status-bar",
       "expo-iap",
       "./plugins/withStoreKitConfiguration.js",
-      "./plugins/withOptionalPortrait.js"
+      "./plugins/withOptionalPortrait.js",
+      "expo-sqlite"
     ],
     "extra": {
       "router": {},
