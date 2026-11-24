@@ -36,11 +36,39 @@ name: income
 - extendedWaitUntil:
     visible: "e.g. Acme Corp"
     timeout: 10000
-- tapOn: "e.g. 2500.00"
-- inputText: "1500"
-- tapOn: "e.g. Acme Corp"
+# A refused save marks the field, focuses it and keeps the header clear (HAU-772):
+# the message sits under the field, typing into it clears the message
+- scrollUntilVisible:
+    element: "Add income source"
+- tapOn: "Add income source"
+- extendedWaitUntil:
+    visible: "Name is required."
+    timeout: 10000
+- assertVisible: "Income source"
+- assertVisible: "Close"
 - inputText: "QA Payroll"
+- assertNotVisible: "Name is required."
 - pressKey: Enter
+- scrollUntilVisible:
+    element: "Add income source"
+- tapOn: "Add income source"
+- extendedWaitUntil:
+    visible: "Enter a valid pay amount."
+    timeout: 10000
+- assertVisible: "Close"
+- inputText: "1500"
+- assertNotVisible: "Enter a valid pay amount."
+# Drop the number pad without touching a key: a label on iOS, back on Android
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - tapOn: "(?i)pay frequency"
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - hideKeyboard
 - tapOn: "Weekly"
 - scrollUntilVisible:
     element: "Add income source"
