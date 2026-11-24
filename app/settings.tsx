@@ -1,8 +1,10 @@
 import { useCallback, useMemo, useRef } from "react";
-import { Alert, ScrollView, StyleSheet, View, type ScrollViewInstance } from "react-native";
+import { Alert, Platform, ScrollView, StyleSheet, View, type ScrollViewInstance } from "react-native";
 import { useRouter } from "expo-router";
+import { useSQLiteContext } from "expo-sqlite";
 import { toast } from "sonner-native";
 import { useStore } from "@/store";
+import { stampBudget } from "@/db/budget";
 import { useGutters } from "@/hooks/useGutters";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useColors } from "@/hooks/useColors";
@@ -22,6 +24,7 @@ import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { AppSegmentedControl, type SegmentOption } from "@/components/AppSegmentedControl";
 import { SettingsToggleRow } from "@/components/settings/SettingsToggleRow";
 import { SettingsLinkRow } from "@/components/settings/SettingsLinkRow";
+import { SettingsSyncSection } from "@/components/settings/SettingsSyncSection";
 import { useProGate } from "@/hooks/useProGate";
 import { toastError } from "@/utils/toastError";
 import { useScrollKeptOnResize } from "@/hooks/useScrollKeptOnResize";
@@ -37,6 +40,7 @@ export default function SettingsScreen() {
 
 function SettingsContent() {
   const router = useRouter();
+  const db = useSQLiteContext();
   const colors = useColors();
   const scrollRef = useRef<ScrollViewInstance>(null);
   const keptScroll = useScrollKeptOnResize(scrollRef);
@@ -140,10 +144,15 @@ function SettingsContent() {
       {
         text: t("settings.data.restoreConfirm"),
         style: "destructive",
-        onPress: () => withUndo(t("toasts.restored"), () => useStore.setState(result.data)),
+        // Stamped, or rows the restore left unchanged could lose to an older copy from another device
+        onPress: () =>
+          withUndo(t("toasts.restored"), () => {
+            useStore.setState(result.data);
+            stampBudget(db);
+          }),
       },
     ]);
-  }, [t]);
+  }, [db, t]);
 
   const handleErase = useCallback(() => {
     Alert.alert(t("settings.data.eraseTitle"), t("settings.data.eraseBody"), [
@@ -277,6 +286,8 @@ function SettingsContent() {
         value={autoMarkPaid}
         onValueChange={setAutoMarkPaid}
       />
+
+      {Platform.OS === "ios" ? <SettingsSyncSection /> : null}
 
       <AppSectionHeader title={t("settings.data.title")} />
       <SettingsLinkRow label={t("settings.data.backup")} onPress={handleBackup} />
