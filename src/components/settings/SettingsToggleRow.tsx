@@ -16,9 +16,10 @@ interface Props {
   onValueChange: (value: boolean) => void;
   /** Pro-only toggle: shows the badge; the caller routes the change to the paywall */
   pro?: boolean;
+  disabled?: boolean;
 }
 
-export function SettingsToggleRow({ label, hint, value, onValueChange, pro }: Props) {
+export function SettingsToggleRow({ label, hint, value, onValueChange, pro, disabled }: Props) {
   const colors = useColors();
   const stacked = useAccessibilityTextSize();
 
@@ -39,14 +40,14 @@ export function SettingsToggleRow({ label, hint, value, onValueChange, pro }: Pr
           <AppWordWrapText variant="body">{label}</AppWordWrapText>
           <View style={styles.controls}>
             {pro ? <ProBadge /> : <View />}
-            <AppToggle value={value} onValueChange={onValueChange} />
+            <AppToggle value={value} onValueChange={onValueChange} disabled={disabled} />
           </View>
         </AppCard>
       ) : (
         <AppCard style={cardStyle}>
           <AppText variant="body" style={styles.label}>{label}</AppText>
           {pro ? <ProBadge /> : null}
-          <AppToggle value={value} onValueChange={onValueChange} />
+          <AppToggle value={value} onValueChange={onValueChange} disabled={disabled} />
         </AppCard>
       )}
       {hint ? (

@@ -16,6 +16,8 @@ import { FADE, SPRING } from "@/constants/motion";
 interface Props {
   value: boolean;
   onValueChange: (value: boolean) => void;
+  /** Dimmed and ignores taps */
+  disabled?: boolean;
 }
 
 const TRACK_WIDTH = 48;
@@ -26,7 +28,7 @@ const THUMB_SIZE = 22;
 /** Transforms do not mirror in RTL, so the thumb travels the other way there */
 const THUMB_TRAVEL = (TRACK_WIDTH - THUMB_SIZE - 6) * (I18nManager.isRTL ? -1 : 1);
 
-export function AppToggle({ value, onValueChange }: Props) {
+export function AppToggle({ value, onValueChange, disabled }: Props) {
   const colors = useColors();
 
   const handlePress = useCallback(() => {
@@ -55,7 +57,12 @@ export function AppToggle({ value, onValueChange }: Props) {
   }, [value, thumbX, on]);
 
   return (
-    <Pressable style={DIM_ON_PRESS} onPress={handlePress} hitSlop={MEASUREMENTS.hitSlop}>
+    <Pressable
+      style={disabled ? styles.disabled : DIM_ON_PRESS}
+      onPress={handlePress}
+      disabled={disabled}
+      hitSlop={MEASUREMENTS.hitSlop}
+    >
       <Animated.View style={trackStyle}>
         <Animated.View style={thumbStyle} />
       </Animated.View>
@@ -64,6 +71,9 @@ export function AppToggle({ value, onValueChange }: Props) {
 }
 
 const styles = StyleSheet.create({
+  disabled: {
+    opacity: 0.4,
+  },
   track: {
     width: TRACK_WIDTH,
     height: TRACK_HEIGHT,

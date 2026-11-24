@@ -11,6 +11,9 @@ import { SettingsToggleRow } from "@/components/settings/SettingsToggleRow";
 /** States in which a cloud copy may exist and can be deleted from here */
 const HAS_CLOUD_COPY: SyncState[] = ["idle", "syncing", "quotaExceeded", "error"];
 
+/** No usable iCloud account: sync cannot run, so the switch shows off and cannot be turned on */
+const NO_ACCOUNT: SyncState[] = ["signedOut", "unavailable"];
+
 /** iCloud sync: on by default, free. iOS only; Android has no sync yet. */
 export function SettingsSyncSection() {
   const t = useT();
@@ -47,6 +50,8 @@ export function SettingsSyncSection() {
     ]);
   }, [signOut, failed, t]);
 
+  const noAccount = NO_ACCOUNT.includes(state);
+
   const hint = {
     off: t("settings.sync.off"),
     unavailable: t("settings.sync.unavailable"),
@@ -67,8 +72,9 @@ export function SettingsSyncSection() {
       <SettingsToggleRow
         label={t("settings.sync.icloud")}
         hint={hint}
-        value={state !== "off"}
+        value={state !== "off" && !noAccount}
         onValueChange={handleToggle}
+        disabled={noAccount}
       />
       {state === "error" ? <SettingsLinkRow label={t("settings.sync.retry")} onPress={handleRetry} /> : null}
       {state === "accountChanged" ? (
