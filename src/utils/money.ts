@@ -1,4 +1,5 @@
 import { getCurrency, getLocaleTag } from "@/stores/localeStore";
+import { closeAmount } from "@/utils/rtlAmount";
 
 const formatters = new Map<string, Intl.NumberFormat>();
 
@@ -17,28 +18,13 @@ function formatter(hideCents: boolean, currency = getCurrency()): Intl.NumberFor
   return cached;
 }
 
-// Marks the formatter puts into right-to-left amounts ("\u200F4.8\u00A0US$" in Arabic)
-const RTL_MARK = /[\u200F\u061C]/;
-const LAST_DIGIT = /(\p{Nd})(?!.*\p{Nd})/u;
-
-/**
- * Ends the number of a right-to-left amount with a right-to-left mark. Anything left-to-right
- * on the number (the mark Arabic puts on a minus sign, a "k") makes it a left-to-right run that
- * takes the letters of a Latin currency symbol with it ("$-292.84 US", "$4.8k US"); the mark
- * ends the run at the number. Other amounts come back unchanged.
- */
-function closeNumber(formatted: string, suffix = ""): string {
-  const end = suffix + (RTL_MARK.test(formatted) ? "\u200F" : "");
-  return end ? formatted.replace(LAST_DIGIT, `$1${end}`) : formatted;
-}
-
 export function formatMoney(amount: number, hideCents = false): string {
-  return closeNumber(formatter(hideCents).format(amount));
+  return closeAmount(formatter(hideCents).format(amount));
 }
 
 /** Preview of how `currency` renders in the current language, for the currency picker. */
 export function formatMoneyIn(amount: number, currency: string): string {
-  return formatter(false, currency).format(amount);
+  return closeAmount(formatter(false, currency).format(amount));
 }
 
 // Hermes on iOS lacks formatToParts, so the decimal separator is sniffed from a sample
@@ -78,5 +64,5 @@ export function formatCompactMoney(amount: number): string {
         maximumFractionDigits: 1,
       }).format((Math.sign(amount) * Math.round(abs / 100)) / 10)
     : formatter(true).format(amount || 0); // -0 would print a minus sign
-  return closeNumber(formatted, thousands ? "k" : "");
+  return closeAmount(formatted, thousands ? "k" : "");
 }
