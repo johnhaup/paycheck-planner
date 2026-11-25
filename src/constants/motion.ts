@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import { Easing, FadeIn, FadeOut, LinearTransition, ReduceMotion } from "react-native-reanimated";
 
 /**
@@ -44,8 +45,12 @@ export const FADE = { duration: DURATION.fade, reduceMotion: ReduceMotion.Never 
 /** How far the + button shrinks while held */
 export const PRESSED_SCALE = 0.9;
 
-/** List rows: new ones fade in, removed ones fade out, the rest spring to their place */
-export const ROW_ENTERING = FadeIn.duration(DURATION.fade);
+/**
+ * List rows: new ones fade in (iOS), removed ones fade out, the rest spring to their place.
+ * Android gets no entering fade: Reanimated 4.7 leaves a cell the list mounts after its first
+ * batch at FadeIn's opacity 0, so rows past the tenth were invisible (HAU-810).
+ */
+export const ROW_ENTERING = Platform.OS === "android" ? undefined : FadeIn.duration(DURATION.fade);
 export const ROW_EXITING = FadeOut.duration(DURATION.fade);
 export const LAYOUT_SPRING = LinearTransition.springify()
   .duration(SPRING.snap.duration)

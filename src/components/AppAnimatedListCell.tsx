@@ -16,7 +16,7 @@ export const ListCellAnimationContext = createContext(true);
 
 /**
  * `CellRendererComponent` for a FlatList or SectionList: when rows are added, removed or
- * reordered, the rest slide to their new place, new rows fade in and removed ones fade out.
+ * reordered, the rest slide to their new place, new rows fade in (iOS only, see `ROW_ENTERING`) and removed ones fade out.
  * Wrap the list in `<LayoutAnimationConfig skipEntering>` so the first render does not fade in.
  * Timings come from `@/constants/motion`. Reduce Motion skips all three (Reanimated's default `ReduceMotion.System`).
  */
