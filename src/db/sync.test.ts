@@ -209,4 +209,17 @@ describe("two devices", () => {
     await settle(cloud, a, b);
     expect(readSettings(b)).toEqual({ currency: "EUR", hideCents: true });
   });
+
+  test("a new install that changes settings before its first sync takes the iCloud settings (HAU-806)", async () => {
+    const { cloud, a } = await twoDevices();
+    writeSetting(a, "currency", "EUR", 2000);
+    await settle(cloud, a);
+    const c = await openDevice("device-c");
+    writeSetting(c, "currency", "USD", 9000); // newer stamp: won over iCloud before v0.4.1
+    writeSetting(c, "hideCents", true, 9000); // a key iCloud does not have still goes up
+    await settle(cloud, c, a);
+    expect(readSettings(c)).toEqual({ currency: "EUR", hideCents: true });
+    expect(readSettings(a)).toEqual({ currency: "EUR", hideCents: true });
+    expect(loadBudget(c)).toEqual(loadBudget(a));
+  });
 });
