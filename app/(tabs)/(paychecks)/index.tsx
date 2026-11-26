@@ -795,6 +795,10 @@ export default function PaychecksScreen() {
           // A row's position is then always measured: with rows left out the list estimates
           // their heights, and what is on screen shifts as the real ones come in.
           windowSize={ALL_ROWS_WINDOW}
+          // Hands the cells the same renderItem while it is unchanged. Without it FlatList wraps it anew on
+          // every render, so a month change (chart, pill, Go to this month) re-rendered every mounted row,
+          // about 0.75 s on a dev build, and a tapped jump's list stayed blank until it was through (HAU-867)
+          strictMode
           onScrollToIndexFailed={handleScrollToIndexFailed}
           onScrollToTop={handleScrollToTop}
           onLayout={handleListLayout}
