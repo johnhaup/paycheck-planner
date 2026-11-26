@@ -253,6 +253,20 @@ export default function PaychecksScreen() {
     [hidden]
   );
 
+  // A scroll forward from a jump's landing that stops short of the collapse distance would leave the
+  // header part way, and scrolling back keeps it there, so mid-list it would rest lower than every other
+  // collapsed state (HAU-858). Once the list comes to rest a part-collapsed header finishes collapsing, as
+  // far as the content above it allows; near the top that is where it already is. A header a jump left
+  // all the way out stays out.
+  const finishCollapse = () => {
+    "worklet";
+    const distance = collapseDistance.value;
+    const current = collapse.value;
+    if (jumping.value || distance <= 0 || current <= 0 || lastPastTitle.value === undefined) return;
+    const target = Math.min(1, lastPastTitle.value / distance);
+    if (target > current) collapse.value = withTiming(target, { duration: HEADER_EXPAND_MS });
+  };
+
   const handleScroll = useAnimatedScrollHandler({
     onScroll: (event) => {
       const y = event.contentOffset.y;
@@ -271,9 +285,13 @@ export default function PaychecksScreen() {
       lastPastTitle.value = pastTitle;
       if (jumping.value && hidden.value) scheduleOnRN(handleHiddenScroll, moved);
     },
+    onEndDrag: () => {
+      finishCollapse();
+    },
     // Also sent when an animated scrollTo finishes
     onMomentumEnd: () => {
       if (jumping.value) scheduleOnRN(handleJumpScrollEnd);
+      else finishCollapse();
     },
     onBeginDrag: () => {
       jumping.value = false;
