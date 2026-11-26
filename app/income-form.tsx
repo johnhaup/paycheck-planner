@@ -14,6 +14,8 @@ import { AppButton } from "@/components/AppButton";
 import { AppChip } from "@/components/AppChip";
 import { AppDatePicker } from "@/components/AppDatePicker";
 import { AppToggle } from "@/components/AppToggle";
+import { AppFormSection } from "@/components/AppFormSection";
+import { LayoutAnimationConfig } from "react-native-reanimated";
 import { formatPayDate, parseLocalDate } from "@/utils/payDates";
 import type { PayFrequency } from "@/types";
 import { hapticSuccess, hapticWarning } from "@/utils/haptics";
@@ -164,97 +166,101 @@ function IncomeForm() {
       keyboardShouldPersistTaps="handled"
       bottomOffset={MEASUREMENTS.keyboardOffset}
     >
-      <AppText variant="section" style={styles.label}>{t("income.form.name")}</AppText>
-      <AppInput
-        ref={(el) => { inputRefs.current.name = el; }}
-        value={name}
-        onChangeText={editField("name", setName)}
-        error={fieldError("name")}
-        placeholder={t("income.form.namePlaceholder")}
-      />
+      <LayoutAnimationConfig skipEntering>
+        <AppText variant="section" style={styles.label}>{t("income.form.name")}</AppText>
+        <AppInput
+          ref={(el) => { inputRefs.current.name = el; }}
+          value={name}
+          onChangeText={editField("name", setName)}
+          error={fieldError("name")}
+          placeholder={t("income.form.namePlaceholder")}
+        />
 
-      <AppText variant="section" style={styles.label}>{t("income.form.payAmount")}</AppText>
-      <AppInput
-        ref={(el) => { inputRefs.current.payAmount = el; }}
-        value={payAmount}
-        onChangeText={editField("payAmount", setPayAmount)}
-        error={fieldError("payAmount")}
-        placeholder={t("income.form.payAmountPlaceholder")}
-        keyboardType="decimal-pad"
-      />
+        <AppText variant="section" style={styles.label}>{t("income.form.payAmount")}</AppText>
+        <AppInput
+          ref={(el) => { inputRefs.current.payAmount = el; }}
+          value={payAmount}
+          onChangeText={editField("payAmount", setPayAmount)}
+          error={fieldError("payAmount")}
+          placeholder={t("income.form.payAmountPlaceholder")}
+          keyboardType="decimal-pad"
+        />
 
-      <AppText variant="section" style={styles.label}>{t("income.form.payFrequency")}</AppText>
-      <View style={styles.chipRow}>
-        {frequencies.map((f) => (
-          <AppChip
-            key={f.value}
-            label={f.label}
-            value={f.value}
-            selected={frequency === f.value}
-            onSelect={setFrequency}
-          />
-        ))}
-      </View>
-
-      {frequency === "semi-monthly" ? (
-        <>
-          <AppText variant="section" style={styles.label}>{t("income.form.payDays")}</AppText>
-          <View style={styles.semiRow}>
-            <AppInput
-              style={styles.semiInput}
-              ref={(el) => { inputRefs.current.semiDay1 = el; }}
-              value={semiDay1}
-              onChangeText={editField("semiDay1", setSemiDay1)}
-              invalid={error?.field === "semiDay1"}
-              placeholder="1"
-              keyboardType="number-pad"
+        <AppText variant="section" style={styles.label}>{t("income.form.payFrequency")}</AppText>
+        <View style={styles.chipRow}>
+          {frequencies.map((f) => (
+            <AppChip
+              key={f.value}
+              label={f.label}
+              value={f.value}
+              selected={frequency === f.value}
+              onSelect={setFrequency}
             />
-            <AppText variant="meta">{t("common.and")}</AppText>
-            <AppInput
-              style={styles.semiInput}
-              ref={(el) => { inputRefs.current.semiDay2 = el; }}
-              value={semiDay2}
-              onChangeText={editField("semiDay2", setSemiDay2)}
-              invalid={error?.field === "semiDay2"}
-              placeholder="15"
-              keyboardType="number-pad"
-            />
-          </View>
-          {error?.field === "semiDay1" || error?.field === "semiDay2" ? (
-            <AppText
-              variant="caption"
-              color="destructive"
-              style={styles.hint}
-              accessibilityLiveRegion="polite"
-              accessibilityRole="alert"
-            >
-              {error.message}
+          ))}
+        </View>
+
+        {frequency === "semi-monthly" ? (
+          <AppFormSection key="semi-monthly">
+            <AppText variant="section" style={styles.label}>{t("income.form.payDays")}</AppText>
+            <View style={styles.semiRow}>
+              <AppInput
+                style={styles.semiInput}
+                ref={(el) => { inputRefs.current.semiDay1 = el; }}
+                value={semiDay1}
+                onChangeText={editField("semiDay1", setSemiDay1)}
+                invalid={error?.field === "semiDay1"}
+                placeholder="1"
+                keyboardType="number-pad"
+              />
+              <AppText variant="meta">{t("common.and")}</AppText>
+              <AppInput
+                style={styles.semiInput}
+                ref={(el) => { inputRefs.current.semiDay2 = el; }}
+                value={semiDay2}
+                onChangeText={editField("semiDay2", setSemiDay2)}
+                invalid={error?.field === "semiDay2"}
+                placeholder="15"
+                keyboardType="number-pad"
+              />
+            </View>
+            {error?.field === "semiDay1" || error?.field === "semiDay2" ? (
+              <AppText
+                variant="caption"
+                color="destructive"
+                style={styles.hint}
+                accessibilityLiveRegion="polite"
+                accessibilityRole="alert"
+              >
+                {error.message}
+              </AppText>
+            ) : null}
+            <AppText variant="caption" style={styles.hint}>
+              {t("income.form.payDaysHint")}
             </AppText>
-          ) : null}
-          <AppText variant="caption" style={styles.hint}>
-            {t("income.form.payDaysHint")}
-          </AppText>
 
-          <View style={styles.toggleRow}>
-            <AppText variant="body">{t("income.form.adjustToWorkday")}</AppText>
-            <AppToggle value={adjustToWorkday} onValueChange={setAdjustToWorkday} />
-          </View>
-          <AppText variant="caption" style={styles.toggleHint}>
-            {t("income.form.adjustHint")}
-          </AppText>
-        </>
-      ) : (
-        <>
-          <AppText variant="section" style={styles.label}>{t("income.form.firstPayDate")}</AppText>
-          <AppDatePicker value={firstPayDate} onChange={setFirstPayDate} />
-        </>
-      )}
+            <View style={styles.toggleRow}>
+              <AppText variant="body">{t("income.form.adjustToWorkday")}</AppText>
+              <AppToggle value={adjustToWorkday} onValueChange={setAdjustToWorkday} />
+            </View>
+            <AppText variant="caption" style={styles.toggleHint}>
+              {t("income.form.adjustHint")}
+            </AppText>
+          </AppFormSection>
+        ) : (
+          <AppFormSection key="first-pay-date">
+            <AppText variant="section" style={styles.label}>{t("income.form.firstPayDate")}</AppText>
+            <AppDatePicker value={firstPayDate} onChange={setFirstPayDate} />
+          </AppFormSection>
+        )}
 
-      <AppButton
-        title={existing ? t("income.form.updateButton") : t("income.form.addButton")}
-        onPress={handleSave}
-        style={styles.saveButton}
-      />
+        <AppFormSection>
+          <AppButton
+            title={existing ? t("income.form.updateButton") : t("income.form.addButton")}
+            onPress={handleSave}
+            style={styles.saveButton}
+          />
+        </AppFormSection>
+      </LayoutAnimationConfig>
     </KeyboardAwareScrollView>
   );
 }

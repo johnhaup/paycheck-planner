@@ -12,6 +12,8 @@ import { AppText } from "@/components/AppText";
 import { AppInput } from "@/components/AppInput";
 import { AppButton } from "@/components/AppButton";
 import { AppChip } from "@/components/AppChip";
+import { AppFormSection } from "@/components/AppFormSection";
+import { LayoutAnimationConfig } from "react-native-reanimated";
 import { AppSegmentedControl, type SegmentOption } from "@/components/AppSegmentedControl";
 import { PaycheckPicker, type PaycheckChoice } from "@/components/expenseForm/PaycheckPicker";
 import { IconPicker } from "@/components/expenseForm/IconPicker";
@@ -330,184 +332,196 @@ function ExpenseForm() {
       keyboardShouldPersistTaps="handled"
       bottomOffset={MEASUREMENTS.keyboardOffset}
     >
-      <AppSegmentedControl options={kindOptions} value={kind} onChange={handleChangeKind} />
-      {isSetAside ? (
-        <AppText variant="caption" style={styles.hint}>
-          {t("expenses.form.setAsideHint")}
-        </AppText>
-      ) : null}
+      <LayoutAnimationConfig skipEntering>
+        <AppSegmentedControl options={kindOptions} value={kind} onChange={handleChangeKind} />
+        {isSetAside ? (
+          <AppFormSection>
+            <AppText variant="caption" style={styles.hint}>
+              {t("expenses.form.setAsideHint")}
+            </AppText>
+          </AppFormSection>
+        ) : null}
 
-      <AppText variant="section" style={styles.label}>
-        {t(isSetAside ? "expenses.form.name" : "expenses.form.payee")}
-      </AppText>
-      <AppInput
-        ref={(el) => { inputRefs.current.payee = el; }}
-        value={payee}
-        onChangeText={editField("payee", setPayee)}
-        error={fieldError("payee")}
-        placeholder={t(isSetAside ? "expenses.form.setAsidePlaceholder" : "expenses.form.payeePlaceholder")}
-      />
-
-      <AppText variant="section" style={styles.label}>{t("expenses.form.amount")}</AppText>
-      <AppInput
-        ref={(el) => { inputRefs.current.amount = el; }}
-        value={amount}
-        onChangeText={editField("amount", setAmount)}
-        error={fieldError("amount")}
-        placeholder={t("expenses.form.amountPlaceholder")}
-        keyboardType="decimal-pad"
-      />
-
-      {isSetAside ? (
-        <>
-          <AppText variant="section" style={styles.label}>{t("expenses.form.goal")}</AppText>
+        <AppFormSection>
+          <AppText variant="section" style={styles.label}>
+            {t(isSetAside ? "expenses.form.name" : "expenses.form.payee")}
+          </AppText>
           <AppInput
-            ref={(el) => { inputRefs.current.goal = el; }}
-            value={goal}
-            onChangeText={editField("goal", setGoal)}
-            error={fieldError("goal")}
-            placeholder={t("expenses.form.goalPlaceholder")}
+            ref={(el) => { inputRefs.current.payee = el; }}
+            value={payee}
+            onChangeText={editField("payee", setPayee)}
+            error={fieldError("payee")}
+            placeholder={t(isSetAside ? "expenses.form.setAsidePlaceholder" : "expenses.form.payeePlaceholder")}
+          />
+        </AppFormSection>
+
+        <AppFormSection>
+          <AppText variant="section" style={styles.label}>{t("expenses.form.amount")}</AppText>
+          <AppInput
+            ref={(el) => { inputRefs.current.amount = el; }}
+            value={amount}
+            onChangeText={editField("amount", setAmount)}
+            error={fieldError("amount")}
+            placeholder={t("expenses.form.amountPlaceholder")}
             keyboardType="decimal-pad"
           />
-          <AppText variant="caption" style={styles.hint}>
-            {t("expenses.form.goalHint")}
-          </AppText>
-        </>
-      ) : (
-        <>
-          <AppText variant="section" style={styles.label}>{t("expenses.form.link")}</AppText>
-          <AppInput
-            value={link}
-            onChangeText={setLink}
-            placeholder={t("expenses.form.linkPlaceholder")}
-            keyboardType="url"
-            autoCapitalize="none"
-          />
-        </>
-      )}
+        </AppFormSection>
 
-      <AppText variant="section" style={styles.label}>{t("expenses.form.icon")}</AppText>
-      <IconPicker letter={payee} value={icon} onChange={setIcon} />
-
-      {isOneTime && incomeSources.length > 0 ? (
-        <>
-          <AppText variant="section" style={styles.label}>{t("expenses.form.paycheck")}</AppText>
-          <PaycheckPicker value={paycheck} onChange={setPaycheck} />
-          <AppText variant="caption" style={styles.hint}>
-            {t("expenses.form.moveHint")}
-          </AppText>
-        </>
-      ) : null}
-
-      {incomeSources.length > 0 && !isOneTime ? (
-        <>
-          <AppText variant="section" style={styles.label}>{t("expenses.form.linkedSource")}</AppText>
-          <View style={styles.chipRow}>
-            <AppChip
-              label={t("common.none")}
-              value={undefined}
-              selected={!selectedSourceId}
-              onSelect={handleSelectSource}
+        {isSetAside ? (
+          <AppFormSection key="goal">
+            <AppText variant="section" style={styles.label}>{t("expenses.form.goal")}</AppText>
+            <AppInput
+              ref={(el) => { inputRefs.current.goal = el; }}
+              value={goal}
+              onChangeText={editField("goal", setGoal)}
+              error={fieldError("goal")}
+              placeholder={t("expenses.form.goalPlaceholder")}
+              keyboardType="decimal-pad"
             />
-            {incomeSources.map((source) => (
+            <AppText variant="caption" style={styles.hint}>
+              {t("expenses.form.goalHint")}
+            </AppText>
+          </AppFormSection>
+        ) : (
+          <AppFormSection key="link">
+            <AppText variant="section" style={styles.label}>{t("expenses.form.link")}</AppText>
+            <AppInput
+              value={link}
+              onChangeText={setLink}
+              placeholder={t("expenses.form.linkPlaceholder")}
+              keyboardType="url"
+              autoCapitalize="none"
+            />
+          </AppFormSection>
+        )}
+
+        <AppFormSection>
+          <AppText variant="section" style={styles.label}>{t("expenses.form.icon")}</AppText>
+          <IconPicker letter={payee} value={icon} onChange={setIcon} />
+        </AppFormSection>
+
+        {isOneTime && incomeSources.length > 0 ? (
+          <AppFormSection>
+            <AppText variant="section" style={styles.label}>{t("expenses.form.paycheck")}</AppText>
+            <PaycheckPicker value={paycheck} onChange={setPaycheck} />
+            <AppText variant="caption" style={styles.hint}>
+              {t("expenses.form.moveHint")}
+            </AppText>
+          </AppFormSection>
+        ) : null}
+
+        {incomeSources.length > 0 && !isOneTime ? (
+          <AppFormSection>
+            <AppText variant="section" style={styles.label}>{t("expenses.form.linkedSource")}</AppText>
+            <View style={styles.chipRow}>
               <AppChip
-                key={source.id}
-                label={source.name}
-                value={source.id}
-                selected={selectedSourceId === source.id}
+                label={t("common.none")}
+                value={undefined}
+                selected={!selectedSourceId}
                 onSelect={handleSelectSource}
               />
-            ))}
-          </View>
-          <AppText variant="caption" style={styles.hint}>
-            {t("expenses.form.linkedHint")}
-          </AppText>
-        </>
-      ) : null}
-
-      {canHaveDueDay ? (
-        <>
-          <AppText variant="section" style={styles.label}>{t("expenses.form.dueDay")}</AppText>
-          <AppInput
-            ref={(el) => { inputRefs.current.dueDay = el; }}
-            value={dueDay}
-            onChangeText={editField("dueDay", setDueDay)}
-            error={fieldError("dueDay")}
-            placeholder={t("expenses.form.dueDayPlaceholder")}
-            keyboardType="number-pad"
-            maxLength={2}
-          />
-          <AppText variant="caption" style={styles.hint}>
-            {t("expenses.form.dueDayHint")}
-          </AppText>
-        </>
-      ) : null}
-
-      {selectedSource && !isOneTime ? (
-        <>
-          <AppText variant="section" style={styles.label}>{t("expenses.form.howOften")}</AppText>
-          <View style={styles.chipRow}>
-            {scheduleOptions.map((option) => (
-              <AppChip
-                key={option.value}
-                label={option.label}
-                value={option.value}
-                selected={schedule === option.value}
-                onSelect={setLinkSchedule}
-              />
-            ))}
-          </View>
-        </>
-      ) : null}
-
-      {startOptions.length > 0 ? (
-        <>
-          <AppText variant="section" style={styles.label}>
-            {t(schedule === "every-other-paycheck" ? "expenses.form.startingWith" : "expenses.form.firstMonth")}
-          </AppText>
-          <View style={styles.chipRow}>
-            {startOptions.map((option) => (
-              <AppChip
-                key={option.value}
-                label={option.label}
-                value={option.value}
-                selected={effectiveStart === option.value}
-                onSelect={setRepeatStart}
-              />
-            ))}
-          </View>
-        </>
-      ) : null}
-
-      {isMonthly && !hasDueDay ? (
-        <>
-          <AppText variant="section" style={styles.label}>{t("expenses.form.whichPaycheck")}</AppText>
-          <AppSegmentedControl
-            options={slotOptions}
-            value={effectiveSlot}
-            onChange={setPaycheckSlot}
-          />
-          {slotHint ? (
+              {incomeSources.map((source) => (
+                <AppChip
+                  key={source.id}
+                  label={source.name}
+                  value={source.id}
+                  selected={selectedSourceId === source.id}
+                  onSelect={handleSelectSource}
+                />
+              ))}
+            </View>
             <AppText variant="caption" style={styles.hint}>
-              {slotHint}
+              {t("expenses.form.linkedHint")}
             </AppText>
-          ) : null}
-        </>
-      ) : null}
+          </AppFormSection>
+        ) : null}
 
-      <AppButton
-        title={t(
-          existing
-            ? isSetAside
-              ? "expenses.form.updateSetAside"
-              : "expenses.form.updateButton"
-            : isSetAside
-              ? "expenses.form.addSetAside"
-              : "expenses.form.addButton"
-        )}
-        onPress={handleSave}
-        style={styles.saveButton}
-      />
+        {canHaveDueDay ? (
+          <AppFormSection>
+            <AppText variant="section" style={styles.label}>{t("expenses.form.dueDay")}</AppText>
+            <AppInput
+              ref={(el) => { inputRefs.current.dueDay = el; }}
+              value={dueDay}
+              onChangeText={editField("dueDay", setDueDay)}
+              error={fieldError("dueDay")}
+              placeholder={t("expenses.form.dueDayPlaceholder")}
+              keyboardType="number-pad"
+              maxLength={2}
+            />
+            <AppText variant="caption" style={styles.hint}>
+              {t("expenses.form.dueDayHint")}
+            </AppText>
+          </AppFormSection>
+        ) : null}
+
+        {selectedSource && !isOneTime ? (
+          <AppFormSection>
+            <AppText variant="section" style={styles.label}>{t("expenses.form.howOften")}</AppText>
+            <View style={styles.chipRow}>
+              {scheduleOptions.map((option) => (
+                <AppChip
+                  key={option.value}
+                  label={option.label}
+                  value={option.value}
+                  selected={schedule === option.value}
+                  onSelect={setLinkSchedule}
+                />
+              ))}
+            </View>
+          </AppFormSection>
+        ) : null}
+
+        {startOptions.length > 0 ? (
+          <AppFormSection>
+            <AppText variant="section" style={styles.label}>
+              {t(schedule === "every-other-paycheck" ? "expenses.form.startingWith" : "expenses.form.firstMonth")}
+            </AppText>
+            <View style={styles.chipRow}>
+              {startOptions.map((option) => (
+                <AppChip
+                  key={option.value}
+                  label={option.label}
+                  value={option.value}
+                  selected={effectiveStart === option.value}
+                  onSelect={setRepeatStart}
+                />
+              ))}
+            </View>
+          </AppFormSection>
+        ) : null}
+
+        {isMonthly && !hasDueDay ? (
+          <AppFormSection>
+            <AppText variant="section" style={styles.label}>{t("expenses.form.whichPaycheck")}</AppText>
+            <AppSegmentedControl
+              options={slotOptions}
+              value={effectiveSlot}
+              onChange={setPaycheckSlot}
+            />
+            {slotHint ? (
+              <AppText variant="caption" style={styles.hint}>
+                {slotHint}
+              </AppText>
+            ) : null}
+          </AppFormSection>
+        ) : null}
+
+        <AppFormSection>
+          <AppButton
+            title={t(
+              existing
+                ? isSetAside
+                  ? "expenses.form.updateSetAside"
+                  : "expenses.form.updateButton"
+                : isSetAside
+                  ? "expenses.form.addSetAside"
+                  : "expenses.form.addButton"
+            )}
+            onPress={handleSave}
+            style={styles.saveButton}
+          />
+        </AppFormSection>
+      </LayoutAnimationConfig>
     </KeyboardAwareScrollView>
   );
 }
