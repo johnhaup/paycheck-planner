@@ -78,7 +78,7 @@ export type ProStoreConnection = (
   options?: Parameters<typeof useIAP>[0]
 ) => Pick<
   ReturnType<typeof useIAP>,
-  "connected" | "products" | "fetchProducts" | "requestPurchase" | "restorePurchases"
+  "connected" | "products" | "fetchProducts" | "requestPurchase" | "restorePurchases" | "reconnect"
 >;
 
 /** Options other than onPurchaseSuccess are ignored: a mock purchase cannot fail. */
@@ -112,5 +112,8 @@ export const useMockIAP: ProStoreConnection = (options) => {
   // StoreKit's sync; the mock account is always in sync, getAvailablePurchases reads it
   const restorePurchases = useCallback(async () => {}, []);
 
-  return { connected: true, products, fetchProducts, requestPurchase, restorePurchases };
+  // Always connected, so the paywall never asks
+  const reconnect = useCallback(async () => true, []);
+
+  return { connected: true, products, fetchProducts, requestPurchase, restorePurchases, reconnect };
 };
