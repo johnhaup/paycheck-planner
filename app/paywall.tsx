@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState, type ComponentProps, useRef } from "react";
-import { ActivityIndicator, ScrollView, StyleSheet, View, type LayoutChangeEvent, type ScrollViewInstance } from "react-native";
+import { ActivityIndicator, Platform, ScrollView, StyleSheet, View, type LayoutChangeEvent, type ScrollViewInstance } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { toast } from "sonner-native";
@@ -60,21 +60,42 @@ function Paywall() {
   const gutters = useGutters();
   const t = useT();
   const isPro = useIsPro();
-  const [priceFailed, setPriceFailed] = useState(false);
+  // "failed" covers an unreachable store and a store that answered without the product
+  const [priceState, setPriceState] = useState<"loading" | "loaded" | "failed">("loading");
   const [busy, setBusy] = useState<"buy" | "restore" | undefined>();
   const [restoreMessage, setRestoreMessage] = useState<string | undefined>();
   const [footerHeight, setFooterHeight] = useState(0);
 
-  const { connected, products, fetchProducts, requestPurchase, restorePurchases } = useProStoreConnection();
+  // A connection that fails (no Play Store, billing unavailable) is only reported here
+  const handleStoreError = useCallback(() => {
+    setPriceState((state) => (state === "loading" ? "failed" : state));
+  }, []);
+  const { connected, products, fetchProducts, requestPurchase, restorePurchases, reconnect } =
+    useProStoreConnection({ onError: handleStoreError });
 
   const product = useMemo(() => products.find((p) => p.id === PRO_PRODUCT_ID), [products]);
 
   const loadPrice = useCallback(() => {
     fetchProducts({ skus: SKUS, type: "in-app" }).then(
-      () => setPriceFailed(false),
-      () => setPriceFailed(true)
+      () => setPriceState("loaded"),
+      () => setPriceState("failed")
     );
   }, [fetchProducts]);
+
+  // Try again reconnects first when the store was never reached; connecting loads the price
+  const handleRetry = useCallback(() => {
+    setPriceState("loading");
+    if (connected) {
+      loadPrice();
+      return;
+    }
+    reconnect().then(
+      (ok) => {
+        if (!ok) setPriceState("failed");
+      },
+      () => setPriceState("failed")
+    );
+  }, [connected, loadPrice, reconnect]);
 
   // The root entitlement hook flips isPro when the store reports the purchase
   const handleBuy = useCallback(async () => {
@@ -152,7 +173,7 @@ function Paywall() {
     }
   }, [connected, product, loadPrice]);
 
-  const priceBlock = product ? null : priceFailed ? (
+  const priceBlock = product ? null : priceState !== "loading" ? (
     <View style={styles.priceState} accessibilityLiveRegion="polite">
       <AppText variant="meta" center maxFontSizeMultiplier={FOOTER_MAX_SCALE}>
         {t("pro.priceUnavailable")}
@@ -160,7 +181,7 @@ function Paywall() {
       <AppButton
         title={t("pro.retry")}
         variant="outline"
-        onPress={loadPrice}
+        onPress={handleRetry}
         maxFontSizeMultiplier={FOOTER_MAX_SCALE}
       />
     </View>
@@ -214,7 +235,7 @@ function Paywall() {
                 maxFontSizeMultiplier={FOOTER_MAX_SCALE}
               />
               <AppText variant="caption" center style={styles.footnote} maxFontSizeMultiplier={FOOTER_MAX_SCALE}>
-                {t("pro.footnote")}
+                {t(Platform.OS === "android" ? "pro.footnoteAndroid" : "pro.footnote")}
               </AppText>
               {restoreMessage ? (
                 <AppText
