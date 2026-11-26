@@ -1,4 +1,3 @@
-import { Platform } from "react-native";
 import type { SQLiteDatabase } from "expo-sqlite";
 import { installSync } from "@johnhaup/expo-cloud-sync";
 import type { StoreApi } from "zustand";
@@ -40,8 +39,7 @@ function guarded(write: () => void) {
  */
 export async function initDatabase(db: SQLiteDatabase) {
   await migrate(db);
-  // iOS only until the Google Drive half is set up: Android keeps today's behaviour
-  if (Platform.OS === "ios") await installSync(db, SYNC_CONFIG);
+  await installSync(db, SYNC_CONFIG);
   await importLegacyStore(db, readLegacyValue);
 
   loadStores(db);

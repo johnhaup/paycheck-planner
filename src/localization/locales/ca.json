@@ -295,7 +295,25 @@
       "notNow": "Ara no",
       "deleteCopy": "Desactiva i suprimeix la còpia de l'iCloud",
       "deleteCopyTitle": "Vols suprimir la còpia de l'iCloud?",
-      "deleteCopyBody": "La sincronització es desactiva en aquest iPhone i se suprimeix la còpia de l'iCloud. El teu pressupost es queda en aquest iPhone. Els altres dispositius que encara se sincronitzin tornaran a pujar la seva còpia, així que primer desactiva-hi la sincronització."
+      "deleteCopyBody": "La sincronització es desactiva en aquest iPhone i se suprimeix la còpia de l'iCloud. El teu pressupost es queda en aquest iPhone. Els altres dispositius que encara se sincronitzin tornaran a pujar la seva còpia, així que primer desactiva-hi la sincronització.",
+      "android": {
+        "label": "Sincronització amb Google Drive",
+        "on": "El teu pressupost se sincronitza amb Google Drive a tots els teus dispositius.",
+        "off": "Desactivada. El teu pressupost es queda en aquest telèfon.",
+        "signedOut": "Inicia la sessió amb Google per sincronitzar el teu pressupost a tots els teus dispositius.",
+        "signIn": "Inicia la sessió amb Google",
+        "signInError": "No s'ha pogut iniciar la sessió amb Google. Torna-ho a provar.",
+        "signOut": "Tanca la sessió de Google",
+        "unavailable": "Google Drive no està disponible en aquest telèfon.",
+        "quotaFull": "L'emmagatzematge de Google Drive és ple. Els canvis que facis aquí no se sincronitzen.",
+        "accountChanged": "Aquest telèfon té la sessió iniciada en un altre compte de Google. No se sincronitza res fins que triïs.",
+        "merge": "Combina amb aquest compte de Google",
+        "mergeTitle": "Vols combinar el pressupost d'aquest telèfon?",
+        "mergeBody": "El pressupost d'aquest telèfon s'afegeix al compte de Google amb la sessió iniciada ara.",
+        "deleteCopy": "Tanca la sessió i suprimeix la còpia de Google Drive",
+        "deleteCopyTitle": "Vols suprimir la còpia de Google Drive?",
+        "deleteCopyBody": "Es tanca la sessió en aquest telèfon i se suprimeix la còpia del teu Google Drive. El teu pressupost es queda en aquest telèfon. Els altres dispositius que encara tinguin la sessió iniciada tornaran a pujar la seva còpia, així que primer tanca-hi la sessió."
+      }
     },
     "data": {
       "title": "Dades",

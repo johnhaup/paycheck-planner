@@ -291,7 +291,25 @@
       "notNow": "Bukan sekarang",
       "deleteCopy": "Matikan dan padam salinan iCloud",
       "deleteCopyTitle": "Padam salinan iCloud?",
-      "deleteCopyBody": "Penyegerakan dimatikan pada iPhone ini dan salinan dalam iCloud dipadam. Bajet anda kekal pada iPhone ini. Peranti lain yang masih menyegerak akan memuat naik salinannya semula, jadi matikan penyegerakan pada peranti tersebut dahulu."
+      "deleteCopyBody": "Penyegerakan dimatikan pada iPhone ini dan salinan dalam iCloud dipadam. Bajet anda kekal pada iPhone ini. Peranti lain yang masih menyegerak akan memuat naik salinannya semula, jadi matikan penyegerakan pada peranti tersebut dahulu.",
+      "android": {
+        "label": "Penyegerakan Google Drive",
+        "on": "Bajet anda disegerakkan dengan Google Drive anda merentas peranti anda.",
+        "off": "Mati. Bajet anda kekal pada telefon ini.",
+        "signedOut": "Log masuk dengan Google untuk menyegerakkan bajet anda merentas peranti anda.",
+        "signIn": "Log masuk dengan Google",
+        "signInError": "Tidak dapat log masuk dengan Google. Cuba lagi.",
+        "signOut": "Log keluar daripada Google",
+        "unavailable": "Google Drive tidak tersedia pada telefon ini.",
+        "quotaFull": "Storan Google Drive anda penuh. Perubahan yang dibuat di sini tidak disegerakkan.",
+        "accountChanged": "Telefon ini dilog masuk ke akaun Google yang berbeza. Tiada apa-apa disegerakkan sehingga anda memilih.",
+        "merge": "Gabungkan ke dalam akaun Google ini",
+        "mergeTitle": "Gabungkan bajet telefon ini?",
+        "mergeBody": "Bajet pada telefon ini ditambahkan ke akaun Google yang dilog masuk sekarang.",
+        "deleteCopy": "Log keluar dan padam salinan Google Drive",
+        "deleteCopyTitle": "Padam salinan Google Drive?",
+        "deleteCopyBody": "Anda dilog keluar pada telefon ini dan salinan dalam Google Drive anda dipadam. Bajet anda kekal pada telefon ini. Peranti lain yang masih log masuk akan memuat naik salinannya semula, jadi log keluar pada peranti tersebut dahulu."
+      }
     },
     "data": {
       "title": "Data",

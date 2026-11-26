@@ -293,7 +293,25 @@
       "notNow": "Ne sada",
       "deleteCopy": "Isključi i izbriši iCloud kopiju",
       "deleteCopyTitle": "Izbrisati iCloud kopiju?",
-      "deleteCopyBody": "Sinkronizacija se isključuje na ovom iPhoneu, a kopija na iCloudu briše se. Vaš proračun ostaje na ovom iPhoneu. Drugi uređaji koji se još sinkroniziraju ponovno će prenijeti svoju kopiju, stoga prvo na njima isključite sinkronizaciju."
+      "deleteCopyBody": "Sinkronizacija se isključuje na ovom iPhoneu, a kopija na iCloudu briše se. Vaš proračun ostaje na ovom iPhoneu. Drugi uređaji koji se još sinkroniziraju ponovno će prenijeti svoju kopiju, stoga prvo na njima isključite sinkronizaciju.",
+      "android": {
+        "label": "Google Drive sinkronizacija",
+        "on": "Vaš proračun sinkronizira se putem Google Drivea na svim vašim uređajima.",
+        "off": "Isključeno. Vaš proračun ostaje na ovom telefonu.",
+        "signedOut": "Prijavite se putem Googlea da biste sinkronizirali proračun na svim svojim uređajima.",
+        "signIn": "Prijava putem Googlea",
+        "signInError": "Prijava putem Googlea nije uspjela. Pokušajte ponovno.",
+        "signOut": "Odjava s Googlea",
+        "unavailable": "Google Drive nije dostupan na ovom telefonu.",
+        "quotaFull": "Vaš Google Drive prostor za pohranu je pun. Promjene napravljene ovdje ne sinkroniziraju se.",
+        "accountChanged": "Ovaj telefon prijavljen je na drugi Google račun. Ništa se ne sinkronizira dok ne odaberete.",
+        "merge": "Spoji s ovim Google računom",
+        "mergeTitle": "Spojiti proračun s ovog telefona?",
+        "mergeBody": "Proračun s ovog telefona dodaje se Google računu koji je sada prijavljen.",
+        "deleteCopy": "Odjavi se i izbriši Google Drive kopiju",
+        "deleteCopyTitle": "Izbrisati Google Drive kopiju?",
+        "deleteCopyBody": "Odjavljujete se na ovom telefonu, a kopija na vašem Google Driveu briše se. Vaš proračun ostaje na ovom telefonu. Drugi uređaji koji su još prijavljeni ponovno će prenijeti svoju kopiju, stoga se prvo odjavite na njima."
+      }
     },
     "data": {
       "title": "Podaci",

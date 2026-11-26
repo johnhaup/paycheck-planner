@@ -294,7 +294,25 @@
       "notNow": "Teraz nie",
       "deleteCopy": "Vypnúť a odstrániť kópiu v iCloude",
       "deleteCopyTitle": "Odstrániť kópiu v iCloude?",
-      "deleteCopyBody": "Synchronizácia sa v tomto iPhone vypne a kópia v iCloude sa odstráni. Rozpočet zostane v tomto iPhone. Ostatné zariadenia, ktoré sa ešte synchronizujú, znova nahrajú svoju kópiu, preto na nich synchronizáciu najprv vypnite."
+      "deleteCopyBody": "Synchronizácia sa v tomto iPhone vypne a kópia v iCloude sa odstráni. Rozpočet zostane v tomto iPhone. Ostatné zariadenia, ktoré sa ešte synchronizujú, znova nahrajú svoju kópiu, preto na nich synchronizáciu najprv vypnite.",
+      "android": {
+        "label": "Synchronizácia cez Google Drive",
+        "on": "Váš rozpočet sa synchronizuje cez Google Drive na všetkých vašich zariadeniach.",
+        "off": "Vypnuté. Rozpočet zostáva v tomto telefóne.",
+        "signedOut": "Prihláste sa cez Google a synchronizujte rozpočet na všetkých svojich zariadeniach.",
+        "signIn": "Prihlásiť sa cez Google",
+        "signInError": "Prihlásenie cez Google zlyhalo. Skúste to znova.",
+        "signOut": "Odhlásiť sa z Googlu",
+        "unavailable": "Google Drive nie je v tomto telefóne dostupný.",
+        "quotaFull": "Úložisko Google Drive je plné. Zmeny vykonané tu sa nesynchronizujú.",
+        "accountChanged": "Tento telefón je prihlásený do iného účtu Google. Kým sa nerozhodnete, nič sa nesynchronizuje.",
+        "merge": "Zlúčiť s týmto účtom Google",
+        "mergeTitle": "Zlúčiť rozpočet z tohto telefónu?",
+        "mergeBody": "Rozpočet z tohto telefónu sa pridá do účtu Google, ktorý je teraz prihlásený.",
+        "deleteCopy": "Odhlásiť sa a odstrániť kópiu na Google Drive",
+        "deleteCopyTitle": "Odstrániť kópiu na Google Drive?",
+        "deleteCopyBody": "V tomto telefóne sa odhlásite a kópia na vašom Google Drive sa odstráni. Rozpočet zostane v tomto telefóne. Ostatné zariadenia, ktoré sú ešte prihlásené, znova nahrajú svoju kópiu, preto sa na nich najprv odhláste."
+      }
     },
     "data": {
       "title": "Dáta",

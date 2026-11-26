@@ -293,7 +293,25 @@
       "notNow": "Inte nu",
       "deleteCopy": "Stäng av och ta bort iCloud-kopian",
       "deleteCopyTitle": "Ta bort iCloud-kopian?",
-      "deleteCopyBody": "Synkroniseringen stängs av på den här iPhonen och kopian i iCloud tas bort. Din budget stannar på den här iPhonen. Andra enheter som fortfarande synkroniserar laddar upp sin kopia igen, så stäng av synkroniseringen på dem först."
+      "deleteCopyBody": "Synkroniseringen stängs av på den här iPhonen och kopian i iCloud tas bort. Din budget stannar på den här iPhonen. Andra enheter som fortfarande synkroniserar laddar upp sin kopia igen, så stäng av synkroniseringen på dem först.",
+      "android": {
+        "label": "Google Drive-synkronisering",
+        "on": "Din budget synkroniseras med din Google Drive mellan dina enheter.",
+        "off": "Av. Din budget stannar på den här telefonen.",
+        "signedOut": "Logga in med Google för att synkronisera din budget mellan dina enheter.",
+        "signIn": "Logga in med Google",
+        "signInError": "Kunde inte logga in med Google. Försök igen.",
+        "signOut": "Logga ut från Google",
+        "unavailable": "Google Drive är inte tillgängligt på den här telefonen.",
+        "quotaFull": "Ditt Google Drive-lagringsutrymme är fullt. Ändringar som görs här synkroniseras inte.",
+        "accountChanged": "Den här telefonen är inloggad på ett annat Google-konto. Inget synkroniseras förrän du väljer.",
+        "merge": "Slå ihop med det här Google-kontot",
+        "mergeTitle": "Slå ihop budgeten från den här telefonen?",
+        "mergeBody": "Budgeten på den här telefonen läggs till i Google-kontot som är inloggat nu.",
+        "deleteCopy": "Logga ut och ta bort Google Drive-kopian",
+        "deleteCopyTitle": "Ta bort Google Drive-kopian?",
+        "deleteCopyBody": "Du loggas ut på den här telefonen och kopian i din Google Drive tas bort. Din budget stannar på den här telefonen. Andra enheter som fortfarande är inloggade laddar upp sin kopia igen, så logga ut på dem först."
+      }
     },
     "data": {
       "title": "Data",

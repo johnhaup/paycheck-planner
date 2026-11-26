@@ -291,7 +291,25 @@
       "notNow": "Jangan sekarang",
       "deleteCopy": "Matikan dan hapus salinan iCloud",
       "deleteCopyTitle": "Hapus salinan iCloud?",
-      "deleteCopyBody": "Sinkronisasi dimatikan di iPhone ini dan salinan di iCloud dihapus. Anggaran Anda tetap di iPhone ini. Perangkat lain yang masih disinkronkan akan mengunggah salinannya lagi, jadi matikan sinkronisasi di perangkat tersebut terlebih dahulu."
+      "deleteCopyBody": "Sinkronisasi dimatikan di iPhone ini dan salinan di iCloud dihapus. Anggaran Anda tetap di iPhone ini. Perangkat lain yang masih disinkronkan akan mengunggah salinannya lagi, jadi matikan sinkronisasi di perangkat tersebut terlebih dahulu.",
+      "android": {
+        "label": "Sinkronisasi Google Drive",
+        "on": "Anggaran Anda disinkronkan dengan Google Drive Anda di semua perangkat Anda.",
+        "off": "Mati. Anggaran Anda tetap di ponsel ini.",
+        "signedOut": "Login dengan Google untuk menyinkronkan anggaran Anda di semua perangkat Anda.",
+        "signIn": "Login dengan Google",
+        "signInError": "Tidak dapat login dengan Google. Coba lagi.",
+        "signOut": "Logout dari Google",
+        "unavailable": "Google Drive tidak tersedia di ponsel ini.",
+        "quotaFull": "Penyimpanan Google Drive Anda penuh. Perubahan yang dibuat di sini tidak disinkronkan.",
+        "accountChanged": "Ponsel ini login ke Akun Google yang berbeda. Tidak ada yang disinkronkan hingga Anda memilih.",
+        "merge": "Gabungkan ke Akun Google ini",
+        "mergeTitle": "Gabungkan anggaran ponsel ini?",
+        "mergeBody": "Anggaran di ponsel ini ditambahkan ke Akun Google yang sedang login.",
+        "deleteCopy": "Logout dan hapus salinan Google Drive",
+        "deleteCopyTitle": "Hapus salinan Google Drive?",
+        "deleteCopyBody": "Anda logout di ponsel ini dan salinan di Google Drive Anda dihapus. Anggaran Anda tetap di ponsel ini. Perangkat lain yang masih login akan mengunggah salinannya lagi, jadi logout dari perangkat tersebut terlebih dahulu."
+      }
     },
     "data": {
       "title": "Data",

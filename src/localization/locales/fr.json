@@ -293,7 +293,25 @@
       "notNow": "Plus tard",
       "deleteCopy": "Désactiver et supprimer la copie iCloud",
       "deleteCopyTitle": "Supprimer la copie iCloud ?",
-      "deleteCopyBody": "La synchronisation est désactivée sur cet iPhone et la copie dans iCloud est supprimée. Votre budget reste sur cet iPhone. Les autres appareils encore synchronisés renverront leur copie : désactivez d'abord la synchronisation sur ceux-ci."
+      "deleteCopyBody": "La synchronisation est désactivée sur cet iPhone et la copie dans iCloud est supprimée. Votre budget reste sur cet iPhone. Les autres appareils encore synchronisés renverront leur copie : désactivez d'abord la synchronisation sur ceux-ci.",
+      "android": {
+        "label": "Synchronisation Google Drive",
+        "on": "Votre budget est synchronisé avec votre Google Drive sur tous vos appareils.",
+        "off": "Désactivée. Votre budget reste sur ce téléphone.",
+        "signedOut": "Connectez-vous avec Google pour synchroniser votre budget sur tous vos appareils.",
+        "signIn": "Se connecter avec Google",
+        "signInError": "Connexion avec Google impossible. Réessayez.",
+        "signOut": "Se déconnecter de Google",
+        "unavailable": "Google Drive n'est pas disponible sur ce téléphone.",
+        "quotaFull": "Votre stockage Google Drive est plein. Les modifications effectuées ici ne sont pas synchronisées.",
+        "accountChanged": "Ce téléphone est connecté à un autre compte Google. Rien n'est synchronisé tant que vous n'avez pas fait de choix.",
+        "merge": "Fusionner avec ce compte Google",
+        "mergeTitle": "Fusionner le budget de ce téléphone ?",
+        "mergeBody": "Le budget de ce téléphone est ajouté au compte Google actuellement connecté.",
+        "deleteCopy": "Se déconnecter et supprimer la copie Google Drive",
+        "deleteCopyTitle": "Supprimer la copie Google Drive ?",
+        "deleteCopyBody": "Ce téléphone est déconnecté et la copie dans votre Google Drive est supprimée. Votre budget reste sur ce téléphone. Les autres appareils encore connectés renverront leur copie : déconnectez-vous d'abord de ceux-ci."
+      }
     },
     "data": {
       "title": "Données",

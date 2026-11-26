@@ -292,7 +292,25 @@
       "notNow": "Agora não",
       "deleteCopy": "Desativar e eliminar cópia em iCloud",
       "deleteCopyTitle": "Eliminar a cópia em iCloud?",
-      "deleteCopyBody": "A sincronização é desativada neste iPhone e a cópia em iCloud é eliminada. O seu orçamento fica neste iPhone. Outros dispositivos que ainda sincronizem voltarão a enviar a sua cópia, por isso desative primeiro a sincronização neles."
+      "deleteCopyBody": "A sincronização é desativada neste iPhone e a cópia em iCloud é eliminada. O seu orçamento fica neste iPhone. Outros dispositivos que ainda sincronizem voltarão a enviar a sua cópia, por isso desative primeiro a sincronização neles.",
+      "android": {
+        "label": "Sincronização com Google Drive",
+        "on": "O seu orçamento é sincronizado com o seu Google Drive em todos os seus dispositivos.",
+        "off": "Desativada. O seu orçamento fica neste telemóvel.",
+        "signedOut": "Inicie sessão com o Google para sincronizar o seu orçamento em todos os seus dispositivos.",
+        "signIn": "Iniciar sessão com o Google",
+        "signInError": "Não foi possível iniciar sessão com o Google. Tente novamente.",
+        "signOut": "Terminar sessão no Google",
+        "unavailable": "O Google Drive não está disponível neste telemóvel.",
+        "quotaFull": "O seu armazenamento no Google Drive está cheio. As alterações feitas aqui não estão a ser sincronizadas.",
+        "accountChanged": "Este telemóvel tem sessão iniciada noutra Conta Google. Nada é sincronizado até escolher.",
+        "merge": "Combinar com esta Conta Google",
+        "mergeTitle": "Combinar o orçamento deste telemóvel?",
+        "mergeBody": "O orçamento deste telemóvel é adicionado à Conta Google com sessão iniciada agora.",
+        "deleteCopy": "Terminar sessão e eliminar cópia no Google Drive",
+        "deleteCopyTitle": "Eliminar a cópia no Google Drive?",
+        "deleteCopyBody": "A sessão é terminada neste telemóvel e a cópia no seu Google Drive é eliminada. O seu orçamento fica neste telemóvel. Outros dispositivos que ainda tenham sessão iniciada voltarão a enviar a sua cópia, por isso termine primeiro a sessão neles."
+      }
     },
     "data": {
       "title": "Dados",

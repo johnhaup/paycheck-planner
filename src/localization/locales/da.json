@@ -292,7 +292,25 @@
       "notNow": "Ikke nu",
       "deleteCopy": "Slå fra, og slet iCloud-kopi",
       "deleteCopyTitle": "Slet iCloud-kopien?",
-      "deleteCopyBody": "Synkronisering slås fra på denne iPhone, og kopien i iCloud slettes. Dit budget bliver på denne iPhone. Andre enheder, der stadig synkroniserer, uploader deres kopi igen, så slå synkronisering fra på dem først."
+      "deleteCopyBody": "Synkronisering slås fra på denne iPhone, og kopien i iCloud slettes. Dit budget bliver på denne iPhone. Andre enheder, der stadig synkroniserer, uploader deres kopi igen, så slå synkronisering fra på dem først.",
+      "android": {
+        "label": "Google Drive-synkronisering",
+        "on": "Dit budget synkroniseres med dit Google Drive på tværs af dine enheder.",
+        "off": "Fra. Dit budget bliver på denne telefon.",
+        "signedOut": "Log ind med Google for at synkronisere dit budget på tværs af dine enheder.",
+        "signIn": "Log ind med Google",
+        "signInError": "Kunne ikke logge ind med Google. Prøv igen.",
+        "signOut": "Log ud af Google",
+        "unavailable": "Google Drive er ikke tilgængelig på denne telefon.",
+        "quotaFull": "Din Google Drive-lagringsplads er fuld. Ændringer foretaget her synkroniseres ikke.",
+        "accountChanged": "Denne telefon er logget ind på en anden Google-konto. Intet synkroniseres, før du vælger.",
+        "merge": "Flet med denne Google-konto",
+        "mergeTitle": "Flet budgettet fra denne telefon?",
+        "mergeBody": "Budgettet på denne telefon føjes til den Google-konto, der nu er logget ind.",
+        "deleteCopy": "Log ud, og slet Google Drive-kopi",
+        "deleteCopyTitle": "Slet Google Drive-kopien?",
+        "deleteCopyBody": "Du logges ud på denne telefon, og kopien i dit Google Drive slettes. Dit budget bliver på denne telefon. Andre enheder, der stadig er logget ind, uploader deres kopi igen, så log ud på dem først."
+      }
     },
     "data": {
       "title": "Data",

@@ -291,7 +291,25 @@
       "notNow": "暂不",
       "deleteCopy": "关闭并删除 iCloud 副本",
       "deleteCopyTitle": "要删除 iCloud 副本吗？",
-      "deleteCopyBody": "此 iPhone 上的同步将关闭，iCloud 中的副本将被删除。你的预算仍保留在此 iPhone 上。仍在同步的其他设备会再次上传其副本，因此请先在这些设备上关闭同步。"
+      "deleteCopyBody": "此 iPhone 上的同步将关闭，iCloud 中的副本将被删除。你的预算仍保留在此 iPhone 上。仍在同步的其他设备会再次上传其副本，因此请先在这些设备上关闭同步。",
+      "android": {
+        "label": "Google Drive 同步",
+        "on": "你的预算通过 Google Drive 在你的所有设备间同步。",
+        "off": "已关闭。你的预算仅保存在这部手机上。",
+        "signedOut": "使用 Google 账号登录，即可在你的所有设备间同步预算。",
+        "signIn": "使用 Google 账号登录",
+        "signInError": "无法使用 Google 账号登录。请重试。",
+        "signOut": "退出 Google 账号",
+        "unavailable": "此手机上无法使用 Google Drive。",
+        "quotaFull": "你的 Google Drive 存储空间已满。在此所做的更改未同步。",
+        "accountChanged": "此手机已登录另一个 Google 账号。在你做出选择前，不会同步任何内容。",
+        "merge": "合并到此 Google 账号",
+        "mergeTitle": "要合并此手机上的预算吗？",
+        "mergeBody": "此手机上的预算将添加到当前登录的 Google 账号。",
+        "deleteCopy": "退出登录并删除 Google Drive 副本",
+        "deleteCopyTitle": "要删除 Google Drive 副本吗？",
+        "deleteCopyBody": "你将在此手机上退出登录，Google Drive 中的副本将被删除。你的预算仍保留在此手机上。仍登录的其他设备会再次上传其副本，因此请先在这些设备上退出登录。"
+      }
     },
     "data": {
       "title": "数据",

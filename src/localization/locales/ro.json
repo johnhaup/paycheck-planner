@@ -294,7 +294,25 @@
       "notNow": "Nu acum",
       "deleteCopy": "Dezactivează și șterge copia iCloud",
       "deleteCopyTitle": "Ștergi copia iCloud?",
-      "deleteCopyBody": "Sincronizarea se dezactivează pe acest iPhone, iar copia din iCloud este ștearsă. Bugetul tău rămâne pe acest iPhone. Alte dispozitive care încă se sincronizează își vor încărca din nou copia, așa că dezactivează mai întâi sincronizarea pe ele."
+      "deleteCopyBody": "Sincronizarea se dezactivează pe acest iPhone, iar copia din iCloud este ștearsă. Bugetul tău rămâne pe acest iPhone. Alte dispozitive care încă se sincronizează își vor încărca din nou copia, așa că dezactivează mai întâi sincronizarea pe ele.",
+      "android": {
+        "label": "Sincronizare Google Drive",
+        "on": "Bugetul tău se sincronizează prin Google Drive pe toate dispozitivele tale.",
+        "off": "Dezactivată. Bugetul tău rămâne pe acest telefon.",
+        "signedOut": "Conectează-te cu Google pentru a-ți sincroniza bugetul pe toate dispozitivele tale.",
+        "signIn": "Conectează-te cu Google",
+        "signInError": "Nu te-ai putut conecta cu Google. Încearcă din nou.",
+        "signOut": "Deconectează-te de la Google",
+        "unavailable": "Google Drive nu este disponibil pe acest telefon.",
+        "quotaFull": "Spațiul de stocare Google Drive este plin. Modificările făcute aici nu se sincronizează.",
+        "accountChanged": "Acest telefon este conectat la alt cont Google. Nu se sincronizează nimic până nu alegi.",
+        "merge": "Combină cu acest cont Google",
+        "mergeTitle": "Combini bugetul de pe acest telefon?",
+        "mergeBody": "Bugetul de pe acest telefon este adăugat în contul Google conectat acum.",
+        "deleteCopy": "Deconectează-te și șterge copia Google Drive",
+        "deleteCopyTitle": "Ștergi copia Google Drive?",
+        "deleteCopyBody": "Te deconectezi pe acest telefon, iar copia din Google Drive este ștearsă. Bugetul tău rămâne pe acest telefon. Alte dispozitive încă conectate își vor încărca din nou copia, așa că deconectează-te mai întâi de pe ele."
+      }
     },
     "data": {
       "title": "Date",

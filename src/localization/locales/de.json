@@ -292,7 +292,25 @@
       "notNow": "Nicht jetzt",
       "deleteCopy": "Deaktivieren und iCloud-Kopie löschen",
       "deleteCopyTitle": "iCloud-Kopie löschen?",
-      "deleteCopyBody": "Die Synchronisierung wird auf diesem iPhone deaktiviert und die Kopie in iCloud gelöscht. Dein Budget bleibt auf diesem iPhone. Andere Geräte, die noch synchronisieren, laden ihre Kopie erneut hoch. Deaktiviere die Synchronisierung daher zuerst dort."
+      "deleteCopyBody": "Die Synchronisierung wird auf diesem iPhone deaktiviert und die Kopie in iCloud gelöscht. Dein Budget bleibt auf diesem iPhone. Andere Geräte, die noch synchronisieren, laden ihre Kopie erneut hoch. Deaktiviere die Synchronisierung daher zuerst dort.",
+      "android": {
+        "label": "Google Drive-Synchronisierung",
+        "on": "Dein Budget wird über dein Google Drive auf all deinen Geräten synchronisiert.",
+        "off": "Aus. Dein Budget bleibt auf diesem Smartphone.",
+        "signedOut": "Melde dich über Google an, um dein Budget auf all deinen Geräten zu synchronisieren.",
+        "signIn": "Über Google anmelden",
+        "signInError": "Anmeldung über Google fehlgeschlagen. Versuche es erneut.",
+        "signOut": "Von Google abmelden",
+        "unavailable": "Google Drive ist auf diesem Smartphone nicht verfügbar.",
+        "quotaFull": "Dein Google Drive-Speicher ist voll. Hier vorgenommene Änderungen werden nicht synchronisiert.",
+        "accountChanged": "Dieses Smartphone ist bei einem anderen Google-Konto angemeldet. Bis du eine Auswahl triffst, wird nichts synchronisiert.",
+        "merge": "Mit diesem Google-Konto zusammenführen",
+        "mergeTitle": "Budget dieses Smartphones zusammenführen?",
+        "mergeBody": "Das Budget auf diesem Smartphone wird dem jetzt angemeldeten Google-Konto hinzugefügt.",
+        "deleteCopy": "Abmelden und Google Drive-Kopie löschen",
+        "deleteCopyTitle": "Google Drive-Kopie löschen?",
+        "deleteCopyBody": "Du wirst auf diesem Smartphone abgemeldet und die Kopie in deinem Google Drive wird gelöscht. Dein Budget bleibt auf diesem Smartphone. Andere Geräte, die noch angemeldet sind, laden ihre Kopie erneut hoch. Melde dich daher zuerst dort ab."
+      }
     },
     "data": {
       "title": "Daten",

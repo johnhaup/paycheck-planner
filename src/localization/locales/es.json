@@ -292,7 +292,25 @@
       "notNow": "Ahora no",
       "deleteCopy": "Desactivar y eliminar la copia de iCloud",
       "deleteCopyTitle": "¿Eliminar la copia de iCloud?",
-      "deleteCopyBody": "La sincronización se desactiva en este iPhone y se elimina la copia de iCloud. Tu presupuesto se queda en este iPhone. Los demás dispositivos que sigan sincronizando volverán a subir su copia, así que desactiva antes la sincronización en ellos."
+      "deleteCopyBody": "La sincronización se desactiva en este iPhone y se elimina la copia de iCloud. Tu presupuesto se queda en este iPhone. Los demás dispositivos que sigan sincronizando volverán a subir su copia, así que desactiva antes la sincronización en ellos.",
+      "android": {
+        "label": "Sincronización con Google Drive",
+        "on": "Tu presupuesto se sincroniza con tu Google Drive en todos tus dispositivos.",
+        "off": "Desactivada. Tu presupuesto se queda en este teléfono.",
+        "signedOut": "Inicia sesión con Google para sincronizar tu presupuesto en todos tus dispositivos.",
+        "signIn": "Iniciar sesión con Google",
+        "signInError": "No se ha podido iniciar sesión con Google. Inténtalo de nuevo.",
+        "signOut": "Cerrar sesión de Google",
+        "unavailable": "Google Drive no está disponible en este teléfono.",
+        "quotaFull": "Tu almacenamiento de Google Drive está lleno. Los cambios hechos aquí no se están sincronizando.",
+        "accountChanged": "Este teléfono tiene la sesión iniciada en otra cuenta de Google. No se sincronizará nada hasta que elijas.",
+        "merge": "Combinar con esta cuenta de Google",
+        "mergeTitle": "¿Combinar el presupuesto de este teléfono?",
+        "mergeBody": "El presupuesto de este teléfono se añade a la cuenta de Google con la sesión iniciada ahora.",
+        "deleteCopy": "Cerrar sesión y eliminar la copia de Google Drive",
+        "deleteCopyTitle": "¿Eliminar la copia de Google Drive?",
+        "deleteCopyBody": "Se cierra tu sesión en este teléfono y se elimina la copia de tu Google Drive. Tu presupuesto se queda en este teléfono. Los demás dispositivos que sigan con la sesión iniciada volverán a subir su copia, así que cierra antes la sesión en ellos."
+      }
     },
     "data": {
       "title": "Datos",

@@ -292,7 +292,25 @@
       "notNow": "Ikke nå",
       "deleteCopy": "Slå av og slett iCloud-kopien",
       "deleteCopyTitle": "Slette iCloud-kopien?",
-      "deleteCopyBody": "Synkronisering slås av på denne iPhonen, og kopien i iCloud slettes. Budsjettet ditt blir på denne iPhonen. Andre enheter som fortsatt synkroniserer, laster opp kopien sin på nytt, så slå av synkronisering på dem først."
+      "deleteCopyBody": "Synkronisering slås av på denne iPhonen, og kopien i iCloud slettes. Budsjettet ditt blir på denne iPhonen. Andre enheter som fortsatt synkroniserer, laster opp kopien sin på nytt, så slå av synkronisering på dem først.",
+      "android": {
+        "label": "Google Drive-synkronisering",
+        "on": "Budsjettet ditt synkroniseres med Google Drive på tvers av enhetene dine.",
+        "off": "Av. Budsjettet ditt blir på denne telefonen.",
+        "signedOut": "Logg på med Google for å synkronisere budsjettet ditt på tvers av enhetene dine.",
+        "signIn": "Logg på med Google",
+        "signInError": "Kunne ikke logge på med Google. Prøv igjen.",
+        "signOut": "Logg av Google",
+        "unavailable": "Google Drive er ikke tilgjengelig på denne telefonen.",
+        "quotaFull": "Google Drive-lagringsplassen din er full. Endringer gjort her synkroniseres ikke.",
+        "accountChanged": "Denne telefonen er logget på en annen Google-konto. Ingenting synkroniseres før du velger.",
+        "merge": "Slå sammen med denne Google-kontoen",
+        "mergeTitle": "Slå sammen budsjettet på denne telefonen?",
+        "mergeBody": "Budsjettet på denne telefonen legges til Google-kontoen som nå er logget på.",
+        "deleteCopy": "Logg av og slett Google Drive-kopien",
+        "deleteCopyTitle": "Slette Google Drive-kopien?",
+        "deleteCopyBody": "Du logges av på denne telefonen, og kopien i Google Drive slettes. Budsjettet ditt blir på denne telefonen. Andre enheter som fortsatt er logget på, laster opp kopien sin på nytt, så logg av på dem først."
+      }
     },
     "data": {
       "title": "Data",

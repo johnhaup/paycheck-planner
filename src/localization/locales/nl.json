@@ -292,7 +292,25 @@
       "notNow": "Niet nu",
       "deleteCopy": "Zet uit en verwijder iCloud-kopie",
       "deleteCopyTitle": "iCloud-kopie verwijderen?",
-      "deleteCopyBody": "Synchronisatie wordt uitgeschakeld op deze iPhone en de kopie in iCloud wordt verwijderd. Je budget blijft op deze iPhone. Andere apparaten die nog synchroniseren, uploaden hun kopie opnieuw, dus zet synchronisatie daar eerst uit."
+      "deleteCopyBody": "Synchronisatie wordt uitgeschakeld op deze iPhone en de kopie in iCloud wordt verwijderd. Je budget blijft op deze iPhone. Andere apparaten die nog synchroniseren, uploaden hun kopie opnieuw, dus zet synchronisatie daar eerst uit.",
+      "android": {
+        "label": "Google Drive-synchronisatie",
+        "on": "Je budget wordt via je Google Drive gesynchroniseerd op al je apparaten.",
+        "off": "Uit. Je budget blijft op deze telefoon.",
+        "signedOut": "Log in met Google om je budget op al je apparaten te synchroniseren.",
+        "signIn": "Inloggen met Google",
+        "signInError": "Kan niet inloggen met Google. Probeer het opnieuw.",
+        "signOut": "Uitloggen bij Google",
+        "unavailable": "Google Drive is niet beschikbaar op deze telefoon.",
+        "quotaFull": "Je Google Drive-opslag is vol. Wijzigingen die je hier maakt, worden niet gesynchroniseerd.",
+        "accountChanged": "Deze telefoon is ingelogd bij een ander Google-account. Er wordt niets gesynchroniseerd totdat je een keuze maakt.",
+        "merge": "Voeg samen met dit Google-account",
+        "mergeTitle": "Budget van deze telefoon samenvoegen?",
+        "mergeBody": "Het budget op deze telefoon wordt toegevoegd aan het Google-account waarmee nu is ingelogd.",
+        "deleteCopy": "Log uit en verwijder Google Drive-kopie",
+        "deleteCopyTitle": "Google Drive-kopie verwijderen?",
+        "deleteCopyBody": "Je wordt uitgelogd op deze telefoon en de kopie in je Google Drive wordt verwijderd. Je budget blijft op deze telefoon. Andere apparaten die nog zijn ingelogd, uploaden hun kopie opnieuw, dus log daar eerst uit."
+      }
     },
     "data": {
       "title": "Gegevens",

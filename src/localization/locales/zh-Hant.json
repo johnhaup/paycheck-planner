@@ -291,7 +291,25 @@
       "notNow": "現在不要",
       "deleteCopy": "關閉並刪除 iCloud 副本",
       "deleteCopyTitle": "要刪除 iCloud 副本嗎？",
-      "deleteCopyBody": "這支 iPhone 上的同步會關閉，iCloud 中的副本會被刪除。你的預算仍會保留在這支 iPhone 上。仍在同步的其他裝置會再次上傳其副本，因此請先在這些裝置上關閉同步。"
+      "deleteCopyBody": "這支 iPhone 上的同步會關閉，iCloud 中的副本會被刪除。你的預算仍會保留在這支 iPhone 上。仍在同步的其他裝置會再次上傳其副本，因此請先在這些裝置上關閉同步。",
+      "android": {
+        "label": "Google Drive 同步",
+        "on": "你的預算會透過 Google Drive 在你的所有裝置間同步。",
+        "off": "已關閉。你的預算只會保留在這支手機上。",
+        "signedOut": "使用 Google 帳戶登入，即可在你的所有裝置間同步預算。",
+        "signIn": "使用 Google 帳戶登入",
+        "signInError": "無法使用 Google 帳戶登入。請再試一次。",
+        "signOut": "登出 Google 帳戶",
+        "unavailable": "這支手機無法使用 Google Drive。",
+        "quotaFull": "你的 Google Drive 儲存空間已滿。在這裡所做的更動不會同步。",
+        "accountChanged": "這支手機已登入另一個 Google 帳戶。在你做出選擇前，不會同步任何內容。",
+        "merge": "合併到此 Google 帳戶",
+        "mergeTitle": "要合併這支手機上的預算嗎？",
+        "mergeBody": "這支手機上的預算會加入目前登入的 Google 帳戶。",
+        "deleteCopy": "登出並刪除 Google Drive 副本",
+        "deleteCopyTitle": "要刪除 Google Drive 副本嗎？",
+        "deleteCopyBody": "你將在這支手機上登出，Google Drive 中的副本會被刪除。你的預算仍會保留在這支手機上。仍在登入狀態的其他裝置會再次上傳其副本，因此請先在這些裝置上登出。"
+      }
     },
     "data": {
       "title": "資料",
