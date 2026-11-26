@@ -41,6 +41,7 @@ import { buildMonthGroups, FULL_MONTHS_AHEAD, hasEarlierMonths, PAST_MONTHS } fr
 import { useProGate } from "@/hooks/useProGate";
 import { formatShortDate } from "@/utils/dates";
 import { buildDemoData } from "@/utils/demoData";
+import { DURATION, FADE } from "@/constants/motion";
 import type { PaycheckRow } from "@/components/paychecks/types";
 
 const TODAY_ICON_SIZE = 22;
@@ -67,10 +68,13 @@ const SHOW_AFTER_LANDING_MS = 150;
 // How often a hidden list's jump is run again because iOS moved the list after it landed
 const MAX_REJUMPS = 5;
 const SHOW_FALLBACK_MS = 1000;
-// A tapped jump scrolls with UIKit's animation, then is run again from where it stopped, because the
-// title bar or a header resize can move the target on the way; the repeat is short or nothing.
-const MAX_SETTLES = 2;
-// About as long as UIKit's animated scroll, so the header comes out with the list
+// A tapped jump lands unseen, as the opening jump does, but its rows are laid out and there is no
+// launch inset to wait for: the list is shown this long after its last scroll event, or after the
+// jump's last repeat when it did not move
+const SHOW_AFTER_TAPPED_JUMP_MS = 60;
+// The list fades out quickly so the tap answers at once, and back in at the usual fade
+const JUMP_FADE_OUT = { duration: DURATION.press, reduceMotion: FADE.reduceMotion } as const;
+// A part-collapsed header finishing its collapse once the list rests
 const HEADER_EXPAND_MS = 300;
 // A month counts as on top once its title is within this of the header's bottom edge
 const MONTH_TOP_SLACK = 2;
@@ -240,15 +244,29 @@ export default function PaychecksScreen() {
   // inset (HAU-321). A scroll event that moves the list runs the jump again (`rejump`, set below
   // once the jump exists), and the list is shown once the offset holds still.
   const rejump = useRef<() => void>(undefined);
-  // An animated jump is run again when its scroll ends (`settle`, set below once the jump exists)
-  const settle = useRef<() => void>(undefined);
-  const handleJumpScrollEnd = useCallback(() => settle.current?.(), []);
+  // A tapped jump (chart, pill, Today, the short paycheck line) fades the list out, lands unseen and
+  // fades it back in. It scrolled with UIKit's animation before, and the pinned header cannot follow a
+  // programmatic scroll: Reanimated's transform reached the screen only once the scroll stopped, so
+  // the header rode along with the rows, mid-list, and the large title coming back cut the scroll short
+  // into a snap (HAU-867). 1 shows the list; `hidden` hides it whatever this is.
+  const jumpFade = useSharedValue(1);
+  // The jump under way: its row, and whether a tap asked for it
+  const jump = useRef<{
+    index: number;
+    animated: boolean;
+    timer?: ReturnType<typeof setTimeout>;
+    failed?: boolean;
+    rejumps?: number;
+  }>(undefined);
   const showTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const handleHiddenScroll = useCallback(
     (moved: boolean) => {
       clearTimeout(showTimer.current);
       if (moved) rejump.current?.();
-      showTimer.current = setTimeout(() => hidden.set(false), SHOW_AFTER_LANDING_MS);
+      showTimer.current = setTimeout(
+        () => hidden.set(false),
+        jump.current?.animated ? SHOW_AFTER_TAPPED_JUMP_MS : SHOW_AFTER_LANDING_MS
+      );
     },
     [hidden]
   );
@@ -288,13 +306,13 @@ export default function PaychecksScreen() {
     onEndDrag: () => {
       finishCollapse();
     },
-    // Also sent when an animated scrollTo finishes
     onMomentumEnd: () => {
-      if (jumping.value) scheduleOnRN(handleJumpScrollEnd);
-      else finishCollapse();
+      finishCollapse();
     },
     onBeginDrag: () => {
       jumping.value = false;
+      // Nothing else shows a list hidden for a jump once the jump has ended
+      hidden.set(false);
       scheduleOnRN(endJump);
     },
   });
@@ -336,14 +354,6 @@ export default function PaychecksScreen() {
   // rows are not mounted yet; the jump is tried again until its row is.
   const listRef = useRef<FlatList<PaycheckRow>>(null);
   const headerHeightRef = useRef(0);
-  const jump = useRef<{
-    index: number;
-    animated: boolean;
-    timer?: ReturnType<typeof setTimeout>;
-    failed?: boolean;
-    rejumps?: number;
-    settles?: number;
-  }>(undefined);
 
   const attemptJump = useCallback(() => {
     const attempt = (triesLeft: number, confirmsLeft: number) => {
@@ -352,15 +362,13 @@ export default function PaychecksScreen() {
       // A drag ends the jump; a repeat that arrived after it would pull the list back
       if (!list || !current || !jumpingRef.current) return;
       clearTimeout(current.timer);
-      const { animated } = current;
       current.failed = headerHeightRef.current === 0;
       if (current.failed) {
         // Nothing is laid out yet
       } else if (current.index === 0) {
         // The top of a large-title list is above 0 by the bar and the title (see titleHeight).
         // From a collapsed title the first scroll expands the title, which grows the
-        // top inset and shifts the offset past the top; the second (for an animated
-        // jump, the settle when it ends) lands on it.
+        // top inset and shifts the offset past the top; the second lands on it.
         // Not when it is already there, as at launch: the scroll is carried out late
         // while the list mounts its rows, and would undo a scroll made in the meantime.
         // A list with no scroll event yet is at its top (HAU-631): a fold walk can pass a stale -41 otherwise.
@@ -369,14 +377,12 @@ export default function PaychecksScreen() {
         const top = height === undefined ? undefined : barTop > 0 ? -(barTop + (height ?? 0)) : 0;
         const y = scrollY.get();
         if (top !== undefined && y !== -Infinity && y !== top) {
-          list.scrollToOffset({ offset: top, animated });
-          if (!animated) list.scrollToOffset({ offset: top, animated: false });
+          list.scrollToOffset({ offset: top, animated: false });
+          list.scrollToOffset({ offset: top, animated: false });
         }
       } else {
-        list.scrollToIndex({ index: current.index, viewOffset: pinTopRef.current + headerHeightRef.current, animated });
+        list.scrollToIndex({ index: current.index, viewOffset: pinTopRef.current + headerHeightRef.current, animated: false });
       }
-      // Repeating an animated scroll on a timer would restart it mid-flight; it is settled when it ends
-      if (animated && !current.failed) return;
       if (current.failed ? triesLeft > 0 : confirmsLeft > 0) {
         current.timer = setTimeout(
           () => attempt(triesLeft - 1, current.failed ? JUMP_CONFIRMS : confirmsLeft - 1),
@@ -386,22 +392,46 @@ export default function PaychecksScreen() {
       }
       // The scroll is carried out later, much later while the list is still mounting rows.
       // Its scroll event shows the list; this is for a jump to where the list already is.
-      current.timer = setTimeout(() => hidden.set(false), SHOW_FALLBACK_MS);
+      current.timer = setTimeout(
+        () => hidden.set(false),
+        current.animated ? SHOW_AFTER_TAPPED_JUMP_MS : SHOW_FALLBACK_MS
+      );
     };
     attempt(JUMP_TRIES, JUMP_CONFIRMS);
   }, [titleHeight, scrollY, hidden]);
 
-  // Animated for a tap the user watches; the opening jump and a tab return land at once
+  // Lands on the row once the list has faded out; a drag in the meantime ended the jump
+  const landTappedJump = useCallback(() => {
+    if (!jumpingRef.current) {
+      jumpFade.set(withTiming(1, FADE));
+      return;
+    }
+    hidden.set(true);
+    collapse.set(0);
+    attemptJump();
+  }, [attemptJump, hidden, collapse, jumpFade]);
+
+  // Animated for a tap the user watches (a fade); the opening jump and a tab return land at once
   const jumpTo = useCallback(
     (index: number, animated = false) => {
       clearTimeout(jump.current?.timer);
       jump.current = { index, animated };
       jumpingRef.current = true;
       jumping.set(true);
-      collapse.set(animated ? withTiming(0, { duration: HEADER_EXPAND_MS }) : 0);
+      if (animated) {
+        jumpFade.set(
+          withTiming(0, JUMP_FADE_OUT, (finished) => {
+            if (finished) scheduleOnRN(landTappedJump);
+          })
+        );
+        return;
+      }
+      // Also ends a tapped jump's fade that this one interrupts
+      jumpFade.set(1);
+      collapse.set(0);
       attemptJump();
     },
-    [attemptJump, jumping, collapse]
+    [attemptJump, landTappedJump, jumping, collapse, jumpFade]
   );
 
   useEffect(() => {
@@ -409,12 +439,6 @@ export default function PaychecksScreen() {
       const current = jump.current;
       if (!current || (current.rejumps ?? 0) >= MAX_REJUMPS) return;
       current.rejumps = (current.rejumps ?? 0) + 1;
-      attemptJump();
-    };
-    settle.current = () => {
-      const current = jump.current;
-      if (!current?.animated || !jumpingRef.current || (current.settles ?? 0) >= MAX_SETTLES) return;
-      current.settles = (current.settles ?? 0) + 1;
       attemptJump();
     };
   }, [attemptJump]);
@@ -427,7 +451,8 @@ export default function PaychecksScreen() {
   const handleScrollToTop = useCallback(() => {
     jumpingRef.current = false;
     jumping.set(false);
-  }, [jumping]);
+    hidden.set(false);
+  }, [jumping, hidden]);
 
   const handleHeaderLayout = useCallback(
     (event: LayoutChangeEvent) => {
@@ -704,7 +729,14 @@ export default function PaychecksScreen() {
     [hasIncome, handleAddIncome, handleTrySample]
   );
 
-  const hiddenStyle = useAnimatedStyle(() => ({ opacity: hidden.value ? 0 : 1 }));
+  // A tapped jump's list fades back in once it is shown again
+  useAnimatedReaction(
+    () => hidden.value,
+    (isHidden, wasHidden) => {
+      if (!isHidden && wasHidden && jumpFade.get() < 1) jumpFade.set(withTiming(1, FADE));
+    }
+  );
+  const hiddenStyle = useAnimatedStyle(() => ({ opacity: hidden.value ? 0 : jumpFade.value }));
   const listStyle = useMemo(() => [styles.list, LARGE_TITLE_LIST, hiddenStyle], [hiddenStyle]);
   const gutters = useGutters();
   const showsPaycheck = hasIncome && columns !== undefined && shownPaycheck !== undefined;
