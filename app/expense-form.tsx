@@ -330,6 +330,7 @@ function ExpenseForm() {
       contentContainerStyle={contentStyle}
       contentInsetAdjustmentBehavior="automatic"
       keyboardShouldPersistTaps="handled"
+      mode="layout"
       bottomOffset={MEASUREMENTS.keyboardOffset}
     >
       <LayoutAnimationConfig skipEntering>
