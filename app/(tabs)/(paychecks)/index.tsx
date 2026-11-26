@@ -218,9 +218,9 @@ export default function PaychecksScreen() {
   const headerHeight = useSharedValue(0);
   const collapseDistance = useDerivedValue(() => Math.max(0, headerHeight.value - COLLAPSED_HEADER_HEIGHT));
 
-  // 0 shows the whole header, 1 only the month pills. Scrolling forward in time
-  // collapses it and scrolling back brings it out again, anywhere in the list;
-  // from the top of the list that is the same as collapsing with the large title.
+  // 0 shows the whole header, 1 only the month pills. Scrolling forward in time collapses it,
+  // anywhere in the list; scrolling back leaves it collapsed until the content above it runs out,
+  // so it comes out only at the top of the list, as it would with the large title (HAU-854).
   const collapse = useSharedValue(0);
   // How far the list was past the collapsed title at the last scroll event
   const lastPastTitle = useSharedValue<number | undefined>(undefined);
@@ -264,7 +264,8 @@ export default function PaychecksScreen() {
       const pastTitle = Math.max(0, Math.min(y, end) + pinTop);
       const distance = collapseDistance.value;
       if (!jumping.value && distance > 0 && lastPastTitle.value !== undefined) {
-        const next = collapse.value + (pastTitle - lastPastTitle.value) / distance;
+        const forward = Math.max(0, pastTitle - lastPastTitle.value);
+        const next = Math.min(collapse.value + forward / distance, pastTitle / distance);
         collapse.value = Math.min(1, Math.max(0, next));
       }
       lastPastTitle.value = pastTitle;

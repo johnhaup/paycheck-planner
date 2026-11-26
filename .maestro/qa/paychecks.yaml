@@ -84,6 +84,13 @@ env:
           duration: 400
       - waitForAnimationToEnd
       - assertNotVisible: ".* · left over"
+      # Scrolling back a little, short of the top, leaves it collapsed (HAU-854)
+      - swipe:
+          start: 50%, 40%
+          end: 50%, 52%
+          duration: 600
+      - waitForAnimationToEnd
+      - assertNotVisible: ".* · left over"
       - assertVisible:
           text: ${MONTH}
           selected: true
