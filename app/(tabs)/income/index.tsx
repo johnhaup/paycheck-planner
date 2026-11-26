@@ -10,6 +10,7 @@ import { useGutters } from "@/hooks/useGutters";
 import { useColumns } from "@/hooks/useColumns";
 import { LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { AppText } from "@/components/AppText";
+import { closeOpenSwipeRow } from "@/components/AppSwipeActions";
 import { AppCountUpText } from "@/components/AppCountUpText";
 import { AppCard } from "@/components/AppCard";
 import { AppEmptyState } from "@/components/AppEmptyState";
@@ -199,6 +200,7 @@ export default function IncomeScreen() {
           ListHeaderComponent={hasSources ? listHeader : undefined}
           ListFooterComponent={hasSources ? listFooter : undefined}
           ListEmptyComponent={listEmpty}
+          onScrollBeginDrag={closeOpenSwipeRow}
           contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={contentStyle}
         />
