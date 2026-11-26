@@ -243,9 +243,27 @@ export default function ExpensesScreen() {
     [handleSortPress, colors, t]
   );
 
+  // iOS 27 turns a tap anywhere on the navigation bar into scroll to top, which slides the
+  // hidden search bar out (HAU-868). A React view in the bar does not stop that; a native
+  // UIBarButtonItem does, so on iOS Sort is one.
+  const renderSortItems = useCallback(
+    () => [
+      {
+        type: "button" as const,
+        label: t("expenses.sort.title"),
+        icon: { type: "sfSymbol" as const, name: "arrow.up.arrow.down" as const },
+        tintColor: colors.textDefault,
+        onPress: handleSortPress,
+      },
+    ],
+    [handleSortPress, colors, t]
+  );
+
   const screenOptions = useMemo(
     () => ({
-      headerRight: hasExpenses ? renderSortButton : undefined,
+      ...(Platform.OS === "ios"
+        ? { unstable_headerRightItems: hasExpenses ? renderSortItems : undefined }
+        : { headerRight: hasExpenses ? renderSortButton : undefined }),
       headerSearchBarOptions: hasExpenses
         ? {
             placeholder: t("expenses.searchPlaceholder"),
@@ -259,7 +277,7 @@ export default function ExpensesScreen() {
           }
         : undefined,
     }),
-    [hasExpenses, renderSortButton, handleSearch, t, colors.textDefault, colors.textSecondary]
+    [hasExpenses, renderSortItems, renderSortButton, handleSearch, t, colors.textDefault, colors.textSecondary]
   );
 
   const visibleExpenses = useMemo(() => {
