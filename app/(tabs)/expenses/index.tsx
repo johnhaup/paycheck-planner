@@ -253,10 +253,11 @@ export default function ExpensesScreen() {
             // Android: the magnifier shares the sort icon's colour in both themes
             headerIconColor: colors.textDefault,
             textColor: colors.textDefault,
+            hintTextColor: colors.textSecondary,
           }
         : undefined,
     }),
-    [hasExpenses, renderSortButton, handleSearch, t, colors.textDefault]
+    [hasExpenses, renderSortButton, handleSearch, t, colors.textDefault, colors.textSecondary]
   );
 
   const visibleExpenses = useMemo(() => {
