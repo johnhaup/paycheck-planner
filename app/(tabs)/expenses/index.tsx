@@ -247,10 +247,16 @@ export default function ExpensesScreen() {
     () => ({
       headerRight: hasExpenses ? renderSortButton : undefined,
       headerSearchBarOptions: hasExpenses
-        ? { placeholder: t("expenses.searchPlaceholder"), onChangeText: handleSearch }
+        ? {
+            placeholder: t("expenses.searchPlaceholder"),
+            onChangeText: handleSearch,
+            // Android: the magnifier shares the sort icon's colour in both themes
+            headerIconColor: colors.textDefault,
+            textColor: colors.textDefault,
+          }
         : undefined,
     }),
-    [hasExpenses, renderSortButton, handleSearch, t]
+    [hasExpenses, renderSortButton, handleSearch, t, colors.textDefault]
   );
 
   const visibleExpenses = useMemo(() => {
