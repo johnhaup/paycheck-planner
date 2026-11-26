@@ -254,6 +254,8 @@ export default function ExpensesScreen() {
             headerIconColor: colors.textDefault,
             textColor: colors.textDefault,
             hintTextColor: colors.textSecondary,
+            // The in-field hint magnifier ignores headerIconColor (dark on dark in Dark mode)
+            shouldShowHintSearchIcon: false,
           }
         : undefined,
     }),
