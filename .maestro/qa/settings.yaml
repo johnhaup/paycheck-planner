@@ -66,6 +66,24 @@ name: settings
           element: "Currency, .*"
           direction: UP
 
+# Android: Google Drive sync, signed out in the app (HAU-838). The gate never signs in
+# within the app, so the section asks for a Google sign-in and offers no Sign out.
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - scrollUntilVisible:
+          element: ".*Erase all data.*"
+          direction: DOWN
+      - assertVisible: "Google Drive sync"
+      - assertVisible: "Sign in with Google to sync your budget across your devices."
+      - assertVisible: "Sign in with Google.*"
+      - assertNotVisible: "Sign out of Google.*"
+      - assertNotVisible: ".*iCloud.*"
+      - scrollUntilVisible:
+          element: "Currency, .*"
+          direction: UP
+
 # The Language and Currency sheets have their own X, which goes back to Settings
 # without changing the choice (HAU-617).
 - tapOn: "Currency, .*"

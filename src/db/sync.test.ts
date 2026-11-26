@@ -222,4 +222,24 @@ describe("two devices", () => {
     expect(readSettings(a)).toEqual({ currency: "EUR", hideCents: true });
     expect(loadBudget(c)).toEqual(loadBudget(a));
   });
+
+  test("an install that had a budget before sync was installed merges it on its first sync (HAU-838)", async () => {
+    const { cloud, a } = await twoDevices();
+    // Android before Google Drive sync: the budget is in SQLite, but installSync never ran on it
+    const cFile = new Database(":memory:");
+    const c = openTestDatabase(cFile);
+    await migrate(c);
+    const own: BudgetData = {
+      incomeSources: [{ id: "side", name: "Side gig", payAmount: 500, payFrequency: "weekly", firstPayDate: "2026-11-06" }],
+      expenses: [{ id: "car", payee: "Car", amount: 300, isRecurring: true, incomeSourceId: "side" }],
+      assignments: [],
+      paycheckOverrides: [],
+    };
+    saveBudgetChanges(c, EMPTY, own, 500);
+    await installSyncWith(c, SYNC_CONFIG, "device-c");
+    await settle(cloud, c, a);
+    expect(amounts(c).sort()).toEqual(["Car:300", "Phone:60", "Rent:1200"]);
+    expect(loadBudget(a)).toEqual(loadBudget(c));
+    expect(loadBudget(a).incomeSources.map((source) => source.name).sort()).toEqual(["Job", "Side gig"]);
+  });
 });

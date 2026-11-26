@@ -294,7 +294,25 @@
       "notNow": "Ne zdaj",
       "deleteCopy": "Izklopi in izbriši kopijo v iCloudu",
       "deleteCopyTitle": "Želite izbrisati kopijo v iCloudu?",
-      "deleteCopyBody": "Sinhronizacija se v tem iPhonu izklopi, kopija v iCloudu pa se izbriše. Vaš proračun ostane v tem iPhonu. Druge naprave, ki se še sinhronizirajo, bodo svojo kopijo znova naložile, zato najprej v njih izklopite sinhronizacijo."
+      "deleteCopyBody": "Sinhronizacija se v tem iPhonu izklopi, kopija v iCloudu pa se izbriše. Vaš proračun ostane v tem iPhonu. Druge naprave, ki se še sinhronizirajo, bodo svojo kopijo znova naložile, zato najprej v njih izklopite sinhronizacijo.",
+      "android": {
+        "label": "Sinhronizacija z Google Drive",
+        "on": "Vaš proračun se prek Google Drive sinhronizira v vseh vaših napravah.",
+        "off": "Izklopljeno. Vaš proračun ostane v tem telefonu.",
+        "signedOut": "Prijavite se z Googlom, da sinhronizirate proračun v vseh svojih napravah.",
+        "signIn": "Prijava z Googlom",
+        "signInError": "Prijava z Googlom ni uspela. Poskusite znova.",
+        "signOut": "Odjava iz Googla",
+        "unavailable": "Google Drive v tem telefonu ni na voljo.",
+        "quotaFull": "Vaš prostor za shranjevanje v Google Drive je poln. Spremembe, narejene tukaj, se ne sinhronizirajo.",
+        "accountChanged": "Ta telefon je prijavljen v drug račun Google. Dokler ne izberete, se nič ne sinhronizira.",
+        "merge": "Združi s tem računom Google",
+        "mergeTitle": "Želite združiti proračun iz tega telefona?",
+        "mergeBody": "Proračun iz tega telefona se doda v račun Google, ki je zdaj prijavljen.",
+        "deleteCopy": "Odjavi se in izbriši kopijo v Google Drive",
+        "deleteCopyTitle": "Želite izbrisati kopijo v Google Drive?",
+        "deleteCopyBody": "V tem telefonu boste odjavljeni, kopija v vašem Google Drive pa se izbriše. Vaš proračun ostane v tem telefonu. Druge naprave, ki so še prijavljene, bodo svojo kopijo znova naložile, zato se najprej odjavite v njih."
+      }
     },
     "data": {
       "title": "Podatki",

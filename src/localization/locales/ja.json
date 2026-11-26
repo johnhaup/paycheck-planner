@@ -291,7 +291,25 @@
       "notNow": "今はしない",
       "deleteCopy": "オフにしてiCloudのコピーを削除",
       "deleteCopyTitle": "iCloudのコピーを削除しますか？",
-      "deleteCopyBody": "このiPhoneで同期がオフになり、iCloud上のコピーが削除されます。予算はこのiPhoneに残ります。まだ同期しているほかのデバイスがコピーを再びアップロードするため、先にそれらのデバイスで同期をオフにしてください。"
+      "deleteCopyBody": "このiPhoneで同期がオフになり、iCloud上のコピーが削除されます。予算はこのiPhoneに残ります。まだ同期しているほかのデバイスがコピーを再びアップロードするため、先にそれらのデバイスで同期をオフにしてください。",
+      "android": {
+        "label": "Google Drive同期",
+        "on": "予算はGoogle Driveを使ってすべてのデバイスで同期されます。",
+        "off": "オフ。予算はこのスマートフォンにのみ保存されます。",
+        "signedOut": "すべてのデバイスで予算を同期するには、Googleでログインしてください。",
+        "signIn": "Google でログイン",
+        "signInError": "Googleでログインできませんでした。もう一度お試しください。",
+        "signOut": "Googleからログアウト",
+        "unavailable": "このスマートフォンではGoogle Driveを利用できません。",
+        "quotaFull": "Google Driveの保存容量がいっぱいです。ここで行った変更は同期されていません。",
+        "accountChanged": "このスマートフォンは別のGoogleアカウントにログインしています。選択するまで何も同期されません。",
+        "merge": "このGoogleアカウントに統合",
+        "mergeTitle": "このスマートフォンの予算を統合しますか？",
+        "mergeBody": "このスマートフォンの予算が、現在ログインしているGoogleアカウントに追加されます。",
+        "deleteCopy": "ログアウトしてGoogle Driveのコピーを削除",
+        "deleteCopyTitle": "Google Driveのコピーを削除しますか？",
+        "deleteCopyBody": "このスマートフォンでログアウトし、Google Drive上のコピーが削除されます。予算はこのスマートフォンに残ります。まだログインしているほかのデバイスがコピーを再びアップロードするため、先にそれらのデバイスでログアウトしてください。"
+      }
     },
     "data": {
       "title": "データ",

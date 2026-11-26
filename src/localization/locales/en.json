@@ -296,7 +296,25 @@
       "notNow": "Not now",
       "deleteCopy": "Turn off and delete iCloud copy",
       "deleteCopyTitle": "Delete the iCloud copy?",
-      "deleteCopyBody": "Sync turns off on this iPhone and the copy in iCloud is deleted. Your budget stays on this iPhone. Other devices that still sync will upload their copy again, so turn sync off on them first."
+      "deleteCopyBody": "Sync turns off on this iPhone and the copy in iCloud is deleted. Your budget stays on this iPhone. Other devices that still sync will upload their copy again, so turn sync off on them first.",
+      "android": {
+        "label": "Google Drive sync",
+        "on": "Your budget syncs with your Google Drive across your devices.",
+        "off": "Off. Your budget stays on this phone.",
+        "signedOut": "Sign in with Google to sync your budget across your devices.",
+        "signIn": "Sign in with Google",
+        "signInError": "Couldn't sign in with Google. Try again.",
+        "signOut": "Sign out of Google",
+        "unavailable": "Google Drive isn't available on this phone.",
+        "quotaFull": "Your Google Drive storage is full. Changes made here aren't syncing.",
+        "accountChanged": "This phone is signed in to a different Google account. Nothing syncs until you choose.",
+        "merge": "Merge into this Google account",
+        "mergeTitle": "Merge this phone's budget?",
+        "mergeBody": "The budget on this phone is added to the Google account now signed in.",
+        "deleteCopy": "Sign out and delete Google Drive copy",
+        "deleteCopyTitle": "Delete the Google Drive copy?",
+        "deleteCopyBody": "You're signed out on this phone and the copy in your Google Drive is deleted. Your budget stays on this phone. Other devices still signed in will upload their copy again, so sign out on them first."
+      }
     },
     "data": {
       "title": "Data",

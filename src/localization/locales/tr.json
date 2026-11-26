@@ -292,7 +292,25 @@
       "notNow": "Şimdi değil",
       "deleteCopy": "Kapat ve iCloud kopyasını sil",
       "deleteCopyTitle": "iCloud kopyası silinsin mi?",
-      "deleteCopyBody": "Bu iPhone'da eşzamanlama kapanır ve iCloud'daki kopya silinir. Bütçen bu iPhone'da kalır. Hâlâ eşzamanlanan diğer cihazlar kendi kopyalarını yeniden yükler, bu yüzden önce onlarda eşzamanlamayı kapat."
+      "deleteCopyBody": "Bu iPhone'da eşzamanlama kapanır ve iCloud'daki kopya silinir. Bütçen bu iPhone'da kalır. Hâlâ eşzamanlanan diğer cihazlar kendi kopyalarını yeniden yükler, bu yüzden önce onlarda eşzamanlamayı kapat.",
+      "android": {
+        "label": "Google Drive eşzamanlama",
+        "on": "Bütçen Google Drive ile tüm cihazlarında eşzamanlanır.",
+        "off": "Kapalı. Bütçen bu telefonda kalır.",
+        "signedOut": "Bütçeni tüm cihazlarında eşzamanlamak için Google ile giriş yap.",
+        "signIn": "Google ile giriş yap",
+        "signInError": "Google ile giriş yapılamadı. Yeniden dene.",
+        "signOut": "Google'dan çıkış yap",
+        "unavailable": "Google Drive bu telefonda kullanılamıyor.",
+        "quotaFull": "Google Drive saklama alanın dolu. Burada yapılan değişiklikler eşzamanlanmıyor.",
+        "accountChanged": "Bu telefonda farklı bir Google hesabıyla giriş yapılmış. Sen seçim yapana kadar hiçbir şey eşzamanlanmaz.",
+        "merge": "Bu Google hesabıyla birleştir",
+        "mergeTitle": "Bu telefondaki bütçe birleştirilsin mi?",
+        "mergeBody": "Bu telefondaki bütçe, şu anda giriş yapılmış Google hesabına eklenir.",
+        "deleteCopy": "Çıkış yap ve Google Drive kopyasını sil",
+        "deleteCopyTitle": "Google Drive kopyası silinsin mi?",
+        "deleteCopyBody": "Bu telefonda oturumun kapanır ve Google Drive'ındaki kopya silinir. Bütçen bu telefonda kalır. Hâlâ giriş yapılmış diğer cihazlar kendi kopyalarını yeniden yükler, bu yüzden önce onlarda çıkış yap."
+      }
     },
     "data": {
       "title": "Veriler",

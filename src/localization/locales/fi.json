@@ -292,7 +292,25 @@
       "notNow": "Ei nyt",
       "deleteCopy": "Lopeta synkronointi ja poista iCloud-kopio",
       "deleteCopyTitle": "Poistetaanko iCloud-kopio?",
-      "deleteCopyBody": "Synkronointi laitetaan pois päältä tässä iPhonessa ja iCloudissa oleva kopio poistetaan. Budjettisi pysyy tässä iPhonessa. Muut yhä synkronoivat laitteet lataavat kopionsa uudelleen, joten laita synkronointi ensin pois päältä niissä."
+      "deleteCopyBody": "Synkronointi laitetaan pois päältä tässä iPhonessa ja iCloudissa oleva kopio poistetaan. Budjettisi pysyy tässä iPhonessa. Muut yhä synkronoivat laitteet lataavat kopionsa uudelleen, joten laita synkronointi ensin pois päältä niissä.",
+      "android": {
+        "label": "Google Drive -synkronointi",
+        "on": "Budjettisi synkronoituu Google Driven kautta kaikille laitteillesi.",
+        "off": "Pois. Budjettisi pysyy tässä puhelimessa.",
+        "signedOut": "Kirjaudu Google-tilillä synkronoidaksesi budjettisi kaikille laitteillesi.",
+        "signIn": "Kirjaudu Google-tilillä",
+        "signInError": "Kirjautuminen Google-tilillä epäonnistui. Yritä uudelleen.",
+        "signOut": "Kirjaudu ulos Googlesta",
+        "unavailable": "Google Drive ei ole käytettävissä tässä puhelimessa.",
+        "quotaFull": "Google Drive -tallennustilasi on täynnä. Täällä tehdyt muutokset eivät synkronoidu.",
+        "accountChanged": "Tämä puhelin on kirjautunut eri Google-tiliin. Mitään ei synkronoida, ennen kuin teet valinnan.",
+        "merge": "Yhdistä tähän Google-tiliin",
+        "mergeTitle": "Yhdistetäänkö tämän puhelimen budjetti?",
+        "mergeBody": "Tämän puhelimen budjetti lisätään Google-tiliin, johon on nyt kirjauduttu.",
+        "deleteCopy": "Kirjaudu ulos ja poista Google Drive -kopio",
+        "deleteCopyTitle": "Poistetaanko Google Drive -kopio?",
+        "deleteCopyBody": "Sinut kirjataan ulos tässä puhelimessa ja Google Drivessasi oleva kopio poistetaan. Budjettisi pysyy tässä puhelimessa. Muut yhä kirjautuneet laitteet lataavat kopionsa uudelleen, joten kirjaudu ensin ulos niissä."
+      }
     },
     "data": {
       "title": "Tiedot",

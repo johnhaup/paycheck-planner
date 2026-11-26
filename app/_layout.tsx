@@ -53,14 +53,10 @@ export default function RootLayout() {
   return (
     <SQLiteProvider databaseName="paycheck-planner.db" onInit={initDatabase}>
       <HideSplash />
-      {Platform.OS === "ios" ? (
-        <CloudSyncProvider config={SYNC_CONFIG}>
-          <SyncedStores />
-          <RootNavigator />
-        </CloudSyncProvider>
-      ) : (
+      <CloudSyncProvider config={SYNC_CONFIG}>
+        <SyncedStores />
         <RootNavigator />
-      )}
+      </CloudSyncProvider>
     </SQLiteProvider>
   );
 }

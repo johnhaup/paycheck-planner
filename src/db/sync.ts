@@ -22,7 +22,7 @@ export const DEVICE_SETTINGS = [
 /** Settings that describe the budget and follow it to every device. */
 export const SYNCED_SETTINGS = ["currency", "hideCents", "autoMarkPaidOnLinkTap"];
 
-/** What syncs through iCloud. Parents before children. Migrations on these tables are additive only. */
+/** What syncs (iCloud on iOS, Google Drive on Android). Parents before children. Migrations on these tables are additive only. */
 export const SYNC_CONFIG: SyncConfig = {
   app: "paycheck-planner",
   schemaVersion: SCHEMA_VERSION,

@@ -293,7 +293,25 @@
       "notNow": "Non ora",
       "deleteCopy": "Disattiva ed elimina la copia iCloud",
       "deleteCopyTitle": "Eliminare la copia iCloud?",
-      "deleteCopyBody": "La sincronizzazione si disattiva su questo iPhone e la copia su iCloud viene eliminata. Il tuo budget resta su questo iPhone. Gli altri dispositivi ancora sincronizzati caricheranno di nuovo la loro copia, quindi disattiva prima la sincronizzazione su di essi."
+      "deleteCopyBody": "La sincronizzazione si disattiva su questo iPhone e la copia su iCloud viene eliminata. Il tuo budget resta su questo iPhone. Gli altri dispositivi ancora sincronizzati caricheranno di nuovo la loro copia, quindi disattiva prima la sincronizzazione su di essi.",
+      "android": {
+        "label": "Sincronizzazione Google Drive",
+        "on": "Il tuo budget si sincronizza con il tuo Google Drive su tutti i tuoi dispositivi.",
+        "off": "Disattivata. Il tuo budget resta su questo telefono.",
+        "signedOut": "Accedi con Google per sincronizzare il tuo budget su tutti i tuoi dispositivi.",
+        "signIn": "Accedi con Google",
+        "signInError": "Impossibile accedere con Google. Riprova.",
+        "signOut": "Esci da Google",
+        "unavailable": "Google Drive non è disponibile su questo telefono.",
+        "quotaFull": "Il tuo spazio di archiviazione Google Drive è pieno. Le modifiche fatte qui non vengono sincronizzate.",
+        "accountChanged": "Questo telefono ha eseguito l'accesso a un altro account Google. Non viene sincronizzato nulla finché non scegli.",
+        "merge": "Unisci a questo account Google",
+        "mergeTitle": "Unire il budget di questo telefono?",
+        "mergeBody": "Il budget di questo telefono viene aggiunto all'account Google con cui è stato eseguito l'accesso ora.",
+        "deleteCopy": "Esci ed elimina la copia su Google Drive",
+        "deleteCopyTitle": "Eliminare la copia su Google Drive?",
+        "deleteCopyBody": "Esci dall'account su questo telefono e la copia sul tuo Google Drive viene eliminata. Il tuo budget resta su questo telefono. Gli altri dispositivi ancora collegati caricheranno di nuovo la loro copia, quindi esci prima da quelli."
+      }
     },
     "data": {
       "title": "Dati",

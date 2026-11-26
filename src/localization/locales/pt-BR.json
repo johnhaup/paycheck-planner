@@ -292,7 +292,25 @@
       "notNow": "Agora não",
       "deleteCopy": "Desativar e excluir cópia do iCloud",
       "deleteCopyTitle": "Excluir a cópia do iCloud?",
-      "deleteCopyBody": "A sincronização será desativada neste iPhone e a cópia no iCloud será excluída. Seu orçamento fica neste iPhone. Outros dispositivos que ainda sincronizam enviarão a cópia deles novamente, então desative a sincronização neles primeiro."
+      "deleteCopyBody": "A sincronização será desativada neste iPhone e a cópia no iCloud será excluída. Seu orçamento fica neste iPhone. Outros dispositivos que ainda sincronizam enviarão a cópia deles novamente, então desative a sincronização neles primeiro.",
+      "android": {
+        "label": "Sincronização do Google Drive",
+        "on": "Seu orçamento é sincronizado com seu Google Drive em todos os seus dispositivos.",
+        "off": "Desativada. Seu orçamento fica neste celular.",
+        "signedOut": "Faça login com o Google para sincronizar seu orçamento em todos os seus dispositivos.",
+        "signIn": "Fazer login com o Google",
+        "signInError": "Não foi possível fazer login com o Google. Tente novamente.",
+        "signOut": "Sair do Google",
+        "unavailable": "O Google Drive não está disponível neste celular.",
+        "quotaFull": "Seu armazenamento do Google Drive está cheio. As alterações feitas aqui não estão sendo sincronizadas.",
+        "accountChanged": "Este celular está conectado a outra Conta do Google. Nada será sincronizado até você escolher.",
+        "merge": "Mesclar com esta Conta do Google",
+        "mergeTitle": "Mesclar o orçamento deste celular?",
+        "mergeBody": "O orçamento deste celular será adicionado à Conta do Google conectada agora.",
+        "deleteCopy": "Sair e excluir cópia do Google Drive",
+        "deleteCopyTitle": "Excluir a cópia do Google Drive?",
+        "deleteCopyBody": "Você sai da conta neste celular e a cópia no seu Google Drive é excluída. Seu orçamento fica neste celular. Outros dispositivos ainda conectados enviarão a cópia deles novamente, então saia da conta neles primeiro."
+      }
     },
     "data": {
       "title": "Dados",

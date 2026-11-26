@@ -294,7 +294,25 @@
       "notNow": "Nie teraz",
       "deleteCopy": "Wyłącz i usuń kopię w iCloud",
       "deleteCopyTitle": "Usunąć kopię w iCloud?",
-      "deleteCopyBody": "Synchronizacja zostanie wyłączona na tym iPhonie, a kopia w iCloud usunięta. Budżet zostanie na tym iPhonie. Inne urządzenia, które nadal synchronizują, ponownie wyślą swoją kopię, więc najpierw wyłącz na nich synchronizację."
+      "deleteCopyBody": "Synchronizacja zostanie wyłączona na tym iPhonie, a kopia w iCloud usunięta. Budżet zostanie na tym iPhonie. Inne urządzenia, które nadal synchronizują, ponownie wyślą swoją kopię, więc najpierw wyłącz na nich synchronizację.",
+      "android": {
+        "label": "Synchronizacja z Google Drive",
+        "on": "Twój budżet synchronizuje się przez Google Drive na wszystkich Twoich urządzeniach.",
+        "off": "Wyłączona. Budżet zostaje na tym telefonie.",
+        "signedOut": "Zaloguj się przez Google, aby synchronizować budżet na wszystkich swoich urządzeniach.",
+        "signIn": "Zaloguj się przez Google",
+        "signInError": "Nie udało się zalogować przez Google. Spróbuj ponownie.",
+        "signOut": "Wyloguj się z Google",
+        "unavailable": "Google Drive nie jest dostępny na tym telefonie.",
+        "quotaFull": "Twoje miejsce na Google Drive jest zapełnione. Zmiany wprowadzone tutaj nie są synchronizowane.",
+        "accountChanged": "Ten telefon jest zalogowany na inne konto Google. Nic nie jest synchronizowane, dopóki nie wybierzesz.",
+        "merge": "Scal z tym kontem Google",
+        "mergeTitle": "Scalić budżet z tego telefonu?",
+        "mergeBody": "Budżet z tego telefonu zostanie dodany do obecnie zalogowanego konta Google.",
+        "deleteCopy": "Wyloguj się i usuń kopię z Google Drive",
+        "deleteCopyTitle": "Usunąć kopię z Google Drive?",
+        "deleteCopyBody": "Nastąpi wylogowanie na tym telefonie, a kopia na Twoim Google Drive zostanie usunięta. Budżet zostanie na tym telefonie. Inne urządzenia, które są nadal zalogowane, ponownie wyślą swoją kopię, więc najpierw wyloguj się na nich."
+      }
     },
     "data": {
       "title": "Dane",

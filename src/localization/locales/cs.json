@@ -294,7 +294,25 @@
       "notNow": "Teď ne",
       "deleteCopy": "Vypnout a smazat kopii na iCloudu",
       "deleteCopyTitle": "Smazat kopii na iCloudu?",
-      "deleteCopyBody": "Synchronizace se v tomto iPhonu vypne a kopie na iCloudu se smaže. Rozpočet zůstane v tomto iPhonu. Ostatní zařízení, která se stále synchronizují, svou kopii znovu nahrají, proto na nich synchronizaci vypněte nejdřív."
+      "deleteCopyBody": "Synchronizace se v tomto iPhonu vypne a kopie na iCloudu se smaže. Rozpočet zůstane v tomto iPhonu. Ostatní zařízení, která se stále synchronizují, svou kopii znovu nahrají, proto na nich synchronizaci vypněte nejdřív.",
+      "android": {
+        "label": "Synchronizace s Google Drive",
+        "on": "Váš rozpočet se synchronizuje přes Google Drive na všech vašich zařízeních.",
+        "off": "Vypnuto. Rozpočet zůstává v tomto telefonu.",
+        "signedOut": "Přihlaste se přes Google a synchronizujte rozpočet na všech svých zařízeních.",
+        "signIn": "Přihlásit se přes Google",
+        "signInError": "Přihlášení přes Google se nezdařilo. Zkuste to znovu.",
+        "signOut": "Odhlásit se z Googlu",
+        "unavailable": "Google Drive není v tomto telefonu k dispozici.",
+        "quotaFull": "Úložiště na Google Drive je plné. Změny provedené zde se nesynchronizují.",
+        "accountChanged": "Tento telefon je přihlášen k jinému účtu Google. Dokud se nerozhodnete, nic se nesynchronizuje.",
+        "merge": "Sloučit s tímto účtem Google",
+        "mergeTitle": "Sloučit rozpočet z tohoto telefonu?",
+        "mergeBody": "Rozpočet z tohoto telefonu se přidá k účtu Google, který je nyní přihlášen.",
+        "deleteCopy": "Odhlásit se a smazat kopii na Google Drive",
+        "deleteCopyTitle": "Smazat kopii na Google Drive?",
+        "deleteCopyBody": "V tomto telefonu budete odhlášeni a kopie na vašem Google Drive se smaže. Rozpočet zůstane v tomto telefonu. Ostatní zařízení, která jsou stále přihlášena, svou kopii znovu nahrají, proto se na nich nejdřív odhlaste."
+      }
     },
     "data": {
       "title": "Data",

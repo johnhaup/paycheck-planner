@@ -293,7 +293,25 @@
       "notNow": "Most nem",
       "deleteCopy": "Kikapcsolás és az iCloud-másolat törlése",
       "deleteCopyTitle": "Törlöd az iCloud-másolatot?",
-      "deleteCopyBody": "A szinkronizálás kikapcsol ezen az iPhone-on, és az iCloudban lévő másolat törlődik. A költségvetésed ezen az iPhone-on marad. A még szinkronizáló többi eszköz újra feltölti a saját másolatát, ezért előbb azokon kapcsold ki a szinkronizálást."
+      "deleteCopyBody": "A szinkronizálás kikapcsol ezen az iPhone-on, és az iCloudban lévő másolat törlődik. A költségvetésed ezen az iPhone-on marad. A még szinkronizáló többi eszköz újra feltölti a saját másolatát, ezért előbb azokon kapcsold ki a szinkronizálást.",
+      "android": {
+        "label": "Google Drive-szinkronizálás",
+        "on": "A költségvetésed a Google Drive-on keresztül szinkronizálódik az eszközeid között.",
+        "off": "Ki. A költségvetésed ezen a telefonon marad.",
+        "signedOut": "Jelentkezz be Google-fiókkal, hogy a költségvetésed szinkronizálódjon az eszközeid között.",
+        "signIn": "Bejelentkezés Google-fiókkal",
+        "signInError": "Nem sikerült bejelentkezni Google-fiókkal. Próbáld újra.",
+        "signOut": "Kijelentkezés a Google-ből",
+        "unavailable": "A Google Drive nem érhető el ezen a telefonon.",
+        "quotaFull": "A Google Drive-tárhelyed megtelt. Az itt végzett módosítások nem szinkronizálódnak.",
+        "accountChanged": "Ez a telefon egy másik Google-fiókba van bejelentkezve. Amíg nem döntesz, semmi sem szinkronizálódik.",
+        "merge": "Egyesítés ezzel a Google-fiókkal",
+        "mergeTitle": "Egyesíted ennek a telefonnak a költségvetését?",
+        "mergeBody": "A telefonon lévő költségvetés hozzáadódik a jelenleg bejelentkezett Google-fiókhoz.",
+        "deleteCopy": "Kijelentkezés és a Google Drive-másolat törlése",
+        "deleteCopyTitle": "Törlöd a Google Drive-másolatot?",
+        "deleteCopyBody": "Ezen a telefonon kijelentkezel, és a Google Drive-odban lévő másolat törlődik. A költségvetésed ezen a telefonon marad. A még bejelentkezett többi eszköz újra feltölti a saját másolatát, ezért előbb azokon jelentkezz ki."
+      }
     },
     "data": {
       "title": "Adatok",

@@ -291,7 +291,25 @@
       "notNow": "Để sau",
       "deleteCopy": "Tắt và xóa bản sao iCloud",
       "deleteCopyTitle": "Xóa bản sao iCloud?",
-      "deleteCopyBody": "Đồng bộ sẽ tắt trên iPhone này và bản sao trong iCloud sẽ bị xóa. Ngân sách của bạn vẫn ở trên iPhone này. Các thiết bị khác vẫn đồng bộ sẽ tải bản sao của chúng lên lại, vì vậy hãy tắt đồng bộ trên các thiết bị đó trước."
+      "deleteCopyBody": "Đồng bộ sẽ tắt trên iPhone này và bản sao trong iCloud sẽ bị xóa. Ngân sách của bạn vẫn ở trên iPhone này. Các thiết bị khác vẫn đồng bộ sẽ tải bản sao của chúng lên lại, vì vậy hãy tắt đồng bộ trên các thiết bị đó trước.",
+      "android": {
+        "label": "Đồng bộ Google Drive",
+        "on": "Ngân sách của bạn được đồng bộ qua Google Drive trên các thiết bị của bạn.",
+        "off": "Tắt. Ngân sách của bạn chỉ ở trên điện thoại này.",
+        "signedOut": "Đăng nhập bằng Google để đồng bộ ngân sách trên các thiết bị của bạn.",
+        "signIn": "Đăng nhập bằng Google",
+        "signInError": "Không thể đăng nhập bằng Google. Hãy thử lại.",
+        "signOut": "Đăng xuất khỏi Google",
+        "unavailable": "Google Drive không khả dụng trên điện thoại này.",
+        "quotaFull": "Bộ nhớ Google Drive của bạn đã đầy. Các thay đổi thực hiện tại đây không được đồng bộ.",
+        "accountChanged": "Điện thoại này đang đăng nhập một Tài khoản Google khác. Sẽ không có gì được đồng bộ cho đến khi bạn chọn.",
+        "merge": "Hợp nhất vào Tài khoản Google này",
+        "mergeTitle": "Hợp nhất ngân sách của điện thoại này?",
+        "mergeBody": "Ngân sách trên điện thoại này sẽ được thêm vào Tài khoản Google hiện đang đăng nhập.",
+        "deleteCopy": "Đăng xuất và xóa bản sao Google Drive",
+        "deleteCopyTitle": "Xóa bản sao Google Drive?",
+        "deleteCopyBody": "Bạn sẽ đăng xuất trên điện thoại này và bản sao trong Google Drive của bạn sẽ bị xóa. Ngân sách của bạn vẫn ở trên điện thoại này. Các thiết bị khác vẫn đăng nhập sẽ tải bản sao của chúng lên lại, vì vậy hãy đăng xuất trên các thiết bị đó trước."
+      }
     },
     "data": {
       "title": "Dữ liệu",

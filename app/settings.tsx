@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useRef } from "react";
-import { Alert, Platform, ScrollView, StyleSheet, View, type ScrollViewInstance } from "react-native";
+import { Alert, ScrollView, StyleSheet, View, type ScrollViewInstance } from "react-native";
 import { useRouter } from "expo-router";
 import { useSQLiteContext } from "expo-sqlite";
 import { toast } from "sonner-native";
@@ -287,7 +287,7 @@ function SettingsContent() {
         onValueChange={setAutoMarkPaid}
       />
 
-      {Platform.OS === "ios" ? <SettingsSyncSection /> : null}
+      <SettingsSyncSection />
 
       <AppSectionHeader title={t("settings.data.title")} />
       <SettingsLinkRow label={t("settings.data.backup")} onPress={handleBackup} />
