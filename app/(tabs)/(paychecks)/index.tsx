@@ -29,6 +29,7 @@ import { FORWARD_CHEVRON, LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/c
 import { MEASUREMENTS } from "@/constants/measurements";
 import { DIM_ON_PRESS, dimOnPress } from "@/constants/press";
 import { AppText } from "@/components/AppText";
+import { closeOpenSwipeRow } from "@/components/AppSwipeActions";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
 import { AppCountUpText } from "@/components/AppCountUpText";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
@@ -314,6 +315,7 @@ export default function PaychecksScreen() {
       // Nothing else shows a list hidden for a jump once the jump has ended
       hidden.set(false);
       scheduleOnRN(endJump);
+      scheduleOnRN(closeOpenSwipeRow);
     },
   });
 

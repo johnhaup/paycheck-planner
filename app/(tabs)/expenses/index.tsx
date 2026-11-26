@@ -23,6 +23,7 @@ import { useColumns } from "@/hooks/useColumns";
 import { COLUMN_GAP } from "@/constants/layout";
 import { LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { AppText } from "@/components/AppText";
+import { closeOpenSwipeRow } from "@/components/AppSwipeActions";
 import { AppCountUpText } from "@/components/AppCountUpText";
 import { AppEmptyState } from "@/components/AppEmptyState";
 import { AppFab } from "@/components/AppFab";
@@ -92,7 +93,15 @@ export default function ExpensesScreen() {
   const [sort, setSort] = useState<ExpenseSort>("default");
   const [query, setQuery] = useState("");
   // Filter, sort and search swap the rows; only adds and deletes animate them
-  const { animated, swap } = useListSwap();
+  const { animated, swap: swapRows } = useListSwap();
+  // A row left swiped open would come back open in the new results
+  const swap = useCallback(
+    (change: () => void) => {
+      closeOpenSwipeRow();
+      swapRows(change);
+    },
+    [swapRows]
+  );
 
   const handleAdd = useCallback(() => {
     router.push("/expense-form");
@@ -385,6 +394,7 @@ export default function ExpensesScreen() {
             ListHeaderComponent={hasExpenses ? listHeader : undefined}
             ListEmptyComponent={listEmpty}
             stickySectionHeadersEnabled={false}
+            onScrollBeginDrag={closeOpenSwipeRow}
             contentInsetAdjustmentBehavior="automatic"
             contentContainerStyle={contentStyle}
           />

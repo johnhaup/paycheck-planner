@@ -29,14 +29,14 @@ name: pro
     timeout: 10000
 - tapOn: "Go Pro to plan a full year ahead"
 - extendedWaitUntil:
-    visible: "Buy for \\$4\\.99"
+    visible: "Buy for \\$2\\.99"
     timeout: 20000
 # Nothing bought yet: Restore finds nothing and the paywall stays locked
 - tapOn: "Restore purchases"
 - extendedWaitUntil:
     visible: "No Pro purchase found for this account"
     timeout: 10000
-- tapOn: "Buy for \\$4\\.99"
+- tapOn: "Buy for \\$2\\.99"
 - extendedWaitUntil:
     visible: "Pro is unlocked"
     timeout: 20000
@@ -100,6 +100,13 @@ name: pro
     timeout: 15000
 - eraseText: 10
 - inputText: "2100"
+# The first keyboard on a fresh simulator is slow: wait for the number pad (its Delete key)
+# and for the sheet it lifts to settle, or the Save tap lands on the 0 key (HAU-877).
+- extendedWaitUntil:
+    visible: "Delete"
+    timeout: 15000
+- waitForAnimationToEnd
+- assertVisible: "2100"
 - tapOn: "Save"
 - extendedWaitUntil:
     notVisible: "Save"
@@ -146,7 +153,7 @@ name: pro
     timeout: 15000
 - tapOn: "Paycheck Planner Pro.*"
 - extendedWaitUntil:
-    visible: "Buy for \\$4\\.99"
+    visible: "Buy for \\$2\\.99"
     timeout: 25000
 - tapOn: "Restore purchases"
 - extendedWaitUntil:
@@ -163,7 +170,7 @@ name: pro
 - extendedWaitUntil:
     visible: "Export bills as CSV"
     timeout: 15000
-- assertVisible: "Buy for \\$4\\.99"
+- assertVisible: "Buy for \\$2\\.99"
 - assertVisible: "No Pro purchase found for this account"
 - assertVisible: "Restore purchases"
 - takeScreenshot: pro-refunded-paywall-xxxl

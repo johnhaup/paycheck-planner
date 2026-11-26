@@ -44,7 +44,7 @@ No unit tests exist. Type check and lint before calling anything done.
 
 ## Pro (one-time unlock, no subscriptions)
 
-- Product `com.johnhaup.paycheckplanner.pro`, $4.99, non-consumable, Family Sharing on. Through `expo-iap` only: no RevenueCat, no analytics, no server.
+- Product `com.johnhaup.paycheckplanner.pro`, $2.99, non-consumable, Family Sharing on. Through `expo-iap` only: no RevenueCat, no analytics, no server.
 - `useIsPro()` and the cached entitlement in `src/services/pro.ts`; the store is re-asked on every launch so refunds revoke.
 - Gate a control with `useProGate()` (`src/hooks/useProGate.ts`) and show `ProBadge`. Free users see the badge and get the paywall on tap. Nothing a user already has is ever hidden.
 - Free: one income source, unlimited bills, this month and next, mark paid, payment links, backup. Pro: more income sources, 12-month view, reminders, set-asides and goals, per-paycheck overrides, history, CSV export. Linear issues labelled `Paid` are Pro features.
