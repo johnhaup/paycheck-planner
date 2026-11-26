@@ -199,6 +199,16 @@ name: expenses
     timeout: 15000
 - tapOn: "e.g. 18"
 - inputText: "18"
+# Wait for the number pad (on iOS its Delete key is an element) before the swipe: on a fresh
+# simulator the first keyboard is slow and would rise after the swipe and cover the button (HAU-877).
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - extendedWaitUntil:
+          visible: "Delete"
+          timeout: 15000
+- waitForAnimationToEnd
 # The keyboard covers the button, and Maestro counts it visible there; scroll it up first
 - swipe:
     start: 50%, 45%
@@ -230,8 +240,18 @@ name: expenses
     visible: "18"
     timeout: 15000
 - tapOn: "18"
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - extendedWaitUntil:
+          visible: "Delete"
+          timeout: 15000
+- waitForAnimationToEnd
 - eraseText: 4
 - tapOn: "(?i)linked income source"
+# Let the number pad finish going down before the swipes
+- waitForAnimationToEnd
 # With the due day gone the form grows a "Which paycheck" row; the button is below it
 - swipe:
     start: 50%, 45%
