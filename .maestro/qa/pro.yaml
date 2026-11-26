@@ -100,6 +100,13 @@ name: pro
     timeout: 15000
 - eraseText: 10
 - inputText: "2100"
+# The first keyboard on a fresh simulator is slow: wait for the number pad (its Delete key)
+# and for the sheet it lifts to settle, or the Save tap lands on the 0 key (HAU-877).
+- extendedWaitUntil:
+    visible: "Delete"
+    timeout: 15000
+- waitForAnimationToEnd
+- assertVisible: "2100"
 - tapOn: "Save"
 - extendedWaitUntil:
     notVisible: "Save"
