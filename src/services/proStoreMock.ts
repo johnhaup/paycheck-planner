@@ -44,8 +44,8 @@ function mockProduct(id: string): Product {
     title: "Paycheck Planner Pro",
     description: "One-time purchase",
     displayName: "Paycheck Planner Pro",
-    displayPrice: "$4.99",
-    price: 4.99,
+    displayPrice: "$2.99",
+    price: 2.99,
     currency: "USD",
   } as Product;
 }
