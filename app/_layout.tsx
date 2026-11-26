@@ -8,6 +8,7 @@ import { SQLiteProvider } from "expo-sqlite";
 import { CloudSyncProvider } from "@johnhaup/expo-cloud-sync";
 import { requireOptionalNativeModule } from "expo";
 import { StatusBar } from "expo-status-bar";
+import { NavigationBar } from "expo-navigation-bar";
 import { Toaster } from "sonner-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors, useIsDark } from "@/hooks/useColors";
@@ -208,6 +209,7 @@ function RootNavigator() {
       <KeyboardProvider>
       <ThemeProvider value={navigationTheme}>
         <StatusBar style={isDark ? "light" : "dark"} />
+        {Platform.OS === "android" ? <NavigationBar style={isDark ? "light" : "dark"} /> : null}
         <Stack screenOptions={screenOptions}>
           <Stack.Screen name="(tabs)" options={TABS_OPTIONS} />
           <Stack.Screen name="income-form" options={incomeFormOptions} />
