@@ -83,7 +83,7 @@ name: pro
 
 # A paycheck's own pay amount: the sheet opens instead of the paywall, Save closes it
 # and the header's Left over (the only amount that is its own element) follows the
-# new pay. inputText appends, so erase first.
+# new pay.
 - tapOn:
     text: "[A-Z]{3}, [0-9]+, .*"
     index: 0
@@ -98,14 +98,18 @@ name: pro
 - extendedWaitUntil:
     visible: "Save"
     timeout: 15000
-- eraseText: 10
-- inputText: "2100"
 # The first keyboard on a fresh simulator is slow: wait for the number pad (its Delete key)
-# and for the sheet it lifts to settle, or the Save tap lands on the 0 key (HAU-877).
+# and for the sheet it lifts to settle, or the taps land on the wrong key (HAU-877).
 - extendedWaitUntil:
     visible: "Delete"
     timeout: 15000
 - waitForAnimationToEnd
+# The old amount is selected on open, so the first key replaces it (HAU-904). Real
+# number-pad keys, not inputText, which appends whatever is selected.
+- tapOn: "2"
+- tapOn: "1"
+- tapOn: "0"
+- tapOn: "0"
 - assertVisible: "2100"
 - tapOn: "Save"
 - extendedWaitUntil:
