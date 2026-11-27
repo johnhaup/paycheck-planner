@@ -159,10 +159,11 @@ export default function PaychecksScreen() {
   }, [months]);
 
   // Home is the paycheck nearest today: the next one, or today's. The list opens on it.
+  // Never negative: with no rows a tab return jumps to 0, not scrollToIndex(-1) (HAU-905).
   const homeIndex = useMemo(() => {
     const today = startOfDay(new Date()).getTime();
     const index = rows.findIndex((row) => row.paycheck.date.getTime() >= today);
-    return index < 0 ? rows.length - 1 : index;
+    return index < 0 ? Math.max(rows.length - 1, 0) : index;
   }, [rows]);
   const homeMonth = rows[homeIndex]?.month;
 
