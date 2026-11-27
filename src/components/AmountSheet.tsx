@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useRef } from "react";
 import {
   LayoutChangeEvent,
+  Platform,
   ScrollView,
   type ScrollViewInstance,
   StyleSheet,
@@ -115,9 +116,13 @@ export function AmountSheet({
       styles.container,
       {
         backgroundColor: colors.modalBackground,
-        maxHeight: windowHeight - keyboardHeight - topInset - MEASUREMENTS.spacing.lg,
+        // Android lifts the sheet itself, so the window is not shortened by the keyboard there
+        maxHeight:
+          windowHeight - (isAndroid ? 0 : keyboardHeight) - topInset - MEASUREMENTS.spacing.lg,
       },
-      keyboardHeight > 0 ? undefined : bottomPadding,
+      // Android keeps the padding with the keyboard up: the sheet lifts itself by the keyboard minus the
+      // navigation bar, so the padding is what slides behind the keyboard (react-native-screens)
+      isAndroid || keyboardHeight === 0 ? bottomPadding : undefined,
     ],
     [colors, windowHeight, keyboardHeight, topInset, bottomPadding]
   );
@@ -162,6 +167,8 @@ export function AmountSheet({
     </View>
   );
 }
+
+const isAndroid = Platform.OS === "android";
 
 const styles = StyleSheet.create({
   container: {
