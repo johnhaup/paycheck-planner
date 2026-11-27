@@ -8,6 +8,7 @@ import { dimOnPress } from "@/constants/press";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { AppText } from "@/components/AppText";
+import { AppFormSection } from "@/components/AppFormSection";
 import { AppWordWrapText } from "@/components/AppWordWrapText";
 import { AppDateTile } from "@/components/AppDateTile";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
@@ -92,23 +93,25 @@ export function PayDateSummary({
         <Ionicons name="create-outline" size={stacked ? 14 * fontScale : 14} color={colors.textMuted} />
       </Pressable>
       {remaining < 0 && canMoveBill ? (
-        <Pressable
-          style={shortRowStyle}
-          onPress={onMoveBill}
-          hitSlop={MEASUREMENTS.hitSlop}
-          accessibilityRole="button"
-          accessibilityLabel={t("paychecks.moveBill")}
-        >
-          <Ionicons name="alert-circle" size={16} color={colors.destructive} />
-          <AppCountUpText
-            variant="meta"
-            color="destructive"
-            style={stacked ? undefined : styles.shrink}
-            amounts={remainingAmounts}
-            render={renderShort}
-          />
-          <AppText variant="bodyStrong" color="primaryText">{t("paychecks.moveBill")}</AppText>
-        </Pressable>
+        <AppFormSection>
+          <Pressable
+            style={shortRowStyle}
+            onPress={onMoveBill}
+            hitSlop={MEASUREMENTS.hitSlop}
+            accessibilityRole="button"
+            accessibilityLabel={t("paychecks.moveBill")}
+          >
+            <Ionicons name="alert-circle" size={16} color={colors.destructive} />
+            <AppCountUpText
+              variant="meta"
+              color="destructive"
+              style={stacked ? undefined : styles.shrink}
+              amounts={remainingAmounts}
+              render={renderShort}
+            />
+            <AppText variant="bodyStrong" color="primaryText">{t("paychecks.moveBill")}</AppText>
+          </Pressable>
+        </AppFormSection>
       ) : null}
     </View>
   );

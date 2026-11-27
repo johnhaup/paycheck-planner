@@ -102,18 +102,19 @@ env:
           leftOf: "Settings"
           selected: false
       - takeScreenshot: paychecks-collapsed
-      # The selected pill jumps back to the top, under the expanded large title, not the
-      # collapsed one (HAU-630)
+      # A pill tapped with the header collapsed leaves it collapsed: the month's rows land
+      # under the pills and the hero stays away until the list is back at its top.
+      # By point: a pill's accessibility frame is its whole chart column, whose middle is
+      # under the navigation bar once collapsed (HAU-854 QA)
       - tapOn:
-          text: ${MONTH}
-          selected: true
+          point: 11%, 17%
       - waitForAnimationToEnd
-      - assertVisible: ".* · left over"
-      - assertNotVisible:
+      - assertNotVisible: ".* · left over"
+      - assertVisible:
           text: "Paychecks"
           rightOf: "\\d{1,2}:\\d{2}.*"
           leftOf: "Settings"
-          above: ".* · left over"
+          selected: false
 
 # One list runs through every month (HAU-316): scrolling on reaches next month's
 # paychecks with no tap, the chart's selected month follows, and where the free

@@ -21,6 +21,7 @@ import type {
   TogglePaidHandler,
 } from "@/components/paychecks/types";
 import { DIM_ON_PRESS, dimOnPress } from "@/constants/press";
+import { hapticTap } from "@/utils/haptics";
 
 /** Size of the payee's icons at the default text size; they scale with the text where rows stack */
 const ICON_SIZE = 14;
@@ -93,7 +94,11 @@ export function PaycheckExpenseRow({
       icon: expense.paid ? "arrow-undo" : "checkmark",
       color: expense.paid ? colors.textMuted : colors.primary,
       accessibilityLabel: markLabel,
-      onPress: handleTogglePaid,
+      // The check circle ticks by itself; the swipe action goes around it
+      onPress: () => {
+        hapticTap();
+        handleTogglePaid();
+      },
     }),
     [expense.paid, colors, markLabel, handleTogglePaid]
   );

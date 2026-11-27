@@ -9,6 +9,8 @@ import { useGutters } from "@/hooks/useGutters";
 import { useBottomPadding } from "@/hooks/useBottomPadding";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useColors } from "@/hooks/useColors";
+import { LayoutAnimationConfig } from "react-native-reanimated";
+import { AppFormSection } from "@/components/AppFormSection";
 import { useLocale, useT } from "@/hooks/useLocale";
 import { useThemeStore, ThemeMode } from "@/stores/themeStore";
 import { useLocaleStore, SYSTEM } from "@/stores/localeStore";
@@ -29,6 +31,7 @@ import { SettingsSyncSection } from "@/components/settings/SettingsSyncSection";
 import { useProGate } from "@/hooks/useProGate";
 import { toastError } from "@/utils/toastError";
 import { useScrollKeptOnResize } from "@/hooks/useScrollKeptOnResize";
+import { hapticWarning } from "@/utils/haptics";
 
 // A modal reads its own safe area: iPhone Duo centres it clear of the status column when unfolded
 export default function SettingsScreen() {
@@ -96,6 +99,7 @@ function SettingsContent() {
         setRemindersEnabled(true);
         toast.success(t("toasts.remindersOn"));
       } else {
+        hapticWarning();
         Alert.alert(t("settings.permissionDeniedTitle"), t("settings.permissionDeniedBody"));
       }
     },
@@ -117,6 +121,7 @@ function SettingsContent() {
         setUnpaidEnabled(true);
         toast.success(t("toasts.unpaidOn"));
       } else {
+        hapticWarning();
         Alert.alert(t("settings.permissionDeniedTitle"), t("settings.permissionDeniedBody"));
       }
     },
@@ -227,81 +232,88 @@ function SettingsContent() {
       contentContainerStyle={contentStyle}
       contentInsetAdjustmentBehavior="automatic"
     >
-      <SettingsLinkRow
-        label={t("pro.title")}
-        value={t(isPro ? "pro.unlocked" : "pro.oneTime")}
-        onPress={openPaywall}
-      />
+      <LayoutAnimationConfig skipEntering>
+        <SettingsLinkRow
+          label={t("pro.title")}
+          value={t(isPro ? "pro.unlocked" : "pro.oneTime")}
+          onPress={openPaywall}
+        />
 
-      <AppSectionHeader title={t("settings.appearance")} />
-      <AppSegmentedControl options={themeOptions} value={themeMode} onChange={setThemeMode} />
-      <SettingsToggleRow
-        label={t("settings.hideCents")}
-        hint={t("settings.hideCentsHint")}
-        value={hideCents}
-        onValueChange={setHideCents}
-      />
+        <AppSectionHeader title={t("settings.appearance")} />
+        <AppSegmentedControl options={themeOptions} value={themeMode} onChange={setThemeMode} />
+        <SettingsToggleRow
+          label={t("settings.hideCents")}
+          hint={t("settings.hideCentsHint")}
+          value={hideCents}
+          onValueChange={setHideCents}
+        />
 
-      <AppSectionHeader title={t("settings.region")} />
-      <SettingsLinkRow label={t("settings.language")} value={languageValue} onPress={handleOpenLanguage} />
-      <SettingsLinkRow label={t("settings.currency")} value={currencyValue} onPress={handleOpenCurrency} />
+        <AppSectionHeader title={t("settings.region")} />
+        <SettingsLinkRow label={t("settings.language")} value={languageValue} onPress={handleOpenLanguage} />
+        <SettingsLinkRow label={t("settings.currency")} value={currencyValue} onPress={handleOpenCurrency} />
 
-      <AppSectionHeader title={t("settings.notifications")} />
-      <SettingsToggleRow
-        label={t("settings.paydayReminder")}
-        hint={t("settings.paydayReminderHint")}
-        value={remindersEnabled}
-        onValueChange={handleToggleReminders}
-        pro={locked && !remindersEnabled}
-      />
-      {remindersEnabled ? (
-        <>
-          <AppText variant="section" style={styles.label}>{t("settings.remindWhen")}</AppText>
-          <View style={styles.chipRow}>
-            {offsetLabels.map((option) => (
-              <AppChip<ReminderOffset>
-                key={option.value}
-                label={option.label}
-                value={option.value}
-                selected={daysBefore === option.value}
-                onSelect={setDaysBefore}
-              />
-            ))}
-          </View>
-        </>
-      ) : null}
-      <SettingsToggleRow
-        label={t("settings.unpaidReminder")}
-        hint={t("settings.unpaidReminderHint")}
-        value={unpaidEnabled}
-        onValueChange={handleToggleUnpaid}
-        pro={locked && !unpaidEnabled}
-      />
-      {remindersEnabled || unpaidEnabled ? (
-        <>
-          <AppText variant="section" style={styles.label}>{t("settings.remindTime")}</AppText>
-          <AppDatePicker mode="time" value={reminderTime} onChange={handleTimeChange} />
-        </>
-      ) : null}
+        <AppSectionHeader title={t("settings.notifications")} />
+        <SettingsToggleRow
+          label={t("settings.paydayReminder")}
+          hint={t("settings.paydayReminderHint")}
+          value={remindersEnabled}
+          onValueChange={handleToggleReminders}
+          pro={locked && !remindersEnabled}
+        />
+        {remindersEnabled ? (
+          <AppFormSection>
+            <AppText variant="section" style={styles.label}>{t("settings.remindWhen")}</AppText>
+            <View style={styles.chipRow}>
+              {offsetLabels.map((option) => (
+                <AppChip<ReminderOffset>
+                  key={option.value}
+                  label={option.label}
+                  value={option.value}
+                  selected={daysBefore === option.value}
+                  onSelect={setDaysBefore}
+                />
+              ))}
+            </View>
+          </AppFormSection>
+        ) : null}
+        {/* The rows under a reminder's options spring to their new place as the options come and go */}
+        <AppFormSection>
+          <SettingsToggleRow
+            label={t("settings.unpaidReminder")}
+            hint={t("settings.unpaidReminderHint")}
+            value={unpaidEnabled}
+            onValueChange={handleToggleUnpaid}
+            pro={locked && !unpaidEnabled}
+          />
+        </AppFormSection>
+        {remindersEnabled || unpaidEnabled ? (
+          <AppFormSection>
+            <AppText variant="section" style={styles.label}>{t("settings.remindTime")}</AppText>
+            <AppDatePicker mode="time" value={reminderTime} onChange={handleTimeChange} />
+          </AppFormSection>
+        ) : null}
 
-      <AppSectionHeader title={t("settings.behavior")} />
-      <SettingsToggleRow
-        label={t("settings.autoMarkPaid")}
-        hint={t("settings.autoMarkPaidHint")}
-        value={autoMarkPaid}
-        onValueChange={setAutoMarkPaid}
-      />
+        <AppFormSection>
+          <AppSectionHeader title={t("settings.behavior")} />
+          <SettingsToggleRow
+            label={t("settings.autoMarkPaid")}
+            hint={t("settings.autoMarkPaidHint")}
+            value={autoMarkPaid}
+            onValueChange={setAutoMarkPaid}
+          />
 
-      <SettingsSyncSection />
+          <SettingsSyncSection />
 
-      <AppSectionHeader title={t("settings.data.title")} />
-      <SettingsLinkRow label={t("settings.data.backup")} onPress={handleBackup} />
-      <SettingsLinkRow label={t("settings.data.restore")} onPress={handleRestore} />
-      <SettingsLinkRow label={t("settings.data.exportCsv")} onPress={handleExportCsv} pro={locked} />
-      <SettingsLinkRow label={t("settings.data.erase")} destructive onPress={handleErase} />
-      <AppText variant="caption" style={styles.hint}>
-        {t("settings.data.hint")}
-      </AppText>
+          <AppSectionHeader title={t("settings.data.title")} />
+          <SettingsLinkRow label={t("settings.data.backup")} onPress={handleBackup} />
+          <SettingsLinkRow label={t("settings.data.restore")} onPress={handleRestore} />
+          <SettingsLinkRow label={t("settings.data.exportCsv")} onPress={handleExportCsv} pro={locked} />
+          <SettingsLinkRow label={t("settings.data.erase")} destructive onPress={handleErase} />
+          <AppText variant="caption" style={styles.hint}>
+            {t("settings.data.hint")}
+          </AppText>
+        </AppFormSection>
+      </LayoutAnimationConfig>
     </ScrollView>
   );
 }

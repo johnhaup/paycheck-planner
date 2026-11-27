@@ -14,6 +14,7 @@ import { AppSetAsideIcon } from "@/components/AppSetAsideIcon";
 import { formatDueDay, parseLocalDate } from "@/utils/payDates";
 import type { Expense } from "@/types";
 import { DIM_ON_PRESS, dimOnPress } from "@/constants/press";
+import { hapticTap } from "@/utils/haptics";
 
 /** Icon sizes at the default text size; they scale with the text where rows stack */
 const ICON_SIZE = 14;
@@ -85,6 +86,7 @@ export function PayDateExpenseRow({
   }, [onEditAmount, expense.id]);
 
   const handleToggleAssigned = useCallback(() => {
+    hapticTap();
     if (isAssigned) {
       onUnassign(expense.id);
     } else {
