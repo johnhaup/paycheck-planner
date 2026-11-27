@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from "react";
-import { Pressable, StyleSheet, Platform } from "react-native";
+import { Keyboard, Pressable, StyleSheet, Platform } from "react-native";
 import { useRouter } from "expo-router";
 import {
   DateTimePickerAndroid,
@@ -35,6 +35,9 @@ export function AppDatePicker({ value, mode = "date", onChange }: Props) {
   );
 
   const handlePress = useCallback(() => {
+    // Blur the focused field before the sheet opens: iOS otherwise hands focus back to it when the
+    // sheet closes and the keyboard springs up over the form's button.
+    Keyboard.dismiss();
     if (Platform.OS === "android") {
       DateTimePickerAndroid.open({ value, mode, onChange: handleAndroidChange });
       return;
