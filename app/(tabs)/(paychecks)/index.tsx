@@ -42,7 +42,7 @@ import { buildMonthGroups, FULL_MONTHS_AHEAD, hasEarlierMonths, PAST_MONTHS } fr
 import { useProGate } from "@/hooks/useProGate";
 import { formatShortDate } from "@/utils/dates";
 import { buildDemoData } from "@/utils/demoData";
-import { DURATION, FADE } from "@/constants/motion";
+import { DURATION, FADE, TIMING } from "@/constants/motion";
 import type { PaycheckRow } from "@/components/paychecks/types";
 
 const TODAY_ICON_SIZE = 22;
@@ -245,11 +245,11 @@ export default function PaychecksScreen() {
   // inset (HAU-321). A scroll event that moves the list runs the jump again (`rejump`, set below
   // once the jump exists), and the list is shown once the offset holds still.
   const rejump = useRef<() => void>(undefined);
-  // A tapped jump (chart, pill, Today, the short paycheck line) fades the list out, lands unseen and
-  // fades it back in. It scrolled with UIKit's animation before, and the pinned header cannot follow a
+  // A tapped jump (chart, pill, Today, the short paycheck line) fades the rows out, lands unseen and
+  // fades them back in under the header, which stays on screen (HAU-900). It scrolled with UIKit's animation before, and the pinned header cannot follow a
   // programmatic scroll: Reanimated's transform reached the screen only once the scroll stopped, so
   // the header rode along with the rows, mid-list, and the large title coming back cut the scroll short
-  // into a snap (HAU-867). 1 shows the list; `hidden` hides it whatever this is.
+  // into a snap (HAU-867). 1 shows the rows; `hidden` hides them whatever this is.
   const jumpFade = useSharedValue(1);
   // The jump under way: its row, and whether a tap asked for it
   const jump = useRef<{
@@ -402,16 +402,15 @@ export default function PaychecksScreen() {
     attempt(JUMP_TRIES, JUMP_CONFIRMS);
   }, [titleHeight, scrollY, hidden]);
 
-  // Lands on the row once the list has faded out; a drag in the meantime ended the jump
+  // Lands on the row once the rows have faded out; a drag in the meantime ended the jump
   const landTappedJump = useCallback(() => {
     if (!jumpingRef.current) {
       jumpFade.set(withTiming(1, FADE));
       return;
     }
     hidden.set(true);
-    collapse.set(0);
     attemptJump();
-  }, [attemptJump, hidden, collapse, jumpFade]);
+  }, [attemptJump, hidden, jumpFade]);
 
   // Animated for a tap the user watches (a fade); the opening jump and a tab return land at once
   const jumpTo = useCallback(
@@ -421,6 +420,8 @@ export default function PaychecksScreen() {
       jumpingRef.current = true;
       jumping.set(true);
       if (animated) {
+        // The header stays on screen and comes all the way out while the rows fade (HAU-900)
+        collapse.set(withTiming(0, TIMING.move));
         jumpFade.set(
           withTiming(0, JUMP_FADE_OUT, (finished) => {
             if (finished) scheduleOnRN(landTappedJump);
@@ -520,7 +521,13 @@ export default function PaychecksScreen() {
   // has reached the pinned header's bottom edge.
   const monthTops = useSharedValue<number[]>([]);
   const lastBottom = useSharedValue(0);
-  const cellLayouts = useMemo(() => ({ monthTops, lastBottom }), [monthTops, lastBottom]);
+  // A tapped jump fades the rows and the footer only; the pinned header stays as it is and shows the
+  // new month at once. Fading the whole list blanked the header on every month change (HAU-900).
+  const rowsFade = useAnimatedStyle(() => ({ opacity: hidden.value ? 0 : jumpFade.value }));
+  const cellLayouts = useMemo(
+    () => ({ monthTops, lastBottom, fade: rowsFade }),
+    [monthTops, lastBottom, rowsFade]
+  );
   const monthCount = months.length;
 
   const topMonthIndex = useDerivedValue(() => {
@@ -718,12 +725,12 @@ export default function PaychecksScreen() {
   const listFooter = useMemo(
     () =>
       hasIncome ? (
-        <>
+        <Animated.View style={rowsFade}>
           {isPro ? null : <ProUnlockRow label={t("pro.features.projection")} onPress={openPaywall} />}
           <Animated.View style={tailStyle} />
-        </>
+        </Animated.View>
       ) : undefined,
-    [hasIncome, isPro, openPaywall, tailStyle, t]
+    [hasIncome, isPro, openPaywall, tailStyle, rowsFade, t]
   );
 
   const listEmpty = useMemo(
@@ -731,14 +738,16 @@ export default function PaychecksScreen() {
     [hasIncome, handleAddIncome, handleTrySample]
   );
 
-  // A tapped jump's list fades back in once it is shown again
+  // A tapped jump's rows fade back in once they are shown again
   useAnimatedReaction(
     () => hidden.value,
     (isHidden, wasHidden) => {
       if (!isHidden && wasHidden && jumpFade.get() < 1) jumpFade.set(withTiming(1, FADE));
     }
   );
-  const hiddenStyle = useAnimatedStyle(() => ({ opacity: hidden.value ? 0 : jumpFade.value }));
+  // The opening jump hides the whole list, header too, as it lands before anything is laid out. A tapped
+  // jump only hides once its rows have faded out (`jumpFade` 0), and the header stays.
+  const hiddenStyle = useAnimatedStyle(() => ({ opacity: hidden.value && jumpFade.value > 0 ? 0 : 1 }));
   const listStyle = useMemo(() => [styles.list, LARGE_TITLE_LIST, hiddenStyle], [hiddenStyle]);
   const gutters = useGutters();
   const showsPaycheck = hasIncome && columns !== undefined && shownPaycheck !== undefined;
