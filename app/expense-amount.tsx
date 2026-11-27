@@ -8,6 +8,7 @@ import { parseLocalDate } from "@/utils/payDates";
 import { formatShortDate } from "@/utils/dates";
 import { toastError } from "@/utils/toastError";
 import { hapticSuccess } from "@/utils/haptics";
+import { useWriteOnClose } from "@/hooks/useWriteOnClose";
 
 export default function ExpenseAmountScreen() {
   const router = useRouter();
@@ -26,6 +27,7 @@ export default function ExpenseAmountScreen() {
   );
   const assignExpense = useStore((s) => s.assignExpense);
   const setAssignmentAmount = useStore((s) => s.setAssignmentAmount);
+  const writeOnClose = useWriteOnClose();
   const [amount, setAmount] = useState(() =>
     String(assignment?.amount ?? expense?.amount ?? "")
   );
@@ -37,19 +39,21 @@ export default function ExpenseAmountScreen() {
       return;
     }
     // Linked bills have no assignment until something on this paycheck is changed
-    const id = assignment?.id || assignExpense(expenseId, payDate, sourceId);
-    setAssignmentAmount(id, parsed === expense?.amount ? undefined : parsed);
+    writeOnClose(() => {
+      const id = assignment?.id || assignExpense(expenseId, payDate, sourceId);
+      setAssignmentAmount(id, parsed === expense?.amount ? undefined : parsed);
+    });
     hapticSuccess();
     router.back();
-  }, [amount, assignment, assignExpense, expenseId, payDate, sourceId, setAssignmentAmount, expense, router, t]);
+  }, [amount, writeOnClose, assignment, assignExpense, expenseId, payDate, sourceId, setAssignmentAmount, expense, router, t]);
 
   const handleReset = useCallback(() => {
     if (assignment) {
-      setAssignmentAmount(assignment.id, undefined);
+      writeOnClose(() => setAssignmentAmount(assignment.id, undefined));
     }
     hapticSuccess();
     router.back();
-  }, [assignment, setAssignmentAmount, router]);
+  }, [writeOnClose, assignment, setAssignmentAmount, router]);
 
   const subtitle = payDate
     ? t("amountSheet.subtitle", { date: formatShortDate(parseLocalDate(payDate)) })
