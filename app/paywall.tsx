@@ -162,7 +162,11 @@ function Paywall() {
   const footerBodyStyle = useMemo(
     () => [
       gutters,
-      { backgroundColor: colors.modalBackground, paddingBottom: insets.bottom + MEASUREMENTS.spacing.md },
+      {
+        backgroundColor: colors.modalBackground,
+        // Android: clear of the navigation bar by as much as every other modal's last button
+        paddingBottom: insets.bottom + (Platform.OS === "android" ? MEASUREMENTS.spacing.lg : MEASUREMENTS.spacing.md),
+      },
     ],
     [colors, gutters, insets.bottom]
   );

@@ -2,6 +2,7 @@ import { useCallback, useMemo, useRef } from "react";
 import { FlatList, Pressable, StyleSheet, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useGutters } from "@/hooks/useGutters";
+import { useBottomPadding } from "@/hooks/useBottomPadding";
 import { useColors } from "@/hooks/useColors";
 import { useGroupedRowStyles } from "@/hooks/useGroupedRowStyles";
 import { MEASUREMENTS } from "@/constants/measurements";
@@ -31,7 +32,8 @@ export function SettingsChoiceList({ choices, selectedKey, onSelect }: Props) {
   const scrollRef = useRef<FlatList<Choice>>(null);
   const keptScroll = useScrollKeptOnResize(scrollRef);
   const gutters = useGutters();
-  const contentStyle = useMemo(() => [styles.content, gutters], [gutters]);
+  const bottomPadding = useBottomPadding();
+  const contentStyle = useMemo(() => [styles.content, gutters, bottomPadding], [gutters, bottomPadding]);
 
   const renderItem = useCallback(
     ({ item, index }: { item: Choice; index: number }) => (

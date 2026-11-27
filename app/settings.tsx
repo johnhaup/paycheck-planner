@@ -1,12 +1,13 @@
 import { useCallback, useMemo, useRef } from "react";
-import { Alert, Platform, ScrollView, StyleSheet, View, type ScrollViewInstance } from "react-native";
+import { Alert, ScrollView, StyleSheet, View, type ScrollViewInstance } from "react-native";
 import { useRouter } from "expo-router";
 import { useSQLiteContext } from "expo-sqlite";
 import { toast } from "sonner-native";
 import { useStore } from "@/store";
 import { stampBudget } from "@/db/budget";
 import { useGutters } from "@/hooks/useGutters";
-import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
+import { useBottomPadding } from "@/hooks/useBottomPadding";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useColors } from "@/hooks/useColors";
 import { useLocale, useT } from "@/hooks/useLocale";
 import { useThemeStore, ThemeMode } from "@/stores/themeStore";
@@ -45,10 +46,10 @@ function SettingsContent() {
   const scrollRef = useRef<ScrollViewInstance>(null);
   const keptScroll = useScrollKeptOnResize(scrollRef);
   const gutters = useGutters();
-  const { bottom } = useSafeAreaInsets();
+  const bottomPadding = useBottomPadding();
   const contentStyle = useMemo(
-    () => [styles.content, gutters, Platform.OS === "android" && { paddingBottom: bottom + MEASUREMENTS.spacing.lg }],
-    [gutters, bottom]
+    () => [styles.content, gutters, bottomPadding],
+    [gutters, bottomPadding]
   );
   const t = useT();
   const { currency } = useLocale();
