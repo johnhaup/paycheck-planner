@@ -4,6 +4,7 @@ import {
   ScrollView,
   type ScrollViewInstance,
   StyleSheet,
+  type TextInputInstance,
   useWindowDimensions,
   View,
 } from "react-native";
@@ -64,6 +65,14 @@ export function AmountSheet({
   const keyboardHeight = useKeyboardState((state) => state.height);
 
   const scrollRef = useRef<ScrollViewInstance>(null);
+  const inputRef = useRef<TextInputInstance>(null);
+
+  // Select the amount on open so the first digit replaces it. selectTextOnFocus
+  // does nothing for an input autofocused inside a form sheet on iOS 27 (HAU-904):
+  // the caret lands after the old amount. Selecting a frame after focus works.
+  const selectAmount = useCallback(() => {
+    requestAnimationFrame(() => inputRef.current?.setSelection(0, amount.length));
+  }, [amount]);
   const layout = useRef({ viewport: 0, content: 0, inputY: 0 });
 
   // When the text does not fit, start with the input at the top of what is
@@ -128,11 +137,12 @@ export function AmountSheet({
           <AppText variant="meta">{subtitle}</AppText>
         </View>
         <AppInput
+          ref={inputRef}
           value={amount}
           onChangeText={onChangeAmount}
           keyboardType="decimal-pad"
           autoFocus
-          selectTextOnFocus
+          onFocus={selectAmount}
           onLayout={handleInputLayout}
         />
         <AppText variant="caption" style={styles.hint}>
