@@ -47,6 +47,7 @@ import {
   useListSwap,
 } from "@/components/AppAnimatedListCell";
 import { useScrollKeptOnResize } from "@/hooks/useScrollKeptOnResize";
+import { hapticSelection } from "@/utils/haptics";
 
 /**
  * One item of the list: a bill, or on a regular-width screen (iPhone Duo or Pixel 9 Pro Fold unfolded)
@@ -194,9 +195,10 @@ export default function ExpensesScreen() {
 
   const applySort = useCallback(
     (next: ExpenseSort) => {
+      if (next !== sort) hapticSelection();
       swap(() => setSort(next));
     },
-    [swap]
+    [swap, sort]
   );
 
   const handleSortPress = useCallback(() => {

@@ -1,7 +1,7 @@
 import { toast } from "sonner-native";
 import { useStore } from "@/store";
 import { t } from "@/localization/i18n";
-import { hapticSuccess } from "@/utils/haptics";
+import { hapticSuccess, hapticTap } from "@/utils/haptics";
 
 /** Runs a budget change and shows a toast whose Undo puts the budget back as it was. */
 export function withUndo(message: string, change: () => void) {
@@ -12,6 +12,7 @@ export function withUndo(message: string, change: () => void) {
     action: {
       label: t("common.undo"),
       onClick: () => {
+        hapticTap();
         useStore.setState({ incomeSources, expenses, assignments, paycheckOverrides });
         toast.dismiss(id);
       },

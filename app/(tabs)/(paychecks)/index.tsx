@@ -23,7 +23,7 @@ import { useFocusedStore } from "@/hooks/useFocusedStore";
 import { useGutters } from "@/hooks/useGutters";
 import { useColumns } from "@/hooks/useColumns";
 import { usePaycheckSelectionStore } from "@/stores/paycheckSelectionStore";
-import { hapticSelection } from "@/utils/haptics";
+import { hapticSelection, hapticSuccess } from "@/utils/haptics";
 import { PayDateDetail } from "@/components/payDateDetail/PayDateDetail";
 import { FORWARD_CHEVRON, LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { MEASUREMENTS } from "@/constants/measurements";
@@ -268,6 +268,8 @@ export default function PaychecksScreen() {
     faded?: boolean;
     // Scrolling back to the top with an animation; nothing lands it again
     gliding?: boolean;
+    // The header was down to its pills when the jump was tapped and stays that way: the row lands under the pills
+    collapsed?: boolean;
   }>(undefined);
   // The list is scrolling to the collapsed title's position for a tapped jump; its scroll event reports arriving
   const toBar = useSharedValue(false);
@@ -388,7 +390,7 @@ export default function PaychecksScreen() {
       current.failed = headerHeightRef.current === 0;
       if (current.failed) {
         // Nothing is laid out yet
-      } else if (current.index === 0) {
+      } else if (current.index === 0 && !current.collapsed) {
         // The top of a large-title list is above 0 by the bar and the title (see titleHeight).
         // From a collapsed title the first scroll expands the title, which grows the
         // top inset and shifts the offset past the top; the second lands on it.
@@ -404,7 +406,8 @@ export default function PaychecksScreen() {
           list.scrollToOffset({ offset: top, animated: false });
         }
       } else {
-        list.scrollToIndex({ index: current.index, viewOffset: pinTopRef.current + headerHeightRef.current, animated: false });
+        const header = current.collapsed ? COLLAPSED_HEADER_HEIGHT : headerHeightRef.current;
+        list.scrollToIndex({ index: current.index, viewOffset: pinTopRef.current + header, animated: false });
       }
       if (current.failed ? triesLeft > 0 : confirmsLeft > 0) {
         current.timer = setTimeout(
@@ -439,7 +442,7 @@ export default function PaychecksScreen() {
     const barTop = pinTopRef.current;
     const height = titleHeight.get();
     const y = scrollY.get();
-    if (list && current.index === 0 && barTop > 0 && typeof height === "number" && y !== -Infinity) {
+    if (list && current.index === 0 && !current.collapsed && barTop > 0 && typeof height === "number" && y !== -Infinity) {
       // Back to the top: the large title comes out with a scroll the header rides down on, the way a
       // drag brings it out. Unseen, the list first lands at the top of its content under the collapsed
       // title, where the header is on screen exactly where it is pinned now; landing on the top itself
@@ -477,8 +480,12 @@ export default function PaychecksScreen() {
       jumping.set(true);
       toBar.set(false);
       if (animated) {
-        // The header stays on screen and comes all the way out while the rows fade (HAU-900)
-        collapse.set(withTiming(0, TIMING.move));
+        // The header stays on screen as it is while the rows fade (HAU-900): one that is down to its pills
+        // stays there and the row lands under them, any other comes all the way out. Coming out on every
+        // jump made each month picked from the pills redraw the whole header.
+        const collapsed = collapseDistance.get() > 0 && collapse.get() >= 0.5;
+        jump.current.collapsed = collapsed;
+        collapse.set(withTiming(collapsed ? 1 : 0, TIMING.move));
         // From under the large title the jump first scrolls to where the title has collapsed: UIKit
         // collapses it on the way and the header rides up with the list, unpinned. Landing straight on the
         // row switched the title and moved the header up by its height in one frame (paycheck-planner-188).
@@ -504,7 +511,7 @@ export default function PaychecksScreen() {
       collapse.set(0);
       attemptJump();
     },
-    [attemptJump, landTappedJump, reachedBar, jumping, collapse, jumpFade, toBar, scrollY]
+    [attemptJump, landTappedJump, reachedBar, jumping, collapse, collapseDistance, jumpFade, toBar, scrollY]
   );
 
   useEffect(() => {
@@ -645,6 +652,7 @@ export default function PaychecksScreen() {
 
   const handleTrySample = useCallback(() => {
     useStore.setState({ ...buildDemoData(new Date()), paycheckOverrides: [] });
+    hapticSuccess();
     toast(t("toasts.sampleLoaded"));
   }, [t]);
 

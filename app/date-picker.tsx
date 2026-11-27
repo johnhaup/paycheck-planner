@@ -8,6 +8,7 @@ import { useDatePickerStore } from "@/stores/datePickerStore";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { DIM_ON_PRESS } from "@/constants/press";
 import { AppText } from "@/components/AppText";
+import { hapticSelection } from "@/utils/haptics";
 
 export default function DatePickerScreen() {
   const router = useRouter();
@@ -29,6 +30,7 @@ export default function DatePickerScreen() {
   }, [router]);
 
   const handleDone = useCallback(() => {
+    hapticSelection();
     request?.onChange(tempDate);
     router.back();
   }, [request, tempDate, router]);

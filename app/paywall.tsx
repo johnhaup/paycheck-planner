@@ -11,7 +11,7 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppButton } from "@/components/AppButton";
 import { PRO_PRODUCT_ID, refreshProEntitlement, useIsPro, useProStoreConnection } from "@/services/pro";
-import { hapticSuccess } from "@/utils/haptics";
+import { hapticSuccess, hapticWarning } from "@/utils/haptics";
 import type { TranslationKey } from "@/localization/i18n";
 import { useScrollKeptOnResize } from "@/hooks/useScrollKeptOnResize";
 
@@ -124,9 +124,11 @@ function Paywall() {
         hapticSuccess();
         toast.success(t("pro.restored"));
       } else {
+        hapticWarning();
         setRestoreMessage(t("pro.nothingToRestore"));
       }
     } catch {
+      hapticWarning();
       setRestoreMessage(t("pro.priceUnavailable"));
     } finally {
       setBusy(undefined);

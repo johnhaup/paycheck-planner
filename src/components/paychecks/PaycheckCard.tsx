@@ -11,6 +11,7 @@ import { AppCard } from "@/components/AppCard";
 import { AppDateTile } from "@/components/AppDateTile";
 import { AppText } from "@/components/AppText";
 import { AppCountUpText } from "@/components/AppCountUpText";
+import { AppFormSection } from "@/components/AppFormSection";
 import { AppWordWrapText } from "@/components/AppWordWrapText";
 import { PaidProgress } from "@/components/paychecks/PaidProgress";
 import { PaycheckExpenseRow } from "@/components/paychecks/PaycheckExpenseRow";
@@ -181,22 +182,24 @@ export function PaycheckCard({
         </Pressable>
       )}
       {canMoveBill ? (
-        <Pressable
-          style={shortRowStyle}
-          onPress={handleMoveBill}
-          accessibilityRole="button"
-          accessibilityLabel={t("paychecks.moveBill")}
-        >
-          <Ionicons name="alert-circle" size={16} color={colors.destructive} />
-          <AppCountUpText
-            variant="meta"
-            color="destructive"
-            style={stacked ? undefined : styles.shortText}
-            amounts={remainingAmounts}
-            render={renderShort}
-          />
-          <AppText variant="bodyStrong" color="primaryText">{t("paychecks.moveBill")}</AppText>
-        </Pressable>
+        <AppFormSection>
+          <Pressable
+            style={shortRowStyle}
+            onPress={handleMoveBill}
+            accessibilityRole="button"
+            accessibilityLabel={t("paychecks.moveBill")}
+          >
+            <Ionicons name="alert-circle" size={16} color={colors.destructive} />
+            <AppCountUpText
+              variant="meta"
+              color="destructive"
+              style={stacked ? undefined : styles.shortText}
+              amounts={remainingAmounts}
+              render={renderShort}
+            />
+            <AppText variant="bodyStrong" color="primaryText">{t("paychecks.moveBill")}</AppText>
+          </Pressable>
+        </AppFormSection>
       ) : null}
     </AppCard>
   );

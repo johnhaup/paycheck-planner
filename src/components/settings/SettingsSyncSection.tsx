@@ -7,6 +7,7 @@ import { toastError } from "@/utils/toastError";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { SettingsLinkRow } from "@/components/settings/SettingsLinkRow";
 import { SettingsToggleRow } from "@/components/settings/SettingsToggleRow";
+import { hapticSuccess } from "@/utils/haptics";
 
 /** States in which a cloud copy may exist and can be deleted from here */
 const HAS_CLOUD_COPY: SyncState[] = ["idle", "syncing", "quotaExceeded", "error"];
@@ -56,7 +57,7 @@ export function SettingsSyncSection() {
   const handleMerge = useCallback(() => {
     Alert.alert(p("mergeTitle"), p("mergeBody"), [
       { text: t("settings.sync.notNow"), style: "cancel" },
-      { text: t("settings.sync.mergeConfirm"), onPress: () => adoptAccount().catch(failed) },
+      { text: t("settings.sync.mergeConfirm"), onPress: () => adoptAccount().then(hapticSuccess, failed) },
     ]);
   }, [adoptAccount, failed, p, t]);
 
@@ -66,7 +67,7 @@ export function SettingsSyncSection() {
       {
         text: t("common.delete"),
         style: "destructive",
-        onPress: () => signOut({ deleteCloudCopy: true }).catch(failed),
+        onPress: () => signOut({ deleteCloudCopy: true }).then(hapticSuccess, failed),
       },
     ]);
   }, [signOut, failed, p, t]);

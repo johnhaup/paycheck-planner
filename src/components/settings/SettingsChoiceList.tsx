@@ -9,6 +9,7 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { highlightOnPress } from "@/constants/press";
 import { useScrollKeptOnResize } from "@/hooks/useScrollKeptOnResize";
+import { hapticSelection } from "@/utils/haptics";
 
 export interface Choice {
   key: string;
@@ -78,8 +79,9 @@ function ChoiceRow({ choice, selected, isFirst, isLast, onSelect }: ChoiceRowPro
   const groupedStyles = useGroupedRowStyles(isFirst, isLast);
 
   const handlePress = useCallback(() => {
+    if (!selected) hapticSelection();
     onSelect(choice.key);
-  }, [onSelect, choice.key]);
+  }, [onSelect, choice.key, selected]);
 
   const rowStyle = useMemo(
     () => highlightOnPress(groupedStyles.row, colors.rowPressed),

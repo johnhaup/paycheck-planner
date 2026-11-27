@@ -1,10 +1,12 @@
 import { useMemo, type ComponentProps } from "react";
 import { View, StyleSheet } from "react-native";
+import Animated from "react-native-reanimated";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useColors } from "@/hooks/useColors";
 import { useColumns } from "@/hooks/useColumns";
 import { COLUMN_GAP } from "@/constants/layout";
 import { MEASUREMENTS } from "@/constants/measurements";
+import { ROW_ENTERING } from "@/constants/motion";
 import { AppText } from "@/components/AppText";
 import { AppButton } from "@/components/AppButton";
 
@@ -34,7 +36,7 @@ export function AppEmptyState({ icon, title, body, actionLabel, onAction }: Prop
   );
 
   return (
-    <View style={columns ? styles.containerWide : styles.container}>
+    <Animated.View entering={ROW_ENTERING} style={columns ? styles.containerWide : styles.container}>
       <View style={messageStyle}>
         <View style={iconWrapStyle}>
           <Ionicons name={icon} size={30} color={colors.primaryText} />
@@ -43,7 +45,7 @@ export function AppEmptyState({ icon, title, body, actionLabel, onAction }: Prop
         <AppText variant="meta" center>{body}</AppText>
       </View>
       <AppButton title={actionLabel} onPress={onAction} style={columns ? styles.buttonWide : styles.button} />
-    </View>
+    </Animated.View>
   );
 }
 

@@ -7,6 +7,7 @@ import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppButton } from "@/components/AppButton";
 import { AppInput } from "@/components/AppInput";
+import { AppFormSection } from "@/components/AppFormSection";
 import { toastError } from "@/utils/toastError";
 import { hapticSuccess } from "@/utils/haptics";
 
@@ -62,17 +63,19 @@ export function OneTimeExpenseForm({ payDate, sourceId }: Props) {
 
   if (!visible) {
     return (
-      <AppButton
-        title={t("payDate.oneTime.addButton")}
-        variant="outline"
-        onPress={handleShow}
-        style={styles.showButton}
-      />
+      <AppFormSection key="button">
+        <AppButton
+          title={t("payDate.oneTime.addButton")}
+          variant="outline"
+          onPress={handleShow}
+          style={styles.showButton}
+        />
+      </AppFormSection>
     );
   }
 
   return (
-    <View style={cardStyle}>
+    <AppFormSection key="form" style={cardStyle}>
       <AppText variant="section" style={styles.label}>{t("payDate.oneTime.title")}</AppText>
       <AppInput value={payee} onChangeText={setPayee} placeholder={t("payDate.oneTime.payee")} />
       <AppInput
@@ -91,7 +94,7 @@ export function OneTimeExpenseForm({ payDate, sourceId }: Props) {
         />
         <AppButton title={t("common.add")} onPress={handleAdd} style={styles.actionButton} />
       </View>
-    </View>
+    </AppFormSection>
   );
 }
 
