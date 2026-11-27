@@ -73,6 +73,10 @@ const SHOW_FALLBACK_MS = 1000;
 // launch inset to wait for: the list is shown this long after its last scroll event, or after the
 // jump's last repeat when it did not move
 const SHOW_AFTER_TAPPED_JUMP_MS = 60;
+// Points short of the collapsed title's position that count as there
+const BAR_SLACK = 0.5;
+// A tapped jump's scroll that collapses the large title lands the jump after this even if it never arrives
+const TO_BAR_FALLBACK_MS = 800;
 // The list fades out quickly so the tap answers at once, and back in at the usual fade
 const JUMP_FADE_OUT = { duration: DURATION.press, reduceMotion: FADE.reduceMotion } as const;
 // A part-collapsed header finishing its collapse once the list rests
@@ -259,12 +263,19 @@ export default function PaychecksScreen() {
     timer?: ReturnType<typeof setTimeout>;
     failed?: boolean;
     rejumps?: number;
+    // Waiting for the scroll that collapses the large title, and whether the rows have faded out meanwhile
+    toBar?: boolean;
+    faded?: boolean;
+    // Scrolling back to the top with an animation; nothing lands it again
+    gliding?: boolean;
   }>(undefined);
+  // The list is scrolling to the collapsed title's position for a tapped jump; its scroll event reports arriving
+  const toBar = useSharedValue(false);
   const showTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const handleHiddenScroll = useCallback(
     (moved: boolean) => {
       clearTimeout(showTimer.current);
-      if (moved) rejump.current?.();
+      if (moved && !jump.current?.gliding) rejump.current?.();
       showTimer.current = setTimeout(
         () => hidden.set(false),
         jump.current?.animated ? SHOW_AFTER_TAPPED_JUMP_MS : SHOW_AFTER_LANDING_MS
@@ -272,6 +283,10 @@ export default function PaychecksScreen() {
     },
     [hidden]
   );
+
+  // Set below once the landing exists, like `rejump`
+  const reachedBarRef = useRef<() => void>(undefined);
+  const handleReachedBar = useCallback(() => reachedBarRef.current?.(), []);
 
   // A scroll forward from a jump's landing that stops short of the collapse distance would leave the
   // header part way, and scrolling back keeps it there, so mid-list it would rest lower than every other
@@ -303,6 +318,10 @@ export default function PaychecksScreen() {
         collapse.value = Math.min(1, Math.max(0, next));
       }
       lastPastTitle.value = pastTitle;
+      if (toBar.value && y >= -pinTop - BAR_SLACK) {
+        toBar.value = false;
+        scheduleOnRN(handleReachedBar);
+      }
       if (jumping.value && hidden.value) scheduleOnRN(handleHiddenScroll, moved);
     },
     onEndDrag: () => {
@@ -313,6 +332,7 @@ export default function PaychecksScreen() {
     },
     onBeginDrag: () => {
       jumping.value = false;
+      toBar.value = false;
       // Nothing else shows a list hidden for a jump once the jump has ended
       hidden.set(false);
       scheduleOnRN(endJump);
@@ -405,13 +425,48 @@ export default function PaychecksScreen() {
 
   // Lands on the row once the rows have faded out; a drag in the meantime ended the jump
   const landTappedJump = useCallback(() => {
-    if (!jumpingRef.current) {
+    const current = jump.current;
+    if (!jumpingRef.current || !current) {
       jumpFade.set(withTiming(1, FADE));
       return;
     }
+    if (current.toBar) {
+      current.faded = true;
+      return;
+    }
     hidden.set(true);
+    const list = listRef.current;
+    const barTop = pinTopRef.current;
+    const height = titleHeight.get();
+    const y = scrollY.get();
+    if (list && current.index === 0 && barTop > 0 && typeof height === "number" && y !== -Infinity) {
+      // Back to the top: the large title comes out with a scroll the header rides down on, the way a
+      // drag brings it out. Unseen, the list first lands at the top of its content under the collapsed
+      // title, where the header is on screen exactly where it is pinned now; landing on the top itself
+      // in one go would switch the title and drop the header in one frame.
+      current.gliding = true;
+      if (y > -barTop) list.scrollToOffset({ offset: -barTop, animated: false });
+      current.timer = setTimeout(() => {
+        if (!jumpingRef.current) return;
+        hidden.set(false);
+        list.scrollToOffset({ offset: -(barTop + height), animated: true });
+      }, SHOW_AFTER_TAPPED_JUMP_MS);
+      return;
+    }
     attemptJump();
-  }, [attemptJump, hidden, jumpFade]);
+  }, [attemptJump, hidden, jumpFade, titleHeight, scrollY]);
+
+  // The scroll that collapsed the large title has arrived; land the jump once the rows are out too
+  const reachedBar = useCallback(() => {
+    const current = jump.current;
+    if (!current?.toBar) return;
+    clearTimeout(current.timer);
+    current.toBar = false;
+    if (current.faded) landTappedJump();
+  }, [landTappedJump]);
+  useEffect(() => {
+    reachedBarRef.current = reachedBar;
+  }, [reachedBar]);
 
   // Animated for a tap the user watches (a fade); the opening jump and a tab return land at once
   const jumpTo = useCallback(
@@ -420,9 +475,23 @@ export default function PaychecksScreen() {
       jump.current = { index, animated };
       jumpingRef.current = true;
       jumping.set(true);
+      toBar.set(false);
       if (animated) {
         // The header stays on screen and comes all the way out while the rows fade (HAU-900)
         collapse.set(withTiming(0, TIMING.move));
+        // From under the large title the jump first scrolls to where the title has collapsed: UIKit
+        // collapses it on the way and the header rides up with the list, unpinned. Landing straight on the
+        // row switched the title and moved the header up by its height in one frame (paycheck-planner-188).
+        const barTop = pinTopRef.current;
+        const y = scrollY.get();
+        if (index !== 0 && barTop > 0 && y !== -Infinity && y < -barTop - BAR_SLACK) {
+          const current = jump.current;
+          current.toBar = true;
+          toBar.set(true);
+          listRef.current?.scrollToOffset({ offset: -barTop, animated: true });
+          // Lands anyway if the scroll never reports arriving
+          current.timer = setTimeout(reachedBar, TO_BAR_FALLBACK_MS);
+        }
         jumpFade.set(
           withTiming(0, JUMP_FADE_OUT, (finished) => {
             if (finished) scheduleOnRN(landTappedJump);
@@ -435,7 +504,7 @@ export default function PaychecksScreen() {
       collapse.set(0);
       attemptJump();
     },
-    [attemptJump, landTappedJump, jumping, collapse, jumpFade]
+    [attemptJump, landTappedJump, reachedBar, jumping, collapse, jumpFade, toBar, scrollY]
   );
 
   useEffect(() => {
@@ -455,8 +524,9 @@ export default function PaychecksScreen() {
   const handleScrollToTop = useCallback(() => {
     jumpingRef.current = false;
     jumping.set(false);
+    toBar.set(false);
     hidden.set(false);
-  }, [jumping, hidden]);
+  }, [jumping, hidden, toBar]);
 
   const handleHeaderLayout = useCallback(
     (event: LayoutChangeEvent) => {
@@ -473,7 +543,8 @@ export default function PaychecksScreen() {
       if (headerHeightRef.current === height) return;
       headerHeightRef.current = height;
       // The header can change height with the month a jump selected; land under the new one
-      if (jump.current) attemptJump();
+      // Not while a scroll animates the large title: the landing after it reads the new height, or there is none
+      if (jump.current && !jump.current.toBar && !jump.current.gliding) attemptJump();
     },
     [headerHeight, attemptJump]
   );
