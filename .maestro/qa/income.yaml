@@ -116,3 +116,29 @@ name: income
 - extendedWaitUntil:
     visible: "[A-Z]{3}, [0-9]+, QA Payroll Co.*"
     timeout: 10000
+
+# Deleting the last source and coming back to Paychecks shows Welcome, no crash
+# (HAU-905: the tab return jumped to scrollToIndex(-1)). iOS only: the swipe is by
+# points, measured on an iPhone 17 Pro.
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - tapOn: "Income"
+      - extendedWaitUntil:
+          visible: ".*QA Payroll Co.*"
+          timeout: 10000
+      - swipe:
+          start: 340, 339
+          end: 80, 339
+      - waitForAnimationToEnd
+      - tapOn: "Delete"
+      - extendedWaitUntil:
+          visible: "No income yet"
+          timeout: 10000
+      - tapOn: "Paychecks"
+      - extendedWaitUntil:
+          visible: "Try with sample data"
+          timeout: 10000
+      - assertNotVisible: "Render Error"
+      - assertVisible: "Add income source"
