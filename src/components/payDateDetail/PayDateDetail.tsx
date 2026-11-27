@@ -1,30 +1,28 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef, type ReactNode } from "react";
 import {
   FlatList,
-  Pressable,
   StyleSheet,
-  useWindowDimensions,
   type ScrollViewProps,
   type StyleProp,
   type ViewStyle,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
-import { Stack, useRouter } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import { useStore } from "@/store";
 import { openPaymentLink } from "@/utils/links";
 import { useThemeStore } from "@/stores/themeStore";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
-import { dimOnPress } from "@/constants/press";
 import { AppText } from "@/components/AppText";
 import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { PayDateSummary } from "@/components/payDateDetail/PayDateSummary";
 import { PayDateExpenseRow } from "@/components/payDateDetail/PayDateExpenseRow";
 import { OneTimeExpenseForm } from "@/components/payDateDetail/OneTimeExpenseForm";
-import { getPaycheck, isExpenseLinkedToPaycheck } from "@/utils/payDates";
+import { MarkAllPaidButton, markAllPaidHeaderRight } from "@/components/payDateDetail/MarkAllPaidButton";
+import { usePaycheckBills } from "@/hooks/usePaycheckBills";
+import { billsFirst } from "@/utils/paycheckBills";
 import { getPayAmount } from "@/utils/paycheckMonths";
-import { withUndo } from "@/utils/undo";
 import { useProGate } from "@/hooks/useProGate";
 import type { Expense } from "@/types";
 import { LayoutAnimationConfig } from "react-native-reanimated";
@@ -51,18 +49,9 @@ function renderScrollComponent(props: ScrollViewProps) {
   return <KeyboardAwareScrollView {...props} bottomOffset={MEASUREMENTS.keyboardOffset} />;
 }
 
-// "Mark all paid" is 33 characters in Malayalam and took two-thirds of the
-// navigation bar, leaving no room for the title. The button gets at most this
-// share of the bar; a longer translation shrinks to fit, then truncates.
-const HEADER_BUTTON_MAX_WIDTH_RATIO = 0.4;
-const HEADER_BUTTON_MIN_FONT_SCALE = 0.7;
-// The navigation bar's button pill has a fixed height and shares the bar with
-// Back and the title, neither of which scales, so its text does not either
-const HEADER_MAX_FONT_MULTIPLIER = 1;
-
-function billsFirst(a: Expense, b: Expense) {
-  return Number(a.kind === "set-aside") - Number(b.kind === "set-aside");
-}
+type Navigation = {
+  setOptions(options: { headerRight: (() => ReactNode) | undefined }): void;
+};
 
 interface Props {
   payDate: string;
@@ -79,46 +68,22 @@ interface Props {
 /** One paycheck: what is left, its bills, the bills that could be added, and a one-time expense form. */
 export function PayDateDetail({ payDate, sourceId, contentContainerStyle, embedded }: Props) {
   const router = useRouter();
+  const navigation = useNavigation<Navigation>();
   const colors = useColors();
   const contentStyle = useMemo(() => [styles.listContent, contentContainerStyle], [contentContainerStyle]);
   const t = useT();
-  const incomeSources = useStore((s) => s.incomeSources);
   const expenses = useStore((s) => s.expenses);
   const assignments = useStore((s) => s.assignments);
   const paycheckOverrides = useStore((s) => s.paycheckOverrides);
   const assignExpense = useStore((s) => s.assignExpense);
   const unassignExpense = useStore((s) => s.unassignExpense);
   const togglePaid = useStore((s) => s.togglePaid);
-  const markPaid = useStore((s) => s.markPaid);
   const autoMarkPaid = useThemeStore((s) => s.autoMarkPaidOnLinkTap);
   // Changing one paycheck's bill or pay amount is Pro
   const { gate } = useProGate();
 
-  const incomeSource = useMemo(
-    () => incomeSources.find((e) => e.id === sourceId),
-    [incomeSources, sourceId]
-  );
-
-  const paycheckAssignments = useMemo(
-    () => assignments.filter((a) => a.payDate === payDate && a.employerId === sourceId),
-    [assignments, payDate, sourceId]
-  );
-
-  const assignedExpenseIds = useMemo(
-    () =>
-      new Map(
-        paycheckAssignments
-          .filter((a) => !a.skipped)
-          .map((a) => [a.expenseId, { assignmentId: a.id, paid: !!a.paid, amount: a.amount }])
-      ),
-    [paycheckAssignments]
-  );
-
-  // Linked bills moved off this paycheck; they show under Available instead
-  const skippedExpenseIds = useMemo(
-    () => new Set(paycheckAssignments.filter((a) => a.skipped).map((a) => a.expenseId)),
-    [paycheckAssignments]
-  );
+  const { incomeSource, assignedExpenseIds, linkedExpenseIds, assignedExpenses, unpaidExpenseIds } =
+    usePaycheckBills(payDate, sourceId);
 
   const handleAssign = useCallback(
     (expenseId: string) => {
@@ -195,33 +160,6 @@ export function PayDateDetail({ payDate, sourceId, contentContainerStyle, embedd
     [autoMarkPaid, assignedExpenseIds, togglePaid, assignExpense, payDate, sourceId]
   );
 
-  const paycheck = useMemo(
-    () => (incomeSource ? getPaycheck(incomeSource, payDate) : undefined),
-    [incomeSource, payDate]
-  );
-
-  const linkedExpenseIds = useMemo(() => {
-    const ids = new Set<string>();
-    for (const e of expenses) {
-      if (
-        !assignedExpenseIds.has(e.id) &&
-        !skippedExpenseIds.has(e.id) &&
-        isExpenseLinkedToPaycheck(e, sourceId, paycheck, incomeSource)
-      ) {
-        ids.add(e.id);
-      }
-    }
-    return ids;
-  }, [expenses, sourceId, paycheck, incomeSource, assignedExpenseIds, skippedExpenseIds]);
-
-  const assignedExpenses = useMemo(
-    () =>
-      expenses
-        .filter((e) => assignedExpenseIds.has(e.id) || linkedExpenseIds.has(e.id))
-        .sort(billsFirst),
-    [expenses, assignedExpenseIds, linkedExpenseIds]
-  );
-
   // One-time bills live on a single paycheck; they're moved from the expense form, not added twice
   const scheduledElsewhereIds = useMemo(() => {
     const oneTimeIds = new Set(expenses.filter((e) => !e.isRecurring).map((e) => e.id));
@@ -261,52 +199,11 @@ export function PayDateDetail({ payDate, sourceId, contentContainerStyle, embedd
 
   const remaining = useMemo(() => payAmount - totalAssigned, [payAmount, totalAssigned]);
 
-  const unpaidExpenseIds = useMemo(
-    () => assignedExpenses.filter((e) => !assignedExpenseIds.get(e.id)?.paid).map((e) => e.id),
-    [assignedExpenses, assignedExpenseIds]
-  );
-
   const canMoveBill = unpaidExpenseIds.length > 0;
 
-  const handleMarkAllPaid = useCallback(() => {
-    withUndo(t("toasts.markedAllPaid"), () => markPaid(unpaidExpenseIds, payDate, sourceId));
-  }, [unpaidExpenseIds, markPaid, payDate, sourceId, t]);
-
-  const { width: windowWidth } = useWindowDimensions();
-  // Embedded, the button shares the summary's first row and shrinks with it
-  const headerButtonTextStyle = useMemo(
-    () => (embedded ? styles.embeddedButtonText : { maxWidth: windowWidth * HEADER_BUTTON_MAX_WIDTH_RATIO }),
-    [embedded, windowWidth]
-  );
-
-  const renderMarkAllPaidButton = useCallback(
-    () => (
-      <Pressable
-        style={embedded ? EMBEDDED_BUTTON_STYLE : HEADER_BUTTON_STYLE}
-        onPress={handleMarkAllPaid}
-        hitSlop={MEASUREMENTS.hitSlop}
-        accessibilityRole="button"
-      >
-        <AppText
-          variant="bodyStrong"
-          color="primaryText"
-          numberOfLines={1}
-          adjustsFontSizeToFit
-          minimumFontScale={HEADER_BUTTON_MIN_FONT_SCALE}
-          maxFontSizeMultiplier={HEADER_MAX_FONT_MULTIPLIER}
-          style={headerButtonTextStyle}
-        >
-          {t("payDate.markAllPaid")}
-        </AppText>
-      </Pressable>
-    ),
-    [embedded, handleMarkAllPaid, headerButtonTextStyle, t]
-  );
-
-  const screenOptions = useMemo(
-    () => ({ headerRight: canMoveBill ? renderMarkAllPaidButton : undefined }),
-    [canMoveBill, renderMarkAllPaidButton]
-  );
+  // The route's options (app/_layout.tsx) put "Mark all paid" in the bar at push time. Touching the
+  // bar during the push is what left it empty (#191), so this only follows a later change.
+  const buttonInBar = useRef(canMoveBill);
 
   const listData = useMemo(() => {
     const items: ListItem[] = [
@@ -369,7 +266,7 @@ export function PayDateDetail({ payDate, sourceId, contentContainerStyle, embedd
               canMoveBill={canMoveBill}
               onEditPayAmount={handleEditPayAmount}
               onMoveBill={handleMoveBill}
-              action={embedded && canMoveBill ? renderMarkAllPaidButton() : undefined}
+              action={embedded && canMoveBill ? <MarkAllPaidButton payDate={payDate} sourceId={sourceId} embedded /> : undefined}
             />
           );
         case "one-time-form":
@@ -417,7 +314,6 @@ export function PayDateDetail({ payDate, sourceId, contentContainerStyle, embedd
       handleEditPayAmount,
       handleMoveBill,
       embedded,
-      renderMarkAllPaidButton,
       assignedExpenseIds,
       handleAssign,
       handleUnassign,
@@ -428,9 +324,14 @@ export function PayDateDetail({ payDate, sourceId, contentContainerStyle, embedd
     ]
   );
 
+  useEffect(() => {
+    if (embedded || buttonInBar.current === canMoveBill) return;
+    buttonInBar.current = canMoveBill;
+    navigation.setOptions({ headerRight: canMoveBill ? markAllPaidHeaderRight(payDate, sourceId) : undefined });
+  }, [embedded, canMoveBill, navigation, payDate, sourceId]);
+
   return (
     <>
-      {embedded ? null : <Stack.Screen options={screenOptions} />}
       <LayoutAnimationConfig skipEntering skipExiting={embedded}>
         <FlatList
           data={listData}
@@ -455,18 +356,4 @@ const styles = StyleSheet.create({
   empty: {
     paddingHorizontal: MEASUREMENTS.spacing.xs,
   },
-  // iOS wraps a custom bar button in a glass pill hugging its content; this gives the text the
-  // same side padding inside it as UIKit's own Back button.
-  headerButton: {
-    paddingHorizontal: MEASUREMENTS.spacing.base,
-  },
-  embeddedButton: {
-    flexShrink: 1,
-  },
-  embeddedButtonText: {
-    flexShrink: 1,
-  },
 });
-
-const HEADER_BUTTON_STYLE = dimOnPress(styles.headerButton);
-const EMBEDDED_BUTTON_STYLE = dimOnPress(styles.embeddedButton);

@@ -22,6 +22,9 @@ import { DIM_ON_PRESS } from "@/constants/press";
 import { initDatabase } from "@/db/init";
 import { SYNC_CONFIG } from "@/db/sync";
 import { SyncedStores } from "@/components/SyncedStores";
+import { markAllPaidHeaderRight } from "@/components/payDateDetail/MarkAllPaidButton";
+import { useStore } from "@/store";
+import { getPaycheckBills } from "@/utils/paycheckBills";
 
 // sonner-native 0.27.0 passes dependency arrays to useDerivedValue/useAnimatedStyle,
 // which Reanimated 4 warns about on native. The warning fires with the first toast
@@ -40,6 +43,11 @@ void requireOptionalNativeModule<{ setRTL: (rtl: boolean) => Promise<void> }>("L
 SplashScreen.preventAutoHideAsync();
 
 const TABS_OPTIONS = { headerShown: false };
+
+interface PayDateParams {
+  payDate?: string;
+  sourceId?: string;
+}
 const ANDROID_TOOLBAR_HEIGHT = 56;
 
 /** Rendered once `initDatabase` has run. */
@@ -135,8 +143,19 @@ function RootNavigator() {
     [modalOptions, renderCloseButton, t]
   );
 
-  const payDateDetailOptions = useMemo(
-    () => ({ title: t("screens.payDate"), presentation: "card" as const }),
+  // The whole bar is declared here, "Mark all paid" included when the paycheck has unpaid bills, so
+  // it is in place when the push starts instead of waiting for the screen's first render (#191). The
+  // screen only adds or removes the button when that changes later (PayDateDetail).
+  const payDateDetailOptions = useCallback(
+    ({ route }: { route: { params?: object } }) => {
+      const { payDate = "", sourceId = "" }: PayDateParams = route.params ?? {};
+      const hasUnpaid = getPaycheckBills(useStore.getState(), payDate, sourceId).unpaidExpenseIds.length > 0;
+      return {
+        title: t("screens.payDate"),
+        presentation: "card" as const,
+        headerRight: hasUnpaid ? markAllPaidHeaderRight(payDate, sourceId) : undefined,
+      };
+    },
     [t]
   );
 
