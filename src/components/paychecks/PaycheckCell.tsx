@@ -1,7 +1,7 @@
-import { createContext, use, useCallback } from "react";
+import { createContext, use, useCallback, useMemo } from "react";
 import type { ReactNode } from "react";
-import { View, type LayoutChangeEvent, type StyleProp, type ViewProps, type ViewStyle } from "react-native";
-import type { SharedValue } from "react-native-reanimated";
+import { type LayoutChangeEvent, type StyleProp, type ViewProps, type ViewStyle } from "react-native";
+import Animated, { type AnimatedStyle, type SharedValue } from "react-native-reanimated";
 import type { PaycheckRow } from "@/components/paychecks/types";
 
 /** Where the list's rows sit in its content, for the code that follows the scroll position. */
@@ -10,6 +10,8 @@ export interface PaycheckCellLayouts {
   monthTops: SharedValue<number[]>;
   /** Bottom of the last row */
   lastBottom: SharedValue<number>;
+  /** The rows' opacity: a tapped jump fades the rows, not the pinned header above them (HAU-900) */
+  fade: AnimatedStyle<ViewStyle>;
 }
 
 /** What a list hands its `CellRendererComponent` */
@@ -51,9 +53,11 @@ export function PaycheckCell({ item, onLayout, onFocusCapture, style, children }
     [onLayout, layouts, monthIndex, monthStart, last]
   );
 
+  const cellStyle = useMemo(() => [style, layouts?.fade], [style, layouts?.fade]);
+
   return (
-    <View style={style} onFocusCapture={onFocusCapture} onLayout={handleLayout}>
+    <Animated.View style={cellStyle} onFocusCapture={onFocusCapture} onLayout={handleLayout}>
       {children}
-    </View>
+    </Animated.View>
   );
 }
