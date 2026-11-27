@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { Platform, Pressable, StyleSheet } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSequence, withSpring, withTiming } from "react-native-reanimated";
 import { useIsFocused } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -27,7 +27,10 @@ interface Props {
 
 export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
   const colors = useColors();
+  // On Android the tab screen already ends above the tab bar and the navigation bar, so adding the
+  // bottom inset again would count the navigation bar twice. iOS screens run under the tab bar.
   const insets = useSafeAreaInsets();
+  const bottomInset = Platform.OS === "android" ? 0 : insets.bottom;
   // The same distance inside the content's edge on every screen width
   const { paddingRight } = useGutters(MEASUREMENTS.spacing.lg);
   const t = useT();
@@ -60,12 +63,12 @@ export function AppFab({ accessibilityLabel, onPress, pro }: Props) {
       {
         backgroundColor: colors.primary,
         shadowColor: colors.shadow,
-        bottom: insets.bottom + MEASUREMENTS.spacing.lg,
+        bottom: bottomInset + MEASUREMENTS.spacing.lg,
         right: paddingRight,
       },
       scaleStyle,
     ],
-    [colors, insets.bottom, paddingRight, scaleStyle]
+    [colors, bottomInset, paddingRight, scaleStyle]
   );
 
   useEffect(() => {
