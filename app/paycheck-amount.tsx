@@ -8,6 +8,7 @@ import { parseLocalDate } from "@/utils/payDates";
 import { formatShortDate } from "@/utils/dates";
 import { toastError } from "@/utils/toastError";
 import { hapticSuccess } from "@/utils/haptics";
+import { useWriteOnClose } from "@/hooks/useWriteOnClose";
 
 export default function PaycheckAmountScreen() {
   const router = useRouter();
@@ -19,6 +20,7 @@ export default function PaycheckAmountScreen() {
     s.paycheckOverrides.find((o) => o.sourceId === sourceId && o.payDate === payDate)
   );
   const setPaycheckAmount = useStore((s) => s.setPaycheckAmount);
+  const writeOnClose = useWriteOnClose();
   const [amount, setAmount] = useState(() =>
     String(override?.payAmount ?? source?.payAmount ?? "")
   );
@@ -29,16 +31,18 @@ export default function PaycheckAmountScreen() {
       toastError(t("payAmountSheet.invalidAmount"));
       return;
     }
-    setPaycheckAmount(sourceId, payDate, parsed === source?.payAmount ? undefined : parsed);
+    writeOnClose(() =>
+      setPaycheckAmount(sourceId, payDate, parsed === source?.payAmount ? undefined : parsed)
+    );
     hapticSuccess();
     router.back();
-  }, [amount, setPaycheckAmount, sourceId, payDate, source, router, t]);
+  }, [amount, writeOnClose, setPaycheckAmount, sourceId, payDate, source, router, t]);
 
   const handleReset = useCallback(() => {
-    setPaycheckAmount(sourceId, payDate, undefined);
+    writeOnClose(() => setPaycheckAmount(sourceId, payDate, undefined));
     hapticSuccess();
     router.back();
-  }, [setPaycheckAmount, sourceId, payDate, router]);
+  }, [writeOnClose, setPaycheckAmount, sourceId, payDate, router]);
 
   const subtitle = payDate
     ? t("payAmountSheet.subtitle", { date: formatShortDate(parseLocalDate(payDate)) })
