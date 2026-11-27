@@ -577,12 +577,15 @@ export default function PaychecksScreen() {
 
   // Coming back from another tab opens on the current paycheck again. Closing a
   // sheet or the pay date screen does not: that leaves the tab without changing it.
+  // The list goes home as the tab is left, unseen, so the tab comes back already there and its counts
+  // and chart snap there (not focused); going home on the return showed the old month for the
+  // transition's first frames, then cut to the top and counted (paycheck-planner-197).
   const segments: string[] = useSegments();
   const tab = segments[0] === "(tabs)" ? segments[1] : undefined;
   const lastTab = useRef(tab);
   useEffect(() => {
     if (!tab) return;
-    if (tab === PAYCHECKS_TAB && lastTab.current !== PAYCHECKS_TAB) goHome(false);
+    if (tab !== PAYCHECKS_TAB && lastTab.current === PAYCHECKS_TAB) goHome(false);
     lastTab.current = tab;
   }, [tab, goHome]);
 
