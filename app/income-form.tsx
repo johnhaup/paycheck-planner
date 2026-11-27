@@ -4,6 +4,7 @@ import { KeyboardAwareScrollView, type KeyboardAwareScrollViewRef } from "react-
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useStore } from "@/store";
 import { useGutters } from "@/hooks/useGutters";
+import { useBottomPadding } from "@/hooks/useBottomPadding";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
@@ -38,7 +39,8 @@ function IncomeForm() {
   const scrollRef = useRef<KeyboardAwareScrollViewRef>(null);
   const keptScroll = useScrollKeptOnResize(scrollRef);
   const gutters = useGutters();
-  const contentStyle = useMemo(() => [styles.content, gutters], [gutters]);
+  const bottomPadding = useBottomPadding();
+  const contentStyle = useMemo(() => [styles.content, gutters, bottomPadding], [gutters, bottomPadding]);
   const t = useT();
   const { id } = useLocalSearchParams<{ id?: string }>();
   const incomeSources = useStore((s) => s.incomeSources);

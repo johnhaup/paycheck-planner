@@ -13,6 +13,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useColors } from "@/hooks/useColors";
 import { useT } from "@/hooks/useLocale";
 import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
+import { useBottomPadding } from "@/hooks/useBottomPadding";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppWordWrapText } from "@/components/AppWordWrapText";
@@ -63,6 +64,8 @@ export function AmountSheet({
   const { height: windowHeight } = useWindowDimensions();
   const { top: topInset } = useSafeAreaInsets();
   const keyboardHeight = useKeyboardState((state) => state.height);
+  // Android: the sheet runs under the navigation bar, unless the keyboard (which covers it) is up
+  const bottomPadding = useBottomPadding();
 
   const scrollRef = useRef<ScrollViewInstance>(null);
   const inputRef = useRef<TextInputInstance>(null);
@@ -114,8 +117,9 @@ export function AmountSheet({
         backgroundColor: colors.modalBackground,
         maxHeight: windowHeight - keyboardHeight - topInset - MEASUREMENTS.spacing.lg,
       },
+      keyboardHeight > 0 ? undefined : bottomPadding,
     ],
-    [colors, windowHeight, keyboardHeight, topInset]
+    [colors, windowHeight, keyboardHeight, topInset, bottomPadding]
   );
 
   return (

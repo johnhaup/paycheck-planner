@@ -5,6 +5,7 @@ import { useStore } from "@/store";
 import { useColors } from "@/hooks/useColors";
 import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
+import { useBottomPadding } from "@/hooks/useBottomPadding";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { AppText } from "@/components/AppText";
 import { AppChip } from "@/components/AppChip";
@@ -68,9 +69,10 @@ export default function MoveBillScreen() {
     router.back();
   }, [expenseId, target, bills, moveExpense, from, router, t]);
 
+  const bottomPadding = useBottomPadding();
   const containerStyle = useMemo(
-    () => [styles.container, { backgroundColor: colors.modalBackground }],
-    [colors]
+    () => [styles.container, { backgroundColor: colors.modalBackground }, bottomPadding],
+    [colors, bottomPadding]
   );
 
   const date = formatShortDate(parseLocalDate(payDate));
