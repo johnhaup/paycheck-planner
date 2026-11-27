@@ -286,6 +286,11 @@ export default function PaychecksScreen() {
     [hidden]
   );
 
+  const listRef = useRef<FlatList<PaycheckRow>>(null);
+  const settleTo = useCallback((offset: number) => {
+    listRef.current?.scrollToOffset({ offset, animated: true });
+  }, []);
+
   // Set below once the landing exists, like `rejump`
   const reachedBarRef = useRef<() => void>(undefined);
   const handleReachedBar = useCallback(() => reachedBarRef.current?.(), []);
@@ -302,6 +307,23 @@ export default function PaychecksScreen() {
     if (jumping.value || distance <= 0 || current <= 0 || lastPastTitle.value === undefined) return;
     const target = Math.min(1, lastPastTitle.value / distance);
     if (target > current) collapse.value = withTiming(target, { duration: HEADER_EXPAND_MS });
+  };
+
+  // Inside the collapse distance below the collapsed title the header rides with the list, so a list
+  // resting there shows it half way: the hero faded, the bars gone and the bare labels under an empty
+  // band (#196). Once the list rests there it scrolls, animated, to the nearer finished state: the
+  // whole header out under the bar, or the pills under it. The scroll handler moves the header along.
+  const settleHeader = () => {
+    "worklet";
+    const distance = collapseDistance.value;
+    const pastTitle = lastPastTitle.value;
+    if (jumping.value || distance <= 0 || pastTitle === undefined) return;
+    if (pastTitle <= BAR_SLACK || pastTitle >= distance - BAR_SLACK) {
+      finishCollapse();
+      return;
+    }
+    const collapseIt = collapse.value >= 0.5;
+    scheduleOnRN(settleTo, (collapseIt ? distance : 0) - pinTop);
   };
 
   const handleScroll = useAnimatedScrollHandler({
@@ -326,11 +348,12 @@ export default function PaychecksScreen() {
       }
       if (jumping.value && hidden.value) scheduleOnRN(handleHiddenScroll, moved);
     },
-    onEndDrag: () => {
-      finishCollapse();
+    onEndDrag: (event) => {
+      // A drag that hands over to momentum settles when the momentum ends
+      if (!event.velocity?.y) settleHeader();
     },
     onMomentumEnd: () => {
-      finishCollapse();
+      settleHeader();
     },
     onBeginDrag: () => {
       jumping.value = false;
@@ -377,7 +400,6 @@ export default function PaychecksScreen() {
 
   // Scrolls a row to just under the whole header. Right after launch the later
   // rows are not mounted yet; the jump is tried again until its row is.
-  const listRef = useRef<FlatList<PaycheckRow>>(null);
   const headerHeightRef = useRef(0);
 
   const attemptJump = useCallback(() => {
