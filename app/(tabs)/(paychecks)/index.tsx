@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { FlatList, View, Platform, Pressable, StyleSheet, type LayoutChangeEvent } from "react-native";
 import Animated, {
   useAnimatedReaction,
@@ -20,6 +20,7 @@ import { useMoneyFormat } from "@/hooks/useMoneyFormat";
 import { useT } from "@/hooks/useLocale";
 import { usePaycheckCardRenderer } from "@/hooks/usePaycheckCardRenderer";
 import { useFocusedStore } from "@/hooks/useFocusedStore";
+import { useValueAfterCounts } from "@/hooks/useValueAfterCounts";
 import { useGutters } from "@/hooks/useGutters";
 import { useColumns } from "@/hooks/useColumns";
 import { usePaycheckSelectionStore } from "@/stores/paycheckSelectionStore";
@@ -38,7 +39,7 @@ import { PaycheckCell, PaycheckCellLayoutsContext } from "@/components/paychecks
 import { PinnedHeader, PinnedHeaderShift } from "@/components/paychecks/PinnedHeader";
 import { ProUnlockRow } from "@/components/paychecks/ProUnlockRow";
 import { Welcome } from "@/components/paychecks/Welcome";
-import { buildMonthGroups, FULL_MONTHS_AHEAD, hasEarlierMonths, PAST_MONTHS } from "@/utils/paycheckMonths";
+import { buildMonthGroups, createPaycheckReuse, FULL_MONTHS_AHEAD, hasEarlierMonths, PAST_MONTHS } from "@/utils/paycheckMonths";
 import { useProGate } from "@/hooks/useProGate";
 import { formatShortDate } from "@/utils/dates";
 import { buildDemoData } from "@/utils/demoData";
@@ -99,10 +100,25 @@ export default function PaychecksScreen() {
   const colors = useColors();
   const { format: formatMoney } = useMoneyFormat();
   const t = useT();
-  const incomeSources = useFocusedStore((s) => s.incomeSources);
-  const expenses = useFocusedStore((s) => s.expenses);
-  const assignments = useFocusedStore((s) => s.assignments);
-  const paycheckOverrides = useFocusedStore((s) => s.paycheckOverrides);
+  const liveIncomeSources = useFocusedStore((s) => s.incomeSources);
+  const liveExpenses = useFocusedStore((s) => s.expenses);
+  const liveAssignments = useFocusedStore((s) => s.assignments);
+  const livePaycheckOverrides = useFocusedStore((s) => s.paycheckOverrides);
+  const live = useMemo(
+    () => ({
+      incomeSources: liveIncomeSources,
+      expenses: liveExpenses,
+      assignments: liveAssignments,
+      paycheckOverrides: livePaycheckOverrides,
+    }),
+    [liveIncomeSources, liveExpenses, liveAssignments, livePaycheckOverrides]
+  );
+  // Twelve months of cards must not hold up the tap that changed them (#203). On screen, the list
+  // renders the change in the background, so a sheet's Save starts its dismiss first. On a hidden
+  // tab, mounting or unmounting a source's cards cannot be split up, so the list takes a change
+  // made elsewhere (a delete, an Undo) once that screen's totals have counted.
+  const { incomeSources, expenses, assignments, paycheckOverrides } = useDeferredValue(useValueAfterCounts(live));
+  const [reusePaychecks] = useState(createPaycheckReuse);
   const insets = useSafeAreaInsets();
   const { width: frameWidth, height: frameHeight } = useSafeAreaFrame();
   const hasIncome = incomeSources.length > 0;
@@ -127,18 +143,20 @@ export default function PaychecksScreen() {
 
   const months = useMemo(
     () =>
-      buildMonthGroups(
-        incomeSources,
-        expenses,
-        assignments,
-        paycheckOverrides,
-        new Date(),
-        isPro ? FULL_MONTHS_AHEAD.pro : FULL_MONTHS_AHEAD.free,
-        isPro ? PAST_MONTHS.pro : PAST_MONTHS.free
+      reusePaychecks(
+        buildMonthGroups(
+          incomeSources,
+          expenses,
+          assignments,
+          paycheckOverrides,
+          new Date(),
+          isPro ? FULL_MONTHS_AHEAD.pro : FULL_MONTHS_AHEAD.free,
+          isPro ? PAST_MONTHS.pro : PAST_MONTHS.free
+        )
       ),
     // t changes with the language, which changes the month labels
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [incomeSources, expenses, assignments, paycheckOverrides, isPro, t]
+    [incomeSources, expenses, assignments, paycheckOverrides, isPro, t, reusePaychecks]
   );
 
   // The header never shrinks while the data stays the same. It sits above every row, so

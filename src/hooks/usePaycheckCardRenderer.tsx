@@ -1,7 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { useRouter } from "expo-router";
 import { useStore } from "@/store";
-import { useFocusedStore } from "@/hooks/useFocusedStore";
 import { useThemeStore } from "@/stores/themeStore";
 import { PaycheckCard } from "@/components/paychecks/PaycheckCard";
 import { openPaymentLink } from "@/utils/links";
@@ -19,7 +18,6 @@ interface Selection {
  */
 export function usePaycheckCardRenderer(selection?: Selection, onSelect?: (payDate: string, sourceId: string) => void) {
   const router = useRouter();
-  const assignments = useFocusedStore((s) => s.assignments);
   const assignExpense = useStore((s) => s.assignExpense);
   const togglePaid = useStore((s) => s.togglePaid);
   const autoMarkPaid = useThemeStore((s) => s.autoMarkPaidOnLinkTap);
@@ -38,13 +36,13 @@ export function usePaycheckCardRenderer(selection?: Selection, onSelect?: (payDa
       openPaymentLink(link);
       if (autoMarkPaid) {
         const id = assignmentId || assignExpense(expenseId, payDate, sourceId);
-        const assignment = assignments.find((a) => a.id === id);
+        const assignment = useStore.getState().assignments.find((a) => a.id === id);
         if (!assignment?.paid) {
           togglePaid(id);
         }
       }
     },
-    [autoMarkPaid, assignExpense, assignments, togglePaid]
+    [autoMarkPaid, assignExpense, togglePaid]
   );
 
   const handlePressPaycheck = useCallback(
