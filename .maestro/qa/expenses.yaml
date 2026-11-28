@@ -184,6 +184,21 @@ name: expenses
 - extendedWaitUntil:
     visible: "(I )?Internet.*"
     timeout: 15000
+# The sample data puts Internet on the slot of the next Brightline payday, so which
+# paycheck of the month it is depends on today: read it here, never hardcode it (HAU-328).
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - copyTextFrom: ".*Internet.*paycheck each month.*"
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - copyTextFrom:
+          text: ".*paycheck each month"
+          below: "Internet"
+- evalScript: ${output.internetSlot = maestro.copiedText.match(/(\S+) paycheck each month/)[1]}
 - tapOn: "(I )?Internet.*"
 - extendedWaitUntil:
     visible: "e.g. Electric Company"
@@ -224,7 +239,7 @@ name: expenses
     timeout: 15000
 - takeScreenshot: expenses-due-day
 
-# Clearing the due day brings back the bill's old slot, not every paycheck (HAU-417).
+# Clearing the due day brings back the bill's old slot, read above, not every paycheck (HAU-417).
 # Tapping the section label drops the number pad without hitting a key.
 - tapOn: "(I )?Internet.*"
 - extendedWaitUntil:
@@ -268,7 +283,7 @@ name: expenses
       platform: iOS
     commands:
       - extendedWaitUntil:
-          visible: ".*Internet.*2nd paycheck each month.*monthly.*"
+          visible: ".*Internet.*${output.internetSlot} paycheck each month.*monthly.*"
           timeout: 15000
 # Android: Car Payment has the same schedule line, above Internet; only Internet's own
 # line is below its name.
@@ -280,7 +295,7 @@ name: expenses
           notVisible: "Due the 18th"
           timeout: 15000
       - assertVisible:
-          text: "2nd paycheck each month"
+          text: "${output.internetSlot} paycheck each month"
           below: "Internet"
 - assertVisible: "\\$1,477\\.33/mo"
 
