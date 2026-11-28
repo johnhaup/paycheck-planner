@@ -26,7 +26,8 @@
   sheet from the pay date screen measures 8 frames with Maestro's press; one card re-rendered.
 - Pay date screen Save: "Left over" counted $1,117.20 → $1,119.00 (#187).
 - Expenses → delete Groceries → Paychecks tab: hero $1,468.15 and "1 of 4 paid" from the first transition frame (HAU-903).
-- `bunx tsc --noEmit`, `bun run lint` clean; core Maestro suite: see the PR.
+- Free tier: delete and Undo count as smoothly as before. Welcome, and light mode on Paychecks and Income, look right.
+- `bunx tsc --noEmit`, `bun run lint` clean; `.maestro/qa/` 6/6 passed on the dev build.
 
 ## Pitfalls / follow-ups
 - A Paychecks update after a change on another tab now costs ~1.2 s of JS (dev) right after the count. It used to
