@@ -127,6 +127,30 @@ export function buildMonthGroups(
   return groupByMonth(allPaychecks, now);
 }
 
+/**
+ * Returns a function that gives each month's paychecks back as the objects it returned last time
+ * when nothing in them changed, so memoized cards skip every paycheck a change did not touch.
+ * Months stay fresh: their totals are cheap and change with any paycheck in them.
+ */
+export function createPaycheckReuse(): (months: MonthGroup[]) => MonthGroup[] {
+  let previous = new Map<string, { json: string; item: PaycheckItem }>();
+  return (months) => {
+    const next = new Map<string, { json: string; item: PaycheckItem }>();
+    const result = months.map((month) => ({
+      ...month,
+      paychecks: month.paychecks.map((paycheck) => {
+        const json = JSON.stringify(paycheck);
+        const kept = previous.get(paycheck.key);
+        const entry = kept?.json === json ? kept : { json, item: paycheck };
+        next.set(paycheck.key, entry);
+        return entry.item;
+      }),
+    }));
+    previous = next;
+    return result;
+  };
+}
+
 function getStart(source: IncomeSource, now: Date, monthsBack: number | undefined): Date {
   if (monthsBack === undefined) return now;
   const from = startOfMonth(subMonths(now, monthsBack));

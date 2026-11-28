@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useIsFocused } from "expo-router";
+import { useNavigation } from "expo-router";
 import {
   useAnimatedStyle,
   useReducedMotion,
@@ -20,6 +20,8 @@ const MAX_STEP_MS = 1000 / 30;
 const ticks = new Set<Tick>();
 let running = false;
 let lastFrame = 0;
+/** Waiting for the frame loop to finish (afterCounts) */
+const idleCallbacks = new Set<() => void>();
 
 function frame(now: number) {
   const step = lastFrame === 0 ? FRAME_MS : Math.min(now - lastFrame, MAX_STEP_MS);
@@ -33,6 +35,10 @@ function frame(now: number) {
     requestAnimationFrame(frame);
   } else {
     running = false;
+    for (const callback of idleCallbacks) {
+      callback();
+    }
+    idleCallbacks.clear();
   }
 }
 
@@ -46,6 +52,24 @@ function startTick(tick: Tick) {
   }
   return () => {
     ticks.delete(tick);
+  };
+}
+
+/**
+ * Runs `callback` once no count is running. It looks on the next frame, so a count started by the
+ * commit under way (a delete's total counting down) is waited for. The returned function cancels it.
+ */
+export function afterCounts(callback: () => void) {
+  const frameId = requestAnimationFrame(() => {
+    if (running) {
+      idleCallbacks.add(callback);
+    } else {
+      callback();
+    }
+  });
+  return () => {
+    cancelAnimationFrame(frameId);
+    idleCallbacks.delete(callback);
   };
 }
 
@@ -67,7 +91,9 @@ function toCents(value: number) {
  */
 export function useCountUp(targets: readonly number[]) {
   const reduceMotion = useReducedMotion();
-  const isFocused = useIsFocused();
+  // Read when a value changes, not subscribed: useIsFocused re-rendered every count on the screen
+  // on each focus change, which held a sheet's dismiss over the 12-month Paychecks list (#203)
+  const navigation = useNavigation();
   const [shown, setShown] = useState(targets);
   const toRef = useRef(targets);
   const shownRef = useRef(targets);
@@ -90,7 +116,7 @@ export function useCountUp(targets: readonly number[]) {
     // A count interrupted halfway starts again from where it is
     const from = shownRef.current.length === targets.length ? shownRef.current : targets;
     toRef.current = targets;
-    if (!isFocused) {
+    if (!navigation.isFocused()) {
       showTargets();
       return;
     }
@@ -117,7 +143,7 @@ export function useCountUp(targets: readonly number[]) {
       setShown(next);
       return done;
     });
-  }, [targets, reduceMotion, isFocused, opacity, showTargets]);
+  }, [targets, reduceMotion, navigation, opacity, showTargets]);
 
   useEffect(() => () => stopRef.current?.(), []);
 

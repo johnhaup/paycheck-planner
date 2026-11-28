@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useAccessibilityTextSize } from "@/hooks/useAccessibilityTextSize";
@@ -42,7 +42,7 @@ interface Props {
   onMoveExpense: EditAmountHandler;
 }
 
-export function PaycheckCard({
+export const PaycheckCard = memo(function PaycheckCard({
   item,
   selected,
   onPress,
@@ -203,7 +203,7 @@ export function PaycheckCard({
       ) : null}
     </AppCard>
   );
-}
+});
 
 const styles = StyleSheet.create({
   card: {
