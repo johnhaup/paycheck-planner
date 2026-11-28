@@ -27,6 +27,7 @@
     "expo-status-bar": "~58.0.4",
     "expo-symbols": "~58.0.4",
     "expo-system-ui": "~58.0.7",
+    "expo-web-browser": "~58.1.0",
     "i18n-js": "^4.5.4",
     "make-plural": "^8.1.0",
     "react": "19.3.0",
