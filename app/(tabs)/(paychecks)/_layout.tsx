@@ -10,6 +10,14 @@ import { useT } from "@/hooks/useLocale";
 import { MEASUREMENTS } from "@/constants/measurements";
 import { DIM_ON_PRESS } from "@/constants/press";
 import { AppText } from "@/components/AppText";
+import { markAllPaidHeaderRight } from "@/components/payDateDetail/MarkAllPaidButton";
+import { useStore } from "@/store";
+import { getPaycheckBills } from "@/utils/paycheckBills";
+
+interface PayDateParams {
+  payDate?: string;
+  sourceId?: string;
+}
 
 export default function PaychecksLayout() {
   const colors = useColors();
@@ -63,9 +71,28 @@ export default function PaychecksLayout() {
     [renderSettingsButton, renderTitle, wide, t]
   );
 
+  // Pay date is pushed in this tab's stack, not the root one: the root stack hides its bar for the
+  // tabs, and a push that unhides it sometimes left the bar blank until the screen had landed
+  // (#191, #204). Here the bar is already up, so its items change with the slide like any push.
+  // "Mark all paid" is declared with the route so it slides in too; the screen only adds or
+  // removes it when that changes later (PayDateDetail).
+  const payDateDetailOptions = useCallback(
+    ({ route }: { route: { params?: object } }) => {
+      const { payDate = "", sourceId = "" }: PayDateParams = route.params ?? {};
+      const hasUnpaid = getPaycheckBills(useStore.getState(), payDate, sourceId).unpaidExpenseIds.length > 0;
+      return {
+        title: t("screens.payDate"),
+        headerLargeTitle: false,
+        headerRight: hasUnpaid ? markAllPaidHeaderRight(payDate, sourceId) : undefined,
+      };
+    },
+    [t]
+  );
+
   return (
     <Stack screenOptions={screenOptions}>
       <Stack.Screen name="index" options={indexOptions} />
+      <Stack.Screen name="pay-date-detail" options={payDateDetailOptions} />
     </Stack>
   );
 }

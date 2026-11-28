@@ -1,8 +1,7 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useColumns } from "@/hooks/useColumns";
 import { useGutters } from "@/hooks/useGutters";
-import { useBottomPadding } from "@/hooks/useBottomPadding";
 import { PayDateDetail } from "@/components/payDateDetail/PayDateDetail";
 import { usePaycheckSelectionStore } from "@/stores/paycheckSelectionStore";
 
@@ -13,8 +12,6 @@ export default function PayDateDetailScreen() {
   }>();
   const router = useRouter();
   const gutters = useGutters();
-  const bottomPadding = useBottomPadding();
-  const contentStyle = useMemo(() => [gutters, bottomPadding], [gutters, bottomPadding]);
   const wide = useColumns() !== undefined;
   const select = usePaycheckSelectionStore((s) => s.select);
 
@@ -26,5 +23,5 @@ export default function PayDateDetailScreen() {
     router.back();
   }, [wide, select, payDate, sourceId, router]);
 
-  return <PayDateDetail payDate={payDate} sourceId={sourceId} contentContainerStyle={contentStyle} />;
+  return <PayDateDetail payDate={payDate} sourceId={sourceId} contentContainerStyle={gutters} />;
 }
