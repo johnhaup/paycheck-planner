@@ -71,7 +71,8 @@
           "iCloudContainer": "iCloud.com.johnhaup.paycheckplanner",
           "backupInclude": [{ "domain": "database", "path": "RKStorage" }]
         }
-      ]
+      ],
+      "expo-web-browser"
     ],
     "extra": {
       "router": {},
