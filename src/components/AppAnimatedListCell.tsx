@@ -1,7 +1,8 @@
-import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import type { LayoutChangeEvent, StyleProp, ViewStyle } from "react-native";
 import Animated from "react-native-reanimated";
 import { LAYOUT_SPRING, ROW_ENTERING, ROW_EXITING } from "@/constants/motion";
+import { useColors } from "@/hooks/useColors";
 
 interface Props {
   children: ReactNode;
@@ -19,15 +20,20 @@ export const ListCellAnimationContext = createContext(true);
  * reordered, the rest slide to their new place, new rows fade in (iOS only, see `ROW_ENTERING`) and removed ones fade out.
  * Wrap the list in `<LayoutAnimationConfig skipEntering>` so the first render does not fade in.
  * Timings come from `@/constants/motion`. Reduce Motion skips all three (Reanimated's default `ReduceMotion.System`).
+ * Every cell paints the screen background: a removed row fades out in place, beneath the cells
+ * that follow it, so a cell sliding into its place must cover it. A card row does with its own
+ * background; a section header or a hint (transparent) would print its text over the row (#212).
  */
 export function AppAnimatedListCell({ children, style, onLayout }: Props) {
   const animated = useContext(ListCellAnimationContext);
+  const colors = useColors();
+  const cellStyle = useMemo(() => [style, { backgroundColor: colors.screenBackground }], [style, colors]);
   return (
     <Animated.View
       entering={animated ? ROW_ENTERING : undefined}
       exiting={animated ? ROW_EXITING : undefined}
       layout={animated ? LAYOUT_SPRING : undefined}
-      style={style}
+      style={cellStyle}
       onLayout={onLayout}
     >
       {children}

@@ -29,12 +29,19 @@ import { useScrollKeptOnResize } from "@/hooks/useScrollKeptOnResize";
 /** A total or date too long for its tile shrinks this far instead of breaking mid-number */
 const TILE_VALUE_MIN_FONT_SCALE = 0.5;
 
-function keyExtractor(item: IncomeSource) {
-  return item.id;
+/**
+ * The swipe hint is the list's last cell rather than its footer, so it springs up and down with
+ * the rows when the last source is deleted or restored (a footer jumps in one frame, #212).
+ */
+const HINT = "hint";
+type IncomeItem = IncomeSource | typeof HINT;
+
+function keyExtractor(item: IncomeItem) {
+  return item === HINT ? HINT : item.id;
 }
 
 export default function IncomeScreen() {
-  const scrollRef = useRef<FlatList<IncomeSource>>(null);
+  const scrollRef = useRef<FlatList<IncomeItem>>(null);
   const keptScroll = useScrollKeptOnResize(scrollRef);
   const router = useRouter();
   const { whole: formatWholeMoney } = useMoneyFormat();
@@ -43,6 +50,10 @@ export default function IncomeScreen() {
   const incomeSources = useStore((s) => s.incomeSources);
   const deleteIncomeSource = useStore((s) => s.deleteIncomeSource);
   const hasSources = incomeSources.length > 0;
+  const listData = useMemo<IncomeItem[]>(
+    () => (hasSources ? [...incomeSources, HINT] : []),
+    [incomeSources, hasSources]
+  );
   // Free includes one income source; adding another is Pro
   const { locked: addLocked, gate } = useProGate(hasSources);
 
@@ -67,17 +78,22 @@ export default function IncomeScreen() {
   );
 
   const renderItem = useCallback(
-    ({ item, index }: { item: IncomeSource; index: number }) => (
-      <IncomeSourceRow
-        source={item}
-        tintIndex={index}
-        isFirst={index === 0}
-        isLast={index === incomeSources.length - 1}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-      />
-    ),
-    [handleEdit, handleDelete, incomeSources.length]
+    ({ item, index }: { item: IncomeItem; index: number }) =>
+      item === HINT ? (
+        <AppText variant="caption" style={styles.hint}>
+          {t("income.swipeHint")}
+        </AppText>
+      ) : (
+        <IncomeSourceRow
+          source={item}
+          tintIndex={index}
+          isFirst={index === 0}
+          isLast={index === incomeSources.length - 1}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
+      ),
+    [handleEdit, handleDelete, incomeSources.length, t]
   );
 
   const summary = useMemo(() => {
@@ -150,15 +166,6 @@ export default function IncomeScreen() {
     [summary, renderPerMonth, t, stacked, tilesStyle]
   );
 
-  const listFooter = useMemo(
-    () => (
-      <AppText variant="caption" style={styles.hint}>
-        {t("income.swipeHint")}
-      </AppText>
-    ),
-    [t]
-  );
-
   const listEmpty = useMemo(
     () => (
       <AppEmptyState
@@ -193,12 +200,11 @@ export default function IncomeScreen() {
           ref={scrollRef}
           {...keptScroll}
           style={LARGE_TITLE_LIST}
-          data={incomeSources}
+          data={listData}
           CellRendererComponent={AppAnimatedListCell}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           ListHeaderComponent={hasSources ? listHeader : undefined}
-          ListFooterComponent={hasSources ? listFooter : undefined}
           ListEmptyComponent={listEmpty}
           onScrollBeginDrag={closeOpenSwipeRow}
           contentInsetAdjustmentBehavior="automatic"
@@ -213,7 +219,6 @@ export default function IncomeScreen() {
 const styles = StyleSheet.create({
   listContent: {
     paddingTop: MEASUREMENTS.spacing.md,
-    paddingBottom: MEASUREMENTS.fabSize + MEASUREMENTS.spacing.bottom,
   },
   emptyContent: {
     flexGrow: 1,
@@ -241,8 +246,11 @@ const styles = StyleSheet.create({
     padding: MEASUREMENTS.spacing.lg,
     gap: MEASUREMENTS.spacing.sm + 2,
   },
+  // The list's bottom padding is the hint cell's, so the cell's background covers the whole row
+  // that fades out above it as it slides up
   hint: {
     marginTop: MEASUREMENTS.spacing.md + 2,
     paddingHorizontal: MEASUREMENTS.spacing.xs,
+    paddingBottom: MEASUREMENTS.fabSize + MEASUREMENTS.spacing.bottom,
   },
 });
