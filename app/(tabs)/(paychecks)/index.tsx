@@ -26,9 +26,9 @@ import { useColumns } from "@/hooks/useColumns";
 import { usePaycheckSelectionStore } from "@/stores/paycheckSelectionStore";
 import { hapticSelection, hapticSuccess } from "@/utils/haptics";
 import { PayDateDetail } from "@/components/payDateDetail/PayDateDetail";
-import { FORWARD_CHEVRON, LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
+import { LARGE_TITLE_LIST, LARGE_TITLE_LIST_CONTENT } from "@/constants/direction";
 import { MEASUREMENTS } from "@/constants/measurements";
-import { DIM_ON_PRESS, dimOnPress } from "@/constants/press";
+import { DIM_ON_PRESS } from "@/constants/press";
 import { AppText } from "@/components/AppText";
 import { closeOpenSwipeRow } from "@/components/AppSwipeActions";
 import { AppHeroAmount } from "@/components/AppHeroAmount";
@@ -37,6 +37,7 @@ import { AppSectionHeader } from "@/components/AppSectionHeader";
 import { CHART_STRIP_HEIGHT, MonthBarChart } from "@/components/paychecks/MonthBarChart";
 import { PaycheckCell, PaycheckCellLayoutsContext } from "@/components/paychecks/PaycheckCell";
 import { PinnedHeader, PinnedHeaderShift } from "@/components/paychecks/PinnedHeader";
+import { ShortfallLine } from "@/components/paychecks/ShortfallLine";
 import { ProUnlockRow } from "@/components/paychecks/ProUnlockRow";
 import { Welcome } from "@/components/paychecks/Welcome";
 import { buildMonthGroups, createPaycheckReuse, FULL_MONTHS_AHEAD, hasEarlierMonths, PAST_MONTHS } from "@/utils/paycheckMonths";
@@ -577,16 +578,8 @@ export default function PaychecksScreen() {
 
   const handleHeaderLayout = useCallback(
     (event: LayoutChangeEvent) => {
-      const { width, height } = event.nativeEvent.layout;
+      const { height } = event.nativeEvent.layout;
       headerHeight.set(height);
-      setHeaderFloor((floor) => {
-        if (width === floor.width) return height > floor.height ? { ...floor, height } : floor;
-        // A fold lays the header out at a passing narrow width on its way to the new one (iPhone Duo),
-        // where its text wraps and it grows. Kept as the floor, that height would make the header
-        // collapse past the month pills and pin them under the bar (HAU-625). At a new width a
-        // height no taller than the old floor may be the floor itself: drop it and measure again.
-        return { ...floor, width, height: height > floor.height ? height : 0 };
-      });
       if (headerHeightRef.current === height) return;
       headerHeightRef.current = height;
       // The header can change height with the month a jump selected; land under the new one
@@ -595,6 +588,19 @@ export default function PaychecksScreen() {
     },
     [headerHeight, attemptJump]
   );
+
+  // The floor holds the summary above the short line, which keeps its own floor and opens and shuts by itself
+  const handleSummaryLayout = useCallback((event: LayoutChangeEvent) => {
+    const { width, height } = event.nativeEvent.layout;
+    setHeaderFloor((floor) => {
+      if (width === floor.width) return height > floor.height ? { ...floor, height } : floor;
+      // A fold lays the header out at a passing narrow width on its way to the new one (iPhone Duo),
+      // where its text wraps and it grows. Kept as the floor, that height would make the header
+      // collapse past the month pills and pin them under the bar (HAU-625). At a new width a
+      // height no taller than the old floor may be the floor itself: drop it and measure again.
+      return { ...floor, width, height: height > floor.height ? height : 0 };
+    });
+  }, []);
 
   const goHome = useCallback(
     (animated: boolean) => {
@@ -715,12 +721,19 @@ export default function PaychecksScreen() {
     }
   }, [shortElsewhere, shortElsewhereIndex, setSelectedMonthKey, jumpTo]);
 
-  const shortRowStyle = useMemo(() => dimOnPress(styles.shortRow), []);
+  const shortLabel = shortElsewhere
+    ? t("paychecks.shortAhead", {
+        date: formatShortDate(shortElsewhere.paycheck.date),
+        source: shortElsewhere.paycheck.sourceName,
+        amount: formatMoney(-shortElsewhere.paycheck.remaining),
+      })
+    : undefined;
 
   const stickyHeaderStyle = useMemo(
-    () => [styles.stickyHeader, { backgroundColor: colors.screenBackground, minHeight: headerFloor.height }],
-    [colors, headerFloor.height]
+    () => [styles.stickyHeader, { backgroundColor: colors.screenBackground }],
+    [colors]
   );
+  const summaryFloorStyle = useMemo(() => ({ minHeight: headerFloor.height }), [headerFloor.height]);
   const pinnedDividerStyle = useMemo(
     () => [styles.pinnedDivider, { backgroundColor: colors.border }, pinnedDividerFade],
     [colors, pinnedDividerFade]
@@ -743,42 +756,32 @@ export default function PaychecksScreen() {
       hasIncome && selectedMonth ? (
         <View style={stickyHeaderStyle} onLayout={handleHeaderLayout}>
           <Animated.View style={summaryFade}>
-            <View style={styles.heroLabelRow}>
-              <AppText variant="meta" style={styles.heroLabel}>
-                {t("paychecks.leftAfterBills", { month: selectedMonth.longLabel })}
-              </AppText>
-              {isAwayFromToday ? (
-                <Pressable
-                  style={DIM_ON_PRESS}
-                  onPress={handleTodayPress}
-                  hitSlop={MEASUREMENTS.hitSlop}
-                  accessibilityRole="button"
-                  accessibilityLabel={t("paychecks.goToThisMonth")}
-                >
-                  <Ionicons name="today-outline" size={TODAY_ICON_SIZE} color={colors.primaryText} />
-                </Pressable>
-              ) : null}
-            </View>
-            <AppHeroAmount amount={selectedMonth.remaining} />
-            <AppCountUpText
-              variant="meta"
-              style={styles.heroMeta}
-              amounts={heroMetaAmounts}
-              render={renderHeroMeta}
-            />
-            {shortElsewhere ? (
-              <Pressable style={shortRowStyle} onPress={handleShowShort} accessibilityRole="button">
-                <Ionicons name="alert-circle" size={16} color={colors.destructive} />
-                <AppText variant="meta" color="destructive" style={styles.shortText}>
-                  {t("paychecks.shortAhead", {
-                    date: formatShortDate(shortElsewhere.paycheck.date),
-                    source: shortElsewhere.paycheck.sourceName,
-                    amount: formatMoney(-shortElsewhere.paycheck.remaining),
-                  })}
+            <View style={summaryFloorStyle} onLayout={handleSummaryLayout}>
+              <View style={styles.heroLabelRow}>
+                <AppText variant="meta" style={styles.heroLabel}>
+                  {t("paychecks.leftAfterBills", { month: selectedMonth.longLabel })}
                 </AppText>
-                <Ionicons name={FORWARD_CHEVRON} size={16} color={colors.destructive} />
-              </Pressable>
-            ) : null}
+                {isAwayFromToday ? (
+                  <Pressable
+                    style={DIM_ON_PRESS}
+                    onPress={handleTodayPress}
+                    hitSlop={MEASUREMENTS.hitSlop}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("paychecks.goToThisMonth")}
+                  >
+                    <Ionicons name="today-outline" size={TODAY_ICON_SIZE} color={colors.primaryText} />
+                  </Pressable>
+                ) : null}
+              </View>
+              <AppHeroAmount amount={selectedMonth.remaining} />
+              <AppCountUpText
+                variant="meta"
+                style={styles.heroMeta}
+                amounts={heroMetaAmounts}
+                render={renderHeroMeta}
+              />
+            </View>
+            <ShortfallLine label={shortLabel} onPress={handleShowShort} collapse={collapse} floorKey={months} />
           </Animated.View>
           <View style={styles.chart}>
             <MonthBarChart
@@ -800,9 +803,10 @@ export default function PaychecksScreen() {
       currentMonthKey,
       isAwayFromToday,
       handleTodayPress,
-      shortElsewhere,
+      shortLabel,
       handleShowShort,
-      shortRowStyle,
+      handleSummaryLayout,
+      summaryFloorStyle,
       handleSelectMonth,
       isPro,
       openPaywall,
@@ -812,7 +816,6 @@ export default function PaychecksScreen() {
       pinnedDividerStyle,
       collapse,
       colors,
-      formatMoney,
       heroMetaAmounts,
       renderHeroMeta,
       t,
@@ -1002,15 +1005,6 @@ const styles = StyleSheet.create({
   },
   heroMeta: {
     marginTop: MEASUREMENTS.spacing.xs,
-  },
-  shortRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: MEASUREMENTS.spacing.sm + 2,
-    marginTop: MEASUREMENTS.spacing.base,
-  },
-  shortText: {
-    flexShrink: 1,
   },
   chart: {
     marginTop: MEASUREMENTS.spacing.xl,
