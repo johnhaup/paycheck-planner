@@ -22,9 +22,6 @@ import { DIM_ON_PRESS } from "@/constants/press";
 import { initDatabase } from "@/db/init";
 import { SYNC_CONFIG } from "@/db/sync";
 import { SyncedStores } from "@/components/SyncedStores";
-import { markAllPaidHeaderRight } from "@/components/payDateDetail/MarkAllPaidButton";
-import { useStore } from "@/store";
-import { getPaycheckBills } from "@/utils/paycheckBills";
 
 // sonner-native 0.27.0 passes dependency arrays to useDerivedValue/useAnimatedStyle,
 // which Reanimated 4 warns about on native. The warning fires with the first toast
@@ -44,10 +41,6 @@ SplashScreen.preventAutoHideAsync();
 
 const TABS_OPTIONS = { headerShown: false };
 
-interface PayDateParams {
-  payDate?: string;
-  sourceId?: string;
-}
 const ANDROID_TOOLBAR_HEIGHT = 56;
 
 /** Rendered once `initDatabase` has run. */
@@ -143,22 +136,6 @@ function RootNavigator() {
     [modalOptions, renderCloseButton, t]
   );
 
-  // The whole bar is declared here, "Mark all paid" included when the paycheck has unpaid bills, so
-  // it is in place when the push starts instead of waiting for the screen's first render (#191). The
-  // screen only adds or removes the button when that changes later (PayDateDetail).
-  const payDateDetailOptions = useCallback(
-    ({ route }: { route: { params?: object } }) => {
-      const { payDate = "", sourceId = "" }: PayDateParams = route.params ?? {};
-      const hasUnpaid = getPaycheckBills(useStore.getState(), payDate, sourceId).unpaidExpenseIds.length > 0;
-      return {
-        title: t("screens.payDate"),
-        presentation: "card" as const,
-        headerRight: hasUnpaid ? markAllPaidHeaderRight(payDate, sourceId) : undefined,
-      };
-    },
-    [t]
-  );
-
   const languageOptions = useMemo(
     () => ({ ...modalOptions, title: t("screens.language"), headerRight: renderCloseButton }),
     [modalOptions, renderCloseButton, t]
@@ -233,7 +210,6 @@ function RootNavigator() {
           <Stack.Screen name="(tabs)" options={TABS_OPTIONS} />
           <Stack.Screen name="income-form" options={incomeFormOptions} />
           <Stack.Screen name="expense-form" options={expenseFormOptions} />
-          <Stack.Screen name="pay-date-detail" options={payDateDetailOptions} />
           <Stack.Screen name="settings" options={settingsOptions} />
           <Stack.Screen name="paywall" options={paywallOptions} />
           <Stack.Screen name="language" options={languageOptions} />

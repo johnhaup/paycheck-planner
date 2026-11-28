@@ -201,8 +201,8 @@ export function PayDateDetail({ payDate, sourceId, contentContainerStyle, embedd
 
   const canMoveBill = unpaidExpenseIds.length > 0;
 
-  // The route's options (app/_layout.tsx) put "Mark all paid" in the bar at push time. Touching the
-  // bar during the push is what left it empty (#191), so this only follows a later change.
+  // The route's options (app/(tabs)/(paychecks)/_layout.tsx) put "Mark all paid" in the bar at push time,
+  // so this only follows a later change (#191).
   const buttonInBar = useRef(canMoveBill);
 
   const listData = useMemo(() => {
